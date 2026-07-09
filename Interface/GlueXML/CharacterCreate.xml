@@ -132,7 +132,7 @@
 			</OnShow>
 		</Scripts>
 	</Frame>
-	<Frame name="CharacterCreateTooltip2" frameStrata="TOOLTIP2" hidden="true" clampedToScreen="true">
+	<Frame name="CharacterCreateTooltip2" frameStrata="TOOLTIP" hidden="true" clampedToScreen="true">
 		<Size>
 			<AbsDimension x="78" y="0"/>
 		</Size>
@@ -460,11 +460,11 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<FontString parentKey="text" inherits="QuestFontNormalHuge" hidden="true">
+				<!--<FontString parentKey="text" inherits="QuestFontNormalHuge" hidden="true">
 					<Anchors>
 						<Anchor point="LEFT" relativePoint="RIGHT" x="20" y="0"/>
 					</Anchors>
-				</FontString>
+				</FontString>-->
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -1034,7 +1034,7 @@
 	<ModelFFX name="CharacterCreate" toplevel="true" parent="GlueParent" setAllPoints="true" enableKeyboard="true" hidden="true">
 		<Frames>
 
-			<Frame name="CharacterCreateFrame" setAllPoints="true" enableMouse="true">
+			<Frame name="CharacterCreateFrame" setAllPoints="true" enableMouse="true" enableMouseWheel="true">
 				<Frames>
 					<!-- <Button name="CharacterCreateRotateLeft">
 						<Size x="50" y="50"/>
@@ -1900,7 +1900,7 @@
 							</Button>
 							<CheckButton name="CharCreateCustomizationButton2" inherits="CharCreateCustomizationButtonTemplate_Custom" id="2" hidden = "true">
 								<Anchors>
-									<Anchor point="CENTER" relativeTo="CharCreateFaceButton" relativePoint="CENTER" x="0" y="-25"/>
+									<!--<Anchor point="CENTER" relativeTo="CharCreateFaceButton" relativePoint="CENTER" x="0" y="-25"/>-->
 								</Anchors>
 								<Scripts>
 									<OnLoad>
@@ -2385,6 +2385,8 @@
 					<OnMouseWheel>
 						if ( CharCreatePreviewFrame:IsShown() ) then
 							CharCreate_ChangeFeatureVariation(delta * -1);
+						else
+							CharacterCreate_Zoom(delta);
 						end
 					</OnMouseWheel>
 				</Scripts>

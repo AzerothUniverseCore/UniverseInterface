@@ -31,7 +31,7 @@ function C_CreatureInfo.GetFactionInfo( race )
 	local raceData = S_CHARACTER_RACES_INFO[race] or S_CHARACTER_RACES_INFO_LOCALIZATION_ASSOC[race]
     
 	raceData = raceData or {
-		raceName = "Человек",
+		raceName = "Humain",
 		clientFileString = "Human",
 		raceID = 1,
 		factionID = 1
@@ -59,7 +59,7 @@ function C_CreatureInfo.GetRaceInfo( race )
 	local raceData = S_CHARACTER_RACES_INFO[race] or S_CHARACTER_RACES_INFO_LOCALIZATION_ASSOC[race]
     
 	raceData = raceData or {
-		raceName = "Человек",
+		raceName = "Humain",
 		clientFileString = "Human",
 		raceID = 1,
 		factionID = 1

@@ -5,25 +5,25 @@
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture name="$parentLeftDisabled" parentKey="LeftDisabled" file="Interface\PaperDollInfoFrame\UI-Character-ActiveTab">
-                    <Size x="20" y="32"/>
+                    <Size x="20" y="35"/>
                     <Anchors>
                         <Anchor point="TOPLEFT" x="0" y="0"/>
                     </Anchors>
-                    <TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
+                    <TexCoords left="0" right="0.15625" top="0" bottom="0.546875"/>
                 </Texture>
                 <Texture name="$parentMiddleDisabled" parentKey="MiddleDisabled" file="Interface\PaperDollInfoFrame\UI-Character-ActiveTab">
-                    <Size x="88" y="32"/>
+                    <Size x="88" y="35"/>
                     <Anchors>
                         <Anchor point="LEFT" relativeTo="$parentLeftDisabled" relativePoint="RIGHT"/>
                     </Anchors>
-                    <TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
+                    <TexCoords left="0.15625" right="0.84375" top="0" bottom="0.546875"/>
                 </Texture>
                 <Texture name="$parentRightDisabled" parentKey="RightDisabled" file="Interface\PaperDollInfoFrame\UI-Character-ActiveTab">
-                    <Size x="20" y="32"/>
+                    <Size x="20" y="35"/>
                     <Anchors>
                         <Anchor point="LEFT" relativeTo="$parentMiddleDisabled" relativePoint="RIGHT"/>
                     </Anchors>
-                    <TexCoords left="0.84375" right="1.0" top="0" bottom="1.0"/>
+                    <TexCoords left="0.84375" right="1.0" top="0" bottom="0.546875"/>
                 </Texture>
                 <Texture name="$parentLeft" parentKey="Left" file="Interface\PaperDollInfoFrame\UI-Character-InActiveTab">
                     <Size x="20" y="32"/>

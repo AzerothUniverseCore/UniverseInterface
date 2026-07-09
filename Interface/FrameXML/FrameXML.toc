@@ -1,29 +1,52 @@
 # Do not delete the following line!
 ## Interface: 30300
-..\SharedXML\AtlasStorage.lua
-..\SharedXML\MixIn.lua
-..\SharedXML\Util.lua
-..\SharedXML\C_Texture.lua
-..\SharedXML\C_TimerAugment.lua
-..\SharedXML\AnchorUtil.xml
 
+..\SharedXML\AtlasStorage.lua
 ..\SharedXML\Extensions\math.lua
 ..\SharedXML\Extensions\string.lua
 ..\SharedXML\Extensions\table.lua
 ..\SharedXML\Extensions\middleclass.lua
 ..\SharedXML\Extensions\enum.lua
-
-..\SharedXML\Utils\C_Cache.lua
+..\SharedXML\SharedStrings.lua
+..\SharedXML\DataDumper.lua
+..\SharedXML\UUID.lua
+..\SharedXML\CacheSystem.lua
+..\SharedXML\EventHandler.lua
+..\SharedXML\Hook.lua
+..\SharedXML\EJ_CompatEarly.lua
+..\SharedXML\MixIn.lua
+..\SharedXML\Util.lua
+..\SharedXML\Pools.lua
 ..\SharedXML\Utils\C_Texture.lua
+..\SharedXML\Utils\C_CreatureInfo.lua
+..\SharedXML\Utils\C_Cache.lua
+..\SharedXML\C_Texture.lua
+..\SharedXML\AnchorUtil.xml
+..\SharedXML\CircularBuffer.lua
+..\SharedXML\TypeUtil.lua
 
+..\SharedXML\C_TimerAugment.lua
+..\SharedXML\ItemsCache.lua
+..\SharedXML\L_Easing.lua
 GlobalStrings.lua
 Constants.lua
 Fonts.xml
 FontStyles.xml
-Localization.xml
 ..\SharedXML\SharedFontStyles.xml
+Localization.xml
+..\SharedXML\SoundKitConstants.lua
 ..\SharedXML\SharedConstants.lua
+..\SharedXML\EJ_CompatLate.lua
+WorldMapFrameData.lua
+
+..\SharedXML\TimeUtil.lua
+..\SharedXML\CallbackRegistry.lua
+..\SharedXML\FrameUtil.lua
+..\SharedXML\FunctionUtil.lua
+..\SharedXML\LayoutFrame.xml
+..\SharedXML\ScrollList.xml
 ..\SharedXML\SharedTooltipTemplates.lua
+..\SharedXML\TableBuilder.lua
 # add new modules below here
 
 Utils\C_Item.lua
@@ -43,6 +66,8 @@ UIDropDownMenu.xml
 UIPanelTemplates.lua
 UIPanelTemplates.xml
 ..\SharedXML\SharedUIPanelTemplates.xml
+PKBT_Compat.lua
+..\SharedXML\SharedUIPanelPKBTTemplates.xml
 ..\SharedXML\ModelFrames.xml
 SecureTemplates.xml
 SecureHandlerTemplates.xml
@@ -54,6 +79,7 @@ GameMenuFrame.xml
 CharacterFrameTemplates.xml
 TextStatusBar.lua
 TextStatusBar.xml
+NavigationBar.xml
 UIErrorsFrame.xml
 AutoComplete.xml
 StaticPopup.xml
@@ -143,6 +169,7 @@ MailFrame.xml
 PetStable.xml
 DurabilityFrame.xml
 WorldStateFrame.xml
+WardrobeOutfits.xml
 DressUpFrame.xml
 RaidWarning.xml
 ClassTrainerFrameTemplates.xml
@@ -165,6 +192,23 @@ MovieFrame.xml
 VehicleMenuBar.xml
 AlternatePowerBar.xml
 AnimationSystem.lua
+GhostFrame.xml
+SpellFlyout.xml
+QueueStatusFrame.xml
+HelpTip.xml
+
+# Encounter Journal
+EncounterJournal_Strings.lua
+EncounterJournal_OfflineStubs.lua
+..\SharedXML\CreaturesCache.lua
+Utils\C_Creature.lua
+Utils\DisplayIdToModel.lua
+Utils\DisplayIdToExtraId.lua
+Utils\CreatureDisplayInfoExtra.lua
+EncounterJournal_Fixups.xml
+Custom_EncounterJournal\Custom_EncounterJournal.xml
+EncounterJournal_UI.xml
+EncounterJournal_MicroButton.xml
 
 # custom modules
 XML_TXXUI.xml
@@ -172,3 +216,6 @@ XML_IXXUI.xml
 
 # add new modules above here
 LocalizationPost.xml
+
+# Do not remove
+Controller.lua

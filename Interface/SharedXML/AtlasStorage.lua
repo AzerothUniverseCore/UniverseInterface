@@ -264,6 +264,10 @@ PRETTY_ATLAS_STORAGE = {
 	["GeneralFrame-HorizontalBar-Right"] = {10, 19, 0.515625, 0.671875, 0.031250, 0.625000, false, false, "Interface/FrameGeneral/GeneralFrameInsetBorders"},
 	["!GeneralFrame-InsetFrame-Left"] = {8, 32, 0.015625, 0.140625, 0.000000, 1.000000, false, true, "Interface/FrameGeneral/GeneralFrameInsetBorders"},
 	["dressingroom-background-rogue"] = {478, 500, 0.001953, 0.935547, 0.001953, 0.978516, false, false, "Interface/DressUpFrame/DressingRoomRogue"},
+	["dressingroom-background-monk"] = {478, 500, 0.001953, 0.935547, 0.001953, 0.978516, false, false, "Interface/DressUpFrame/DressingRoomMonk"},
+	["dressingroom-background-evoker"] = {478, 500, 0.001953, 0.935547, 0.001953, 0.978516, false, false, "Interface/DressUpFrame/DressingRoomEvoker"},
+	["dressingroom-background-demonhunter"] = {478, 500, 0.001953, 0.935547, 0.001953, 0.978516, false, false, "Interface/DressUpFrame/DressingRoomDemonHunter"},
+	["dressingroom-background-bloodmage"] = {478, 500, 0.001953, 0.935547, 0.001953, 0.978516, false, false, "Interface/DressUpFrame/DressingRoomEvoker"},
 
 	["bluemenu-Ring"] = {102, 103, 0.007813, 0.804688, 0.007813, 0.812500, false, false, "Interface/Common/BlueMenuRing"},
 

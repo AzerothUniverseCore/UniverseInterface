@@ -36,6 +36,5 @@ AudioOptionsFrame.xml
 AudioOptionsPanels.xml
 OptionsSelect.xml
 ##CameraSelect.xml
-ServerList.xml
 ## This Always Runs Last, Add New Items above it.
 GlueLocalizationPost.xml

@@ -1192,7 +1192,11 @@ function SpellBookFrame_Update(showing)
 	SpellBookNextPageButton:SetShown(needShow)
 	SpellBookPageText:SetShown(needShow)
 
+	ShowUnassignedSpellBorderCheckBox:SetShown(SpellBookFrame.bookType == BOOKTYPE_SPELL)
 
+	if SpellBookSearchBoxFrame then
+		SpellBookSearchBoxFrame:SetShown(SpellBookFrame.bookType == BOOKTYPE_SPELL or SpellBookFrame.bookType == BOOKTYPE_PET)
+	end
 end
 
 function SpellBookFrame_HideSpells ()
@@ -1212,6 +1216,11 @@ end
 function SpellBookFrame_UpdateSpellState()
 	for i = 1, SPELLS_PER_PAGE do
 		local spellButton = _G["SpellButton" .. i]
+		if (spellButton.data and SpellBookFrame.searchSpellID) and SpellBookFrame.searchSpellID ~= spellButton.data then
+			spellButton:SetAlpha(0.4)
+		else
+			spellButton:SetAlpha(1)
+		end
 	end
 end
 
@@ -1866,12 +1875,18 @@ function SpellBookSearchBox_OnTextChanged( self )
 
 			local currentPage = SpellBook_GetCurrentPage()
 
+			SpellBookFrame.searchSpellID = spellID
+
 			if currentPage ~= page then
 				SPELLBOOK_PAGENUMBERS[skillLineID] = page
 				SpellBookFrame_Update()
 				return
 			end
+		else
+			SpellBookFrame.searchSpellID = nil
 		end
+	else
+		SpellBookFrame.searchSpellID = nil
 	end
 
 	SpellBookFrame_UpdateSpellState()

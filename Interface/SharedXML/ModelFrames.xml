@@ -1,11 +1,7 @@
-<!--
-	Filename:	ModelFrames.xml
--->
-
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
 	<Script file="ModelFrames.lua"/>
 
-	<Button name="ModelControlButtonTemplate" virtual="true">
+	<Button name="ModelsControlButtonTemplate" virtual="true">
 		<Size x="18" y="18"/>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -69,9 +65,9 @@
 			<OnMouseDown function="SharedXML_Model_OnMouseDown"/>
 		</Scripts>
 	</PlayerModel>
-	<PlayerModel name="ModelWithControlsTemplate" virtual="true">
+	<PlayerModel name="ModelWithControlsPlayerTemplate" virtual="true">
 		<Frames>
-			<Frame name="$parentControlFrame" parentKey="controlFrame" alpha="0.5" hidden="true">
+			<Frame name="$parentControlFrameModel" parentKey="controlFrameModel" alpha="0.5" hidden="true">
 				<Size x="58" y="23"/>
 				<Anchors>
 					<Anchor point="TOP" x="0" y="-2"/>
@@ -103,27 +99,7 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<!-- <Button name="$parentPanButton" inherits="ModelControlButtonTemplate" parentKey="panButton">
-						<Anchors>
-							<Anchor point="LEFT" x="2" y="0"/>
-						</Anchors>
-						<Scripts>
-							<OnLoad>
-								self:RegisterForClicks("AnyUp")
-								self.icon:SetTexCoord(0.29687500, 0.54687500, 0.28906250, 0.41406250)
-								self.tooltip = "Перетащить"
-								self.tooltipText = "Зажмите правую кнопку мыши и тащите курсор, чтобы переместить персонажа."
-							</OnLoad>
-							<OnMouseDown>
-								ModelControlButton_OnMouseDown(self)
-								SharedXML_Model_StartPanning(self:GetParent():GetParent(), true)
-							</OnMouseDown>
-							<OnMouseUp>
-								PlaySound("igInventoryRotateCharacter")
-							</OnMouseUp>
-						</Scripts>
-					</Button> -->
-					<Button name="$parentRotateLeftButton" inherits="ModelControlButtonTemplate" parentKey="rotateLeftButton">
+					<Button name="$parentRotateLeftButton" inherits="ModelsControlButtonTemplate" parentKey="rotateLeftButton">
 						<!-- <Anchors>
 							<Anchor point="LEFT" relativeTo="$parentPanButton" relativePoint="RIGHT" x="0" y="0"/>
 						</Anchors> -->
@@ -134,15 +110,15 @@
 							<OnLoad>
 								self:RegisterForClicks("AnyUp")
 								self.icon:SetTexCoord(0.01562500, 0.26562500, 0.28906250, 0.41406250)
-								self.tooltip = "Linksdrehung"
-								self.tooltipText = "Linksklicken und ziehen, um den Charakter zu drehen."
+								self.tooltip = CONTROLFRAME_ROTATE_LEFT
+								self.tooltipText = CONTROLFRAME_ROTATE_DESC
 							</OnLoad>
 							<OnClick>
 								SharedXML_Model_RotateLeft(self:GetParent():GetParent())
 							</OnClick>
 						</Scripts>
 					</Button>
-					<Button name="$parentRotateRightButton" inherits="ModelControlButtonTemplate" parentKey="rotateRightButton">
+					<Button name="$parentRotateRightButton" inherits="ModelsControlButtonTemplate" parentKey="rotateRightButton">
 						<Anchors>
 							<Anchor point="LEFT" relativeTo="$parentRotateLeftButton" relativePoint="RIGHT" x="0" y="0"/>
 						</Anchors>
@@ -150,22 +126,22 @@
 							<OnLoad>
 								self:RegisterForClicks("AnyUp")
 								self.icon:SetTexCoord(0.57812500, 0.82812500, 0.28906250, 0.41406250)
-								self.tooltip = "Rechtsdrehung"
-								self.tooltipText = "Linksklicken und ziehen, um den Charakter zu drehen."
+								self.tooltip = CONTROLFRAME_ROTATE_RIGHT
+								self.tooltipText = CONTROLFRAME_ROTATE_DESC
 							</OnLoad>
 							<OnClick>
 								SharedXML_Model_RotateRight(self:GetParent():GetParent())
 							</OnClick>
 						</Scripts>
 					</Button>
-					<Button name="$parentRotateResetButton" inherits="ModelControlButtonTemplate">
+					<Button name="$parentRotateResetButton" inherits="ModelsControlButtonTemplate">
 						<Anchors>
 							<Anchor point="LEFT" relativeTo="$parentRotateRightButton" relativePoint="RIGHT" x="0" y="0"/>
 						</Anchors>
 						<Scripts>
 							<OnLoad>
 								self:RegisterForClicks("AnyUp")
-								self.tooltip = "Zurücksetzen"
+								self.tooltip = CONTROLFRAME_ROTATE_RESET
 							</OnLoad>
 							<OnClick>
 								SharedXML_Model_Reset(self:GetParent():GetParent())
@@ -200,7 +176,7 @@
 			</OnMouseUp>
 			<OnMouseDown>
 				if ( button == "RightButton" and not self.mouseDown ) then
-					SharedXML_Model_StartPanning(self)
+					SharedXML_Model_StartPanning(self, true)
 				else
 					SharedXML_Model_OnMouseDown(self, button)
 				end
@@ -209,11 +185,11 @@
 				SharedXML_Model_OnMouseWheel(self, delta)
 			</OnMouseWheel>
 			<OnEnter>
-				self.controlFrame:Show()
+				self.controlFrameModel:Show()
 			</OnEnter>
 			<OnLeave>
-				if ( not self.controlFrame:IsMouseOver() and not ModelPanningFrame:IsShown() ) then
-					self.controlFrame:Hide()
+				if ( not self.controlFrameModel:IsMouseOver() and not ModelsPanningFrame:IsShown() ) then
+					self.controlFrameModel:Hide()
 				end
 			</OnLeave>
 			<OnHide>
@@ -221,12 +197,12 @@
 					SharedXML_Model_StopPanning(self)
 				end
 				self.mouseDown = false
-				self.controlFrame:Hide()
+				self.controlFrameModel:Hide()
 			</OnHide>
 		</Scripts>
 	</PlayerModel>
 
-	<Frame name="ModelPanningFrame" parent="UIParent" hidden="true" frameStrata="DIALOG" clampedToScreen="true" enableMouse="true">
+	<Frame name="ModelsPanningFrame" parent="UIParent" hidden="true" frameStrata="DIALOG" clampedToScreen="true" enableMouse="true">
 		<Size x="32" y="32"/>
 		<Layers>
 			<Layer level="ARTWORK">
@@ -236,14 +212,14 @@
 		<Scripts>
 			<OnUpdate>
 				local model = self.model
-				local controlFrame = model.controlFrame
-				if ( not IsMouseButtonDown(controlFrame.panButton) ) then
+				local controlFrameModel = model.controlFrameModel
+				if ( not IsMouseButtonDown(controlFrameModel.panButton) ) then
 					SharedXML_Model_StopPanning(model)
-					if ( controlFrame.buttonDown ) then
-						ModelControlButton_OnMouseUp(controlFrame.buttonDown)
+					if ( controlFrameModel.buttonDown ) then
+						ModelControlButton_OnMouseUp(controlFrameModel.buttonDown)
 					end
-					if ( not controlFrame:IsMouseOver() ) then
-						controlFrame:Hide()
+					if ( not controlFrameModel:IsMouseOver() ) then
+						controlFrameModel:Hide()
 					end
 				end
 			</OnUpdate>

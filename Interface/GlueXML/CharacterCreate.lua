@@ -845,6 +845,7 @@ function CharacterCreate_OnShow()
 	CharacterCreate_UpdateHairCustomization();
 
 	SetCharacterCreateFacing(-15);
+	CharacterCreate_ResetZoom();
 
 	-- setup customization
 	CharacterChangeFixup();
@@ -856,6 +857,7 @@ function CharacterCreate_OnShow()
 		local backgroundFilename = GetCreateBackgroundModel(faction);
 			backgroundFilename = "DEMONHUNTER"
 		SetBackgroundModel(CharacterCreate, backgroundFilename);
+		CHARACTER_CREATE_SPECIAL_BACKGROUND = true;
 	end
 	
 end
@@ -915,6 +917,191 @@ function CharacterCreateFrame_OnUpdate(self, elapsed)
 		CharCreate_RotatePreviews();
 	end
 	CharacterCreateWhileMouseDown_Update(elapsed);
+end
+
+-- Zoom molette sur le modèle de la création de personnage.
+--
+-- Approche : offset de position CIBLE, réappliqué à CHAQUE frame par-dessus la
+-- position que le moteur (UpdateCustomizationScene, natif) vient de remettre
+-- (cf. CharacterCreate_ApplyZoom, appelée depuis CharacterCreate_UpdateModel juste
+-- après UpdateCustomizationScene()).
+--
+-- L'offset RÉEL suit l'offset CIBLE progressivement (lissage), au lieu d'un saut
+-- instantané à chaque cran de molette : ça donne un zoom plus doux, et ça limite
+-- l'effet observé sur certains FX attachés (ex: flammes d'épaulettes qui semblaient
+-- s'accélérer) puisqu'on évite les téléportations brutales de position à chaque frame.
+--
+-- CAUSE RÉELLE DU "ZOOM SUR LE CÔTÉ" (identifiée en analysant les .m2 de décor) :
+-- chaque décor (Interface\Glues\Models\UI_<Nom>\UI_<Nom>.m2, choisi par
+-- SetBackgroundModel() dans GlueParent.lua selon GetSelectedRace()) a sa PROPRE
+-- caméra embarquée, avec sa propre direction caméra->cible. On supposait que
+-- cette direction était toujours ~l'axe X : c'est vrai pour Human/Orc/Tauren/
+-- Trol2, mais complètement faux pour Draenei/VoidElf/BloodElf/Horde/DemonHunter/
+-- Goblin/Worgen (direction dominée par Y, parfois à 99%). Pousser sur X pour ces
+-- décors revient donc à pousser quasi perpendiculairement à la vraie profondeur
+-- de la caméra -> ça part sur le côté.
+--
+-- Le fix : on mesure (une fois, via script Python sur les .m2) la direction
+-- caméra->cible réelle de chaque décor, et on l'utilise directement au lieu de
+-- toujours pousser sur X. CHARACTER_CREATE_ZOOM_DIRECTION_BY_SCENE liste les
+-- décors mesurés ; les décors non listés (Dwarf, Pirate, Gnome, Pandaren,
+-- Vulpera, Dracthyr, Kultiran, Scourge, Troll, NightElf, ORCCLAN...) gardent la
+-- direction par défaut (-1,0,0), qui fonctionne pour eux d'après les tests.
+--
+-- CHARACTER_CREATE_ZOOM_SCALE_BY_SCENE atténue l'intensité pour les décors où la
+-- direction est correcte mais le zoom ressenti est trop fort (Dwarf, Trol2,
+-- Tauren=Highmountain en réalité).
+CHARACTER_CREATE_ZOOM_OFFSET = 0;        -- offset actuellement appliqué (suit la cible en douceur)
+CHARACTER_CREATE_ZOOM_TARGET_OFFSET = 0; -- offset visé (mis à jour par la molette)
+CHARACTER_CREATE_ZOOM_MIN = -0.15;  -- dézoom max (s'éloigne)
+CHARACTER_CREATE_ZOOM_MAX = 0.85;   -- zoom max (se rapproche)
+CHARACTER_CREATE_ZOOM_STEP = 0.06;
+CHARACTER_CREATE_ZOOM_SMOOTHING = 0.12;   -- vitesse de rattrapage vers la cible (0-1, plus haut = plus rapide)
+CHARACTER_CREATE_ZOOM_FACE_BIAS = 0.85;   -- décalage vertical additionnel pour recentrer vers le visage
+
+-- Direction caméra->cible mesurée (normalisée) pour chaque décor UI_<Nom>.
+-- IMPORTANT : ces valeurs sont l'INVERSE du vecteur brut mesuré dans les .m2
+-- (caméra->cible). L'ancien code (qui zoomait très bien sur la tête pour les
+-- races non désactivées) poussait simplement en +X (self:SetPosition(x+offset,...)),
+-- alors que la direction RÉELLE mesurée pour Human est en fait proche de -X
+-- (-0.9997). On calibre donc tous les vecteurs sur ce même repère (+X pour
+-- Human) pour retrouver exactement le comportement de zoom qui fonctionnait
+-- déjà bien, tout en corrigeant l'axe pour les décors qui partaient sur le côté.
+-- Par défaut (décor non listé) : {x=1, y=0, z=0}, identique à l'ancien code.
+CHARACTER_CREATE_ZOOM_DEFAULT_DIRECTION = {x = 1, y = 0, z = 0};
+CHARACTER_CREATE_ZOOM_DIRECTION_BY_SCENE = {
+	["Human"]       = {x =  0.9997, y = -0.0160, z = -0.0186},
+	["Draenei"]     = {x =  0.3556, y = -0.9346, z =  0.0095},
+	["VoidElf"]     = {x =  0.0000, y =  0.9957, z = -0.0925},
+	["BloodElf"]    = {x = -0.8031, y =  0.5928, z = -0.0601},
+	["Horde"]       = {x = -0.8043, y =  0.5936, z = -0.0261},
+	["DemonHunter"] = {x = -0.8031, y =  0.5928, z = -0.0601},
+	["Goblin"]      = {x = -0.8031, y =  0.5928, z = -0.0601},
+	["Worgen"]      = {x = -0.8031, y =  0.5928, z = -0.0601},
+	["Tauren"]      = {x =  0.9946, y =  0.0193, z = -0.1021}, -- fichier réellement utilisé par Highmountain (Haut-Roc)
+	["Trol2"]       = {x = -0.9979, y =  0.0249, z = -0.0601},
+};
+
+-- Atténuation par décor (1.0 = normal). Les valeurs pour Draenei/VoidElf sont
+-- calculées à partir du ratio de distance caméra->cible mesurée par rapport à
+-- Human (distance/6.6807) : leur caméra est bien plus proche du personnage à la
+-- base, donc le même offset y "dépasse" beaucoup plus vite (voir le cas Draenei
+-- qui filait au-dessus de la tête, dans le décor, en zoom max).
+CHARACTER_CREATE_ZOOM_SCALE_BY_SCENE = {
+	["Dwarf"]   = 0.45,  -- Nain / Nain Sombrefer (les deux utilisent ce décor)
+	["Trol2"]   = 0.8,   -- Trollesse
+	["Tauren"]  = 0.45,  -- Haut-Roc (Highmountain, utilise le décor "Tauren")
+	["Draenei"] = 0.55,  -- distance mesurée 3.84 vs 6.68 pour Human (ratio ~0.57)
+	["VoidElf"] = 0.65,  -- distance mesurée 4.35 vs 6.68 pour Human (ratio ~0.65)
+};
+
+-- Reproduit EXACTEMENT la logique de sélection de décor de GlueParent.lua
+-- (SetBackgroundModel), pour savoir quel décor est actif sans dépendre de ce
+-- que GlueParent.lua fait réellement à l'écran (il ignore le nom qu'on lui
+-- passe et recalcule tout via GetSelectedRace()).
+function CharacterCreate_GetActiveSceneName()
+	local race = GetSelectedRace();
+
+	if ( race == 1 ) then return "Human";
+	elseif ( race == 2 ) then return "Dwarf";
+	elseif ( race == 3 ) then return "Pirate";
+	elseif ( race == 4 ) then return "Gnome";
+	elseif ( race == 5 ) then return "Draenei";
+	elseif ( race == 6 ) then return "Worgen";
+	elseif ( race == 7 ) then return "Pandaren";
+	elseif ( race == 8 ) then return "DemonHunter";
+	elseif ( race == 9 ) then return "VoidElf";
+	elseif ( race == 10 ) then return "Draenei";
+	elseif ( race == 11 ) then return "Dwarf";
+	elseif ( race == 12 ) then return "BloodElf";
+	elseif ( race == 13 ) then return "Vulpera";
+	elseif ( race == 14 ) then return "Dracthyr";
+	elseif ( race == 15 ) then return "Kultiran";
+	elseif ( race == 16 ) then return "Horde";
+	elseif ( race == 17 ) then return "Scourge";
+	elseif ( race == 18 ) then return "Pirate";
+	elseif ( race == 19 ) then return "Trol2";
+	elseif ( race == 20 ) then return "Goblin";
+	elseif ( race == 21 ) then return "BloodElf";
+	elseif ( race == 22 ) then return "Pandaren";
+	elseif ( race == 23 ) then return "DemonHunter";
+	elseif ( race == 24 ) then return "Draenei";
+	elseif ( race == 25 ) then return "Vulpera";
+	elseif ( race == 26 ) then return "NightElf";
+	elseif ( race == 27 ) then return "Troll";
+	elseif ( race == 28 ) then return "Dwarf";
+	elseif ( race == 29 ) then return "Tauren";
+	elseif ( race == 30 ) then return "Dracthyr";
+	elseif ( race == 31 ) then return "ORCCLAN";
+	end
+
+	return "Earthen"; -- valeur par défaut de GlueParent.lua
+end
+
+-- Renvoie la direction caméra->cible (table {x,y,z}) à utiliser pour le décor actif
+function CharacterCreate_GetZoomDirection()
+	local scene = CharacterCreate_GetActiveSceneName();
+	return CHARACTER_CREATE_ZOOM_DIRECTION_BY_SCENE[scene] or CHARACTER_CREATE_ZOOM_DEFAULT_DIRECTION;
+end
+
+-- Renvoie le facteur d'atténuation du zoom pour le décor actif (1.0 par défaut)
+function CharacterCreate_GetZoomScale()
+	local scene = CharacterCreate_GetActiveSceneName();
+	return CHARACTER_CREATE_ZOOM_SCALE_BY_SCENE[scene] or 1.0;
+end
+
+-- Appelé depuis le OnMouseWheel : molette avant (delta > 0) = zoom avant, arrière (delta < 0) = dézoom
+function CharacterCreate_Zoom(delta)
+	if ( not delta or delta == 0 ) then
+		return;
+	end
+
+	CHARACTER_CREATE_ZOOM_TARGET_OFFSET = CHARACTER_CREATE_ZOOM_TARGET_OFFSET + (delta * CHARACTER_CREATE_ZOOM_STEP);
+
+	if ( CHARACTER_CREATE_ZOOM_TARGET_OFFSET < CHARACTER_CREATE_ZOOM_MIN ) then
+		CHARACTER_CREATE_ZOOM_TARGET_OFFSET = CHARACTER_CREATE_ZOOM_MIN;
+	elseif ( CHARACTER_CREATE_ZOOM_TARGET_OFFSET > CHARACTER_CREATE_ZOOM_MAX ) then
+		CHARACTER_CREATE_ZOOM_TARGET_OFFSET = CHARACTER_CREATE_ZOOM_MAX;
+	end
+end
+
+-- Réinitialise le zoom (utilisé à l'ouverture de l'écran de création)
+function CharacterCreate_ResetZoom()
+	CHARACTER_CREATE_ZOOM_OFFSET = 0;
+	CHARACTER_CREATE_ZOOM_TARGET_OFFSET = 0;
+end
+
+-- Réapplique l'offset de zoom par dessus la position que le moteur vient de remettre
+-- à chaque frame dans CharacterCreate_UpdateModel (appelé juste après UpdateCustomizationScene()).
+function CharacterCreate_ApplyZoom(self)
+	-- Rattrapage en douceur de l'offset réel vers la cible
+	if ( CHARACTER_CREATE_ZOOM_OFFSET ~= CHARACTER_CREATE_ZOOM_TARGET_OFFSET ) then
+		local diff = CHARACTER_CREATE_ZOOM_TARGET_OFFSET - CHARACTER_CREATE_ZOOM_OFFSET;
+		if ( abs(diff) < 0.001 ) then
+			CHARACTER_CREATE_ZOOM_OFFSET = CHARACTER_CREATE_ZOOM_TARGET_OFFSET;
+		else
+			CHARACTER_CREATE_ZOOM_OFFSET = CHARACTER_CREATE_ZOOM_OFFSET + diff * CHARACTER_CREATE_ZOOM_SMOOTHING;
+		end
+	end
+
+	if ( CHARACTER_CREATE_ZOOM_OFFSET == 0 ) then
+		return;
+	end
+
+	local x, y, z = self:GetPosition();
+	if ( not x ) then
+		x, y, z = 0, 0, 0;
+	end
+
+	local scale = CharacterCreate_GetZoomScale();
+	local appliedOffset = CHARACTER_CREATE_ZOOM_OFFSET * scale;
+	local dir = CharacterCreate_GetZoomDirection();
+
+	self:SetPosition(
+		x + appliedOffset * dir.x,
+		y + appliedOffset * dir.y,
+		z + appliedOffset * dir.z - (appliedOffset * CHARACTER_CREATE_ZOOM_FACE_BIAS)
+	);
 end
 
 function CharacterCreateEnumerateRaces(...)
@@ -1105,6 +1292,8 @@ function SetCharacterRace(id)
 	else
 		SetBackgroundModel(CharacterCreate, "ORC");
 	end
+	CHARACTER_CREATE_SPECIAL_BACKGROUND = false;
+	CharacterCreate_ResetZoom();
 
 	-- Set backdrop colors based on faction
 	local backdropColor = FACTION_BACKDROP_COLOR_TABLE[faction];
@@ -1210,6 +1399,9 @@ function SetCharacterClass(id)
 		local backgroundFilename = GetCreateBackgroundModel(faction);
 			backgroundFilename = "DEMONHUNTER"
 		SetBackgroundModel(CharacterCreate, backgroundFilename);
+		CHARACTER_CREATE_SPECIAL_BACKGROUND = true;
+	else
+		CHARACTER_CREATE_SPECIAL_BACKGROUND = false;
 	end
 end
 
@@ -1593,6 +1785,7 @@ end
 
 function CharacterCreate_UpdateModel(self)
 	UpdateCustomizationScene();
+	CharacterCreate_ApplyZoom(self);
 	self:AdvanceTime();
 end
 

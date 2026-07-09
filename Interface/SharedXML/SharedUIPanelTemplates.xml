@@ -3217,9 +3217,9 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnTextChanged function="InputBoxInstructions_OnTextChanged"/>
-			<OnDisable function="InputBoxInstructions_OnDisable"/>
-			<OnEnable function="InputBoxInstructions_OnEnable"/>
+			<OnTextChanged function="InputBoxInstructionsUI_OnTextChanged"/>
+			<OnDisable function="InputBoxInstructionsUI_OnDisable"/>
+			<OnEnable function="InputBoxInstructionsUI_OnEnable"/>
 		</Scripts>
 		<FontString inherits="GameFontHighlightSmall"/>
 	</EditBox>

@@ -860,8 +860,64 @@
             	</Scripts>
             </CheckButton>
 
-			
+            <CheckButton name="ShowUnassignedSpellBorderCheckBox" inherits="OptionsBaseCheckButtonTemplate">
+            	<Size x="26" y="26"/>
+            	<Anchors>
+            		<Anchor point="BOTTOMLEFT" x="80" y="29"/>
+            	</Anchors>
+            	<HitRectInsets>
+            		<AbsInset left="0" right="0" top="0" bottom="0"/>
+            	</HitRectInsets>
+            	<Layers>
+            		<Layer level="ARTWORK">
+            			<FontString name="$parentText" inherits="GameFontNormalSmall">
+            				<Anchors>
+            					<Anchor point="LEFT" relativePoint="RIGHT" x="0" y="1"/>
+            				</Anchors>
+            			</FontString>
+            		</Layer>
+            	</Layers>
+            	<Scripts>
+            		<OnLoad>
+            			_G[self:GetName().."Text"]:SetText(SHOW_UNASSIGNED_SPELL_BORDER);
+            		</OnLoad>
+            		<OnShow>
+            			self:SetChecked( GetCVar("ShowSpellUnassignedBorder") );
+            		</OnShow>
+            		<OnClick>
+            			PlaySound("igMainMenuOptionCheckBoxOn")
+            			SetCVar("ShowSpellUnassignedBorder", self:GetChecked())
+            			SpellBookFrame_Update()
+            		</OnClick>
+            		<OnEnter>
+            			GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            			GameTooltip:SetText(SHOW_UNASSIGNED_SPELL_BORDER, 1, 1, 1)
+            			GameTooltip:AddLine(SPELLBOOK_UNASSIGNED_TOOLTIP, nil, nil, nil, true)
+            			GameTooltip:Show()
+            		</OnEnter>
+            		<OnLeave>
+            			GameTooltip:Hide()
+            		</OnLeave>
+            	</Scripts>
+            </CheckButton>
 
+
+			<Frame name="SpellBookSearchBoxFrame" toplevel="true">
+				<Size x="160" y="20"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="104" y="-38" />
+				</Anchors>
+				<Frames>
+					<EditBox name="SpellBookSearchBox" autoFocus="false" inherits="SearchBoxTemplate" setAllPoints="true">
+						<Scripts>
+							<OnShow>
+								self:SetText("")
+							</OnShow>
+							<OnTextChanged function="SpellBookSearchBox_OnTextChanged"/>
+						</Scripts>
+					</EditBox>
+				</Frames>
+			</Frame>
 			<Frame name="SpellBookPageNavigationFrame" setAllPoints="true">
 				<Layers>
 					<Layer level="OVERLAY">

@@ -396,7 +396,7 @@ function SearchBoxTemplate_OnTextChanged(self)
 		self.searchIcon:SetVertexColor(1.0, 1.0, 1.0)
 		self.clearButton:Show()
 	end
-	InputBoxInstructions_OnTextChanged(self)
+	InputBoxInstructionsUI_OnTextChanged(self)
 end
 
 --Inline hyperlinks
