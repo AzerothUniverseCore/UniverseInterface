@@ -41,6 +41,20 @@ WorldMapFrameData.lua
 
 ..\SharedXML\TimeUtil.lua
 ..\SharedXML\CallbackRegistry.lua
+
+# PATCH Collection : EventRegistry (porte depuis Sirus) + donnees statiques
+# des collections (montures/familiers/jouets/reliques/apparences), avant
+# tout module qui les utilise.
+..\SharedXML\GlobalCallbackRegistry.lua
+..\SharedXML\ClientDataGenerated\Generated_CollectionMount.lua
+..\SharedXML\ClientDataGenerated\Generated_CollectionPet.lua
+..\SharedXML\ClientDataGenerated\Generated_CollectionToy.lua
+..\SharedXML\ClientDataGenerated\Generated_CollectionHeirloom.lua
+..\SharedXML\ClientDataGenerated\Generated_ItemAppearances.lua
+..\SharedXML\ClientDataGenerated\Generated_CollectionEnchant.lua
+Collection_Compat.xml
+FilterDropdown.lua
+
 ..\SharedXML\FrameUtil.lua
 ..\SharedXML\FunctionUtil.lua
 ..\SharedXML\LayoutFrame.xml
@@ -50,6 +64,8 @@ WorldMapFrameData.lua
 # add new modules below here
 
 Utils\C_Item.lua
+Collection_Compat_Late.lua
+ItemLocation.lua
 
 BasicControls.xml
 WorldFrame.xml
@@ -209,6 +225,18 @@ EncounterJournal_Fixups.xml
 Custom_EncounterJournal\Custom_EncounterJournal.xml
 EncounterJournal_UI.xml
 EncounterJournal_MicroButton.xml
+
+# Collection (porte depuis Sirus)
+Utils\C_MountJournal.lua
+Utils\C_PetJournal.lua
+Utils\C_ToyBox.lua
+Utils\C_Heirloom.lua
+Utils\C_TransmogCollection.lua
+TransmogUtil.lua
+CollectionsUtil.lua
+Collection_Compat_UICamera.lua
+Collection_Compat_Tooltip.lua
+Custom_Collections\Custom_Collections.xml
 
 # custom modules
 XML_TXXUI.xml

@@ -1090,7 +1090,13 @@ local height, range, scroll, size, cursorOffset;
 		range = scrollFrame:GetVerticalScrollRange();
 		scroll = scrollFrame:GetVerticalScroll();
 		size = height + range;
-		cursorOffset = -self.cursorOffset;
+		-- PATCH Collection : garde-fou. self.cursorOffset peut etre nil (ex. la
+		-- console d'erreurs Blizzard_DebugTools qui essaie d'afficher un long
+		-- message avant que ScrollingEdit_OnCursorChanged ait ete appele une
+		-- premiere fois) ; sans ce garde-fou, l'arithmetique sur nil plante
+		-- CETTE fonction, qui est elle-meme appelee pour afficher CETTE erreur,
+		-- ce qui boucle indefiniment jusqu'a un "C stack overflow".
+		cursorOffset = -(self.cursorOffset or 0);
 
 		if ( math.floor(height) <= 0 or math.floor(range) <= 0 ) then
 			--Frame has no area, nothing to calculate.

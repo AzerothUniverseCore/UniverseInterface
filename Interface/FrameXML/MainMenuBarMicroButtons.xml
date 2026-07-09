@@ -307,9 +307,34 @@
 			</OnClick>
 		</Scripts>
 	</Button>
-	<Button name="MainMenuMicroButton" inherits="MainMenuBarMicroButton" parent="MainMenuBarArtFrame">
+	<!-- PATCH Collection : bouton Collections (Montures/Familiers/etc), porte depuis Sirus -->
+	<Button name="CollectionsMicroButton" inherits="MainMenuBarMicroButton" parent="MainMenuBarArtFrame">
 		<Anchors>
 			<Anchor point="BOTTOMLEFT" relativeTo="LFDMicroButton" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				LoadMicroButtonTextures(self, "Mounts");
+				self.tooltipText = MicroButtonTooltipText(COLLECTIONS, "TOGGLECOLLECTIONS");
+				self.newbieText = MAINMENUBAR_COLLECTIONS_BUTTON_DESC;
+			</OnLoad>
+			<OnEvent>
+				LoadMicroButtonTextures(self, "Mounts");
+				self.tooltipText = MicroButtonTooltipText(COLLECTIONS, "TOGGLECOLLECTIONS");
+				self.newbieText = MAINMENUBAR_COLLECTIONS_BUTTON_DESC;
+			</OnEvent>
+			<OnClick>
+				ToggleCollectionsJournal();
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="MainMenuMicroButton" inherits="MainMenuBarMicroButton" parent="MainMenuBarArtFrame">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="CollectionsMicroButton" relativePoint="BOTTOMRIGHT">
 				<Offset>
 					<AbsDimension x="-3" y="0"/>
 				</Offset>

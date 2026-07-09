@@ -162,9 +162,20 @@ local CONST_ATLAS_TEXTUREPATH	= 9
 local function Method_SetAtlas( self, atlasName, useAtlasSize, filterMode )
 	assert(self, "SetAtlas: not found object")
 	assert(atlasName, "SetAtlas: AtlasName must be specified")
-	assert(S_ATLAS_STORAGE[atlasName], "SetAtlas: Atlas named "..atlasName.." does not exist")
 
 	local atlas = S_ATLAS_STORAGE[atlasName]
+	if not atlas then
+		-- PATCH Collection : de nombreux atlas references par le systeme de
+		-- Collection porte depuis Sirus n'existent pas dans les donnees
+		-- d'atlas d'Azeroth Universe (texture/metadata non portee). Avant, un
+		-- assert() ici stoppait immediatement TOUT le script appelant (ex.
+		-- WardrobeItemsModelMixin:OnLoad), ce qui empechait du code CRITIQUE
+		-- plus loin dans la meme fonction de s'executer (comme
+		-- l'enregistrement des modeles dans self.Models). On degrade donc
+		-- maintenant en no-op silencieux : la texture manquante ne s'affiche
+		-- pas (deja un cas connu/accepte), mais le reste du script continue.
+		return
+	end
 
 	self:SetTexture(atlas[CONST_ATLAS_TEXTUREPATH] or "", atlas[CONST_ATLAS_TILESHORIZ], atlas[CONST_ATLAS_TILESVERT])
 
@@ -393,9 +404,12 @@ local CONST_ATLAS_TEXTUREPATH	= 9
 local function Method_SetAtlasTex( self, atlasName, useAtlasSize, filterMode )
 	assert(self, "SetAtlasTex: not found object")
 	assert(atlasName, "SetAtlasTex: AtlasName must be specified")
-	assert(PRETTY_ATLAS_STORAGE[atlasName], "SetAtlasTex: Atlas named "..atlasName.." does not exist")
 
+	-- PATCH Collection : meme degradation gracieuse que Method_SetAtlas (voir plus haut).
 	local atlas = PRETTY_ATLAS_STORAGE[atlasName]
+	if not atlas then
+		return
+	end
 
 	self:SetTexture(atlas[CONST_ATLAS_TEXTUREPATH] or "", atlas[CONST_ATLAS_TILESHORIZ], atlas[CONST_ATLAS_TILESVERT])
 

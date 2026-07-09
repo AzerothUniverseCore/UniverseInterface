@@ -1,0 +1,47 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<!--
+		Collection_Compat.xml
+		Template partage par les 5 systemes de Collection (bouton FILTER),
+		absent d'Universe (present dans Sirus\SharedXML\SharedUIPanelTemplates.xml).
+		Adapte pour s'appuyer sur UIMenuButtonStretchTemplate tel qu'il existe
+		deja cote Universe (scripts OnMouseDown/OnMouseUp inline, pas de Mixin
+		UIMenuButtonStretchMixin - qui n'existe pas ici), d'ou un
+		UIResettableDropdownButtonMixin simplifie dans Collection_Compat.lua.
+	-->
+	<Script file="Collection_Compat.lua"/>
+
+	<Button name="UIResettableDropdownButtonTemplate" inherits="UIMenuButtonStretchTemplate" virtual="true">
+		<Size x="93" y="22"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" parentKey="Icon" file="Interface\ChatFrame\ChatFrameExpandArrow">
+					<Size x="10" y="12"/>
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentMiddleRight" relativePoint="RIGHT" x="-5"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentResetButton" parentKey="ResetButton" hidden="true">
+				<Size x="23" y="23"/>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOPRIGHT" x="-3" y="0"/>
+				</Anchors>
+				<NormalTexture parentKey="NormalTexture"/>
+				<Scripts>
+					<OnLoad>
+						self.NormalTexture:SetAtlas("auctionhouse-ui-filter-redx");
+					</OnLoad>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Mixin(self, UIResettableDropdownButtonMixin);
+				self:OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+</Ui>
