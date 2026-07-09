@@ -2,9 +2,7 @@
 ..\FrameXML\UI.xsd">
 	<Script file="ReputationFrame.lua"/>
 	<Button name="ReputationBarTemplate" virtual="true">
-		<Size>
-			<AbsDimension x="295" y="20"/>
-		</Size>
+		<Size x="295" y="20"/>
 		<Frames>
 			<Button name="$parentExpandOrCollapseButton">
 				<Size>
@@ -228,77 +226,18 @@
 			</OnLeave>
 		</Scripts>
 	</Button>
-	
-	<Frame name="ReputationFrame" setAllPoints="true" enableMouse="true" parent="CharacterFrame" hidden="true" id="3">
-		<HitRectInsets>
-			<AbsInset left="0" right="30" top="0" bottom="75"/>
-		</HitRectInsets>
+
+	<Frame name="ReputationFrame" setAllPoints="true" parent="CharacterFrame" hidden="true" id="3">
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="258" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-BottomLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-257"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-BottomRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="258" y="-257"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
 				<FontString name="ReputationFrameFactionLabel" inherits="GameFontHighlight" text="FACTION">
 					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="70" y="-57"/>
-							</Offset>
-						</Anchor>
+						<Anchor point="TOPLEFT" x="70" y="-39"/>
 					</Anchors>
 				</FontString>
 				<FontString name="ReputationFrameStandingLabel" inherits="GameFontHighlight" text="STANDING">
 					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="215" y="-59"/>
-							</Offset>
-						</Anchor>
+						<Anchor point="TOPLEFT" x="228" y="-39"/>
 					</Anchors>
 				</FontString>
 			</Layer>
@@ -309,7 +248,7 @@
 					</Size>
 					<Anchors>
 						<Anchor point="TOP" relativeTo="ReputationFrame" relativePoint="TOPLEFT">
-							<Offset x="35" y="-76"/>
+							<Offset x="35" y="-56"/>
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0" right="2" top="0" bottom="2"/>
@@ -320,7 +259,7 @@
 					</Size>
 					<Anchors>
 						<Anchor point="TOP" relativeTo="ReputationFrame" relativePoint="TOPLEFT">
-							<Offset x="53" y="-76"/>
+							<Offset x="53" y="-56"/>
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0" right="2" top="0" bottom="2"/>
@@ -330,11 +269,7 @@
 		<Frames>
 			<Button name="ReputationBar1" inherits="ReputationBarTemplate" id="1">
 				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="-68" y="-83"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="TOPRIGHT" x="-68" y="-83"/>
 				</Anchors>
 			</Button>
 			<Button name="ReputationBar2" inherits="ReputationBarTemplate" id="2">
@@ -463,27 +398,21 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-			
+
 			<ScrollFrame name="ReputationListScrollFrame" inherits="FauxScrollFrameTemplate">
-				<Size>
-					<AbsDimension x="296" y="354"/>
-				</Size>
+				<Size x="310" y="352"/>
 				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="-66" y="-76"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="TOPRIGHT" x="-32" y="-66"/>
 				</Anchors>
 				<Scripts>
 					<OnVerticalScroll>
 						FauxScrollFrame_OnVerticalScroll(self, offset, REPUTATIONFRAME_FACTIONHEIGHT, ReputationFrame_Update);
 					</OnVerticalScroll>
 					<OnShow>
-						ReputationBar1:SetPoint("TOPRIGHT", ReputationFrame, "TOPRIGHT", -70, -83);
+						ReputationBar1:SetPoint("TOPRIGHT", ReputationFrame, "TOPRIGHT", -40, -68);
 					</OnShow>
 					<OnHide>
-						ReputationBar1:SetPoint("TOPRIGHT", ReputationFrame, "TOPRIGHT", -46, -83);
+						ReputationBar1:SetPoint("TOPRIGHT", ReputationFrame, "TOPRIGHT", -40, -68);
 					</OnHide>
 				</Scripts>
 				<Layers>
@@ -542,15 +471,9 @@
 				</Scripts>
 			</Frame>
 			<Frame name="ReputationDetailFrame" enableMouse="true" hidden="true">
-				<Size>
-					<AbsDimension x="212" y="203"/>
-				</Size>
+				<Size x="212" y="366"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="ReputationFrame" relativePoint="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="-33" y="-28"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="TOPLEFT" relativeTo="ReputationFrame" relativePoint="TOPRIGHT" x="0" y="-28"/>
 				</Anchors>
 				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 					<BackgroundInsets>
@@ -564,44 +487,6 @@
 					</EdgeSize>
 				</Backdrop>
 				<Layers>
-					<Layer level="ARTWORK">
-						<FontString name="ReputationDetailFactionName" inherits="GameFontNormal" justifyH="LEFT">
-							<Size>
-								<AbsDimension x="160" y="0"/>
-							</Size>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset>
-										<AbsDimension x="20" y="-21"/>
-									</Offset>
-								</Anchor>
-							</Anchors>
-						</FontString>
-						<FontString name="ReputationDetailFactionDescription" inherits="ReputationDetailFont" justifyH="LEFT">
-							<Size>
-								<AbsDimension x="170" y="0"/>
-							</Size>
-							<Anchors>
-								<Anchor point="TOPLEFT" relativeTo="ReputationDetailFactionName" relativePoint="BOTTOMLEFT">
-									<Offset>
-										<AbsDimension x="0" y="-2"/>
-									</Offset>
-								</Anchor>
-							</Anchors>
-						</FontString>
-						<Texture file="Interface\PaperDollInfoFrame\UI-Character-Reputation-DetailBackground">
-							<Size>
-								<AbsDimension x="256" y="128"/>
-							</Size>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset>
-										<AbsDimension x="11" y="-11"/>
-									</Offset>
-								</Anchor>
-							</Anchors>
-						</Texture>
-					</Layer>
 					<Layer level="OVERLAY">
 						<Texture name="ReputationDetailCorner" file="Interface\DialogFrame\UI-DialogBox-Corner">
 							<Size>
@@ -616,21 +501,68 @@
 							</Anchors>
 						</Texture>
 						<Texture name="ReputationDetailDivider" file="Interface\DialogFrame\UI-DialogBox-Divider">
-							<Size>
-								<AbsDimension x="256" y="32"/>
-							</Size>
+							<Size x="256" y="32"/>
 							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset>
-										<AbsDimension x="9" y="-131"/>
-									</Offset>
-								</Anchor>
+								<Anchor point="TOPLEFT" x="9" y="-293"/>
 							</Anchors>
 						</Texture>
 					</Layer>
 				</Layers>
 				<Frames>
-					<Button name="ReputationDetailCloseButton" inherits="UIPanelCloseButton">
+					<Frame name="$parentTextContainer" parentKey="TextContainer">
+						<Size x="189" y="290"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="11" y="-11"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentBackgroundTile" parentKey="BackgroundTile" file="Interface\PaperDollInfoFrame\BackgroundTile" vertTile="true" horizTile="true">
+									<Size x="256" y="256"/>
+									<Anchors>
+										<Anchor point="TOPLEFT" x="1" y="-1" />
+										<Anchor point="BOTTOMRIGHT" x="2" y="4"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Frame parentKey="ShadowOverlay" inherits="ShadowOverlaySmallTemplate" toplevel="true">
+								<Anchors>
+									<Anchor point="TOPLEFT" x="0" y="0"/>
+									<Anchor point="BOTTOMRIGHT" x="2" y="3"/>
+								</Anchors>
+								<Scripts>
+									<OnShow>
+										self:SetFrameLevel(self:GetParent():GetFrameLevel() + 2)
+									</OnShow>
+								</Scripts>
+							</Frame>
+							<Frame parentKey="TextFrame" setAllPoints="true">
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="ReputationDetailFactionName" inherits="GameFontNormal" justifyH="LEFT">
+											<Size x="160" y="0"/>
+											<Anchors>
+												<Anchor point="TOPLEFT" x="10" y="-16"/>
+											</Anchors>
+										</FontString>
+										<FontString name="ReputationDetailFactionDescription" inherits="ReputationDetailFont" justifyV="TOP" justifyH="LEFT">
+											<Size x="172" y="240"/>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativeTo="ReputationDetailFactionName" relativePoint="BOTTOMLEFT" x="0" y="-2"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnShow>
+										self:SetFrameLevel(self:GetParent().ShadowOverlay:GetFrameLevel() + 2)
+									</OnShow>
+								</Scripts>
+							</Frame>
+						</Frames>
+					</Frame>
+					<Button name="ReputationDetailCloseButton" toplevel="true" inherits="UIPanelCloseButton">
 						<Anchors>
 							<Anchor point="TOPRIGHT">
 								<Offset>
@@ -639,7 +571,7 @@
 							</Anchor>
 						</Anchors>
 					</Button>
-					<CheckButton name="ReputationDetailAtWarCheckBox">
+					<CheckButton name="ReputationDetailAtWarCheckBox" toplevel="true">
 						<Size>
 							<AbsDimension x="26" y="26"/>
 						</Size>
@@ -700,7 +632,7 @@
 						</CheckedTexture>
 						<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 					</CheckButton>
-					<CheckButton name="ReputationDetailInactiveCheckBox" inherits="OptionsSmallCheckButtonTemplate">
+					<CheckButton name="ReputationDetailInactiveCheckBox" inherits="OptionsSmallCheckButtonTemplate" toplevel="true">
 						<Size>
 							<AbsDimension x="26" y="26"/>
 						</Size>
@@ -734,7 +666,7 @@
 							<OnLeave function="GameTooltip_Hide"/>
 						</Scripts>
 					</CheckButton>
-					<CheckButton name="ReputationDetailMainScreenCheckBox" inherits="OptionsSmallCheckButtonTemplate">
+					<CheckButton name="ReputationDetailMainScreenCheckBox" inherits="OptionsSmallCheckButtonTemplate" toplevel="true">
 						<Size>
 							<AbsDimension x="26" y="26"/>
 						</Size>

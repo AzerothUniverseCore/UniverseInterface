@@ -27,6 +27,8 @@ function PetPaperDollFrame_OnLoad (self)
 	self:RegisterEvent("SPELL_UPDATE_COOLDOWN");
 	self:RegisterEvent("UNIT_ENTERED_VEHICLE");
 	self:RegisterEvent("UNIT_EXITED_VEHICLE");
+	self:RegisterEvent("PET_SPELL_POWER_UPDATE");
+	self:RegisterEvent("UNIT_HAPPINESS");
 
 	PetPaperDollFrameCompanionFrame.mode = "CRITTER";
 	PetPaperDollFrameCompanionFrame.idMount = GetCompanionInfo("MOUNT", 1);
@@ -48,7 +50,7 @@ local tabPoints={
 }
 
 function PetPaperDollFrame_UpdateIsAvailable()
-	if ( (not HasPetUI()) and (GetNumCompanions("CRITTER") == 0) and (GetNumCompanions("MOUNT") == 0) ) then
+	if ( not HasPetUI() ) then
 		PetPaperDollFrame.hidden = true;
 		CharacterFrameTab2:Hide();
 		CharacterFrameTab3:SetPoint("LEFT", "CharacterFrameTab2", "LEFT", 0, 0);
@@ -63,67 +65,7 @@ function PetPaperDollFrame_UpdateIsAvailable()
 end
 
 function PetPaperDollFrame_UpdateTabs()
-	if ( not PetPaperDollFrame:IsVisible() ) then
-		-- There's no need to run this when the frame isn't shown (i.e. we're zoning), it causes problems with the subtabs (bug 145137)
-		PetPaperDollFrame_UpdateIsAvailable(); --But we still need to update the tabs on the CharacterFrame (bug 150500)
-		return;
-	end
-		
-	local currVal, currRef = 1, tabPoints[1];
-
-	--PetPaperDollFrameTab1:ClearAllPoints()	--Never moved, just hidden
-	PetPaperDollFrameTab2:ClearAllPoints()
-	PetPaperDollFrameTab3:ClearAllPoints()
-	if ( HasPetUI() ) then
-		PetPaperDollFrameTab1:Show();
-		PetPaperDollFrameTab1:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset)
-		currVal = currVal + 1;
-		currRef = tabPoints[currVal];
-		currRef.relativeTo = PetPaperDollFrameTab1;
-	else
-		PetPaperDollFrameTab1:Hide();
-	end
-	
-	if ( GetNumCompanions("CRITTER") > 0 ) then
-		PetPaperDollFrameTab2:Show();
-		PetPaperDollFrameTab2:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset);
-		currVal = currVal + 1;
-		currRef = tabPoints[currVal];
-		currRef.relativeTo = PetPaperDollFrameTab2;
-	else
-		PetPaperDollFrameTab2:Hide();
-	end
-	
-	if ( GetNumCompanions("MOUNT") > 0 ) then
-		PetPaperDollFrameTab3:Show();
-		PetPaperDollFrameTab3:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset);
-		currVal = currVal + 1;
-	else
-		PetPaperDollFrameTab3:Hide();
-	end
-	
-	PetPaperDollFrame_UpdateIsAvailable();
-	
-	local selectedTab = PanelTemplates_GetSelectedTab(PetPaperDollFrame);
-	if ( (not PetPaperDollFrame.selectedTab) or (not PetPaperDollFrame_BeenViewed) or (not _G["PetPaperDollFrameTab"..selectedTab]:IsShown()) ) then
-		if ( PetPaperDollFrameTab1:IsShown() ) then
-			PetPaperDollFrame_SetTab(1);
-		elseif ( PetPaperDollFrameTab2:IsShown() ) then
-			PetPaperDollFrame_SetTab(2);
-		elseif ( PetPaperDollFrameTab3:IsShown() ) then
-			PetPaperDollFrame_SetTab(3);
-		else
-			if ( PetPaperDollFrame:IsVisible() ) then
-				ToggleCharacter("PaperDollFrame");
-			end
-		end
-	end
-	
-	if ( currVal == 2 ) then --Only 1 tab shown, so no reason to make it visible.
-		PetPaperDollFrameTab1:Hide();
-		PetPaperDollFrameTab2:Hide();
-		PetPaperDollFrameTab3:Hide();
-	end
+	PetPaperDollFrame_UpdateIsAvailable()
 end
 
 function PetPaperDollFrame_OnEvent (self, event, ...)
@@ -135,12 +77,7 @@ function PetPaperDollFrame_OnEvent (self, event, ...)
 	elseif ( event == "UNIT_PET_EXPERIENCE" ) then
 		PetExpBar_Update();
 	elseif ( event == "COMPANION_LEARNED" ) then
-		if ( not CharacterFrame:IsVisible() ) then
-			SetButtonPulse(CharacterMicroButton, 60, 1);
-		end
-		if ( not PetPaperDollFrame:IsVisible() ) then
-			SetButtonPulse(CharacterFrameTab2, 60, 1);
-		end
+		SetButtonPulse(SpellbookMicroButton, 60, 1);
 		PetPaperDollFrame_UpdateTabs();
 		--PetPaperDollFrame_UpdateCompanions();	--This is called in SetCompanionPage
 		PetPaperDollFrame_SetCompanionPage((PetPaperDollFrameCompanionFrame.mode=="MOUNT") and PetPaperDollFrameCompanionFrame.pageMount or PetPaperDollFrameCompanionFrame.pageCritter);
@@ -180,8 +117,12 @@ function PetPaperDollFrame_OnEvent (self, event, ...)
 		if ( self:IsVisible() ) then
 			PetPaperDollFrame_UpdateCompanionCooldowns();
 		end
+	elseif( event == "PET_SPELL_POWER_UPDATE" ) then
+		PetPaperDollFrame_SetSpellBonusDamage();
 	elseif ( (event == "UNIT_ENTERED_VEHICLE" or event == "UNIT_EXITED_VEHICLE") and (arg1 == "player")) then
 		PetPaperDollFrame_UpdateCompanions();
+	elseif event == "UNIT_HAPPINESS" then
+		PetPaperDollFrame_SetHappiness();
 	elseif ( arg1 == "pet" ) then
 		PetPaperDollFrame_Update();
 	end
@@ -197,7 +138,7 @@ function PetPaperDollFrame_SetTab(id)
 		PetPaperDollFrame.selectedTab=2;
 		PetPaperDollFrameCompanionFrame.mode="CRITTER";
 		PetPaperDollFramePetFrame:Hide();
-		PetPaperDollFrameCompanionFrame:Show();
+		-- PetPaperDollFrameCompanionFrame:Show();
 		PetPaperDollFrame_SetCompanionPage(PetPaperDollFrameCompanionFrame.pageCritter);
 		for i=1,NUM_COMPANIONS_PER_PAGE do
 			_G["CompanionButton"..i]:SetDisabledTexture([[Interface\PetPaperDollFrame\UI-PetFrame-Slots-Companions]])
@@ -209,7 +150,7 @@ function PetPaperDollFrame_SetTab(id)
 		PetPaperDollFrame.selectedTab=3;
 		PetPaperDollFrameCompanionFrame.mode="MOUNT";
 		PetPaperDollFramePetFrame:Hide();
-		PetPaperDollFrameCompanionFrame:Show();
+		-- PetPaperDollFrameCompanionFrame:Show();
 		PetPaperDollFrame_SetCompanionPage(PetPaperDollFrameCompanionFrame.pageMount);
 		for i=1,NUM_COMPANIONS_PER_PAGE do
 			_G["CompanionButton"..i]:SetDisabledTexture([[Interface\PetPaperDollFrame\UI-PetFrame-Slots-Mounts]]);
@@ -218,7 +159,7 @@ function PetPaperDollFrame_SetTab(id)
 		PetPaperDollFrame_UpdateCompanionPreview();
 		PetNameText:SetText(MOUNTS);
 	end
-	
+
 	for i=1,3 do
 		if ( i == id ) then
 			PanelTemplates_SelectTab(_G["PetPaperDollFrameTab"..i]);
@@ -262,7 +203,7 @@ end
 
 function CompanionButton_OnDrag(self)
 	local offset;
-	
+
 	if ( PetPaperDollFrameCompanionFrame.mode=="CRITTER" ) then
 		offset = (PetPaperDollFrameCompanionFrame.pageCritter or 0)*NUM_COMPANIONS_PER_PAGE;
 	elseif ( PetPaperDollFrameCompanionFrame.mode=="MOUNT" ) then
@@ -304,7 +245,7 @@ function CompanionButton_OnClick(self, button)
 			PetPaperDollFrame_UpdateCompanionPreview();
 		end
 	end
-	
+
 	PetPaperDollFrame_UpdateCompanions();
 end
 
@@ -335,7 +276,7 @@ function CompanionButton_OnEnter(self)
 	else
 		self.UpdateTooltip = nil;
 	end
-	
+
 	GameTooltip:Show()
 end
 
@@ -345,7 +286,7 @@ function PetPaperDollFrame_SetCompanionPage(num)
 	elseif ( PetPaperDollFrameCompanionFrame.mode == "MOUNT" ) then
 		PetPaperDollFrameCompanionFrame.pageMount = num;
 	end
-	
+
 	num = num + 1;	--For easier usage
 	local maxpage = ceil(GetNumCompanions(PetPaperDollFrameCompanionFrame.mode)/NUM_COMPANIONS_PER_PAGE);
 	CompanionPageNumber:SetFormattedText(MERCHANT_PAGE_NUMBER,num, maxpage);
@@ -367,7 +308,7 @@ function PetPaperDollFrame_UpdateCompanions()
 	local button, iconTexture, id;
 	local creatureID, creatureName, spellID, icon, active;
 	local offset, selected;
-	
+
 	if ( PetPaperDollFrameCompanionFrame.mode == "CRITTER" ) then
 		offset = (PetPaperDollFrameCompanionFrame.pageCritter or 0)*NUM_COMPANIONS_PER_PAGE;
 		selected = PetPaperDollFrame_FindCompanionIndex(PetPaperDollFrameCompanionFrame.idCritter);
@@ -394,14 +335,14 @@ function PetPaperDollFrame_UpdateCompanions()
 		else
 			button:SetChecked(false);
 		end
-		
+
 		if ( active ) then
 			_G["CompanionButton"..i.."ActiveTexture"]:Show();
 		else
 			_G["CompanionButton"..i.."ActiveTexture"]:Hide();
 		end
 	end
-	
+
 	if ( selected > 0 ) then
 		creatureID, creatureName, spellID, icon, active = GetCompanionInfo(PetPaperDollFrameCompanionFrame.mode, selected);
 		if ( active and creatureID ) then
@@ -435,7 +376,7 @@ end
 
 function PetPaperDollFrame_UpdateCompanionPreview()
 	local selected = PetPaperDollFrame_FindCompanionIndex();
-	
+
 	if (selected > 0) then
 		local creatureID, creatureName = GetCompanionInfo(PetPaperDollFrameCompanionFrame.mode, selected);
 		CompanionModelFrame:SetCreature(creatureID);
@@ -448,23 +389,37 @@ function PetPaperDollFrame_OnShow(self)
 	if ( self:IsVisible() ) then
 		PetPaperDollFrame_BeenViewed = true;
 	end
-	SetButtonPulse(CharacterFrameTab2, 0, 1);	--Stop the button pulse
-	CharacterNameText:Hide();
+	local currVal, currRef = 1, tabPoints[1];
+	-- SetButtonPulse(CharacterFrameTab2, 0, 1);	--Stop the button pulse
+	-- CharacterNameText:Hide();
 	PetNameText:Show();
-	PetPaperDollFrame_Update();
-	PetPaperDollFrame_UpdateTabs();
+
+	-- PetPaperDollFrame.selectedTab=1;
+	PetPaperDollFramePetFrame:Show();
+	-- PetPaperDollFrameCompanionFrame:Hide();
+	PetNameText:SetText(UnitName("pet"));
+
+	-- PetPaperDollFrameTab1:Show();
+	-- PetPaperDollFrameTab1:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset)
+	-- currVal = currVal + 1;
+	-- currRef = tabPoints[currVal];
+	-- currRef.relativeTo = PetPaperDollFrameTab1;
+
+	CharacterFrame.Inset:Show()
+	ButtonFrameTemplate_HideButtonBar(CharacterFrame)
+	PetPaperDollFrame_Update()
 end
 
 function PetPaperDollFrame_OnHide()
-	CharacterNameText:Show();
-	PetNameText:Hide();
+	-- CharacterNameText:Show();
+	-- PetNameText:Hide();
 end
 
 function PetPaperDollFrame_Update()
 	local hasPetUI, canGainXP = HasPetUI();
-	if ( not hasPetUI ) then
-		return;
-	end
+	-- if ( not hasPetUI ) then
+	-- 	return;
+	-- end
 	PetModelFrame:SetUnit("pet");
 	if ( UnitCreatureFamily("pet") ) then
 		PetLevelText:SetFormattedText(UNIT_TYPE_LEVEL_TEMPLATE,UnitLevel("pet"),UnitCreatureFamily("pet"));
@@ -480,10 +435,24 @@ function PetPaperDollFrame_Update()
 	PaperDollFrame_SetAttackPower(PetAttackPowerFrame, "Pet");
 	PetPaperDollFrame_SetSpellBonusDamage();
 
-	if ( canGainXP ) then
-		PetPaperDollPetInfo:Show();
-	else
+	PetPaperDollFrame_SetHappiness();
+end
+
+function PetPaperDollFrame_SetHappiness()
+	local hasPetUI, isHunterPet = HasPetUI();
+	if not isHunterPet then
 		PetPaperDollPetInfo:Hide();
+		return;
+	end
+
+	local happiness, damagePercentage = GetPetHappiness();
+	PetPaperDollPetInfo:Show();
+	if not happiness or happiness == 3 then
+		PetPaperDollPetInfo.Icon:SetTexCoord(0, 0.1875, 0, 0.359375);
+	elseif happiness == 2 then
+		PetPaperDollPetInfo.Icon:SetTexCoord(0.1875, 0.375, 0, 0.359375);
+	elseif happiness == 1 then
+		PetPaperDollPetInfo.Icon:SetTexCoord(0.375, 0.5625, 0, 0.359375);
 	end
 end
 
@@ -502,11 +471,11 @@ function PetPaperDollFrame_SetResistances()
 		end
 		text = _G["PetMagicResText"..i];
 		frame = _G["PetMagicResFrame"..i];
-		
+
 		base, resistance, positive, negative = UnitResistance("pet", frame:GetID());
 
 		frame.tooltip = _G["RESISTANCE"..frame:GetID().."_NAME"];
-	
+
 		-- resistances can now be negative. Show Red if negative, Green if positive, white otherwise
 		if( resistance < 0 ) then
 			text:SetText(RED_FONT_COLOR_CODE..resistance..FONT_COLOR_CODE_CLOSE);
@@ -547,7 +516,7 @@ function PetPaperDollFrame_SetStats()
 		if ( ( posBuff == 0 ) and ( negBuff == 0 ) ) then
 			text:SetText(effectiveStat);
 			frame.tooltip = tooltipText..effectiveStat..FONT_COLOR_CODE_CLOSE;
-		else 
+		else
 			tooltipText = tooltipText..effectiveStat;
 			if ( posBuff > 0 or negBuff < 0 ) then
 				tooltipText = tooltipText.." ("..(stat - posBuff - negBuff)..FONT_COLOR_CODE_CLOSE;
@@ -571,7 +540,7 @@ function PetPaperDollFrame_SetStats()
 				text:SetText(GREEN_FONT_COLOR_CODE..effectiveStat..FONT_COLOR_CODE_CLOSE);
 			end
 		end
-		
+
 		-- Second tooltip line
 		frame.tooltip2 = _G["DEFAULT_STAT"..i.."_TOOLTIP"];
 		if ( i == 1 ) then
@@ -605,22 +574,7 @@ function PetPaperDollFrame_SetStats()
 end
 
 function PetPaperDollFrame_SetSpellBonusDamage()
-	local temp, unitClass = UnitClass("player");
-	unitClass = strupper(unitClass);
-	local spellDamageBonus = 0;
-	if( unitClass == "WARLOCK" ) then
-		local bonusFireDamage = GetSpellBonusDamage(3);
-		local bonusShadowDamage = GetSpellBonusDamage(6);
-		if ( bonusShadowDamage > bonusFireDamage ) then
-			spellDamageBonus =  ComputePetBonus("PET_BONUS_SPELLDMG_TO_SPELLDMG", bonusShadowDamage);
-		else
-			spellDamageBonus =  ComputePetBonus("PET_BONUS_SPELLDMG_TO_SPELLDMG", bonusFireDamage);
-		end
-	elseif( unitClass == "HUNTER" ) then
-		local base, posBuff, negBuff = UnitRangedAttackPower("player");
-		local totalAP = base+posBuff+negBuff;
-		spellDamageBonus = ComputePetBonus( "PET_BONUS_RAP_TO_SPELLDMG", totalAP );
-	end
+	local spellDamageBonus = GetPetSpellBonusDamage();
 	local spellDamageBonusText = format("%d",spellDamageBonus);
 
 	PetSpellDamageFrameLabel:SetText(format(STAT_FORMAT, SPELL_BONUS));

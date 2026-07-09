@@ -1,11 +1,58 @@
 CHARACTER_SELECT_ROTATION_START_X = nil;
 CHARACTER_SELECT_INITIAL_FACING = nil;
-
 CHARACTER_ROTATION_CONSTANT = 0.6;
-
-MAX_CHARACTERS_DISPLAYED = 10;
-MAX_CHARACTERS_PER_REALM = 10;
-
+MAX_CHARACTERS_DISPLAYED = 20;
+MAX_CHARACTERS_PER_REALM = 20;
+local ShadowTable = {}
+local CharacterButtons = {}
+local ClassToIcon = {
+	["Guerrier"] = {"CharSelectWarrior", "|cFFC79C6E"},
+	["Guerrière"] = {"CharSelectWarrior", "|cFFC79C6E"},
+	["Paladin"] = {"CharSelectPaladin", "|cFFF58CBA"},
+	["Paladine"] = {"CharSelectPaladin", "|cFFF58CBA"},
+	["Chasseur"] = {"CharSelectHunter", "|cFFA9D271"},
+	["Chasseresse"] = {"CharSelectHunter", "|cFFA9D271"},
+	["Voleur"] = {"CharSelectRogue", "|cFFFFF569"},
+	["Voleuse"] = {"CharSelectRogue", "|cFFFFF569"},
+	["Prêtre"] = {"CharSelectPriest", "|cFFFFFFFF"},
+	["Prêtresse"] = {"CharSelectPriest", "|cFFFFFFFF"},
+	["DK"] = {"CharSelectDeathknight", "|cFFC41F3B"},
+	["DK"] = {"CharSelectDeathknight", "|cFFC41F3B"},
+	["Chaman"] = {"CharSelectShaman", "|cFF0070DE"},
+	["Chamane"] = {"CharSelectShaman", "|cFF0070DE"},
+	["Mage"] = {"CharSelectMage", "|cFF40C7EB"},
+	["Mage"] = {"CharSelectMage", "|cFF40C7EB"},
+	["Démoniste"] = {"CharSelectWarlock", "|cFF8787ED"},
+	["Démoniste"] = {"CharSelectWarlock", "|cFF8787ED"},
+	["BBM"] = {"CharSelectBloodBattleMage", "|cffeb0000"},
+	["BBM"] = {"CharSelectBloodBattleMage", "|cffeb0000"},
+	["Druide"] = {"CharSelectDruid", "|cFFFF7D0A"},
+	["Druidesse"] = {"CharSelectDruid", "|cFFFF7D0A"},
+	["Cavalier"] = {"CharSelectKnight", "|cfffadd16"},
+	["Cavalière"] = {"CharSelectKnight", "|cfffadd16"},
+	["DH"] = {"CharSelectDemonHunter", "|cffa330c9"},
+	["DH"] = {"CharSelectDemonHunter", "|cffa330c9"},
+	["Moine"] = {"CharSelectMonk", "|cff00ff96"},
+	["Moine"] = {"CharSelectMonk", "|cff00ff96"},
+	["Dompteur"] = {"CharSelectTamer", "|cffffffff"},
+	["Dompteuse"] = {"CharSelectTamer", "|cffffffff"},
+	["Héros"] = {"CharSelectHeros", "|cfffdc5b8"},
+	["Héros"] = {"CharSelectHeros", "|cfffdc5b8"},
+	["Évocateur"] = {"CharSelectEvoker", "|cff33937f"},
+	["Évocatrice"] = {"CharSelectEvoker", "|cff33937f"},
+	["Necromancer"] = {"CharSelectMancer", "|cff07c204"},
+	["Necromancer"] = {"CharSelectMancer", "|cff07c204"},
+	["Venomancer"] = {"CharSelectMancer", "|cfff57d20"},
+	["Venomancer"] = {"CharSelectMancer", "|cfff57d20"},
+	["Chronomancer"] = {"CharSelectMancer", "|cffa3bcbf"},
+	["Chronomancer"] = {"CharSelectMancer", "|cffa3bcbf"},
+	["Geomancer"] = {"CharSelectMancer", "|cffc4e96c"},
+	["Geomancer"] = {"CharSelectMancer", "|cffc4e96c"},
+	["Pyromancer"] = {"CharSelectMancer", "|cffff5204"},
+	["Pyromancer"] = {"CharSelectMancer", "|cffff5204"},
+	["Ravageur du Chaos"] = {"CharSelectChaosRavager", "|cffb79d44"},
+	["Ravageuse du Chaos"] = {"CharSelectChaosRavager", "|cffb79d44"},
+}
 
 function CharacterSelect_OnLoad(self)
 	self:SetSequence(0);
@@ -34,9 +81,8 @@ function CharacterSelect_OnLoad(self)
 
 	-- Color edit box backdrops
 	local backdropColor = DEFAULT_TOOLTIP_COLOR;
-	CharacterSelectCharacterFrame:SetBackdropBorderColor(backdropColor[1], backdropColor[2], backdropColor[3]);
-	CharacterSelectCharacterFrame:SetBackdropColor(backdropColor[4], backdropColor[5], backdropColor[6], 0.85);
-	
+	CharacterSelectCharacterFrame:SetBackdropBorderColor(0, 0, 1, 0);
+	CharacterSelectCharacterFrame:SetBackdropColor(1, 1, 1, 0)
 end
 
 function CharacterSelect_OnShow()
@@ -143,8 +189,8 @@ function CharacterSelect_OnShow()
 			GameRoomBillingFrameText:SetText(billingText);
 			GameRoomBillingFrame:SetHeight(GameRoomBillingFrameText:GetHeight() + 26);
 			GameRoomBillingFrame:Show();
-			CharacterSelectRealmSplitButton:ClearAllPoints();
-			CharacterSelectRealmSplitButton:SetPoint("TOP", GameRoomBillingFrame, "BOTTOM", 0, -10);
+			--CharacterSelectRealmSplitButton:ClearAllPoints();
+			--CharacterSelectRealmSplitButton:SetPoint("TOP", GameRoomBillingFrame, "BOTTOM", 0, -10);
 		end
 	end
 	
@@ -162,6 +208,7 @@ function CharacterSelect_OnShow()
 
 	--Clear out the addons selected item
 	GlueDropDownMenu_SetSelectedValue(AddonCharacterDropDown, ALL);
+	CharSelectShadows()
 end
 
 function CharacterSelect_OnHide()
@@ -175,7 +222,7 @@ end
 
 function CharacterSelect_OnUpdate(elapsed)
 	if ( SERVER_SPLIT_STATE_PENDING > 0 ) then
-		CharacterSelectRealmSplitButton:Show();
+		--CharacterSelectRealmSplitButton:Show();
 
 		if ( SERVER_SPLIT_CLIENT_STATE > 0 ) then
 			RealmSplit_SetChoiceText();
@@ -250,22 +297,23 @@ function CharacterSelect_OnKeyDown(self,key)
 		end
 	end
 end
-
+-- Suppression de l'affichage du nom de personnage sur l'UI Personnage (CharSelectCharacterName)
 function CharacterSelect_OnEvent(self, event, ...)
 	if ( event == "ADDON_LIST_UPDATE" ) then
 		UpdateAddonButton();
 	elseif ( event == "CHARACTER_LIST_UPDATE" ) then
 		UpdateCharacterList();
-		CharSelectCharacterName:SetText(GetCharacterInfo(self.selectedIndex));
+		--CharSelectCharacterName:SetText(GetCharacterInfo(self.selectedIndex));
 	elseif ( event == "UPDATE_SELECTED_CHARACTER" ) then
 		local index = ...;
 		if ( index == 0 ) then
-			CharSelectCharacterName:SetText("");
+			--CharSelectCharacterName:SetText("");
 		else
-			CharSelectCharacterName:SetText(GetCharacterInfo(index));
+			--CharSelectCharacterName:SetText(GetCharacterInfo(index));
 			self.selectedIndex = index;
 		end
 		UpdateCharacterSelection(self);
+		RepositionCharButtons()
 	elseif ( event == "SELECT_LAST_CHARACTER" ) then
 		self.selectLast = 1;
 	elseif ( event == "SELECT_FIRST_CHARACTER" ) then
@@ -274,10 +322,8 @@ function CharacterSelect_OnEvent(self, event, ...)
 		local category, id = ...;
 		local name = GetRealmInfo(category, id);
 		if ( name ) then
-			RealmWizard.suggestedRealmName = name;
-			RealmWizard.suggestedCategory = category;
-			RealmWizard.suggestedID = id;
-			GlueDialog_Show("SUGGEST_REALM");
+			SetGlueScreen("charselect");
+			ChangeRealm(category, id);
 		else
 			if ( RealmList:IsShown() ) then
 				RealmListUpdate();
@@ -308,7 +354,75 @@ function UpdateCharacterSelection(self)
 	end
 end
 
+function RepositionCharButtons()
+	SetButtonDesaturated(CharSelectNoCustomizationButton, true)
+    for i=1, #CharacterButtons do
+        local buttonWidth = 100
+        local dynamicWidth = (buttonWidth * #CharacterButtons)
+        local resetPoint = (#CharacterButtons / 2) + 1;
+        local yOffset = 0
+        local _, _, class = GetCharacterInfo(i);
+        buttonName = _G["CharSelectCharacterButton"..i]
+        if class == "Chevalier de la mort" then
+			class = "DK"
+		end
+		if class == "Chasseur de démons" then
+			class = "DH"
+		end
+		if class == "Mage de combat sanglant" then
+			class = "BBM"
+		end
+        if ClassToIcon[class] ~= nil then
+			buttonName:SetNormalTexture("Interface\\UniverseCharSelect\\"..ClassToIcon[class][1])
+		else
+			buttonName:SetNormalTexture("Interface\\UniverseCharSelect\\CharSelectBase")
+		end
+        if(#CharacterButtons > 10)then
+            dynamicWidth = (buttonWidth * 10)
+            resetPoint = 6
+            if (i > 10) then
+                yOffset = -50
+                i = i - 10
+                resetPoint = ((#CharacterButtons - 10) / 2) + 1;
+            end
+        end
+        CharacterSelectCharacterFrame:SetWidth(dynamicWidth)
+        buttonName:SetPoint("TOP", CharacterSelectCharacterFrame, "TOP", ( buttonWidth * i ) - ( resetPoint * buttonWidth ) + (buttonWidth / 2), yOffset);  
+    end
+end
+
+function SetupCharacterCustomizationButtons(id)
+	local numChars = GetNumCharacters();
+	for i=1, numChars do
+		_G["CharSelectCharacterCustomize"..i]:Hide();
+		_G["CharSelectRaceChange"..i]:Hide();
+		_G["CharSelectFactionChange"..i]:Hide();
+		local CustomizeButton = _G["CharSelectCharacterCustomize"..i]
+		local RaceButton = _G["CharSelectRaceChange"..i]
+		local FactionButton = _G["CharSelectFactionChange"..i]
+		CustomizeButton:SetPoint("TOP", CharacterSelectDeleteButton, "BOTTOM", 0, 0)
+		RaceButton:SetPoint("TOP", CharacterSelectDeleteButton, "BOTTOM", 0, 0)
+		FactionButton:SetPoint("TOP", CharacterSelectDeleteButton, "BOTTOM", 0, 0)
+	end
+
+	local name, race, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(id);
+	if ( PFC ) then
+		_G["CharSelectFactionChange"..id]:Show();
+		CharSelectNoCustomizationButton:Hide()
+	elseif ( PRC ) then
+		_G["CharSelectRaceChange"..id]:Show();
+		CharSelectNoCustomizationButton:Hide()
+	elseif ( PCC ) then
+		_G["CharSelectCharacterCustomize"..id]:Show();
+		CharSelectNoCustomizationButton:Hide()
+	else
+		CharSelectNoCustomizationButton:Show()
+		SetButtonDesaturated(CharSelectNoCustomizationButton, true)
+	end
+end
+
 function UpdateCharacterList()
+	CharacterButtons = {}
 	local numChars = GetNumCharacters();
 	local index = 1;
 	local coords;
@@ -321,28 +435,27 @@ function UpdateCharacterList()
 			if ( not zone ) then
 				zone = "";
 			end
-			_G["CharSelectCharacterButton"..index.."ButtonTextName"]:SetText(name);
-			if( ghost ) then
-				_G["CharSelectCharacterButton"..index.."ButtonTextInfo"]:SetFormattedText(CHARACTER_SELECT_INFO_GHOST, level, class);
-			else
-				_G["CharSelectCharacterButton"..index.."ButtonTextInfo"]:SetFormattedText(CHARACTER_SELECT_INFO, level, class);
+			if class == "Chevalier de la mort" then
+				class = "DK"
 			end
-			_G["CharSelectCharacterButton"..index.."ButtonTextLocation"]:SetText(zone);
+			if class == "Chasseur de démons" then
+				class = "DH"
+			end
+			if class == "Mage de combat sanglant" then
+				class = "BBM"
+			end
+			if ClassToIcon[class][2] ~= nil then
+				class = ClassToIcon[class][2]..class.."|r"
+			end
+			_G["CharSelectCharacterButton"..index.."ButtonTextName"]:SetFormattedText(CHARACTER_SELECT_NAME, name);
+			if( ghost ) then
+				_G["CharSelectCharacterButton"..index.."ButtonTextInfo"]:SetFormattedText(CHARACTER_SELECT_INFO_GHOST, class, level);
+			else
+				_G["CharSelectCharacterButton"..index.."ButtonTextInfo"]:SetFormattedText(CHARACTER_SELECT_INFO, class, level);
+			end
 		end
 		button:Show();
-
-		-- setup paid service buttons
-		_G["CharSelectCharacterCustomize"..index]:Hide();
-		_G["CharSelectRaceChange"..index]:Hide();
-		_G["CharSelectFactionChange"..index]:Hide();
-		if ( PFC ) then
-			_G["CharSelectFactionChange"..index]:Show();
-		elseif ( PRC ) then
-			_G["CharSelectRaceChange"..index]:Show();
-		elseif ( PCC ) then
-			_G["CharSelectCharacterCustomize"..index]:Show();
-		end
-
+		table.insert(CharacterButtons, button)
 		index = index + 1;
 		if ( index > MAX_CHARACTERS_DISPLAYED ) then
 			break;
@@ -352,14 +465,36 @@ function UpdateCharacterList()
 	if ( numChars == 0 ) then
 		CharacterSelectDeleteButton:Disable();
 		CharSelectEnterWorldButton:Disable();
+		CharSelectEnterWorldButton:SetScript("OnClick", nil)
+		CharSelectEnterWorldButton:SetScript("OnMouseDown", function(self)
+			self.Left:SetTexCoord(0.255859, 0.478516, 0.508301, 0.570801)
+			self.Right:SetTexCoord(0.00195312, 0.572266, 0.317871, 0.380371)
+		end)
+		CharSelectEnterWorldButton:SetScript("OnMouseUp", function(self)
+			self.Left:SetTexCoord(0.255859, 0.478516, 0.508301, 0.570801)
+			self.Right:SetTexCoord(0.00195312, 0.572266, 0.317871, 0.380371)
+		end)
 	else
 		CharacterSelectDeleteButton:Enable();
 		CharSelectEnterWorldButton:Enable();
+		CharSelectEnterWorldButton:SetScript("OnClick", function(self)
+			CharacterSelect_EnterWorld();
+		end)
+		CharSelectEnterWorldButton:SetScript("OnMouseDown", function(self)
+			self.Left:SetTexCoord(0.482422, 0.705078, 0.508301, 0.570801)
+			self.Right:SetTexCoord(0.00195312, 0.572266, 0.381348, 0.443848)
+		end)
+		CharSelectEnterWorldButton:SetScript("OnMouseUp", function(self)
+			self.Left:SetTexCoord(0.763672, 0.986328, 0.444824, 0.507324)
+			self.Right:SetTexCoord(0.00195312, 0.572266, 0.25439, 0.316895)
+		end)
 	end
 
 	CharacterSelect.createIndex = 0;
-	CharSelectCreateCharacterButton:Hide();	
-	
+	CharSelectCreateCharacterButton:Show();
+	CharSelectCreateCharacterButton:Disable();	
+	SetButtonDesaturated(CharSelectCreateCharacterButton, true)
+	AddIcon:SetTexCoord(0.5234375, 0.611328125, 0.626953125, 0.8046875)
 	local connected = IsConnectedToServer();
 	for i=index, MAX_CHARACTERS_DISPLAYED, 1 do
 		local button = _G["CharSelectCharacterButton"..index];
@@ -369,7 +504,10 @@ function UpdateCharacterList()
 				--If can create characters position and show the create button
 				CharSelectCreateCharacterButton:SetID(index);
 				--CharSelectCreateCharacterButton:SetPoint("TOP", button, "TOP", 0, -5);
-				CharSelectCreateCharacterButton:Show();	
+				CharSelectCreateCharacterButton:Show();
+				CharSelectCreateCharacterButton:Enable();
+				SetButtonDesaturated(CharSelectCreateCharacterButton, false)	
+				AddIcon:SetTexCoord(0.5234375, 0.611328125, 0.0859375, 0.263671875)
 			end
 		end
 		_G["CharSelectCharacterCustomize"..index]:Hide();
@@ -395,12 +533,20 @@ function UpdateCharacterList()
 		CharacterSelect.selectedIndex = 1;
 	end
 	CharacterSelect_SelectCharacter(CharacterSelect.selectedIndex, 1);
+	RepositionCharButtons()
 end
 
 function CharacterSelectButton_OnClick(self)
 	local id = self:GetID();
 	if ( id ~= CharacterSelect.selectedIndex ) then
 		CharacterSelect_SelectCharacter(id);
+	end
+	SetupCharacterCustomizationButtons(id)
+	local name, race, class, level = GetCharacterInfo(id);
+	if class == "Chevalier de la mort" then
+		SetCharacterSelectFacing(-8)
+	else
+		SetCharacterSelectFacing(0)
 	end
 end
 
@@ -429,9 +575,10 @@ function CharacterSelect_SelectCharacter(id, noCreate)
 			SetGlueScreen("charcreate");
 		end
 	else
-		CharacterSelect.currentModel = GetSelectBackgroundModel(id);
-		SetBackgroundModel(CharacterSelect,CharacterSelect.currentModel);
 
+		local name, race, raceid, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(id);
+	
+		SetBackgroundModel(CharacterSelect, race, class);
 		SelectCharacter(id);
 	end
 end
@@ -498,17 +645,7 @@ function CharacterSelectFrame_OnUpdate()
 	end
 end
 
-function CharacterSelectRotateRight_OnUpdate(self)
-	if ( self:GetButtonState() == "PUSHED" ) then
-		SetCharacterSelectFacing(GetCharacterSelectFacing() + CHARACTER_FACING_INCREMENT);
-	end
-end
 
-function CharacterSelectRotateLeft_OnUpdate(self)
-	if ( self:GetButtonState() == "PUSHED" ) then
-		SetCharacterSelectFacing(GetCharacterSelectFacing() - CHARACTER_FACING_INCREMENT);
-	end
-end
 
 function CharacterSelect_ManageAccount()
 	PlaySound("gsCharacterSelectionAcctOptions");
@@ -540,17 +677,46 @@ function CharacterSelect_DeathKnightSwap(self)
 	if ( CharacterSelect.currentModel == "DEATHKNIGHT" ) then
 		if (self.currentModel ~= "DEATHKNIGHT") then
 			self.currentModel = "DEATHKNIGHT";
-			self:SetNormalTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Up-Blue");
-			self:SetPushedTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Down-Blue");
-			self:SetHighlightTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Highlight-Blue");
+			--self:SetNormalTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Up-Blue");
+			--self:SetPushedTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Down-Blue");
+			--self:SetHighlightTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Highlight-Blue");
 		end
 	else
 		if (self.currentModel == "DEATHKNIGHT") then
 			self.currentModel = nil;
-			self:SetNormalTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Up");
-			self:SetPushedTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Down");
-			self:SetHighlightTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Highlight");
+			--self:SetNormalTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Up");
+			--self:SetPushedTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Down");
+			--self:SetHighlightTexture("Interface\\Glues\\Common\\Glue-Panel-Button-Highlight");
 		end
 	end
 end
 
+function CharSelectShadows()
+	for i, v in pairs(ShadowTable) do
+		v:Hide()
+	end
+	ShadowTable = {}
+
+	local charSelectShadow = CharacterSelect:CreateTexture("charSelectShadow", "OVERLAY")
+	charSelectShadow:SetSize(GlueParent:GetWidth() + 5, GlueParent:GetHeight() + 5)
+	charSelectShadow:SetTexture("Interface\\Glues\\CharacterCreate\\ShadowTotal")
+	charSelectShadow:SetPoint("CENTER")
+	charSelectShadow:SetAlpha(0.95)
+
+	local charSelectShadowRight = CharacterSelect:CreateTexture("charSelectShadowRight", "OVERLAY")
+	charSelectShadowRight:SetSize(200, GlueParent:GetHeight())
+	charSelectShadowRight:SetTexture("Interface\\Glues\\CharacterCreate\\VerticalShadow")
+	charSelectShadowRight:SetPoint("RIGHT", 5, 0)
+	charSelectShadowRight:SetAlpha(0.8)
+
+	local charSelectShadowLeft = CharacterSelect:CreateTexture("charSelectShadowLeft", "OVERLAY")
+	charSelectShadowLeft:SetSize(200, GlueParent:GetHeight())
+	charSelectShadowLeft:SetTexture("Interface\\Glues\\CharacterCreate\\VerticalShadow")
+	charSelectShadowLeft:SetPoint("LEFT", -5, 0)
+	charSelectShadowLeft:SetAlpha(0.8)
+	charSelectShadowLeft:SetTexCoord(1, 0, 1, 0)
+
+	table.insert(ShadowTable, charSelectShadow)
+	table.insert(ShadowTable, charSelectShadowRight)
+	table.insert(ShadowTable, charSelectShadowLeft)
+end

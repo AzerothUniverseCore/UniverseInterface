@@ -1,5 +1,10 @@
-CHARACTERFRAME_SUBFRAMES = { "PaperDollFrame", "PetPaperDollFrame", "SkillFrame", "ReputationFrame", "TokenFrame" };
+CHARACTERFRAME_SUBFRAMES = { "PaperDollFrame", "PetPaperDollFrame", "ReputationFrame", "SkillFrame", "TokenFrame" };
 local NUM_CHARACTERFRAME_TABS = 5;
+
+PANEL_DEFAULT_WIDTH = 350
+CHARACTERFRAME_EXPANDED_WIDTH = 606 - 55;
+CHARACTERFRAME_EXPANDED_HEIGHT = 430
+
 function ToggleCharacter (tab)
 	local subFrame = _G[tab];
 	if ( subFrame ) then
@@ -7,7 +12,7 @@ function ToggleCharacter (tab)
 			PanelTemplates_SetTab(CharacterFrame, subFrame:GetID());
 			if ( CharacterFrame:IsShown() ) then
 				if ( subFrame:IsShown() ) then
-					HideUIPanel(CharacterFrame);	
+					HideUIPanel(CharacterFrame);
 				else
 					PlaySound("igCharacterInfoTab");
 					CharacterFrame_ShowSubFrame(tab);
@@ -51,14 +56,28 @@ function CharacterFrame_OnLoad (self)
 	self:RegisterEvent("UNIT_NAME_UPDATE");
 	self:RegisterEvent("UNIT_PORTRAIT_UPDATE");
 	self:RegisterEvent("PLAYER_PVP_RANK_CHANGED");
+	self:RegisterEvent("PLAYER_TALENT_UPDATE");
+	self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED");
+	self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
 
 	SetTextStatusBarTextPrefix(PlayerFrameHealthBar, HEALTH);
 	SetTextStatusBarTextPrefix(PlayerFrameManaBar, MANA);
 	SetTextStatusBarTextPrefix(MainMenuExpBar, XP);
 	TextStatusBar_UpdateTextString(MainMenuExpBar);
 	-- Tab Handling code
-	PanelTemplates_SetNumTabs(self, 5);
+	PanelTemplates_SetNumTabs(self, NUM_CHARACTERFRAME_TABS);
 	PanelTemplates_SetTab(self, 1);
+	-- PanelTemplates_DisableTab(self, 2)
+
+	CharacterFrame.TitleText:SetText(UnitPVPName("player"))
+	CharacterFrame.TitleText:SetTextColor(1, 1, 1)
+
+	for i = 1, NUM_CHARACTERFRAME_TABS do
+		local tab = _G["CharacterFrameTab"..i]
+		tab:SetFrameLevel(self:GetFrameLevel() + 2)
+	end
+
+	ButtonFrameTemplate_HideButtonBar(CharacterFrame)
 end
 
 function CharacterFrame_OnEvent (self, event, ...)
@@ -69,23 +88,31 @@ function CharacterFrame_OnEvent (self, event, ...)
 	local arg1 = ...;
 	if ( event == "UNIT_PORTRAIT_UPDATE" ) then
 		if ( arg1 == "player" ) then
-			SetPortraitTexture(CharacterFramePortrait, arg1);
+			if GetSpecName() ~= "" then
+				SetSpecializationTexturePortrait();
+			else
+				SetPortraitTexture(CharacterFramePortrait, arg1);
+			end
 		end
 		return;
 	elseif ( event == "UNIT_NAME_UPDATE" ) then
 		if ( arg1 == "player" ) then
-			CharacterNameText:SetText(UnitPVPName(arg1));
+			CharacterFrame.TitleText:SetText(UnitPVPName(arg1));
 		end
 		return;
 	elseif ( event == "PLAYER_PVP_RANK_CHANGED" ) then
-		CharacterNameText:SetText(UnitPVPName("player"));
+		CharacterFrame.TitleText:SetText(UnitPVPName("player"));
+	elseif ( event == "PLAYER_TALENT_UPDATE" or event == "ACTIVE_TALENT_GROUP_CHANGED" or event =="PLAYER_EQUIPMENT_CHANGED" ) then
+		SetSpecializationTexturePortrait();
 	end
 end
 
 function CharacterFrame_OnShow (self)
 	PlaySound("igCharacterInfoOpen");
-	SetPortraitTexture(CharacterFramePortrait, "player");
-	CharacterNameText:SetText(UnitPVPName("player"));
+	SetSpecializationTexturePortrait();
+	-- SetPortraitTexture(CharacterFrame.portrait, "player");
+	-- CharacterNameText:SetText(UnitPVPName("player"));
+	CharacterFrame.TitleText:SetText(UnitPVPName("player"))
 	UpdateMicroButtons();
 	PlayerFrameHealthBar.showNumeric = true;
 	PlayerFrameManaBar.showNumeric = true;
@@ -120,11 +147,28 @@ function CharacterFrame_OnHide (self)
 	HideTextStatusBarText(PetFrameHealthBar);
 	HideTextStatusBarText(PetFrameManaBar);
 	HideWatchedReputationBarText();
+	PaperDollFrame:Show()
+end
+
+function CharacterFrame_Collapse()
+	CharacterFrame:SetWidth(PANEL_DEFAULT_WIDTH)
+	CharacterFrame.Expanded = false
+	UpdateUIPanelPositions(CharacterFrame)
+	PaperDollFrame_SetLevel()
+end
+
+function CharacterFrame_Expand()
+	CharacterFrame:SetWidth(CHARACTERFRAME_EXPANDED_WIDTH)
+	CharacterFrame:SetHeight(CHARACTERFRAME_EXPANDED_HEIGHT)
+	CharacterFrame.Expanded = true
+	UpdateUIPanelPositions(CharacterFrame)
+	PaperDollFrame_SetLevel()
 end
 
 local function CompareFrameSize(frame1, frame2)
 	return frame1:GetWidth() > frame2:GetWidth();
 end
+
 local CharTabtable = {};
 function CharacterFrame_TabBoundsCheck(self)
 	if ( string.sub(self:GetName(), 1, 17) ~= "CharacterFrameTab" ) then

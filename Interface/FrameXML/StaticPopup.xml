@@ -62,14 +62,14 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<Texture name="$parentAlertIcon" file="Interface\DialogFrame\DialogAlertIcon">
+				<Texture name="$parentAlertIcon">
 					<Size>
-						<AbsDimension x="64" y="64"/>
+						<AbsDimension x="48" y="48"/>
 					</Size>
 					<Anchors>
 						<Anchor point="LEFT">
 							<Offset>
-								<AbsDimension x="12" y="12"/>
+								<AbsDimension x="24" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -245,9 +245,9 @@
 					<AbsDimension x="37" y="37"/>
 				</Size>
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentText" relativePoint="BOTTOM">
+					<Anchor point="BOTTOM" relativeTo="$parentButton1" relativePoint="TOP">
 						<Offset>
-							<AbsDimension x="0" y="-16"/>
+							<AbsDimension x="0" y="8"/>
 						</Offset>
 					</Anchor>
 					<Anchor point="LEFT">

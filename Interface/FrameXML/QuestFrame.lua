@@ -223,14 +223,19 @@ function QuestFrameGreetingPanel_OnShow()
 		for i=1, numActiveQuests, 1 do
 			local questTitleButton = _G["QuestTitleButton"..i];
 			local questTitleButtonIcon = _G[questTitleButton:GetName() .. "QuestIcon"];
+			local title, isComplete = GetActiveTitle(i);
 			if ( IsActiveQuestTrivial(i) ) then
-				questTitleButton:SetFormattedText(TRIVIAL_QUEST_DISPLAY, GetActiveTitle(i));
-				questTitleButtonIcon:SetVertexColor(0.5,0.5,0.5);
+				questTitleButton:SetFormattedText(TRIVIAL_QUEST_DISPLAY, title);
+				questTitleButtonIcon:SetVertexColor(0.75,0.75,0.75);
 			else
-				questTitleButton:SetFormattedText(NORMAL_QUEST_DISPLAY, GetActiveTitle(i));
+				questTitleButton:SetFormattedText(NORMAL_QUEST_DISPLAY, title);
 				questTitleButtonIcon:SetVertexColor(1,1,1);
 			end
-			questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\ActiveQuestIcon"); 
+			if ( isComplete ) then
+				questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\ActiveQuestIcon");
+			else
+				questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\IncompleteQuestIcon");
+			end
 			questTitleButton:SetHeight(questTitleButton:GetTextHeight() + 2);
 			questTitleButton:SetID(i);
 			questTitleButton.isActive = 1;
@@ -256,14 +261,21 @@ function QuestFrameGreetingPanel_OnShow()
 		for i=(numActiveQuests + 1), (numActiveQuests + numAvailableQuests), 1 do
 			local questTitleButton = _G["QuestTitleButton"..i];
 			local questTitleButtonIcon = _G[questTitleButton:GetName() .. "QuestIcon"];
-			if ( IsAvailableQuestTrivial(i - numActiveQuests) ) then
+			local isTrivial, isDaily, isRepeatable = GetAvailableQuestInfo(i - numActiveQuests);
+			if ( isDaily ) then
+				questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\DailyQuestIcon");
+			elseif ( isRepeatable ) then
+				questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\DailyActiveQuestIcon");
+			else
+				questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\AvailableQuestIcon");
+			end
+			if ( isTrivial ) then
 				questTitleButton:SetFormattedText(TRIVIAL_QUEST_DISPLAY, GetAvailableTitle(i - numActiveQuests));
 				questTitleButtonIcon:SetVertexColor(0.5,0.5,0.5);
 			else
 				questTitleButton:SetFormattedText(NORMAL_QUEST_DISPLAY, GetAvailableTitle(i - numActiveQuests));
 				questTitleButtonIcon:SetVertexColor(1,1,1);
 			end
-			questTitleButtonIcon:SetTexture("Interface\\GossipFrame\\AvailableQuestIcon"); 
 			questTitleButton:SetHeight(questTitleButton:GetTextHeight() + 2);
 			questTitleButton:SetID(i - numActiveQuests);
 			questTitleButton.isActive = 0;

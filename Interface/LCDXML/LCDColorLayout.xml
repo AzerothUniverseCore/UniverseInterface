@@ -777,6 +777,116 @@
 			<Size x="144" y="120" />
 		</LCDBitmap>
 	</Screen>
+	<Screen name="TwinPeaksMapScreen">
+    <LCDMap>
+      <Size x="571" y="296"/>
+      <Offset x="-125" y="-30"/>
+    </LCDMap>
+    <LCDBitmap name="TwinPeaks1" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks1.blp" miplevel="1">
+      <Origin x="-125" y="-30"/>
+      <!--<Origin x="0" y="0"/>-->
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks2" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks2.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks1" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks3" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks3.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks2" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks4" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks4.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks3" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks5" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks5.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks1" x="0" y="115"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks6" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks6.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks5" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks7" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks7.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks6" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks8" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks8.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks7" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks9" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks9.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks5" x="0" y="115"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks10" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks10.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks9" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks11" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks11.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks10" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="TwinPeaks12" type="texture" data="Interface\WORLDMAP\TwinPeaks\TwinPeaks12.blp" miplevel="1">
+      <RelOrigin RelTo="TwinPeaks11" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+  </Screen>
+  <Screen name="BattleForGilneasMapScreen">
+    <LCDMap>
+      <Size x="571" y="296"/>
+      <Offset x="-125" y="-30"/>
+    </LCDMap>
+    <LCDBitmap name="BattleForGilneas1" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground21.blp" miplevel="1">
+      <Origin x="-125" y="-30"/>
+      <!--<Origin x="0" y="0"/>-->
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas2" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground22.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas1" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas3" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground23.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas2" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas4" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground24.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas3" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas5" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground25.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas1" x="0" y="115"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas6" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground26.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas5" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas7" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground27.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas6" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas8" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground28.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas7" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas9" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground29.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas5" x="0" y="115"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas10" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground210.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas9" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas11" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground211.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas10" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+    <LCDBitmap name="BattleForGilneas12" type="texture" data="Interface\WORLDMAP\GilneasBattleground2\GilneasBattleground212.blp" miplevel="1">
+      <RelOrigin RelTo="BattleForGilneas11" x="144" y="0"/>
+      <Size x="144" y="115" />
+    </LCDBitmap>
+  </Screen>
 	<Globals>
 		<LCDBitmap name="PartyIcon1" type="texture" data="Interface\WORLDMAP\WorldMapPartyIcon.blp" miplevel="0">
 			<Origin x="0" y="0"/>

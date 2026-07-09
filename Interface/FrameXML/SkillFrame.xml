@@ -132,123 +132,28 @@
 			<AbsInset left="0" right="30" top="0" bottom="75"/>
 		</HitRectInsets>
 		<Layers>
-			<Layer level="BACKGROUND">
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPRIGHT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="BOTTOMLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\SkillFrame-BotRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="BOTTOMRIGHT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
 			<Layer level="ARTWORK">
 				<Texture name="SkillFrameHorizontalBarLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-HorizontalBar">
-					<Size>
-						<AbsDimension x="256" y="16"/>
-					</Size>
+					<Size x="266" y="16"/>
 					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="15" y="-290"/>
-							</Offset>
-						</Anchor>
+						<Anchor point="TOPLEFT" x="2" y="-290"/>
 					</Anchors>
 					<TexCoords left="0" right="1.0" top="0" bottom="0.25"/>
 				</Texture>
 				<Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-HorizontalBar">
-					<Size>
-						<AbsDimension x="75" y="16"/>
-					</Size>
+					<Size x="78" y="16"/>
 					<Anchors>
-						<Anchor point="LEFT" relativeTo="SkillFrameHorizontalBarLeft" relativePoint="RIGHT">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
+						<Anchor point="LEFT" relativeTo="SkillFrameHorizontalBarLeft" relativePoint="RIGHT" x="0" y="0"/>
 					</Anchors>
 					<TexCoords left="0" right="0.29296875" top="0.25" bottom="0.5"/>
 				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>
-			<!--	Replace once code is ready...	
-			<CheckButton name="SkillSortButton" inherits="OptionsSmallCheckButtonTemplate">
-				<Size>
-					<AbsDimension x="25" y="25"/>
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="130" y="-50"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						local text = _G[self:GetName().."Text"];
-						text:SetText("Show Known Skills Only");
-						text:SetTextColor(1.0, 1.0, 1.0);
-					</OnLoad>
-					<OnShow>
-						SkillSortButton_OnShow(self, "available");
-					</OnShow>
-					<OnClick>
-						SkillSortButton_OnClick("available")
-					</OnClick>
-				</Scripts>
-			</CheckButton>
--->
 			<Frame name="SkillFrameExpandButtonFrame">
-				<Size>
-					<AbsDimension x="54" y="32"/>
-				</Size>
+				<Size x="54" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="70" y="-49"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="TOPLEFT" x="70" y="-36"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
@@ -315,53 +220,9 @@
 					</OnLoad>
 				</Scripts>
 			</Frame>
-			<!--
-			<Button name="SkillFrameAcceptButton" inherits="UIPanelButtonTemplate" text="ACCEPT">
-				<Size>
-					<AbsDimension x="80" y="22"/>
-				</Size>
-				<Anchors>
-					<Anchor point="CENTER" relativePoint="TOPLEFT">
-						<Offset>
-							<AbsDimension x="224" y="-420"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>
-						AcceptSkillUps();
-						self:GetParent():Hide();
-						HideUIPanel(CharacterFrame);
-					</OnClick>
-				</Scripts>
-			</Button>
-		-->
-			<Button name="SkillFrameCancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
-				<Size>
-					<AbsDimension x="80" y="22"/>
-				</Size>
-				<Anchors>
-					<Anchor point="CENTER" relativePoint="TOPLEFT">
-						<Offset>
-							<AbsDimension x="305" y="-422"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>
-						CancelSkillUps();
-						self:GetParent():Hide();
-						HideUIPanel(CharacterFrame);
-					</OnClick>
-				</Scripts>
-			</Button>
 			<Button name="SkillTypeLabel1" inherits="SkillLabelTemplate">
 				<Anchors>
-					<Anchor point="LEFT" relativePoint="TOPLEFT">
-						<Offset>
-							<AbsDimension x="22" y="-86"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="LEFT" relativePoint="TOPLEFT" x="10" y="-78"/>
 				</Anchors>
 			</Button>
 			<Button name="SkillTypeLabel2" inherits="SkillLabelTemplate">
@@ -464,15 +325,9 @@
 				</Anchors>
 			</Button>
 			<ScrollFrame name="SkillListScrollFrame" inherits="FauxScrollFrameTemplate">
-				<Size>
-					<AbsDimension x="296" y="220"/>
-				</Size>
+				<Size x="296" y="230"/>
 				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="SkillFrame" relativePoint="TOPRIGHT">
-						<Offset>
-							<AbsDimension x="-67" y="-75"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="TOPRIGHT" relativeTo="SkillFrame" relativePoint="TOPRIGHT" x="-34" y="-65"/>
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
@@ -510,47 +365,27 @@
 					</OnVerticalScroll>
 				</Scripts>
 			</ScrollFrame>
-			<ScrollFrame name="SkillDetailScrollFrame" inherits="UIPanelScrollFrameTemplate">
-				<Size>
-					<AbsDimension x="296" y="107"/>
-				</Size>
+			<Frame name="SkillDetailHelpBox" parentKey="HelpBox" inherits="GlowBoxTemplate" hidden="false">
+				<Size x="330" y="110"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="SkillListScrollFrame" relativePoint="BOTTOMLEFT">
-						<Offset>
-							<AbsDimension x="0" y="-8"/>
-						</Offset>
-					</Anchor>
+					<Anchor point="BOTTOM" x="-1" y="10" />
 				</Anchors>
 				<Layers>
-					<Layer level="ARTWORK">
-						<Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-ScrollBar">
-							<Size>
-								<AbsDimension x="30" y="100"/>
-							</Size>
+					<Layer level="OVERLAY">
+						<FontString parentKey="Text" inherits="GameFontHighlight" text="SKILL_FRAME_HELP_BOX_TEXT">
+							<Size x="300" y="80"/>
 							<Anchors>
-								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
-									<Offset>
-										<AbsDimension x="-3" y="5"/>
-									</Offset>
-								</Anchor>
+								<Anchor point="CENTER" x="0" y="0"/>
 							</Anchors>
-							<TexCoords left="0" right="0.46875" top="0" bottom="0.78125"/>
-						</Texture>
-						<Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-ScrollBar">
-							<Size>
-								<AbsDimension x="30" y="100"/>
-							</Size>
-							<Anchors>
-								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
-									<Offset>
-										<AbsDimension x="-3" y="-2"/>
-									</Offset>
-								</Anchor>
-							</Anchors>
-							<TexCoords left="0.53125" right="1.0" top="0.21875" bottom="1.0"/>
-						</Texture>
+						</FontString>
 					</Layer>
 				</Layers>
+			</Frame>
+			<ScrollFrame name="SkillDetailScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size x="316" y="107"/>
+				<Anchors>
+					<Anchor point="BOTTOM" x="0" y="10" />
+				</Anchors>
 				<Scripts>
 					<OnLoad>
 						ScrollFrame_OnLoad(self);
@@ -559,9 +394,7 @@
 				</Scripts>
 				<ScrollChild>
 					<Frame name="SkillDetailScrollChildFrame">
-						<Size>
-							<AbsDimension x="320" y="50"/>
-						</Size>
+						<Size x="320" y="50"/>
 						<Layers>
 							<Layer level="ARTWORK">
 								<FontString name="SkillDetailCostText" inherits="GameFontNormalSmall" justifyH="CENTER" hidden="true">
@@ -576,14 +409,12 @@
 										</Anchor>
 									</Anchors>
 								</FontString>
-								<FontString name="SkillDetailDescriptionText" inherits="GameFontHighlightSmall" justifyH="LEFT" justifyV="TOP">
-									<Size>
-										<AbsDimension x="275" y="0"/>
-									</Size>
+								<FontString name="SkillDetailDescriptionText" inherits="GameFontHighlightSmall" justifyH="CENTER" justifyV="TOP">
+									<Size x="288" y="0"/>
 									<Anchors>
 										<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
 											<Offset>
-												<AbsDimension x="-5" y="-35"/>
+												<AbsDimension x="0" y="-35"/>
 											</Offset>
 										</Anchor>
 									</Anchors>
@@ -598,7 +429,7 @@
 								<Anchors>
 									<Anchor point="CENTER" relativeTo="SkillDetailScrollChildFrame" relativePoint="TOP">
 										<Offset>
-											<AbsDimension x="-10" y="-20"/>
+											<AbsDimension x="0" y="-20"/>
 										</Offset>
 									</Anchor>
 								</Anchors>
@@ -743,7 +574,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="38" y="-79"/>
+							<AbsDimension x="38" y="-72"/>
 						</Offset>
 					</Anchor>
 				</Anchors>

@@ -68,6 +68,10 @@
 				<OnEnter>
 					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 					GameTooltip_AddNewbieTip(self, self.tooltipText, 1.0, 1.0, 1.0, self.newbieText);
+					if ( self:IsEnabled() ~= 1 ) then
+						GameTooltip:AddLine(self.reason, RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, true);
+						GameTooltip:Show();
+					end
 				</OnEnter>
 				<OnLeave>
 					GameTooltip:Hide();
@@ -246,7 +250,7 @@
 			<OnLoad function="GroupLootDropDown_OnLoad"/>
 		</Scripts>
 	</Frame>
-	<Frame name="GroupLootFrameTemplate" toplevel="true" frameStrata="DIALOG" hidden="true" virtual="true">
+	<Frame name="GroupLootFrameTemplate" parent="UIParent" toplevel="true" frameStrata="DIALOG" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="253" y="84"/>
 		</Size>

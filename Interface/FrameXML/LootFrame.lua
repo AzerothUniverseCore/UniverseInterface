@@ -16,7 +16,7 @@ function LootFrame_OnEvent(self, event, ...)
 		local autoLoot = ...;
 		
 		self.page = 1;
-		ShowUIPanel(self);
+		LootFrame_Show(self);
 		if ( not self:IsShown()) then
 			CloseLoot(autoLoot == 0);	-- The parameter tells code that we were unable to open the UI
 		end
@@ -138,7 +138,11 @@ function LootFrame_Update()
 		LootFrameUpButton:Show();
 		LootFramePrev:Show();
 	end
-	if ( LootFrame.page == ceil(LootFrame.numLootItems / LOOTFRAME_NUMBUTTONS) or LootFrame.numLootItems == 0 ) then
+	local numItemsPerPage = LOOTFRAME_NUMBUTTONS;
+	if ( LootFrame.numLootItems > LOOTFRAME_NUMBUTTONS ) then
+		numItemsPerPage = numItemsPerPage - 1;
+	end
+	if ( LootFrame.page == ceil(LootFrame.numLootItems / numItemsPerPage) or LootFrame.numLootItems == 0 ) then
 		LootFrameDownButton:Hide();
 		LootFrameNext:Hide();
 	else
@@ -157,7 +161,8 @@ function LootFrame_PageUp()
 	LootFrame_Update();
 end
 
-function LootFrame_OnShow(self)
+function LootFrame_Show(self)
+	ShowUIPanel(self);
 	self.numLootItems = GetNumLootItems();
 	
 	if ( GetCVar("lootUnderMouse") == "1" ) then
@@ -187,6 +192,9 @@ function LootFrame_OnShow(self)
 	
 	LootFrame_Update();
 	LootFramePortraitOverlay:SetTexture("Interface\\TargetingFrame\\TargetDead");
+end
+
+function LootFrame_OnShow(self)
 	if( self.numLootItems == 0 ) then
 		PlaySound("LOOTWINDOWOPENEMPTY");
 	elseif( IsFishingLoot() ) then
@@ -318,18 +326,23 @@ end
 
 function GroupLootFrame_EnableLootButton(button)
 	button:Enable();
+	button:SetAlpha(1.0);
 	SetDesaturation(button:GetNormalTexture(), false);
 end
 
 function GroupLootFrame_DisableLootButton(button)
 	button:Disable();
+	button:SetAlpha(0.35);
 	SetDesaturation(button:GetNormalTexture(), true);
 end
 
 function GroupLootFrame_OnShow(self)
 	AlertFrame_FixAnchors();
-	local texture, name, count, quality, bindOnPickUp, canNeed, canGreed, canDisenchant = GetLootRollItemInfo(self.rollID);
-	
+	local texture, name, count, quality, bindOnPickUp, canNeed, canGreed, canDisenchant, reasonNeed, reasonGreed, reasonDisenchant, deSkillRequired = GetLootRollItemInfo(self.rollID);
+	if (name == nil) then
+		self:Hide();
+		return;
+	end
 	if ( bindOnPickUp ) then
 		self:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11 } } );
 		_G[self:GetName().."Corner"]:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Gold-Corner");
@@ -354,18 +367,24 @@ function GroupLootFrame_OnShow(self)
 	
 	if ( canNeed ) then
 		GroupLootFrame_EnableLootButton(self.needButton);
+		self.needButton.reason = nil;
 	else
 		GroupLootFrame_DisableLootButton(self.needButton);
+		self.needButton.reason = _G["LOOT_ROLL_INELIGIBLE_REASON"..reasonNeed];
 	end
 	if ( canGreed) then
 		GroupLootFrame_EnableLootButton(self.greedButton);
+		self.greedButton.reason = nil;
 	else
 		GroupLootFrame_DisableLootButton(self.greedButton);
+		self.greedButton.reason = _G["LOOT_ROLL_INELIGIBLE_REASON"..reasonGreed];
 	end
 	if ( canDisenchant) then
 		GroupLootFrame_EnableLootButton(self.disenchantButton);
+		self.disenchantButton.reason = nil;
 	else
 		GroupLootFrame_DisableLootButton(self.disenchantButton);
+		self.disenchantButton.reason = format(_G["LOOT_ROLL_INELIGIBLE_REASON"..reasonDisenchant], deSkillRequired);
 	end
 end
 

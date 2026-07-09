@@ -56,10 +56,7 @@
 		</CheckedTexture>
 	</CheckButton>
 
-	<Frame name="PetPaperDollFrame" setAllPoints="true" enableMouse="true" parent="CharacterFrame" id="2" hidden="true">
-		<HitRectInsets>
-			<AbsInset left="0" right="30" top="0" bottom="75"/>
-		</HitRectInsets>
+	<Frame name="PetPaperDollFrame" setAllPoints="true" parent="CharacterFrame" id="2" hidden="true">
 		<Layers>
 			<Layer level="BACKGROUND">
 				<FontString name="PetNameText" inherits="GameFontHighlight" hidden="true">
@@ -67,72 +64,20 @@
 						<AbsDimension x="109" y="16"/>
 					</Size>
 					<Anchors>
-						<Anchor point="CENTER">
-							<Offset>
-								<AbsDimension x="6" y="232"/>
-							</Offset>
-						</Anchor>
+						<Anchor point="TOP" x="0" y="-34"/>
 					</Anchors>
 				</FontString>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPRIGHT">
-							<Offset>
-								<AbsDimension x="2" y="-1"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PetPaperDollFrame\UI-PetPaperDollFrame-BotLeft">
-					<Size>
-						<AbsDimension x="256" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="2" y="-257"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture file="Interface\PetPaperDollFrame\UI-PetPaperDollFrame-BotRight">
-					<Size>
-						<AbsDimension x="128" y="256"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="258" y="-257"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>
-			<Frame name="PetPaperDollFramePetFrame" setAllPoints="true" enableMouse="true" hidden="false" id="1">
+			<Frame name="PetPaperDollFramePetFrame" setAllPoints="true" hidden="false" id="1">
 				<Layers>
 					<Layer level="BACKGROUND">
 						<FontString name="PetLevelText" inherits="GameFontNormalSmall" text="Level level race class">
 							<Anchors>
 								<Anchor point="CENTER" relativePoint="CENTER">
 									<Offset>
-										<AbsDimension x="0" y="-55"/>
+										<AbsDimension x="0" y="-95"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -140,81 +85,10 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<StatusBar name="PetPaperDollFrameExpBar" inherits="TextStatusBar">
-						<Size>
-							<AbsDimension x="319" y="11"/>
-						</Size>
-						<Anchors>
-							<Anchor point="BOTTOMLEFT">
-								<Offset>
-									<AbsDimension x="23" y="103"/>
-								</Offset>
-							</Anchor>
-						</Anchors>
-						<Layers>
-							<Layer level="OVERLAY">
-								<Texture name="PetPaperDollXPBar1" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
-									<Size>
-										<AbsDimension x="160" y="13"/>
-									</Size>
-									<Anchors>
-										<Anchor point="TOPLEFT">
-											<Offset>
-												<AbsDimension x="0" y="2"/>
-											</Offset>
-										</Anchor>
-									</Anchors>
-									<TexCoords left="0.203125" right="0.8046875" top="0.2890625" bottom="0.33984375"/>
-								</Texture>
-								<Texture file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
-									<Size>
-										<AbsDimension x="159" y="13"/>
-									</Size>
-									<Anchors>
-										<Anchor point="LEFT" relativeTo="PetPaperDollXPBar1" relativePoint="RIGHT">
-											<Offset>
-												<AbsDimension x="0" y="0"/>
-											</Offset>
-										</Anchor>
-									</Anchors>
-									<TexCoords left="0.203125" right="0.8046875" top="0.2890625" bottom="0.33984375"/>
-								</Texture>
-								<FontString name="PetPaperDollFrameExpBarText" inherits="TextStatusBarText">
-									<Anchors>
-										<Anchor point="CENTER">
-											<Offset>
-												<AbsDimension x="0" y="0"/>
-											</Offset>
-										</Anchor>
-									</Anchors>
-								</FontString>
-							</Layer>
-						</Layers>
-						<Scripts>
-							<OnLoad>
-								TextStatusBar_Initialize(self);
-								SetTextStatusBarText(self, PetPaperDollFrameExpBarText);
-							</OnLoad>
-							<OnEnter>
-								TextStatusBar_UpdateTextString(self);
-								ShowTextStatusBarText(self);
-							</OnEnter>
-							<OnMinMaxChanged function="TextStatusBar_OnValueChanged"/>
-							<OnLeave function="HideTextStatusBarText"/>
-						</Scripts>
-						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
-						<BarColor r="0.58" g="0.0" b="0.55"/>
-					</StatusBar>
 					<PlayerModel name="PetModelFrame">
-						<Size>
-							<AbsDimension x="318" y="224"/>
-						</Size>
+						<Size x="318" y="224"/>
 						<Anchors>
-							<Anchor point="TOPLEFT">
-								<Offset>
-									<AbsDimension x="25" y="-78"/>
-								</Offset>
-							</Anchor>
+							<Anchor point="TOPLEFT" x="6" y="-60"/>
 						</Anchors>
 						<Scripts>
 							<OnLoad>
@@ -232,11 +106,7 @@
 									<AbsDimension x="35" y="35"/>
 								</Size>
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="PetPaperDollFrame">
-										<Offset>
-											<AbsDimension x="23" y="-76"/>
-										</Offset>
-									</Anchor>
+									<Anchor point="TOPLEFT" relativeTo="PetPaperDollFrame" x="6" y="-62"/>
 								</Anchors>
 								<Scripts>
 									<OnLoad>
@@ -272,19 +142,13 @@
 						</Frames>
 					</PlayerModel>
 					<Frame name="PetPaperDollPetInfo" enableMouse="true" hidden="false">
-						<Size>
-							<AbsDimension x="24" y="23"/>
-						</Size>
+						<Size x="24" y="23"/>
 						<Anchors>
-							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="PetModelFrameRotateLeftButton">
-								<Offset>
-									<AbsDimension x="7" y="0"/>
-								</Offset>
-							</Anchor>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="PetModelFrameRotateLeftButton"  x="7" y="0"/>
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
-								<Texture file="Interface\PetPaperDollFrame\UI-PetHappiness" setAllPoints="true">
+								<Texture parentKey="Icon" file="Interface\PetPaperDollFrame\UI-PetHappiness" setAllPoints="true">
 									<Size>
 										<AbsDimension x="24" y="23"/>
 									</Size>
@@ -300,33 +164,10 @@
 							<OnLeave function="GameTooltip_Hide"/>
 						</Scripts>
 					</Frame>
-					<Button name="PetPaperDollCloseButton" inherits="UIPanelButtonTemplate" text="CLOSE">
-						<Size>
-							<AbsDimension x="80" y="22"/>
-						</Size>
-						<Anchors>
-							<Anchor point="CENTER" relativePoint="TOPLEFT">
-								<Offset>
-									<AbsDimension x="305" y="-422"/>
-								</Offset>
-							</Anchor>
-						</Anchors>
-						<Scripts>
-							<OnClick>
-								HideUIPanel(CharacterFrame);
-							</OnClick>
-						</Scripts>
-					</Button>
 					<Frame name="PetAttributesFrame">
-						<Size>
-							<AbsDimension x="230" y="78"/>
-						</Size>
+						<Size x="230" y="78"/>
 						<Anchors>
-							<Anchor point="TOPLEFT">
-								<Offset>
-									<AbsDimension x="67" y="-320"/>
-								</Offset>
-							</Anchor>
+							<Anchor point="TOPLEFT" x="67" y="-320"/>
 						</Anchors>
 						<Layers>
 							<Layer level="BACKGROUND">
@@ -496,16 +337,69 @@
 							</Frame>
 						</Frames>
 					</Frame>
-					<Frame name="PetResistanceFrame">
-						<Size>
-							<AbsDimension x="32" y="160"/>
-						</Size>
+					<StatusBar name="PetPaperDollFrameExpBar" inherits="TextStatusBar">
+						<Size x="334" y="11"/>
 						<Anchors>
-							<Anchor point="TOPRIGHT" relativeTo="PetPaperDollFrame" relativePoint="TOPLEFT">
-								<Offset>
-									<AbsDimension x="347" y="-77"/>
-								</Offset>
-							</Anchor>
+							<Anchor point="TOP" relativeTo="PetAttributesFrame" relativePoint="BOTTOM" x="-10" y="-6" />
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<Texture name="PetPaperDollXPBar1" file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+									<Size>
+										<AbsDimension x="170" y="13"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.203125" right="0.8046875" top="0.2890625" bottom="0.33984375"/>
+								</Texture>
+								<Texture file="Interface\MainMenuBar\UI-MainMenuBar-Dwarf">
+									<Size>
+										<AbsDimension x="166" y="13"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="PetPaperDollXPBar1" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.203125" right="0.8046875" top="0.2890625" bottom="0.33984375"/>
+								</Texture>
+								<FontString name="PetPaperDollFrameExpBarText" inherits="TextStatusBarText">
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								TextStatusBar_Initialize(self);
+								SetTextStatusBarText(self, PetPaperDollFrameExpBarText);
+							</OnLoad>
+							<OnEnter>
+								TextStatusBar_UpdateTextString(self);
+								ShowTextStatusBarText(self);
+							</OnEnter>
+							<OnMinMaxChanged function="TextStatusBar_OnValueChanged"/>
+							<OnLeave function="HideTextStatusBarText"/>
+						</Scripts>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+						<BarColor r="0.58" g="0.0" b="0.55"/>
+					</StatusBar>
+					<Frame name="PetResistanceFrame">
+						<Size x="32" y="160"/>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="PetPaperDollFrame" relativePoint="TOPLEFT" x="337" y="-67"/>
 						</Anchors>
 						<Frames>
 							<Frame name="PetMagicResFrame1" inherits="MagicResistanceFrameTemplate" id="6">
@@ -912,73 +806,6 @@
 					<OnShow function="PetPaperDollFrame_UpdateCompanionPreview"/>
 				</Scripts>
 			</Frame>
-			<Button name="PetPaperDollFrameTab1" inherits="TabButtonTemplate" text="PET" id="1">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset>
-							<AbsDimension x="70" y="-39"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						PanelTemplates_TabResize(self, 0);
-						_G[self:GetName().."HighlightTexture"]:SetWidth(self:GetTextWidth() + 31);
-						self:SetFrameLevel(PetPaperDollFrameCompanionFrame:GetFrameLevel()+1);
-					</OnLoad>
-					<OnClick>
-						if ( PetPaperDollFrame.selectedTab ~= 1 ) then
-							PlaySound("igMainMenuOptionCheckBoxOn");
-						end
-						PetPaperDollFrame_SetTab(1);
-					</OnClick>
-				</Scripts>
-			</Button>
-			<Button name="PetPaperDollFrameTab2" inherits="TabButtonTemplate" text="COMPANIONS" id="2">
-				<Anchors>
-					<Anchor point="LEFT" relativeTo="PetPaperDollFrameTab1" relativePoint="RIGHT">
-						<Offset>
-							<AbsDimension x="0" y="0"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						PanelTemplates_TabResize(self, 0);
-						_G[self:GetName().."HighlightTexture"]:SetWidth(self:GetTextWidth() + 31);
-						self:SetFrameLevel(PetPaperDollFrameCompanionFrame:GetFrameLevel()+1);
-					</OnLoad>
-					<OnClick>
-						if ( PetPaperDollFrame.selectedTab ~= 2 ) then
-							PlaySound("igMainMenuOptionCheckBoxOn");
-						end
-						PetPaperDollFrame_SetTab(2);
-					</OnClick>
-				</Scripts>
-			</Button>
-			<Button name="PetPaperDollFrameTab3" inherits="TabButtonTemplate" text="MOUNTS" id="3">
-				<Anchors>
-					<Anchor point="LEFT" relativeTo="PetPaperDollFrameTab2" relativePoint="RIGHT">
-						<Offset>
-							<AbsDimension x="0" y="0"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						PanelTemplates_TabResize(self, 0);
-						_G[self:GetName().."HighlightTexture"]:SetWidth(self:GetTextWidth() + 31);
-						self:SetFrameLevel(PetPaperDollFrameCompanionFrame:GetFrameLevel()+1);
-					</OnLoad>
-					<OnClick>
-						if ( PetPaperDollFrame.selectedTab ~= 3 ) then
-							PlaySound("igMainMenuOptionCheckBoxOn");
-						end
-						PetPaperDollFrame_SetTab(3);
-					</OnClick>
-				</Scripts>
-			</Button>
-			
 		</Frames>
 		<Scripts>
 			<OnLoad function="PetPaperDollFrame_OnLoad"/>

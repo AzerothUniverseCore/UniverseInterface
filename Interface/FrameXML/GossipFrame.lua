@@ -9,7 +9,7 @@ end
 function GossipFrame_OnEvent(self, event, ...)
 	if ( event == "GOSSIP_SHOW" ) then
 		-- if there is only a non-gossip option, then go to it directly
-		if ( (GetNumGossipAvailableQuests() == 0) and (GetNumGossipActiveQuests() == 0) and (GetNumGossipOptions() == 1) ) then
+		if ( (GetNumGossipAvailableQuests() == 0) and (GetNumGossipActiveQuests() == 0) and (GetNumGossipOptions() == 1) and not ForceGossip() ) then
 			local text, gossipType = GetGossipOptions();
 			if ( gossipType ~= "gossip" ) then
 				SelectGossipOption(1);
@@ -72,14 +72,24 @@ function GossipFrameAvailableQuestsUpdate(...)
 	local titleButton;
 	local titleIndex = 1;
 	local titleButtonIcon;
-	for i=1, select("#", ...), 3 do
+	local isTrivial, isDaily, isRepeatable;
+	for i=1, select("#", ...), 5 do
 		if ( GossipFrame.buttonIndex > NUMGOSSIPBUTTONS ) then
 			message("This NPC has too many quests and/or gossip options.");
 		end
 		titleButton = _G["GossipTitleButton" .. GossipFrame.buttonIndex];
 		titleButtonIcon = _G[titleButton:GetName() .. "GossipIcon"];
-		titleButtonIcon:SetTexture("Interface\\GossipFrame\\AvailableQuestIcon");
-		if ( select(i+2, ...) ) then
+		isTrivial = select(i+2, ...);
+		isDaily = select(i+3, ...);
+		isRepeatable = select(i+4, ...);
+		if ( isDaily ) then
+			titleButtonIcon:SetTexture("Interface\\GossipFrame\\DailyQuestIcon");
+		elseif ( isRepeatable ) then
+			titleButtonIcon:SetTexture("Interface\\GossipFrame\\DailyActiveQuestIcon");
+		else
+			titleButtonIcon:SetTexture("Interface\\GossipFrame\\AvailableQuestIcon");
+		end
+		if ( isTrivial ) then
 			titleButton:SetFormattedText(TRIVIAL_QUEST_DISPLAY, select(i, ...));
 			titleButtonIcon:SetVertexColor(0.5,0.5,0.5);
 		else
@@ -104,7 +114,7 @@ function GossipFrameActiveQuestsUpdate(...)
 	local titleButton;
 	local titleIndex = 1;
 	local titleButtonIcon;
-	for i=1, select("#", ...), 3 do
+	for i=1, select("#", ...), 4 do
 		if ( GossipFrame.buttonIndex > NUMGOSSIPBUTTONS ) then
 			message("This NPC has too many quests and/or gossip options.");
 		end
@@ -120,7 +130,11 @@ function GossipFrameActiveQuestsUpdate(...)
 		GossipResize(titleButton);
 		titleButton:SetID(titleIndex);
 		titleButton.type="Active";
-		titleButtonIcon:SetTexture("Interface\\GossipFrame\\ActiveQuestIcon");
+		if ( select(i+3, ...) ) then
+			titleButtonIcon:SetTexture("Interface\\GossipFrame\\ActiveQuestIcon");
+		else
+			titleButtonIcon:SetTexture("Interface\\GossipFrame\\IncompleteQuestIcon");
+		end		
 		GossipFrame.buttonIndex = GossipFrame.buttonIndex + 1;
 		titleIndex = titleIndex + 1;
 		titleButton:Show();

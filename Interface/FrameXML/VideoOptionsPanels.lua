@@ -1,7 +1,7 @@
 -- if you change something here you probably want to change the glue version too
 
 local OPTIONS_FARCLIP_MIN = 177;
-local OPTIONS_FARCLIP_MAX = 1277;
+local OPTIONS_FARCLIP_MAX = 2112; -- 1277
 
 local VIDEO_OPTIONS_CUSTOM_QUALITY = 6;
 
@@ -385,7 +385,7 @@ EffectsPanelOptions = {
 	TerrainMip = { text = "TERRAIN_MIP", minValue = 0, maxValue = 1, valueStep = 1, logout = 1, tooltip = OPTION_TOOLTIP_TERRAIN_TEXTURE, tooltipRequirement = OPTION_LOGOUT_REQUIREMENT,},
 	particleDensity = { text = "PARTICLE_DENSITY", minValue = 0.1, maxValue = 1.0, valueStep = 0.1},
 	environmentDetail = { text = "ENVIRONMENT_DETAIL", minValue = 0.5, maxValue = 1.5, valueStep = .25},
-	groundEffectDensity = { text = "GROUND_DENSITY", minValue = 16, maxValue = 64, valueStep = 8},
+	groundEffectDensity = { text = "GROUND_DENSITY", minValue = 16, maxValue = 256, valueStep = 16},
 	groundEffectDist = { text = "GROUND_RADIUS", minValue = 70, maxValue = 140, valueStep = 10 },
 	BaseMip = { text = "TEXTURE_DETAIL", minValue = 0, maxValue = 1, valueStep = 1, tooltipOwnerPoint = "TOPLEFT", },
 	extShadowQuality = { text = "SHADOW_QUALITY", minValue = 0, maxValue = 4, valueStep = 1 },

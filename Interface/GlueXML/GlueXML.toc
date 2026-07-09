@@ -1,3 +1,7 @@
+## Random Screens
+..\LoginUI.lua
+vx_vars_init.lua
+
 ##DebugHook.lua
 GlueStrings.lua
 GlueFonts.xml
@@ -32,6 +36,6 @@ AudioOptionsFrame.xml
 AudioOptionsPanels.xml
 OptionsSelect.xml
 ##CameraSelect.xml
-
+ServerList.xml
 ## This Always Runs Last, Add New Items above it.
 GlueLocalizationPost.xml

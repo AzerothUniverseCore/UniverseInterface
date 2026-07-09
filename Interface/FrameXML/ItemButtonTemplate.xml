@@ -7,7 +7,9 @@
 		</Size>
 		<Layers>
 			<Layer level="BORDER">
-				<Texture name="$parentIconTexture"/>
+				<Texture name="$parentIconTexture" parentKey="icon"/>
+			</Layer>
+			<Layer level="ARTWORK">
 				<FontString name="$parentCount" inherits="NumberFontNormal" justifyH="RIGHT" hidden="true">
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT">
@@ -26,6 +28,14 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="IconBorder" file="Interface\Common\WhiteIconFrame" hidden="true">
+					<Size x="37" y="37"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 		<NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
@@ -101,7 +111,7 @@
 		</Size>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentIconTexture">
+				<Texture name="$parentIconTexture" parentKey="Icon">
 					<Size>
 						<AbsDimension x="39" y="39"/>
 					</Size>
@@ -113,7 +123,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<Texture name="$parentNameFrame" file="Interface\QuestFrame\UI-QuestItemNameFrame">
+				<Texture name="$parentNameFrame" file="Interface\QuestFrame\UI-QuestItemNameFrame" parentKey="NameFrame">
 					<Size>
 						<AbsDimension x="128" y="64"/>
 					</Size>
@@ -125,7 +135,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString name="$parentName" inherits="GameFontHighlight" justifyH="LEFT">
+				<FontString name="$parentName" inherits="GameFontHighlight" justifyH="LEFT" parentKey="Name">
 					<Size>
 						<AbsDimension x="90" y="36"/>
 					</Size>

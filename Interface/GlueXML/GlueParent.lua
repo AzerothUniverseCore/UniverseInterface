@@ -1,4 +1,3 @@
-
 CurrentGlueMusic = "GS_LichKing";
 
 GlueCreditsSoundKits = { };
@@ -37,12 +36,34 @@ CharModelGlowInfo["CHARACTERSELECT"] = 0.3;
 GlueAmbienceTracks = { };
 GlueAmbienceTracks["HUMAN"] = "GlueScreenHuman";
 GlueAmbienceTracks["ORC"] = "GlueScreenOrcTroll";
-GlueAmbienceTracks["DWARF"] = "GlueScreenDwarfGnome";
+GlueAmbienceTracks["DWARF"] = "GlueScreenDwarf";
 GlueAmbienceTracks["TAUREN"] = "GlueScreenTauren";
 GlueAmbienceTracks["SCOURGE"] = "GlueScreenUndead";
 GlueAmbienceTracks["NIGHTELF"] = "GlueScreenNightElf";
+GlueAmbienceTracks["NIGHTELF_DH"] = "GlueScreenNightElf";
 GlueAmbienceTracks["DRAENEI"] = "GlueScreenDraenei";
+GlueAmbienceTracks["GNOME"] = "GlueScreenGnome";
 GlueAmbienceTracks["BLOODELF"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["BLOODELF_DH"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["GOBLIN_"] = "GlueScreenGoblin";
+GlueAmbienceTracks["WORGEN"] = "GlueScreenWorgen";
+GlueAmbienceTracks["PANDAREN_H"] = "GlueScreenPandaren";
+GlueAmbienceTracks["PANDAREN_A"] = "GlueScreenPandaren";
+GlueAmbienceTracks["EREDAR"] = "GlueScreenDraenei";
+GlueAmbienceTracks["VOIDELF"] = "GlueScreenVoidElf";
+GlueAmbienceTracks["VULPERA"] = "GlueScreenVulpera";
+GlueAmbienceTracks["NIGHTBORNE"] = "GlueScreenNightElf";
+GlueAmbienceTracks["LIGHTFORGED"] = "GlueScreenDraenei";
+GlueAmbienceTracks["ZANDALARITROLL"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["DARKIRONDWARF"] = "GlueScreenDwarf";
+GlueAmbienceTracks["DARKIRONDWARF_H"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["HIGHELF"] = "GlueScreenHuman";
+GlueAmbienceTracks["VULPERA_A"] = "GlueScreenGnome";
+GlueAmbienceTracks["HIGHMOUNTAINTAUREN"] = "GlueScreenTauren";
+GlueAmbienceTracks["DRACTHYR_H"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["DRACTHYR_A"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["MAGHAR"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["KULTIRAN"] = "GlueScreenHuman";
 GlueAmbienceTracks["DARKPORTAL"] = "GlueScreenIntro";
 GlueAmbienceTracks["DEATHKNIGHT"] = "GlueScreenIntro";
 GlueAmbienceTracks["CHARACTERSELECT"] = "GlueScreenIntro";
@@ -73,6 +94,9 @@ RaceLights = {
     NIGHTELF = {
         {1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.09020,    0.09020,    0.17020,    1.0,    0.00000,    0.00000,    0.00000},
     },
+	NIGHTELF_DH = {
+        {1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.09020,    0.09020,    0.17020,    1.0,    0.00000,    0.00000,    0.00000},
+    }, 
     DRAENEI = {
         {1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
         {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
@@ -83,8 +107,51 @@ RaceLights = {
         {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
         {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
     },
+    BLOODELF_DH = {
+        {1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+	HIGHELF = {
+        {1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+	GNOME = {
+        {1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.30000,    0.30000,    0.30000,    0.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.88314,       0.42916,        -0.18945,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.44706,    0.67451,    0.760785},
+    },
+	TROLL = {
+        {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
+        {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},
+    },
     DEATHKNIGHT = {
         {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.38824,    0.66353,    0.76941,    1.0,    0.00000,    0.00000,    0.00000},
+    },
+	GOBLIN_ = {
+    	{1,     0,  0.000000,       0.000000,       -1.000000,   1.0,   0.27,       0.27,       .27,        1.0,    0,          0,          0},
+    	{1,     0,  -0.45756075,    -0.58900136,    -0.66611975, 1.0,   0.000000,   0.000000,   0.000000,   1.0,    0.19882353, 0.34921569, 0.43588236 },
+    	{1,     0,  -0.64623469,    0.57582057,     -0.50081086, 1.0,   0.000000,   0.000000,   0.000000,   2.0,    0.52196085, 0.44,       0.29764709 },
+    },
+	GOBLIN_ = {
+        {1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+	WORGEN = {
+        {1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.80000,    0.80000,    0.80000,    0.0,    0,    0,    0},
+          {1,     0,  -0.88314,       0.42916,        -0.18945,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.44706,    0.67451,    0.760785},
+    },
+	PANDAREN_H = {
+        {1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+	PANDAREN_A = {
+        {1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
     },
     CHARACTERSELECT =  {
         {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
@@ -148,8 +215,9 @@ function SetGlueScreen(name)
 			StopGlueAmbience();
 		elseif ( name ~= "movie" ) then
 			PlayGlueMusic(CurrentGlueMusic);
+			--PlayMusic("Sound\\Music\\GlueScreenMusic\\AccLeiTo(Ashenvale).mp3"); 
 			if (name == "login") then
-				PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
+				--PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
 			end
 		end
 	end
@@ -200,7 +268,8 @@ function GlueParent_OnEvent(event, arg1, arg2, arg3)
 	elseif ( event == "SET_GLUE_SCREEN" ) then
 		GlueScreenExit(GetCurrentGlueScreenName(), arg1);
 	elseif ( event == "START_GLUE_MUSIC" ) then
-		PlayGlueMusic(CurrentGlueMusic);
+		--PlayGlueMusic(CurrentGlueMusic);
+		--PlayMusic("Sound\\Music\\GlueScreenMusic\\AccLeiTo(Ashenvale).mp3"); 
 		PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
 	elseif ( event == "DISCONNECTED_FROM_SERVER" ) then
 		TokenEntry_Cancel(TokenEnterDialog);
@@ -210,9 +279,14 @@ function GlueParent_OnEvent(event, arg1, arg2, arg3)
 		else
 			GlueDialog_Show("DISCONNECTED");
 		end
+		AddonList:Hide();
 	elseif ( event == "GET_PREFERRED_REALM_INFO" ) then
-		SetGlueScreen("realmwizard");
-		PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
+		if( arg1 == 1) then
+			SetPreferredInfo(1);
+		else
+			SetGlueScreen("realmwizard");
+			--PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
+		end
 	elseif ( event == "SERVER_SPLIT_NOTICE" ) then
 		CharacterSelectRealmSplitButton:Show();
 		if ( SERVER_SPLIT_STATE_PENDING == -1 and arg1 == 0 and arg2 == 1 ) then
@@ -283,7 +357,7 @@ function GlueFrameFadeUpdate(elapsed)
 	while FADEFRAMES[index] do
 		local frame = FADEFRAMES[index];
 		frame.fadeTimer = frame.fadeTimer + elapsed;
-		if ( frame.fadeTimer < frame.timeToFade ) then
+		if ( 0 < 0 ) then
 			if ( frame.mode == "IN" ) then
 				frame:SetAlpha(frame.fadeTimer / frame.timeToFade);
 			elseif ( frame.mode == "OUT" ) then
@@ -368,15 +442,143 @@ function SetLighting(model, race)
 end
 
 -- Function to set the background model for character select and create screens
-function SetBackgroundModel(model, name)
-    local nameupper = strupper(name);
-    local path = "Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2";
-	if ( model == CharacterCreate ) then
-		SetCharCustomizeBackground(path);
+function SetBackgroundModel(model, race, class)
+	local name = "Earthen";
+	
+	if (model == CharacterCreate) then
+		if(class == 'DEATHKNIGHT') then
+			name = 'DeathKnight';
+		elseif (GetSelectedRace() == 1) then -- Humain Alliance
+			name = 'Human';
+		elseif (GetSelectedRace() == 2) then -- Nain Alliance
+			name = 'Dwarf';
+		elseif (GetSelectedRace() == 3) then -- Elf de la nuit Alliance
+			name = 'Pirate';
+		elseif (GetSelectedRace() == 4) then -- Gnome Alliance
+			name = 'Gnome';
+		elseif (GetSelectedRace() == 5) then -- Draenei Alliance
+			name = 'Draenei';
+		elseif (GetSelectedRace() == 6) then -- Worgen Alliance
+			name = 'Worgen';
+		elseif (GetSelectedRace() == 7) then -- Pandaren Alliance
+			name = 'Pandaren';
+		elseif (GetSelectedRace() == 8) then -- Elfe de la nuit Illidari Alliance
+			name = 'DemonHunter';
+		elseif (GetSelectedRace() == 9) then -- Elf du Vide Alliance
+			name = 'VoidElf';
+		elseif (GetSelectedRace() == 10) then -- Lightforged Draenei Alliance
+			name = 'Draenei';
+		elseif (GetSelectedRace() == 11) then -- Nain sombrefer Alliance
+			name = 'Dwarf';
+		elseif (GetSelectedRace() == 12) then -- HighElf Alliance
+			name = 'BloodElf';
+		elseif (GetSelectedRace() == 13) then -- Vulpera Alliance
+			name = 'Vulpera';
+		elseif (GetSelectedRace() == 14) then -- Dracthyr Alliance
+			name = 'Dracthyr';
+		elseif (GetSelectedRace() == 15) then -- Kultiran Alliance
+			name = 'Kultiran';
+			
+		elseif (GetSelectedRace() == 16) then -- Orc Horde
+			name = 'Horde';
+		elseif (GetSelectedRace() == 17) then -- Mort Vivant Horde
+			name = 'Scourge';
+		elseif (GetSelectedRace() == 18) then -- Tauren Horde
+			name = 'Pirate';
+		elseif (GetSelectedRace() == 19) then -- Troll Horde
+			name = 'Trol2';
+		elseif (GetSelectedRace() == 20) then -- Goblin Horde
+			name = 'Goblin';
+		elseif (GetSelectedRace() == 21) then -- Elfe de sang Horde
+			name = 'BloodElf';
+		elseif (GetSelectedRace() == 22) then -- Pandaren Horde
+			name = 'Pandaren';
+		elseif (GetSelectedRace() == 23) then -- Elfe de sang Illidari Horde
+			name = 'DemonHunter';
+		elseif (GetSelectedRace() == 24) then -- Eredar Horde
+			name = 'Draenei';
+		elseif (GetSelectedRace() == 25) then -- Vulpera Horde
+			name = 'Vulpera';
+		elseif (GetSelectedRace() == 26) then -- Nightborne Horde
+			name = 'NightElf';
+		elseif (GetSelectedRace() == 27) then -- Troll Zandalari Horde
+			name = 'Troll';
+		elseif (GetSelectedRace() == 28) then -- Nain Sombrefer Horde
+			name = 'Dwarf';
+		elseif (GetSelectedRace() == 29) then -- Highmountain Tauren Horde
+			name = 'Tauren';
+		elseif (GetSelectedRace() == 30) then -- Dracthyr Horde
+			name = 'Dracthyr';
+		elseif (GetSelectedRace() == 31) then -- Mag'har Horde
+			name = 'ORCCLAN';
+		end
+		SetCharCustomizeBackground("Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2");
 	else
-		SetCharSelectBackground(path);
+		if(--[[deDE]]race == "Mensch"or --[[enUS]]race == "Human"or --[[esES/esMX]]race == "Humano"or race == "Humana"or --[[frFR]]race == "Humain"or race == "Humaine") then
+			name = "Human";
+		elseif(--[[deDE]] race == "Orc"or --[[enUS]]race == "Orc"or --[[esES/esMX]]race == "Orco"or --[[frFR]]race == "Orc"or race == "Orque") then
+			name = "Horde";
+		elseif(--[[deDE]]race == "Zwerg"or --[[enUS]]race == "Dwarf"or --[[esES/esMX]]race == "Enano" or race == "Enana"or --[[frFR]]race == "Nain"or race == "Naine") then
+			name = "Dwarf";
+		elseif(--[[deDE]]race == "Nachtelf"or race == "Nachtelfe"or --[[enUS]]race == "Night Elf"or --[[esES/esMX]]race == "Elfo de la noche"or race == "Elfa de la noche"or --[[frFR]]race == "Elfe de la nuit") then
+			name = "Pirate";
+		elseif(--[[deDE]]race == "Untoter"or race == "Untote"or --[[enUS]]race == "Undead"or --[[esES/esMX]]race == "No-muerto"or race == "No-muerta"or --[[frFR]]race == "Mort-vivant"or race == "Morte-vivante") then
+			name = "Scourge";
+		elseif(--[[deDE]]race == "Tauren"or --[[enUS]]race == "Tauren"or --[[esES/esMX]]race == "Tauren"or --[[frFR]]race == "Tauren"or race == "Taurène") then
+			name = "Pirate";
+		elseif(--[[deDE]]race == "Gnom" or --[[enUS]]race == "Gnome" or --[[esES/esMX]]race == "Gnomo" or race == "Gnoma" or --[[frFR]]race == "Gnome" or race == "Gnomish") then
+			name = "Gnome";
+		elseif(--[[deDE]]race == "Troll"or --[[enUS]]race == "Troll"or --[[esES/esMX]]race == "Trol"or --[[frFR]]race == "Troll"or race == "Trollesse") then
+			name = "Trol2";
+		elseif(--[[enUS]]race == "Goblin"or --[[frFR]]race == "Gobelin"or race == "Gobeline") then
+			name = "Goblin";
+		elseif(--[[deDE]]race == "Blutelf"or race == "Blutelfe"or --[[enUS]]race == "Blood Elf"or --[[esES/esMX]]race == "Elfo de sangre"or race == "Elfa de sangre"or --[[frFR]]race == "Elfe de sang") then
+			name = "BloodElf";
+		elseif(--[[deDE]]race == "Draenei"or --[[enUS]]race == "Draenei"or --[[esES/esMX]]race == "Draenei"or --[[frFR]]race == "Draeneï") then
+			name = "Draenei";
+		elseif(--[[enUS]]race == "Worgen"or --[[frFR]]race == "Worgen"or race == "Worgen") then
+			name = "Worgen";
+		elseif(--[[enUS]]race == "(H)Pandaren"or --[[frFR]]race == "(H)Pandaren"or race == "(H)Pandaren") then -- Horde
+			name = "Pandaren";
+		elseif(--[[enUS]]race == "(A)Pandaren"or --[[frFR]]race == "(A)Pandaren"or race == "(A)Pandaren") then -- Alliance
+			name = "Pandaren";
+		elseif(--[[enUS]]race == "(A)Elfe Illidari"or --[[frFR]]race == "(A)Elfe Illidari"or race == "(A)Elfe Illidari") then -- Alliance
+			name = "DemonHunter";
+		elseif(--[[enUS]]race == "(H)Elfe Illidari"or --[[frFR]]race == "(H)Elfe Illidari"or race == "(H)Elfe Illidari") then -- Horde
+			name = "DemonHunter";
+		elseif(--[[enUS]]race == "Eredar"or --[[frFR]]race == "Eredar"or race == "Eredar") then
+			name = "Draenei";
+		elseif(--[[enUS]]race == "Void Elf"or --[[frFR]]race == "Elfe du Vide"or race == "Elfe du Vide") then
+			name = "VoidElf";
+		elseif(--[[enUS]]race == "(H)Vulpera"or --[[frFR]]race == "(H)Vulpérin"or race == "(H)Vulpérine") then
+			name = "Vulpera";
+		elseif(--[[enUS]]race == "Nightborne"or --[[frFR]]race == "Sacrenuit"or race == "Sacrenuit") then
+			name = "NightElf";
+		elseif(--[[enUS]]race == "Lightforged"or --[[frFR]]race == "Sancteforge"or race == "Sancteforge") then
+			name = "Draenei";
+		elseif(--[[enUS]]race == "Zandalari Troll"or --[[frFR]]race == "Zandalari"or race == "Zandalari") then
+			name = "Troll";
+		elseif(--[[enUS]]race == "Dark Iron Dwarf"or --[[frFR]]race == "(A)Sombrefer"or race == "(A)Sombrefer") then
+			name = "Dwarf";
+		elseif(--[[enUS]]race == "Dark Iron Dwarf"or --[[frFR]]race == "(H)Sombrefer"or race == "(H)Sombrefer") then
+			name = "Dwarf";
+		elseif(--[[enUS]]race == "Haut-Elfe"or --[[frFR]]race == "Haut-Elfe"or race == "Haut-Elfe") then
+			name = "BloodElf";
+		elseif(--[[enUS]]race == "Haut-Roc"or --[[frFR]]race == "Haut-Roc"or race == "Haut-Roc") then
+			name = "Tauren";
+		elseif(--[[enUS]]race == "(A)Vulpera"or --[[frFR]]race == "(A)Vulpérin"or race == "(A)Vulpérine") then
+			name = "Vulpera";
+		elseif(--[[enUS]]race == "(H)Dracthyr"or --[[frFR]]race == "(H)Dracthyr"or race == "(H)Dracthyr") then -- Horde
+			name = "Dracthyr";
+		elseif(--[[enUS]]race == "(A)Dracthyr"or --[[frFR]]race == "(A)Dracthyr"or race == "(A)Dracthyr") then -- Alliance
+			name = "Dracthyr";
+		elseif(--[[enUS]]race == "Mag'har"or --[[frFR]]race == "Mag'har"or race == "Mag'har") then -- Horde
+			name = "ORCCLAN";
+		elseif(--[[enUS]]race == "Kultirassien"or --[[frFR]]race == "Kultirassien"or race == "Kultirassien") then -- Alliance
+			name = "Kultiran";
+		end
+		SetCharSelectBackground("Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2");
 	end
-	PlayGlueAmbience(GlueAmbienceTracks[nameupper], 4.0);
 	SetLighting(model, nameupper)
 end
 

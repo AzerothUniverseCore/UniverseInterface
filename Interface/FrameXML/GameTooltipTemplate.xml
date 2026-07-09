@@ -14,7 +14,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parentTextLeft1" inherits="GameTooltipHeaderText" hidden="true">
+				<FontString name="$parentTextLeft1" parentKey="TextLeft1" inherits="GameTooltipHeaderText" hidden="true">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -32,7 +32,27 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parentTextLeft2" inherits="GameTooltipText" hidden="true">
+				<FontString name="$parentTransmogText1" parentKey="TransmogText1" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="0.49" b="1"/>
+				</FontString>
+				<FontString name="$parentTransmogText2" parentKey="TransmogText2" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTransmogText1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="0.49" b="1"/>
+				</FontString>
+				<FontString name="$parentTextLeft2" parentKey="TextLeft2" inherits="GameTooltipText" hidden="true">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft1" relativePoint="BOTTOMLEFT">
 							<Offset>

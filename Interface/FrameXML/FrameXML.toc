@@ -1,15 +1,36 @@
 # Do not delete the following line!
 ## Interface: 30300
-##DebugHook.lua
+..\SharedXML\AtlasStorage.lua
+..\SharedXML\MixIn.lua
+..\SharedXML\Util.lua
+..\SharedXML\C_Texture.lua
+..\SharedXML\C_TimerAugment.lua
+..\SharedXML\AnchorUtil.xml
+
+..\SharedXML\Extensions\math.lua
+..\SharedXML\Extensions\string.lua
+..\SharedXML\Extensions\table.lua
+..\SharedXML\Extensions\middleclass.lua
+..\SharedXML\Extensions\enum.lua
+
+..\SharedXML\Utils\C_Cache.lua
+..\SharedXML\Utils\C_Texture.lua
+
 GlobalStrings.lua
 Constants.lua
 Fonts.xml
 FontStyles.xml
 Localization.xml
-## add new modules below here
+..\SharedXML\SharedFontStyles.xml
+..\SharedXML\SharedConstants.lua
+..\SharedXML\SharedTooltipTemplates.lua
+# add new modules below here
+
+Utils\C_Item.lua
 
 BasicControls.xml
 WorldFrame.xml
+..\SharedXML\SharedExtendedMethods.lua
 UIParent.xml
 AnimTimerFrame.xml
 MoneyFrame.lua
@@ -21,12 +42,14 @@ UIMenu.xml
 UIDropDownMenu.xml
 UIPanelTemplates.lua
 UIPanelTemplates.xml
+..\SharedXML\SharedUIPanelTemplates.xml
+..\SharedXML\ModelFrames.xml
 SecureTemplates.xml
 SecureHandlerTemplates.xml
 ItemButtonTemplate.xml
 SparkleFrame.xml
-HybridScrollFrame.lua
-HybridScrollFrame.xml
+..\SharedXML\HybridScrollFrame.lua
+..\SharedXML\HybridScrollFrame.xml
 GameMenuFrame.xml
 CharacterFrameTemplates.xml
 TextStatusBar.lua
@@ -46,6 +69,7 @@ InterfaceOptionsPanels.xml
 AlertFrames.xml
 MirrorTimer.xml
 CoinPickupFrame.xml
+LevelUpDisplay.xml
 StackSplitFrame.xml
 FadingFrame.xml
 ZoneText.xml
@@ -59,12 +83,14 @@ Cooldown.xml
 ActionButtonTemplate.xml
 ActionBarFrame.xml
 MultiActionBars.xml
-##ActionWindow.xml
 BuffFrame.xml
 CombatFeedback.xml
 CastingBarFrame.xml
 UnitPopup.xml
 UnitFrame.xml
+BNet.xml
+HistoryKeeper.lua
+BNConversations.xml
 ChatFrame.xml
 FloatingChatFrame.xml
 VoiceChat.xml
@@ -140,5 +166,9 @@ VehicleMenuBar.xml
 AlternatePowerBar.xml
 AnimationSystem.lua
 
-## add new modules above here
+# custom modules
+XML_TXXUI.xml
+XML_IXXUI.xml
+
+# add new modules above here
 LocalizationPost.xml

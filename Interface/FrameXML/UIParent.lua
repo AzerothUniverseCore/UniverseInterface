@@ -103,6 +103,8 @@ for i = -1, 6 do
 end
 
 function UIParent_OnLoad(self)
+	DisableAddOn("Blizzard_TokenUI")
+
 	self:RegisterEvent("PLAYER_LOGIN");
 	self:RegisterEvent("PLAYER_DEAD");
 	self:RegisterEvent("PLAYER_ALIVE");
@@ -181,7 +183,8 @@ function UIParent_OnLoad(self)
 	-- Events for auction UI handling
 	self:RegisterEvent("AUCTION_HOUSE_SHOW");
 	self:RegisterEvent("AUCTION_HOUSE_CLOSED");
-
+	self:RegisterEvent("AUCTION_HOUSE_DISABLED");
+	
 	-- Events for trainer UI handling
 	self:RegisterEvent("TRAINER_SHOW");
 	self:RegisterEvent("TRAINER_CLOSED");
@@ -309,7 +312,7 @@ function TimeManager_LoadUI()
 end
 
 function TokenFrame_LoadUI()
-	UIParentLoadAddOn("Blizzard_TokenUI");
+	--UIParentLoadAddOn("Blizzard_TokenUI");
 end
 
 function GlyphFrame_LoadUI()
@@ -951,6 +954,9 @@ function UIParent_OnEvent(self, event, ...)
 		end
 		return;
 	end
+	if ( event == "AUCTION_HOUSE_DISABLED" ) then
+		StaticPopup_Show("AUCTION_HOUSE_DISABLED");
+	end
 
 	-- Events for trainer UI handling
 	if ( event == "TRAINER_SHOW" ) then
@@ -1180,11 +1186,12 @@ UIPARENT_MANAGED_FRAME_POSITIONS = {
 	["TutorialFrameAlertButton"] = {baseY = true, yOffset = -10, bottomEither = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, reputation = 1};
 	["FramerateLabel"] = {baseY = true, bottomEither = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1};
 	["CastingBarFrame"] = {baseY = true, yOffset = 40, bottomEither = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1, tutorialAlert = 1};
-	["ChatFrame1"] = {baseY = true, yOffset = 20, bottomLeft = actionBarOffset-20, justBottomRightAndShapeshift = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1, maxLevel = 1, point = "BOTTOMLEFT", rpoint = "BOTTOMLEFT", xOffset = 32};
-	["ChatFrame2"] = {baseY = true, yOffset = 20, bottomRight = actionBarOffset-20, vehicleMenuBar = vehicleMenuBarTop, rightLeft = -2*actionBarOffset, rightRight = -actionBarOffset, reputation = 1, maxLevel = 1, point = "BOTTOMRIGHT", rpoint = "BOTTOMRIGHT", xOffset = -32};
+	["ChatFrame1"] = {baseY = true, yOffset = 40, bottomLeft = actionBarOffset-8, justBottomRightAndShapeshift = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1, maxLevel = 1, point = "BOTTOMLEFT", rpoint = "BOTTOMLEFT", xOffset = 32};
+	["ChatFrame2"] = {baseY = true, yOffset = 40, bottomRight = actionBarOffset-8, vehicleMenuBar = vehicleMenuBarTop, rightLeft = -2*actionBarOffset, rightRight = -actionBarOffset, reputation = 1, maxLevel = 1, point = "BOTTOMRIGHT", rpoint = "BOTTOMRIGHT", xOffset = -32};
 	["ShapeshiftBarFrame"] = {baseY = 0, bottomLeft = actionBarOffset, reputation = 1, maxLevel = 1, anchorTo = "MainMenuBar", point = "BOTTOMLEFT", rpoint = "TOPLEFT", xOffset = 30};
 	["PossessBarFrame"] = {baseY = 0, bottomLeft = actionBarOffset, reputation = 1, maxLevel = 1, anchorTo = "MainMenuBar", point = "BOTTOMLEFT", rpoint = "TOPLEFT", xOffset = 30};
 	["MultiCastActionBarFrame"] = {baseY = 0, bottomLeft = actionBarOffset, reputation = 1, maxLevel = 1, anchorTo = "MainMenuBar", point = "BOTTOMLEFT", rpoint = "TOPLEFT", xOffset = 30};
+	["AuctionProgressFrame"] = {baseY = true, yOffset = 18, bottomEither = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1, tutorialAlert = 1};
 	
 	-- Vars
 	-- These indexes require global variables of the same name to be declared. For example, if I have an index ["FOO"] then I need to make sure the global variable
@@ -1293,9 +1300,7 @@ function UIParent_ManageFramePosition(index, value, yOffsetFrames, xOffsetFrames
 			_G[index] = yOffset;
 		end
 	else
-		if ((frame == ChatFrame1 or frame == ChatFrame2) and SIMPLE_CHAT == "1") then
-			frame:SetPoint(point, anchorTo, rpoint, xOffset, yOffset);
-		elseif ( not(frame:IsObjectType("frame") and frame:IsUserPlaced()) ) then
+		if ( frame ~= ChatFrame2 and not(frame:IsObjectType("frame") and frame:IsUserPlaced()) ) then
 			frame:SetPoint(point, anchorTo, rpoint, xOffset, yOffset);
 		end
 	end
@@ -1530,6 +1535,7 @@ function FramePositionDelegate:SetUIPanel(key, frame, skipSetPoint)
 			frame:Show();
 		else
 			UIParent:Show();
+			SetUIVisibility(true);
 		end
 		return;
 	elseif ( key == "doublewide" ) then
@@ -1934,11 +1940,7 @@ function FramePositionDelegate:UIParentManageFramePositions()
 		-- OnSizeChanged for WatchFrame handles its redraw
 	end
 	
-	if ( SIMPLE_CHAT == "1" ) then
-		WatchFrame:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X, ChatFrame2:GetTop());
-	else
-		WatchFrame:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X, CONTAINER_OFFSET_Y);
-	end
+	WatchFrame:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X, CONTAINER_OFFSET_Y);
 	
 	-- Update chat dock since the dock could have moved
 	FCF_DockUpdate();
@@ -2506,8 +2508,10 @@ end
 
 local frameFlashManager = CreateFrame("FRAME");
 
+local UIFrameFlashTimers = {};
+
 -- Function to start a frame flashing
-function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDone, flashInHoldTime, flashOutHoldTime)
+function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDone, flashInHoldTime, flashOutHoldTime, syncId)
 	if ( frame ) then
 		local index = 1;
 		-- If frame is already set to flash then return
@@ -2516,6 +2520,15 @@ function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDon
 				return;
 			end
 			index = index + 1;
+		end
+
+		if (syncId) then
+			frame.syncId = syncId;
+			if (UIFrameFlashTimers[syncId] == nil) then
+				UIFrameFlashTimers[syncId] = 0;
+			end
+		else
+			frame.syncId = nil;
 		end
 		
 		-- Time it takes to fade in a flashing frame
@@ -2528,8 +2541,6 @@ function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDon
 		frame.showWhenDone = showWhenDone;
 		-- Internal timer
 		frame.flashTimer = 0;
-		-- Initial flash mode
-		frame.flashMode = "IN";
 		-- How long to hold the faded in state
 		frame.flashInHoldTime = flashInHoldTime;
 		-- How long to hold the faded out state
@@ -2544,59 +2555,49 @@ end
 -- Called every frame to update flashing frames
 function UIFrameFlash_OnUpdate(self, elapsed)
 	local frame;
-	local index = 1;
-	local fadeInfo;
+	local index = #FLASHFRAMES;
+	
+	-- Update timers for all synced frames
+	for syncId, timer in pairs(UIFrameFlashTimers) do
+		UIFrameFlashTimers[syncId] = timer + elapsed;
+	end
+	
 	while FLASHFRAMES[index] do
 		frame = FLASHFRAMES[index];
 		frame.flashTimer = frame.flashTimer + elapsed;
-		-- If flashDuration is exceeded
+
 		if ( (frame.flashTimer > frame.flashDuration) and frame.flashDuration ~= -1 ) then
-			UIFrameFadeRemoveFrame(frame);
-			UIFrameFlashRemoveFrame(frame);
-			frame:SetAlpha(1.0);
-			frame.flashTimer = nil;
-			if ( frame.showWhenDone ) then
-				frame:Show();
-			else
-				frame:Hide();
-			end
+			UIFrameFlashStop(frame);
 		else
-			-- You'll only have a flashMode when the previous flash fade is finished
-			if ( frame.flashMode ) then
-				fadeInfo = {};
-				if ( frame.flashMode == "IN" ) then
-					fadeInfo.timeToFade = frame.fadeInTime;
-					fadeInfo.mode = "IN";
-					fadeInfo.finishedFunc = UIFrameFlashSwitch;
-					fadeInfo.finishedArg1 = frame:GetName();
-					fadeInfo.finishedArg2 = "OUT";
-					fadeInfo.fadeHoldTime = frame.flashOutHoldTime;
-					UIFrameFade(frame, fadeInfo);
-				elseif ( frame.flashMode == "OUT" ) then
-					fadeInfo.timeToFade = frame.fadeOutTime;
-					fadeInfo.mode = "OUT";
-					fadeInfo.finishedFunc = UIFrameFlashSwitch;
-					fadeInfo.finishedArg1 = frame:GetName();
-					fadeInfo.finishedArg2 = "IN";
-					fadeInfo.fadeHoldTime = frame.flashInHoldTime;
-					UIFrameFade(frame, fadeInfo);
-				end
-				frame.flashMode = nil;
+			local flashTime = frame.flashTimer;
+			local alpha;
+			
+			if (frame.syncId) then
+				flashTime = UIFrameFlashTimers[frame.syncId];
 			end
+			
+			flashTime = flashTime%(frame.fadeInTime+frame.fadeOutTime+(frame.flashInHoldTime or 0)+(frame.flashOutHoldTime or 0));
+			if (flashTime < frame.fadeInTime) then
+				alpha = flashTime/frame.fadeInTime;
+			elseif (flashTime < frame.fadeInTime+(frame.flashInHoldTime or 0)) then
+				alpha = 1;
+			elseif (flashTime < frame.fadeInTime+(frame.flashInHoldTime or 0)+frame.fadeOutTime) then
+				alpha = 1 - ((flashTime - frame.fadeInTime - (frame.flashInHoldTime or 0))/frame.fadeOutTime);
+			else
+				alpha = 0;
+			end
+			
+			frame:SetAlpha(alpha);
+			frame:Show();
 		end
 		
-		index = index + 1;
+		-- Loop in reverse so that removing frames is safe
+		index = index - 1;
 	end
 	
 	if ( #FLASHFRAMES == 0 ) then
 		self:SetScript("OnUpdate", nil);
 	end
-end
-
--- Function to switch the flash mode
-function UIFrameFlashSwitch(frameName, mode)
-	local frame = _G[frameName];
-	frame.flashMode = mode;
 end
 
 -- Function to see if a frame is already flashing
@@ -2611,8 +2612,14 @@ end
 
 -- Function to stop flashing
 function UIFrameFlashStop(frame)
-	frame.flashDuration = 0;
-	frame:Hide();
+	UIFrameFlashRemoveFrame(frame);
+	frame:SetAlpha(1.0);
+	frame.flashTimer = nil;
+	if ( frame.showWhenDone ) then
+		frame:Show();
+	else
+		frame:Hide();
+	end
 end
 
 -- Functions to handle button pulsing (Highlight, Unhighlight)
@@ -2882,6 +2889,7 @@ function ToggleGameMenu()
 		TimeManagerCloseButton:Click();
 	elseif ( MultiCastFlyoutFrame:IsShown() ) then
 		MultiCastFlyoutFrame_Hide(MultiCastFlyoutFrame, true);
+	elseif ( securecall("FCFDockOverflow_CloseLists") ) then
 	elseif ( securecall("CloseMenus") ) then
 	elseif ( CloseCalendarMenus and securecall("CloseCalendarMenus") ) then
 	elseif ( SpellStopCasting() ) then
@@ -3551,7 +3559,12 @@ function GetTexCoordsByGrid(xOffset, yOffset, textureWidth, textureHeight, gridW
 	return (xOffset-1)*widthPerGrid, (xOffset)*widthPerGrid, (yOffset-1)*heightPerGrid, (yOffset)*heightPerGrid;
 end
 
-function LFG_IsEmpowered()
+function LFD_IsEmpowered()
+	return not ( ((GetNumPartyMembers() > 0) or (GetNumRaidMembers() > 0)) and
+		not (IsPartyLeader() or IsRaidLeader()) ) or HasLFGRestrictions();
+end
+
+function LFR_IsEmpowered()
 	return not ( ((GetNumPartyMembers() > 0) or (GetNumRaidMembers() > 0)) and
 		not (IsPartyLeader() or IsRaidLeader()) );
 end
@@ -3566,14 +3579,26 @@ function GetLFGMode()
 	elseif ( proposalExists ) then
 		return "proposal", "accepted";
 	elseif ( queued ) then
-		return "queued", (LFG_IsEmpowered() and "empowered" or "unempowered");
+		return "queued", (LFD_IsEmpowered() and "empowered" or "unempowered");
 	elseif ( roleCheckInProgress ) then
 		return "rolecheck";
 	elseif ( IsListedInLFR() ) then
-		return "listed", (LFG_IsEmpowered() and "empowered" or "unempowered");
+		return "listed", (LFR_IsEmpowered() and "empowered" or "unempowered");
 	elseif ( IsPartyLFG() and ((GetNumPartyMembers() > 0) or (GetNumRaidMembers() > 0)) ) then
 		return "lfgparty";
 	elseif ( IsPartyLFG() and IsInLFGDungeon() ) then
 		return "abandonedInDungeon";
 	end
+end
+
+--Like date(), but localizes AM/PM. In the future, could also localize other stuff.
+function BetterDate(formatString, timeVal)
+	local dateTable = date("*t", timeVal);
+	local amString = (dateTable.hour >= 12) and TIMEMANAGER_PM or TIMEMANAGER_AM;
+	
+	--First, we'll replace %p with the appropriate AM or PM.
+	formatString = gsub(formatString, "^%%p", amString)	--Replaces %p at the beginning of the string with the am/pm token
+	formatString = gsub(formatString, "([^%%])%%p", "%1"..amString); -- Replaces %p anywhere else in the string, but doesn't replace %%p (since the first % escapes the second)
+	
+	return date(formatString, timeVal);
 end

@@ -2,6 +2,18 @@ MAX_NUM_GLUE_DIALOG_BUTTONS = 3;
 
 GlueDialogTypes = { };
 
+GlueDialogTypes["SYSTEM_INCOMPATIBLE_SSE"] = {
+	text = SYSTEM_INCOMPATIBLE_SSE,
+	button1 = OKAY,
+	html = 1,
+	showAlert = 1,
+	escapeHides = true,
+	OnAccept = function ()
+	end,
+	OnCancel = function()
+	end,
+}
+
 GlueDialogTypes["CANCEL_RESET_SETTINGS"] = {
 	text = CANCEL_RESET_SETTINGS,
 	button1 = OKAY,
@@ -202,6 +214,25 @@ GlueDialogTypes["OKAY_HTML"] = {
 		StatusDialogClick();
 	end,
 	OnCancel = function()
+	end,
+}
+
+GlueDialogTypes["OKAY_HTML_EXIT"] = {
+	text = "",
+	button1 = OKAY,
+	button2 = EXIT_GAME,
+	html = 1,
+	OnShow = function()
+		if ( VirtualKeypadFrame:IsShown() ) then
+			VirtualKeypadFrame:Hide();
+			CancelLogin();
+		end
+	end,
+	OnAccept = function()
+		StatusDialogClick();
+	end,
+	OnCancel = function()
+		AccountLogin_Exit();
 	end,
 }
 

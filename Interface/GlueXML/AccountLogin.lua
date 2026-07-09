@@ -2,8 +2,11 @@ FADE_IN_TIME = 2;
 DEFAULT_TOOLTIP_COLOR = {0.8, 0.8, 0.8, 0.09, 0.09, 0.09};
 MAX_PIN_LENGTH = 10;
 
+GLOBAL_REALMLIST = "realm.azeroth-universe.eu"
+
 function AccountLogin_OnLoad(self)
-	TOSFrame.noticeType = "EULA";
+	SetCVar("realmList", "realm.azeroth-universe.eu");
+	SetCVar("portal", "realm.azeroth-universe.eu");
 
 	self:RegisterEvent("SHOW_SERVER_ALERT");
 	self:RegisterEvent("SHOW_SURVEY_NOTIFICATION");
@@ -21,10 +24,12 @@ function AccountLogin_OnLoad(self)
 	AccountLoginAccountEdit:SetBackdropColor(backdropColor[4], backdropColor[5], backdropColor[6]);
 	AccountLoginPasswordEdit:SetBackdropBorderColor(backdropColor[1], backdropColor[2], backdropColor[3]);
 	AccountLoginPasswordEdit:SetBackdropColor(backdropColor[4], backdropColor[5], backdropColor[6]);
+	AccountLoginTokenEdit:SetBackdropBorderColor(backdropColor[1], backdropColor[2], backdropColor[3]);
+	AccountLoginTokenEdit:SetBackdropColor(backdropColor[4], backdropColor[5], backdropColor[6]);
 	TokenEnterDialogBackgroundEdit:SetBackdropBorderColor(backdropColor[1], backdropColor[2], backdropColor[3]);
 	TokenEnterDialogBackgroundEdit:SetBackdropColor(backdropColor[4], backdropColor[5], backdropColor[6]);
 
-	self:SetCamera(0);
+	--[[self:SetCamera(0);
 	self:SetSequence(0);
 	
 	if (IsStreamingTrial()) then
@@ -32,13 +37,18 @@ function AccountLogin_OnLoad(self)
 		AccountLogin:SetModel("Interface\\Glues\\Models\\UI_MainMenu\\UI_MainMenu.m2");
 	else
 		AccountLogin:SetModel("Interface\\Glues\\Models\\UI_MainMenu_Northrend\\UI_MainMenu_Northrend.m2");
-	end
+	end]]
 end
 
 function AccountLogin_OnShow(self)
+
+	ShowScene(self);
+	PlaySceneMusic();
+	ShowSceneLogo();
+	
 	self:SetSequence(0);
-	PlayGlueMusic(CurrentGlueMusic);
-	PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);
+	--[[PlayGlueMusic(CurrentGlueMusic);
+	PlayGlueAmbience(GlueAmbienceTracks["DARKPORTAL"], 4.0);]]
 
 	-- Try to show the EULA or the TOS
 	AccountLogin_ShowUserAgreements();
@@ -46,14 +56,26 @@ function AccountLogin_OnShow(self)
 	local serverName = GetServerName();
 	if(serverName) then
 		AccountLoginRealmName:SetText(serverName);
-	else
-		AccountLoginRealmName:Hide()
+		
+	end
+	if serverName == "" then 
+		AccountLoginRealmName:SetText(_clickable[GetLocale()])
 	end
 
 	local accountName = GetSavedAccountName();
 	
-	AccountLoginAccountEdit:SetText(accountName);
-	AccountLoginPasswordEdit:SetText("");
+	local Password = GetSavedAccountList();
+	AccountLoginPasswordEdit:SetText(Password);
+	
+	--[[AccountLoginAccountEdit:SetText(accountName);
+	AccountLoginPasswordEdit:SetText("");]]
+	if AccountLoginAccountEdit:GetText() == "" then AccountLoginAccountEdit:SetText(accountName); end
+	AccountLoginTokenEdit:SetText("");
+	if ( accountName and accountName ~= "" and GetUsesToken() ) then
+		AccountLoginTokenEdit:Show()
+	else
+		AccountLoginTokenEdit:Hide()
+	end
 	
 	AccountLogin_SetupAccountListDDL();
 	
@@ -162,12 +184,18 @@ end
 function AccountLogin_Login()
 	PlaySound("gsLogin");
 	DefaultServerLogin(AccountLoginAccountEdit:GetText(), AccountLoginPasswordEdit:GetText());
-	AccountLoginPasswordEdit:SetText("");
 	
 	if ( AccountLoginSaveAccountName:GetChecked() ) then
 		SetSavedAccountName(AccountLoginAccountEdit:GetText());
 	else
 		SetSavedAccountName("");
+		-- SetUsesToken(false);
+	end
+	
+	if ( AccountLoginSavePassword:GetChecked() ) then
+		SetSavedAccountList(AccountLoginPasswordEdit:GetText());
+	else
+		SetSavedAccountList("");
 	end
 end
 
@@ -196,24 +224,6 @@ end
 function CharacterSelect_UpgradeAccount()
 	PlaySound("gsLoginNewAccount");
 	LaunchURL(AUTH_NO_TIME_URL);
-end
-
-function AccountLogin_Credits()
-	CreditsFrame.creditsType = 3;
-	PlaySound("gsTitleCredits");
-	SetGlueScreen("credits");
-end
-
-function AccountLogin_Cinematics()
-	if ( not GlueDialog:IsShown() ) then
-		PlaySound("gsLoginNewAccount");
-		if ( CinematicsFrame.numMovies > 1 ) then
-			CinematicsFrame:Show();
-		else
-			MovieFrame.version = 1;
-			SetGlueScreen("movie");
-		end
-	end
 end
 
 function AccountLogin_Options()
@@ -486,6 +496,16 @@ end
 
 function TokenEntryOkayButton_OnEvent(self, event)
 	if (event == "PLAYER_ENTER_TOKEN") then
+		if ( AccountLoginSaveAccountName:GetChecked() ) then
+			if ( GetUsesToken() ) then
+				if ( AccountLoginTokenEdit:GetText() ~= "" ) then
+					TokenEntered(AccountLoginTokenEdit:GetText());
+					return;
+				end
+			else
+				SetUsesToken(true);
+			end
+		end
 		self:Show();
 	end
 end
@@ -651,6 +671,70 @@ function WoWAccountSelect_Accept()
 	WoWAccountSelect_SelectAccount(CURRENT_SELECTED_WOW_ACCOUNT);
 end
 
+function AccountListDropDown_OnClick(self)
+	--GlueDropDownMenu_SetSelectedValue(AccountLoginDropDown, self.value);
+	if strsub(self.value, 1, 3) == "rlm" then
+		for i = 1, #vx.ServerList, 1 do
+			if vx.ServerList[i].Host then
+				if vx.ServerList[i].Host == GetCVar("realmlist") then
+					AccountLoginAccountEdit:SetText(strrev(strsub(vx.ServerList[i].AccountList[tonumber(strsub(self.value, 4))].Login, 16)));
+					AccountLoginPasswordEdit:SetText(strrev(strsub(vx.ServerList[i].AccountList[tonumber(strsub(self.value, 4))].Password, 19)));
+				end
+			end
+		end
+	elseif strsub(self.value, 1, 3) == "all" then
+		AccountLoginAccountEdit:SetText(strrev(strsub(vx.AccountList[tonumber(strsub(self.value, 4))].Login, 16)));
+		AccountLoginPasswordEdit:SetText(strrev(strsub(vx.AccountList[tonumber(strsub(self.value, 4))].Password, 19)));
+	end
+end
+
+function AccountListDropDown_Initialize()
+	local info = {};
+	local count = 0;
+
+	if vx.ServerList then
+		for i = 1, #vx.ServerList, 1 do
+			if vx.ServerList[i].Host then
+				if vx.ServerList[i].Host == GetCVar("realmlist") then
+					if vx.ServerList[i].AccountList then
+						for j = 1, #vx.ServerList[i].AccountList, 1 do
+							info.text = strrev(strsub(vx.ServerList[i].AccountList[j].Login, 16));
+							info.value = "rlm"..j
+							info.func = AccountListDropDown_OnClick;
+							GlueDropDownMenu_AddButton(info);
+							count = count + 1;
+						end
+					end
+				end
+			end
+		end
+	end
+
+	if (vx.AccountList) and (#vx.AccountList>0) then
+		if info.text then
+			info.text = VX_ACCOUNT_SEPARATOR;
+			info.disabled = 1;
+			info.func = nil;
+			GlueDropDownMenu_AddButton(info);
+		end
+
+		info={};
+
+		for i = 1, #vx.AccountList do
+			info.text = strrev(strsub(vx.AccountList[i].Login,16))
+			info.value = "all"..i
+			info.func = AccountListDropDown_OnClick;
+			GlueDropDownMenu_AddButton(info);
+			count = count + 1;
+		end
+	end
+	if count > 0 then
+		AccountListDropDown:Show();
+	else
+		AccountListDropDown:Hide();
+	end
+end
+
 function AccountLoginDropDown_OnClick(self)
 	GlueDropDownMenu_SetSelectedValue(AccountLoginDropDown, self.value);
 end
@@ -669,9 +753,11 @@ AccountList = {};
 function AccountLogin_SetupAccountListDDL()
 	if ( GetSavedAccountName() ~= "" and GetSavedAccountList() ~= "" ) then
 		AccountLoginPasswordEdit:SetPoint("BOTTOM", 0, 255);
+		AccountLoginLoginButton:SetPoint("BOTTOM", 0, 150);
 		AccountLoginDropDown:Show();
 	else
 		AccountLoginPasswordEdit:SetPoint("BOTTOM", 0, 275);
+		AccountLoginLoginButton:SetPoint("BOTTOM", 0, 170);
 		AccountLoginDropDown:Hide();
 		return;
 	end

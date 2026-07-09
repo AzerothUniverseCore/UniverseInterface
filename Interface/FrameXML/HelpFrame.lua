@@ -53,8 +53,6 @@ function HelpFrame_OnLoad(self)
 	self:RegisterEvent("UPDATE_TICKET");
 	self:RegisterEvent("GMSURVEY_DISPLAY");
 	self:RegisterEvent("GMRESPONSE_RECEIVED");
-
-	self.GMChatFrame = _G["ChatFrame"..NUM_CHAT_WINDOWS];
 end
 
 function HelpFrame_OnShow(self)
@@ -103,6 +101,7 @@ function HelpFrame_OnEvent(self, event, ...)
 		if ( category ) then
 			-- Has an open ticket
 			TicketStatusTitleText:SetText(TICKET_STATUS);
+			TicketStatusFrame.hasGMSurvey = false;
 			HelpFrameOpenTicketEditBox:SetText(ticketDescription);
 			-- Setup estimated wait time
 			--[[
@@ -185,6 +184,7 @@ function HelpFrame_OnEvent(self, event, ...)
 		TicketStatusTitleText:SetText(GM_RESPONSE_ALERT);
 		TicketStatusTime:SetText("");
 		TicketStatusTime:Hide();
+		TicketStatusFrame.hasGMSurvey = false;
 
 		local descriptionSuffix = "\n";
 		HelpFrameViewResponseIssueBody:SetText(ticketDescription..descriptionSuffix);
@@ -373,7 +373,7 @@ end
 function TicketStatusFrame_OnEvent(self, event, ...)
 	if ( event == "UPDATE_TICKET" ) then
 		local category = ...;
-		if ( category and (not GMChatStatusFrame or not GMChatStatusFrame:IsShown()) ) then
+		if ( (category or self.hasGMSurvey) and (not GMChatStatusFrame or not GMChatStatusFrame:IsShown()) ) then
 			self:Show();
 			refreshTime = GMTICKET_CHECK_INTERVAL;
 		else

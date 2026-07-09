@@ -1,7 +1,10 @@
+UIPanelWindows["SkillFrame"] = { area = "left", pushable = 1, whileDead = 1 };
 SKILLS_TO_DISPLAY = 12;
 SKILLFRAME_SKILL_HEIGHT = 15;
 
 function SkillFrame_OnShow (self)
+	CharacterFrame.Inset:Show()
+	ButtonFrameTemplate_HideButtonBar(CharacterFrame)
 	SkillFrame_UpdateSkills(self);
 end
 
@@ -211,8 +214,10 @@ function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 	if ( not skillName or skillName == "" ) then
 		statusBar:Hide();
 		SkillDetailDescriptionText:Hide();
+		SkillDetailHelpBox:Show()
 		return;
 	else
+		SkillDetailHelpBox:Hide()
 		statusBar:Show();
 		SkillDetailDescriptionText:Show();
 	end

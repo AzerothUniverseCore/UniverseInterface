@@ -9,8 +9,71 @@ LEFT_ACTIONBAR_PAGE = 4;
 RIGHT_ACTIONBAR_PAGE = 3;
 RANGE_INDICATOR = "●";
 
+ITEM_ACTION_DATA = {}
+SPELL_ACTION_DATA = {}
+ON_BAR_HIGHLIGHT_MARKS = {}
+
 -- Table of actionbar pages and whether they're viewable or not
 VIEWABLE_ACTION_BAR_PAGES = {1, 1, 1, 1, 1, 1};
+
+--Overlay stuff
+local spellOverlayCache = {}
+
+function GetSpellIDFromSpellName( spellName, spellRank )
+	local spellID = nil
+
+	if spellRank then
+		local unitLevel = UnitLevel("player")
+
+		if not spellOverlayCache[unitLevel] then
+			spellOverlayCache[unitLevel] = {}
+
+			local index = 1
+			local name, rank = GetSpellInfo(index, "spell")
+			local spellLink = GetSpellLink(index, "spell")
+
+			while name do
+				local _spellID = tonumber(string.match(spellLink, "spell:(%d*)"))
+				spellOverlayCache[unitLevel][_spellID] = {name, rank}
+
+				index = index + 1
+				name, rank = GetSpellInfo(index, "spell")
+				spellLink = GetSpellLink(index, "spell")
+			end
+		end
+
+		for _spellID, spellData in pairs(spellOverlayCache[unitLevel]) do
+			if spellData[1] == spellName and spellData[2] == spellRank then
+				spellID = _spellID
+				break
+			end
+		end
+	else
+		local spellLink = GetSpellLink(spellName)
+		if spellLink then
+			spellID = tonumber(string.match(spellLink, "spell:(%d*)"))
+		end
+	end
+
+	return spellID
+end
+
+function GetActionSpellID( action )
+	local spellType, id, subType, spellID  = GetActionInfo(action)
+
+	-- if spellType == "spell" or spellType == "flyout" then
+	if spellType == "spell" then
+		return spellID
+	elseif spellType == "macro" then
+		local spellName, spellRank, id = GetMacroSpell(id)
+
+		if spellName then
+			return GetSpellIDFromSpellName(spellName, spellRank)
+		end
+	end
+
+	return nil
+end
 
 function ActionButtonDown(id)
 	local button;
@@ -65,7 +128,7 @@ function ActionBar_PageDown()
 			break;
 		end
 	end
-	
+
 	if ( not prevPage ) then
 		for i=NUM_ACTIONBAR_PAGES, 1, -1 do
 			if ( VIEWABLE_ACTION_BAR_PAGES[i] ) then
@@ -160,15 +223,114 @@ function ActionButton_UpdateAction (self)
 	end
 end
 
+function FindSpellActionButtons( spellID )
+	if not spellID or spellID == "" then
+		return
+	end
+
+	local frameData = {}
+
+	for k, v in pairs(SPELL_ACTION_DATA) do
+		if v == spellID then
+			local frame = _G[k]
+			if frame then
+				table.insert(frameData, frame)
+			end
+		end
+	end
+	return frameData
+end
+
+function FindItemActionButtons( itemID )
+	if not itemID or itemID == "" then
+		return
+	end
+
+	local frameData = {}
+
+	for k, v in pairs(ITEM_ACTION_DATA) do
+		if v == itemID then
+			local frame = _G[k]
+			if frame then
+				table.insert(frameData, frame)
+			end
+		end
+	end
+	return frameData
+end
+
+function ClearOnBarHighlightMarks()
+	local frameData = {}
+	for k, v in pairs(SPELL_ACTION_DATA) do
+		local frame = _G[k]
+		if frame then
+			table.insert(frameData, frame)
+		end
+	end
+	SharedActionButton_RefreshSpellHighlight(frameData, false)
+end
+
+function UpdateOnBarHighlightMarksBySpell(spellID)
+	ClearOnBarHighlightMarks()
+	SharedActionButton_RefreshSpellHighlight(FindSpellActionButtons(spellID), true)
+end
+
+function SharedActionButton_RefreshSpellHighlight(data, shown)
+	if not data then
+		return
+	end
+
+	for i = 1, #data do
+		local frame = data[i]
+		if frame then
+			if frame.SpellHighlightTexture then
+				if ( shown ) then
+					frame.SpellHighlightTexture:Show();
+					frame.SpellHighlightTexture.SpellHighlightAnim:Play();
+				else
+					frame.SpellHighlightTexture:Hide();
+					frame.SpellHighlightTexture.SpellHighlightAnim:Stop();
+				end
+			end
+		end
+	end
+end
+
 function ActionButton_Update (self)
 	local name = self:GetName();
 
 	local action = self.action;
 	local icon = _G[name.."Icon"];
 	local buttonCooldown = _G[name.."Cooldown"];
-	local texture = GetActionTexture(action);	
+	local texture = GetActionTexture(action);
+
+	if action then
+		SPELL_ACTION_DATA[name] = nil
+		ITEM_ACTION_DATA[name] = nil
+	end
 
 	if ( HasAction(action) ) then
+		local actionType, id, subType, spellID = GetActionInfo(action)
+
+		if spellID then
+			SPELL_ACTION_DATA[name] = spellID
+		elseif actionType == "macro" and id then
+			local spellName, spellRank = GetMacroSpell(id)
+			if spellName then
+				local spellLink = GetSpellLink(spellName, spellRank)
+
+				if spellLink then
+					spellID = tonumber(string.match(spellLink, "spell:(%d+)"))
+
+					if spellID then
+						SPELL_ACTION_DATA[name] = spellID
+					end
+				end
+			end
+		elseif actionType == "item" and id then
+			ITEM_ACTION_DATA[name] = id
+		end
+
 		if ( not self.eventsRegistered ) then
 			self:RegisterEvent("ACTIONBAR_UPDATE_STATE");
 			self:RegisterEvent("ACTIONBAR_UPDATE_USABLE");
@@ -197,6 +359,8 @@ function ActionButton_Update (self)
 		ActionButton_UpdateCooldown(self);
 		ActionButton_UpdateFlash(self);
 	else
+		SPELL_ACTION_DATA[name] = false
+		ITEM_ACTION_DATA[name] = false
 		if ( self.eventsRegistered ) then
 			self:UnregisterEvent("ACTIONBAR_UPDATE_STATE");
 			self:UnregisterEvent("ACTIONBAR_UPDATE_USABLE");
@@ -226,19 +390,23 @@ function ActionButton_Update (self)
 
 	-- Add a green border if button is an equipped item
 	local border = _G[name.."Border"];
-	if ( IsEquippedAction(action) ) then
-		border:SetVertexColor(0, 1.0, 0, 0.35);
-		border:Show();
-	else
-		border:Hide();
+	if border then
+		if ( IsEquippedAction(action) ) then
+			border:SetVertexColor(0, 1.0, 0, 0.35);
+			border:Show();
+		else
+			border:Hide();
+		end
 	end
 
 	-- Update Action Text
 	local actionName = _G[name.."Name"];
-	if ( not IsConsumableAction(action) and not IsStackableAction(action) ) then
-		actionName:SetText(GetActionText(action));
-	else
-		actionName:SetText("");
+	if actionName then
+		if ( not IsConsumableAction(action) and not IsStackableAction(action) ) then
+			actionName:SetText(GetActionText(action));
+		else
+			actionName:SetText("");
+		end
 	end
 
 	-- Update icon and hotkey text
@@ -259,7 +427,8 @@ function ActionButton_Update (self)
 			hotkey:SetVertexColor(0.6, 0.6, 0.6);
 		end
 	end
-	ActionButton_UpdateCount(self);	
+	ActionButton_UpdateCount(self);
+	-- ActionButton_UpdateFlyout(self)
 
 	-- Update tooltip
 	if ( GameTooltip:GetOwner() == self ) then
@@ -283,17 +452,17 @@ function ActionButton_ShowGrid (button)
 	end
 end
 
-function ActionButton_HideGrid (button)	
+function ActionButton_HideGrid (button)
 	assert(button);
-	
+
 	local showgrid = button:GetAttribute("showgrid");
-	
+
 	if ( issecure() ) then
 		if ( showgrid > 0 ) then
 			button:SetAttribute("showgrid", showgrid - 1);
 		end
 	end
-	
+
 	if ( button:GetAttribute("showgrid") == 0 and not HasAction(button.action) ) then
 		button:Hide();
 	end
@@ -301,7 +470,7 @@ end
 
 function ActionButton_UpdateState (button)
 	assert(button);
-	
+
 	local action = button.action;
 	if ( IsCurrentAction(action) or IsAutoRepeatAction(action) ) then
 		button:SetChecked(1);
@@ -310,10 +479,14 @@ function ActionButton_UpdateState (button)
 	end
 end
 
-function ActionButton_UpdateUsable (self)
+function ActionButton_UpdateUsable(self)
 	local name = self:GetName();
 	local icon = _G[name.."Icon"];
 	local normalTexture = _G[name.."NormalTexture"];
+	if ( not normalTexture ) then
+		return;
+	end
+
 	local isUsable, notEnoughMana = IsUsableAction(self.action);
 	if ( isUsable ) then
 		icon:SetVertexColor(1.0, 1.0, 1.0);
@@ -344,8 +517,15 @@ end
 
 function ActionButton_UpdateCooldown (self)
 	local cooldown = _G[self:GetName().."Cooldown"];
-	local start, duration, enable = GetActionCooldown(self.action);
-	CooldownFrame_SetTimer(cooldown, start, duration, enable);
+	local start, duration, enable
+
+	if self.spellID then
+		start, duration, enable = GetSpellCooldown(self.spellID)
+	else
+		start, duration, enable = GetActionCooldown(self.action)
+	end
+
+	CooldownFrame_SetTimer(cooldown, start, duration, enable)
 end
 
 function ActionButton_OnEvent (self, event, ...)
@@ -438,7 +618,7 @@ function ActionButton_OnUpdate (self, elapsed)
 	if ( ActionButton_IsFlashing(self) ) then
 		local flashtime = self.flashtime;
 		flashtime = flashtime - elapsed;
-		
+
 		if ( flashtime <= 0 ) then
 			local overtime = -flashtime;
 			if ( overtime >= ATTACK_BUTTON_FLASH_TIME ) then
@@ -453,10 +633,10 @@ function ActionButton_OnUpdate (self, elapsed)
 				flashTexture:Show();
 			end
 		end
-		
+
 		self.flashtime = flashtime;
 	end
-	
+
 	-- Handle range indicator
 	local rangeTimer = self.rangeTimer;
 	if ( rangeTimer ) then
@@ -484,7 +664,7 @@ function ActionButton_OnUpdate (self, elapsed)
 			end
 			rangeTimer = TOOLTIP_UPDATE_TIME;
 		end
-		
+
 		self.rangeTimer = rangeTimer;
 	end
 end
@@ -518,6 +698,51 @@ function ActionButton_IsFlashing (self)
 	if ( self.flashing == 1 ) then
 		return 1;
 	end
-	
+
 	return nil;
 end
+
+--[[
+function ActionButton_UpdateFlyout(self)
+	if not self.FlyoutArrow then
+		return;
+	end
+
+	local actionType = GetActionInfo(self.action);
+	if (actionType == "flyout") then
+		-- Update border and determine arrow position
+		local arrowDistance;
+		if ((SpellFlyout and SpellFlyout:IsShown() and SpellFlyout:GetParent() == self) or GetMouseFocus() == self) then
+			self.FlyoutBorder:Show();
+			self.FlyoutBorderShadow:Show();
+			arrowDistance = 5;
+		else
+			self.FlyoutBorder:Hide();
+			self.FlyoutBorderShadow:Hide();
+			arrowDistance = 2;
+		end
+
+		-- Update arrow
+		self.FlyoutArrow:Show();
+		self.FlyoutArrow:ClearAllPoints();
+		local direction = self:GetAttribute("flyoutDirection");
+		if (direction == "LEFT") then
+			self.FlyoutArrow:SetPoint("LEFT", self, "LEFT", -arrowDistance, 0);
+			SetClampedTextureRotation(self.FlyoutArrow, 270);
+		elseif (direction == "RIGHT") then
+			self.FlyoutArrow:SetPoint("RIGHT", self, "RIGHT", arrowDistance, 0);
+			SetClampedTextureRotation(self.FlyoutArrow, 90);
+		elseif (direction == "DOWN") then
+			self.FlyoutArrow:SetPoint("BOTTOM", self, "BOTTOM", 0, -arrowDistance);
+			SetClampedTextureRotation(self.FlyoutArrow, 180);
+		else
+			self.FlyoutArrow:SetPoint("TOP", self, "TOP", 0, arrowDistance);
+			SetClampedTextureRotation(self.FlyoutArrow, 0);
+		end
+	else
+		self.FlyoutBorder:Hide();
+		self.FlyoutBorderShadow:Hide();
+		self.FlyoutArrow:Hide();
+	end
+end
+]]

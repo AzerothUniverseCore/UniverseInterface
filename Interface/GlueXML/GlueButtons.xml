@@ -20,6 +20,20 @@
 			</OnLeave>
 		</Scripts>
 	</Button>
+
+	<Texture name="128RedUpTexture" file="Interface\Buttons\128RedButton" virtual="true">
+		<TexCoords left="0" right="0.578125" top="0" bottom="0.75"/>
+	</Texture>
+	<Texture name="128RedDownTexture" file="Interface\Buttons\128RedButton" virtual="true">
+		<TexCoords left="0" right="0.578125" top="0" bottom="0.75"/>
+	</Texture>
+	<Texture name="128RedDisabledTexture" file="Interface\Buttons\128RedButton" virtual="true">
+		<TexCoords left="0" right="0.578125" top="0" bottom="0.75"/>
+	</Texture>
+	<Texture name="128RedHighlightTexture" file="Interface\Buttons\128RedButton" alphaMode="ADD" virtual="true">
+		<TexCoords left="0.00195312" right="0.863281" top="0.190918" bottom="0.253418"/>
+	</Texture>
+
 	
 	<Texture name="GluePanelButtonUpTexture" file="Interface\Glues\Common\Glue-Panel-Button-Up" virtual="true">
 		<TexCoords left="0" right="0.578125" top="0" bottom="0.75"/>
@@ -42,6 +56,153 @@
 	<Texture name="GluePanelButtonHighlightTextureBlue" file="Interface\Glues\Common\Glue-Panel-Button-Highlight-Blue" alphaMode="ADD" virtual="true">
 		<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
 	</Texture>
+
+	<!-- Texturas Mewet -->
+
+	<Texture name="FacebookNormal" file="Mewet\Interfaz\Iconos\FacebookNormal" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="FacebookPushed" file="Mewet\Interfaz\Iconos\FacebookPushed" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="FacebookHighlighted" file="Mewet\Interfaz\Iconos\FacebookHighlighted" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="FacebookDisabled" file="Mewet\Interfaz\Iconos\FacebookDisabled" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+
+	<Texture name="TwitterNormal" file="Mewet\Interfaz\Iconos\TwitterNormal" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="TwitterPushed" file="Mewet\Interfaz\Iconos\TwitterPushed" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="TwitterHighlighted" file="Mewet\Interfaz\Iconos\TwitterHighlighted" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+	<Texture name="TwitterDisabled" file="Mewet\Interfaz\Iconos\TwitterDisabled" virtual="true">
+		<TexCoords left="0" right="1" top="0" bottom="1"/>
+	</Texture>
+
+
+	<!-- Fin Texturas Mewet -->
+
+
+	<!-- Botones Mewet -->
+
+	<Button name="Facebook" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+		</Size>
+		<ButtonText>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlight"/>
+		<DisabledFont style="GlueFontDisable"/>
+		<NormalTexture inherits="FacebookNormal"/>
+		<PushedTexture inherits="FacebookPushed"/>
+		<DisabledTexture inherits="FacebookDisabled"/>
+		<HighlightTexture inherits="FacebookHighlighted"/>
+	</Button>
+
+	<Button name="Twitter" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+		</Size>
+		<ButtonText>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlight"/>
+		<DisabledFont style="GlueFontDisable"/>
+		<NormalTexture inherits="TwitterNormal"/>
+		<PushedTexture inherits="TwitterPushed"/>
+		<DisabledTexture inherits="TwitterDisabled"/>
+		<HighlightTexture inherits="TwitterHighlighted"/>
+	</Button>
+
+
+	<!-- Fin Botones Mewet -->
+	<Button name="128ButtonRedCustom" virtual="true">
+		<Size x="185" y="52"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Left" file="Interface\Buttons\128RedButton">
+					<Size x="52" y="52"/>
+					<TexCoords left="0.763672" right="0.986328" top="0.444824" bottom="0.507324"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey="Right" file="Interface\Buttons\128RedButton">
+					<Size x="133" y="52"/>
+					<TexCoords left="0.00195312" right="0.572266" top="0.25439" bottom="0.316895"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+
+		<Scripts>
+			<OnMouseUp>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexCoord(0.763672, 0.986328, 0.444824, 0.507324)
+					self.Right:SetTexCoord(0.00195312, 0.572266, 0.25439, 0.316895)
+				end
+			</OnMouseUp>
+			<OnMouseDown>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexCoord(0.482422, 0.705078, 0.508301, 0.570801)
+					self.Right:SetTexCoord(0.00195312, 0.572266, 0.381348, 0.443848)
+				end
+			</OnMouseDown>
+			<OnDisable>
+				self.Left:SetTexCoord(0.255859, 0.478516, 0.508301, 0.570801)
+				self.Right:SetTexCoord(0.00195312, 0.572266, 0.317871, 0.380371)
+			</OnDisable>
+			<OnEnable>
+				self.Left:SetTexCoord(0.763672, 0.986328, 0.444824, 0.507324)
+				self.Right:SetTexCoord(0.00195312, 0.572266, 0.25439, 0.316895)
+			</OnEnable>
+		</Scripts>
+		<ButtonText>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlightCustomCreate"/>
+		<DisabledFont style="GlueFontDisable"/>
+		<HighlightTexture inherits="128RedHighlightTexture" alphaMode="ADD"/>
+	</Button>
 	<Button name="GlueButtonTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="170" y="45"/>
@@ -121,6 +282,27 @@
 		<NormalFont style="GlueFontNormalSmall"/>
 		<HighlightFont style="GlueFontHighlightSmall"/>
 		<DisabledFont style="GlueFontDisableSmall"/>
+		<NormalTexture inherits="GluePanelButtonUpTextureBlue"/>
+		<PushedTexture inherits="GluePanelButtonDownTextureBlue"/>
+		<DisabledTexture inherits="GluePanelButtonDisabledTexture"/>
+		<HighlightTexture inherits="GluePanelButtonHighlightTextureBlue" alphaMode="ADD"/>
+	</Button>
+	<Button name="GlueButtonTemplateMewet" virtual="true">
+		<Size>
+			<AbsDimension x="170" y="10"/>
+		</Size>
+		<ButtonText>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="3"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlight"/>
+		<DisabledFont style="GlueFontDisable"/>
 		<NormalTexture inherits="GluePanelButtonUpTextureBlue"/>
 		<PushedTexture inherits="GluePanelButtonDownTextureBlue"/>
 		<DisabledTexture inherits="GluePanelButtonDisabledTexture"/>

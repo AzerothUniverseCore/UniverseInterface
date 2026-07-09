@@ -10,7 +10,18 @@
 			<Color r="0" g="0" b="0"/>
 		</Shadow>
 		<FontHeight>
-			<AbsValue val="10"/>
+			<AbsValue val="12"/>
+		</FontHeight>
+	</Font>
+	<Font name="SystemFont_Shadow_Outline_SmallCustom" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<FontHeight>
+			<AbsValue val="11"/>
 		</FontHeight>
 	</Font>
 	<Font name="SystemFont_Outline_Med1" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
@@ -40,9 +51,46 @@
 			<AbsValue val="12"/>
 		</FontHeight>
 	</Font>
+		<Font name="SystemFont_Shadow_Outline_Med1ClassNames" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="0.5" y="-0.5"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<FontHeight>
+			<AbsValue val="11"/>
+		</FontHeight>
+	</Font>
+	<Font name="SystemFont_Shadow_Outline_Med1Custom" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+	</Font>
 	<Font name="SystemFont_Outline_Med2" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
 		<FontHeight>
 			<AbsValue val="15"/>
+		</FontHeight>
+	</Font>
+	<Font name="SystemFont_Outline_Med2TooltipGlues" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<FontHeight>
+			<AbsValue val="11"/>
+		</FontHeight>
+	</Font>
+	<Font name="SystemFont_Outline_Med2CreateLabels" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="13"/>
+		</FontHeight>
+	</Font>
+	<Font name="SystemFont_Outline_Med2Custom" font="Fonts\FRIZQT__.TTF" outline="NORMAL" virtual="true">
+		<FontHeight>
+			<AbsValue val="11"/>
 		</FontHeight>
 	</Font>
 	<Font name="SystemFont_Med3" font="Fonts\FRIZQT__.TTF" virtual="true">
@@ -165,6 +213,30 @@
 		<Color r="1.0" g="1.0" b="1.0"/>
 		<FontHeight>
 			<AbsValue val="18"/>
+		</FontHeight>
+	</Font>
+	<Font name="FactionName_Shadow_Soldan" font="Fonts\MORPHEUS.ttf" outline="NORMAL" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<Color r="1.0" g="1.0" b="1.0"/>
+		<FontHeight>
+			<AbsValue val="22"/>
+		</FontHeight>
+	</Font>
+		<Font name="FactionName_Shadow_Soldan2" font="Fonts\MORPHEUS.ttf" outline="NORMAL" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<Color r="1.0" g="1.0" b="1.0"/>
+		<FontHeight>
+			<AbsValue val="200"/>
 		</FontHeight>
 	</Font>
 </Ui>

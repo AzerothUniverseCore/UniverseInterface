@@ -1,75 +1,39 @@
 -- The default tooltip border color
---TOOLTIP_DEFAULT_COLOR = { r = 0.5, g = 0.5, b = 0.5 };
 TOOLTIP_DEFAULT_COLOR = { r = 1, g = 1, b = 1 };
 TOOLTIP_DEFAULT_BACKGROUND_COLOR = { r = 0.09, g = 0.09, b = 0.19 };
 DEFAULT_TOOLTIP_POSITION = -13;
 
 function GameTooltip_UnitColor(unit)
-	local r, g, b;
-	if ( UnitPlayerControlled(unit) ) then
-		if ( UnitCanAttack(unit, "player") ) then
-			-- Hostile players are red
-			if ( not UnitCanAttack("player", unit) ) then
-				--[[
-				r = 1.0;
-				g = 0.5;
-				b = 0.5;
-				]]
-				--[[
-				r = 0.0;
-				g = 0.0;
-				b = 1.0;
-				]]
-				r = 1.0;
-				g = 1.0;
-				b = 1.0;
+	local color
+
+	if UnitPlayerControlled(unit) then
+		if UnitCanAttack(unit, "player") then
+			if not UnitCanAttack("player", unit) then
+				color = TOOLTIP_DEFAULT_COLOR
 			else
-				r = FACTION_BAR_COLORS[2].r;
-				g = FACTION_BAR_COLORS[2].g;
-				b = FACTION_BAR_COLORS[2].b;
+				color = FACTION_BAR_COLORS[2]
 			end
-		elseif ( UnitCanAttack("player", unit) ) then
-			-- Players we can attack but which are not hostile are yellow
-			r = FACTION_BAR_COLORS[4].r;
-			g = FACTION_BAR_COLORS[4].g;
-			b = FACTION_BAR_COLORS[4].b;
-		elseif ( UnitIsPVP(unit) ) then
-			-- Players we can assist but are PvP flagged are green
-			r = FACTION_BAR_COLORS[6].r;
-			g = FACTION_BAR_COLORS[6].g;
-			b = FACTION_BAR_COLORS[6].b;
+		elseif UnitCanAttack("player", unit) then
+			color = FACTION_BAR_COLORS[4]
+		elseif UnitIsPVP(unit) then
+			color = FACTION_BAR_COLORS[6]
 		else
-			-- All other players are blue (the usual state on the "blue" server)
-			--[[
-			r = 0.0;
-			g = 0.0;
-			b = 1.0;
-			]]
-			r = 1.0;
-			g = 1.0;
-			b = 1.0;
+			color = TOOLTIP_DEFAULT_COLOR
 		end
 	else
-		local reaction = UnitReaction(unit, "player");
-		if ( reaction ) then
-			r = FACTION_BAR_COLORS[reaction].r;
-			g = FACTION_BAR_COLORS[reaction].g;
-			b = FACTION_BAR_COLORS[reaction].b;
+		local reaction = UnitReaction(unit, "player")
+
+		if reaction and FACTION_BAR_COLORS[reaction] then
+			color = FACTION_BAR_COLORS[reaction]
 		else
-			--[[
-			r = 0.0;
-			g = 0.0;
-			b = 1.0;
-			]]
-			r = 1.0;
-			g = 1.0;
-			b = 1.0;
+			color = TOOLTIP_DEFAULT_COLOR
 		end
 	end
-	return r, g, b;
+
+	return color.r, color.g, color.b
 end
 
-function GameTooltip_SetDefaultAnchor(tooltip, parent)		
+function GameTooltip_SetDefaultAnchor(tooltip, parent)
 	tooltip:SetOwner(parent, "ANCHOR_NONE");
 	tooltip:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X - 13, CONTAINER_OFFSET_Y);
 	tooltip.default = 1;
@@ -142,7 +106,7 @@ function GameTooltip_ClearMoney(self)
 	if ( not self.shownMoneyFrames ) then
 		return;
 	end
-	
+
 	local moneyFrame;
 	for i=1, self.shownMoneyFrames do
 		moneyFrame = _G[self:GetName().."MoneyFrame"..i];
@@ -152,6 +116,47 @@ function GameTooltip_ClearMoney(self)
 		end
 	end
 	self.shownMoneyFrames = nil;
+end
+
+function GameTooltip_InsertFrame(tooltipFrame, frame)
+	local textSpacing = 2
+	local textHeight = _G[tooltipFrame:GetName().."TextLeft2"]:GetHeight()
+	local numLinesNeeded = math.ceil(frame:GetHeight() / (textHeight + textSpacing))
+	local currentLine = tooltipFrame:NumLines()
+
+	for i = 1, numLinesNeeded do
+		tooltipFrame:AddLine(" ")
+	end
+
+	frame:SetParent(tooltipFrame)
+	frame:ClearAllPoints()
+	frame:SetPoint("TOPLEFT", tooltipFrame:GetName().."TextLeft"..(currentLine + 1), "TOPLEFT", 0, 0)
+
+	if ( not tooltipFrame.insertedFrames ) then
+		tooltipFrame.insertedFrames = { }
+	end
+
+	local frameWidth = frame:GetWidth()
+
+	if tooltipFrame:GetMinimumWidth() < frameWidth then
+		tooltipFrame:SetMinimumWidth(frameWidth)
+	end
+
+	frame:Show()
+	table.insert(tooltipFrame.insertedFrames, frame)
+
+	return (numLinesNeeded * textHeight) + (numLinesNeeded - 1) * textSpacing
+end
+
+function GameTooltip_ClearInsertedFrames(self)
+	if self.insertedFrames then
+		for i = 1, #self.insertedFrames do
+			self.insertedFrames[i]:SetParent(nil)
+			self.insertedFrames[i]:Hide()
+		end
+	end
+
+	self.insertedFrames = nil
 end
 
 function GameTooltip_ClearStatusBars(self)
@@ -179,6 +184,13 @@ function GameTooltip_OnHide(self)
 			frame:Hide();
 		end
 	end
+
+	self.TransmogText1:Hide()
+	self.TransmogText2:Hide()
+
+	GameTooltip_FixLinePosition(self)
+	GameTooltip_ClearInsertedFrames(GameTooltip)
+
 	self.comparing = false;
 end
 
@@ -193,6 +205,215 @@ function GameTooltip_OnUpdate(self, elapsed)
 	local owner = self:GetOwner();
 	if ( owner and owner.UpdateTooltip ) then
 		owner:UpdateTooltip();
+	end
+
+	GameTooltip_FixLinePosition(self)
+end
+
+function GameTooltip_FixLinePosition( self )
+	if self.TransmogText1:IsShown() and self.TransmogText2:IsShown() then
+		self.TextLeft2:ClearAllPoints()
+		self.TextLeft2:SetPoint("TOPLEFT", self.TransmogText2, "BOTTOMLEFT", 0, -2)
+	else
+		if self.TextLeft2:GetText() ~= DAMAGE_SCHOOL2 then
+			self.TextLeft2:ClearAllPoints()
+			self.TextLeft2:SetPoint("TOPLEFT", self.TextLeft1, "BOTTOMLEFT", 0, -2)
+		end
+	end
+end
+
+function GameTooltip_OnTooltipSetSpell( self, ... )
+	local _, _, spellID = self:GetSpell()
+
+	if spellID then
+		if spellID == 1804 then
+			local currentSkillRank, maxSkillRank
+			local currenBarValue
+
+			for i = 1, GetNumSkillLines() do
+				local skillName, _, _, skillRank, _, _, skillMaxRank = GetSkillLineInfo(i)
+
+				if skillName == SKILL_NAME_LOCKPICKING then
+					currentSkillRank = skillRank
+					maxSkillRank = skillMaxRank
+					break
+				end
+			end
+
+			currenBarValue = (currentSkillRank / maxSkillRank) * 100
+
+			GameTooltip_InsertFrame(GameTooltip, SpellTooltipStatusBar)
+
+			SpellTooltipStatusBar.Bar:SetValue(currenBarValue)
+			SpellTooltipStatusBar.Bar.Label:SetFontObject("GameFontNormal")
+			SpellTooltipStatusBar.Bar.Label:SetFormattedText("%d / %d", currentSkillRank, maxSkillRank)
+
+			SpellTooltipStatusBar.Bar.LeftDivider:Hide()
+			SpellTooltipStatusBar.Bar.RightDivider:Hide()
+		end
+	end
+end
+
+EQUIPMENT_SET_LAST_TOOLTIP = {}
+
+function GameTooltip_OnTooltipSetItem( self, ... )
+	local numLines 	= self:NumLines()
+	local itemName 	= self:GetItem()
+	local owner 	= self:GetOwner()
+
+	if itemName and owner and owner.containerID then
+		if not EQUIPMENT_SET_LAST_TOOLTIP[owner.containerID] then
+			EQUIPMENT_SET_LAST_TOOLTIP[owner.containerID] = {}
+		end
+
+		local slotID = owner.slotID or -1
+
+		EQUIPMENT_SET_LAST_TOOLTIP[owner.containerID][slotID] = {}
+
+		for i = 1, numLines do
+			local line = _G[self:GetName().."TextLeft"..i]
+			local text = line:GetText()
+
+			if text then
+				local sets = string.match(text, EQUIPMENT_SETS_PATTERN)
+
+				if sets then
+					local setsStorage 	= C_Split(sets, ", ")
+					EQUIPMENT_SET_LAST_TOOLTIP[owner.containerID][slotID] = setsStorage
+					break
+				end
+			end
+		end
+	end
+
+	if ( IsModifiedClick("COMPAREITEMS") or
+		(GetCVarBool("alwaysCompareItems") and not self:IsEquippedItem()) ) then
+		GameTooltip_ShowCompareItem(self, 1);
+	end
+
+	local owner = self:GetOwner();
+	self.IsMerchantTooltip = false
+
+	if owner and MerchantFrame then
+		local ownerFrame = owner:GetParent()
+
+		while ownerFrame and ownerFrame ~= MerchantFrame do
+			ownerFrame = ownerFrame:GetParent()
+		end
+
+		self.IsMerchantTooltip = ownerFrame == MerchantFrame
+	end
+
+	C_Tooltip_CustomRender( self, ... )
+end
+
+local equipSetsItemColor = CreateColorRGB(0.999, 0.999, 0.592, 0.999)
+local grayTextColor = CreateColorRGB(0.501, 0.501, 0.501, 0.999)
+local greenTextColor = CreateColorRGB(0, 0.999, 0, 0.999)
+
+function C_Tooltip_CustomRender( self, ... )
+	local owner = self:GetOwner()
+
+	local setTextChecked
+	local startEquipmentSetLine, endEquipmentSetLine
+	local currentSetItems, totalSetItems
+	local setNumItems = 0
+
+	local newLines
+	-- local showAppearanceLine = false;
+
+	for i = 1, self:NumLines() do
+		local line = _G[self:GetName().."TextLeft"..i]
+
+		if line then
+			local text = line:GetText()
+			local rbgTitle
+
+			if not totalSetItems then
+				currentSetItems, totalSetItems = string.match(text, "%((%d+)/(%d+)%)$")
+
+				if totalSetItems then
+					currentSetItems = tonumber(currentSetItems)
+					totalSetItems = tonumber(totalSetItems)
+
+					startEquipmentSetLine = i + 1
+					endEquipmentSetLine = i + totalSetItems
+				end
+			end
+
+			if (startEquipmentSetLine and endEquipmentSetLine) and C_InRange(i, startEquipmentSetLine, endEquipmentSetLine) then
+				local itemName = string.match(text, "%s+(.*)")
+
+				if itemName then
+					local equipmentItemsList = owner and owner.paperDoll and owner.paperDoll.equipmentItemsList or PaperDollFrame.equipmentItemsList
+					if equipmentItemsList then
+						if equipmentItemsList[itemName:lower()] then
+							setNumItems = setNumItems + 1
+							line:SetTextColor(equipSetsItemColor.r, equipSetsItemColor.g, equipSetsItemColor.b)
+						else
+							line:SetTextColor(grayTextColor.r, grayTextColor.g, grayTextColor.b)
+						end
+					end
+				end
+			end
+
+			if not setTextChecked and endEquipmentSetLine and i > endEquipmentSetLine then
+				if setNumItems > currentSetItems and setNumItems <= totalSetItems then
+					local setHeaderLine = _G[self:GetName().."TextLeft"..(startEquipmentSetLine - 1)]
+					setHeaderLine:SetText(setHeaderLine:GetText():gsub("%((%d+)/(%d+)%)$", string.format("(%i/%s)", setNumItems, "%2")))
+				end
+				setTextChecked = true
+			end
+
+			local setBonus = string.match(text, EQUIPMENT_SET_PATTERN)
+
+			if setBonus then
+				local numRequiredSetItems = tonumber(string.match(text, ITEM_SET_BONUS_GRAY_PATTERN))
+
+				if not numRequiredSetItems and setNumItems > 0 then
+					line:SetTextColor(greenTextColor.r, greenTextColor.g, greenTextColor.b)
+				elseif numRequiredSetItems and setNumItems >= numRequiredSetItems then
+					line:SetTextColor(greenTextColor.r, greenTextColor.g, greenTextColor.b)
+				else
+					line:SetTextColor(grayTextColor.r, grayTextColor.g, grayTextColor.b)
+				end
+			end
+
+			if text then
+				rbgTitle = string.match(text, string.sub(LOCKED_WITH_SPELL, 1, -3).."(.*)")
+			end
+
+			if text and string.find(text, CHARACTER_LINK_ITEM_LEVEL_TOOLTIP) then
+				line:SetTextColor(1.0, 0.82, 0, 1)
+			end
+
+			if text and string.find(text, ITEM_REQ_ARENA_RATING_3V3) then
+				local needRating = tonumber(string.match(text, "(%d+)"))
+				local _, _, _, _, rating = GetRatedBattlegroundRankInfo()
+
+				if rating >= needRating then
+					line:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
+				end
+			elseif text and string.find(text, ITEM_REQ_ARENA_RATING) then
+				local needRating = tonumber(string.match(text, "(%d+)"))
+				local rating = math.max(GetArenaRating(1), GetArenaRating(2))
+
+				if rating >= needRating then
+					line:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b)
+				end
+			elseif text == TRANSMOGRIFY_TOOLTIP_APPEARANCE_UNKNOWN then
+				showAppearanceLine = false;
+			end
+		end
+	end
+
+	if showAppearanceLine then
+		self:AddLine(TRANSMOGRIFY_TOOLTIP_APPEARANCE_UNKNOWN, 0.53, 0.67, 1);
+		newLines = true
+	end
+
+	if newLines then
+		self:Show();
 	end
 end
 
@@ -222,7 +443,7 @@ function GameTooltip_ShowCompareItem(self, shift)
 	if ( not link ) then
 		return;
 	end
-	
+
 	local shoppingTooltip1, shoppingTooltip2, shoppingTooltip3 = unpack(self.shoppingTooltips);
 
 	local item1 = nil;
@@ -290,7 +511,7 @@ function GameTooltip_ShowCompareItem(self, shift)
 		shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self);
 		shoppingTooltip3:Show();
 	end
-	
+
 	if ( item1 ) then
 		if( item3 ) then
 			shoppingTooltip1:SetOwner(shoppingTooltip3, "ANCHOR_NONE");

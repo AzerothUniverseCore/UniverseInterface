@@ -62,6 +62,20 @@ RAID_CLASS_COLORS = {
 	["SHAMAN"] = { r = 0.0, g = 0.44, b = 0.87 },
 	["WARRIOR"] = { r = 0.78, g = 0.61, b = 0.43 },
 	["DEATHKNIGHT"] = { r = 0.77, g = 0.12 , b = 0.23 },
+	["DEMONHUNTER"] = { r = 0.64, g = 0.19, b = 0.79 },
+	["BLOODMAGE"] = { r = 0.92, g = 0.0, b = 0.0 },
+	["MONK"] = { r = 0.0, g = 1.0, b = 0.60 },
+	["KNIGHT"] = { r = 0.98, g = 0.86, b = 0.08 },
+	["TAMER"] = { r = 1.0, g = 1.0, b = 1.0 },
+	["HERO"] = { r = 0.99, g = 0.77, b = 0.72 },
+	["EVOKER"] = { r = 0.20, g = 0.58, b = 0.50 },
+	["NECROMANCER"] = { r = 0.0275, g = 0.7608, b = 0.0157 },
+	["VENOMANCER"] = { r = 0.9608, g = 0.4902, b = 0.1255 },
+	["PYROMANCER"] = { r = 1.0, g = 0.3216, b = 0.0157 },
+	["CHRONOMANCER"] = { r = 0.63, g = 0.73, b = 0.74 },
+	["GEOMANCER"] = { r = 0.7686, g = 0.9137, b = 0.4235 },
+	["CHAOSRAVAGER"] = { r = 0.7176, g = 0.6157, b = 0.2667 },
+	["UNKCLASS"] = { r = 1.0, g = 1.0, b = 1.0 },
 };
 
 
@@ -79,6 +93,20 @@ CLASS_SORT_ORDER = {
 	"MAGE",
 	"WARLOCK",
 	"HUNTER",
+	"DEMONHUNTER",
+	"BLOODMAGE",
+	"MONK",
+	"KNIGHT",
+	"TAMER",
+	"HERO",
+	"EVOKER",
+	"NECROMANCER",
+	"VENOMANCER",
+	"PYROMANCER",
+	"CHRONOMANCER",
+	"GEOMANCER",
+	"CHAOSRAVAGER",
+	"UNKCLASS",
 };
 MAX_CLASSES = #CLASS_SORT_ORDER;
 
@@ -89,16 +117,30 @@ FillLocalizedClassList(LOCALIZED_CLASS_NAMES_FEMALE, true);
 
 
 CLASS_ICON_TCOORDS = {
-	["WARRIOR"]		= {0, 0.25, 0, 0.25},
-	["MAGE"]		= {0.25, 0.49609375, 0, 0.25},
-	["ROGUE"]		= {0.49609375, 0.7421875, 0, 0.25},
-	["DRUID"]		= {0.7421875, 0.98828125, 0, 0.25},
-	["HUNTER"]		= {0, 0.25, 0.25, 0.5},
-	["SHAMAN"]	 	= {0.25, 0.49609375, 0.25, 0.5},
-	["PRIEST"]		= {0.49609375, 0.7421875, 0.25, 0.5},
-	["WARLOCK"]		= {0.7421875, 0.98828125, 0.25, 0.5},
-	["PALADIN"]		= {0, 0.25, 0.5, 0.75},
-	["DEATHKNIGHT"]	= {0.25, .5, 0.5, .75},
+	["WARRIOR"]	= {0, 0.125, 0, 0.125},
+	["MAGE"] = {0.75, 0.875, 0, 0.125},
+	["ROGUE"] = {0.25, 0.375, 0.125, 0.25},
+	["DRUID"] = {0.875, 1, 0, 0.125},
+	["EVOKER"] = {0, 0.125, 0.125, 0.25},
+	["HUNTER"] = {0.75, 0.875, 0.125, 0.25},
+	["SHAMAN"] = {0.5, 0.625, 0.375, 0.5},
+	["PRIEST"] = {0.25, 0.372, 0, 0.125},
+	["WARLOCK"] = {0.5, 0.625, 0.125, 0.25},
+	["PALADIN"] = {0.25, 0.375, 0.25 , 0.375},
+	["DEATHKNIGHT"]	= {0.5, 0.625, 0.25, 0.375},
+	["MONK"] = {0.125, 0.25, 0, 0.125},
+	["DEMONHUNTER"] = {0.375, 0.5, 0, 0.125},
+	["KNIGHT"] = {0.625, 0.75, 0, 0.125},
+	["BLOODMAGE"] = {0.625, 0.75, 0.25, 0.375},
+	["TAMER"] = {0.5, 0.625, 0, 0.125},
+	["HERO"] = {0.375, 0.5, 0.125, 0.25},
+	["CHRONOMANCER"] = {0.125, 0.25, 0.25, 0.375},
+    ["GEOMANCER"] = {0.125, 0.25, 0.25, 0.375},
+	["NECROMANCER"] = {0.125, 0.25, 0.25, 0.375},
+	["PYROMANCER"] = {0.125, 0.25, 0.25, 0.375},
+	["VENOMANCER"] = {0.125, 0.25, 0.25, 0.375},
+	["CHAOSRAVAGER"] = {0, 0.125, 0.5, 0.625},
+	["UNKCLASS"] = {0, 0, 0, 0},
 };
 
 --
@@ -467,3 +509,13 @@ LIGHT_GHOST = 1;
 -- general constant translation table
 STATIC_CONSTANTS = {}
 RegisterStaticConstants(STATIC_CONSTANTS);
+
+-- textures for quest item overlays
+TEXTURE_ITEM_QUEST_BANG = "Interface\\ContainerFrame\\UI-Icon-QuestBang";
+TEXTURE_ITEM_QUEST_BORDER = "Interface\\ContainerFrame\\UI-Icon-QuestBorder";
+
+-- Friends
+SHOW_SEARCH_BAR_NUM_FRIENDS = 12;
+
+-- faction
+PLAYER_FACTION_GROUP = { [0] = "Horde", [1] = "Alliance" };

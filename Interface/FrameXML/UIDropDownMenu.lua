@@ -153,6 +153,7 @@ info.arg2 = [ANYTHING] -- This is the second argument used by info.func
 info.fontObject = [FONT] -- font object replacement for Normal and Highlight
 info.menuTable = [TABLE] -- This contains an array of info tables to be displayed as a child menu
 info.noClickSound = [nil, 1]  --  Set to 1 to suppress the sound when clicking the button. The sound only plays if .func is set.
+info.padding = [nil, NUMBER] -- Number of pixels to pad the text on the right side
 ]]
 
 local UIDropDownMenu_ButtonInfo = {};
@@ -291,6 +292,9 @@ function UIDropDownMenu_AddButton(info, level)
 		else
 			icon:Hide();
 		end
+		if ( info.padding ) then
+			width = width + info.padding;
+		end
 		-- Set maximum button width
 		if ( width > listFrame.maxWidth ) then
 			listFrame.maxWidth = width;
@@ -328,6 +332,7 @@ function UIDropDownMenu_AddButton(info, level)
 	button.tooltipWhileDisabled = info.tooltipWhileDisabled;
 	button.tooltipOnButton = info.tooltipOnButton;
 	button.noClickSound = info.noClickSound;
+	button.padding = info.padding;
 	
 	if ( info.value ) then
 		button.value = info.value;
@@ -478,6 +483,9 @@ function UIDropDownMenu_Refresh(frame, useValue, dropdownLevel)
 			if ( button.notCheckable ) then
 				width = width - 30;
 			end
+			if ( button.padding ) then
+				width = width + button.padding;
+			end
 			if ( width > maxWidth ) then
 				maxWidth = width;
 			end
@@ -487,7 +495,7 @@ function UIDropDownMenu_Refresh(frame, useValue, dropdownLevel)
 		button = _G["DropDownList"..dropdownLevel.."Button"..i];
 		button:SetWidth(maxWidth);
 	end
-	_G["DropDownList"..dropdownLevel]:SetWidth(maxWidth+15);
+	_G["DropDownList"..dropdownLevel]:SetWidth(maxWidth+25);
 end
 
 function UIDropDownMenu_SetSelectedName(frame, name, useValue)
