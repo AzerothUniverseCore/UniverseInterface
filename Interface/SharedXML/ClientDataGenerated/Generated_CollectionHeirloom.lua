@@ -17,7 +17,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 35,
         roleFlag = 1,
     },
     {
@@ -38,7 +38,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 8,
         roleFlag = 1,
     },
     {
@@ -59,7 +59,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 47,
         roleFlag = 1,
     },
     {
@@ -80,7 +80,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 13,
         roleFlag = 5,
     },
     {
@@ -101,7 +101,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1488,
         roleFlag = 10,
     },
     {
@@ -122,7 +122,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1106,
         roleFlag = 10,
     },
     {
@@ -143,7 +143,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 35,
         roleFlag = 1,
     },
     {
@@ -164,7 +164,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 68,
         roleFlag = 1,
     },
     {
@@ -185,7 +185,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 64,
         roleFlag = 10,
     },
     {
@@ -206,7 +206,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1032,
         roleFlag = 1,
     },
     {
@@ -227,7 +227,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1024,
         roleFlag = 10,
     },
     {
@@ -248,7 +248,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 400,
         roleFlag = 10,
     },
     {
@@ -290,7 +290,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Магистр Ламбрисса, Чародейка Ивренна, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1490,
         roleFlag = 10,
     },
     {
@@ -311,7 +311,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 8,
         roleFlag = 1,
     },
     {
@@ -332,7 +332,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r325 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 35,
         roleFlag = 1,
     },
     {
@@ -353,7 +353,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r325 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 13,
         roleFlag = 5,
     },
     {
@@ -374,7 +374,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r250 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1106,
         roleFlag = 10,
     },
     {
@@ -395,7 +395,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r325 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1488,
         roleFlag = 10,
     },
     {
@@ -416,7 +416,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 43,
         roleFlag = 1,
     },
     {
@@ -479,7 +479,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 35,
         roleFlag = 5,
     },
     {
@@ -500,7 +500,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 2,
         roleFlag = 8,
     },
     {
@@ -521,7 +521,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 68,
         roleFlag = 1,
     },
     {
@@ -542,7 +542,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 64,
         roleFlag = 10,
     },
     {
@@ -563,7 +563,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1032,
         roleFlag = 5,
     },
     {
@@ -584,7 +584,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1024,
         roleFlag = 10,
     },
     {
@@ -605,7 +605,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rРыцарь Дамерон, Каменный страж Мукар|n|cFFFFD200Зона: |rКрепость Ледяных Оков(Озеро Ледяных Оков)|n|cFFFFD200Цена: |r200 |TInterface\\Icons\\INV_Misc_Platnumdisks.BLP:16:16|t|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 400,
         roleFlag = 10,
     },
     {
@@ -626,7 +626,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 68,
         roleFlag = 1,
     },
     {
@@ -647,7 +647,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 64,
         roleFlag = 10,
     },
     {
@@ -668,7 +668,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 35,
         roleFlag = 1,
     },
     {
@@ -689,7 +689,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1024,
         roleFlag = 10,
     },
     {
@@ -710,7 +710,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1032,
         roleFlag = 5,
     },
     {
@@ -731,7 +731,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 400,
         roleFlag = 10,
     },
     {
@@ -752,7 +752,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 72,
         roleFlag = 1,
     },
     {
@@ -773,7 +773,7 @@ COLLECTION_HEIRLOOMDATA = {
         priceText = "|cFFFFD200Торговец: |rЧаротворец Эродин, Чаротворец Исиан, Кавалер-дама Эвники Капсалис|n|cFFFFD200Зона: |rДаларан,|nСеребряный павильон(Ледяная Корона)|n|cFFFFD200Цена: |r|n",
         descriptionText = [[]],
         holidayText = "",
-        classFlags = 0,
+        classFlags = 1088,
         roleFlag = 5,
     },
     {

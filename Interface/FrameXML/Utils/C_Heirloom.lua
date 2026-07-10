@@ -108,7 +108,15 @@ local function CheckFilter(data, classFlag, specFlag, sourceFiltersFlag, sourceF
 			end
 		end
 
-		local name = GetSpellInfo(data.spellID);
+		-- PATCH round 72 : la recherche comparait GetSpellInfo(data.spellID),
+		-- toujours nil pour les memes raisons que le nom affiche (round 65) et
+		-- le compteur (round 67) -- ces spellID retail n'existent pas en 3.3.5.
+		-- Consequence : "not name" etait TOUJOURS vrai, donc CheckFilter
+		-- renvoyait toujours false des qu'une recherche etait tapee -> 0/0
+		-- systematique quel que soit le texte recherche. On compare
+		-- desormais sur le vrai nom de l'item.
+		local itemName = C_Item.GetItemInfo(data.itemID, false, nil, true, true);
+		local name = itemName or GetSpellInfo(data.spellID);
 		if not name or not string.find(string.lower(name), FILTER_STRING, 1, true) then
 			return false;
 		end

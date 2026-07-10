@@ -110,12 +110,29 @@
 				</Scripts>
 			</Frame>
 
-			<!-- PATCH round 67 : affichage monnaie (icone + compteur) + cout par
-			     objet, porte depuis HeirloomClient.lua (systeme AIO de reference). -->
+			<Frame name="$parentIconsFrame" parentKey="IconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentWatermark" parentKey="Watermark">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<!-- PATCH round 67/72 : affichage monnaie (icone + compteur) + cout par
+			     objet, porte depuis HeirloomClient.lua (systeme AIO de reference).
+			     Declare APRES IconsFrame expres, pour que son OVERLAY se dessine
+			     toujours par-dessus le ShadowLineTop de la grille (sinon l'icone
+			     se faisait trancher visuellement des qu'elle s'approchait du bord
+			     superieur de la grille, meme layer OVERLAY, mais IconsFrame etait
+			     declare avant donc dessine par-dessus). -->
 			<Frame name="$parentCurrencyFrame" parentKey="CurrencyFrame">
 				<Size x="260" y="18"/>
 				<Anchors>
-					<Anchor point="TOP" x="0" y="-71"/>
+					<Anchor point="TOP" x="0" y="-74"/>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
@@ -135,18 +152,6 @@
 								<Anchor point="LEFT" relativeTo="$parentCountText" relativePoint="RIGHT" x="14" y="0"/>
 							</Anchors>
 						</FontString>
-					</Layer>
-				</Layers>
-			</Frame>
-
-			<Frame name="$parentIconsFrame" parentKey="IconsFrame" inherits="CollectionsBackgroundTemplate">
-				<Layers>
-					<Layer level="OVERLAY">
-						<Texture name="$parentWatermark" parentKey="Watermark">
-							<Anchors>
-								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
-							</Anchors>
-						</Texture>
 					</Layer>
 				</Layers>
 			</Frame>
