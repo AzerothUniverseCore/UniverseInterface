@@ -50,9 +50,13 @@ WorldMapFrameData.lua
 ..\SharedXML\ClientDataGenerated\Generated_CollectionPet.lua
 ..\SharedXML\ClientDataGenerated\Generated_CollectionToy.lua
 ..\SharedXML\ClientDataGenerated\Generated_CollectionHeirloom.lua
+..\SharedXML\ClientDataGenerated\Generated_ItemsCache1.lua
+..\SharedXML\ClientDataGenerated\Generated_ItemsCache2.lua
+..\SharedXML\ClientDataGenerated\Generated_ItemsCache3.lua
 ..\SharedXML\ClientDataGenerated\Generated_ItemAppearances.lua
 ..\SharedXML\ClientDataGenerated\Generated_CollectionEnchant.lua
 Collection_Compat.xml
+Collection_Compat_Atlas.lua
 FilterDropdown.lua
 
 ..\SharedXML\FrameUtil.lua

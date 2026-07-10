@@ -217,7 +217,7 @@ if not SKILL_NAME_SWORDS then SKILL_NAME_SWORDS = "Epees" end
 if not SKILL_NAME_AXES then SKILL_NAME_AXES = "Haches" end
 if not SKILL_NAME_BOWS then SKILL_NAME_BOWS = "Arcs" end
 if not SKILL_NAME_GUNS then SKILL_NAME_GUNS = "Armes a feu" end
-if not SKILL_NAME_MACES then SKILL_NAME_MACES = "Masses" end
+if not SKILL_NAME_MACES then SKILL_NAME_MACES = "Masse" end -- PATCH round 27: /cdebug a montre "Masse" (singulier), pas "Masses"
 if not SKILL_NAME_TWO_HANDED_SWORDS then SKILL_NAME_TWO_HANDED_SWORDS = "Epees a deux mains" end
 if not SKILL_NAME_STAVES then SKILL_NAME_STAVES = "Batons" end
 if not SKILL_NAME_TWO_HANDED_MACES then SKILL_NAME_TWO_HANDED_MACES = "Masses a deux mains" end
@@ -761,3 +761,153 @@ if not WARDROBE_TOOLTIP_TRANSMOGRIFIER_UNUSABLE then WARDROBE_TOOLTIP_TRANSMOGRI
 if not WARDROBE_ALTERNATE_ITEMS then WARDROBE_ALTERNATE_ITEMS = "Autres objets debloquant cet emplacement :" end
 if not RETRIEVING_ITEM_INFO then RETRIEVING_ITEM_INFO = "Recuperation des informations sur l'objet" end
 if not PLAYER_LIST_DELIMITER then PLAYER_LIST_DELIMITER = ", " end
+
+-- ============================================================
+-- PATCH Collection (correction round 20) : constantes/icones manquantes,
+-- decouvertes suite au crash CollectionsUtil.lua:479 "attempt to
+-- concatenate global 'WARDROBE_TOOLTIP_CYCLE_ARROW_ICON' (a nil value)"
+-- lors du survol d'un objet ayant plusieurs sources/illusions (SetIllusionTooltip).
+-- Valeurs recuperees verbatim depuis Sirus\FrameXML\Constants.lua.
+-- ============================================================
+if not WARDROBE_TOOLTIP_CYCLE_ARROW_ICON then WARDROBE_TOOLTIP_CYCLE_ARROW_ICON = "|TInterface\\Transmogrify\\transmog-tooltip-arrow:12:11:-1:-1|t" end
+if not WARDROBE_TOOLTIP_CYCLE_SPACER_ICON then WARDROBE_TOOLTIP_CYCLE_SPACER_ICON = "|TInterface\\Common\\spacer:12:11:-1:-1|t" end
+if not ENCHANT_EMPTY_SLOT_FILEDATAID then ENCHANT_EMPTY_SLOT_FILEDATAID = "Interface\\Icons\\INV_Scroll_05" end
+if not QUESTION_MARK_ICON then QUESTION_MARK_ICON = "INTERFACE\\ICONS\\INV_MISC_QUESTIONMARK.BLP" end
+-- NB : WARDROBE_OTHER_ITEMS est utilise par CollectionsUtil.lua mais n'est
+-- DEFINI NULLE PART, meme cote Sirus (verifie) - c'est un bug latent, deja
+-- present dans le code d'origine, mais inoffensif (tooltip:AddLine(nil,...)
+-- ne plante pas, affiche juste une ligne vide). On en profite pour lui
+-- donner une vraie traduction plutot que de reproduire le bug a l'identique.
+if not WARDROBE_OTHER_ITEMS then WARDROBE_OTHER_ITEMS = "Autres objets utilisant cette apparence :" end
+
+-- ============================================================
+-- PATCH Collection (correction round 22) : crashes Reliques (Heirlooms).
+-- Erreur 1 : Custom_HeirloomCollection.lua:694 "bad argument #1 to 'format'"
+--   -> HEIRLOOMS_CLASS_FILTER_FORMAT / HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT
+--      manquantes. Valeurs verbatim depuis Sirus\FrameXML\GlobalStrings.lua.
+-- ============================================================
+if not HEIRLOOMS_CLASS_FILTER_FORMAT then HEIRLOOMS_CLASS_FILTER_FORMAT = "|c%s%s|r" end
+if not HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT then HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT = "|c%s%s|r (%s)" end
+
+-- ============================================================
+-- PATCH Collection (correction round 22) : crash Reliques - Erreur 2
+-- "Usage: C_Heirloom.SetClassAndSpecFilters(classID, specID)".
+--
+-- Diagnostic : Custom_HeirloomCollection.lua (menu deroulant "Classe" du
+-- filtre Reliques) fait "local _, classDisplayName, classID = UnitClass(
+-- "player")" pour recuperer le classID NUMERIQUE du joueur quand aucun
+-- filtre de classe n'est actif. Sirus fournit un UnitClass() PERSONNALISE
+-- (Utils\C_Unit.lua) qui ajoute ce classID numerique en 3e valeur de
+-- retour (absent de l'UnitClass natif standard WotLK 3.3.5, qui ne renvoie
+-- que 2 valeurs : nom localise + jeton anglais). Universe n'a jamais eu ce
+-- correctif -> classID valait toujours nil -> le clic sur une specialisation
+-- envoyait SetClassAndSpecFilters(nil, specID), rejete par la validation
+-- native (qui exige deux NOMBRES).
+--
+-- On porte le meme correctif que Sirus, applique GLOBALEMENT (comme Sirus
+-- le fait lui-meme) : les 2 valeurs d'origine restent inchangees en tete de
+-- liste, on ajoute juste classID/classFlag en 3e/4e position, donc aucun
+-- appelant existant (qui ne lit que les 2 premieres valeurs) n'est impacte.
+-- Repose sur S_CLASS_SORT_ORDER, deja present cote Universe
+-- (SharedXML\SharedConstants.lua).
+-- ============================================================
+do
+	local NativeUnitClass = UnitClass
+
+	_G.UnitClass = function(unit)
+		local className, classToken = NativeUnitClass(unit)
+
+		local classID, classFlag
+		if S_CLASS_SORT_ORDER and classToken then
+			for id, classInfo in pairs(S_CLASS_SORT_ORDER) do
+				if classInfo[2] == classToken then
+					classID = id
+					classFlag = classInfo[1]
+					break
+				end
+			end
+		end
+
+		return className, classToken, classID, classFlag
+	end
+end
+
+-- ============================================================
+-- PATCH Collection (correction round 23) : crash Reliques - Erreur 3
+-- "bad argument #2 to 'format' (string expected, got nil)" dans
+-- UpdateClassFilterDropDownText -> RAID_CLASS_COLORS[classFile].colorStr.
+--
+-- Diagnostic : la table GLOBALE RAID_CLASS_COLORS d'Universe
+-- (FrameXML\Constants.lua) ne contient que r/g/b par classe, JAMAIS de champ
+-- "colorStr" precalcule (contrairement a Sirus). Universe a bien une version
+-- AVEC colorStr, mais elle est LOCALE a SharedXML\Util.lua (donc invisible
+-- ailleurs) et sert a un usage interne different. On complete donc la table
+-- GLOBALE en ajoutant colorStr a chaque entree, calcule depuis r/g/b.
+-- ============================================================
+if RAID_CLASS_COLORS then
+	for classFile, colorInfo in pairs(RAID_CLASS_COLORS) do
+		if type(colorInfo) == "table" and not colorInfo.colorStr then
+			colorInfo.colorStr = string.format("ff%02x%02x%02x", (colorInfo.r or 1) * 255, (colorInfo.g or 1) * 255, (colorInfo.b or 1) * 255)
+		end
+	end
+end
+
+-- ============================================================
+-- PATCH Collection (correction round 30) : crash tooltip Garde-robe -
+-- "attempt to index local 'nameColor' (a nil value)" / "attempt to index
+-- field '?' (a nil value)" dans CollectionsUtil.lua:149/267
+-- (GetAppearanceNameTextAndColor / SetAppearanceTooltip).
+--
+-- Diagnostic : ce code (porte de Sirus) attend ITEM_QUALITY_COLORS[quality].color,
+-- un objet Color avec :GetRGB(). La table native d'Universe (FrameXML\UIParent.lua)
+-- ne construit que r/g/b/hex (pas de champ .color), et ne couvre QUE les qualites
+-- -1 a 6 : la qualite 7 (Reliques/Heirloom, utilisee par certaines apparences de
+-- Garde-robe) n'existe pas du tout dans la table. Resultat : le tooltip plante des
+-- qu'on survole un objet de qualite 7, et pour les qualites 0-6 le champ .color
+-- manquant renvoie nil silencieusement -> crash un peu plus loin sur nameColor:GetRGB().
+-- Ce crash, survenant PENDANT UpdateItems (survol automatique de la grille), interrompt
+-- le rendu du reste de la page -> cases noires et modeles manquants en cascade.
+-- On complete donc la table existante avec un objet Color, et on ajoute l'entree 7
+-- manquante (couleur Reliques/Heirloom classique : bleu clair).
+-- ============================================================
+if ITEM_QUALITY_COLORS and CreateColor then
+	for quality, info in pairs(ITEM_QUALITY_COLORS) do
+		if type(info) == "table" and not info.color then
+			info.color = CreateColor(info.r or 1, info.g or 1, info.b or 1)
+		end
+	end
+	if not ITEM_QUALITY_COLORS[7] then
+		ITEM_QUALITY_COLORS[7] = { r = 0, g = 0.8, b = 1, hex = "|cff00ccff" }
+	end
+	if not ITEM_QUALITY_COLORS[7].color then
+		ITEM_QUALITY_COLORS[7].color = CreateColor(ITEM_QUALITY_COLORS[7].r or 0, ITEM_QUALITY_COLORS[7].g or 0.8, ITEM_QUALITY_COLORS[7].b or 1)
+	end
+end
+
+-- ============================================================
+-- PATCH Collection (correction round 24) : crash Reliques - Erreur 4
+-- "attempt to call global 'GetSpecializationNameForSpecID' (a nil value)".
+-- Fonction Sirus manquante cote Universe (Utils\C_Talent.lua). Universe a
+-- deja la table de donnees dont elle a besoin (S_CALSS_SPECIALIZATION_DATA,
+-- SharedXML\SharedConstants.lua) - seule la fonction d'acces manquait.
+-- Portee verbatim depuis Sirus.
+-- ============================================================
+if not GetSpecializationNameForSpecID then
+	function GetSpecializationNameForSpecID(specID)
+		if type(specID) ~= "number" then
+			return ""
+		end
+
+		if S_CALSS_SPECIALIZATION_DATA then
+			for classID, specList in pairs(S_CALSS_SPECIALIZATION_DATA) do
+				for specIndex, specInfo in ipairs(specList) do
+					if specInfo[1] == specID then
+						return specInfo[2]
+					end
+				end
+			end
+		end
+
+		return ""
+	end
+end

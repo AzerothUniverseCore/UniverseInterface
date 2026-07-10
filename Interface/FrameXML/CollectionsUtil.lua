@@ -146,7 +146,10 @@ function CollectionWardrobeUtil.GetAppearanceNameTextAndColor(appearanceInfo)
 	local text, color;
 	if appearanceInfo.name and appearanceInfo.name ~= "" then
 		text = appearanceInfo.name;
-		color = ITEM_QUALITY_COLORS[appearanceInfo.quality or 1].color;
+		-- PATCH round 30: garde defensive si la qualite n'a pas d'entree (ou pas de
+		-- champ .color) dans ITEM_QUALITY_COLORS, pour ne jamais planter le tooltip.
+		local qualityInfo = ITEM_QUALITY_COLORS[appearanceInfo.quality or 1];
+		color = (qualityInfo and qualityInfo.color) or (WHITE_FONT_COLOR or CreateColor(1, 1, 1));
 	else
 		text = RETRIEVING_ITEM_INFO;
 		color = RED_FONT_COLOR;
@@ -178,7 +181,9 @@ function CollectionWardrobeUtil.GetIllusionNameTextAndColor(sourceID)
 	local text, color;
 	if name and name ~= "" then
 		text = name;
-		color = ITEM_QUALITY_COLORS[quality or 1].color;
+		-- PATCH round 30: meme garde defensive que GetAppearanceNameTextAndColor.
+		local qualityInfo = ITEM_QUALITY_COLORS[quality or 1];
+		color = (qualityInfo and qualityInfo.color) or (WHITE_FONT_COLOR or CreateColor(1, 1, 1));
 	else
 		text = RETRIEVING_ITEM_INFO;
 		color = RED_FONT_COLOR;

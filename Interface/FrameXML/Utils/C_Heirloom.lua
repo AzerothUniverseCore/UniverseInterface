@@ -135,25 +135,55 @@ function ReloadCollectionHearloomData()
 	COLLECTION_HEIRLOOMDATA = _G.COLLECTION_HEIRLOOMDATA
 end
 
+-- PATCH round 29: PLAYER_LOGIN ne se declenche qu'a la toute premiere connexion.
+-- Si ce fichier est charge apres (ex: /reload apres avoir installe le patch, ou
+-- rechargement tardif du panneau Collections), HEIRLOOM_BY_ITEM_ID et HEIRLOOMS
+-- restent vides pour toujours et Reliques affiche 0/0 en permanence.
+-- On factorise la population dans une fonction idempotente et on la declenche
+-- aussi bien sur PLAYER_LOGIN que sur PLAYER_ENTERING_WORLD (qui se declenche a
+-- chaque /reload et chaque entree dans le monde), avec un garde pour ne le faire
+-- qu'une seule fois "pour de vrai" (sauf si les donnees changent vraiment).
+local heirloomDataPopulated = false;
+
+local function PopulateHeirloomData()
+	if not COLLECTION_HEIRLOOMDATA or #COLLECTION_HEIRLOOMDATA == 0 then
+		-- Les donnees generees ne sont pas encore chargees (ne devrait pas arriver
+		-- vu l'ordre du toc, mais on se protege quand meme) : on retentera au
+		-- prochain evenement plutot que de planter ou de laisser HEIRLOOMS vide.
+		return;
+	end
+
+	for i = 1, #COLLECTION_HEIRLOOMDATA do
+		local data = COLLECTION_HEIRLOOMDATA[i];
+
+		HEIRLOOM_BY_ITEM_ID[data.itemID] = data;
+		if C_SpellBook and C_SpellBook.FilterOutSpellLearn then
+			C_SpellBook.FilterOutSpellLearn(data.spellID)
+		end
+	end
+
+	SetFilteredHeirlooms();
+
+	heirloomDataPopulated = true;
+
+	if FireCustomClientEvent then
+		FireCustomClientEvent("HEIRLOOMS_UPDATED");
+	end
+end
+
 local frame = CreateFrame("Frame");
 frame:Hide();
 frame:RegisterEvent("VARIABLES_LOADED");
 frame:RegisterEvent("PLAYER_LOGIN");
+frame:RegisterEvent("PLAYER_ENTERING_WORLD");
 frame:SetScript("OnEvent", function(_, event)
 	if event == "VARIABLES_LOADED" then
 		COLLECTED_SHOWN = not GetCVarBitfield("heirloomCollectedFilters", HEIRLOOM_COLLECTED);
 		UNCOLLECTED_SHOWN = not GetCVarBitfield("heirloomCollectedFilters", HEIRLOOM_UNCOLLECTED);
-	elseif event == "PLAYER_LOGIN" then
-		for i = 1, #COLLECTION_HEIRLOOMDATA do
-			local data = COLLECTION_HEIRLOOMDATA[i];
-
-			HEIRLOOM_BY_ITEM_ID[data.itemID] = data;
-			C_SpellBook.FilterOutSpellLearn(data.spellID)
+	elseif event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD" then
+		if not heirloomDataPopulated then
+			PopulateHeirloomData();
 		end
-
-		SetFilteredHeirlooms();
-
-		FireCustomClientEvent("HEIRLOOMS_UPDATED");
 	end
 end);
 
@@ -277,6 +307,11 @@ end
 
 function C_Heirloom.GetClassAndSpecFilters()
 	return CLASS_FILTER, SPEC_FILTER;
+end
+
+-- PATCH round 29: expose l'etat interne pour /hdebug
+function C_Heirloom.DebugState()
+	return heirloomDataPopulated, (COLLECTION_HEIRLOOMDATA and #COLLECTION_HEIRLOOMDATA or 0), #HEIRLOOMS, CLASS_FILTER, SPEC_FILTER;
 end
 
 function C_Heirloom.SetHeirloomSourceFilter(index, checked)

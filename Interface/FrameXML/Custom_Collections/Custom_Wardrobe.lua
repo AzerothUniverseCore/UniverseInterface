@@ -2178,7 +2178,13 @@ function WardrobeItemsModelMixin:OnUpdateModel()
 	SetSequence(self, self.animId or 3);
 
 	if self.queuedSourceID then
-		local itemName = GetItemInfo(self.queuedSourceID);
+		-- PATCH round 31: GetItemInfo natif ne resout jamais les sourceID d'armes
+		-- inconnues du cache client (pas de vrai aller-retour serveur sur ce
+		-- portage). On utilise notre C_Item.GetItemInfo (avec repli sur
+		-- ItemsCache) au lieu du GetItemInfo brut, sinon cette boucle de poll
+		-- tourne indefiniment et les modeles d'armes restent bloques en
+		-- "chargement" (cases noires) pour toujours.
+		local itemName = C_Item.GetItemInfo(self.queuedSourceID);
 		if itemName then
 			self:SetItemAppearance(self.queuedSourceID);
 			self.queuedSourceID = nil;
@@ -2201,18 +2207,55 @@ function WardrobeItemsModelMixin:SetItemAppearance(sourceID, illusionID)
 
 	local activeSlot = self:GetParent():GetActiveSlot();
 	local isWeapon = activeSlot == "MAINHANDSLOT" or activeSlot == "SECONDARYHANDSLOT" or activeSlot == "RANGEDSLOT";
+
+	-- PATCH round 45: la creature 413 reste bloquee en chargement PERMANENT
+	-- sur les modeles de la grille (confirme visuellement : icone de
+	-- chargement affichee en boucle infinie, jamais resolue), contrairement
+	-- au /mdebug initial qui l'avait montree chargee (probablement grace au
+	-- rechauffement prealable du widget global DummyWardrobeWeaponModel,
+	-- qui ne beneficie pas aux modeles individuels de la grille). On
+	-- abandonne donc definitivement cette creature et on repart de
+	-- l'approche confirmee fonctionnelle au round 41 (SetUnit("player"),
+	-- meme modele que l'armure) avec un zoom intermediaire entre le round 41
+	-- (corps entier, trop eloigne) et le round 42 (juste un bout de bras,
+	-- trop zoome/decale).
+	if self.isCreatureModel then
+		self:SetUnit("player");
+		self.isCreatureModel = false;
+		self.cameraID = nil;
+	end
 	if isWeapon then
-		DummyWardrobeUnitModel:Dress();
 		self:Undress();
 	end
 
-	local cameraID = C_TransmogCollection.GetAppearanceCameraIDBySource(sourceID);
-	if self.cameraID ~= cameraID then
-		Model_ApplyUICamera(self, cameraID);
-		self.cameraID = cameraID;
+	if isWeapon then
+		local cameraKey = "weapon-" .. activeSlot;
+		if self.cameraID ~= cameraKey then
+			local scale = self:GetEffectiveScale() - (self:GetEffectiveScale() - UIParent:GetScale());
+			local width = GetScreenWidth() * scale;
+			local height = GetScreenHeight() * scale;
+			local square = math.sqrt(width * width + height * height);
+			local cameraSquare = math.sqrt(1366 * 1366 + 768 * 768);
+			local diff = (cameraSquare / square) * self:GetModelScale();
+
+			-- Round 51: retour a la version v49 (position/zoom/cote valides par
+			-- l'utilisateur), la rotation ajoutee au round 50 est annulee - les
+			-- joueurs pourront de toute facon voir l'arme sous tous les angles
+			-- a la cabine d'essayage (Transmogrificateur) en jeu.
+			self:SetPosition(1.45 * diff, 0.15 * diff, 0.15 * diff);
+			self.cameraID = cameraKey;
+		end
+	else
+		local cameraID = C_TransmogCollection.GetAppearanceCameraIDBySource(sourceID);
+		if self.cameraID ~= cameraID then
+			Model_ApplyUICamera(self, cameraID);
+			self.cameraID = cameraID;
+		end
 	end
 
-	local name = GetItemInfo(sourceID);
+	-- PATCH round 31: meme correctif que OnUpdateModel, avec notre shim
+	-- C_Item.GetItemInfo (repli ItemsCache) plutot que le GetItemInfo natif.
+	local name = C_Item.GetItemInfo(sourceID);
 	if not name then
 		if not isWeapon then
 			self:EquipTransmogGear(activeSlot);
@@ -2249,11 +2292,11 @@ function WardrobeItemsModelMixin:Reload(reloadSlot, refreshModel)
 			self:SetPosition(0, 0, 0);
 			self:ClearModel();
 
-			if reloadSlot == "MAINHANDSLOT" or reloadSlot == "SECONDARYHANDSLOT" or reloadSlot == "RANGEDSLOT" then
-				self:SetCreature(413);
-			else
-				self:SetUnit("player");
-			end
+			-- PATCH round 45: creature 413 definitivement abandonnee (chargement
+			-- permanent, jamais resolu, sur les modeles de grille) -> coherent
+			-- avec SetItemAppearance, toujours SetUnit("player").
+			self:SetUnit("player");
+			self.isCreatureModel = false;
 
 --			self:SetPosition(0, 0, 0);
 --			self:RefreshUnit();

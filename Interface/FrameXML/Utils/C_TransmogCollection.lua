@@ -203,6 +203,65 @@ local SKILL_ID_BY_NAME = {
 	[SKILL_NAME_CLOTH] = 415,
 };
 
+-- PATCH Collection (correction round 27) : SKILL_ID_BY_NAME normalise
+-- (accents/casse/espaces). Diagnostic via /cdebug : le serveur Universe
+-- renvoie des noms de competence AVEC accents ("Epees" -> reellement
+-- "Ãpees", "Batons" -> "BÃ¢tons", "Arbaletes" -> "ArbalÃ¨tes",
+-- "Masses a deux mains" -> "Masses Ã  deux mains", etc.), alors que nos
+-- constantes SKILL_NAME_* (traductions devinees a la main) sont ecrites SANS
+-- accents. Un seul caractere different = correspondance ratee = la
+-- sous-categorie entiere reste bloquee a 0/0 dans le Garde-robe, sans la
+-- moindre erreur Lua (juste un lookup de table qui rate silencieusement).
+--
+-- Plutot que de corriger accent par accent (fragile : la moindre variante
+-- non testee refait planter le meme bug), on normalise les DEUX cotes de la
+-- comparaison : accents retires, casse uniforme, espaces reduits.
+local function NormalizeSkillNameForLookup(name)
+	if type(name) ~= "string" then
+		return name
+	end
+	local accentMap = {
+		["\xc3\xa9"] = "e",
+		["\xc3\xa8"] = "e",
+		["\xc3\xaa"] = "e",
+		["\xc3\xab"] = "e",
+		["\xc3\xa0"] = "a",
+		["\xc3\xa2"] = "a",
+		["\xc3\xae"] = "i",
+		["\xc3\xaf"] = "i",
+		["\xc3\xb4"] = "o",
+		["\xc3\xb9"] = "u",
+		["\xc3\xbb"] = "u",
+		["\xc3\xbc"] = "u",
+		["\xc3\xa7"] = "c",
+		["\xc3\x89"] = "e",
+		["\xc3\x88"] = "e",
+		["\xc3\x8a"] = "e",
+		["\xc3\x8b"] = "e",
+		["\xc3\x80"] = "a",
+		["\xc3\x82"] = "a",
+		["\xc3\x8e"] = "i",
+		["\xc3\x8f"] = "i",
+		["\xc3\x94"] = "o",
+		["\xc3\x99"] = "u",
+		["\xc3\x9b"] = "u",
+		["\xc3\x9c"] = "u",
+		["\xc3\x87"] = "c",
+	}
+	-- Remplace chaque sequence UTF-8 accentuee (2 octets, prefixe \xc3) par
+	-- sa version simple, PUIS met le reste (ASCII pur) en minuscule.
+	name = name:gsub("\xc3[\x80-\xbf]", accentMap)
+	name = name:lower()
+	name = name:gsub("%s+", " ")
+	name = name:gsub("^%s+", ""):gsub("%s+$", "")
+	return name
+end
+
+local SKILL_ID_BY_NAME_NORMALIZED = {}
+for skillName, skillID in pairs(SKILL_ID_BY_NAME) do
+	SKILL_ID_BY_NAME_NORMALIZED[NormalizeSkillNameForLookup(skillName)] = skillID
+end
+
 local PLAYER_SKILLS = {};
 if UNIT_CLASS == "WARRIOR" or UNIT_CLASS == "HUNTER" or UNIT_CLASS == "ROGUE" or UNIT_CLASS == "SHAMAN" or UNIT_CLASS == "DRUID" then
 	PLAYER_SKILLS[SKILL_ID_BY_NAME[SKILL_NAME_FIST_WEAPONS]] = true;
@@ -706,7 +765,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				local skillName, header = GetSkillLineInfo(i)
 
 				if not header then
-					local skillID = SKILL_ID_BY_NAME[skillName];
+					local skillID = SKILL_ID_BY_NAME[skillName] or SKILL_ID_BY_NAME_NORMALIZED[NormalizeSkillNameForLookup(skillName)];
 					if skillID then
 						local oldValue = not not PLAYER_SKILLS[skillID];
 
@@ -2275,5 +2334,50 @@ function EventHandler:ASMSG_C_E_ADD(msg)
 
 			FireCustomClientEvent("TRANSMOG_COLLECTION_UPDATED");
 		end
+	end
+end
+-- ============================================================
+-- PATCH Collection (correction round 22) : outil de diagnostic.
+--
+-- Le Garde-robe filtre desormais correctement par sous-categorie (armure
+-- Cuir/Tissu/Mailles/Plaques, etc.) MAIS certaines sous-categories affichent
+-- encore 0/0 alors que la liste globale (non filtree) montre des objets.
+-- Hypothese : PLAYER_SKILLS (plus haut dans ce fichier) est rempli via
+-- SKILL_ID_BY_NAME[skillName], ou skillName vient du VRAI nom de competence
+-- renvoye par GetSkillLineInfo() du serveur Universe - et SKILL_ID_BY_NAME
+-- est indexe par des constantes SKILL_NAME_* (traductions francaises
+-- DEVINEES, jamais confirmees face au serveur reel). Si une seule ne
+-- correspond pas mot pour mot, la sous-categorie correspondante reste
+-- bloquee a 0/0 pour tout le monde, sans la moindre erreur Lua.
+--
+-- Cette fonction expose l'etat interne (normalement prive/local a ce
+-- fichier) pour comparer d'un coup : ce que le serveur renvoie vraiment vs
+-- ce que nos constantes attendent. Appelable via la commande /cdebug
+-- (voir Collection_Compat.lua).
+-- ============================================================
+function Collection_DebugSkills()
+	print("|cffffcc00[Collection Debug] Lignes de competence du joueur :|r")
+	local numSkillLines = GetNumSkillLines()
+	for i = 1, numSkillLines do
+		local skillName, header = GetSkillLineInfo(i)
+		if not header then
+			local matchedID = SKILL_ID_BY_NAME[skillName]
+			print(string.format("  [%d] %q -> SKILL_ID_BY_NAME = %s", i, tostring(skillName), tostring(matchedID)))
+		end
+	end
+
+	print("|cffffcc00[Collection Debug] Nos constantes SKILL_NAME_* attendues :|r")
+	for name, id in pairs(SKILL_ID_BY_NAME) do
+		print(string.format("  %q (skillID=%d)", tostring(name), id))
+	end
+
+	print("|cffffcc00[Collection Debug] PLAYER_SKILLS actuellement reconnus :|r")
+	local any = false
+	for skillID, v in pairs(PLAYER_SKILLS) do
+		any = true
+		print(string.format("  skillID=%s -> %s", tostring(skillID), tostring(v)))
+	end
+	if not any then
+		print("  (aucun)")
 	end
 end

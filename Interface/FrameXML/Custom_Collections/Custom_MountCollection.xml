@@ -255,14 +255,16 @@
 			<OnEnter>
 				if self.abilityID then
 					local name, _, text, description = C_MountJournal.GetAbilityInfo(self.abilityID)
-					GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-					GameTooltip:SetText(name, 1, 1, 1)
-					GameTooltip:AddLine(text, nil, nil, nil, 1)
-					if description and description ~= "" then
-						GameTooltip:AddLine(" ")
-						GameTooltip:AddLine(description, nil, nil, nil, 1)
+					if name then
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+						GameTooltip:SetText(name, 1, 1, 1)
+						GameTooltip:AddLine(text, nil, nil, nil, 1)
+						if description and description ~= "" then
+							GameTooltip:AddLine(" ")
+							GameTooltip:AddLine(description, nil, nil, nil, 1)
+						end
+						GameTooltip:Show()
 					end
-					GameTooltip:Show()
 				end
 			</OnEnter>
 			<OnLeave function="GameTooltip_Hide"/>
