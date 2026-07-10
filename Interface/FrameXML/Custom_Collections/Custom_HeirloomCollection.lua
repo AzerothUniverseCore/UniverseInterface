@@ -362,7 +362,10 @@ local PAGE_WIDTH = 625;
 -- The starting X offset of a page
 local START_OFFSET_X = 40;
 -- The starting Y offset of a page
-local START_OFFSET_Y = -25;
+-- PATCH round 73 : -35 (etait -25) pour laisser un peu plus de respiration
+-- sous la ligne "Cout : ..." ajoutee en round 67/72 : le premier en-tete de
+-- categorie (ex: "EPAULE") collait dessus.
+local START_OFFSET_Y = -35;
 
 -- Additional Y offset of a page when the view mode is in "all classes"
 local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
