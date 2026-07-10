@@ -121,3 +121,41 @@ for atlasName, atlasData in pairs(TRANSMOG_ATLAS_ENTRIES) do
 		S_ATLAS_STORAGE[atlasName] = atlasData;
 	end
 end
+
+-- ROUND 74 : meme probleme, meme fix, pour la feuille de sprites partagee
+-- Interface\Collections\Collections.blp (deja presente cote Universe -- le
+-- fichier existe bel et bien, seules ses coordonnees UV/atlas manquaient).
+-- Sans ces entrees, SetAtlas(...) est un no-op silencieux : les icones
+-- Jouets/Heritage/Montures/Familiers restent de simples carres sans le
+-- cadre dore Blizzard (collections-itemborder-*), et les en-tetes de
+-- categorie ("EPAULE", "TORSE", etc.) restent du texte nu sans le bandeau
+-- (collections-slotheader) qui va derriere. Copiees telles quelles depuis
+-- SharedXML\AtlasStorage.lua de Sirus.
+local COLLECTIONS_UI_ATLAS_ENTRIES = {
+	["_collections-background-line"] = {512, 4, 0.000000, 1.000000, 0.001953, 0.009766, true, true, "Interface/Collections/Collections"},
+	["collections-background-corner"] = {90, 67, 0.001953, 0.177734, 0.013672, 0.144531, false, false, "Interface/Collections/Collections"},
+	["collections-background-filagree"] = {151, 109, 0.001953, 0.296875, 0.199219, 0.412109, false, false, "Interface/Collections/Collections"},
+	["collections-background-shadow-large"] = {145, 147, 0.181641, 0.464844, 0.416016, 0.703125, false, false, "Interface/Collections/Collections"},
+	["collections-background-shadow-small"] = {13, 13, 0.181641, 0.207031, 0.082031, 0.107422, false, false, "Interface/Collections/Collections"},
+	["collections-icon-favorites"] = {31, 33, 0.181641, 0.242188, 0.013672, 0.078125, false, false, "Interface/Collections/Collections"},
+	["collections-itemborder-collected"] = {56, 56, 0.246094, 0.355469, 0.013672, 0.123047, false, false, "Interface/Collections/Collections"},
+	["collections-itemborder-uncollected"] = {100, 100, 0.300781, 0.496094, 0.199219, 0.394531, false, false, "Interface/Collections/Collections"},
+	["collections-itemborder-uncollected-innerglow"] = {42, 41, 0.359375, 0.441406, 0.013672, 0.093750, false, false, "Interface/Collections/Collections"},
+	["collections-levelplate-black"] = {32, 21, 0.359375, 0.421875, 0.097656, 0.138672, false, false, "Interface/Collections/Collections"},
+	["collections-levelplate-gold"] = {32, 21, 0.445313, 0.507813, 0.013672, 0.054688, false, false, "Interface/Collections/Collections"},
+	["collections-newglow"] = {59, 37, 0.511719, 0.626953, 0.013672, 0.085938, false, false, "Interface/Collections/Collections"},
+	["collections-slotheader"] = {490, 24, 0.001953, 0.958984, 0.148438, 0.195313, false, false, "Interface/Collections/Collections"},
+	["collections-upgradeglow"] = {100, 100, 0.500000, 0.695313, 0.199219, 0.394531, false, false, "Interface/Collections/Collections"},
+	["collections-upgradeglow-blue"] = {100, 100, 0.699219, 0.894531, 0.199219, 0.394531, false, false, "Interface/Collections/Collections"},
+	["collections-watermark-heirloom"] = {90, 92, 0.001953, 0.177734, 0.416016, 0.595703, false, false, "Interface/Collections/Collections"},
+	["collections-watermark-toy"] = {109, 110, 0.181641, 0.394531, 0.707031, 0.921875, false, false, "Interface/Collections/Collections"},
+}
+
+for atlasName, atlasData in pairs(COLLECTIONS_UI_ATLAS_ENTRIES) do
+	if not PRETTY_ATLAS_STORAGE[atlasName] then
+		PRETTY_ATLAS_STORAGE[atlasName] = atlasData;
+	end
+	if not S_ATLAS_STORAGE[atlasName] then
+		S_ATLAS_STORAGE[atlasName] = atlasData;
+	end
+end
