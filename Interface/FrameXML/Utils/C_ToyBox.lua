@@ -50,9 +50,18 @@ local FACTIONS = {
 -- sort EXISTE dans le DBC (GetSpellInfo par nom/rang), pas que le joueur le
 -- connait reellement -- contrairement a C_Heirloom.lua's PlayerHasHeirloom,
 -- qui utilise deja IsSpellKnown (verification reelle). Meme logique ici.
+--
+-- PATCH round 76 : depuis que l'obtention d'un Jouet passe par la monnaie
+-- (item 43228, meme systeme que Heritage) et non plus par l'apprentissage
+-- d'un sort, IsSpellKnown(toy.spellID) ne refletait plus jamais la
+-- possession reelle -- un jouet fraichement achete restait catalogue
+-- "non possede" (icone eteinte, filtre Collectionne/Non collectionne
+-- faux) puisque son sort n'est plus jamais appris. Meme fix que
+-- C_Heirloom.lua (round 67/75) : la preuve de possession est desormais
+-- d'avoir l'objet physiquement dans les sacs OU la banque personnelle.
 local function isLearnedToy(itemID)
 	local toy = TOY_BY_ITEM_ID[itemID];
-	if toy and toy.spellID and IsSpellKnown(toy.spellID) then
+	if toy and GetItemCount(itemID, true) > 0 then
 		return true;
 	end
 
@@ -127,7 +136,12 @@ local function FilterToy(data, sourceFiltersFlag, sourceFlag, isGM)
 			end
 		end
 
-		if not data.spellName or not string.find(string.lower(data.spellName), FILTER_STRING, 1, true) then
+		-- PATCH round 76 : priorite au vrai nom de l'item (comme Heritage,
+		-- round 72), repli sur le nom du sort mis en cache si l'item n'est
+		-- pas encore en cache client.
+		local itemName = C_Item.GetItemInfo(data.itemID, false, nil, true, true);
+		local name = itemName or data.spellName;
+		if not name or not string.find(string.lower(name), FILTER_STRING, 1, true) then
 			return false;
 		end
 	end

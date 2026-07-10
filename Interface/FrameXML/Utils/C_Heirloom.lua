@@ -72,7 +72,15 @@ local function PlayerHasHeirloom(itemID)
 	-- La seule preuve reelle de possession desormais est d'avoir l'objet
 	-- physiquement dans les sacs.
 	local heirloom = HEIRLOOM_BY_ITEM_ID[itemID];
-	if heirloom and GetItemCount(itemID) > 0 then
+	-- PATCH round 75 : GetItemCount(itemID) sans le 2e argument ne compte
+	-- QUE les sacs -- deposer l'objet a la banque personnelle le faisait
+	-- donc paraitre "non collecte" (icone eteinte, retire du compte X/38)
+	-- alors que le joueur le possede toujours. true = inclut la banque
+	-- personnelle. Limitation connue : la banque de GUILDE n'est jamais
+	-- visible via cette API cote client/serveur (ni WotLK ni Eluna), donc
+	-- un objet depose en banque de guilde restera invisible pour ce
+	-- controle -- aucune solution fiable sans toucher au C++ du core.
+	if heirloom and GetItemCount(itemID, true) > 0 then
 		return true;
 	end
 

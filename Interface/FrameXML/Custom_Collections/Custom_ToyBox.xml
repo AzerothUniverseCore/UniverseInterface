@@ -177,6 +177,36 @@
 				</Frames>
 			</Frame>
 
+			<!-- PATCH round 76 : affichage monnaie (icone + compteur) + cout par
+			     objet, meme mecanisme que l'onglet Heritage (round 67/72).
+			     Declare APRES IconsFrame expres, pour que son OVERLAY se
+			     dessine toujours par-dessus le ShadowLineTop de la grille. -->
+			<Frame name="$parentCurrencyFrame" parentKey="CurrencyFrame">
+				<Size x="260" y="18"/>
+				<Anchors>
+					<Anchor point="TOP" x="0" y="-74"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentIcon" parentKey="Icon">
+							<Size x="16" y="16"/>
+							<Anchors>
+								<Anchor point="LEFT" x="0" y="0"/>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentCountText" parentKey="CountText" inherits="GameFontNormalSmall" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentIcon" relativePoint="RIGHT" x="4" y="0"/>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCostText" parentKey="CostText" inherits="GameFontNormalSmall" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parentCountText" relativePoint="RIGHT" x="14" y="0"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
 			<!-- Paging -->
 			<Frame  name="$parentPagingFrame" parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
 				<Anchors>

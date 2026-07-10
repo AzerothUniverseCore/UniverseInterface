@@ -1,5 +1,34 @@
 local TOYS_PER_PAGE = 18;
 
+-- PATCH round 76 (monnaie Jouets) : memes valeurs que Heritage
+-- (Custom_HeirloomCollection.lua) et que le script serveur Eluna
+-- AzuCollection_ItemGrant.lua -- a garder synchronisees si le cout ou
+-- l'item-monnaie changent un jour.
+local TOY_CURRENCY_ITEM_ID = 43228; -- Eclat du gardien des pierres
+local TOY_CURRENCY_COST = 50;
+local TOY_CURRENCY_ICON = "Interface\\Icons\\INV_Misc_Platnumdisks";
+local TOY_CURRENCY_NAME = "Eclat du gardien des pierres";
+
+-- Affichage de la monnaie (icone + compteur) dans la fenetre -- meme
+-- logique que HeirloomsMixin:UpdateCurrencyDisplay (round 67/72).
+function ToyBox_UpdateCurrencyDisplay(self)
+	local currencyFrame = self.CurrencyFrame;
+	if not currencyFrame then
+		return;
+	end
+
+	currencyFrame.Icon:SetTexture(TOY_CURRENCY_ICON);
+
+	local count = GetItemCount(TOY_CURRENCY_ITEM_ID) or 0;
+	if count > 0 then
+		currencyFrame.CountText:SetText("|cffffd700"..count.."|r");
+	else
+		currencyFrame.CountText:SetText("|cffff4444"..count.."|r");
+	end
+
+	currencyFrame.CostText:SetText(("|cffffffffCout : %d %s par objet|r"):format(TOY_CURRENCY_COST, TOY_CURRENCY_NAME));
+end
+
 function ToyBox_OnLoad(self)
 	self.autoPageToCollectedToyID = UIParent.autoPageToCollectedToyID or nil;
 	self.newToys = {};
@@ -10,6 +39,13 @@ function ToyBox_OnLoad(self)
 	UIDropDownMenu_Initialize(self.ToyOptionsMenu, ToyBoxOptionsMenu_Init, "MENU");
 
 	self:RegisterCustomEvent("TOYS_UPDATED");
+
+	-- PATCH round 76 : rafraichit le compteur de monnaie ET l'etat
+	-- allume/eteint des icones + le compteur X/N a chaque changement de
+	-- sacs (meme fix que Heritage round 68 -- sinon il fallait se
+	-- reconnecter pour voir un Jouet fraichement achete passer a l'etat
+	-- "collecte").
+	self:RegisterEvent("BAG_UPDATE");
 
 	self.OnPageChanged = function()
 		PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
@@ -35,6 +71,14 @@ function ToyBox_OnEvent(self, event, itemID, new)
 		ToyBox_UpdatePages();
 		ToyBox_UpdateProgressBar(self);
 		ToyBox_UpdateButtons();
+	elseif event == "BAG_UPDATE" then
+		if self:IsShown() then
+			ToyBox_UpdateCurrencyDisplay(self);
+			C_ToyBox.ForceToyRefilter();
+			ToyBox_UpdatePages();
+			ToyBox_UpdateProgressBar(self);
+			ToyBox_UpdateButtons();
+		end
 	end
 end
 
@@ -45,6 +89,7 @@ function ToyBox_OnShow(self)
 	ToyBox_UpdatePages();
 	ToyBox_UpdateProgressBar(self);
 	ToyBox_UpdateButtons();
+	ToyBox_UpdateCurrencyDisplay(self);
 
 	ToyBoxResetFiltersButton_UpdateVisibility();
 	EventRegistry:TriggerEvent("ToyBox.OnShow")
@@ -124,6 +169,26 @@ function ToySpellButton_OnEnter(self)
 		self.UpdateTooltip = nil;
 	end
 
+	-- PATCH round 76 : affiche le cout en monnaie (avec icone), meme logique
+	-- que le tooltip Heritage (round 67/72).
+	if PlayerHasToy(self.itemID) then
+		GameTooltip:AddLine(" ");
+		GameTooltip:AddLine("|cff00ff00Vous possedez deja cet objet.|r");
+	else
+		local count = GetItemCount(TOY_CURRENCY_ITEM_ID) or 0;
+		local iconTag = "|T"..TOY_CURRENCY_ICON..":14:14|t";
+
+		GameTooltip:AddLine(" ");
+		GameTooltip:AddLine("Cout : "..iconTag.." |cffffd700"..TOY_CURRENCY_COST.." Eclat(s) du gardien des pierres|r");
+
+		if count >= TOY_CURRENCY_COST then
+			GameTooltip:AddLine("|cff00ff00Vous avez "..count.." Eclat(s). Vous pouvez recuperer cet objet.|r");
+		else
+			GameTooltip:AddLine("|cffff0000Vous avez "..count.." / "..TOY_CURRENCY_COST.." Eclat(s). Insuffisant.|r");
+		end
+	end
+	GameTooltip:Show();
+
 	local isNew = ToyBox.newToys[self.itemID] ~= nil;
 	if isNew then
 		ToyBox.newToys[self.itemID] = nil;
@@ -139,8 +204,10 @@ function ToySpellButton_OnClick(self, button)
 		-- cf attributs "type"/"spell" dans ToySpellButton_UpdateButton) par
 		-- une demande au serveur (AzuCollection_RequestItem). Pas de garde
 		-- PlayerHasToy() ici : c'est le script Eluna cote serveur qui fait
-		-- foi sur l'entitlement reel (player:HasSpell), le client ne peut de
-		-- toute facon pas etre une source de verite fiable pour ca.
+		-- foi sur l'entitlement reel -- ROUND 76 : desormais un cout en
+		-- monnaie (item 43228 x50, meme systeme que Heritage) et non plus
+		-- player:HasSpell(), le client ne peut de toute facon pas etre une
+		-- source de verite fiable pour ca.
 		AzuCollection_RequestItem("TOY", self.itemID);
 	elseif button == "RightButton" then
 		if PlayerHasToy(self.itemID) then
@@ -279,6 +346,16 @@ function ToyBox_OnSearchTextChanged(self)
 
 	if oldText ~= ToyBox.searchString then
 		C_ToyBox.SetFilterString(ToyBox.searchString);
+
+		-- PATCH round 77 : appel direct (non base sur l'event custom
+		-- TOYS_UPDATED) pour forcer le redessin immediat de la grille,
+		-- meme fix que HeirloomsJournalSearchBox_OnTextChanged. Sans ca
+		-- FireCustomClientEvent peut echouer silencieusement car on est
+		-- deja a l'interieur du script OnTextChanged de l'EditBox (bug de
+		-- reentrance), et il fallait scroller pour forcer un redraw.
+		ToyBox_UpdatePages();
+		ToyBox_UpdateProgressBar(ToyBox);
+		ToyBox_UpdateButtons();
 	end
 end
 
@@ -286,9 +363,40 @@ function ToyBoxFilterDropDown_OnLoad(self)
 	UIDropDownMenu_Initialize(self, ToyBoxFilterDropDown_Initialize, "MENU");
 end
 
+-- PATCH round 77 : wrappers pour le filtre Collectionne/Non collectionne --
+-- meme logique que HeirloomsMixin:SetCollectedHeirloomFilter /
+-- SetUncollectedHeirloomFilter (Custom_HeirloomCollection.lua), qui
+-- appellent un refresh direct en plus de C_Heirloom.Set...Filter. Avant ce
+-- fix, les checkboxes appelaient directement C_ToyBox.SetCollectedShown /
+-- SetUncollectedShown, qui ne redessinent la grille que via
+-- FireCustomClientEvent("TOYS_UPDATED") -- sujet au meme bug de reentrance
+-- que la recherche (on est appele depuis le clic dans le menu du filtre).
+function ToyBoxFilterDropDown_SetCollectedShown(value)
+	C_ToyBox.SetCollectedShown(value);
+	ToyBox_UpdatePages();
+	ToyBox_UpdateProgressBar(ToyBox);
+	ToyBox_UpdateButtons();
+end
+
+function ToyBoxFilterDropDown_SetUncollectedShown(value)
+	C_ToyBox.SetUncollectedShown(value);
+	ToyBox_UpdatePages();
+	ToyBox_UpdateProgressBar(ToyBox);
+	ToyBox_UpdateButtons();
+end
+
 function ToyBoxFilterDropDown_ResetFilters()
 	C_ToyBoxInfo.SetDefaultFilters();
 	ToyBox.FilterButton.ResetButton:Hide();
+
+	-- PATCH round 78 : meme fix que la recherche/le filtre Collectionne
+	-- (round 77) -- sans cet appel direct, reinitialiser les filtres
+	-- (clic sur la petite croix) ne redessinait pas la grille : les
+	-- jouets ne reapparaissaient qu'apres un scroll. Cf.
+	-- HeirloomsMixin:ResetFilters qui appelle self:FullRefreshIfVisible().
+	ToyBox_UpdatePages();
+	ToyBox_UpdateProgressBar(ToyBox);
+	ToyBox_UpdateButtons();
 end
 
 function ToyBoxResetFiltersButton_UpdateVisibility()
@@ -304,8 +412,8 @@ function ToyBoxFilterDropDown_Initialize(self, level)
 	local filterSystem = {
 		onUpdate = ToyBoxResetFiltersButton_UpdateVisibility,
 		filters = {
-			{ type = FilterComponent.Checkbox, text = COLLECTED, set = C_ToyBox.SetCollectedShown, isSet = C_ToyBox.GetCollectedShown },
-			{ type = FilterComponent.Checkbox, text = NOT_COLLECTED, set = C_ToyBox.SetUncollectedShown, isSet = C_ToyBox.GetUncollectedShown },
+			{ type = FilterComponent.Checkbox, text = COLLECTED, set = ToyBoxFilterDropDown_SetCollectedShown, isSet = C_ToyBox.GetCollectedShown },
+			{ type = FilterComponent.Checkbox, text = NOT_COLLECTED, set = ToyBoxFilterDropDown_SetUncollectedShown, isSet = C_ToyBox.GetUncollectedShown },
 			{ type = FilterComponent.Submenu, text = SOURCES, value = 1, childrenInfo = {
 					filters = {
 						{ type = FilterComponent.TextButton,
