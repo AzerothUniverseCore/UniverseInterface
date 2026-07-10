@@ -1482,6 +1482,17 @@ function WardrobeItemsCollectionMixin:SetActiveCategory(category, subCategory, s
 			self.lastArmorSubCategory = subCategory;
 		end
 		self:RefreshVisualsList();
+
+		-- PATCH round 79 (meme famille de fix que Jouets round 77/78) :
+		-- appel direct pour forcer le redessin immediat de la grille. Sur
+		-- le client retail, ce chemin s'appuie normalement sur le systeme
+		-- de recherche (SwitchSearchCategory / OnSearchUpdate) pour peindre
+		-- la grille de facon asynchrone -- sur Azeroth Universe ce
+		-- round-trip n'est pas fiable (meme bug de reentrance que pour
+		-- Jouets/Heritage), d'ou le besoin de cliquer 2 fois (reinitialiser
+		-- les filtres puis recliquer un slot) avant que la grille
+		-- n'apparaisse enfin.
+		self:UpdateItems();
 	else
 		self:RefreshVisualsList();
 		self:UpdateItems();
@@ -2693,6 +2704,15 @@ function WardrobeFilterDropDown_ResetFilters()
 		C_IllusionInfo.SetDefaultFilters();
 	end
 	WardrobeCollectionFrame.FilterButton.ResetButton:Hide();
+
+	-- PATCH round 79 : meme fix que Jouets (round 78) -- sans cet appel
+	-- direct, reinitialiser les filtres ne redessinait pas la grille du
+	-- slot actif tout de suite.
+	local itemsFrame = WardrobeCollectionFrame.ItemsCollectionFrame;
+	if itemsFrame and itemsFrame:IsShown() and itemsFrame.transmogLocation then
+		itemsFrame:RefreshVisualsList();
+		itemsFrame:UpdateItems();
+	end
 end
 
 function WardrobeResetFiltersButton_UpdateVisibility()
