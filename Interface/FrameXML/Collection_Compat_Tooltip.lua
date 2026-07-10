@@ -302,6 +302,29 @@ SlashCmdList["HEIRLOOMDEBUG"] = function()
 	local frame = HeirloomsJournal;
 	if frame then
 		print("|cffffcc00[Heirloom Debug]|r HeirloomsJournal:IsVisible() =", tostring(frame:IsVisible()), " numKnownHeirlooms =", tostring(frame.numKnownHeirlooms), " numPossibleHeirlooms =", tostring(frame.numPossibleHeirlooms));
+		print("|cffffcc00[Heirloom Debug]|r needsDataRebuilt =", tostring(frame.needsDataRebuilt), " needsRefresh =", tostring(frame.needsRefresh), " filtersSet =", tostring(frame.filtersSet));
+		print("|cffffcc00[Heirloom Debug]|r #heirloomLayoutData =", tostring(frame.heirloomLayoutData and #frame.heirloomLayoutData));
+
+		-- ROUND 58 : forcer un rebuild propre, hors de tout contexte de
+		-- script deja en cours (donc aucun risque de reentrance), et capter
+		-- toute erreur silencieuse avec pcall pour savoir si
+		-- RebuildLayoutData plante reellement ou si le probleme est ailleurs.
+		local okBuckets, equipBucketsOrErr = pcall(frame.SortHeirloomsIntoEquipmentBuckets, frame);
+		if okBuckets then
+			local bucketCount = 0;
+			for _ in pairs(equipBucketsOrErr) do bucketCount = bucketCount + 1; end
+			print("|cffffcc00[Heirloom Debug]|r SortHeirloomsIntoEquipmentBuckets() OK, categories remplies =", bucketCount, " numPossibleHeirlooms apres appel =", tostring(frame.numPossibleHeirlooms));
+		else
+			print("|cffff0000[Heirloom Debug]|r SortHeirloomsIntoEquipmentBuckets() a plante :", tostring(equipBucketsOrErr));
+		end
+
+		frame.needsDataRebuilt = true;
+		local okRebuild, rebuildErr = pcall(frame.RebuildLayoutData, frame);
+		if okRebuild then
+			print("|cffffcc00[Heirloom Debug]|r RebuildLayoutData() force OK -> numPossibleHeirlooms =", tostring(frame.numPossibleHeirlooms), " #heirloomLayoutData =", tostring(frame.heirloomLayoutData and #frame.heirloomLayoutData));
+		else
+			print("|cffff0000[Heirloom Debug]|r RebuildLayoutData() a plante :", tostring(rebuildErr));
+		end
 	else
 		print("|cffff0000[Heirloom Debug]|r HeirloomsJournal introuvable (ouvrez d'abord Reliques).");
 	end

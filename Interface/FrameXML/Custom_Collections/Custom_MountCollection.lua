@@ -528,6 +528,16 @@ function MountJournal_OnSearchTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 	C_MountJournal.SetSearch(self:GetText());
 
+	-- PATCH Collection (round 55) : C_MountJournal.SetSearch declenche bien
+	-- FireCustomClientEvent("MOUNT_JOURNAL_SEARCH_UPDATED") en interne, mais
+	-- appeler ExecuteFrameScript depuis l'interieur du script OnTextChanged
+	-- (donc en pleine execution d'un AUTRE script Frame) echoue
+	-- silencieusement ici (securecall avale l'erreur) -- la liste ne se
+	-- redessine qu'au prochain scroll (qui appelle MountJournal_UpdateMountList
+	-- directement, hors de ce contexte re-entrant). On appelle donc
+	-- directement la mise a jour ici, sans passer par l'evenement custom.
+	MountJournal_FullUpdate(MountJournal);
+
 	if not MountJournal.selectedItemID then
 		MountJournal_Select(1);
 	end
@@ -768,14 +778,23 @@ function FavoriteButton_OnClick(self, button)
 	if MountJournal.selectedMountID then
 		MountJournal_SetSelected(MountJournal.selectedMountID, MountJournal.selectedItemID);
 
-		local scrollButton = MountJournal_GetMountButtonByMountID(MountJournal.selectedMountID);
-		if scrollButton then
-			local isFavorite, canFavorite = C_MountJournal.GetIsFavorite(scrollButton.index);
+		-- PATCH Collection (round 55) : MountJournal_GetMountButtonByMountID
+		-- ne cherche que parmi les boutons ACTUELLEMENT AFFICHES par le
+		-- HybridScrollFrame (~10-15 lignes visibles a l'ecran). Si la
+		-- monture selectionnee (dont le bouton Favori vit dans le panneau
+		-- de detail, pas dans la liste) a defile hors de vue, scrollButton
+		-- est nil et tout le clic ne fait rien -- silencieusement, sans
+		-- erreur. On utilise a la place GetMountDisplayIndexByMountID (deja
+		-- definie plus haut dans ce fichier), qui cherche parmi TOUTES les
+		-- montures affichees, pas seulement celles visibles a l'ecran.
+		local mountIndex = GetMountDisplayIndexByMountID(MountJournal.selectedMountID);
+		if mountIndex then
+			local isFavorite, canFavorite = C_MountJournal.GetIsFavorite(mountIndex);
 			if canFavorite then
 				if isFavorite then
-					C_MountJournal.SetIsFavorite(scrollButton.index, false);
+					C_MountJournal.SetIsFavorite(mountIndex, false);
 				else
-					C_MountJournal.SetIsFavorite(scrollButton.index, true);
+					C_MountJournal.SetIsFavorite(mountIndex, true);
 				end
 			end
 		end

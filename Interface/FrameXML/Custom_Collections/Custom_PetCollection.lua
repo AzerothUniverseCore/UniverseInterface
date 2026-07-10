@@ -176,6 +176,12 @@ end
 function PetJournal_OnSearchTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 	C_PetJournal.SetSearchFilter(self:GetText());
+
+	-- PATCH Collection (round 55) : meme cause que MountJournal -- la mise a
+	-- jour via FireCustomClientEvent("PET_JOURNAL_LIST_UPDATE") echoue
+	-- silencieusement en contexte re-entrant (appelee depuis le script
+	-- OnTextChanged d'un autre Frame). On force la mise a jour directement.
+	PetJournal_FullUpdate(PetJournal);
 end
 
 function PetJournalListItem_OnClick(self, button)

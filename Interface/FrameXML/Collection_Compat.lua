@@ -75,6 +75,72 @@ if not UnregisterCustomEvent then
 end
 
 -- ============================================================
+-- 2bis) FireCustomClientEvent
+--    ROUND 53 : le systeme de Collection appelle FireCustomClientEvent(...)
+--    ~24 fois (rafraichissement de la recherche Montures/Familiers, mise a
+--    jour du bouton Invoquer/Renvoyer, remplissage de la grille Reliques,
+--    etc.) mais cette fonction n'existait nulle part dans ce patch -- seuls
+--    RegisterCustomEvent/UnregisterCustomEvent (qui remplissent
+--    REGISTERED_CUSTOM_EVENTS) avaient ete portes plus haut. Resultat : les
+--    listeners s'enregistraient correctement, mais n'etaient jamais
+--    notifies -- d'ou recherche Montures/Familiers muette, bouton
+--    Invoquer/Renvoyer jamais mis a jour, et grille Heritage qui reste
+--    vide meme quand C_Heirloom a bien des donnees en interne.
+--
+--    ROUND 55 : la toute premiere version utilisait ExecuteFrameScript
+--    (comme Sirus), mais ExecuteFrameScript echoue SILENCIEUSEMENT (avale
+--    par securecall) quand on l'appelle en contexte REENTRANT -- c'est a
+--    dire quand FireCustomClientEvent est lui-meme appele depuis
+--    l'INTERIEUR d'un script Frame deja en cours d'execution (ex:
+--    PopulateHeirloomData appelle FireCustomClientEvent("HEIRLOOMS_UPDATED")
+--    depuis le OnEvent de PLAYER_ENTERING_WORLD ; les recherches Montures/
+--    Familiers appellent FireCustomClientEvent depuis le OnTextChanged de
+--    la EditBox). Ce sont exactement les cas les plus courants
+--    d'utilisation de ce systeme. On appelle desormais directement le
+--    script OnEvent du frame (un simple appel de fonction Lua, sans passer
+--    par ExecuteFrameScript), ce qui n'a aucune restriction de reentrance.
+-- ============================================================
+if not FireCustomClientEvent then
+	function FireCustomClientEvent(event, ...)
+		local listeners = REGISTERED_CUSTOM_EVENTS[event]
+		if not listeners then
+			return
+		end
+		local frame = securecall(next, listeners, nil)
+		while frame do
+			local handler = frame.GetScript and frame:GetScript("OnEvent")
+			if handler then
+				securecall(handler, frame, event, ...)
+			end
+			frame = securecall(next, listeners, frame)
+		end
+	end
+end
+
+-- ============================================================
+-- 2ter) AzuCollection_RequestItem
+--    ROUND 54 : sur Azeroth Universe, cliquer un Jouet ou une Relique/
+--    Heritage collecte(e) doit creer l'objet PHYSIQUE dans le sac du
+--    joueur (pas de courrier, pas juste un effet de sort a la retail). Le
+--    client seul n'a AUCUNE autorite pour creer un item -- ceci envoie
+--    juste une DEMANDE au serveur via un message d'addon (le seul canal
+--    client->serveur disponible sans toucher au C++ du core), capte cote
+--    serveur par un script Eluna fourni a part
+--    (AzuCollection_ItemGrant.lua) qui verifie l'entitlement reel
+--    (player:HasSpell(spellID), autorite serveur) avant de creer l'item
+--    (player:AddItem). Sans ce script Eluna installe et actif, cette
+--    fonction envoie le message mais rien ne se passera cote serveur.
+-- ============================================================
+AZUCOL_ADDON_PREFIX = "AZUCOL"
+
+function AzuCollection_RequestItem(kind, itemID)
+	if type(itemID) ~= "number" then
+		return;
+	end
+	SendAddonMessage(AZUCOL_ADDON_PREFIX, kind .. ":" .. itemID, "WHISPER", UnitName("player"));
+end
+
+-- ============================================================
 -- 3) C_EventUtils.IsEventValid : uniquement utilise par
 --    EventRegistry:OnAttributeChanged (jamais declenche par le systeme de
 --    Collection, qui n'utilise que :TriggerEvent/:RegisterCallback), mais on
@@ -175,7 +241,33 @@ end
 if not COLLECTIONS then COLLECTIONS = "Collections" end
 if not WARDROBE then WARDROBE = "Garde-robe" end
 if not TOY_BOX then TOY_BOX = "Jouets" end
-if not HEIRLOOMS then HEIRLOOMS = "Reliques" end
+if not HEIRLOOMS then HEIRLOOMS = "Héritage" end
+
+-- ============================================================
+-- ROUND 59 : HEIRLOOMS_CATEGORY_* -- chaines GlobalStrings manquantes
+--    cote Universe (presentes cote Sirus, ex: GlobalStrings.lua). Utilisees
+--    par GetHeirloomCategoryFromInvType (Custom_HeirloomCollection.lua)
+--    pour classer chaque relique dans une categorie ("Tete", "Armes",
+--    etc). Comme ces globales valaient nil, GetHeirloomCategoryFromInvType
+--    renvoyait TOUJOURS nil (peu importe l'invType), donc la condition
+--    "if category then" echouait pour les 24 reliques a chaque fois --
+--    c'est la VRAIE cause de la grille Heritage bloquee a 0/0 malgre un
+--    filtre classe et des donnees par ailleurs correctes (confirme par
+--    /hdebug round 58 : SortHeirloomsIntoEquipmentBuckets() s'executait
+--    sans erreur mais remplissait 0 categorie sur 24 objets pourtant
+--    valides).
+-- ============================================================
+if not HEIRLOOMS_CATEGORY_HEAD then HEIRLOOMS_CATEGORY_HEAD = "Tête" end
+if not HEIRLOOMS_CATEGORY_SHOULDER then HEIRLOOMS_CATEGORY_SHOULDER = "Épaule" end
+if not HEIRLOOMS_CATEGORY_BACK then HEIRLOOMS_CATEGORY_BACK = "Dos" end
+if not HEIRLOOMS_CATEGORY_CHEST then HEIRLOOMS_CATEGORY_CHEST = "Torse" end
+if not HEIRLOOMS_CATEGORY_HAND then HEIRLOOMS_CATEGORY_HAND = "Mains" end
+if not HEIRLOOMS_CATEGORY_WRIST then HEIRLOOMS_CATEGORY_WRIST = "Poignets" end
+if not HEIRLOOMS_CATEGORY_LEGS then HEIRLOOMS_CATEGORY_LEGS = "Jambes" end
+if not HEIRLOOMS_CATEGORY_WAIST then HEIRLOOMS_CATEGORY_WAIST = "Taille" end
+if not HEIRLOOMS_CATEGORY_FEET then HEIRLOOMS_CATEGORY_FEET = "Pieds" end
+if not HEIRLOOMS_CATEGORY_WEAPON then HEIRLOOMS_CATEGORY_WEAPON = "Armes" end
+if not HEIRLOOMS_CATEGORY_TRINKETS_RINGS_NECKLACES_AND_RELIC then HEIRLOOMS_CATEGORY_TRINKETS_RINGS_NECKLACES_AND_RELIC = "Bijoux, anneaux, colliers et reliques" end
 if not MAINMENUBAR_COLLECTIONS_BUTTON_DESC then
 	MAINMENUBAR_COLLECTIONS_BUTTON_DESC = "Affiche toutes vos montures et familiers."
 end

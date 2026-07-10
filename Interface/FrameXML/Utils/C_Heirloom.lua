@@ -63,8 +63,16 @@ local VALID_SOURCE_FILTERS = {
 };
 
 local function PlayerHasHeirloom(itemID)
+	-- PATCH round 67 : "possede" se basait sur IsSpellKnown(heirloom.spellID),
+	-- or ces spellID (ex: 320561) sont des sorts retail modernes absents du
+	-- spell.dbc WotLK 3.3.5 -- IsSpellKnown() est donc TOUJOURS faux, quel que
+	-- soit l'etat reel du joueur. C'etait la cause du compteur "0/38" fige et
+	-- des icones qui restaient eteintes/desaturees meme apres avoir recu
+	-- l'objet contre de la monnaie (round 62 : on n'accorde plus aucun sort).
+	-- La seule preuve reelle de possession desormais est d'avoir l'objet
+	-- physiquement dans les sacs.
 	local heirloom = HEIRLOOM_BY_ITEM_ID[itemID];
-	if heirloom and heirloom.spellID and IsSpellKnown(heirloom.spellID) then
+	if heirloom and GetItemCount(itemID) > 0 then
 		return true;
 	end
 
@@ -262,8 +270,17 @@ function C_Heirloom.GetHeirloomInfo(itemID)
 
 	local data = HEIRLOOM_BY_ITEM_ID[itemID];
 	if data then
-		local spellName = GetSpellInfo(data.spellID);
-		local _, _, _, _, _, _, _, _, itemEquipLoc, itemIcon = C_Item.GetItemInfo(data.itemID, false, nil, true, true);
+		-- PATCH round 65 : le nom affiche venait de GetSpellInfo(data.spellID),
+		-- or ces spellID (ex: 320561) sont des sorts retail modernes absents du
+		-- spell.dbc WotLK 3.3.5 -- GetSpellInfo() renvoie donc toujours nil, et
+		-- le nom sous l'icone restait vide en permanence (contrairement aux
+		-- Jouets, dont le nom vient de l'ITEM et pas du sort). On recupere
+		-- desormais le nom directement depuis l'item lui-meme, qui lui existe
+		-- reellement dans ce client -- avec repli sur le nom du sort puis sur
+		-- l'itemID si l'item n'est pas encore en cache (meme filet de securite
+		-- que C_ToyBox.GetToyInfo pour les Jouets).
+		local itemName, _, _, _, _, _, _, _, itemEquipLoc, itemIcon = C_Item.GetItemInfo(data.itemID, false, nil, true, true);
+		local name = itemName or GetSpellInfo(data.spellID) or tostring(data.itemID);
 		local priceText;
 		if data.factionSide == 2 then
 			priceText = data.priceText:gsub("-Team.", "-Horde.");
@@ -273,7 +290,7 @@ function C_Heirloom.GetHeirloomInfo(itemID)
 			priceText = data.priceText:gsub("-Team.", "-"..(UnitFactionGroup("player"))..".");
 		end
 
-		return spellName, itemEquipLoc, itemIcon, data.descriptionText, priceText;
+		return name, itemEquipLoc, itemIcon, data.descriptionText, priceText;
 	end
 end
 
@@ -303,6 +320,23 @@ function C_Heirloom.SetClassAndSpecFilters(classID, specID)
 	CLASS_FILTER, SPEC_FILTER = classID, specID;
 
 	SetFilteredHeirlooms();
+
+	-- PATCH Collection (round 57) : contrairement a PopulateHeirloomData et
+	-- au reste du systeme (favoris, etc.), cette fonction NE notifiait PAS
+	-- l'UI apres avoir recalcule la liste filtree -- alors que
+	-- HeirloomsMixin:OnShow() (Custom_HeirloomCollection.lua) l'appelle
+	-- DIRECTEMENT (pas via le wrapper HeirloomsMixin:SetClassAndSpecFilters,
+	-- qui lui fait bien self:FullRefreshIfVisible()) au tout premier
+	-- affichage de l'onglet, pour appliquer le filtre "classe du joueur"
+	-- par defaut. Resultat : #HEIRLOOMS (la liste filtree) devient correct
+	-- (confirme par /hdebug : 24 pour Voleur) mais la grille ne se
+	-- reconstruit jamais avec ces nouvelles donnees -- numPossibleHeirlooms
+	-- reste bloque a 0 (sa valeur initiale) puisque RebuildLayoutData()
+	-- n'est plus jamais redeclenche apres coup. On notifie donc ici aussi,
+	-- comme le fait deja PopulateHeirloomData plus haut dans ce fichier.
+	if FireCustomClientEvent then
+		FireCustomClientEvent("HEIRLOOMS_UPDATED");
+	end
 end
 
 function C_Heirloom.GetClassAndSpecFilters()

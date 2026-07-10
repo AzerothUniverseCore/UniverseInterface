@@ -132,7 +132,16 @@ end
 
 function ToySpellButton_OnClick(self, button)
 	if button == "LeftButton" then
-		SecureActionButton_OnClick(self, button);
+		-- PATCH Collection (round 54) : sur Azeroth Universe, cliquer un
+		-- Jouet doit creer l'objet physique dans le sac (pas lancer le sort
+		-- "effet de jouet" a la retail, pas de courrier). On remplace donc
+		-- l'ancien SecureActionButton_OnClick (qui lancait le sort attache,
+		-- cf attributs "type"/"spell" dans ToySpellButton_UpdateButton) par
+		-- une demande au serveur (AzuCollection_RequestItem). Pas de garde
+		-- PlayerHasToy() ici : c'est le script Eluna cote serveur qui fait
+		-- foi sur l'entitlement reel (player:HasSpell), le client ne peut de
+		-- toute facon pas etre une source de verite fiable pour ca.
+		AzuCollection_RequestItem("TOY", self.itemID);
 	elseif button == "RightButton" then
 		if PlayerHasToy(self.itemID) then
 			ToyBox_ShowToyDropdown(self.itemID, self, 0, 0);

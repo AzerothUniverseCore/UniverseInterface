@@ -4,7 +4,36 @@ local NO_SPEC_FILTER = 0;
 local VIEW_MODE_FULL = 1; -- Shows everything and isn't filtered by class/spec
 local VIEW_MODE_CLASS = 2; -- Only shows items valid for the selected class/spec
 
+-- PATCH round 67 (monnaie Heritage) : memes valeurs que le script serveur
+-- Eluna AzuCollection_ItemGrant.lua (round 62) -- a garder synchronisees si
+-- le cout ou l'item-monnaie changent un jour.
+local HEIRLOOM_CURRENCY_ITEM_ID = 43228; -- Eclat du gardien des pierres
+local HEIRLOOM_CURRENCY_COST = 50;
+local HEIRLOOM_CURRENCY_ICON = "Interface\\Icons\\INV_Misc_Platnumdisks";
+local HEIRLOOM_CURRENCY_NAME = "Eclat du gardien des pierres";
+
 HeirloomsMixin = {};
+
+-- Affichage de la monnaie (icone + compteur) dans la fenetre -- porte depuis
+-- la logique UpdateCurrencyDisplay() de HeirloomClient.lua (systeme AIO de
+-- reference fourni par l'utilisateur), adaptee au cadre Blizzard existant.
+function HeirloomsMixin:UpdateCurrencyDisplay()
+	local currencyFrame = self.CurrencyFrame;
+	if not currencyFrame then
+		return;
+	end
+
+	currencyFrame.Icon:SetTexture(HEIRLOOM_CURRENCY_ICON);
+
+	local count = GetItemCount(HEIRLOOM_CURRENCY_ITEM_ID) or 0;
+	if count > 0 then
+		currencyFrame.CountText:SetText("|cffffd700"..count.."|r");
+	else
+		currencyFrame.CountText:SetText("|cffff4444"..count.."|r");
+	end
+
+	currencyFrame.CostText:SetText(("|cffffffffCout : %d %s par objet|r"):format(HEIRLOOM_CURRENCY_COST, HEIRLOOM_CURRENCY_NAME));
+end
 
 function HeirloomsMixin:OnLoad()
 	self.newHeirlooms = {};
@@ -22,6 +51,10 @@ function HeirloomsMixin:OnLoad()
 
 	self:RegisterCustomEvent("HEIRLOOMS_UPDATED");
 
+	-- PATCH round 67 : rafraichit le compteur de monnaie a chaque changement
+	-- de sacs (achat d'un objet Heritage, vente/depot d'Eclats, etc.).
+	self:RegisterEvent("BAG_UPDATE");
+
 	self.FilterButton:SetResetFunction(function() self:ResetFilters() end);
 
 	self.IconsFrame.Watermark:SetAtlas("collections-watermark-heirloom", true);
@@ -30,6 +63,15 @@ end
 function HeirloomsMixin:OnEvent(event, ...)
 	if event == "HEIRLOOMS_UPDATED" then
 		self:OnHeirloomsUpdated(...);
+	elseif event == "BAG_UPDATE" then
+		if self:IsShown() then
+			self:UpdateCurrencyDisplay();
+			-- PATCH round 68 : sans ceci, l'etat "possede" (icone allumee +
+			-- compteur X/38) ne se recalculait qu'au prochain /reload ou a la
+			-- reconnexion, puisque rien ne redeclenchait RebuildLayoutData
+			-- apres reception d'un objet Heritage contre de la monnaie.
+			self:FullRefreshIfVisible();
+		end
 	end
 end
 
@@ -62,6 +104,7 @@ function HeirloomsMixin:OnShow()
 	end
 
 	self:UpdateResetFiltersButtonVisibility()
+	self:UpdateCurrencyDisplay();
 	EventRegistry:TriggerEvent("HeirloomsJournal.OnShow")
 end
 
@@ -76,6 +119,26 @@ end
 function HeirloomsJournalSpellButton_OnEnter(self)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	GameTooltip:SetHeirloomByItemID(self.itemID);
+
+	-- PATCH round 67 : affiche le cout en monnaie (avec icone), porte depuis
+	-- le OnEnter de HeirloomClient.lua (systeme AIO de reference).
+	if C_Heirloom.PlayerHasHeirloom(self.itemID) then
+		GameTooltip:AddLine(" ");
+		GameTooltip:AddLine("|cff00ff00Vous possedez deja cet objet.|r");
+	else
+		local count = GetItemCount(HEIRLOOM_CURRENCY_ITEM_ID) or 0;
+		local iconTag = "|T"..HEIRLOOM_CURRENCY_ICON..":14:14|t";
+
+		GameTooltip:AddLine(" ");
+		GameTooltip:AddLine("Cout : "..iconTag.." |cffffd700"..HEIRLOOM_CURRENCY_COST.." Eclat(s) du gardien des pierres|r");
+
+		if count >= HEIRLOOM_CURRENCY_COST then
+			GameTooltip:AddLine("|cff00ff00Vous avez "..count.." Eclat(s). Vous pouvez recuperer cet objet.|r");
+		else
+			GameTooltip:AddLine("|cffff0000Vous avez "..count.." / "..HEIRLOOM_CURRENCY_COST.." Eclat(s). Insuffisant.|r");
+		end
+	end
+	GameTooltip:Show();
 
 	self.UpdateTooltip = HeirloomsJournalSpellButton_OnEnter;
 
@@ -104,7 +167,12 @@ function HeirloomsJournalSpellButton_OnClick(self, button)
 			return;
 		end
 	elseif button == "LeftButton" then
-		SecureActionButton_OnClick(self, button);
+		-- PATCH Collection (round 54) : meme principe que les Jouets -- un
+		-- clic simple (non modifie) doit demander au serveur de creer
+		-- l'objet Heritage physiquement dans le sac, au lieu de lancer le
+		-- sort attache (ancien SecureActionButton_OnClick). L'entitlement
+		-- reel est verifie cote serveur (script Eluna).
+		AzuCollection_RequestItem("HEIRLOOM", self.itemID);
 	end
 end
 

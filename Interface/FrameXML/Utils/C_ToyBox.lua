@@ -46,9 +46,13 @@ local FACTIONS = {
 	[PLAYER_FACTION_GROUP.Renegade] = 4,
 }
 
+-- PATCH Collection (round 54) : isLearnedToy verifiait seulement que le
+-- sort EXISTE dans le DBC (GetSpellInfo par nom/rang), pas que le joueur le
+-- connait reellement -- contrairement a C_Heirloom.lua's PlayerHasHeirloom,
+-- qui utilise deja IsSpellKnown (verification reelle). Meme logique ici.
 local function isLearnedToy(itemID)
 	local toy = TOY_BY_ITEM_ID[itemID];
-	if toy and toy.spellName and GetSpellInfo(toy.spellName, toy.spellRank) then
+	if toy and toy.spellID and IsSpellKnown(toy.spellID) then
 		return true;
 	end
 
