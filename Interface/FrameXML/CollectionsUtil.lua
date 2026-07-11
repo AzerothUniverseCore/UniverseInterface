@@ -1,3 +1,17 @@
+-- PATCH Collection (round 98) : global manquant, jamais porte depuis
+-- Constants.lua (Sirus) -- provoquait un crash a la selection de tout
+-- familier/monture dont le prix passe par une monnaie (currency ~= 0, ex.
+-- "Niveau de fidelite requis") : Custom_PetCollection.lua/Custom_MountCollection.lua
+-- indexent STORE_PRODUCT_MONEY_ICON[currency] pour l'icone du bouton d'achat,
+-- table jamais definie cote Universe. Restaure la table d'origine Sirus
+-- (index 1-4 : Or, Points de boutique, Parrainage, Fidelite).
+STORE_PRODUCT_MONEY_ICON = {
+	"coins",
+	"mmotop",
+	"refer",
+	"loyal",
+};
+
 CollectionWardrobeUtil = {};
 
 function CollectionWardrobeUtil.GetDefaultSourceIndex(sources, primarySourceID)

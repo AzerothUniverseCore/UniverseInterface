@@ -327,6 +327,26 @@ if not SKILL_NAME_MAIL then SKILL_NAME_MAIL = "Mailles" end
 if not SKILL_NAME_LEATHER then SKILL_NAME_LEATHER = "Cuir" end
 if not SKILL_NAME_CLOTH then SKILL_NAME_CLOTH = "Tissu" end
 
+-- PATCH Collection (round 99, corrige round 100) : ITEM_SUB_CLASS_4_X
+-- (sous-categories d'armure utilisees par le menu deroulant de filtre
+-- Garde-robe, cf. C_TransmogCollection.lua ligne ~117 :
+-- subCategories[subCategoryID].name = _G["ITEM_SUB_CLASS_4_"..subCategoryID]).
+-- Round 99 n'avait force que l'index 3 (Mailles) en se basant sur la
+-- position du "???" dans la premiere capture d'ecran -- mauvaise hypothese :
+-- la seconde capture (items decoratifs/evenementiels : bonnet de pere Noel,
+-- lunettes, effet de flamme) montre que le "???" restant est en realite
+-- l'index 5 ("Decoratif" cote source Sirus russe), pas l'index 3.
+-- Plutot que re-deviner, on force desormais explicitement TOUTE la serie
+-- 0-6 (valeurs FR officielles Blizzard) pour eliminer tout residu russe,
+-- quel que soit l'index reellement affiche pour un emplacement donne.
+ITEM_SUB_CLASS_4_0 = "Divers";
+ITEM_SUB_CLASS_4_1 = "Tissu";
+ITEM_SUB_CLASS_4_2 = "Cuir";
+ITEM_SUB_CLASS_4_3 = "Mailles";
+ITEM_SUB_CLASS_4_4 = "Plaques";
+ITEM_SUB_CLASS_4_5 = "Cosmétique";
+ITEM_SUB_CLASS_4_6 = "Boucliers";
+
 -- ============================================================
 -- 11) C_SpellBook.FilterOutSpellLearn : utilise par C_TransmogCollection.lua
 --     (BuildIllusions) pour ne pas afficher de popup "sort appris" pour les
