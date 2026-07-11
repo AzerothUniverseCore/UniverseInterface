@@ -576,6 +576,33 @@ function C_MountJournal.SetIsFavorite(mountIndex, isFavorite)
 	end
 end
 
+-- PATCH Collection (round 95) : le bouton favori (etoile) du panneau de
+-- detail passait par FavoriteButton_OnClick -> GetMountDisplayIndexByMountID
+-- -> C_MountJournal.GetIsFavorite/SetIsFavorite(mountIndex, ...), une chaine
+-- a deux niveaux d'indirection (mountID -> displayIndex -> mountIndex de la
+-- liste FILTREE courante) fragile et rapportee non-fonctionnelle par
+-- l'utilisateur (aucun changement visuel, aucune entree en base). Ajoute une
+-- variante directe par mountID (hash), sans dependre du classement/filtrage
+-- de la liste affichee -- exactement le meme principe que
+-- C_PetJournal.SetFavorite(petID, ...) cote Familiers, qui fonctionne deja.
+function C_MountJournal.SetIsFavoriteByMountID(mountID, isFavorite)
+	if type(isFavorite) ~= "boolean" then
+		isFavorite = not not isFavorite;
+	end
+
+	if COMPANION_INFO[mountID] then
+		if isFavorite then
+			SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountID] = true;
+			SendServerMessage("ACMSG_C_A_F", string.format("%d|%s", CHAR_COLLECTION_MOUNT, mountID));
+		else
+			SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountID] = nil;
+			SendServerMessage("ACMSG_C_R_F", string.format("%d|%s", CHAR_COLLECTION_MOUNT, mountID));
+		end
+
+		FilteredMountJornal();
+	end
+end
+
 function C_MountJournal.SetCategoryFilter(filterIndex)
 	if type(filterIndex) == "string" then
 		filterIndex = tonumber(filterIndex);

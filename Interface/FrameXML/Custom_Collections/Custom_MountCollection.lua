@@ -348,6 +348,11 @@ function MountJournal_UpdateMountDisplay(forceSceneChange)
 		MountJournal.MountDisplay.ModelScene.InfoButton.favoriteButton:SetShown(isCollected);
 		if isCollected then
 			MountJournal.MountDisplay.ModelScene.InfoButton.favoriteButton:SetChecked(isFavorite);
+			-- PATCH Collection (round 95) : self.isFavorite n'etait jamais
+			-- renseigne (seul :SetChecked l'etait), donc le tooltip OnEnter
+			-- ("Ajouter aux favoris" / "Retirer des favoris") affichait
+			-- toujours le meme texte peu importe l'etat reel.
+			MountJournal.MountDisplay.ModelScene.InfoButton.favoriteButton.isFavorite = isFavorite;
 		end
 	else
 		MountJournal.MountDisplay.ModelScene:Hide();
@@ -811,29 +816,21 @@ function MountJournal_HideMountDropdown()
 end
 
 function FavoriteButton_OnClick(self, button)
-	if MountJournal.selectedMountID then
-		MountJournal_SetSelected(MountJournal.selectedMountID, MountJournal.selectedItemID);
-
-		-- PATCH Collection (round 55) : MountJournal_GetMountButtonByMountID
-		-- ne cherche que parmi les boutons ACTUELLEMENT AFFICHES par le
-		-- HybridScrollFrame (~10-15 lignes visibles a l'ecran). Si la
-		-- monture selectionnee (dont le bouton Favori vit dans le panneau
-		-- de detail, pas dans la liste) a defile hors de vue, scrollButton
-		-- est nil et tout le clic ne fait rien -- silencieusement, sans
-		-- erreur. On utilise a la place GetMountDisplayIndexByMountID (deja
-		-- definie plus haut dans ce fichier), qui cherche parmi TOUTES les
-		-- montures affichees, pas seulement celles visibles a l'ecran.
-		local mountIndex = GetMountDisplayIndexByMountID(MountJournal.selectedMountID);
-		if mountIndex then
-			local isFavorite, canFavorite = C_MountJournal.GetIsFavorite(mountIndex);
-			if canFavorite then
-				if isFavorite then
-					C_MountJournal.SetIsFavorite(mountIndex, false);
-				else
-					C_MountJournal.SetIsFavorite(mountIndex, true);
-				end
-			end
-		end
+	-- PATCH Collection (round 95) : l'ancienne version passait par
+	-- GetMountDisplayIndexByMountID -> C_MountJournal.GetIsFavorite/
+	-- SetIsFavorite(mountIndex, ...), une chaine a deux niveaux
+	-- d'indirection dependante du classement/filtrage COURANT de la liste
+	-- affichee -- rapportee non-fonctionnelle par l'utilisateur (aucun
+	-- changement visuel, aucune entree cote base malgre le script Eluna de
+	-- persistance). Remplace par C_MountJournal.SetIsFavoriteByMountID,
+	-- qui agit directement par mountID (hash), sans indirection, exactement
+	-- comme C_PetJournal.SetFavorite(petID, ...) cote Familiers (qui, lui,
+	-- fonctionne).
+	local mountID = MountJournal.selectedMountID;
+	if mountID then
+		local isFavorite = SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountID] and true or false;
+		C_MountJournal.SetIsFavoriteByMountID(mountID, not isFavorite);
+		MountJournal_UpdateMountDisplay();
 	end
 end
 
