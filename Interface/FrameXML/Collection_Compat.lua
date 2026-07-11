@@ -730,6 +730,27 @@ local COLLECTION_SHIMMED_CVARS = {
 }
 COLLECTION_CVAR_SHIM_VALUES = COLLECTION_CVAR_SHIM_VALUES or {}
 
+-- PATCH round 80 : valeurs par defaut pour les CVars "afficher
+-- collectionne / non collectionne" de la Garde-robe (et des Illusions, meme
+-- systeme). Sans ce seed, GetCVar retombe sur "0" (false) tant que le
+-- joueur n'a jamais clique sur "reinitialiser les filtres", et
+-- SetSearchAndFilterAppearances (C_TransmogCollection.lua) masque de facon
+-- INCONDITIONNELLE tous les objets non collectionnes quand
+-- wardrobeShowUncollected est faux -- d'ou la grille Garde-robe vide (0/N)
+-- au premier affichage de l'onglet, jusqu'a cliquer sur la petite croix.
+if COLLECTION_CVAR_SHIM_VALUES.wardrobeShowCollected == nil then
+	COLLECTION_CVAR_SHIM_VALUES.wardrobeShowCollected = "1"
+end
+if COLLECTION_CVAR_SHIM_VALUES.wardrobeShowUncollected == nil then
+	COLLECTION_CVAR_SHIM_VALUES.wardrobeShowUncollected = "1"
+end
+if COLLECTION_CVAR_SHIM_VALUES.illusionShowCollected == nil then
+	COLLECTION_CVAR_SHIM_VALUES.illusionShowCollected = "1"
+end
+if COLLECTION_CVAR_SHIM_VALUES.illusionShowUncollected == nil then
+	COLLECTION_CVAR_SHIM_VALUES.illusionShowUncollected = "1"
+end
+
 if not COLLECTION_CVAR_SHIM_INSTALLED then
 	COLLECTION_CVAR_SHIM_INSTALLED = true
 
