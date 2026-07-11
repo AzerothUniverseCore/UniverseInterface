@@ -1024,3 +1024,66 @@ if not GetSpecializationNameForSpecID then
 		return ""
 	end
 end
+
+-- ============================================================
+-- PATCH Collection (correction round 89) : crash Garde-robe -
+-- "attempt to call global 'StringSplitEx' (a nil value)" dans
+-- Utils\C_TransmogCollection.lua:2131 (handler ASMSG_C_I_GET_MODELS,
+-- reponse du nouveau script Eluna de suivi des apparences Transmog
+-- collectees). StringSplitEx est une fonction utilitaire Sirus
+-- (SharedXML\StringUtil.lua) jamais portee cote Universe - seul son
+-- fichier source entier n'a pas ete copie, alors que plusieurs Utils
+-- Sirus l'appellent comme si elle etait un global toujours disponible.
+-- Portee verbatim depuis Sirus (SharedXML/StringUtil.lua) : simple
+-- enveloppe autour de string.split (deja utilise avec succes ailleurs
+-- dans ce client, y compris dans C_TransmogCollection.lua lui-meme via
+-- strsplit) qui retire d'abord un delimiteur final eventuel pour eviter
+-- un dernier morceau vide parasite.
+-- ============================================================
+if not StringSplitEx then
+	function StringSplitEx(delimiter, str, pieces)
+		str = string.gsub(str, strconcat(delimiter, "$"), "")
+		if str ~= "" then
+			return string.split(delimiter, str, pieces)
+		end
+	end
+end
+
+-- ============================================================
+-- PATCH Collection (correction round 90) : crash Garde-robe -
+-- "attempt to call global 'AddChatTyppedMessage' (a nil value)" dans
+-- Utils\C_TransmogCollection.lua:2199 (message de chat "Modele ajoute a
+-- votre collection" declenche par ASMSG_C_I_ADD_MODEL, lui-meme
+-- desormais envoye par le script Eluna de suivi des apparences Transmog
+-- des qu'un joueur equipe un nouvel objet - voir round 88/89). Meme
+-- classe de bug que StringSplitEx (round 89) : AddChatTyppedMessage est
+-- une fonction utilitaire Sirus (FrameXML\ChatFrame.lua) jamais portee
+-- cote Universe, appelee comme un global toujours disponible par
+-- plusieurs Utils Sirus (C_Heirloom.lua, C_ToyBox.lua,
+-- C_TransmogCollection.lua x3).
+-- Portee verbatim depuis Sirus (FrameXML/ChatFrame.lua). Ses dependances
+-- (ChatTypeInfo, CHAT_FRAMES, SendSystemMessage, tIndexOf) existent
+-- deja toutes dans le client de base Universe - seule cette fonction
+-- elle-meme manquait.
+-- ============================================================
+if not AddChatTyppedMessage then
+	function AddChatTyppedMessage(messageType, message)
+		if messageType == "SYSTEM" then
+			SendSystemMessage(message)
+			return
+		end
+
+		local info = ChatTypeInfo[messageType];
+		if not info then
+			error(string.format("AddChatTyppedMessage: unknown messageType (%s)", messageType), 2)
+			return;
+		end
+
+		for _, chatFrameName in ipairs(CHAT_FRAMES) do
+			local frame = _G[chatFrameName];
+			if tIndexOf(frame.messageTypeList, messageType) then
+				frame:AddMessage(message, info.r or 1, info.g or 1, info.b or 0, info.id or 1)
+			end
+		end
+	end
+end

@@ -1098,7 +1098,20 @@ function WardrobeItemsCollectionMixin:CreateSlotButtons()
 			local slotString = itemsSlots[i];
 			local button = CreateFrame("Button", "$parentSlotButton"..i, parentFrame, "WardrobeSlotButtonTemplate");
 			parentFrame.Buttons[#parentFrame.Buttons + 1] = button;
-			button.NormalTexture:SetAtlas("transmog-nav-slot-"..string.lower(slotString), true);
+			-- PATCH round 87 : l'icone "transmog-nav-slot-ranged" est absente de
+			-- notre texture source Transmogrify.tga (verifie par inspection directe
+			-- des pixels : zone totalement vide/transparente dans les 2 copies
+			-- disponibles -- ce n'est pas un bug de coordonnees, les valeurs UV
+			-- copiees depuis Sirus sont identiques a l'original), contrairement a
+			-- toutes les autres icones de la meme feuille qui sont bien presentes.
+			-- Repli sur l'icone standard de la fiche de personnage (deja presente
+			-- nativement dans tous les clients WotLK, aucun fichier a fournir)
+			-- plutot que de laisser le bouton vide.
+			if slotString == "RANGED" then
+				button.NormalTexture:SetTexture("Interface\\PaperDollInfoFrame\\UI-PaperDoll-Slot-Ranged");
+			else
+				button.NormalTexture:SetAtlas("transmog-nav-slot-"..string.lower(slotString), true);
+			end
 			button.Highlight:SetAtlas("bags-roundhighlight");
 			button.SelectedTexture:SetAtlas("transmog-nav-slot-selected", true);
 			if lastButton then
@@ -2565,6 +2578,20 @@ end
 function WardrobeCollectionFrameSearchBoxMixin:OnTextChanged()
 	SearchBoxTemplate_OnTextChanged(self);
 	WardrobeCollectionFrame:SetSearch(self:GetText());
+
+	-- PATCH round 87 : meme famille de fix que Jouets/Heritage/filtres
+	-- Garde-robe (rounds 77/78/86) -- C_TransmogCollection.SetSearch (pour
+	-- le type de recherche "Items", celui utilise ici) ne fait QUE
+	-- reconstruire SEARCH_AND_FILTER_APPEARANCES en interne : aucun
+	-- evenement custom n'est declenche pour ce type de recherche (contraire
+	-- a d'autres chemins qui utilisent FireCustomClientEvent), donc la
+	-- grille ne se redessinait jamais toute seule. Appel direct pour forcer
+	-- le redessin immediat.
+	local itemsFrame = WardrobeCollectionFrame.ItemsCollectionFrame;
+	if itemsFrame and itemsFrame:IsShown() and itemsFrame.transmogLocation then
+		itemsFrame:RefreshVisualsList();
+		itemsFrame:UpdateItems();
+	end
 end
 
 function WardrobeCollectionFrameSearchBoxMixin:OnEnter()
