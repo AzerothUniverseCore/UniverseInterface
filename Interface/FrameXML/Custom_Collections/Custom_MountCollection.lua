@@ -554,6 +554,12 @@ end
 function MountJournalFilterDropdown_ResetFilters()
 	C_MountJournal.SetDefaultFilters();
 	MountJournalFilterButton.ResetButton:Hide();
+
+	-- PATCH Collection (round 94) : meme cause que Jouets/Garde-robe/Familiers
+	-- -- la mise a jour ne se declenchait que via l'evenement
+	-- MOUNT_JOURNAL_SEARCH_UPDATED, non fiable en contexte re-entrant. On
+	-- force la mise a jour directement.
+	MountJournal_FullUpdate(MountJournal);
 end
 
 function MountJournalResetFiltersButton_UpdateVisibility()
@@ -561,7 +567,10 @@ function MountJournalResetFiltersButton_UpdateVisibility()
 end
 
 function MountJournal_SetCollectedFilter(value)
-	return C_MountJournal.SetCollectedFilterSetting(LE_MOUNT_JOURNAL_FILTER_COLLECTED, value);
+	C_MountJournal.SetCollectedFilterSetting(LE_MOUNT_JOURNAL_FILTER_COLLECTED, value);
+
+	-- PATCH Collection (round 94) : meme fix que ci-dessus.
+	MountJournal_FullUpdate(MountJournal);
 end
 
 function MountJournal_GetCollectedFilter()
@@ -570,6 +579,9 @@ end
 
 function MountJournal_SetNotCollectedFilter(value)
 	C_MountJournal.SetCollectedFilterSetting(LE_MOUNT_JOURNAL_FILTER_NOT_COLLECTED, value);
+
+	-- PATCH Collection (round 94) : meme fix que ci-dessus.
+	MountJournal_FullUpdate(MountJournal);
 end
 
 function MountJournal_GetNotCollectedFilter()
@@ -681,25 +693,49 @@ function MountJournalFilterDropDown_Initialize(self, level)
 	FilterDropDownSystem.Initialize(self, filterSystem, level);
 end
 
+-- PATCH Collection (round 94) : ce bouton s'appuyait sur un sort custom
+-- Sirus (305495, "invoquer une monture favorite au hasard") absent de la
+-- base de donnees de ce serveur -- confirme par l'utilisateur (".cast 305495"
+-- -> "Spell ID 305495 does not exist", meme constat que pour l'equivalent
+-- Familiers 317619, deja corrige au round 92). Sans sort valide :
+-- GetSpellInfo() renvoyait nil (icone effacee -- SetTexture(nil) ecrasait le
+-- fichier par defaut deja present en XML) et CastSpellByID() ne faisait
+-- rien. Remplace entierement par une implementation cote client qui n'a
+-- besoin d'aucun sort serveur : invoque directement une monture favorite au
+-- hasard parmi celles deja obtenues, via MountJournalMountButton_UseMount
+-- (la meme fonction que le bouton Monter normal).
 function MountJournalSummonRandomFavoriteButton_OnLoad(self)
-	self.spellID = SUMMON_RANDOM_FAVORITE_MOUNT_SPELL;
-	local _, _, spellIcon = GetSpellInfo(self.spellID);
-	self.texture:SetTexture(spellIcon);
-	self:RegisterForDrag("LeftButton");
+	self.spellID = nil;
+	-- Ne pas toucher self.texture : le fichier par defaut declare en XML
+	-- (Interface/ICONS/ACHIEVEMENT_GUILDPERK_MOUNTUP) reste affiche tel quel.
 end
 
 function MountJournalSummonRandomFavoriteButton_OnClick(self)
-	CastSpellByID(self.spellID)
+	local candidates = {};
+	for mountID in pairs(SIRUS_MOUNTJOURNAL_FAVORITE_PET) do
+		local _, _, _, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(mountID);
+		if isCollected then
+			table.insert(candidates, mountID);
+		end
+	end
+
+	if #candidates == 0 then
+		UIErrorsFrame:AddMessage("Vous n'avez aucune monture favorite invocable.", 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	local mountID = candidates[math.random(#candidates)];
+	MountJournalMountButton_UseMount(mountID);
 end
 
 function MountJournalSummonRandomFavoriteButton_OnDragStart(self)
-	local spellname = GetSpellInfo(self.spellID);
-	PickupSpell(spellname);
 end
 
 function MountJournalSummonRandomFavoriteButton_OnEnter( self, ... )
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-	GameTooltip:SetHyperlink("spell:"..self.spellID)
+	GameTooltip:SetText(RANDOM_FAVORITE_MOUNT or "Invoquer une monture favorite aleatoire", 1, 1, 1);
+	GameTooltip:AddLine("Invoque une monture favorite au hasard parmi celles deja obtenues.", nil, nil, nil, true);
+	GameTooltip:Show();
 end
 
 function MountOptionsMenu_Init(self, level)
