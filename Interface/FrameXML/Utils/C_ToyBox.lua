@@ -298,9 +298,13 @@ function C_ToyBox.SetIsFavorite(itemID, isFavorite)
 
 	local toy = TOY_BY_ITEM_ID[itemID];
 	if toy then
+		-- PATCH Collection (round 92) : meme correctif que Familiers/Montures --
+		-- mise a jour locale immediate de SIRUS_COLLECTION_FAVORITE_TOY.
 		if isFavorite then
+			SIRUS_COLLECTION_FAVORITE_TOY[toy.hash] = true;
 			SendServerMessage("ACMSG_C_A_F", string.format("%d|%s", CHAR_COLLECTION_TOY, toy.hash));
 		else
+			SIRUS_COLLECTION_FAVORITE_TOY[toy.hash] = nil;
 			SendServerMessage("ACMSG_C_R_F", string.format("%d|%s", CHAR_COLLECTION_TOY, toy.hash));
 		end
 	end

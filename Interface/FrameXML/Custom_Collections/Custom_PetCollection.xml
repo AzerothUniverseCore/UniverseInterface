@@ -503,7 +503,28 @@
 						MagicButton_OnLoad(self);
 					</OnLoad>
 					<OnClick>
-						C_PetJournal.SummonPetByPetID(PetJournal.selectedPetID);
+						local petID = PetJournal.selectedPetID;
+						if petID then
+							local wasSummoned = (petID == C_PetJournal.GetSummonedPetID());
+							C_PetJournal.SummonPetByPetID(petID);
+							-- PATCH Collection (round 92) : le fix round 91 relisait
+							-- C_PetJournal.GetSummonedPetID() juste apres l'appel a
+							-- SummonPetByPetID, mais CallCompanion/DismissCompanion sont
+							-- asynchrones (aller-retour serveur avant que COMPANION_UPDATE
+							-- ne se declenche reellement et ne mette a jour SUMMONED_PET_ID)
+							-- -- relire l'etat ICI renvoyait donc encore l'ANCIEN etat,
+							-- d'ou le texte "decale d'un clic" signale par l'utilisateur.
+							-- On predit desormais directement le nouvel etat a partir de
+							-- l'etat AVANT le clic (meme logique que SummonPetByPetID en
+							-- interne) ; la confirmation serveur recalera tout le reste
+							-- (surlignage liste, etc) via la chaine COMPANION_UPDATE
+							-- existante, qui fonctionne deja correctement de son cote.
+							if wasSummoned then
+								PetJournal.SummonButton:SetText(SUMMON);
+							else
+								PetJournal.SummonButton:SetText(PET_DISMISS);
+							end
+						end
 					</OnClick>
 					<OnEnter>
 						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");

@@ -559,11 +559,20 @@ function C_MountJournal.SetIsFavorite(mountIndex, isFavorite)
 	local displayIndex = MOUNT_INFO_BY_INDEX[mountIndex];
 	local mountInfo = displayIndex and COLLECTION_MOUNTDATA[displayIndex];
 	if mountInfo then
+		-- PATCH Collection (round 92) : meme correctif que Familiers -- mise a
+		-- jour locale immediate de SIRUS_MOUNTJOURNAL_FAVORITE_PET, sans quoi
+		-- le favori se "detachait" visuellement au premier changement de
+		-- selection (aucune confirmation serveur ne mettait jamais a jour cette
+		-- table).
 		if SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountInfo.hash] then
+			SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountInfo.hash] = nil;
 			SendServerMessage("ACMSG_C_R_F", string.format("%d|%s", CHAR_COLLECTION_MOUNT, mountInfo.hash));
 		else
+			SIRUS_MOUNTJOURNAL_FAVORITE_PET[mountInfo.hash] = true;
 			SendServerMessage("ACMSG_C_A_F", string.format("%d|%s", CHAR_COLLECTION_MOUNT, mountInfo.hash));
 		end
+
+		FilteredMountJornal();
 	end
 end
 

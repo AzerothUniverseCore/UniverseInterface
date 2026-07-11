@@ -601,11 +601,25 @@ function C_PetJournal.PetIsFavorite(petID)
 end
 
 function C_PetJournal.SetFavorite(petID, isFavorite)
+	-- PATCH Collection (round 92) : cette fonction n'envoyait QUE le message
+	-- serveur ACMSG_C_A_F/ACMSG_C_R_F, sans jamais mettre a jour
+	-- SIRUS_COLLECTION_FAVORITE_PET localement. Le retour visuel immediat
+	-- (etoile cochee) venait uniquement du comportement natif du CheckButton,
+	-- pas des donnees reelles -- des qu'on quittait puis revenait sur le
+	-- familier, PetJournal_UpdatePetDisplay relisait C_PetJournal.PetIsFavorite
+	-- (donc SIRUS_COLLECTION_FAVORITE_PET, jamais modifiee) et redecochait
+	-- l'etoile, meme sans confirmation serveur. Meme constat/meme fix deja en
+	-- place pour les apparences Garde-robe (C_TransmogCollection.SetIsAppearanceFavorite)
+	-- -- on applique ici le meme correctif : mise a jour locale immediate.
 	if isFavorite then
+		SIRUS_COLLECTION_FAVORITE_PET[petID] = true;
 		SendServerMessage("ACMSG_C_A_F", string.format("%d|%s", CHAR_COLLECTION_PET, petID));
 	else
+		SIRUS_COLLECTION_FAVORITE_PET[petID] = nil;
 		SendServerMessage("ACMSG_C_R_F", string.format("%d|%s", CHAR_COLLECTION_PET, petID));
 	end
+
+	FilteredPetJornal();
 end
 
 function C_PetJournal.GetPetLink(petID)

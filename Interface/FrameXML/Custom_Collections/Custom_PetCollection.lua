@@ -35,21 +35,29 @@ function PetJournal_OnEvent(self, event)
 	end
 end
 
+-- PATCH Collection (round 92) : ce bouton s'appuyait sur un sort custom Sirus
+-- (317619, "invoquer un familier favori au hasard") absent de la base de
+-- donnees de ce serveur -- confirme par l'utilisateur (".cast 317619" ->
+-- "Spell ID 317619 does not exist", meme constat pour l'equivalent Montures
+-- 305495). Sans sort valide : GetSpellInfo() renvoyait nil (icone invisible)
+-- et CastSpellByID() ne faisait rien (bouton non fonctionnel). Remplace
+-- entierement par une implementation cote client qui n'a besoin d'aucun sort
+-- serveur : invoque directement un familier favori au hasard parmi ceux deja
+-- obtenus, via C_PetJournal.SummonPetByPetID (la meme fonction que le bouton
+-- Invoquer normal). PetJournalSummonRandomFavoritePetButton_UpdateCooldown
+-- reste definie plus bas mais n'est plus appelee (plus de sort/cooldown reel
+-- a suivre).
 function PetJournalSummonRandomFavoritePetButton_OnLoad(self)
-	self.spellID = SUMMON_RANDOM_FAVORITE_PET_SPELL;
-	local _, _, spellIcon = GetSpellInfo(self.spellID);
-	self.IconTexture:SetTexture(spellIcon);
+	self.spellID = nil;
+	self.IconTexture:SetTexture("Interface\\Icons\\INV_Box_PetCarrier_01");
 	self.SpellName:SetText(PET_JOURNAL_SUMMON_RANDOM_FAVORITE_PET);
-	self:RegisterForDrag("LeftButton");
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnShow(self)
-	self:RegisterEvent("SPELL_UPDATE_COOLDOWN");
-	PetJournalSummonRandomFavoritePetButton_UpdateCooldown(self);
+	self.Cooldown:Hide();
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnHide(self)
-	self:UnregisterEvent("SPELL_UPDATE_COOLDOWN");
 end
 
 function PetJournalSummonRandomFavoritePetButton_UpdateCooldown(self)
@@ -58,27 +66,33 @@ function PetJournalSummonRandomFavoritePetButton_UpdateCooldown(self)
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnEvent(self, event, ...)
-	if event == "SPELL_UPDATE_COOLDOWN" then
-		PetJournalSummonRandomFavoritePetButton_UpdateCooldown(self);
-		-- Update tooltip
-		if GameTooltip:GetOwner() == self then
-			PetJournalSummonRandomFavoritePetButton_OnEnter(self);
-		end
-	end
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnClick(self)
-	CastSpellByID(self.spellID);
+	local candidates = {};
+	for petID in pairs(SIRUS_COLLECTION_FAVORITE_PET) do
+		if C_PetJournal.PetIsSummonable(petID) then
+			table.insert(candidates, petID);
+		end
+	end
+
+	if #candidates == 0 then
+		UIErrorsFrame:AddMessage("Vous n'avez aucun familier favori invocable.", 1.0, 0.1, 0.1, 1.0);
+		return;
+	end
+
+	local petID = candidates[math.random(#candidates)];
+	C_PetJournal.SummonPetByPetID(petID);
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnDragStart(self)
-	local spellName = GetSpellInfo(self.spellID);
-	PickupSpell(spellName);
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnEnter(self)
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	GameTooltip:SetSpellByID(self.spellID);
+	GameTooltip:SetText(PET_JOURNAL_SUMMON_RANDOM_FAVORITE_PET, 1, 1, 1);
+	GameTooltip:AddLine("Invoque un familier favori au hasard parmi ceux deja obtenus.", nil, nil, nil, true);
+	GameTooltip:Show();
 end
 
 function PetJournalSummonRandomFavoritePetButton_OnLeave(self)
@@ -442,6 +456,12 @@ end
 function PetJournalFilterDropDown_ResetFilters()
 	C_PetJournal.SetDefaultFilters();
 	PetJournal.FilterButton.ResetButton:Hide();
+
+	-- PATCH Collection (round 91) : meme cause que Jouets/Garde-robe -- la
+	-- mise a jour via FireCustomClientEvent("PET_JOURNAL_LIST_UPDATE")
+	-- echoue silencieusement en contexte re-entrant. On force la mise a
+	-- jour directement.
+	PetJournal_FullUpdate(PetJournal);
 end
 
 function PetJournalResetFiltersButton_UpdateVisibility()
@@ -450,6 +470,11 @@ end
 
 function PetJournalFilterDropDown_SetCollectedFilter(value)
 	C_PetJournal.SetFilterChecked(LE_PET_JOURNAL_FILTER_COLLECTED, value);
+
+	-- PATCH Collection (round 91) : meme cause que Jouets/Garde-robe -- on
+	-- force la mise a jour directement au lieu de compter sur l'evenement
+	-- PET_JOURNAL_LIST_UPDATE.
+	PetJournal_FullUpdate(PetJournal);
 end
 
 function PetJournalFilterDropDown_GetCollectedFilter()
@@ -458,6 +483,9 @@ end
 
 function PetJournalFilterDropDown_SetNotCollectedFilter(value)
 	C_PetJournal.SetFilterChecked(LE_PET_JOURNAL_FILTER_NOT_COLLECTED, value);
+
+	-- PATCH Collection (round 91) : meme fix que ci-dessus.
+	PetJournal_FullUpdate(PetJournal);
 end
 
 function PetJournalFilterDropDown_GetNotCollectedFilter()
