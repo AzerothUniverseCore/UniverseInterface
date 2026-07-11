@@ -32,9 +32,22 @@
 	</Button>
 	<Button name="CharacterMicroButton" inherits="MainMenuBarMicroButton" parent="MainMenuBarArtFrame">
 		<Anchors>
+			<!-- PATCH Collection (round 96) : x etait 552 (valeur Blizzard d'origine).
+			     L'ajout de CollectionsMicroButton dans la chaine d'ancrage
+			     (LFDMicroButton, CollectionsMicroButton, MainMenuMicroButton,
+			     HelpMicroButton, chaque bouton ancre en BOTTOMLEFT sur le
+			     BOTTOMRIGHT du precedent avec un chevauchement de 3px) ajoute un
+			     bouton de 28px de large a la chaine, donc 25px (28 moins 3) de
+			     largeur totale en plus, ce qui pousse TOUS les boutons suivants
+			     (MainMenu, Help) de 25px vers la droite par rapport a avant
+			     l'ajout, faisant sortir Help de l'ecran. On decale donc le DEBUT
+			     de toute la chaine de 25px vers la gauche (552 vers 527) pour
+			     compenser exactement : Help et MainMenu reviennent pile a leur
+			     position d'origine (avant Collections), et Collections vient
+			     s'inserer dans l'espace ainsi libere. -->
 			<Anchor point="BOTTOMLEFT">
 				<Offset>
-					<AbsDimension x="552" y="2"/>
+					<AbsDimension x="527" y="2"/>
 				</Offset>
 			</Anchor>
 		</Anchors>
