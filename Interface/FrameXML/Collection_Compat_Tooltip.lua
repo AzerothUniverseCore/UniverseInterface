@@ -412,3 +412,69 @@ SlashCmdList["HELPPLATEDEBUG"] = function()
 		end
 	end
 end
+
+-- PATCH round 112 : libelles des cases a cocher dans les sous-menus du
+-- bouton Filtrer (Capacites/Sources/Faction pour Montures, Familles de
+-- familiers/Sources pour Familiers, Sources pour Garde-robe/Jouets/
+-- Heritage). FilterDropdown.lua (AddDynamicFilterSet) construit le texte
+-- de chaque case via _G[globalPrepend .. i] ; ces globales n'existaient
+-- qu'en russe cote Sirus/GlobalStrings.lua -> texte nil -> case a cocher
+-- sans libelle a cote, dans les 5 onglets a la fois (meme prefixe partage).
+-- COLLECTION_MOUNT_ABILITY_*
+COLLECTION_MOUNT_ABILITY_1 = "Vitesse au sol 60";
+COLLECTION_MOUNT_ABILITY_2 = "Vitesse au sol 100";
+COLLECTION_MOUNT_ABILITY_3 = "Vitesse de vol 280";
+COLLECTION_MOUNT_ABILITY_4 = "Vitesse de vol 310";
+COLLECTION_MOUNT_ABILITY_5 = "Marche sur l'eau";
+COLLECTION_MOUNT_ABILITY_6 = "Nage améliorée";
+COLLECTION_MOUNT_ABILITY_7 = "Biplace";
+COLLECTION_MOUNT_ABILITY_8 = "Triplace";
+COLLECTION_MOUNT_ABILITY_9 = "Marchand ou réparateur";
+COLLECTION_MOUNT_ABILITY_10 = "Active le vol accéléré";
+COLLECTION_MOUNT_ABILITY_11 = "Se transmet à tout le compte";
+-- COLLECTION_PET_SOURCE_*
+COLLECTION_PET_SOURCE_1 = "Butin";
+COLLECTION_PET_SOURCE_2 = "Quêtes";
+COLLECTION_PET_SOURCE_3 = "Marchand";
+COLLECTION_PET_SOURCE_4 = "Métier";
+COLLECTION_PET_SOURCE_5 = "Haut fait";
+COLLECTION_PET_SOURCE_6 = "Événement en jeu";
+COLLECTION_PET_SOURCE_7 = "Boutique en jeu";
+COLLECTION_PET_SOURCE_8 = "Points de vote";
+COLLECTION_PET_SOURCE_9 = "Passe de combat";
+COLLECTION_PET_SOURCE_10 = "Marché noir";
+-- COLLECTION_TRAVELING_MERCHANT_*
+COLLECTION_TRAVELING_MERCHANT_1 = "Lurgen";
+COLLECTION_TRAVELING_MERCHANT_2 = "Aïshali";
+COLLECTION_TRAVELING_MERCHANT_3 = "Saralet";
+-- COLLECTION_MOUNT_FACTION_*
+COLLECTION_MOUNT_FACTION_1 = "Alliance";
+COLLECTION_MOUNT_FACTION_2 = "Horde";
+COLLECTION_MOUNT_FACTION_3 = "Neutre";
+COLLECTION_MOUNT_FACTION_4 = "Renégats";
+-- COLLECTION_PET_NAME_*
+COLLECTION_PET_NAME_1 = "Aquatique";
+COLLECTION_PET_NAME_2 = "Humanoïde";
+COLLECTION_PET_NAME_3 = "Dragonnet";
+COLLECTION_PET_NAME_4 = "Bête";
+COLLECTION_PET_NAME_5 = "Bestiole";
+COLLECTION_PET_NAME_6 = "Volant";
+COLLECTION_PET_NAME_7 = "Magique";
+COLLECTION_PET_NAME_8 = "Mécanique";
+COLLECTION_PET_NAME_9 = "Mort-vivant";
+COLLECTION_PET_NAME_10 = "Élémentaire";
+-- TRANSMOG_SOURCE_*
+TRANSMOG_SOURCE_1 = "Butin de boss";
+TRANSMOG_SOURCE_2 = "Quêtes";
+TRANSMOG_SOURCE_3 = "Marchand";
+TRANSMOG_SOURCE_4 = "Butin aléatoire";
+TRANSMOG_SOURCE_5 = "Haut fait";
+TRANSMOG_SOURCE_6 = "Métier";
+TRANSMOG_SOURCE_7 = "Boutique en jeu";
+TRANSMOG_SOURCE_8 = "Disponible lors de l'amélioration d'objet";
+TRANSMOG_SOURCE_9 = "Événements spéciaux";
+TRANSMOG_SOURCE_10 = "Contrebande du marché noir";
+TRANSMOG_SOURCE_11 = "Récompenses de guilde";
+TRANSMOG_SOURCE_12 = "Équipement de départ";
+TRANSMOG_SOURCE_13 = "Transmogrification (boutique)";
+TRANSMOG_SOURCE_14 = "Non disponible actuellement";
