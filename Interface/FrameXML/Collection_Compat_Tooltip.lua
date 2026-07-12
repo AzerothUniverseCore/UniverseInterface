@@ -365,6 +365,41 @@ HELPTIP_TOYS = "Les jouets sont des objets destinés au divertissement.\n\nCerta
 HELPTIP_HEIRLOOM_HEAD = "Particularités de la collection « Héritage »";
 HELPTIP_HEIRLOOM = "Les objets d'Héritage sont des objets destinés à faciliter la montée en niveau de votre personnage. Ce type d'objet augmente généralement l'expérience gagnée par le personnage lors des quêtes et de la mise à mort de monstres. Leurs caractéristiques augmentent également avec le niveau du personnage, jusqu'au niveau 80.\n\nSur notre serveur, les objets d'Héritage sont ajoutés à la collection à l'aide de jetons spéciaux. Vous pouvez vous les procurer en jeu contre de la monnaie interne, ou dans notre boutique.\n\nUne fois un objet ajouté à la collection, il devient accessible sur n'importe quel personnage du compte, dans le monde de jeu.\n\nPour obtenir un objet d'Héritage, faites un clic gauche dessus : il rejoindra alors votre sac. Cette action peut être répétée un nombre illimité de fois.";
 
+-- PATCH round 114 : titres/descriptions des specialisations Chasseur de
+-- demons (S_CALSS_SPECIALIZATION_DATA[CLASS_ID_DEMONHUNTER], base client
+-- Universe) referencent DEMONHUNTER_HAVOC/REVENGE/POSESSION_TITLE/_DESC,
+-- jamais definis nulle part cote Universe (seulement en russe cote Sirus/
+-- GlobalStrings.lua) -> case a cocher sans texte dans le sous-menu
+-- specialisations de l'onglet Heritage. C'est la SEULE classe presente
+-- dans cette table (Mage de sang/Cavalier/Moine/Dompteur/Heros n'y sont
+-- pas du tout, donc 0 ligne de specialisation pour elles, pas de bug).
+DEMONHUNTER_HAVOC_TITLE = "Dévastation";
+DEMONHUNTER_HAVOC_DESC = "Sombre maître des lames de combat et de la magie dévastatrice du Fel.";
+DEMONHUNTER_REVENGE_TITLE = "Vengeance";
+DEMONHUNTER_REVENGE_DESC = "Utilise la puissance du démon intérieur pour incinérer les ennemis et protéger ses alliés.";
+DEMONHUNTER_POSESSION_TITLE = "Possession";
+DEMONHUNTER_POSESSION_DESC = "Libère le démon intérieur pour combattre les ennemis.";
+
+-- Ces globales seules NE SUFFISENT PAS : S_CALSS_SPECIALIZATION_DATA (dans
+-- SharedXML\SharedConstants.lua, toc ligne 38) capture leur VALEUR au
+-- moment de la construction de la table, laquelle a lieu tres tot, bien
+-- avant que ce fichier-ci (toc ligne 242) ne les definisse. Sans le patch
+-- direct ci-dessous, les 3 sous-tables Chasseur de demons resteraient donc
+-- figees avec title/desc = nil pour toujours, meme avec les globales
+-- ci-dessus definies (meme piege que PLAYER_CLASS_FLAG au round 101).
+if S_CALSS_SPECIALIZATION_DATA and S_CALSS_SPECIALIZATION_DATA[CLASS_ID_DEMONHUNTER] then
+	local dhSpecs = S_CALSS_SPECIALIZATION_DATA[CLASS_ID_DEMONHUNTER];
+	local FIXED_TITLES = { DEMONHUNTER_HAVOC_TITLE, DEMONHUNTER_REVENGE_TITLE, DEMONHUNTER_POSESSION_TITLE };
+	local FIXED_DESCS  = { DEMONHUNTER_HAVOC_DESC, DEMONHUNTER_REVENGE_DESC, DEMONHUNTER_POSESSION_DESC };
+	for i, specData in ipairs(dhSpecs) do
+		if FIXED_TITLES[i] then
+			specData[2] = FIXED_TITLES[i];
+			specData[3] = FIXED_DESCS[i];
+		end
+	end
+end
+
+
 -- PATCH round 109: diagnostic dedie aux bulles d'aide (HelpPlate) vides du
 -- Garde-robe. L'utilisateur confirme avoir survole une icone "i" et vu une
 -- bulle sans texte, MEME APRES le round 108 (traduction frFR ajoutee en fin
