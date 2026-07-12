@@ -329,3 +329,69 @@ SlashCmdList["HEIRLOOMDEBUG"] = function()
 		print("|cffff0000[Heirloom Debug]|r HeirloomsJournal introuvable (ouvrez d'abord Reliques).");
 	end
 end
+
+-- PATCH round 109 (filet de securite) : re-definition des memes 9 textes
+-- d'aide ici, dans Collection_Compat_Tooltip.lua. Ce fichier charge juste
+-- avant Custom_Collections.xml (toc ligne 242 vs 243) et a un historique
+-- prouve de s'executer entierement (toutes les commandes /debug qui y
+-- vivent fonctionnent). Si Collection_Compat.lua (round 108) est
+-- interrompu plus haut par une erreur runtime avant d'atteindre ses
+-- propres definitions (cause exacte du bug SlashCmdList du round 26),
+-- ces definitions-ci prennent le relais en dernier recours.
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1 = "La Transmogrification vous permet de modifier l'apparence de votre équipement. Mais il y a quelques points importants à connaître.\n\n1. Une fois la Transmogrification effectuée, vous ne pourrez plus rendre les objets au marchand. Cela concerne aussi bien l'objet dont vous avez changé l'apparence que celui dont vous avez utilisé l'apparence.\n\n2. Si vous détruisez ou vendez un objet possédant un minuteur de retour ou d'échange, vous perdrez l'apparence associée à la Transmogrification.\n\n3. Après la Transmogrification, les deux objets deviennent personnels. Cela s'applique également aux objets d'Héritage (armure et armes).\n\n4. Appliquer un enchantement visuel sur une arme la rend également personnelle.\n\n5. L'effet de Transmogrification est retiré des objets d'Héritage envoyés par courrier.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_2 = "Ce compteur indique le nombre d'apparences d'objets que vous avez collectées. Le nombre affiché varie selon l'emplacement et le type d'objet sélectionnés.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_3 = "Pour trouver l'apparence d'un objet qui vous intéresse, commencez à saisir son nom dans le champ \"Recherche\".";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_4 = "Vous pouvez ici choisir la source d'obtention des apparences d'objets que vous avez déjà obtenues.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_5 = "Vous pouvez ici activer/désactiver l'affichage de la fenêtre d'aide pour la Transmogrification du type d'objet sélectionné. Si la fenêtre d'aide est activée, le bouton \"Règles complètes\" vous permettra d'accéder aux informations détaillées sur toutes les règles de Transmogrification dans l'encyclopédie.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_6 = "Vous pouvez ici enregistrer toutes vos tenues.\n\nChoisissez les apparences souhaitées pour vos objets, puis cliquez sur \"Nouvel équipement\". Donnez-lui un nom unique et cliquez sur \"Appliquer\". Votre tenue est maintenant enregistrée et vous pourrez l'utiliser plus tard pour changer rapidement de Transmogrification.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_7 = "Vous pouvez ici sélectionner l'objet auquel vous souhaitez donner une nouvelle apparence.\n\nPour annuler les modifications d'un objet en particulier, cliquez dessus avec le bouton droit de la souris ou sur la flèche qui apparaît à côté.\n\nSi vous souhaitez annuler les modifications pour tous les objets à la fois, cliquez sur la flèche en haut à droite.\n\nNotez que l'annulation groupée n'est possible que tant que le service de Transmogrification n'a pas été payé.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_8 = "Vous pouvez ici choisir le type d'apparence d'objet souhaité.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_9 = "Toutes vos apparences d'objets correspondant aux filtres et à la recherche s'affichent ici.\n\nPour placer une apparence en tête de liste, ajoutez-la à vos Favoris. Pour cela, faites un clic droit sur l'objet et sélectionnez \"Ajouter aux Favoris\".";
+
+-- PATCH round 109: diagnostic dedie aux bulles d'aide (HelpPlate) vides du
+-- Garde-robe. L'utilisateur confirme avoir survole une icone "i" et vu une
+-- bulle sans texte, MEME APRES le round 108 (traduction frFR ajoutee en fin
+-- de Collection_Compat.lua). Deux causes possibles a departager :
+--   1) Les globales HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1.._9 ne sont pas
+--      definies du tout (le patch round 108 n'a pas ete applique, ou une
+--      erreur runtime plus haut dans Collection_Compat.lua interrompt le
+--      fichier avant d'atteindre le bloc ajoute en fin de fichier - deja vu
+--      au round 26 avec SlashCmdList).
+--   2) Les globales SONT definies, mais WardrobeFrame.helpPlate a capture
+--      leur valeur AVANT qu'elles n'existent (OnLoad qui tourne trop tot).
+-- Cette commande affiche l'etat reel des deux pour trancher sans deviner.
+SLASH_HELPPLATEDEBUG1 = "/hpdebug"
+SlashCmdList["HELPPLATEDEBUG"] = function()
+	print("|cffffcc00[HelpPlate Debug]|r --- Globales HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1..9 ---");
+	for i = 1, 9 do
+		local v = _G["HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_" .. i];
+		if type(v) == "string" then
+			print(string.format("  [%d] DEFINIE, longueur=%d, debut=%q", i, #v, v:sub(1, 40)));
+		else
+			print(string.format("  [%d] |cffff0000NIL|r (type=%s)", i, type(v)));
+		end
+	end
+
+	print("|cffffcc00[HelpPlate Debug]|r --- WardrobeFrame.helpPlate (capture au OnLoad) ---");
+	if not WardrobeFrame then
+		print("  WardrobeFrame introuvable.");
+		return;
+	end
+	if not WardrobeFrame.helpPlate then
+		print("  WardrobeFrame.helpPlate est nil (OnLoad n'a peut-etre pas encore tourne).");
+		return;
+	end
+	for i = 1, 9 do
+		local entry = WardrobeFrame.helpPlate[i];
+		if not entry then
+			print(string.format("  [%d] entree absente", i));
+		else
+			local t = entry.ToolTipText;
+			if type(t) == "string" then
+				print(string.format("  [%d] ToolTipText DEFINI, longueur=%d, debut=%q", i, #t, t:sub(1, 40)));
+			else
+				print(string.format("  [%d] ToolTipText |cffff0000NIL|r (type=%s) -> capture au chargement a echoue", i, type(t)));
+			end
+		end
+	end
+end

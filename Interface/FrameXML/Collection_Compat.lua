@@ -1284,3 +1284,21 @@ do
 		return className, classToken, classID, classFlag;
 	end
 end
+
+-- ============================================================
+-- PATCH Collection (round 108) : textes d'aide (HelpPlate) du
+-- tutoriel Garde-robe (icone "i"). HEPLPLATE_WARDROBE_TRANSMOG_
+-- TUTORIAL_1 a _9 sont references par Custom_Wardrobe.lua mais
+-- n'etaient definis nulle part cote Universe (uniquement en russe
+-- dans Sirus/GlobalStrings.lua) -> ToolTipText = nil -> bulles
+-- d'aide vides. Traduction frFR depuis le texte russe original.
+-- ============================================================
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1 = "La Transmogrification vous permet de modifier l'apparence de votre équipement. Mais il y a quelques points importants à connaître.\n\n1. Une fois la Transmogrification effectuée, vous ne pourrez plus rendre les objets au marchand. Cela concerne aussi bien l'objet dont vous avez changé l'apparence que celui dont vous avez utilisé l'apparence.\n\n2. Si vous détruisez ou vendez un objet possédant un minuteur de retour ou d'échange, vous perdrez l'apparence associée à la Transmogrification.\n\n3. Après la Transmogrification, les deux objets deviennent personnels. Cela s'applique également aux objets d'Héritage (armure et armes).\n\n4. Appliquer un enchantement visuel sur une arme la rend également personnelle.\n\n5. L'effet de Transmogrification est retiré des objets d'Héritage envoyés par courrier.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_2 = "Ce compteur indique le nombre d'apparences d'objets que vous avez collectées. Le nombre affiché varie selon l'emplacement et le type d'objet sélectionnés.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_3 = "Pour trouver l'apparence d'un objet qui vous intéresse, commencez à saisir son nom dans le champ \"Recherche\".";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_4 = "Vous pouvez ici choisir la source d'obtention des apparences d'objets que vous avez déjà obtenues.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_5 = "Vous pouvez ici activer/désactiver l'affichage de la fenêtre d'aide pour la Transmogrification du type d'objet sélectionné. Si la fenêtre d'aide est activée, le bouton \"Règles complètes\" vous permettra d'accéder aux informations détaillées sur toutes les règles de Transmogrification dans l'encyclopédie.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_6 = "Vous pouvez ici enregistrer toutes vos tenues.\n\nChoisissez les apparences souhaitées pour vos objets, puis cliquez sur \"Nouvel équipement\". Donnez-lui un nom unique et cliquez sur \"Appliquer\". Votre tenue est maintenant enregistrée et vous pourrez l'utiliser plus tard pour changer rapidement de Transmogrification.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_7 = "Vous pouvez ici sélectionner l'objet auquel vous souhaitez donner une nouvelle apparence.\n\nPour annuler les modifications d'un objet en particulier, cliquez dessus avec le bouton droit de la souris ou sur la flèche qui apparaît à côté.\n\nSi vous souhaitez annuler les modifications pour tous les objets à la fois, cliquez sur la flèche en haut à droite.\n\nNotez que l'annulation groupée n'est possible que tant que le service de Transmogrification n'a pas été payé.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_8 = "Vous pouvez ici choisir le type d'apparence d'objet souhaité.";
+HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_9 = "Toutes vos apparences d'objets correspondant aux filtres et à la recherche s'affichent ici.\n\nPour placer une apparence en tête de liste, ajoutez-la à vos Favoris. Pour cela, faites un clic droit sur l'objet et sélectionnez \"Ajouter aux Favoris\".";
