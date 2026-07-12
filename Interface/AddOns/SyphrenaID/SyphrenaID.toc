@@ -1,0 +1,6 @@
+## Interface: 30300
+## Title: |cffd50000UniverseID|r
+## Version: 3.3.8.01
+## Notes: Addons d'affichage ID des sorts, objets, PNJ, succès, critères, aptitudes, enchantements, gemmes, macros et ensembles d'équipement. NE DÉSACTIVEZ PAS.
+## Author: AzerothUniverse
+SyphrenaID.lua

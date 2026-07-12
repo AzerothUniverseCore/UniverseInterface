@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffd50000UniverseUI|r
+## Notes: NE DÉSACTIVEZ PAS.
+## Version: 3.3.8.01
+## Author: AzerothUniverse
+## SavedVariablesPerCharacter: _data
+
+_patchkit.xml

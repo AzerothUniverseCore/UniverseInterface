@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseBarUI|r
+## Notes: Addons de barre de sorts similaire à Dragonflight.
+## Version: 3.3.8.01
+## Author: AzerothUniverse
+## SavedVariables: collapse_state
+
+Syphrena_actionbar.xml

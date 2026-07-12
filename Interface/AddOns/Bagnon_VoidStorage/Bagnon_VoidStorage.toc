@@ -1,0 +1,11 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseBagnonVoidStorageUI|r
+## Author: Jaliborc (João Cardoso)
+## Notes: Single window display for your void storage
+## RequiredDeps: Bagnon
+## LoadOnDemand: 1
+## Version: 6.2.4
+
+localization\localization.xml
+components\components.xml
+main.lua

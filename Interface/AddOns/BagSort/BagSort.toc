@@ -1,0 +1,9 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseBagSortUI|r
+## Notes: Addons de tri des sacs.
+##
+## URL: http://azerothuniverse.org/
+## Author: Sushi Sort
+##
+BagSort.lua
+BagSort.xml

@@ -1,0 +1,16 @@
+## Interface: 30300
+## Title: |cffd50000UniverseAIO|r
+## Notes: Appuyez sur Échap pour utiliser. NE DÉSACTIVEZ PAS.
+## Author: Rochet2 <https://github.com/Rochet2>
+## SavedVariables: AIO_sv, AIO_sv_Addons
+## SavedVariablesPerCharacter: AIO_sv_char
+
+#dependencies
+Dep_LibWindow-1.1\LibStub.lua
+Dep_LibWindow-1.1\LibWindow-1.1\LibWindow-1.1.lua
+Dep_Smallfolk\smallfolk.lua
+lualzw-zeros\lualzw.lua
+queue.lua
+
+#core
+AIO.lua

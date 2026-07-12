@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffc79c6eUniversePanel|r
+## Author: AzerothUniverse
+## Version: 3.3.8.01
+## Notes: Ajoute un bouton sur la minicarte pour ouvrir le menu d'identification du personnage.
+## DefaultState: Enabled
+
+SyphrenaPanel.lua

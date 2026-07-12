@@ -1,0 +1,14 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseMinimapUI|r
+## Notes: Addons minimap similaire à Dragonflight.
+## Version: 3.3.8.01
+## Author: AzerothUniverse
+## OptionalDeps: Blizzard_TimeManager
+
+config.lua
+atlas.lua
+core.lua
+map.lua
+time.lua
+auras.lua
+init.lua
