@@ -513,3 +513,29 @@ TRANSMOG_SOURCE_11 = "Récompenses de guilde";
 TRANSMOG_SOURCE_12 = "Équipement de départ";
 TRANSMOG_SOURCE_13 = "Transmogrification (boutique)";
 TRANSMOG_SOURCE_14 = "Non disponible actuellement";
+
+-- PATCH round 117 : erreur "GetBindingKey: Usage: GetBindingKey(...)" au survol
+-- de l'onglet "Métiers" du Grimoire (SpellBookFrameTabButton2). Dans
+-- SpellBookFrame.lua, la ligne "SpellBookFrameTabButton2.binding = TOGGLEPROFESSIONBOOK;"
+-- reference une variable globale SANS guillemets (contrairement a "TOGGLESPELLBOOK",
+-- "TOGGLEPETBOOK", etc. qui sont bien des chaines litterales juste au-dessus/en-dessous).
+-- Cette globale TOGGLEPROFESSIONBOOK n'existe nulle part dans le client -> nil -> le
+-- OnEnter de cet onglet (SpellBookFrame.xml) appelle ensuite MicroButtonTooltipText(text, nil)
+-- -> GetBindingKey(nil) -> crash. En definissant cette globale comme une chaine (au pire
+-- une action de binding qui n'existe simplement pas, comme c'etait deja implicitement le cas
+-- pour cet onglet), SpellBookFrame_Update() (qui reassigne .binding a chaque affichage du
+-- Grimoire) lui donnera desormais toujours une vraie chaine et GetBindingKey ne plantera plus.
+TOGGLEPROFESSIONBOOK = "TOGGLEPROFESSIONBOOK";
+
+-- PATCH round 117 : erreur "attempt to call global 'LootWonAlertFrame_ShowAlert' (a nil value)"
+-- a chaque butin recu. ChatFrame.lua (evenement CHAT_MSG_LOOT) appelle cette fonction pour
+-- afficher un toast visuel "Objet obtenu" (fonctionnalite retail), mais elle n'a jamais ete
+-- portee dans ce client 3.3.5 -- AlertFrames.lua ne definit que AchievementAlertFrame_ShowAlert
+-- et DungeonCompletionAlertFrame_ShowAlert, pas celle-ci. Le message de butin s'affiche deja
+-- normalement dans le chat juste apres cet appel (self:AddMessage) ; ce stub vide supprime
+-- seulement le crash, sans toast visuel. Si un vrai toast "Objet obtenu" est souhaite plus
+-- tard, ce sera un ajout separe (nouvelle frame a construire).
+if not LootWonAlertFrame_ShowAlert then
+	function LootWonAlertFrame_ShowAlert(itemLink)
+	end
+end
