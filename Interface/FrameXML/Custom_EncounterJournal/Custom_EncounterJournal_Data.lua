@@ -74,187 +74,187 @@ JOURNALINSTANCE = {
 }
 JOURNALENCOUNTER = {
     [63] = {
-        {89, "Rak'Zor", [[ Les ogres sont un peuple étonnamment simple d'esprit, mais doté d'une force physique colossale. C'est justement cette simplicité qui a permis à VanCleef d'engager cet ogre comme garde du corps, ne le payant pour son "travail" qu'à la seule condition de lui rapporter les têtes des intrus. ]], 0.365270, 0.612275, 1, 886, 2010, 63, -1, 0, 1},
+        {89, "Rhahk'Zor", [[ Les ogres sont un peuple étonnamment simple d'esprit, mais doté d'une force physique colossale. C'est justement cette simplicité qui a permis à VanCleef d'engager cet ogre comme garde du corps, ne le payant pour son "travail" qu'à la seule condition de lui rapporter les têtes des intrus. ]], 0.365270, 0.612275, 1, 886, 2010, 63, -1, 0, 1},
         {90, "Déchiqueteur de Sneed", [[ Lorsque l'ingénieur inconnu Sneed travaillait encore pour le Cartel des Eaux-Troubles, la Confrérie de la Justice lui fit une offre représentant une somme qu'il n'aurait jamais pu gagner en toute une vie. Le gobelin l'accepta sans hésiter et renia aussitôt ses anciens maîtres... Après tout, n'importe quel gobelin sensé en aurait fait autant. ]], 0.501996, 0.868264, 1, 886, 2020, 63, -1, 0, 2},
         {91, "Gilnid", [[ Personne n'égale Gilnid dans l'art de créer des automates mécaniques. Amoral, même selon les standards gobelins, Gilnid fut chassé de la Crique après qu'une de ses expériences déments eut mal tourné en plein marché. Gilnid ne s'intéresse pas à la politique et ne joue aucun rôle dans les décisions de la Confrérie, mais celle-ci finance ses expériences et lui fournit des pièces détachées. Le respect de VanCleef pour ses talents insensés est sans limite. ]], 0.124751, 0.758982, 2, 886, 20009, 63, -1, 0, 3},
         {92, "Capitaine Vertepeau", [[ Vertepeau, pirate jusqu'au bout des ongles, fut engagé par Edwin VanCleef, qui avait besoin d'un équipage pour son monstrueux navire-titan. Vertepeau et son équipage se battront jusqu'à la mort, car posséder un tel navire est l'accomplissement de leurs rêves les plus fous. ]], 0.604791, 0.387724, 2, 886, 2044, 63, -1, 0, 4},
         {95, "Edwin VanCleef", [[ Edwin VanCleef débuta comme cambrioleur dans la ville de Hurlevent, se spécialisant dans le contournement des systèmes de sécurité mécaniques. Après la destruction de la ville par la Horde, il apprit, en tant que fils aîné, le métier de maçon-bâtisseur et fut l'un des premiers à proposer ses services pour la reconstruction de la capitale en ruines. Il fut également l'un des premiers à réclamer un salaire pour ses services, ce qui lui valut d'être banni de la ville. VanCleef rassembla un groupe de bâtisseurs et d'ingénieurs de tous horizons, retrouvés dans une fosse boueuse hors des portes de Hurlevent, et fonda la Confrérie de la Justice. ]], 0.654691, 0.402695, 2, 886, 2060, 63, -1, 0, 6},
-        {11637, "Monsieur Smite", [[ Monsieur Smite est le second du capitaine Vertepeau. Il aime jouer avec ses victimes, les laissant croire qu'elles peuvent gagner, tout en utilisant progressivement des armes de plus en plus meurtrières. ]], 0.560000, 0.264000, 2, 886, 20872, 63, -1, 0, 5},
+        {11637, "M. Châtiment", [[ Monsieur Smite est le second du capitaine Vertepeau. Il aime jouer avec ses victimes, les laissant croire qu'elles peuvent gagner, tout en utilisant progressivement des armes de plus en plus meurtrières. ]], 0.560000, 0.264000, 2, 886, 20872, 63, -1, 0, 5},
     },
     [64] = {
         {96, "Rethiltripe", [[ Rethiltripe s'est vu confier la garde des prisonniers du Fort de Croc Ombrage, et il entend bien honorer cette confiance en assurant fidèlement son service. Outre la rage et la puissance physique communes à tous les vargouls, Rethiltripe possède une sombre capacité : celle de drainer les forces vitales. ]], 0.664671, 0.732036, 1, 891, 2107, 64, -1, 0, 1},
-        {97, "Baron Argenlune", [[ Le baron Argenlune fut jadis le seigneur de ce fort, avant qu'il ne tombe aux mains des vargouls d'Arugal. Aujourd'hui, son esprit sans repos est gardé par les hommes-loups qui l'ont déchiqueté, et malheur à quiconque osera s'aventurer dans son domaine. ]], 0.304392, 0.773952, 2, 891, 2118, 64, -1, 0, 2},
-        {98, "Commandant Springvale", [[ Le fantôme d'un soldat loyal, le commandant Springvale, erre dans la salle du conseil, prêt à déchaîner à tout moment sa puissance impie sur les envahisseurs, afin de venger la mort de son seigneur, le baron Argenlune. ]], 0.280439, 0.597305, 1, 891, 2137, 64, -1, 0, 3},
+        {97, "Baron d'Argelaine", [[ Le baron Argenlune fut jadis le seigneur de ce fort, avant qu'il ne tombe aux mains des vargouls d'Arugal. Aujourd'hui, son esprit sans repos est gardé par les hommes-loups qui l'ont déchiqueté, et malheur à quiconque osera s'aventurer dans son domaine. ]], 0.304392, 0.773952, 2, 891, 2118, 64, -1, 0, 2},
+        {98, "Commandant Printeval", [[ Le fantôme d'un soldat loyal, le commandant Springvale, erre dans la salle du conseil, prêt à déchaîner à tout moment sa puissance impie sur les envahisseurs, afin de venger la mort de son seigneur, le baron Argenlune. ]], 0.280439, 0.597305, 1, 891, 2137, 64, -1, 0, 3},
         {99, "Fenrus le Dévoreur", [[ Cet énorme loup noir, animal de compagnie et gardien d'Arugal, doué d'une force monstrueuse et d'une salive empoisonnée, réside dans les étages supérieurs de la tour d'Arugal, dans la bibliothèque. Malheur à l'aventurier qui croisera son regard. ]], 0.544910, 0.537425, 0, 891, 2156, 64, -1, 0, 4},
         {100, "Archimage Arugal", [[ Arugal fut jadis membre du Kirin Tor à Dalaran. Mais lorsque le Fléau envahit et détruisit Dalaran, transformant de nombreux mages tombés en morts-vivants renforçant les rangs du Fléau, Arugal s'enfuit vers le Fort de Croc Ombrage, autour duquel s'était établi le village des Feux Mortuaires. Ignorant les avertissements, il libéra la malédiction des vargouls sur ces terres, ce qu'il regretta amèrement par la suite. Rongé par la culpabilité, Arugal accepta les vargouls comme ses enfants et s'enferma dans le Fort de Croc Ombrage. ]], 0.684632, 0.335329, 0, 891, 2164, 64, -1, 0, 5},
     },
     [76] = {
-        {175, "Grand-prêtre Venoxis", [[ Venoxis fut envoyé pour tuer Hakkar, mais fut asservi par cet esprit cruel avant d'être tué par les héros d'Azeroth. Grâce aux efforts des serviteurs de Hakkar, il fut ramené du monde des esprits et remis en poste pour garder Zul'Gurub, où des serpents venimeux le servent désormais. ]], 0.509980, 0.537425, 0, 793, 2793, 76, -1, 0, 1},
-        {176, "Mandokir, Seigneur du Sang", [[ Mandokir, Seigneur du Sang, est un guerrier féroce qui commande les combattants Gurubashi. Assis sur son reptile, il observe l'entraînement de ses serviteurs, et malheur à celui qui ne fait pas honneur à la confiance du Seigneur du Sang : il sera aussitôt décapité par Mandokir en personne. ]], 0.604791, 0.799401, 0, 793, 2610, 76, -1, 0, 2},
-        {177, "Chambre de la Folie – Gri'lek", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.599801, 0.462575, 0, 793, 2504, 76, -1, 0, 3},
-        {178, "Chambre de la Folie – Hazza'rah", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.636700, 0.462575, 0, 793, 2495, 76, -1, 0, 4},
-        {179, "Chambre de la Folie – Renataki", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.599801, 0.514970, 0, 793, 2501, 76, -1, 0, 5},
-        {180, "Chambre de la Folie – Wushoolay", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.601905, 0.414711, 0, 793, 2498, 76, -1, 0, 6},
+        {175, "Grand prêtre Venoxis", [[ Venoxis fut envoyé pour tuer Hakkar, mais fut asservi par cet esprit cruel avant d'être tué par les héros d'Azeroth. Grâce aux efforts des serviteurs de Hakkar, il fut ramené du monde des esprits et remis en poste pour garder Zul'Gurub, où des serpents venimeux le servent désormais. ]], 0.509980, 0.537425, 0, 793, 2793, 76, -1, 0, 1},
+        {176, "Seigneur sanglant Mandokir", [[ Mandokir, Seigneur du Sang, est un guerrier féroce qui commande les combattants Gurubashi. Assis sur son reptile, il observe l'entraînement de ses serviteurs, et malheur à celui qui ne fait pas honneur à la confiance du Seigneur du Sang : il sera aussitôt décapité par Mandokir en personne. ]], 0.604791, 0.799401, 0, 793, 2610, 76, -1, 0, 2},
+        {177, "Le Béhémoth", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.599801, 0.462575, 0, 793, 2504, 76, -1, 0, 3},
+        {178, "Hazza'rah", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.636700, 0.462575, 0, 793, 2495, 76, -1, 0, 4},
+        {179, "Renataki", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.599801, 0.514970, 0, 793, 2501, 76, -1, 0, 5},
+        {180, "Wushoolay", [[ Parmi les esprits rebelles de la Chambre de la Folie se trouvent Gri'lek, un troll sinistre privé de sa capacité de régénération par les loas, Renataki, un guerrier mutilé tristement célèbre, Hazza'rah, un voyant tourmenté par des visions du futur, et Wushoolay, un puissant combattant chargé de la force des tempêtes. ]], 0.601905, 0.414711, 0, 793, 2498, 76, -1, 0, 6},
         {181, "Grande prêtresse Arlokk", [[ Arlokk est une grande prêtresse, l'élue de la panthère loa Bethekk. Suivant l'accord récemment conclu entre les tribus Gurubashi et Zandalari, Arlokk a lâché ses féroces animaux de compagnie sur les habitants sans méfiance des terres environnantes. ]], 0.480040, 0.200599, 0, 793, 2693, 76, -1, 0, 7},
-        {184, "Jin'do le Maître des maléfices", [[ Les nécromanciens sont généralement des individus sombres et renfermés, mais Jin'do le Maître des maléfices dépasse largement ce cliché. Dans ses appartements, près de l'autel du sang bouillonnant de Zul'Gurub, une fête éternelle bat son plein : les morts dansent, animés par sa volonté, aux côtés du nécromancien lui-même. Mais il ne faut pas se laisser tromper par cette image de fou : Jin'do est un adversaire redoutable et sans conteste un sorcier tout-puissant. ]], 0.317338, 0.245509, 0, 793, 2508, 76, -1, 0, 8},
-        {185, "Hakkar l'Écorcheur d'âmes", [[ Hakkar l'Écorcheur d'âmes, esprit cruel et assoiffé de sang, décida de venir en aide aux trolls. En révélant aux Gurubashi les secrets du sang, il les aida à conquérir une grande partie du Val Perdu ainsi que plusieurs îles des mers du Sud. Mais son aide eut un prix terriblement élevé. Aujourd'hui rappelé dans ce monde, il siège à Zul'Gurub, amassant sa puissance en attendant son heure. ]], 0.485030, 0.395210, 0, 793, 2899, 76, -1, 0, 9},
+        {184, "Jin'do le Maléficieur", [[ Les nécromanciens sont généralement des individus sombres et renfermés, mais Jin'do le Maître des maléfices dépasse largement ce cliché. Dans ses appartements, près de l'autel du sang bouillonnant de Zul'Gurub, une fête éternelle bat son plein : les morts dansent, animés par sa volonté, aux côtés du nécromancien lui-même. Mais il ne faut pas se laisser tromper par cette image de fou : Jin'do est un adversaire redoutable et sans conteste un sorcier tout-puissant. ]], 0.317338, 0.245509, 0, 793, 2508, 76, -1, 0, 8},
+        {185, "Hakkar", [[ Hakkar l'Écorcheur d'âmes, esprit cruel et assoiffé de sang, décida de venir en aide aux trolls. En révélant aux Gurubashi les secrets du sang, il les aida à conquérir une grande partie du Val Perdu ainsi que plusieurs îles des mers du Sud. Mais son aide eut un prix terriblement élevé. Aujourd'hui rappelé dans ce monde, il siège à Zul'Gurub, amassant sa puissance en attendant son heure. ]], 0.485030, 0.395210, 0, 793, 2899, 76, -1, 0, 9},
     },
     [77] = {
         {186, "Akil'zon", [[ Akil'zon, ancien chaman de la tribu Amani, possède le don surnaturel de contrôler l'élément de l'air. Ses capacités ont attiré l'attention du Seigneur des malédictions Malacrass, qui a vu en lui un réceptacle digne de recevoir l'esprit du dieu-aigle. ]], 0.355290, 0.230539, 0, 781, 2521, 77, 1, 0, 1},
         {187, "Nalorakk", [[ Le Seigneur des malédictions Malacrass considérait Nalorakk, réputé pour sa fureur indomptable et sa force sauvage, comme un réceptacle idéal pour l'essence du dieu-ours. ]], 0.405190, 0.773993, 0, 781, 2867, 77, 1, 0, 2},
         {188, "Jan'alai", [[ Les dracœilles sont des prédateurs rapides qui déchiquettent leurs proies avec des griffes aussi tranchantes que des rasoirs. L'un des voleurs les plus habiles de la tribu Amani, Jan'alai, appréciait tant ces qualités qu'il développa des techniques de combat similaires pour ses propres attaques. ]], 0.554891, 0.709581, 0, 781, 2621, 77, 1, 0, 3},
         {189, "Halazzi", [[ Les lynx d'Azeroth sont des chasseurs indomptables qui lacèrent leurs proies avec leurs griffes et les déchirent avec leurs crocs. Le Seigneur des malédictions Malacrass jugea que l'essence du dieu-lynx méritait d'être placée dans le corps de l'un des chasseurs les plus habiles de la tribu. ]], 0.584831, 0.238024, 0, 781, 2804, 77, 1, 0, 4},
-        {190, "Malacrass, Seigneur des malédictions", [[ La rumeur veut que le plus terrible sorcier de la tribu Amani, Malacrass, le Seigneur des malédictions, ait accompli l'impossible en enfermant les essences de plusieurs puissants dieux animaux dans les corps de ses protecteurs... se réservant l'essence la plus sinistre pour lui-même. ]], 0.714572, 0.529940, 0, 781, 2706, 77, 1, 0, 5},
+        {190, "Seigneur des maléfices Malacrass", [[ La rumeur veut que le plus terrible sorcier de la tribu Amani, Malacrass, le Seigneur des malédictions, ait accompli l'impossible en enfermant les essences de plusieurs puissants dieux animaux dans les corps de ses protecteurs... se réservant l'essence la plus sinistre pour lui-même. ]], 0.714572, 0.529940, 0, 781, 2706, 77, 1, 0, 5},
         {191, "Zul'jin", [[ Zul'jin, légende vivante, troll manchot dont le combat dépasse les capacités des plus puissants de sa race. Ayant fait de la renaissance de l'empire Amani le but de son existence, il rassemble les guerriers de sa tribu à Zul'Aman, en quête de nouvelles sources de pouvoir. C'est à lui qu'incombe la grande mission de rendre à son peuple sa gloire passée. L'empire Amani renaît pour se venger... ]], 0.904193, 0.529940, 0, 781, 2875, 77, 1, 0, 6},
-        {11001, "Sacrifices", [[ Plusieurs aventuriers et chercheurs du groupe de Harrison ont été capturés par les trolls Amani. Si on parvient à les sauver à temps, avant qu'ils ne soient sacrifiés, ils récompenseront assurément leurs sauveurs. ]], 0.000000, 0.000000, 0, 781, 12371, 77, 1, 0, 7},
+        {11001, "Harvest White Turnip Credit", [[ Plusieurs aventuriers et chercheurs du groupe de Harrison ont été capturés par les trolls Amani. Si on parvient à les sauver à temps, avant qu'ils ne soient sacrifiés, ils récompenseront assurément leurs sauveurs. ]], 0.000000, 0.000000, 0, 781, 12371, 77, 1, 0, 7},
     },
     [227] = {
-        {368, "Ghamoura", [[ Lorsque le culte du Marteau du Crépuscule est arrivé sur ces terres, ses adeptes ont capturé l'un des derniers habitants pacifiques du temple d'Elune. Pendant de longues années, les sectateurs ont martyrisé cette gigantesque tortue, tourmentant son corps et son âme jusqu'à la rendre folle. Les sectateurs la baptisèrent Ghamoura, et tentent désormais de maîtriser sa rage afin de protéger leur repaire. ]], 0.333333, 0.606870, 1, 873, 20010, 227, -1, 0, 1},
+        {368, "Ghamoo-ra", [[ Lorsque le culte du Marteau du Crépuscule est arrivé sur ces terres, ses adeptes ont capturé l'un des derniers habitants pacifiques du temple d'Elune. Pendant de longues années, les sectateurs ont martyrisé cette gigantesque tortue, tourmentant son corps et son âme jusqu'à la rendre folle. Les sectateurs la baptisèrent Ghamoura, et tentent désormais de maîtriser sa rage afin de protéger leur repaire. ]], 0.333333, 0.606870, 1, 873, 20010, 227, -1, 0, 1},
         {426, "Gelihast", [[ Ayant entendu l'appel des Dieux anciens, Gelihast y répondit, se frayant un chemin de force jusqu'aux Abysses insondables, tuant une dizaine de novices du culte du Marteau du Crépuscule sans méfiance avec ses deux épées. Le culte, choqué par sa cruauté et sa férocité, le laissa rester, et Gelihast construisit son propre autel afin d'offrir des sacrifices et de recevoir les bénédictions des forces sinistres habitant les ruines du temple. ]], 0.543284, 0.564179, 1, 873, 20011, 227, -1, 0, 3},
         {436, "Dame Sarevess", [[ Le culte du Marteau du Crépuscule a réservé à Dame Sarevess sa propre grotte dans les Abysses insondables, lui offrant constamment des créatures vivantes en sacrifice. Les adeptes du culte espéraient que ses rituels et ses recherches leur offriraient une protection magique leur permettant de vénérer la terrible hydre habitant les abysses, tout en évitant de finir dans son estomac. ]], 0.111940, 0.389552, 1, 873, 9476, 227, -1, 0, 2},
-        {437, "Kelris, Seigneur du crépuscule", [[ Lorsque les adeptes du culte découvrirent au plus profond des Abysses insondables une étrange créature à trois têtes, le Seigneur du crépuscule Kelris fut convaincu que cette hydre annonçait le retour des Dieux anciens... et son propre chemin vers l'immortalité. Kelris supervisa personnellement la croissance de l'hydre, allant jusqu'à lui sacrifier ses propres sujets pour apaiser sa faim sans fin. ]], 0.523880, 0.808209, 2, 873, 9507, 227, -1, 0, 7},
+        {437, "Seigneur du Crépuscule Kelris", [[ Lorsque les adeptes du culte découvrirent au plus profond des Abysses insondables une étrange créature à trois têtes, le Seigneur du crépuscule Kelris fut convaincu que cette hydre annonçait le retour des Dieux anciens... et son propre chemin vers l'immortalité. Kelris supervisa personnellement la croissance de l'hydre, allant jusqu'à lui sacrifier ses propres sujets pour apaiser sa faim sans fin. ]], 0.523880, 0.808209, 2, 873, 9507, 227, -1, 0, 7},
         {444, "Aku'mai", [[ Aku'mai, incarnation du mal ancien, est doté d'une part de la puissance des Dieux anciens. Cette hydre à trois têtes inspire la terreur à tous en raison de sa soif de sang irraisonnée et de sa passion pour la chair vivante, mais le culte du Marteau du Crépuscule vénère Aku'mai comme le messager annonçant le retour prochain des Dieux anciens. ]], 0.855224, 0.864179, 2, 873, 9442, 227, -1, 0, 8},
-        {447, "Vieux Serrakis", [[ De nombreux animaux qui nageaient sous les ruines de l'Autel de la Lune ont été tués et dévorés depuis que le culte du Marteau du Crépuscule s'est installé dans les ruines, mais personne n'a jamais réussi à capturer le plus grand des mordefers, et ceux qui ont essayé y ont invariablement laissé la vie. Le Vieux Serrakis est une bête dangereuse, et malheur à celui qui tombe sous ses crocs. ]], 0.586567, 0.308955, 3, 873, 20012, 227, -1, 0, 5},
+        {447, "Vieux Serra'kis", [[ De nombreux animaux qui nageaient sous les ruines de l'Autel de la Lune ont été tués et dévorés depuis que le culte du Marteau du Crépuscule s'est installé dans les ruines, mais personne n'a jamais réussi à capturer le plus grand des mordefers, et ceux qui ont essayé y ont invariablement laissé la vie. Le Vieux Serrakis est une bête dangereuse, et malheur à celui qui tombe sous ses crocs. ]], 0.586567, 0.308955, 3, 873, 20012, 227, -1, 0, 5},
     },
     [228] = {
-        {369, "Grande inquisitrice Gerstahn", [[ Adepte du culte du Marteau du Crépuscule, Gerstahn ne se contente que du meilleur : nourriture exotique, vêtements coûteux et instruments de torture incrustés de pierres précieuses. Jour et nuit, des hurlements déchirants résonnent dans les cellules du clan Fer Noir. Gerstahn appelle fièrement ces sons glaçants sa « symphonie des cris », et ne manque jamais une occasion d'y ajouter une nouvelle voix. ]], 0.474044, 0.922131, 1, 880, 4630, 228, -1, 0, 1},
-        {370, "Seigneur Rokkor", [[ Le seigneur Rokkor méprise la lâcheté et la fourberie des autres élémentaires de feu. Pour éviter de servir à leurs côtés dans les Profondeurs ardentes, il provoqua délibérément la colère du Seigneur du feu. Le pari risqué de Rokkor porta ses fruits : il fut banni des Profondeurs et envoyé garder seul les tréfonds du Mont Hyjal Noir. ]], 0.556011, 0.670082, 1, 880, 4472, 228, -1, 0, 2},
+        {369, "Grande Interrogatrice Gerstahn", [[ Adepte du culte du Marteau du Crépuscule, Gerstahn ne se contente que du meilleur : nourriture exotique, vêtements coûteux et instruments de torture incrustés de pierres précieuses. Jour et nuit, des hurlements déchirants résonnent dans les cellules du clan Fer Noir. Gerstahn appelle fièrement ces sons glaçants sa « symphonie des cris », et ne manque jamais une occasion d'y ajouter une nouvelle voix. ]], 0.474044, 0.922131, 1, 880, 4630, 228, -1, 0, 1},
+        {370, "Grand élémentaire d'obsidienne", [[ Le seigneur Rokkor méprise la lâcheté et la fourberie des autres élémentaires de feu. Pour éviter de servir à leurs côtés dans les Profondeurs ardentes, il provoqua délibérément la colère du Seigneur du feu. Le pari risqué de Rokkor porta ses fruits : il fut banni des Profondeurs et envoyé garder seul les tréfonds du Mont Hyjal Noir. ]], 0.556011, 0.670082, 1, 880, 4472, 228, -1, 0, 2},
         {371, "Maître-chien Grebmar", [[ Il y a de nombreuses années, ce nain orphelin s'est mis à élever des chiens de garde et des chiens de compagnie. Aujourd'hui, Grebmar Barbe-broussailleuse traite ses limiers comme des membres de sa famille. Lorsqu'il ne patrouille pas les tréfonds de la Montagne Noire avec ses fidèles compagnons, il leur offre la meilleure bière du Fer Noir provenant du « Glouton morose ». ]], 0.535002, 0.573466, 1, 880, 4626, 228, -1, 0, 3},
-        {372, "Salle de justice", [[ Pour les crimes commis contre les nains du clan Fer Noir, il n'existe qu'un seul châtiment : la mort. Une tradition ancestrale exige que le coupable paie son forfait de son sang dans la Salle de justice, en combattant des créatures sauvages amenées de tout Azeroth. À ce jour, on ignore si quelqu'un a jamais survécu à cette bataille impitoyable. ]], 0.497785, 0.645796, 1, 880, 4547, 228, -1, 0, 4},
-        {373, "Pyromancien Grain-de-sagesse", [[ Autrefois respecté Serviteur de la terre, Grain-de-sagesse a rejoint le culte du Marteau du Crépuscule pour des raisons inconnues. Dans les tréfonds de la Montagne Noire, il s'est intéressé aux travaux du célèbre architecte du clan Fer Noir, Franclorn l'Ingénieux. La raison de cet intérêt inhabituel reste obscure, mais Grain-de-sagesse demeure fidèle au culte et prêt à combattre ses ennemis. ]], 0.549180, 0.948770, 2, 880, 4496, 228, -1, 0, 5},
-        {374, "Seigneur Brandon", [[ Le baron Geddon a appris à Brandon à utiliser correctement ses pouvoirs destructeurs, mais le baron ne se doutait sans doute pas que son protégé atteindrait un tel niveau de puissance effrayant. Craignant que Brandon ne tente de le renverser, Geddon envoya cet élémentaire enflammé des Profondeurs ardentes garder la légendaire Enclume noire appartenant au clan Fer Noir. ]], 0.564208, 0.311475, 1, 880, 4476, 228, -1, 0, 6},
-        {375, "Geôlier Stilgiss", [[ Après de longues années de service loyal auprès de l'empereur Thaurissan, le mage rusé Stilgiss se vit confier la garde du trésor du clan dans le Coffre-fort noir. Son bon ami, le maître-chien Grebmar, lui offrit à cette occasion l'un de ses chiens les plus vicieux, Vorek. Le mage sut tirer parti de ce cadeau : Vorek restait constamment à ses côtés pour effrayer quiconque tenterait de dérober le trésor. ]], 0.602459, 0.659836, 2, 880, 4386, 228, -1, 0, 7},
-        {376, "Finius Bâtisseur des ténèbres", [[ L'architecte en chef Finius Bâtisseur des ténèbres obtint ce titre en faisant passer les idées de maçons plus talentueux pour les siennes. Son ignorance et sa fourberie ont ramené son prédécesseur Franclorn l'Ingénieux d'entre les morts. Le fantôme de l'ancien architecte en chef veut lui reprendre son marteau incroyablement puissant, l'Ami de fer, avant qu'une tragédie ne survienne. ]], 0.635246, 0.211066, 1, 880, 4538, 228, -1, 0, 8},
+        {372, "Juge Supérieur Mornepierre", [[ Pour les crimes commis contre les nains du clan Fer Noir, il n'existe qu'un seul châtiment : la mort. Une tradition ancestrale exige que le coupable paie son forfait de son sang dans la Salle de justice, en combattant des créatures sauvages amenées de tout Azeroth. À ce jour, on ignore si quelqu'un a jamais survécu à cette bataille impitoyable. ]], 0.497785, 0.645796, 1, 880, 4547, 228, -1, 0, 4},
+        {373, "Pyromancien Blé-du-Savoir", [[ Autrefois respecté Serviteur de la terre, Grain-de-sagesse a rejoint le culte du Marteau du Crépuscule pour des raisons inconnues. Dans les tréfonds de la Montagne Noire, il s'est intéressé aux travaux du célèbre architecte du clan Fer Noir, Franclorn l'Ingénieux. La raison de cet intérêt inhabituel reste obscure, mais Grain-de-sagesse demeure fidèle au culte et prêt à combattre ses ennemis. ]], 0.549180, 0.948770, 2, 880, 4496, 228, -1, 0, 5},
+        {374, "Brûlar", [[ Le baron Geddon a appris à Brandon à utiliser correctement ses pouvoirs destructeurs, mais le baron ne se doutait sans doute pas que son protégé atteindrait un tel niveau de puissance effrayant. Craignant que Brandon ne tente de le renverser, Geddon envoya cet élémentaire enflammé des Profondeurs ardentes garder la légendaire Enclume noire appartenant au clan Fer Noir. ]], 0.564208, 0.311475, 1, 880, 4476, 228, -1, 0, 6},
+        {375, "Gardien Stilgiss", [[ Après de longues années de service loyal auprès de l'empereur Thaurissan, le mage rusé Stilgiss se vit confier la garde du trésor du clan dans le Coffre-fort noir. Son bon ami, le maître-chien Grebmar, lui offrit à cette occasion l'un de ses chiens les plus vicieux, Vorek. Le mage sut tirer parti de ce cadeau : Vorek restait constamment à ses côtés pour effrayer quiconque tenterait de dérober le trésor. ]], 0.602459, 0.659836, 2, 880, 4386, 228, -1, 0, 7},
+        {376, "Fineous Sombrevire", [[ L'architecte en chef Finius Bâtisseur des ténèbres obtint ce titre en faisant passer les idées de maçons plus talentueux pour les siennes. Son ignorance et sa fourberie ont ramené son prédécesseur Franclorn l'Ingénieux d'entre les morts. Le fantôme de l'ancien architecte en chef veut lui reprendre son marteau incroyablement puissant, l'Ami de fer, avant qu'une tragédie ne survienne. ]], 0.635246, 0.211066, 1, 880, 4538, 228, -1, 0, 8},
         {377, "Bael'Gar", [[ Un gigantesque géant de feu, Bael'Gar, erre sur une route de fer noir, témoignage du savoir-faire des nains. Il est enfermé dans les tréfonds de la Montagne Noire. Ragnaros trouva ce géant sur les Étendues ardentes et le posta en garde devant les portes scellées à l'une des extrémités de la route. Selon la légende, seuls le Seigneur du feu et les anciens du clan Fer Noir savent ce qui se cache derrière ces portes mystérieuses. ]], 0.251366, 0.534836, 1, 880, 4532, 228, -1, 0, 9},
-        {378, "Général Forge-de-colère", [[ Ayant consacré toute sa vie à des recherches scientifiques, le général Forge-de-colère est devenu un expert en histoire et en tactique militaire naine. Il a récemment provoqué la colère de l'empereur Dagran Thaurissan en publiant un ouvrage scandaleux sur les raisons des défaites militaires passées de son clan. Mais mis à part ce faux pas politique, Forge-de-colère est dévoué corps et âme au clan Fer Noir. Il se battra jusqu'au bout pour défendre son peuple et son empereur. ]], 0.363388, 0.823770, 2, 880, 4508, 228, -1, 0, 10},
-        {379, "Seigneur des golems Argelmach", [[ Argelmach s'est mis à créer des golems à son image en raison de son obsession pour l'immortalité. Des rumeurs prétendent également qu'il se serait tourné vers la magie noire, et que ses créations pourraient servir de réceptacle pour son âme si son corps venait à être détruit. ]], 0.364754, 0.651639, 2, 880, 4501, 228, -1, 0, 11},
-        {380, "Harlan Barbenoire", [[ Dire que Barbenoire est un habitué du « Glouton morose » serait un euphémisme. Depuis plus de dix ans, cet ivrogne n'a quitté la taverne qu'une seule fois, pour voler la recette ultra-secrète de la blonde de Grommash. Par un curieux hasard, Barbenoire dessaoula juste assez pour brasser lui-même cette bière, et il prétend désormais qu'elle lui a conféré une force et un courage incroyables. ]], 0.505668, 0.704778, 2, 880, 4494, 228, -1, 0, 12},
-        {381, "Phalange", [[ Jusqu'à récemment, les bagarres d'ivrognes au « Glouton morose » étaient monnaie courante. Le tavernier Stoppor Servelapinte a résolu ce problème grâce au puissant golem videur Phalange. Sa tâche consiste à maintenir l'ordre dans l'établissement et à expulser les clients turbulents en calmant leurs ardeurs à coups de poing. ]], 0.458206, 0.564745, 2, 880, 4504, 228, -1, 0, 13},
-        {383, "Stoppor Servelapinte", [[ On dit qu'au « Glouton morose », tout le monde connaît votre nom. Cet esprit de camaraderie, la taverne le doit aux efforts de Stoppor Servelapinte, un leprechaume ayant commencé une nouvelle vie dans les tréfonds de la Montagne Noire après la chute de Gnomeregan. Bien qu'ayant été autrefois démoniste, Stoppor est très fier de son travail de tavernier et veille à ce que les chopes de ses clients restent toujours pleines. ]], 0.477220, 0.657122, 2, 880, 4485, 228, -1, 0, 15},
-        {384, "Ambassadeur Flamme-de-fouet", [[ Pour ses loyaux services envers Ragnaros, Flamme-de-fouet fut nommé ambassadeur du clan Fer Noir. Cette créature perfide méprisait au départ ses alliés nains, mais avec le temps, il a fini par respecter leur soif de destruction. En signe de solidarité, Flamme-de-fouet garde la Salle des enchantements, un lieu sacré pour les nains où ils perfectionnent leurs armes. ]], 0.538251, 0.485656, 2, 880, 4482, 228, -1, 0, 16},
-        {385, "Les Sept", [[ Il y a plusieurs siècles, le thane-invocateur Thaurissan et sept de ses plus puissants compagnons du clan Fer Noir invoquèrent Ragnaros par erreur en Azeroth, condamnant ainsi tout le clan à l'esclavage. Les Sept périrent durant le rituel, et leurs âmes maudites errent aujourd'hui dans les tréfonds de la Montagne Noire, condamnées à servir éternellement leur maître, le nouveau seigneur du clan Fer Noir. ]], 0.538251, 0.247951, 2, 880, 4471, 228, -1, 0, 17},
-        {386, "Magmus", [[ L'ambassadeur Flamme-de-fouet a confié au géant de feu Magmus la garde de la salle du trône de l'empereur Dagran Thaurissan, mais cela n'a pas suffi à apaiser les craintes du souverain. Redoutant les assassins, l'empereur a placé sous le contrôle de Magmus les statues crachant du feu qui gardent l'entrée de ses appartements impériaux. ]], 0.796448, 0.118852, 2, 880, 4480, 228, -1, 0, 18},
+        {378, "Général Forgehargne", [[ Ayant consacré toute sa vie à des recherches scientifiques, le général Forge-de-colère est devenu un expert en histoire et en tactique militaire naine. Il a récemment provoqué la colère de l'empereur Dagran Thaurissan en publiant un ouvrage scandaleux sur les raisons des défaites militaires passées de son clan. Mais mis à part ce faux pas politique, Forge-de-colère est dévoué corps et âme au clan Fer Noir. Il se battra jusqu'au bout pour défendre son peuple et son empereur. ]], 0.363388, 0.823770, 2, 880, 4508, 228, -1, 0, 10},
+        {379, "Seigneur golem Argelmach", [[ Argelmach s'est mis à créer des golems à son image en raison de son obsession pour l'immortalité. Des rumeurs prétendent également qu'il se serait tourné vers la magie noire, et que ses créations pourraient servir de réceptacle pour son âme si son corps venait à être détruit. ]], 0.364754, 0.651639, 2, 880, 4501, 228, -1, 0, 11},
+        {380, "Hurley Soufflenoir", [[ Dire que Barbenoire est un habitué du « Glouton morose » serait un euphémisme. Depuis plus de dix ans, cet ivrogne n'a quitté la taverne qu'une seule fois, pour voler la recette ultra-secrète de la blonde de Grommash. Par un curieux hasard, Barbenoire dessaoula juste assez pour brasser lui-même cette bière, et il prétend désormais qu'elle lui a conféré une force et un courage incroyables. ]], 0.505668, 0.704778, 2, 880, 4494, 228, -1, 0, 12},
+        {381, "Golem ravarage", [[ Jusqu'à récemment, les bagarres d'ivrognes au « Glouton morose » étaient monnaie courante. Le tavernier Stoppor Servelapinte a résolu ce problème grâce au puissant golem videur Phalange. Sa tâche consiste à maintenir l'ordre dans l'établissement et à expulser les clients turbulents en calmant leurs ardeurs à coups de poing. ]], 0.458206, 0.564745, 2, 880, 4504, 228, -1, 0, 13},
+        {383, "Lanfiche Brouillecircuit", [[ On dit qu'au « Glouton morose », tout le monde connaît votre nom. Cet esprit de camaraderie, la taverne le doit aux efforts de Stoppor Servelapinte, un leprechaume ayant commencé une nouvelle vie dans les tréfonds de la Montagne Noire après la chute de Gnomeregan. Bien qu'ayant été autrefois démoniste, Stoppor est très fier de son travail de tavernier et veille à ce que les chopes de ses clients restent toujours pleines. ]], 0.477220, 0.657122, 2, 880, 4485, 228, -1, 0, 15},
+        {384, "Ambassadeur Cinglefouet", [[ Pour ses loyaux services envers Ragnaros, Flamme-de-fouet fut nommé ambassadeur du clan Fer Noir. Cette créature perfide méprisait au départ ses alliés nains, mais avec le temps, il a fini par respecter leur soif de destruction. En signe de solidarité, Flamme-de-fouet garde la Salle des enchantements, un lieu sacré pour les nains où ils perfectionnent leurs armes. ]], 0.538251, 0.485656, 2, 880, 4482, 228, -1, 0, 16},
+        {385, "Tragi'rel", [[ Il y a plusieurs siècles, le thane-invocateur Thaurissan et sept de ses plus puissants compagnons du clan Fer Noir invoquèrent Ragnaros par erreur en Azeroth, condamnant ainsi tout le clan à l'esclavage. Les Sept périrent durant le rituel, et leurs âmes maudites errent aujourd'hui dans les tréfonds de la Montagne Noire, condamnées à servir éternellement leur maître, le nouveau seigneur du clan Fer Noir. ]], 0.538251, 0.247951, 2, 880, 4471, 228, -1, 0, 17},
+        {386, "Bael'Gar", [[ L'ambassadeur Flamme-de-fouet a confié au géant de feu Magmus la garde de la salle du trône de l'empereur Dagran Thaurissan, mais cela n'a pas suffi à apaiser les craintes du souverain. Redoutant les assassins, l'empereur a placé sous le contrôle de Magmus les statues crachant du feu qui gardent l'entrée de ses appartements impériaux. ]], 0.796448, 0.118852, 2, 880, 4480, 228, -1, 0, 18},
         {387, "Empereur Dagran Thaurissan", [[ L'empereur Dagran Thaurissan règne aux côtés de la princesse Moira, du clan rival Barbe-de-bronze. Les avis divergent sur la question de savoir s'il a ensorcelé la princesse ou si elle l'a épousé de son plein gré. Quoi qu'il en soit, le règne de Thaurissan promet un avenir sombre pour son clan. Tant qu'il vivra, le clan Fer Noir servira Ragnaros et représentera une menace sérieuse pour les royaumes d'Azeroth. ]], 0.909836, 0.118852, 2, 880, 4645, 228, -1, 0, 19},
     },
     [229] = {
-        {11577, "Pyrogarde Braise-obscure", [[ Puissant élémentaire de feu autrefois retenu prisonnier dans les hauteurs du Pic de la Montagne Noire, Pyrogarde Braise-obscure était captif de plusieurs sorciers. Cependant, lorsque les sorciers sortaient de leur transe et étaient éliminés, le voyant de charbon se libérait et tentait de détruire tout ce qui se trouvait à proximité. Le passage vers le reste de la flèche n'était autorisé qu'une fois Pyrogarde Braise-obscure éliminé. ]], 0.303000, 0.273000, 6, 882, 20232, 229, -1, 0, 2},
-        {11578, "Solakar Flamme-de-rage", [[ Solakar Flamme-de-rage apparaît à la fin de l'événement « Le feu des pères » dans la partie supérieure du Pic de la Montagne Noire, au repaire des dragons. L'événement « Le feu des pères » peut poser problème aux groupes mal préparés, et beaucoup préfèrent l'éviter. L'événement qui le déclenche commence par l'utilisation d'une colonne située à gauche du repaire, entourée d'œufs et de dragons d'élite. ]], 0.377000, 0.375000, 6, 882, 20238, 229, -1, 0, 2},
-        {11579, "Chef de guerre Rend Sombre-croc", [[ Après la défaite de la Horde à l'issue de la Deuxième Guerre, Rend Sombre-croc, fils du premier chef de guerre, mena les restes de son clan vers le Pic de la Montagne Noire et combattit les nains du Fer Noir pour la possession de la citadelle. Rend unit ses orcs à Nefarian et à sa horde de dragonnoirs, qui écrasèrent les nains et les chassèrent des hauteurs de la Montagne Noire. ]], 0.485000, 0.255000, 7, 882, 20241, 229, -1, 0, 2},
+        {11577, "Pyrogarde Prophète ardent", [[ Puissant élémentaire de feu autrefois retenu prisonnier dans les hauteurs du Pic de la Montagne Noire, Pyrogarde Braise-obscure était captif de plusieurs sorciers. Cependant, lorsque les sorciers sortaient de leur transe et étaient éliminés, le voyant de charbon se libérait et tentait de détruire tout ce qui se trouvait à proximité. Le passage vers le reste de la flèche n'était autorisé qu'une fois Pyrogarde Braise-obscure éliminé. ]], 0.303000, 0.273000, 6, 882, 20232, 229, -1, 0, 2},
+        {11578, "Seigneur Wyrmthalak", [[ Solakar Flamme-de-rage apparaît à la fin de l'événement « Le feu des pères » dans la partie supérieure du Pic de la Montagne Noire, au repaire des dragons. L'événement « Le feu des pères » peut poser problème aux groupes mal préparés, et beaucoup préfèrent l'éviter. L'événement qui le déclenche commence par l'utilisation d'une colonne située à gauche du repaire, entourée d'œufs et de dragons d'élite. ]], 0.377000, 0.375000, 6, 882, 20238, 229, -1, 0, 2},
+        {11579, "Chef de guerre Rend Main-Noire", [[ Après la défaite de la Horde à l'issue de la Deuxième Guerre, Rend Sombre-croc, fils du premier chef de guerre, mena les restes de son clan vers le Pic de la Montagne Noire et combattit les nains du Fer Noir pour la possession de la citadelle. Rend unit ses orcs à Nefarian et à sa horde de dragonnoirs, qui écrasèrent les nains et les chassèrent des hauteurs de la Montagne Noire. ]], 0.485000, 0.255000, 7, 882, 20241, 229, -1, 0, 2},
         {11580, "La Bête", [[ La Bête est un boss canin que l'on trouve à la Fournaise, dans la partie supérieure du Pic de la Montagne Noire. Ce serviteur de Ragnaros fut capturé par les forces de Nefarian, torturé pour leur divertissement, puis dressé à nouveau pour garder la flèche des intrus. L'un de ces intrus, Finkle Einhorn, fut avalé tout rond par la Bête dans les fosses du Détroit ardent. Protégé par sa combinaison de lave, le gnome resta un certain temps dans le ventre de la Bête. ]], 0.644000, 0.305000, 7, 882, 20251, 229, -1, 0, 2},
-        {11581, "Seigneur Valthalak", [[ Le seigneur Valthalak est un boss draconique invoqué dans la partie supérieure de la Montagne Noire, à la Fournaise, à l'aide du Brasero d'invocation. Il est le dernier boss de la série de quêtes du Donjon 2. ]], 0.617000, 0.437000, 7, 882, 20254, 229, -1, 0, 2},
-        {11582, "Gorehowl Enclume-fêlée", [[ Gorehowl Enclume-fêlée est un orc nommé de la Montagne Noire, habitant la partie supérieure du Pic. Son butin est lié à la forge. Il a vendu son âme au satyre Lorax, mais a rompu le pacte et s'est enfui avec l'ébauche de la cuirasse runique. ]], 0.288000, 0.258000, 7, 882, 20258, 229, -1, 0, 2},
-        {11583, "Jed Traceur-de-runes", [[ Jed Traceur-de-runes est un orc rare de la partie supérieure du Pic de la Montagne Noire. Il erre parfois dans la salle de Gorehowl Enclume-fêlée ou à la Fournaise (près de la Bête). Jed Traceur-de-runes est membre de la Légion de Poing-Noir, une unité placée sous les ordres de Dal'rend Poing-Noir. ]], 0.393000, 0.258000, 7, 882, 20261, 229, -1, 0, 2},
+        {11581, "Seigneur des couvées Lanistaire", [[ Le seigneur Valthalak est un boss draconique invoqué dans la partie supérieure de la Montagne Noire, à la Fournaise, à l'aide du Brasero d'invocation. Il est le dernier boss de la série de quêtes du Donjon 2. ]], 0.617000, 0.437000, 7, 882, 20254, 229, -1, 0, 2},
+        {11582, "Goraluk Brisenclume", [[ Gorehowl Enclume-fêlée est un orc nommé de la Montagne Noire, habitant la partie supérieure du Pic. Son butin est lié à la forge. Il a vendu son âme au satyre Lorax, mais a rompu le pacte et s'est enfui avec l'ébauche de la cuirasse runique. ]], 0.288000, 0.258000, 7, 882, 20258, 229, -1, 0, 2},
+        {11583, "Jed Guette-runes", [[ Jed Traceur-de-runes est un orc rare de la partie supérieure du Pic de la Montagne Noire. Il erre parfois dans la salle de Gorehowl Enclume-fêlée ou à la Fournaise (près de la Bête). Jed Traceur-de-runes est membre de la Légion de Poing-Noir, une unité placée sous les ordres de Dal'rend Poing-Noir. ]], 0.393000, 0.258000, 7, 882, 20261, 229, -1, 0, 2},
         {11584, "Général Drakkisath", [[ Le général Drakkisath était un dragon noir, commandant des armées de dragons de Nefarian, fils de Deathwing. Depuis le sommet du Pic supérieur de la Montagne Noire, il dirigeait ses troupes dans leur guerre visant à chasser les nains du Fer Noir des tréfonds de la Montagne Noire. Son arme personnelle était la Lame noire de Shahram. ]], 0.350000, 0.497000, 7, 882, 20264, 229, -1, 0, 2},
-        {388, "Chef de guerre Omokk", [[ Le chef de guerre Omokk dirige ses ogres d'une main de fer. De nombreux vassaux l'ont défié en duel dans l'espoir de prendre sa place, mais tous ont péri sans même porter un seul coup. Cette chance constante d'Omokk a donné naissance à des rumeurs selon lesquelles une magie noire protégerait le chef de guerre. ]], 0.386612, 0.590164, 3, 882, 4523, 229, -1, 0, 1},
-        {389, "Chasseresse ténébreuse Vosh'gajin", [[ Vosh'gajin est réputée parmi les trolls pour sa beauté et ses pouvoirs hypnotiques. Elle maîtrise à la perfection l'art des chasseurs ténébreux et lance sans effort malédictions et sorts de mauvais œil, mais elle possède également des sorts de soins. ]], 0.553279, 0.692623, 2, 882, 4525, 229, -1, 0, 2},
-        {390, "Seigneur de guerre Voone", [[ Durant la Deuxième Guerre, Voone menait de petits commandos en territoire elfe, dans des missions périlleuses. Ce troll rusé rejoignit la fausse Horde non par accord avec les positions de Poing-Noir, mais parce qu'il voulait en devenir le principal stratège. Pour Voone, la fausse Horde n'est qu'une victime de la guerre, ce qui rend d'autant plus agréable pour lui de vaincre un adversaire supérieur en force. ]], 0.524590, 0.545082, 1, 882, 4527, 229, -1, 0, 3},
-        {391, "Mère Toile-de-fumée", [[ Il y a des centaines d'années, les pics des nains du Fer Noir réveillèrent Mère Toile-de-fumée dans son antre souterrain. L'araignée géante s'échappa alors. Depuis, sa colonie n'a cessé de croître, envahissant le Pic de la Montagne Noire, à tel point que même les orcs de Poing-Noir évitent son territoire. ]], 0.620736, 0.741415, 2, 882, 4543, 229, -1, 0, 4},
-        {392, "Arrok Cri-mortel", [[ Cri-mortel est le véritable chef des ogres du Pic de la Montagne Noire. Il a accordé à son subordonné, Omokk, un pouvoir ténébreux sur les ogres sous son commandement. Omokk s'est laissé griser par ce pouvoir qu'on lui a accordé et tue sans pitié quiconque s'oppose à lui. ]], 0.454918, 0.557377, 4, 882, 4552, 229, -1, 0, 5},
+        {388, "Généralissime Omokk", [[ Le chef de guerre Omokk dirige ses ogres d'une main de fer. De nombreux vassaux l'ont défié en duel dans l'espoir de prendre sa place, mais tous ont péri sans même porter un seul coup. Cette chance constante d'Omokk a donné naissance à des rumeurs selon lesquelles une magie noire protégerait le chef de guerre. ]], 0.386612, 0.590164, 3, 882, 4523, 229, -1, 0, 1},
+        {389, "Chasseresse des ombres Vosh'gajin", [[ Vosh'gajin est réputée parmi les trolls pour sa beauté et ses pouvoirs hypnotiques. Elle maîtrise à la perfection l'art des chasseurs ténébreux et lance sans effort malédictions et sorts de mauvais œil, mais elle possède également des sorts de soins. ]], 0.553279, 0.692623, 2, 882, 4525, 229, -1, 0, 2},
+        {390, "Maître de guerre Voone", [[ Durant la Deuxième Guerre, Voone menait de petits commandos en territoire elfe, dans des missions périlleuses. Ce troll rusé rejoignit la fausse Horde non par accord avec les positions de Poing-Noir, mais parce qu'il voulait en devenir le principal stratège. Pour Voone, la fausse Horde n'est qu'une victime de la guerre, ce qui rend d'autant plus agréable pour lui de vaincre un adversaire supérieur en force. ]], 0.524590, 0.545082, 1, 882, 4527, 229, -1, 0, 3},
+        {391, "Matriarche Couveuse", [[ Il y a des centaines d'années, les pics des nains du Fer Noir réveillèrent Mère Toile-de-fumée dans son antre souterrain. L'araignée géante s'échappa alors. Depuis, sa colonie n'a cessé de croître, envahissant le Pic de la Montagne Noire, à tel point que même les orcs de Poing-Noir évitent son territoire. ]], 0.620736, 0.741415, 2, 882, 4543, 229, -1, 0, 4},
+        {392, "Urok Hurleruine", [[ Cri-mortel est le véritable chef des ogres du Pic de la Montagne Noire. Il a accordé à son subordonné, Omokk, un pouvoir ténébreux sur les ogres sous son commandement. Omokk s'est laissé griser par ce pouvoir qu'on lui a accordé et tue sans pitié quiconque s'oppose à lui. ]], 0.454918, 0.557377, 4, 882, 4552, 229, -1, 0, 5},
         {393, "Intendant Zigris", [[ L'orc chasseur Zigris s'est fait connaître pour avoir traqué, à la fin de la Première Guerre, les réfugiés de Hurlevent, les chassant comme des bêtes. Il déteste l'exiguïté oppressante des couloirs du Pic de la Montagne Noire et croit qu'un jour, il chassera de nouveau à ciel ouvert. ]], 0.539617, 0.844263, 5, 882, 4568, 229, -1, 0, 6},
         {394, "Halycon", [[ Halycon peut être fière de son ascendance : parmi ses ancêtres ne figuraient que les vargouls les plus loyaux et féroces. Au fil des années passées dans la Montagne Noire, elle a donné naissance à une nombreuse progéniture. Des rumeurs prétendent qu'Halycon serait un démon offert à Rend Poing-Noir par l'un des seigneurs des Enfers de la Légion ardente. ]], 0.379781, 0.840164, 5, 882, 4572, 229, -1, 0, 7},
-        {395, "Gizrul l'Asservisseur", [[ Peu de membres de la Horde des Ténèbres ont vu Gizrul, aussi solitaire qu'imprévisible. Il n'apparaît que lorsqu'il est appelé par son épouse, Halycon. Ces deux monstres ont engendré les plus grands et les plus féroces vargouls jamais connus dans l'histoire des orcs. ]], 0.394808, 0.793032, 5, 882, 4584, 229, -1, 0, 8},
-        {396, "Seigneur Voile-de-serpent", [[ Voile-de-serpent supervise la préparation des troupes de la partie inférieure du Pic de la Montagne Noire en vue de l'attaque contre les nains du Fer Noir. Il n'éprouve aucune sympathie pour la fausse Horde et ses soldats indisciplinés, et n'hésitera pas à sacrifier les troupes de Poing-Noir pour protéger son seigneur, Nefarian. ]], 0.575137, 0.600410, 6, 882, 4587, 229, -1, 0, 9},
+        {395, "Gizrul l'esclavagiste", [[ Peu de membres de la Horde des Ténèbres ont vu Gizrul, aussi solitaire qu'imprévisible. Il n'apparaît que lorsqu'il est appelé par son épouse, Halycon. Ces deux monstres ont engendré les plus grands et les plus féroces vargouls jamais connus dans l'histoire des orcs. ]], 0.394808, 0.793032, 5, 882, 4584, 229, -1, 0, 8},
+        {396, "Seigneur Wyrmthalak", [[ Voile-de-serpent supervise la préparation des troupes de la partie inférieure du Pic de la Montagne Noire en vue de l'attaque contre les nains du Fer Noir. Il n'éprouve aucune sympathie pour la fausse Horde et ses soldats indisciplinés, et n'hésitera pas à sacrifier les troupes de Poing-Noir pour protéger son seigneur, Nefarian. ]], 0.575137, 0.600410, 6, 882, 4587, 229, -1, 0, 9},
     },
     [230] = {
-        {402, "Zevrim Sabot-noir", [[ Zevrim Sabot-noir, désireux de démontrer sa force à la Légion ardente, affirma à ses maîtres qu'il pourrait asservir les increvables anciens qui habitaient encore la Cité oubliée. Lorsque ses propres pouvoirs s'avérèrent insuffisants, Sabot-noir se mit à drainer l'énergie d'autres créatures vivantes, les tuant sur l'autel sacrificiel et absorbant leur énergie au moment de leur dernier souffle. ]], 0.575137, 0.743852, 0, 879, 4655, 230, -1, 0, 1},
-        {403, "Créature aquatique", [[ Lorsque le satyre Zevrim Sabot-noir tenta de prendre le contrôle des élémentaires de la Cité oubliée, il concentra ses efforts sur la Créature aquatique, qui vivait paisiblement dans le bassin près de l'autel. Lorsque Zevrim commença ses rituels sacrificiels immondes, l'élémentaire perdit sa quiétude et se mit à attaquer les serviteurs de Zevrim. Pendant de nombreuses années, Zevrim utilisa l'énergie de ses victimes pour pousser la Créature aquatique dans une rage incontrôlable, la soumettant peu à peu, mais sûrement, à sa volonté. ]], 0.536885, 0.715164, 0, 879, 5004, 230, -1, 0, 2},
-        {404, "Leftendris", [[ L'énergie ténébreuse de la Cité oubliée attira Leftendris, qui espérait étancher sa soif infinie de connaissance de la magie noire. Utilisant les tendons et les ligaments de créatures sacrifiées, elle tissa un filet lui permettant de puiser l'énergie souillée de l'aile est. Elle découvrit avec ravissement que le filet qu'elle avait créé lui permettait d'accumuler d'énormes réserves d'une puissance incroyable, suffisante pour anéantir tous ses ennemis. ]], 0.438525, 0.481557, 0, 879, 4994, 230, -1, 0, 3},
-        {405, "Alzzin le Métamorphe", [[ Alzzin le Métamorphe avait toujours voulu souiller purement et simplement tout le Féralas, mais il ne parvint à aucun résultat jusqu'à ce qu'il trouve l'autel d'Eldre'Thalas dans la Cité oubliée. En exploitant le pouvoir des anciens asservis, Alzzin canalisa toute la force vitale des forêts entourant la ville vers son antre, ce qui lui permit d'en disposer à sa guise. ]], 0.566940, 0.288934, 0, 879, 4921, 230, -1, 0, 4},
-        {406, "Tendris Torvebois", [[ Tendris Torvebois était un défenseur dévoué d'Eldre'Thalas, son destin étant indissociable de celui de la ville. Après que la Grande Fracture eut secoué ces terres, il resta fidèle à la cité, mais la corruption qui a envahi les ruines au cours des dix mille dernières années l'a tout de même atteint. ]], 0.336066, 0.536885, 2, 879, 4913, 230, -1, 0, 5},
-        {407, "Illiana Aunecorbeau", [[ Illiana Aunecorbeau, accompagnée de sa fidèle compagne Ferra, était autrefois considérée comme l'une des meilleures chasseuses du prince Tortheldrin, mais refusa un jour de tuer ses amis sur son ordre. Pour la punir de sa désobéissance, le prince tua Illiana et son ourse, puis utilisa ses talents démoniaques pour lier leurs âmes à leurs corps, les condamnant désormais à garder éternellement la Cité oubliée sous forme de morts-vivants. ]], 0.203552, 0.776640, 2, 879, 4906, 230, -1, 0, 6},
-        {408, "Maître Kaldrek", [[ Lorsque le prince Tortheldrin ordonna d'exécuter la majorité de ses sujets, ce furent ses lieutenants les plus fidèles qui durent exécuter cet ordre. Maître Kaldrek tua un grand nombre de Shen'dralar sans méfiance, mais l'un des elfes condamnés lui infligea une blessure mortelle. Même après sa mort, l'esprit de Kaldrek erre encore dans la Cité oubliée, défendant le pouvoir de Tortheldrin. ]], 0.338798, 0.450820, 0, 879, 4836, 230, -1, 0, 7},
-        {409, "Immortel-en-devenir", [[ Dans une tentative désespérée de retrouver le pouvoir et l'immortalité perdus lors de la destruction du Puits d'éternité, les Shen'dralar invoquèrent et emprisonnèrent, à l'aide d'un champ de force, un démon dans l'aile ouest de la Cité oubliée. Ils utilisèrent l'énergie du néant abyssal pour renforcer leurs sortilèges. L'Immortel-en-devenir est resté immobile durant près de 10 000 ans. Pendant tout ce temps, il a attendu l'heure où il retrouverait sa liberté et déchiquetterait ceux qui l'ont emprisonné. ]], 0.349727, 0.575820, 0, 879, 4822, 230, -1, 0, 8},
+        {402, "Implorateur de l'enfer jadefeu", [[ Zevrim Sabot-noir, désireux de démontrer sa force à la Légion ardente, affirma à ses maîtres qu'il pourrait asservir les increvables anciens qui habitaient encore la Cité oubliée. Lorsque ses propres pouvoirs s'avérèrent insuffisants, Sabot-noir se mit à drainer l'énergie d'autres créatures vivantes, les tuant sur l'autel sacrificiel et absorbant leur énergie au moment de leur dernier souffle. ]], 0.575137, 0.743852, 0, 879, 4655, 230, -1, 0, 1},
+        {403, "Hydrogénos", [[ Lorsque le satyre Zevrim Sabot-noir tenta de prendre le contrôle des élémentaires de la Cité oubliée, il concentra ses efforts sur la Créature aquatique, qui vivait paisiblement dans le bassin près de l'autel. Lorsque Zevrim commença ses rituels sacrificiels immondes, l'élémentaire perdit sa quiétude et se mit à attaquer les serviteurs de Zevrim. Pendant de nombreuses années, Zevrim utilisa l'énergie de ses victimes pour pousser la Créature aquatique dans une rage incontrôlable, la soumettant peu à peu, mais sûrement, à sa volonté. ]], 0.536885, 0.715164, 0, 879, 5004, 230, -1, 0, 2},
+        {404, "Lethtendris", [[ L'énergie ténébreuse de la Cité oubliée attira Leftendris, qui espérait étancher sa soif infinie de connaissance de la magie noire. Utilisant les tendons et les ligaments de créatures sacrifiées, elle tissa un filet lui permettant de puiser l'énergie souillée de l'aile est. Elle découvrit avec ravissement que le filet qu'elle avait créé lui permettait d'accumuler d'énormes réserves d'une puissance incroyable, suffisante pour anéantir tous ses ennemis. ]], 0.438525, 0.481557, 0, 879, 4994, 230, -1, 0, 3},
+        {405, "Alzzin le Modeleur", [[ Alzzin le Métamorphe avait toujours voulu souiller purement et simplement tout le Féralas, mais il ne parvint à aucun résultat jusqu'à ce qu'il trouve l'autel d'Eldre'Thalas dans la Cité oubliée. En exploitant le pouvoir des anciens asservis, Alzzin canalisa toute la force vitale des forêts entourant la ville vers son antre, ce qui lui permit d'en disposer à sa guise. ]], 0.566940, 0.288934, 0, 879, 4921, 230, -1, 0, 4},
+        {406, "Tendris Crochebois", [[ Tendris Torvebois était un défenseur dévoué d'Eldre'Thalas, son destin étant indissociable de celui de la ville. Après que la Grande Fracture eut secoué ces terres, il resta fidèle à la cité, mais la corruption qui a envahi les ruines au cours des dix mille dernières années l'a tout de même atteint. ]], 0.336066, 0.536885, 2, 879, 4913, 230, -1, 0, 5},
+        {407, "Illyanna Corvichêne", [[ Illiana Aunecorbeau, accompagnée de sa fidèle compagne Ferra, était autrefois considérée comme l'une des meilleures chasseuses du prince Tortheldrin, mais refusa un jour de tuer ses amis sur son ordre. Pour la punir de sa désobéissance, le prince tua Illiana et son ourse, puis utilisa ses talents démoniaques pour lier leurs âmes à leurs corps, les condamnant désormais à garder éternellement la Cité oubliée sous forme de morts-vivants. ]], 0.203552, 0.776640, 2, 879, 4906, 230, -1, 0, 6},
+        {408, "Magistère Kalendris", [[ Lorsque le prince Tortheldrin ordonna d'exécuter la majorité de ses sujets, ce furent ses lieutenants les plus fidèles qui durent exécuter cet ordre. Maître Kaldrek tua un grand nombre de Shen'dralar sans méfiance, mais l'un des elfes condamnés lui infligea une blessure mortelle. Même après sa mort, l'esprit de Kaldrek erre encore dans la Cité oubliée, défendant le pouvoir de Tortheldrin. ]], 0.338798, 0.450820, 0, 879, 4836, 230, -1, 0, 7},
+        {409, "Immol'thar", [[ Dans une tentative désespérée de retrouver le pouvoir et l'immortalité perdus lors de la destruction du Puits d'éternité, les Shen'dralar invoquèrent et emprisonnèrent, à l'aide d'un champ de force, un démon dans l'aile ouest de la Cité oubliée. Ils utilisèrent l'énergie du néant abyssal pour renforcer leurs sortilèges. L'Immortel-en-devenir est resté immobile durant près de 10 000 ans. Pendant tout ce temps, il a attendu l'heure où il retrouverait sa liberté et déchiquetterait ceux qui l'ont emprisonné. ]], 0.349727, 0.575820, 0, 879, 4822, 230, -1, 0, 8},
         {410, "Prince Tortheldrin", [[ Après la destruction du Puits d'éternité, le prince Tortheldrin conserva le contrôle des Shen'dralar survivants, emprisonnant un démon dans les ruines d'Eldre'Thalas et permettant à ses sujets de se nourrir de sa puissance. Le pouvoir démoniaque obscurcit l'esprit de Tortheldrin et, lorsque la créature s'affaiblit, le prince ordonna de tuer nombre de ses vassaux afin que seuls lui et ses partisans les plus fanatiques puissent continuer à user de l'énergie de la corruption. ]], 0.622951, 0.231557, 0, 879, 4752, 230, -1, 0, 9},
-        {411, "Gardien Mol'dar", [[ L'ogre Mol'dar est l'un des gardiens du clan Gordok. Il est persuadé que le roi lui a offert une paire de gantelets enchantés qui lui ont permis de devenir champion de bras de fer six années de suite. En réalité, le roi Gordok s'est simplement débarrassé de ces gantelets, et Mol'dar a été le premier à les trouver. ]], 0.695355, 0.760246, 1, 879, 4740, 230, -1, 0, 10},
-        {412, "Krug le Piétineur", [[ Des assassins engagés ont trouvé la mort à plusieurs reprises en heurtant accidentellement la chope de bière de Krug. En service, il s'enivre et s'endort souvent, mais rien ne met l'ogre plus en fureur que le bruit de sa précieuse bière se répandant sur le sol de pierre. ]], 0.612022, 0.692623, 1, 879, 4734, 230, -1, 0, 11},
-        {413, "Gardien Fengus", [[ Depuis que Cho'Rush le Guetteur lui a dit qu'il rencontrerait sa future épouse en poste, Fengus patrouille presque sans relâche les terres du roi Gordok. ]], 0.494536, 0.780738, 1, 879, 4725, 230, -1, 0, 12},
-        {414, "Gardien Sagepied", [[ Certains pensent que Sagepied fait simplement preuve de prudence, mais en réalité, il est surtout paresseux. Plutôt que de défier ouvertement le roi Gordok, Sagepied fabrique des pièges et bricole de vieux objets magiques cassés, espérant qu'un jour il parviendra à renverser le roi sans le moindre effort. ]], 0.266393, 0.571721, 1, 879, 4716, 230, -1, 0, 13},
-        {415, "Capitaine Davigrom", [[ Le capitaine Davigrom est considéré comme extrêmement coléreux, même selon les standards ogres. Il suffit d'une simple allusion insultante envers lui ou le roi Gordok pour le mettre hors de lui. Il est prompt à châtier, mais il fait preuve d'encore moins de patience envers ceux qui répandent des rumeurs sur sa longue liaison avec une gnoll. ]], 0.318306, 0.506148, 1, 879, 4705, 230, -1, 0, 14},
-        {416, "Cho'Rush le Guetteur", [[ Cho'Rush essayait généralement de ne prendre parti pour personne, mais lorsque Ulrok accéda au pouvoir, il devint clair que personne ne pourrait venir à bout de Cho'Rush. Le roi le nomma rapidement conseiller en chef, estimant que deux têtes valaient mieux qu'une. ]], 0.319542, 0.303693, 1, 879, 4673, 230, -1, 0, 15},
-        {417, "Roi Gordok", [[ Pour régner sur les ogres Gordok, il suffit de se déclarer roi... puis d'anéantir quiconque n'est pas d'accord. Le roi Gordok, alors simplement connu sous le nom d'Ulrok, s'empara du pouvoir en persuadant douze de ses guerriers les plus puissants d'attaquer le roi. La plupart de ceux qui participèrent à ce massacre périrent ou furent blessés, et Ulrok tua sans peine le roi épuisé. Les ogres Gordok préfèrent encore aujourd'hui parler à voix basse du « Jour du Sang ». ]], 0.319544, 0.229482, 1, 879, 4666, 230, -1, 0, 16},
+        {411, "Seigneur de guerre gordunni", [[ L'ogre Mol'dar est l'un des gardiens du clan Gordok. Il est persuadé que le roi lui a offert une paire de gantelets enchantés qui lui ont permis de devenir champion de bras de fer six années de suite. En réalité, le roi Gordok s'est simplement débarrassé de ces gantelets, et Mol'dar a été le premier à les trouver. ]], 0.695355, 0.760246, 1, 879, 4740, 230, -1, 0, 10},
+        {412, "Chaman crache-poussière", [[ Des assassins engagés ont trouvé la mort à plusieurs reprises en heurtant accidentellement la chope de bière de Krug. En service, il s'enivre et s'endort souvent, mais rien ne met l'ogre plus en fureur que le bruit de sa précieuse bière se répandant sur le sol de pierre. ]], 0.612022, 0.692623, 1, 879, 4734, 230, -1, 0, 11},
+        {413, "Seigneur de guerre gordunni", [[ Depuis que Cho'Rush le Guetteur lui a dit qu'il rencontrerait sa future épouse en poste, Fengus patrouille presque sans relâche les terres du roi Gordok. ]], 0.494536, 0.780738, 1, 879, 4725, 230, -1, 0, 12},
+        {414, "Seigneur de guerre gordunni", [[ Certains pensent que Sagepied fait simplement preuve de prudence, mais en réalité, il est surtout paresseux. Plutôt que de défier ouvertement le roi Gordok, Sagepied fabrique des pièges et bricole de vieux objets magiques cassés, espérant qu'un jour il parviendra à renverser le roi sans le moindre effort. ]], 0.266393, 0.571721, 1, 879, 4716, 230, -1, 0, 13},
+        {415, "Magronos l'Inflexible", [[ Le capitaine Davigrom est considéré comme extrêmement coléreux, même selon les standards ogres. Il suffit d'une simple allusion insultante envers lui ou le roi Gordok pour le mettre hors de lui. Il est prompt à châtier, mais il fait preuve d'encore moins de patience envers ceux qui répandent des rumeurs sur sa longue liaison avec une gnoll. ]], 0.318306, 0.506148, 1, 879, 4705, 230, -1, 0, 14},
+        {416, "Ogre-mage de Deuillevent", [[ Cho'Rush essayait généralement de ne prendre parti pour personne, mais lorsque Ulrok accéda au pouvoir, il devint clair que personne ne pourrait venir à bout de Cho'Rush. Le roi le nomma rapidement conseiller en chef, estimant que deux têtes valaient mieux qu'une. ]], 0.319542, 0.303693, 1, 879, 4673, 230, -1, 0, 15},
+        {417, "Urok Hurleruine", [[ Pour régner sur les ogres Gordok, il suffit de se déclarer roi... puis d'anéantir quiconque n'est pas d'accord. Le roi Gordok, alors simplement connu sous le nom d'Ulrok, s'empara du pouvoir en persuadant douze de ses guerriers les plus puissants d'attaquer le roi. La plupart de ceux qui participèrent à ce massacre périrent ou furent blessés, et Ulrok tua sans peine le roi épuisé. Les ogres Gordok préfèrent encore aujourd'hui parler à voix basse du « Jour du Sang ». ]], 0.319544, 0.229482, 1, 879, 4666, 230, -1, 0, 16},
     },
     [231] = {
-        {418, "Grouilleur 9-60", [[ À l'apogée de Gnomeregan, les gnomes rivalisaient entre eux en organisant des combats entre leurs inventions. L'ingénieur Osborne Hélice créa un robot invincible, se forgeant la réputation de l'un des meilleurs mécaniciens. Sicco Thermocourt vola ses plans et créa un robot d'une taille gigantesque. Le robot fut relâché et causa tant de destruction que les autorités punirent Hélice, pourtant innocent. Grouilleur 9-60 reste à ce jour l'une des inventions préférées (et volées) de Thermocourt. ]], 0.431694, 0.883197, 0, 691, 4670, 231, -1, 0, 4},
-        {419, "Puant", [[ Selon le plan de Thermocourt, le gaz radioactif devait tuer les gnomes et rendre les trogg furieux. Le plan fonctionna, mais un trogg fut affecté d'une manière inattendue. Puant se mit à grandir. C'était un effet secondaire que Sicco n'avait absolument pas prévu, mais il n'était pas homme à laisser filer un matériau aussi précieux (et dangereux). Et voilà que ce trogg géant parcourt désormais les tunnels de Gnomeregan, accompagné de son fidèle animal de compagnie, le basilic Chawker. Le flair de ce dernier permet de repérer les fuites de gaz, les champignons et les intrus indésirables. ]], 0.778688, 0.670082, 1, 875, 4690, 231, -1, 0, 1},
-        {420, "Boue gluante", [[ De l'ancien système d'approvisionnement en eau, jadis élégant et complexe, de Gnomeregan, il ne reste aujourd'hui que des flots troubles contaminés par la radioactivité. L'élémentaire d'eau qui vivait dans le réservoir gnome a été contaminé et a perdu sa forme naturelle. Il erre dans les couloirs de Gnomeregan, rongé par la haine, tel une incarnation vivante de la trahison ignoble de Thermocourt. ]], 0.759563, 0.465164, 2, 875, 4691, 231, -1, 0, 2},
-        {421, "« Électrochoc 6000 »", [[ L'ingénieur Thermocourt n'est pas connu pour sa patience. Plutôt que de mener des tests méticuleux sur l'efficacité et la sécurité de ses nouvelles inventions, il les met immédiatement en service et passe à de nouveaux projets. « Électrochoc 6000 », ce char électrifié surchargé, fut la première tentative de l'ingénieur d'utiliser l'électricité comme arme. Le lieutenant Tom « Court-jus » Krunkel, seul survivant parmi tous ceux qui ont tenté de piloter « Électrochoc », est vénéré comme un héros parmi les leprechaumes. ]], 0.243169, 0.684426, 2, 875, 4692, 231, -1, 0, 3},
-        {422, "Ingénieur Thermocourt", [[ Assassin, traître et roi autoproclamé des gnomes, voilà qui est l'ingénieur Thermocourt, régnant sans partage sur les salles contaminées par la radioactivité de Gnomeregan. Ses sujets, de nombreux leprechaumes vicieux, sont juste assez fous pour défendre leur roi contre toute intrusion venue du monde extérieur. Ce qui rend Thermocourt particulièrement dangereux, c'est sa folie. Il est obsédé par le désir de tout détruire autour de lui, et même la peur pour sa propre vie ne l'arrête pas. Ce n'est pas pour rien que même les bêtes sauvages redoutent Thermocourt. ]], 0.311475, 0.303279, 0, 875, 4702, 231, -1, 0, 5},
+        {418, "Faucheur de foule 9-60", [[ À l'apogée de Gnomeregan, les gnomes rivalisaient entre eux en organisant des combats entre leurs inventions. L'ingénieur Osborne Hélice créa un robot invincible, se forgeant la réputation de l'un des meilleurs mécaniciens. Sicco Thermocourt vola ses plans et créa un robot d'une taille gigantesque. Le robot fut relâché et causa tant de destruction que les autorités punirent Hélice, pourtant innocent. Grouilleur 9-60 reste à ce jour l'une des inventions préférées (et volées) de Thermocourt. ]], 0.431694, 0.883197, 0, 691, 4670, 231, -1, 0, 4},
+        {419, "Grubbis", [[ Selon le plan de Thermocourt, le gaz radioactif devait tuer les gnomes et rendre les trogg furieux. Le plan fonctionna, mais un trogg fut affecté d'une manière inattendue. Puant se mit à grandir. C'était un effet secondaire que Sicco n'avait absolument pas prévu, mais il n'était pas homme à laisser filer un matériau aussi précieux (et dangereux). Et voilà que ce trogg géant parcourt désormais les tunnels de Gnomeregan, accompagné de son fidèle animal de compagnie, le basilic Chawker. Le flair de ce dernier permet de repérer les fuites de gaz, les champignons et les intrus indésirables. ]], 0.778688, 0.670082, 1, 875, 4690, 231, -1, 0, 1},
+        {420, "Retombée visqueuse", [[ De l'ancien système d'approvisionnement en eau, jadis élégant et complexe, de Gnomeregan, il ne reste aujourd'hui que des flots troubles contaminés par la radioactivité. L'élémentaire d'eau qui vivait dans le réservoir gnome a été contaminé et a perdu sa forme naturelle. Il erre dans les couloirs de Gnomeregan, rongé par la haine, tel une incarnation vivante de la trahison ignoble de Thermocourt. ]], 0.759563, 0.465164, 2, 875, 4691, 231, -1, 0, 2},
+        {421, "Electrocuteur 6000", [[ L'ingénieur Thermocourt n'est pas connu pour sa patience. Plutôt que de mener des tests méticuleux sur l'efficacité et la sécurité de ses nouvelles inventions, il les met immédiatement en service et passe à de nouveaux projets. « Électrochoc 6000 », ce char électrifié surchargé, fut la première tentative de l'ingénieur d'utiliser l'électricité comme arme. Le lieutenant Tom « Court-jus » Krunkel, seul survivant parmi tous ceux qui ont tenté de piloter « Électrochoc », est vénéré comme un héros parmi les leprechaumes. ]], 0.243169, 0.684426, 2, 875, 4692, 231, -1, 0, 3},
+        {422, "Mekgénieur Thermojoncteur", [[ Assassin, traître et roi autoproclamé des gnomes, voilà qui est l'ingénieur Thermocourt, régnant sans partage sur les salles contaminées par la radioactivité de Gnomeregan. Ses sujets, de nombreux leprechaumes vicieux, sont juste assez fous pour défendre leur roi contre toute intrusion venue du monde extérieur. Ce qui rend Thermocourt particulièrement dangereux, c'est sa folie. Il est obsédé par le désir de tout détruire autour de lui, et même la peur pour sa propre vie ne l'arrête pas. Ce n'est pas pour rien que même les bêtes sauvages redoutent Thermocourt. ]], 0.311475, 0.303279, 0, 875, 4702, 231, -1, 0, 5},
     },
     [232] = {
-        {423, "Noxxion", [[ Noxxion est l'incarnation vivante de la corruption. Theradras ordonna à son allié le seigneur Langue-perfide de créer cet élémentaire répugnant afin qu'il devienne son fidèle serviteur et égaie sa solitude. Noxxion répand ses sécrétions toxiques dans les zones de Maraudon encore épargnées par l'influence corruptrice de la princesse. ]], 0.362022, 0.098361, 1, 884, 4709, 232, -1, 0, 1},
-        {424, "Fouet-tranchant", [[ Fouet-tranchant fut créé pour accompagner Noxxion à Maraudon. Avec le temps, cette créature devint l'un des serviteurs favoris de la princesse. Fouet-tranchant erre sans relâche dans les grottes aux côtés de Noxxion, utilisant ses antennes épineuses pour détruire toute végétation épargnée par la corruption. ]], 0.166667, 0.344262, 1, 884, 4713, 232, -1, 0, 2},
-        {425, "Réparateur Gizlock", [[ Le réparateur Gizlock et cinq autres chasseurs de joyaux se rendirent à Maraudon pour extraire les cristaux qui s'y trouvaient, contre lesquels les marchands proposaient des sommes folles. Cependant, leurs plans ne se réalisèrent jamais : les satyres tuèrent tous les membres du groupe, à l'exception de Gizlock. Piégé dans les grottes de Maraudon et ayant perdu la raison, le gobelin se considère désormais comme le nouveau souverain du monde souterrain. ]], 0.484000, 0.685000, 2, 884, 4721, 232, -1, 0, 3},
-        {427, "Seigneur Langue-perfide", [[ Le seigneur satyre Langue-perfide se rendit dans les profondeurs de Maraudon en entendant parler de la corruption qui les affligeait. La princesse Theradras se méfia d'abord de ce démon rusé, mais il prouva sa loyauté en créant pour elle de nombreux serviteurs, tels que Noxxion et Fouet-tranchant. ]], 0.378415, 0.704918, 1, 884, 4730, 232, -1, 0, 4},
+        {423, "Monstruosité de la peste", [[ Noxxion est l'incarnation vivante de la corruption. Theradras ordonna à son allié le seigneur Langue-perfide de créer cet élémentaire répugnant afin qu'il devienne son fidèle serviteur et égaie sa solitude. Noxxion répand ses sécrétions toxiques dans les zones de Maraudon encore épargnées par l'influence corruptrice de la princesse. ]], 0.362022, 0.098361, 1, 884, 4709, 232, -1, 0, 1},
+        {424, "Tranchefouet", [[ Fouet-tranchant fut créé pour accompagner Noxxion à Maraudon. Avec le temps, cette créature devint l'un des serviteurs favoris de la princesse. Fouet-tranchant erre sans relâche dans les grottes aux côtés de Noxxion, utilisant ses antennes épineuses pour détruire toute végétation épargnée par la corruption. ]], 0.166667, 0.344262, 1, 884, 4713, 232, -1, 0, 2},
+        {425, "Sneed", [[ Le réparateur Gizlock et cinq autres chasseurs de joyaux se rendirent à Maraudon pour extraire les cristaux qui s'y trouvaient, contre lesquels les marchands proposaient des sommes folles. Cependant, leurs plans ne se réalisèrent jamais : les satyres tuèrent tous les membres du groupe, à l'exception de Gizlock. Piégé dans les grottes de Maraudon et ayant perdu la raison, le gobelin se considère désormais comme le nouveau souverain du monde souterrain. ]], 0.484000, 0.685000, 2, 884, 4721, 232, -1, 0, 3},
+        {427, "Seigneur Vylelangue", [[ Le seigneur satyre Langue-perfide se rendit dans les profondeurs de Maraudon en entendant parler de la corruption qui les affligeait. La princesse Theradras se méfia d'abord de ce démon rusé, mais il prouva sa loyauté en créant pour elle de nombreux serviteurs, tels que Noxxion et Fouet-tranchant. ]], 0.378415, 0.704918, 1, 884, 4730, 232, -1, 0, 4},
         {428, "Celebras le Maudit", [[ Apprenant le destin tragique de son oncle, le noble Celebras jura de libérer l'esprit de Zaetar. Mais le gardien du bosquet n'était pas prêt à affronter les horreurs qui l'attendaient dans les couloirs de Maraudon grouillant d'ombres. L'énergie ténébreuse imprégnant ce lieu eut rapidement raison de Celebras, emplissant son cœur d'une rage incontrôlable. ]], 0.245902, 0.143443, 2, 884, 4745, 232, -1, 0, 5},
-        {429, "Éboulis", [[ Pendant des années, cet ancien géant des montagnes nommé Éboulis a fait pousser de magnifiques cristaux à Maraudon, avant d'être asservi par Theradras. Ce géant autrefois grandiose mène désormais une existence d'esclave, obéissant à sa nouvelle maîtresse. ]], 0.408470, 0.487705, 2, 884, 4749, 232, -1, 0, 6},
-        {430, "Gueule-pourrie", [[ La rumeur veut que Gueule-pourrie habite les eaux souterraines de Maraudon depuis des milliers d'années. Le célèbre chasseur nain Heming Ernestway aurait autrefois déclaré cette créature introuvable, et des dizaines de pisteurs se lancèrent alors à la recherche de cet être légendaire. Aucun d'eux n'est jamais revenu. ]], 0.413934, 0.817623, 2, 884, 4757, 232, -1, 0, 7},
+        {429, "Glissement de terrain", [[ Pendant des années, cet ancien géant des montagnes nommé Éboulis a fait pousser de magnifiques cristaux à Maraudon, avant d'être asservi par Theradras. Ce géant autrefois grandiose mène désormais une existence d'esclave, obéissant à sa nouvelle maîtresse. ]], 0.408470, 0.487705, 2, 884, 4749, 232, -1, 0, 6},
+        {430, "Grippe-charogne", [[ La rumeur veut que Gueule-pourrie habite les eaux souterraines de Maraudon depuis des milliers d'années. Le célèbre chasseur nain Heming Ernestway aurait autrefois déclaré cette créature introuvable, et des dizaines de pisteurs se lancèrent alors à la recherche de cet être légendaire. Aucun d'eux n'est jamais revenu. ]], 0.413934, 0.817623, 2, 884, 4757, 232, -1, 0, 7},
         {431, "Princesse Theradras", [[ Élémentaire de terre, Theradras, fille unique de Terrazane, la Mère-roche, vit dans le sanctuaire intérieur de Maraudon. La princesse, tombée sous l'influence des Dieux anciens, a transformé sa demeure en un lieu de corruption et de souffrance. Certains pensent que son pouvoir est indissociable de l'esprit de son amant défunt, Zaetar. Si cela s'avère exact, libérer le gardien du bosquet mort serait sans doute le seul moyen de purifier Maraudon. ]], 0.258197, 0.788934, 2, 884, 4759, 232, -1, 0, 8},
     },
     [233] = {
-        {1141, "Amnennar le Glacial", [[ La liche Amnennar fut l'un des plus redoutables représentants du Fléau. Il participa à l'assaut du mont Hyjal durant la Troisième Guerre. Plus tard, le Roi-liche ordonna à son serviteur de rester en Kalimdor et de s'employer à étendre l'influence du Fléau. Les héros de la Horde et de l'Alliance devront arrêter cette liche perfide et apporter un semblant de paix aux Tertres des Épine-de-fer. ]], 0.455090, 0.582335, 0, 887, 9484, 233, -1, 0, 5},
+        {1141, "Amnennar le Porte-Froid", [[ La liche Amnennar fut l'un des plus redoutables représentants du Fléau. Il participa à l'assaut du mont Hyjal durant la Troisième Guerre. Plus tard, le Roi-liche ordonna à son serviteur de rester en Kalimdor et de s'employer à étendre l'influence du Fléau. Les héros de la Horde et de l'Alliance devront arrêter cette liche perfide et apporter un semblant de paix aux Tertres des Épine-de-fer. ]], 0.455090, 0.582335, 0, 887, 9484, 233, -1, 0, 5},
         {1142, "Tuten'kash", [[ Les nécromanciens de la tribu Tête-Morte sont particulièrement fiers d'avoir enfin réussi, après de nombreux échecs, à créer un gardien fiable pour Amnennar. Il se nomme Tuten'kash. Ce nérubien ressuscité se battra contre quiconque l'invoquera en frappant trois fois le gong. ]], 0.589820, 0.342815, 0, 887, 9491, 233, -1, 0, 1},
-        {1143, "Ventre-affamé", [[ Ventre-affamé, l'une des nouvelles créations d'Amnennar, est une tentative de ressusciter Tartek le Féroce, considéré comme le meilleur croque-mort jamais créé. Tartek tua un grand nombre d'Épine-de-fer, mais finit par tomber. Suintant de bile, de pus et d'autres liquides répugnants, Ventre-affamé garde les Tertres des Épine-de-fer, et sa faim est insatiable. ]], 0.345310, 0.664671, 0, 887, 9496, 233, -1, 0, 3},
-        {1146, "Groin-rond", [[ Seul de sa tribu à avoir échappé à l'étreinte de la non-mort, Groin-rond se cache dans les Tertres des Épine-de-fer, et il est parfois impossible de le trouver. Adepte de la magie noire, Groin-rond attaquera sans hésiter tout ennemi, et cette bataille ne sera pas simple. ]], 0.430140, 0.627246, 0, 760, 9527, 233, -1, 0, 4},
-        {433, "Mordresh Œil-de-feu", [[ En recourant à la nécromancie, Amnennar parvint à raviver la flamme dans l'âme de Mordresh Œil-de-feu et à le ressusciter d'entre les morts. Mordresh, jadis chaman, contrôle désormais les éléments grâce à une magie impie. Il incinère tous ceux qui pourraient contrarier les plans du Glacial. ]], 0.860656, 0.467213, 0, 887, 4767, 233, -1, 0, 2},
+        {1143, "Glouton", [[ Ventre-affamé, l'une des nouvelles créations d'Amnennar, est une tentative de ressusciter Tartek le Féroce, considéré comme le meilleur croque-mort jamais créé. Tartek tua un grand nombre d'Épine-de-fer, mais finit par tomber. Suintant de bile, de pus et d'autres liquides répugnants, Ventre-affamé garde les Tertres des Épine-de-fer, et sa faim est insatiable. ]], 0.345310, 0.664671, 0, 887, 9496, 233, -1, 0, 3},
+        {1146, "Groinfendu", [[ Seul de sa tribu à avoir échappé à l'étreinte de la non-mort, Groin-rond se cache dans les Tertres des Épine-de-fer, et il est parfois impossible de le trouver. Adepte de la magie noire, Groin-rond attaquera sans hésiter tout ennemi, et cette bataille ne sera pas simple. ]], 0.430140, 0.627246, 0, 760, 9527, 233, -1, 0, 4},
+        {433, "Mordresh Oeil-de-feu", [[ En recourant à la nécromancie, Amnennar parvint à raviver la flamme dans l'âme de Mordresh Œil-de-feu et à le ressusciter d'entre les morts. Mordresh, jadis chaman, contrôle désormais les éléments grâce à une magie impie. Il incinère tous ceux qui pourraient contrarier les plans du Glacial. ]], 0.860656, 0.467213, 0, 887, 4767, 233, -1, 0, 2},
     },
     [234] = {
-        {11638, "Rugug", [[ Les hommes-crapules considèrent la lecture des pierres et des cristaux comme la plus haute forme de chamanisme. Rugug a servi le peuple des hommes-crapules pendant de longues années, apprenant lentement les arts magiques. Il occupe désormais le rôle de géomancien en chef des hommes-crapules. ]], 0.648000, 0.421000, 0, 888, 20876, 234, -1, 0, 0},
-        {11639, "Agathelos le Féroce", [[ Agathelos, un sanglier blindé colossal environ deux fois plus grand qu'un lézard-tonnerre ordinaire, devenait encore plus imposant lorsqu'il entrait en rage. Il était détenu dans un court tunnel gardé par plusieurs hommes-crapules qui maintenaient un champ de force pour enfermer cette créature monstrueuse. Étant donné que le dieu et ancêtre des hommes-crapules, Agamaggan, est un sanglier titanesque, un animal comme Agathelos revêt une grande importance spirituelle. ]], 0.079000, 0.685000, 0, 888, 20879, 234, -1, 0, 4},
-        {895, "Messager de mort Jargba", [[ Les messagers de mort de la tribu Tête-Morte remplissent deux fonctions : mener la propagande et sévir contre ceux qui refusent d'obéir à Charlga Piquenoix et ses mystérieux nouveaux alliés. Jargba est apprécié des messagers de mort pour sa capacité à contrôler l'esprit des rebelles et à les forcer à se soumettre à la volonté des chefs. ]], 0.872328, 0.410829, 0, 888, 20013, 234, -1, 0, 2},
-        {896, "Aggem Malédiction-des-épines", [[ Le chamanisme fait partie intégrante de la société des hommes-crapules, et le meilleur chaman de la tribu porte le titre de prophète d'Agamaggan. En invoquant la puissance de leur ancêtre demi-dieu, les prophètes peuvent invoquer des esprits de sangliers pour les aider au combat, tout comme les chamans ordinaires invoquent des esprits de loups. ]], 0.807336, 0.517180, 0, 888, 8646, 234, -1, 0, 1},
-        {899, "Seigneur des combats Croc-bélier", [[ Commandant des troupes de la tribu Tête-Morte, le seigneur des combats Croc-bélier est un homme-crapule robuste malgré son âge, dont la peau épaisse porte les cicatrices de combats livrés contre les centaures, les harpies, les orcs et même les tauren. Fort de son expérience, Croc-bélier commande son armée avec assurance, ne laissant jamais l'âge prendre le dessus sur lui. Le vaincre représenterait sans nul doute un coup dur pour la tribu Tête-Morte. ]], 0.574939, 0.305955, 0, 888, 8660, 234, -1, 0, 3},
+        {11638, "Roogug", [[ Les hommes-crapules considèrent la lecture des pierres et des cristaux comme la plus haute forme de chamanisme. Rugug a servi le peuple des hommes-crapules pendant de longues années, apprenant lentement les arts magiques. Il occupe désormais le rôle de géomancien en chef des hommes-crapules. ]], 0.648000, 0.421000, 0, 888, 20876, 234, -1, 0, 0},
+        {11639, "Agathelos le Déchaîné", [[ Agathelos, un sanglier blindé colossal environ deux fois plus grand qu'un lézard-tonnerre ordinaire, devenait encore plus imposant lorsqu'il entrait en rage. Il était détenu dans un court tunnel gardé par plusieurs hommes-crapules qui maintenaient un champ de force pour enfermer cette créature monstrueuse. Étant donné que le dieu et ancêtre des hommes-crapules, Agamaggan, est un sanglier titanesque, un animal comme Agathelos revêt une grande importance spirituelle. ]], 0.079000, 0.685000, 0, 888, 20879, 234, -1, 0, 4},
+        {895, "Nécrorateur Jargba", [[ Les messagers de mort de la tribu Tête-Morte remplissent deux fonctions : mener la propagande et sévir contre ceux qui refusent d'obéir à Charlga Piquenoix et ses mystérieux nouveaux alliés. Jargba est apprécié des messagers de mort pour sa capacité à contrôler l'esprit des rebelles et à les forcer à se soumettre à la volonté des chefs. ]], 0.872328, 0.410829, 0, 888, 20013, 234, -1, 0, 2},
+        {896, "Aggem Malépine", [[ Le chamanisme fait partie intégrante de la société des hommes-crapules, et le meilleur chaman de la tribu porte le titre de prophète d'Agamaggan. En invoquant la puissance de leur ancêtre demi-dieu, les prophètes peuvent invoquer des esprits de sangliers pour les aider au combat, tout comme les chamans ordinaires invoquent des esprits de loups. ]], 0.807336, 0.517180, 0, 888, 8646, 234, -1, 0, 1},
+        {899, "Seigneur Brusquebroche", [[ Commandant des troupes de la tribu Tête-Morte, le seigneur des combats Croc-bélier est un homme-crapule robuste malgré son âge, dont la peau épaisse porte les cicatrices de combats livrés contre les centaures, les harpies, les orcs et même les tauren. Fort de son expérience, Croc-bélier commande son armée avec assurance, ne laissant jamais l'âge prendre le dessus sur lui. Le vaincre représenterait sans nul doute un coup dur pour la tribu Tête-Morte. ]], 0.574939, 0.305955, 0, 888, 8660, 234, -1, 0, 3},
         {900, "Chasseur aveugle", [[ Des profondeurs des grottes obscures est sortie une créature monstrueuse, ayant vécu de longues années loin du reste du monde. Cette chauve-souris géante dévore inlassablement la chair d'un sanglier nommé Agathelos le Féroce, qui puisait autrefois son énergie ténébreuse dans les excréments des chauves-souris. ]], 0.089397, 0.548399, 0, 888, 20015, 234, -1, 0, 4},
-        {901, "Charlga Piquenoix", [[ Chef des tribus Tête-Morte et Épine-de-fer, Charlga Piquenoix, surnommée « la sorcière », est parvenue au pouvoir rapidement et résolument. Son objectif est de ressusciter le demi-dieu Agamaggan, mais les rituels sombres et cruels que Charlga accomplit avec ses sbires vont à l'encontre de la noblesse et des préceptes de l'Ancien. ]], 0.219597, 0.311669, 0, 888, 20017, 234, -1, 0, 5},
+        {901, "Charlga Trancheflanc", [[ Chef des tribus Tête-Morte et Épine-de-fer, Charlga Piquenoix, surnommée « la sorcière », est parvenue au pouvoir rapidement et résolument. Son objectif est de ressusciter le demi-dieu Agamaggan, mais les rituels sombres et cruels que Charlga accomplit avec ses sbires vont à l'encontre de la noblesse et des préceptes de l'Ancien. ]], 0.219597, 0.311669, 0, 888, 20017, 234, -1, 0, 5},
     },
     [236] = {
-        {443, "Ménestrel Forrestin", [[ Durant la Purge de Hurlebas, des milliers de personnes furent tuées, dont le seul tort fut de se trouver dans la ville condamnée. Le ménestrel et flûtiste itinérant Forrestin fut l'une de ces victimes. Il continue d'errer dans la ville, incapable d'accepter son sort tragique. ]], 0.605191, 0.313524, 1, 892, 4794, 236, -1, 0, 1},
-        {445, "Timmy l'Impitoyable", [[ Timmison était tristement célèbre pour sa soif de sang sur le champ de bataille. Certains supposaient que les racines de ce sadisme remontaient à son enfance, marquée par des brimades constantes. Après sa renaissance sous la forme d'un monstre du Fléau, ces souvenirs le hantent sans cesse, le forçant à répondre au nom qu'il détestait autrefois : Timmy. ]], 0.499999, 0.178279, 1, 892, 4799, 236, -1, 0, 2},
-        {446, "Maître canonnier Willey", [[ Balnazzar aimait particulièrement encourager les capacités destructrices du canonnier Willey, le surnommant le « Briseur d'espoirs ». Le seigneur de la terreur trouve ironique que Willey et les autres croisés de l'Ordre écarlate, qui détestaient tant les morts-vivants, soient eux-mêmes devenus des morts-vivants après leur trépas. ]], 0.047814, 0.506148, 1, 892, 4807, 236, -1, 0, 4},
+        {443, "Chanteloge Forrestin", [[ Durant la Purge de Hurlebas, des milliers de personnes furent tuées, dont le seul tort fut de se trouver dans la ville condamnée. Le ménestrel et flûtiste itinérant Forrestin fut l'une de ces victimes. Il continue d'errer dans la ville, incapable d'accepter son sort tragique. ]], 0.605191, 0.313524, 1, 892, 4794, 236, -1, 0, 1},
+        {445, "Ecorcheur maladif", [[ Timmison était tristement célèbre pour sa soif de sang sur le champ de bataille. Certains supposaient que les racines de ce sadisme remontaient à son enfance, marquée par des brimades constantes. Après sa renaissance sous la forme d'un monstre du Fléau, ces souvenirs le hantent sans cesse, le forçant à répondre au nom qu'il détestait autrefois : Timmy. ]], 0.499999, 0.178279, 1, 892, 4799, 236, -1, 0, 2},
+        {446, "Willey Mutilespoir", [[ Balnazzar aimait particulièrement encourager les capacités destructrices du canonnier Willey, le surnommant le « Briseur d'espoirs ». Le seigneur de la terreur trouve ironique que Willey et les autres croisés de l'Ordre écarlate, qui détestaient tant les morts-vivants, soient eux-mêmes devenus des morts-vivants après leur trépas. ]], 0.047814, 0.506148, 1, 892, 4807, 236, -1, 0, 4},
         {448, "Instructeur Galford", [[ En son temps, Galford était fier de veiller sur les documents les plus précieux de l'ordre. Mais en mourant, il assista, horrifié, à la combustion de ses précieux ouvrages, réduits en cendres. Balnazzar utilisa ces terribles souvenirs pour insuffler à son serviteur une rage qui n'avait jamais habité Galford de son vivant. ]], 0.277323, 0.754099, 1, 892, 4808, 236, -1, 0, 5},
-        {449, "Balnazzar", [[ Balnazzar n'a jamais connu la mort, mais il connaît fort bien le goût amer de la défaite. Après que le Cataclysme eut secoué le monde, il tua les croisés de l'Ordre écarlate à Hurlebas et les transforma en morts-vivants, ce qu'ils avaient toujours tant détesté. Aujourd'hui, ce seigneur de la terreur nourrit des projets de vengeance contre Azeroth. ]], 0.204918, 0.821721, 1, 892, 4828, 236, -1, 0, 6},
-        {450, "L'Impardonnée", [[ Lilian était un modèle de vertu parmi son peuple. Après qu'Arthas eut ordonné à ses troupes de purger la ville, elle perdit la raison en voyant tant d'innocents périr de sa main. Elle se jeta sur sa propre épée pour échapper à la folie. Elle est désormais condamnée à exister sous forme de fantôme, à jamais privée de pardon pour ce qu'elle a fait. ]], 0.734973, 0.204918, 1, 892, 4833, 236, -1, 0, 7},
+        {449, "Sphère de peur", [[ Balnazzar n'a jamais connu la mort, mais il connaît fort bien le goût amer de la défaite. Après que le Cataclysme eut secoué le monde, il tua les croisés de l'Ordre écarlate à Hurlebas et les transforma en morts-vivants, ce qu'ils avaient toujours tant détesté. Aujourd'hui, ce seigneur de la terreur nourrit des projets de vengeance contre Azeroth. ]], 0.204918, 0.821721, 1, 892, 4828, 236, -1, 0, 6},
+        {450, "Le Condamné", [[ Lilian était un modèle de vertu parmi son peuple. Après qu'Arthas eut ordonné à ses troupes de purger la ville, elle perdit la raison en voyant tant d'innocents périr de sa main. Elle se jeta sur sa propre épée pour échapper à la folie. Elle est désormais condamnée à exister sous forme de fantôme, à jamais privée de pardon pour ce qu'elle a fait. ]], 0.734973, 0.204918, 1, 892, 4833, 236, -1, 0, 7},
         {451, "Baronne Anastari", [[ De son vivant, Anastari obtenait ce qu'elle désirait par tous les moyens. La mort n'y a rien changé. Lorsque son âme s'échappa de son corps et qu'elle se transforma en banshee, son goût pour les biens matériels céda la place à des désirs bien plus sinistres. ]], 0.745902, 0.469262, 2, 892, 4841, 236, -1, 0, 8},
         {452, "Nerub'enkan", [[ Nerub'enkan était une guerrière habile de l'époque de la Guerre des Araignées. Elle finit par succomber à ses blessures et fut transformée en morte-vivante, devenant une serviteuse docile du Fléau. Elle garde aujourd'hui le ziggourat de Hurlebas avec autant de zèle qu'elle défendait jadis sa demeure de son vivant. ]], 0.572404, 0.461065, 2, 892, 4845, 236, -1, 0, 9},
-        {453, "Malekiel le Pâle", [[ Malekiel fut l'un des premiers à rejoindre le culte des Damnés, démontrant des capacités incroyables dans l'usage du froid mortel. Poussé par une soif de pouvoir sans fin, ce mage continue de perfectionner ses talents de magie noire pour se préparer au moment où il renaîtra sous la forme d'une liche. ]], 0.674864, 0.227459, 2, 892, 4851, 236, -1, 0, 10},
-        {454, "Juge Bartholoméas", [[ Bartholoméas comptait parmi les innocents qu'Arthas et ses troupes tuèrent durant la Purge de Hurlebas. Par la suite, le Roi-liche ressuscita cet ancien juge de sa tombe et ordonna à ce mort-vivant sinistre de garder sa demeure en ruine. ]], 0.640000, 0.790000, 2, 892, 4855, 236, -1, 0, 11},
-        {455, "Rammstein l'Insatiable", [[ Rammstein est l'une des créations les plus célèbres du Fléau, une créature cauchemardesque composée d'innombrables corps morts et animée par une faim inextinguible. Lorsque les troupes du Fléau prirent Hurlebas, ce monstre y commit des atrocités indicibles, anéantissant des milliers d'âmes innocentes. ]], 0.456284, 0.198771, 2, 892, 4859, 236, -1, 0, 12},
-        {456, "Baron Rivendare", [[ Instrument du Fléau, l'impitoyable baron Rivendare, cavalier de Naxxramas, trahit les humains de son vivant, échangeant sa loyauté contre le pouvoir ténébreux du Fléau. C'est Rivendare qui est responsable de la destruction de Hurlebas et de la horde de morts-vivants qui y règne désormais. ]], 0.386612, 0.200820, 2, 892, 4862, 236, -1, 0, 13},
+        {453, "Maleki le Blafard", [[ Malekiel fut l'un des premiers à rejoindre le culte des Damnés, démontrant des capacités incroyables dans l'usage du froid mortel. Poussé par une soif de pouvoir sans fin, ce mage continue de perfectionner ses talents de magie noire pour se préparer au moment où il renaîtra sous la forme d'une liche. ]], 0.674864, 0.227459, 2, 892, 4851, 236, -1, 0, 10},
+        {454, "Magistrat Barthilas", [[ Bartholoméas comptait parmi les innocents qu'Arthas et ses troupes tuèrent durant la Purge de Hurlebas. Par la suite, le Roi-liche ressuscita cet ancien juge de sa tombe et ordonna à ce mort-vivant sinistre de garder sa demeure en ruine. ]], 0.640000, 0.790000, 2, 892, 4855, 236, -1, 0, 11},
+        {455, "Ramstein Grandgosier", [[ Rammstein est l'une des créations les plus célèbres du Fléau, une créature cauchemardesque composée d'innombrables corps morts et animée par une faim inextinguible. Lorsque les troupes du Fléau prirent Hurlebas, ce monstre y commit des atrocités indicibles, anéantissant des milliers d'âmes innocentes. ]], 0.456284, 0.198771, 2, 892, 4859, 236, -1, 0, 12},
+        {456, "Baron Vaillefendre", [[ Instrument du Fléau, l'impitoyable baron Rivendare, cavalier de Naxxramas, trahit les humains de son vivant, échangeant sa loyauté contre le pouvoir ténébreux du Fléau. C'est Rivendare qui est responsable de la destruction de Hurlebas et de la horde de morts-vivants qui y règne désormais. ]], 0.386612, 0.200820, 2, 892, 4862, 236, -1, 0, 13},
         {749, "Commandant Malor", [[ Malor, accompagné d'une poignée d'autres guerriers courageux, risqua tout pour défendre le bastion de l'Ordre écarlate contre les hordes de morts-vivants. Hélas, ils furent vaincus. Balnazzar transforma le commandant intrépide en l'un de ses serviteurs, et Malor devint une terrible parodie de lui-même. ]], 0.299320, 0.411874, 1, 892, 6452, 236, -1, 0, 3},
     },
     [237] = {
         {11643, "Atal'alarion", [[ Atal'alarion est le gardien maudit de l'idole se trouvant au niveau inférieur du temple. Pour l'invoquer, il faut activer les statues dans le bon ordre. ]], 0.243169, 0.459016, 1, 687, 20907, 237, -1, 0, 0},
         {11644, "Loro", [[ Loro est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Il est le serviteur de Jammal'an le Prophète et donnerait sa vie pour protéger les secrets de son maître. ]], 0.243169, 0.459016, 1, 687, 20909, 237, -1, 0, 3},
         {11645, "Hukku", [[ Hukku est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Hukku est accompagné de ses gardiens démoniaques. Lui et ses frères servent Jammal'an. ]], 0.243169, 0.459016, 1, 687, 20911, 237, -1, 0, 3},
-        {11646, "Midjan", [[ Midjan est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Ancien guérisseur du clan Atal'ai, il a juré fidélité à son maître. ]], 0.243169, 0.459016, 1, 687, 20913, 237, -1, 0, 3},
+        {11646, "Mijan", [[ Midjan est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Ancien guérisseur du clan Atal'ai, il a juré fidélité à son maître. ]], 0.243169, 0.459016, 1, 687, 20913, 237, -1, 0, 3},
         {11647, "Zul'Lor", [[ Zul'Lor est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Autrefois l'un des plus puissants guerriers de son clan, il sert désormais le Prophète et ses desseins. ]], 0.243169, 0.459016, 1, 687, 20917, 237, -1, 0, 3},
         {11648, "Zolo", [[ Zolo est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Autrefois l'un des plus puissants guerriers de son clan, il sert désormais le Prophète et ses desseins. ]], 0.243169, 0.459016, 1, 687, 20919, 237, -1, 0, 3},
-        {11649, "Ranakol", [[ Ranakol est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Combattant habile du clan Atal'ai, il fut de son vivant le guerrier le plus rapide, et sa transformation en mort-vivant lui a également conféré une endurance incroyable. ]], 0.243169, 0.459016, 1, 687, 20921, 237, -1, 0, 3},
-        {457, "Avatar de Hakkar", [[ Hakkar était réputé pour exiger des sacrifices sanglants de ses fidèles. Jadis, il ordonna à la tribu Atal'ai de vénérer son avatar, le nourrissant du sang de ses victimes. Aujourd'hui, les prêtres Atal'ai tentent de ressusciter l'avatar de Hakkar au moyen d'un rituel renouvelé, impliquant le sacrifice de dragons verts. Si la chance sourit aux Atal'ai, l'heure de la résurrection de l'avatar de Hakkar sera la dernière heure d'Azeroth. ]], 0.243169, 0.459016, 0, 687, 4903, 237, -1, 0, 1},
+        {11649, "Balafreur", [[ Ranakol est un troll mort-vivant habitant le Temple d'Atal'Hakkar. Combattant habile du clan Atal'ai, il fut de son vivant le guerrier le plus rapide, et sa transformation en mort-vivant lui a également conféré une endurance incroyable. ]], 0.243169, 0.459016, 1, 687, 20921, 237, -1, 0, 3},
+        {457, "Avatar d'Hakkar", [[ Hakkar était réputé pour exiger des sacrifices sanglants de ses fidèles. Jadis, il ordonna à la tribu Atal'ai de vénérer son avatar, le nourrissant du sang de ses victimes. Aujourd'hui, les prêtres Atal'ai tentent de ressusciter l'avatar de Hakkar au moyen d'un rituel renouvelé, impliquant le sacrifice de dragons verts. Si la chance sourit aux Atal'ai, l'heure de la résurrection de l'avatar de Hakkar sera la dernière heure d'Azeroth. ]], 0.243169, 0.459016, 0, 687, 4903, 237, -1, 0, 1},
         {458, "Jammal'an le Prophète", [[ Jammal'an le Prophète est le chef de la tribu Atal'ai, qui rassemble les prêtres fanatiques de Hakkar. Jammal'an eut une vision lui révélant comment ressusciter Hakkar grâce au sang de ses ennemis, les dragons verts. Jammal'an et son garde du corps mort-vivant, Ogom le Méprisable, sont prêts à repousser quiconque tenterait d'empêcher le retour de Hakkar en ce monde, même si ce retour pourrait bien plonger Azeroth dans un véritable cauchemar... le Cauchemar d'émeraude. ]], 0.760929, 0.459016, 0, 687, 4934, 237, -1, 0, 2},
-        {459, "Gardiens du sommeil", [[ Quatre jeunes dragons prometteurs se rendirent avec Eranikus au Temple d'Atal'Hakkar, prêts à prouver leur loyauté envers ce puissant serpent. L'un après l'autre, ils tombèrent dans des pièges et se retrouvèrent piégés dans le Cauchemar d'émeraude. Ils errent désormais dans les couloirs du temple, s'en prenant à quiconque perturbe leur promenade somnambulique. ]], 0.499151, 0.870309, 0, 687, 6114, 237, -1, 0, 3},
+        {459, "Lethlas", [[ Quatre jeunes dragons prometteurs se rendirent avec Eranikus au Temple d'Atal'Hakkar, prêts à prouver leur loyauté envers ce puissant serpent. L'un après l'autre, ils tombèrent dans des pièges et se retrouvèrent piégés dans le Cauchemar d'émeraude. Ils errent désormais dans les couloirs du temple, s'en prenant à quiconque perturbe leur promenade somnambulique. ]], 0.499151, 0.870309, 0, 687, 6114, 237, -1, 0, 3},
         {463, "Ombre d'Eranikus", [[ Eranikus, ancien époux d'Ysera, fut envoyé sur les ruines du Temple d'Atal'Hakkar pour empêcher le retour de Hakkar. Mais à peine Eranikus et son escorte eurent-ils atteint le temple qu'ils devinrent les victimes des forces obscures qui y résidaient. Dans le monde réel, il ne reste d'Eranikus qu'une ombre, lui-même étant resté coincé sur le chemin menant au Rêve d'émeraude. Malgré ce terrible sort, il peut encore repousser ses ennemis en les inondant de venin corrosif ou en les plongeant dans un profond sommeil. ]], 0.670765, 0.877049, 0, 687, 4950, 237, -1, 0, 7},
     },
     [238] = {
         {464, "Dextren Ward", [[ Rarement, dans une prison remplie de rebuts et de véritables monstres, peut-on voir un homme tel que Dextren Ward. La première pensée d'une personne ignorant l'histoire de ce prisonnier serait : « Pour quels péchés cet homme est-il ici ? » Mais ce n'est pas pour rien que les prisonniers restent silencieux face à de telles questions : cet homme déterrait les cadavres du cimetière de la Colline-aux-corbeaux pour les vendre au nécromancien Morbent Fel. ]], 0.218579, 0.262295, 0, 874, 4811, 238, -1, 0, 1},
-        {465, "Osgrêle", [[ L'un des prisonniers les plus sinistres de la Prison, un ogre à moitié fou armé d'un couperet de boucher, voilà qui est Osgrêle. Aujourd'hui que le chaos règne dans la Prison, il a repris son sanglant travail. ]], 0.784153, 0.452869, 0, 874, 4814, 238, -1, 0, 2},
-        {466, "Targorr le Terrible", [[ Issu d'un clan d'orcs habitant la Montagne Noire, Targorr obtint le surnom de « Terrible » pour son impitoyabilité absolue et sa capacité à manier deux épées à la fois. Un orc dans une prison humaine est rare, il n'est donc pas étonnant que tous les prisonniers craignent Targorr. Il a désormais l'occasion idéale de mettre en pratique son talent perfide. ]], 0.497268, 0.221312, 0, 874, 4817, 238, -1, 0, 3},
+        {465, "Hamhock", [[ L'un des prisonniers les plus sinistres de la Prison, un ogre à moitié fou armé d'un couperet de boucher, voilà qui est Osgrêle. Aujourd'hui que le chaos règne dans la Prison, il a repris son sanglant travail. ]], 0.784153, 0.452869, 0, 874, 4814, 238, -1, 0, 2},
+        {466, "Targorr le Terrifiant", [[ Issu d'un clan d'orcs habitant la Montagne Noire, Targorr obtint le surnom de « Terrible » pour son impitoyabilité absolue et sa capacité à manier deux épées à la fois. Un orc dans une prison humaine est rare, il n'est donc pas étonnant que tous les prisonniers craignent Targorr. Il a désormais l'occasion idéale de mettre en pratique son talent perfide. ]], 0.497268, 0.221312, 0, 874, 4817, 238, -1, 0, 3},
     },
     [239] = {
-        {467, "Ravageur", [[ Certains éminents chercheurs de la prestigieuse Ligue des explorateurs, basée à Forgefer, pensent qu'il existe un lien de sang entre leur peuple et les trogg. Selon eux, la preuve en est que la passion des trogg pour les artefacts des titans ne diffère guère de l'intérêt des nains pour ces merveilleux objets. Si leur théorie est exacte, on peut considérer le trogg Ravageur comme un archéologue, bien que tout aventurier ayant eu le malheur de croiser sa route préfère probablement le qualifier de voleur. ]], 0.534153, 0.725410, 1, 876, 4820, 239, -1, 0, 1},
-        {468, "Nains disparus", [[ En quête de gloire et, plus important encore, de richesse, trois frères, Eric, Olaf et Baelog, signèrent un contrat avec la Ligue des explorateurs et se rendirent dans les salles d'Uldaman afin d'ouvrir la voie aux chercheurs qui les suivraient. Hélas, pour ces trois nains, « ouvrir la voie » signifia « se perdre irrémédiablement dans ce labyrinthe antique ». Mais jusqu'au bout, ces fiers nains tentèrent de protéger les secrets de la Ligue des explorateurs et d'Uldaman contre la Horde. ]], 0.584699, 0.920082, 1, 876, 4869, 239, -1, 8, 2},
+        {467, "Revelosh", [[ Certains éminents chercheurs de la prestigieuse Ligue des explorateurs, basée à Forgefer, pensent qu'il existe un lien de sang entre leur peuple et les trogg. Selon eux, la preuve en est que la passion des trogg pour les artefacts des titans ne diffère guère de l'intérêt des nains pour ces merveilleux objets. Si leur théorie est exacte, on peut considérer le trogg Ravageur comme un archéologue, bien que tout aventurier ayant eu le malheur de croiser sa route préfère probablement le qualifier de voleur. ]], 0.534153, 0.725410, 1, 876, 4820, 239, -1, 0, 1},
+        {468, "Baelog", [[ En quête de gloire et, plus important encore, de richesse, trois frères, Eric, Olaf et Baelog, signèrent un contrat avec la Ligue des explorateurs et se rendirent dans les salles d'Uldaman afin d'ouvrir la voie aux chercheurs qui les suivraient. Hélas, pour ces trois nains, « ouvrir la voie » signifia « se perdre irrémédiablement dans ce labyrinthe antique ». Mais jusqu'au bout, ces fiers nains tentèrent de protéger les secrets de la Ligue des explorateurs et d'Uldaman contre la Horde. ]], 0.584699, 0.920082, 1, 876, 4869, 239, -1, 8, 2},
         {469, "Ironaya", [[ Pour ériger les immenses salles d'Uldaman, les titans firent appel à des serviteurs. Le Panthéon confia à la Gardienne Ironaya la responsabilité de superviser la construction et l'entretien d'Uldaman, mais les années passèrent, et ce lieu jadis magnifique n'est aujourd'hui plus qu'un champ de ruines. Ironaya a passé un millénaire en état de stase, analysant le plan général tracé par Khaz'goroth, à la recherche d'un moyen de restaurer le complexe d'Uldaman. ]], 0.372951, 0.739754, 1, 876, 4876, 239, -1, 0, 3},
-        {470, "Ancien gardien de pierre", [[ L'Ancien gardien de pierre est l'un des nombreux golems qui travaillaient dans le grand entrepôt des titans. Il servait d'intermédiaire entre les Gardiens, qui supervisaient tous les travaux, et leurs serviteurs. Après la corruption de la Sentinelle obsidienne, l'Ancien gardien de pierre est devenu le dernier golem créé par les titans, et il protégera désormais leurs secrets jusqu'à ce qu'il cesse d'exister. ]], 0.475410, 0.440574, 1, 876, 4879, 239, -1, 0, 5},
-        {471, "Galgann Coup-de-feu", [[ Lorsque les nains du clan Barbe-de-bronze découvrirent Uldaman, le clan Fer Noir envahit l'entrepôt pour empêcher leurs ennemis jurés d'accéder aux puissants artefacts qui y étaient conservés. Galgann Coup-de-feu, sénateur de Tenebrord, se rendit personnellement sur place pour superviser les fouilles d'Uldaman, afin que l'empereur puisse utiliser la puissance destructrice de ces artefacts contre les ennemis du clan Fer Noir. ]], 0.267760, 0.327869, 1, 876, 4880, 239, -1, 0, 6},
-        {472, "Grimlok", [[ Parmi les trogg, le plus grand, le plus fort et le plus féroce devient le chef en prouvant sa force. Mais le mérite particulier de Grimlok réside dans sa capacité à contrôler les trogg, les maintenant dans la peur grâce à des attaques psychologiques. En soumettant un basilic, il menaçait de transformer en pierre quiconque oserait le défier. ]], 0.219945, 0.256148, 1, 876, 4886, 239, -1, 0, 7},
+        {470, "Ancien gardien en pierre", [[ L'Ancien gardien de pierre est l'un des nombreux golems qui travaillaient dans le grand entrepôt des titans. Il servait d'intermédiaire entre les Gardiens, qui supervisaient tous les travaux, et leurs serviteurs. Après la corruption de la Sentinelle obsidienne, l'Ancien gardien de pierre est devenu le dernier golem créé par les titans, et il protégera désormais leurs secrets jusqu'à ce qu'il cesse d'exister. ]], 0.475410, 0.440574, 1, 876, 4879, 239, -1, 0, 5},
+        {471, "Galgann Martel-de-feu", [[ Lorsque les nains du clan Barbe-de-bronze découvrirent Uldaman, le clan Fer Noir envahit l'entrepôt pour empêcher leurs ennemis jurés d'accéder aux puissants artefacts qui y étaient conservés. Galgann Coup-de-feu, sénateur de Tenebrord, se rendit personnellement sur place pour superviser les fouilles d'Uldaman, afin que l'empereur puisse utiliser la puissance destructrice de ces artefacts contre les ennemis du clan Fer Noir. ]], 0.267760, 0.327869, 1, 876, 4880, 239, -1, 0, 6},
+        {472, "Grimelok", [[ Parmi les trogg, le plus grand, le plus fort et le plus féroce devient le chef en prouvant sa force. Mais le mérite particulier de Grimlok réside dans sa capacité à contrôler les trogg, les maintenant dans la peur grâce à des attaques psychologiques. En soumettant un basilic, il menaçait de transformer en pierre quiconque oserait le défier. ]], 0.219945, 0.256148, 1, 876, 4886, 239, -1, 0, 7},
         {473, "Archaedas", [[ Quelque part dans les profondeurs d'Uldaman se trouve une salle abritant l'un des trésors les plus précieux des titans, créé par Norgannon lui-même. Mais jusqu'à présent, personne n'a réussi à s'emparer de cette relique, car elle est gardée par le puissant Archaedas et ses serviteurs. Archaedas est taillé dans la pierre ancienne et robuste extraite des mines d'Uldaman, et il est aussi redoutable qu'il est vieux. ]], 0.553279, 0.504098, 2, 876, 4894, 239, -1, 0, 8},
-        {748, "Sentinelle obsidienne", [[ La Sentinelle obsidienne a veillé sans relâche sur les secrets d'Uldaman jusqu'à ce qu'elle soit frappée par une corruption d'origine inconnue. La Sentinelle, créée dans la même pierre que les salles d'Uldaman, est presque entièrement composée de verre sombre réfléchissant les sortilèges. La source de la corruption qui a frappé la Sentinelle obsidienne était sans doute incroyablement puissante : il n'est pas facile de modifier une pierre enchantée créée par les titans. ]], 0.289425, 0.597403, 1, 876, 6448, 239, -1, 0, 4},
+        {748, "Sentinelle d'obsidienne", [[ La Sentinelle obsidienne a veillé sans relâche sur les secrets d'Uldaman jusqu'à ce qu'elle soit frappée par une corruption d'origine inconnue. La Sentinelle, créée dans la même pierre que les salles d'Uldaman, est presque entièrement composée de verre sombre réfléchissant les sortilèges. La source de la corruption qui a frappé la Sentinelle obsidienne était sans doute incroyablement puissante : il n'est pas facile de modifier une pierre enchantée créée par les titans. ]], 0.289425, 0.597403, 1, 876, 6448, 239, -1, 0, 4},
     },
     [240] = {
         {474, "Dame Anacondra", [[ Feuille écarlate fut la première à se porter volontaire pour accompagner Naralex lorsqu'il partit vers les steppes. Après que le cauchemar de son maître eut altéré sa raison, la jeune novice renonça à son nom et se mit à prédire à Azeroth un avenir terrible. ]], 0.281000, 0.318000, 0, 749, 4954, 240, -1, 0, 1},
         {475, "Seigneur Cobrahn", [[ La capacité de Jarrallaxe à prendre la forme d'animaux lui valut le respect des druides du Cercle Cénarien. Malheureusement, la corruption de la Caverne des Lamentations dénatura cette capacité, et il finit par ne maîtriser à la perfection que la transformation en serpent. En raison de cette nouvelle forme sinistre, il choisit de se faire appeler Cobrahn. ]], 0.166667, 0.567623, 0, 749, 4958, 240, -1, 0, 3},
-        {476, "Seigneur Python", [[ Arine, l'ami d'enfance de Naralex et guerrier de talent, excellait aussi dans l'art des druides. Mais malgré cela, ce novice ne put résister à la corruption qui lui fit perdre la raison. Arine prit le nom de seigneur Python et utilise désormais ses compétences martiales et ses sorts de druide pour anéantir les visiteurs indésirables. ]], 0.856000, 0.293000, 0, 749, 4965, 240, -1, 0, 2},
-        {477, "Krolg", [[ Dans les grottes des Lamentations erre l'une de ses plus anciennes habitantes : une tortue géante. Les cauchemars de Naralex n'ont pas réussi à influencer son tempérament paisible, mais il ne faut pas se fier excessivement à sa gentillesse. Krolg a plus d'une fois repoussé des voyageurs qui convoitaient sa gigantesque carapace. ]], 0.385246, 0.360656, 0, 749, 20008, 240, -1, 0, 4},
-        {478, "Shaadow", [[ Shaadow se rendit dans les grottes des Lamentations pour échapper à l'hostilité des steppes où il vivait. Mais comme de nombreux habitants des grottes, il céda rapidement à l'influence de la corruption. Une énergie ténébreuse coule désormais dans ses veines, en faisant une bête puissante et impitoyable, ignorant tout remords. ]], 0.932000, 0.795000, 0, 749, 4970, 240, -1, 0, 5},
+        {476, "Seigneur Pythas", [[ Arine, l'ami d'enfance de Naralex et guerrier de talent, excellait aussi dans l'art des druides. Mais malgré cela, ce novice ne put résister à la corruption qui lui fit perdre la raison. Arine prit le nom de seigneur Python et utilise désormais ses compétences martiales et ses sorts de druide pour anéantir les visiteurs indésirables. ]], 0.856000, 0.293000, 0, 749, 4965, 240, -1, 0, 2},
+        {477, "Kresh", [[ Dans les grottes des Lamentations erre l'une de ses plus anciennes habitantes : une tortue géante. Les cauchemars de Naralex n'ont pas réussi à influencer son tempérament paisible, mais il ne faut pas se fier excessivement à sa gentillesse. Krolg a plus d'une fois repoussé des voyageurs qui convoitaient sa gigantesque carapace. ]], 0.385246, 0.360656, 0, 749, 20008, 240, -1, 0, 4},
+        {478, "Skum", [[ Shaadow se rendit dans les grottes des Lamentations pour échapper à l'hostilité des steppes où il vivait. Mais comme de nombreux habitants des grottes, il céda rapidement à l'influence de la corruption. Une énergie ténébreuse coule désormais dans ses veines, en faisant une bête puissante et impitoyable, ignorant tout remords. ]], 0.932000, 0.795000, 0, 749, 4970, 240, -1, 0, 5},
         {479, "Seigneur Serpentis", [[ Le chef des druides-serpents fut jadis l'un des élèves les plus brillants de Naralex. Mais il se tourna vers le mal, ce qui l'empêcha de réaliser son rêve le plus cher : devenir shan'do, un « professeur vénéré » à l'image de Naralex lui-même. La folie s'insinua toujours plus profondément dans son âme, et Serpentis rallia ses semblables et créa l'ordre des « Druides-serpents ». ]], 0.616120, 0.538935, 0, 749, 4971, 240, -1, 0, 6},
         {480, "Verdan l'Immortel", [[ On ne sait que peu de choses du destin de cette créature avant l'arrivée de Naralex dans les grottes des Lamentations. Bien que Verdan l'Immortel fût à l'origine un défenseur des grottes, il fut lui aussi affecté par la corruption ayant frappé sa demeure. Verdan s'est rallié aux druides fous et est prêt à anéantir quiconque envahirait leur territoire. ]], 0.554645, 0.465164, 0, 749, 4974, 240, -1, 0, 7},
         {481, "Mutanus le Dévoreur", [[ Dans les recoins les plus sombres de l'esprit enfiévré de Naralex, la corruption qui s'est emparée du Rêve d'émeraude a pris la forme du pire ennemi d'un druide : un murloc. Cette créature monstrueuse, appelée Mutanus, est apparue dans ce monde pour anéantir quiconque tenterait de libérer Naralex des griffes du Cauchemar qui l'a englouti. ]], 0.345628, 0.137295, 0, 749, 4975, 240, -1, 0, 8},
@@ -263,102 +263,102 @@ JOURNALENCOUNTER = {
         {483, "Gahz'rilla", [[ Selon la légende, Gahz'rilla était le favori des Dieux anciens, voire même un demi-dieu. Quoi qu'il en soit, pendant tout un millénaire, les trolls du clan Poussière-des-sables ont vénéré cette créature. Connaissant bien le caractère de cette bête, les trolls évitent de se montrer devant l'insatiable Gahz'rilla sans lui offrir d'abondants sacrifices. ]], 0.280942, 0.382783, 0, 871, 4981, 241, -1, 0, 2},
         {484, "Antu'sul", [[ Antu'sul veut que ses basilics sul'lithuz soient forts et impitoyables. Il les traite comme des membres de sa famille, et personne, pas même les autres trolls, n'est autorisé à faire du mal à ses précieux petits. Plutôt que d'enterrer ses adversaires, Antu'sul laisse ses basilics dévorer ceux qui ont osé le défier. ]], 0.646175, 0.276639, 0, 871, 4986, 241, -1, 0, 3},
         {485, "Theka le Martyr", [[ Il y a bien longtemps, le martyr Theka fut tué lors d'une guerre sanglante opposant les habitants d'Ahn'Qiraj aux trolls. Zul'Farrak survécut uniquement grâce à son sacrifice. Même après sa mort, Theka continue de protéger sa ville bien-aimée. On dit que ses meurtriers, une douzaine de guerriers de l'essaim, se seraient transformés en scarabées privés de raison, condamnés à rester éternellement aux côtés de Theka. ]], 0.531421, 0.262295, 0, 871, 5005, 241, -1, 0, 4},
-        {486, "Guérisseur Zum'rah", [[ Le puissant loa Bwonsamdi veille sur les âmes des trolls de Sang-de-lance, mais de nombreux trolls de la tribu Poussière-des-sables sont privés de cette protection après leur mort. Leurs âmes tourmentées sont soumises à Zum'rah, un guérisseur cruel qui use de magie noire pour retenir prisonnières les âmes des défunts. ]], 0.442623, 0.176230, 0, 871, 5011, 241, -1, 0, 5},
-        {487, "Necrom et Shezz'ziz", [[ Par un mystère inexpliqué, Necrom Tripouille continue de vivre après la mort, et son corps en décomposition est toujours en mesure d'aider Shezz'ziz. Ensemble, ces deux trolls se sont rassemblés pour offrir des sacrifices à la bête mythique Gahz'rilla, qui dort au cœur de la cité. De nombreux trolls attendent avec impatience le réveil de cette créature et feront tout leur possible pour que le rituel ait lieu. ]], 0.296448, 0.174180, 0, 871, 5019, 241, -1, 0, 6},
-        {489, "Chef Ukorz Crânedesable", [[ Le chef Ukorz Crânedesable est obsédé par l'idée de rendre à sa tribu sa gloire passée. Il a grandi en écoutant des histoires sur l'époque où les trolls régnaient sur ces terres, sans être dérangés par les gobelins, les gnomes, les pirates, les ogres et autres étrangers. Crânedesable a demandé à son fidèle allié Ruuzlu de l'aider à ouvrir un nouveau chapitre dans l'histoire du clan Poussière-des-sables, par le seul moyen qu'il connaisse : la violence. ]], 0.422131, 0.329918, 0, 871, 5025, 241, -1, 0, 8},
+        {486, "Féticheur Zum'rah", [[ Le puissant loa Bwonsamdi veille sur les âmes des trolls de Sang-de-lance, mais de nombreux trolls de la tribu Poussière-des-sables sont privés de cette protection après leur mort. Leurs âmes tourmentées sont soumises à Zum'rah, un guérisseur cruel qui use de magie noire pour retenir prisonnières les âmes des défunts. ]], 0.442623, 0.176230, 0, 871, 5011, 241, -1, 0, 5},
+        {487, "Nekrum Mâchentrailles", [[ Par un mystère inexpliqué, Necrom Tripouille continue de vivre après la mort, et son corps en décomposition est toujours en mesure d'aider Shezz'ziz. Ensemble, ces deux trolls se sont rassemblés pour offrir des sacrifices à la bête mythique Gahz'rilla, qui dort au cœur de la cité. De nombreux trolls attendent avec impatience le réveil de cette créature et feront tout leur possible pour que le rituel ait lieu. ]], 0.296448, 0.174180, 0, 871, 5019, 241, -1, 0, 6},
+        {489, "Chef Ukorz Scalpessable", [[ Le chef Ukorz Crânedesable est obsédé par l'idée de rendre à sa tribu sa gloire passée. Il a grandi en écoutant des histoires sur l'époque où les trolls régnaient sur ces terres, sans être dérangés par les gobelins, les gnomes, les pirates, les ogres et autres étrangers. Crânedesable a demandé à son fidèle allié Ruuzlu de l'aider à ouvrir un nouveau chapitre dans l'histoire du clan Poussière-des-sables, par le seul moyen qu'il connaisse : la violence. ]], 0.422131, 0.329918, 0, 871, 5025, 241, -1, 0, 8},
     },
     [247] = {
-        {523, "Shirrak le Gardien des morts", [[ Créé par l'exarque Maladaar en personne, Shirrak était censé protéger les esprits des draeneï défunts qui habitaient les tombeaux d'Auchindoun. Il se présente sous la forme d'une masse effrayante d'yeux, de dents et de tentacules. Cette création de l'exarque absorbe l'énergie de la magie arcanique avec voracité et ne tolérera jamais qu'un mortel envahisse sa demeure. ]], 0.463115, 0.680327, 2, 722, 5038, 247, -1, 0, 1},
+        {523, "Shirrak le Veillemort", [[ Créé par l'exarque Maladaar en personne, Shirrak était censé protéger les esprits des draeneï défunts qui habitaient les tombeaux d'Auchindoun. Il se présente sous la forme d'une masse effrayante d'yeux, de dents et de tentacules. Cette création de l'exarque absorbe l'énergie de la magie arcanique avec voracité et ne tolérera jamais qu'un mortel envahisse sa demeure. ]], 0.463115, 0.680327, 2, 722, 5038, 247, -1, 0, 1},
         {524, "Exarque Maladaar", [[ Maladaar est le dernier survivant d'un grand peuple, dont les fiers descendants habitaient jadis les salles d'Auchindoun. La perte soudaine de tout ce qui lui était cher a fini par le rendre complètement fou. Son désir insensé de préserver à jamais la mémoire des siens l'a poussé à se tourner vers la magie noire. ]], 0.739071, 0.508196, 2, 722, 5042, 247, -1, 0, 2},
     },
     [248] = {
-        {527, "Chef de la garde Gargolmar", [[ Réputé pour sa sinistre notoriété au Bassin de l'Æther, Gargolmar dévore le cœur de ceux qui s'approchent de la Citadelle des Flammes infernales, qu'ils aient tenté d'y pénétrer ou non. Kargath Tranchebras lui a confié la garde des remparts de la forteresse, et le chef de la garde Gargolmar exécute ses fonctions sans jamais faillir. ]], 0.733000, 0.310000, 1, 848, 5049, 248, -1, 0, 1},
-        {528, "Omor l'Invincible", [[ Omor l'Invincible fut l'élève du maître-chien de Hakkar, et c'est pourquoi, après la défaite de son mentor durant la Guerre des Anciens, il prit sous son aile les chiens de la Corruption de ce légendaire guerrier. Depuis, personne n'a jamais réussi à vaincre Omor en duel. Ce démon vénérable est aujourd'hui l'émissaire d'Illidan auprès des orcs de la Corruption dans la Citadelle des Flammes infernales. ]], 0.390710, 0.204918, 1, 848, 5057, 248, -1, 0, 2},
+        {527, "Gardien des guetteurs Gargolmar", [[ Réputé pour sa sinistre notoriété au Bassin de l'Æther, Gargolmar dévore le cœur de ceux qui s'approchent de la Citadelle des Flammes infernales, qu'ils aient tenté d'y pénétrer ou non. Kargath Tranchebras lui a confié la garde des remparts de la forteresse, et le chef de la garde Gargolmar exécute ses fonctions sans jamais faillir. ]], 0.733000, 0.310000, 1, 848, 5049, 248, -1, 0, 1},
+        {528, "Omor l'Intouché", [[ Omor l'Invincible fut l'élève du maître-chien de Hakkar, et c'est pourquoi, après la défaite de son mentor durant la Guerre des Anciens, il prit sous son aile les chiens de la Corruption de ce légendaire guerrier. Depuis, personne n'a jamais réussi à vaincre Omor en duel. Ce démon vénérable est aujourd'hui l'émissaire d'Illidan auprès des orcs de la Corruption dans la Citadelle des Flammes infernales. ]], 0.390710, 0.204918, 1, 848, 5057, 248, -1, 0, 2},
         {529, "Vazruden le Héraut", [[ Vazruden garde les lignes de ravitaillement entre la Citadelle des Flammes infernales et le Temple noir, par lesquelles transitent renforts, provisions et messages. Vazruden chevauche le splendide dragon du néant Nazan : ensemble, ils incarnent une force implacable capable d'anéantir l'ennemi par le feu et les griffes, fondant du ciel dans un cri perçant. ]], 0.354000, 0.826000, 1, 848, 5064, 248, -1, 0, 1},
     },
     [250] = {
-        {534, "Pandémonium", [[ L'abominable seigneur des Abysses Pandémonium est également connu sous les noms de Duc du chaos, Dévoreur de nations et Fléau des mondes. Il fut l'un des commandants sous les ordres de Distancia lorsque le monde natal des éthéréens, K'aresh, fut détruit. Il fut par la suite asservi par le prince Shaffar et continua d'assouvir sa faim sans fin au service des éthéréens. ]], 0.479508, 0.297131, 1, 842, 5188, 250, -1, 0, 1},
-        {535, "Taldarokh", [[ Sur ordre de Kael'thas Sunstrider, Pathaleon le Calculateur invoqua un puissant colosse chargé de collecter l'énergie de magie arcanique s'échappant sous les Voûtes de la magie. Taldarokh fut soudainement transformé sous l'effet d'une étrange décharge d'énergie : il se libéra ainsi de l'influence corruptrice de Pathaleon et perdit sa teinte rouge. Ce colosse blanc a acquis sa propre volonté et est désormais prêt à dévorer quiconque osera se dresser sur son chemin. ]], 0.609289, 0.741804, 1, 842, 5191, 250, -1, 0, 2},
-        {536, "Yor", [[ Le limier des abysses Yor, une créature incomparable en furie et en puissance, fut offert par Illidan Tempête-de-rage au prince Shaffar. Les conseillers tentèrent de le mettre en garde, estimant que cette créature démoniaque risquait de trahir Shaffar dès lors qu'il ne serait plus utile à Illidan. Le prince nourrit ses conseillers à Yor... mais depuis, il garde le monstre dans une chambre de stase, juste au cas où. ]], 0.356557, 0.608607, 1, 732, 5194, 250, 2, 0, 3},
-        {537, "Prince Shaffar", [[ Convaincu que d'immenses richesses se cachaient dans les profondeurs des Voûtes de la magie, le prince Shaffar dépensa une fortune considérable pour amener une armée dans les salles crépusculaires de ces ruines et empêcher les éthéréens rivaux d'y pénétrer. La cupidité du prince ne connaissait aucune limite, et il jura de percer les secrets des Voûtes de la magie ou d'y laisser la vie. ]], 0.323770, 0.491803, 1, 842, 5196, 250, -1, 0, 4},
+        {534, "Pandemonius", [[ L'abominable seigneur des Abysses Pandémonium est également connu sous les noms de Duc du chaos, Dévoreur de nations et Fléau des mondes. Il fut l'un des commandants sous les ordres de Distancia lorsque le monde natal des éthéréens, K'aresh, fut détruit. Il fut par la suite asservi par le prince Shaffar et continua d'assouvir sa faim sans fin au service des éthéréens. ]], 0.479508, 0.297131, 1, 842, 5188, 250, -1, 0, 1},
+        {535, "Tavarok", [[ Sur ordre de Kael'thas Sunstrider, Pathaleon le Calculateur invoqua un puissant colosse chargé de collecter l'énergie de magie arcanique s'échappant sous les Voûtes de la magie. Taldarokh fut soudainement transformé sous l'effet d'une étrange décharge d'énergie : il se libéra ainsi de l'influence corruptrice de Pathaleon et perdit sa teinte rouge. Ce colosse blanc a acquis sa propre volonté et est désormais prêt à dévorer quiconque osera se dresser sur son chemin. ]], 0.609289, 0.741804, 1, 842, 5191, 250, -1, 0, 2},
+        {536, "Immol'thar", [[ Le limier des abysses Yor, une créature incomparable en furie et en puissance, fut offert par Illidan Tempête-de-rage au prince Shaffar. Les conseillers tentèrent de le mettre en garde, estimant que cette créature démoniaque risquait de trahir Shaffar dès lors qu'il ne serait plus utile à Illidan. Le prince nourrit ses conseillers à Yor... mais depuis, il garde le monstre dans une chambre de stase, juste au cas où. ]], 0.356557, 0.608607, 1, 732, 5194, 250, 2, 0, 3},
+        {537, "Prince-nexus Shaffar", [[ Convaincu que d'immenses richesses se cachaient dans les profondeurs des Voûtes de la magie, le prince Shaffar dépensa une fortune considérable pour amener une armée dans les salles crépusculaires de ces ruines et empêcher les éthéréens rivaux d'y pénétrer. La cupidité du prince ne connaissait aucune limite, et il jura de percer les secrets des Voûtes de la magie ou d'y laisser la vie. ]], 0.323770, 0.491803, 1, 842, 5196, 250, -1, 0, 4},
     },
     [252] = {
-        {541, "Filandre Ombresort", [[ Filandre Ombresort reçut l'ordre du roi des corbeaux Aeikiss de défendre les Salles de Sethekk pendant que les arakkoa rebelles tentaient de retrouver leur dieu mystérieux. Ce vieux rusé maîtrise à la perfection la magie noire et a le pouvoir de contrôler les éléments eux-mêmes. ]], 0.487705, 0.680328, 1, 833, 5230, 252, -1, 0, 1},
+        {541, "Tisseur d'ombre Syth", [[ Filandre Ombresort reçut l'ordre du roi des corbeaux Aeikiss de défendre les Salles de Sethekk pendant que les arakkoa rebelles tentaient de retrouver leur dieu mystérieux. Ce vieux rusé maîtrise à la perfection la magie noire et a le pouvoir de contrôler les éléments eux-mêmes. ]], 0.487705, 0.680328, 1, 833, 5230, 252, -1, 0, 1},
         {542, "Anzu", [[ Anzu, mystérieuse divinité-oiseau vénérée par les arakkoa les plus sauvages, ne ressemble en rien aux autres dieux du panthéon du Bassin de l'Æther, ni par ses origines ni par ses pouvoirs. Les naaru ne disent rien sur cet être malveillant, car même eux ignorent tout de ses véritables intentions. ]], 0.326503, 0.545082, 2, 723, 5248, 252, 2, 0, 2},
-        {543, "Roi des corbeaux Aeikiss", [[ Le roi des corbeaux Aeikiss était le chef spirituel charismatique d'un groupe de courageux arakkoa qui quittèrent leur demeure dans la forêt de Terokkar en quête du dieu qui leur avait été promis. Ses rêves lui offraient des visions de ce dieu, et il savait qu'on pouvait le trouver dans les profondeurs des salles en ruine d'Auchenaï. Aeikiss sombra dans la folie sous l'effet de ces visions et prétend désormais être la réincarnation de Terokk, le héros divin des mythes arakkoa. ]], 0.326503, 0.276639, 2, 833, 5256, 252, -1, 0, 3},
+        {543, "Roi-serre Ikiss", [[ Le roi des corbeaux Aeikiss était le chef spirituel charismatique d'un groupe de courageux arakkoa qui quittèrent leur demeure dans la forêt de Terokkar en quête du dieu qui leur avait été promis. Ses rêves lui offraient des visions de ce dieu, et il savait qu'on pouvait le trouver dans les profondeurs des salles en ruine d'Auchenaï. Aeikiss sombra dans la folie sous l'effet de ces visions et prétend désormais être la réincarnation de Terokk, le héros divin des mythes arakkoa. ]], 0.326503, 0.276639, 2, 833, 5256, 252, -1, 0, 3},
     },
     [253] = {
-        {544, "Ambassadeur Vertepourri", [[ Puissant serviteur des démons et maître de la douleur, l'ambassadeur Vertepourri s'est consacré à l'art de la mort. Rien ne lui procure plus de plaisir que le goût du sang mortel, richement teinté d'horreur et de désespoir. Les orcs de la Corruption du Labyrinthe des ténèbres ont capturé Vertepourri et le nourrissent désormais de prisonniers, afin que le démon puisse reprendre des forces et mieux servir ses sombres maîtres. ]], 0.218579, 0.395492, 1, 834, 5261, 253, -1, 0, 1},
-        {545, "Cœurnoir l'Instigateur", [[ Lorsque la Horde des orcs envahit pour la première fois Azeroth à travers le Portail des ténèbres, deux membres du Conseil des ombres tournèrent leur regard vers un antique cimetière draeneï, Auchindoun. Les esprits agités de ces terres se révélèrent d'excellents sujets d'expérience pour le démoniste Cœurnoir, lui permettant de perfectionner ses talents de manipulation des esprits. ]], 0.267760, 0.704918, 1, 834, 5263, 253, -1, 0, 2},
-        {546, "Grand maître Vorpil", [[ Aux origines de la Horde, le grand maître Vorpil convainquit le démoniste orc Gul'dan de le laisser explorer les secrets d'Auchindoun. Il désirait secrètement maîtriser l'énergie des entités cosmiques terriblement puissantes qui saturaient cette région. ]], 0.531421, 0.540983, 1, 834, 5266, 253, -1, 0, 3},
-        {547, "Murmurant", [[ Il y a fort longtemps... dans un monde lointain, très lointain... Non, ce n'est pas ainsi qu'on peut décrire l'origine de cet élémentaire. Il incarne la destruction sous sa forme la plus pure. Sur un simple caprice, il pourrait fragmenter des mondes entiers en une myriade de fragments. Seuls de véritables fous oseraient invoquer cette créature. Il reste peut-être encore le temps de bannir Murmurant avant qu'il ne s'infiltre complètement dans le Bassin de l'Æther. ]], 0.808743, 0.391393, 1, 834, 5272, 253, -1, 0, 4},
+        {544, "Ambassadeur Gueule-d'enfer", [[ Puissant serviteur des démons et maître de la douleur, l'ambassadeur Vertepourri s'est consacré à l'art de la mort. Rien ne lui procure plus de plaisir que le goût du sang mortel, richement teinté d'horreur et de désespoir. Les orcs de la Corruption du Labyrinthe des ténèbres ont capturé Vertepourri et le nourrissent désormais de prisonniers, afin que le démon puisse reprendre des forces et mieux servir ses sombres maîtres. ]], 0.218579, 0.395492, 1, 834, 5261, 253, -1, 0, 1},
+        {545, "Cœur-Noir le Séditieux", [[ Lorsque la Horde des orcs envahit pour la première fois Azeroth à travers le Portail des ténèbres, deux membres du Conseil des ombres tournèrent leur regard vers un antique cimetière draeneï, Auchindoun. Les esprits agités de ces terres se révélèrent d'excellents sujets d'expérience pour le démoniste Cœurnoir, lui permettant de perfectionner ses talents de manipulation des esprits. ]], 0.267760, 0.704918, 1, 834, 5263, 253, -1, 0, 2},
+        {546, "Grand Maître Vorpil", [[ Aux origines de la Horde, le grand maître Vorpil convainquit le démoniste orc Gul'dan de le laisser explorer les secrets d'Auchindoun. Il désirait secrètement maîtriser l'énergie des entités cosmiques terriblement puissantes qui saturaient cette région. ]], 0.531421, 0.540983, 1, 834, 5266, 253, -1, 0, 3},
+        {547, "Marmon", [[ Il y a fort longtemps... dans un monde lointain, très lointain... Non, ce n'est pas ainsi qu'on peut décrire l'origine de cet élémentaire. Il incarne la destruction sous sa forme la plus pure. Sur un simple caprice, il pourrait fragmenter des mondes entiers en une myriade de fragments. Seuls de véritables fous oseraient invoquer cette créature. Il reste peut-être encore le temps de bannir Murmurant avant qu'il ne s'infiltre complètement dans le Bassin de l'Æther. ]], 0.808743, 0.391393, 1, 834, 5272, 253, -1, 0, 4},
     },
     [254] = {
-        {548, "Zereketh l'Insondable", [[ La plupart des créatures issues du Maelström du Néant exigent une attention constante de leurs maîtres, mais certains spectres des Abysses n'ont besoin d'aucun ordre. Zereketh monte la garde à l'entrée de l'Arcatraz et est prêt à tuer quiconque oserait le défier. ]], 0.592896, 0.243853, 1, 841, 5279, 254, -1, 0, 1},
-        {549, "Dalliah le Héraut du destin", [[ Avant d'être capturée par les naaru, Dalliah était l'un des guerriers les plus cruels et assoiffés de sang de la Légion ardente. Son incarcération dans la même cellule que le visionnaire de la rage Zereketh n'a d'ailleurs guère amélioré son caractère. ]], 0.363388, 0.782787, 2, 841, 5283, 254, -1, 0, 2},
-        {550, "Visionnaire de la rage Sokrahtis", [[ Il y a des milliers d'années, Sokrahtis jouissait d'un grand prestige parmi les Gardiens de la rage et était considéré comme l'un des meilleurs commandants de la Légion ardente. L'incarcération n'a rien fait pour tempérer sa vanité. On peut en dire autant de sa camarade de cellule. ]], 0.199454, 0.786885, 2, 841, 5291, 254, -1, 0, 3},
-        {551, "Messager Skyriss", [[ Les naaru croyaient que la voix du Messager Skyriss, capable de convaincre ses victimes de n'importe quoi, se tairait à jamais une fois qu'ils l'auraient capturé et plongé dans un sommeil profond et sans rêves. Le malheureux gardien de l'Arcatraz apprit à ses dépens que les naaru avaient tort. Skyriss disposait d'assez d'énergie pour s'adresser au geôlier Mellichar de sa voix douce et insinuante, et il finit par obtenir ce qu'il voulait. ]], 0.616120, 0.307377, 3, 841, 5298, 254, -1, 0, 4},
+        {548, "Zereketh le Délié", [[ La plupart des créatures issues du Maelström du Néant exigent une attention constante de leurs maîtres, mais certains spectres des Abysses n'ont besoin d'aucun ordre. Zereketh monte la garde à l'entrée de l'Arcatraz et est prêt à tuer quiconque oserait le défier. ]], 0.592896, 0.243853, 1, 841, 5279, 254, -1, 0, 1},
+        {549, "Dalliah l'Auspice-Funeste", [[ Avant d'être capturée par les naaru, Dalliah était l'un des guerriers les plus cruels et assoiffés de sang de la Légion ardente. Son incarcération dans la même cellule que le visionnaire de la rage Zereketh n'a d'ailleurs guère amélioré son caractère. ]], 0.363388, 0.782787, 2, 841, 5283, 254, -1, 0, 2},
+        {550, "Scrute-courroux Soccothrates", [[ Il y a des milliers d'années, Sokrahtis jouissait d'un grand prestige parmi les Gardiens de la rage et était considéré comme l'un des meilleurs commandants de la Légion ardente. L'incarcération n'a rien fait pour tempérer sa vanité. On peut en dire autant de sa camarade de cellule. ]], 0.199454, 0.786885, 2, 841, 5291, 254, -1, 0, 3},
+        {551, "Messager Cieuriss", [[ Les naaru croyaient que la voix du Messager Skyriss, capable de convaincre ses victimes de n'importe quoi, se tairait à jamais une fois qu'ils l'auraient capturé et plongé dans un sommeil profond et sans rêves. Le malheureux gardien de l'Arcatraz apprit à ses dépens que les naaru avaient tort. Skyriss disposait d'assez d'énergie pour s'adresser au geôlier Mellichar de sa voix douce et insinuante, et il finit par obtenir ce qu'il voulait. ]], 0.616120, 0.307377, 3, 841, 5298, 254, -1, 0, 4},
     },
     [256] = {
-        {555, "Le Maître", [[ Toute créature usant de la magie de la Corruption, de son plein gré ou non, finit par adopter progressivement une apparence démoniaque. Le Maître accélère cette contamination et mène des expériences cruelles sur quiconque tente d'y résister. ]], 0.386612, 0.418033, 1, 835, 5356, 256, -1, 0, 1},
+        {555, "Le Faiseur", [[ Toute créature usant de la magie de la Corruption, de son plein gré ou non, finit par adopter progressivement une apparence démoniaque. Le Maître accélère cette contamination et mène des expériences cruelles sur quiconque tente d'y résister. ]], 0.386612, 0.418033, 1, 835, 5356, 256, -1, 0, 1},
         {556, "Broggok", [[ Certains finissent par douter de leur loyauté envers leurs nouveaux et terribles maîtres. Broggok veille à ce que toute velléité de rébellion parmi les orcs de la Corruption soit totalement éradiquée. ]], 0.433060, 0.219262, 1, 835, 5367, 256, -1, 0, 2},
-        {557, "Keli'dan le Destructeur", [[ Lorsqu'Illidan renversa le seigneur des Enfers Magtheridon et établit son pouvoir au Bassin de l'Æther, il emprisonna le chef des démons dans la Citadelle des Flammes infernales. Seul le combattant le plus fort de l'armée d'Illidan pouvait l'y maintenir, et ce choix se porta sur un orc impitoyable nommé Keli'dan. ]], 0.583333, 0.411885, 1, 835, 5382, 256, -1, 0, 3},
+        {557, "Keli'dan le Briseur", [[ Lorsqu'Illidan renversa le seigneur des Enfers Magtheridon et établit son pouvoir au Bassin de l'Æther, il emprisonna le chef des démons dans la Citadelle des Flammes infernales. Seul le combattant le plus fort de l'armée d'Illidan pouvait l'y maintenir, et ce choix se porta sur un orc impitoyable nommé Keli'dan. ]], 0.583333, 0.411885, 1, 835, 5382, 256, -1, 0, 3},
     },
     [257] = {
         {558, "Commandant Sarannis", [[ Lorsque Kael'thas, chef des elfes de sang tombé sous l'influence des démons, s'empara de la Force nomade, il ordonna immédiatement au commandant Sarannis de se préparer à repousser l'attaque des guerriers que les naaru pourraient envoyer pour reconquérir la forteresse. ]], 0.442623, 0.233607, 1, 839, 5401, 257, -1, 0, 1},
         {559, "Grand botaniste Freywinn", [[ À peine quelques minutes après son arrivée dans la Botanique, Freywinn se lança dans des expériences dangereuses, espérant maîtriser le pouvoir caché dans les plantes du Bassin de l'Æther. ]], 0.241803, 0.227459, 1, 839, 5418, 257, -1, 0, 2},
-        {560, "Écailleuse la Lugubre", [[ Toute expérience nécessite des matériaux. Écailleuse la Lugubre doit fournir aux botanistes de Kael'thas suffisamment d'essence et d'énergie pour percer les secrets des naaru, quitte à ce que de nombreuses créatures vivantes périssent lors de ces expériences. ]], 0.073770, 0.481557, 1, 839, 5460, 257, -1, 0, 3},
-        {561, "Laj", [[ Les naaru ont rassemblé d'étranges créatures sauvages venues de tout le Bassin de l'Æther. Leurs enclos furent détruits lors de la prise de la Botanique, permettant à certaines des espèces les plus dangereuses de s'échapper. ]], 0.340164, 0.862706, 1, 839, 5463, 257, -1, 0, 4},
-        {562, "Cœur-noueux", [[ Les elfes de la nuit de Ténébrise ont demandé de l'aide pour restaurer l'arbre de magie arcanique qui se trouvait piégé dans la Force nomade. Cœur-noueux, effrayé par la récente attaque des serviteurs de Kael'thas Sunstrider, est incapable de distinguer amis et ennemis et attaquera quiconque le dérangera. ]], 0.342896, 0.368853, 1, 839, 5476, 257, -1, 0, 5},
+        {560, "Alzzin le Modeleur", [[ Toute expérience nécessite des matériaux. Écailleuse la Lugubre doit fournir aux botanistes de Kael'thas suffisamment d'essence et d'énergie pour percer les secrets des naaru, quitte à ce que de nombreuses créatures vivantes périssent lors de ces expériences. ]], 0.073770, 0.481557, 1, 839, 5460, 257, -1, 0, 3},
+        {561, "Flagellant phasique", [[ Les naaru ont rassemblé d'étranges créatures sauvages venues de tout le Bassin de l'Æther. Leurs enclos furent détruits lors de la prise de la Botanique, permettant à certaines des espèces les plus dangereuses de s'échapper. ]], 0.340164, 0.862706, 1, 839, 5463, 257, -1, 0, 4},
+        {562, "Brise-Dimension", [[ Les elfes de la nuit de Ténébrise ont demandé de l'aide pour restaurer l'arbre de magie arcanique qui se trouvait piégé dans la Force nomade. Cœur-noueux, effrayé par la récente attaque des serviteurs de Kael'thas Sunstrider, est incapable de distinguer amis et ennemis et attaquera quiconque le dérangera. ]], 0.342896, 0.368853, 1, 839, 5476, 257, -1, 0, 5},
     },
     [258] = {
-        {563, "Seigneur mécanique Chondensarane", [[ Manipuler les accumulateurs de mana des naaru exige une grande dextérité et une précision extrême, deux qualités qui s'avéreront très utiles en cas d'invasion. ]], 0.513661, 0.315574, 1, 840, 5479, 258, -1, 0, 1},
-        {564, "Ombremage Sepethrea", [[ Grâce à sa capacité à invoquer rapidement des créatures au combat contre ses adversaires, Sepethrea fut choisie comme élève par un elfe de sang nommé Pathaleon le Calculateur, qui règne sur la Mécanar. ]], 0.478142, 0.202869, 2, 840, 5484, 258, -1, 0, 2},
+        {563, "Mécanoseigneur Capacitus", [[ Manipuler les accumulateurs de mana des naaru exige une grande dextérité et une précision extrême, deux qualités qui s'avéreront très utiles en cas d'invasion. ]], 0.513661, 0.315574, 1, 840, 5479, 258, -1, 0, 1},
+        {564, "Néantomancienne Sepethrea", [[ Grâce à sa capacité à invoquer rapidement des créatures au combat contre ses adversaires, Sepethrea fut choisie comme élève par un elfe de sang nommé Pathaleon le Calculateur, qui règne sur la Mécanar. ]], 0.478142, 0.202869, 2, 840, 5484, 258, -1, 0, 2},
         {565, "Pathaleon le Calculateur", [[ Après la souillure du Puits-soleil, le sorcier vaniteux Pathaleon vit là une occasion de gagner en gloire et d'aider Kael'thas dans sa quête d'un remède au penchant de sa race pour la magie. Il décida donc de rejoindre le prince des elfes de sang au Bassin de l'Æther afin d'observer le déroulement des terribles expériences du prince. Récemment, Pathaleon s'est mis à étudier les technologies mystérieuses de la Force nomade, espérant y gagner pouvoir et gloire. ]], 0.271858, 0.610656, 2, 840, 5489, 258, -1, 0, 3},
     },
     [259] = {
-        {566, "Démoniste en chef Malacraze", [[ Malacraze fut jadis un chaman du clan Lune-fantôme qui renonça au pouvoir des éléments pour se tourner vers la magie de la Corruption. L'énergie démoniaque qu'il obtint ainsi ne laissa de lui qu'une coquille vide, et cet ancien chaman prend désormais plaisir à torturer de jeunes orcs de la Corruption afin de déterminer les limites de leurs capacités spirituelles et physiques. ]], 0.333333, 0.620902, 1, 843, 5497, 259, -1, 0, 1},
-        {568, "O'mrogg le Conquérant", [[ Impitoyable et rusé, l'ogre O'mrogg est considéré comme l'un des membres les plus meurtriers de la Horde de la Corruption. Mais ce dangereux colosse a un problème bien particulier : ses deux têtes se disputent constamment, même sur les sujets les plus simples. Il y a deux ans, O'mrogg songea à s'inscrire à un programme de réhabilitation pour réconcilier les deux moitiés de sa personnalité, mais ses têtes n'ont toujours pas décidé si cela en valait la peine. ]], 0.542350, 0.342213, 1, 843, 5893, 259, -1, 0, 3},
-        {569, "Chef de guerre Kargath Tranchebras", [[ Chef du clan des Mains mutilées et chef de la Horde de la Corruption, Kargath est l'un des plus grands héros orcs de l'histoire récente. Il se coupa un jour les deux bras pour les remplacer par des armes, selon un rituel sanglant pratiqué uniquement dans son clan. Les orcs racontent des légendes sur la joie qu'il éprouve à infliger la douleur à autrui, et à lui-même. En tant que souverain absolu de la Horde de la Corruption, il a canalisé toute sa rage et sa férocité pour bâtir une armée invincible derrière les murs de fer de la Citadelle des Flammes infernales. ]], 0.673497, 0.545082, 1, 843, 5898, 259, -1, 0, 4},
-        {728, "Garde du sang Porung", [[ Durant le sanglant siège de Shattrath, Porung combattit une poignée de paladins draeneï retranchés à l'autre bout de la ville. Il tua à lui seul tous ceux qui lui résistèrent, mais ses blessures l'empêchèrent de rejoindre la Horde dans son expédition vers Azeroth. Les blessures de Porung ont depuis longtemps guéri, et il sert désormais le chef de guerre Kargath Tranchebras dans la Citadelle des Flammes infernales, espérant obtenir au combat la gloire que sa blessure lui a fait manquer. Il estime que son nom doit être inscrit dans l'histoire des orcs avec le sang de ses adversaires. ]], 0.296846, 0.146568, 1, 710, 6216, 259, 2, 0, 2},
+        {566, "Grand démoniste Néanathème", [[ Malacraze fut jadis un chaman du clan Lune-fantôme qui renonça au pouvoir des éléments pour se tourner vers la magie de la Corruption. L'énergie démoniaque qu'il obtint ainsi ne laissa de lui qu'une coquille vide, et cet ancien chaman prend désormais plaisir à torturer de jeunes orcs de la Corruption afin de déterminer les limites de leurs capacités spirituelles et physiques. ]], 0.333333, 0.620902, 1, 843, 5497, 259, -1, 0, 1},
+        {568, "Porteguerre O'mrogg", [[ Impitoyable et rusé, l'ogre O'mrogg est considéré comme l'un des membres les plus meurtriers de la Horde de la Corruption. Mais ce dangereux colosse a un problème bien particulier : ses deux têtes se disputent constamment, même sur les sujets les plus simples. Il y a deux ans, O'mrogg songea à s'inscrire à un programme de réhabilitation pour réconcilier les deux moitiés de sa personnalité, mais ses têtes n'ont toujours pas décidé si cela en valait la peine. ]], 0.542350, 0.342213, 1, 843, 5893, 259, -1, 0, 3},
+        {569, "Chef de guerre Kargath Lamepoing", [[ Chef du clan des Mains mutilées et chef de la Horde de la Corruption, Kargath est l'un des plus grands héros orcs de l'histoire récente. Il se coupa un jour les deux bras pour les remplacer par des armes, selon un rituel sanglant pratiqué uniquement dans son clan. Les orcs racontent des légendes sur la joie qu'il éprouve à infliger la douleur à autrui, et à lui-même. En tant que souverain absolu de la Horde de la Corruption, il a canalisé toute sa rage et sa férocité pour bâtir une armée invincible derrière les murs de fer de la Citadelle des Flammes infernales. ]], 0.673497, 0.545082, 1, 843, 5898, 259, -1, 0, 4},
+        {728, "Garde de sang de la Main brisée", [[ Durant le sanglant siège de Shattrath, Porung combattit une poignée de paladins draeneï retranchés à l'autre bout de la ville. Il tua à lui seul tous ceux qui lui résistèrent, mais ses blessures l'empêchèrent de rejoindre la Horde dans son expédition vers Azeroth. Les blessures de Porung ont depuis longtemps guéri, et il sert désormais le chef de guerre Kargath Tranchebras dans la Citadelle des Flammes infernales, espérant obtenir au combat la gloire que sa blessure lui a fait manquer. Il estime que son nom doit être inscrit dans l'histoire des orcs avec le sang de ses adversaires. ]], 0.296846, 0.146568, 1, 710, 6216, 259, 2, 0, 2},
     },
     [260] = {
-        {570, "Menu le Traître", [[ Menu fait partie des Brisés, ces draeneï dont l'apparence a été altérée par l'énergie démoniaque libérée par les orcs. Lorsque les naga envahirent la Fondrialaise, nombre de ces malheureuses créatures tentèrent désespérément de fuir. Menu, quant à lui, choisit une autre voie vers la liberté. En échange de sa propre vie, il trahit ses compagnons auprès des serpents envahisseurs et accepta de régner sur les siens en tant qu'esclavagiste. ]], 0.490437, 0.270492, 1, 838, 5902, 260, -1, 0, 1},
-        {571, "Rokmar le Tonitruant", [[ Après la destruction de Draenor, Rokmar s'enfuit vers les confins de la Fondrialaise. L'énergie qui déchira le monde en morceaux enveloppa ce géant et accrut sa force et sa taille, mais ce pouvoir eut un prix : des souffrances éternelles. Lorsque les naga apparurent pour la première fois dans cette région, ils furent stupéfaits par la férocité de Rokmar. Plutôt que de tuer la bête, ils l'asservirent et l'utilisèrent pour soumettre la majorité des habitants indigènes de la Fondrialaise. ]], 0.580601, 0.405738, 1, 838, 5907, 260, -1, 0, 2},
-        {572, "Zylle", [[ Zylle fut autrefois le chef des géants champignons de la Fondrialaise. Un jour, alors qu'il explorait les grottes ramifiées de ces terres, les naga le capturèrent et le soumirent à d'horribles tortures. Aujourd'hui, cette créature brisée sert avec zèle ses maîtres, réprimant tous ceux qui refusent de se soumettre à la volonté de dame Vashj. ]], 0.821038, 0.768442, 1, 838, 5977, 260, -1, 0, 3},
+        {570, "Mennu le Traître", [[ Menu fait partie des Brisés, ces draeneï dont l'apparence a été altérée par l'énergie démoniaque libérée par les orcs. Lorsque les naga envahirent la Fondrialaise, nombre de ces malheureuses créatures tentèrent désespérément de fuir. Menu, quant à lui, choisit une autre voie vers la liberté. En échange de sa propre vie, il trahit ses compagnons auprès des serpents envahisseurs et accepta de régner sur les siens en tant qu'esclavagiste. ]], 0.490437, 0.270492, 1, 838, 5902, 260, -1, 0, 1},
+        {571, "Rokmar le Crépitant", [[ Après la destruction de Draenor, Rokmar s'enfuit vers les confins de la Fondrialaise. L'énergie qui déchira le monde en morceaux enveloppa ce géant et accrut sa force et sa taille, mais ce pouvoir eut un prix : des souffrances éternelles. Lorsque les naga apparurent pour la première fois dans cette région, ils furent stupéfaits par la férocité de Rokmar. Plutôt que de tuer la bête, ils l'asservirent et l'utilisèrent pour soumettre la majorité des habitants indigènes de la Fondrialaise. ]], 0.580601, 0.405738, 1, 838, 5907, 260, -1, 0, 2},
+        {572, "Bourbierreux", [[ Zylle fut autrefois le chef des géants champignons de la Fondrialaise. Un jour, alors qu'il explorait les grottes ramifiées de ces terres, les naga le capturèrent et le soumirent à d'horribles tortures. Aujourd'hui, cette créature brisée sert avec zèle ses maîtres, réprimant tous ceux qui refusent de se soumettre à la volonté de dame Vashj. ]], 0.821038, 0.768442, 1, 838, 5977, 260, -1, 0, 3},
     },
     [261] = {
-        {573, "Hydromancienne Thespia", [[ Thespia, née haut-née à l'apogée de l'empire elfique, fut amatrice de musique et de peinture. Mais durant la Grande Fracture, elle perdit tout intérêt pour la beauté lorsqu'elle fut entraînée, comme tant d'autres elfes, dans les profondeurs et transformée en naga pleine de malveillance. Au cours des milliers d'années qui suivirent, elle servit de confidente à dame Vashj, avec qui elle s'était liée d'amitié dans son enfance. Elle la suivit sans hésitation à la Fondrialaise et jura de veiller à ce que le plan des naga visant à assécher les marais de cette région soit mené à bien. ]], 0.542350, 0.137295, 1, 837, 5982, 261, -1, 0, 1},
-        {574, "Ingénieur Purificateur", [[ Suite à la contamination de Gnomeregan, de nombreux citoyens furent transformés en leprechaumes. Le talentueux ingénieur Purificateur fit partie de ces malheureux. Bien qu'il ait réussi à quitter Gnomeregan et à conserver la raison, sa bonté et ses principes moraux d'antan ont été à jamais perdus. Il erra à travers Azeroth, vendant ses inventions techniques à des clients douteux tels que les pirates de la Voile sanglante. Depuis peu, l'ingénieur Purificateur travaille pour les naga et fait fonctionner les machines sophistiquées du Sous-sol de la vapeur de la Fondrialaise. ]], 0.341530, 0.819672, 1, 837, 5996, 261, -1, 0, 2},
-        {575, "Général de guerre Kalithresh", [[ Dans les profondeurs du Sous-sol de la vapeur, les naga mènent des expériences avec une substance mystérieuse, cherchant à renforcer leurs guerriers et à les libérer de la peur. Kalithresh fut l'un des premiers serviteurs de dame Vashj à se porter volontaire pour tester la potion ténébreuse sur lui-même. En récompense de son zèle, on lui confia la garde de ce vaste sous-sol et la responsabilité de veiller au bon fonctionnement de tous les mécanismes ensorcelés. ]], 0.759563, 0.436475, 1, 837, 6001, 261, -1, 0, 3},
+        {573, "Enchanteresse fouette-bile", [[ Thespia, née haut-née à l'apogée de l'empire elfique, fut amatrice de musique et de peinture. Mais durant la Grande Fracture, elle perdit tout intérêt pour la beauté lorsqu'elle fut entraînée, comme tant d'autres elfes, dans les profondeurs et transformée en naga pleine de malveillance. Au cours des milliers d'années qui suivirent, elle servit de confidente à dame Vashj, avec qui elle s'était liée d'amitié dans son enfance. Elle la suivit sans hésitation à la Fondrialaise et jura de veiller à ce que le plan des naga visant à assécher les marais de cette région soit mené à bien. ]], 0.542350, 0.137295, 1, 837, 5982, 261, -1, 0, 1},
+        {574, "Mekgénieur Montevapeur", [[ Suite à la contamination de Gnomeregan, de nombreux citoyens furent transformés en leprechaumes. Le talentueux ingénieur Purificateur fit partie de ces malheureux. Bien qu'il ait réussi à quitter Gnomeregan et à conserver la raison, sa bonté et ses principes moraux d'antan ont été à jamais perdus. Il erra à travers Azeroth, vendant ses inventions techniques à des clients douteux tels que les pirates de la Voile sanglante. Depuis peu, l'ingénieur Purificateur travaille pour les naga et fait fonctionner les machines sophistiquées du Sous-sol de la vapeur de la Fondrialaise. ]], 0.341530, 0.819672, 1, 837, 5996, 261, -1, 0, 2},
+        {575, "Seigneur de guerre Kalithresh", [[ Dans les profondeurs du Sous-sol de la vapeur, les naga mènent des expériences avec une substance mystérieuse, cherchant à renforcer leurs guerriers et à les libérer de la peur. Kalithresh fut l'un des premiers serviteurs de dame Vashj à se porter volontaire pour tester la potion ténébreuse sur lui-même. En récompense de son zèle, on lui confia la garde de ce vaste sous-sol et la responsabilité de veiller au bon fonctionnement de tous les mécanismes ensorcelés. ]], 0.759563, 0.436475, 1, 837, 6001, 261, -1, 0, 3},
     },
     [262] = {
-        {576, "Boueglaive", [[ Contrairement à son homologue Zylle, l'énorme géant champignon nommé Boueglaive n'a pas encore été asservi par les naga. Il n'en reste pas moins hostile envers tous les étrangers qui s'aventurent dans les grottes les plus profondes de la Fondrialaise. Les intrigues des naga dans le reste des marais lui sont indifférentes : il passe ses journées à s'occuper de la Racine soutenante, une plante ancestrale qu'il considère comme son bien le plus précieux. ]], 0.693989, 0.899590, 1, 836, 6006, 262, -1, 0, 1},
-        {577, "Gazz'uz", [[ Les historiens débattent depuis longtemps pour savoir si les hydres gigantesques d'Azeroth et du Bassin de l'Æther partagent un ancêtre commun. Quoi qu'il en soit, ces créatures impitoyables existent indéniablement dans les deux mondes depuis des temps immémoriaux. Gazz'uz est l'une des hydres les plus effrayantes de tout le Bassin de l'Æther. Sur ordre de dame Vashj, ce monstre insatiable ravage la partie inférieure de la Fondrialaise, semant la terreur parmi ses habitants. ]], 0.786885, 0.288935, 1, 836, 6009, 262, -1, 0, 2},
-        {578, "Seigneur des marais Muselek", [[ Être un Brisé, c'est être un exilé. Le seigneur des marais Muselek connaît toute la vérité et le poids de cette leçon. Il appartient à la tribu Sang-noir, mais préfère parcourir seul les grottes de la Fondrialaise. Il excelle dans l'art d'apprivoiser les bêtes : au cours de l'une de ses excursions, il captura Griffe, un invocateur de vents, un druide qui explorait les environs sous la forme d'un ours. Muselek le contraignit à lui obéir et en fit un compagnon fidèle, que la corruption ayant touché le seigneur des marais ne rebute pas. ]], 0.415300, 0.241803, 1, 836, 6013, 262, -1, 0, 3},
-        {579, "Chasseresse noire", [[ Les patauds du Bassin de l'Æther sont de grandes créatures massives qui chassent dans les marais les plus petits êtres. Les vaporlings de la Fondrialaise racontent des histoires sur l'une de ces prédatrices, la Chasseresse noire, particulièrement impitoyable. Elle serait l'ancêtre de tous les patauds, et l'on raconte qu'elle ne quitte son antre, au fond de la Fondriabasse, que pour chasser sa proie de prédilection : les vaporlings. ]], 0.247268, 0.456967, 1, 836, 6036, 262, -1, 0, 4},
+        {576, "Hungarfen", [[ Contrairement à son homologue Zylle, l'énorme géant champignon nommé Boueglaive n'a pas encore été asservi par les naga. Il n'en reste pas moins hostile envers tous les étrangers qui s'aventurent dans les grottes les plus profondes de la Fondrialaise. Les intrigues des naga dans le reste des marais lui sont indifférentes : il passe ses journées à s'occuper de la Racine soutenante, une plante ancestrale qu'il considère comme son bien le plus précieux. ]], 0.693989, 0.899590, 1, 836, 6006, 262, -1, 0, 1},
+        {577, "Ghaz'an", [[ Les historiens débattent depuis longtemps pour savoir si les hydres gigantesques d'Azeroth et du Bassin de l'Æther partagent un ancêtre commun. Quoi qu'il en soit, ces créatures impitoyables existent indéniablement dans les deux mondes depuis des temps immémoriaux. Gazz'uz est l'une des hydres les plus effrayantes de tout le Bassin de l'Æther. Sur ordre de dame Vashj, ce monstre insatiable ravage la partie inférieure de la Fondrialaise, semant la terreur parmi ses habitants. ]], 0.786885, 0.288935, 1, 836, 6009, 262, -1, 0, 2},
+        {578, "Seigneur des marais Musel'ek", [[ Être un Brisé, c'est être un exilé. Le seigneur des marais Muselek connaît toute la vérité et le poids de cette leçon. Il appartient à la tribu Sang-noir, mais préfère parcourir seul les grottes de la Fondrialaise. Il excelle dans l'art d'apprivoiser les bêtes : au cours de l'une de ses excursions, il captura Griffe, un invocateur de vents, un druide qui explorait les environs sous la forme d'un ours. Muselek le contraignit à lui obéir et en fit un compagnon fidèle, que la corruption ayant touché le seigneur des marais ne rebute pas. ]], 0.415300, 0.241803, 1, 836, 6013, 262, -1, 0, 3},
+        {579, "La Traqueuse noire", [[ Les patauds du Bassin de l'Æther sont de grandes créatures massives qui chassent dans les marais les plus petits êtres. Les vaporlings de la Fondrialaise racontent des histoires sur l'une de ces prédatrices, la Chasseresse noire, particulièrement impitoyable. Elle serait l'ancêtre de tous les patauds, et l'on raconte qu'elle ne quitte son antre, au fond de la Fondriabasse, que pour chasser sa proie de prédilection : les vaporlings. ]], 0.247268, 0.456967, 1, 836, 6036, 262, -1, 0, 4},
     },
     [271] = {
         {580, "Ancien Nadox", [[ Nadox fut jadis un chef nérubien vénéré qui enseignait aux jeunes générations les préceptes de leurs ancêtres. Lorsque la Guerre des Araignées éclata à Azjol-Nerub, les hordes de morts-vivants le vainquirent. Le Roi-liche ramena son corps à la vie et le priva de sa sagesse et de sa noblesse d'antan, le forçant à tuer ses élèves, ses amis et tous les autres nérubiens qui osaient se rebeller contre la puissance du Fléau. ]], 0.696721, 0.270492, 1, 522, 6041, 271, -1, 0, 1},
         {581, "Prince Taldaram", [[ Après l'échec de l'attaque de Kael'thas, le Roi-liche tua certains de ses partisans les plus célèbres et les transforma en morts-vivants, guerriers du Fléau. Le prince Taldaram est l'un de ces vampires perfides et éternellement assoiffés de sang, toujours désireux de plaire au Roi-liche. En quête de reliques nérubiennes destinées à grossir les rangs du Fléau, il est descendu dans les profondeurs d'Ahn'kahet, ravagé par la guerre. ]], 0.631147, 0.495901, 1, 522, 6050, 271, -1, 0, 2},
-        {582, "Jedoga Traqueombre", [[ Jedoga rêve de la fin du monde. Elle est considérée comme l'une des plus fanatiques adeptes du culte du Marteau du Crépuscule. Un mage ogre impitoyable nommé Cho'gall lui enseigna à détourner le pouvoir des chamans au profit des dieux anciens. Récemment, Jedoga s'est rendue au cœur d'Ahn'kahet pour se préparer au jour glorieux où Yogg-Saron sera libéré et où son obscurité engloutira tout Azeroth. ]], 0.482240, 0.725410, 1, 522, 6055, 271, -1, 0, 3},
+        {582, "Jedoga Cherchelombre", [[ Jedoga rêve de la fin du monde. Elle est considérée comme l'une des plus fanatiques adeptes du culte du Marteau du Crépuscule. Un mage ogre impitoyable nommé Cho'gall lui enseigna à détourner le pouvoir des chamans au profit des dieux anciens. Récemment, Jedoga s'est rendue au cœur d'Ahn'kahet pour se préparer au jour glorieux où Yogg-Saron sera libéré et où son obscurité engloutira tout Azeroth. ]], 0.482240, 0.725410, 1, 522, 6055, 271, -1, 0, 3},
         {583, "Amanitar", [[ Pendant de nombreuses années, champignons et autres petites formes de vie se sont épanouis librement dans les grottes humides d'Ahn'kahet, où les rayons du soleil ne pénètrent jamais. Ce n'est que récemment que l'influence ténébreuse de Yogg-Saron s'est répandue dans cet écosystème isolé. Le dieu ancien, de sa puissance monstrueuse, a dénaturé l'essence de l'un des habitants originels de ces lieux et créé une créature cauchemardesque du nom d'Amanitar : une horreur incarnée et téméraire, dont l'existence est alimentée par l'énergie ténébreuse de son maître. ]], 0.672131, 0.786885, 1, 522, 6060, 271, 2, 0, 4},
         {584, "Héraut Volazj", [[ Durant l'invasion d'Azjol-Nerub par les forces du Fléau, de nombreux habitants du royaume s'enfoncèrent dans les profondeurs, creusant des galeries pour échapper aux serviteurs du Roi-liche. Hélas, certains d'entre eux creusèrent trop profondément et touchèrent les tentacules de Yogg-Saron. Ils le réveillèrent, et le monstrueux dieu ancien envoya l'un de ses guerriers, combattant à ses côtés depuis les temps les plus reculés, le héraut Volazj, pour anéantir les nérubiens piégés et tuer quiconque oserait menacer le dieu ancien. ]], 0.236339, 0.504098, 1, 522, 6067, 271, -1, 0, 5},
     },
     [272] = {
-        {585, "Krik'thir le Gardien des portes", [[ Pendant des siècles, les portes d'Azjol-Nerub furent considérées comme imprenables, jusqu'à l'arrivée du Roi-liche. Se moquant de Krik'thir, qui n'avait su ni arrêter ses troupes ni protéger sa demeure, Arthas le ressuscita sous forme de mort-vivant et lui ordonna de garder les portes mêmes qu'il n'avait pas su défendre de son vivant. ]], 0.501366, 0.450820, 3, 533, 6073, 272, -1, 0, 1},
+        {585, "Krik'thir le Gardien de porte", [[ Pendant des siècles, les portes d'Azjol-Nerub furent considérées comme imprenables, jusqu'à l'arrivée du Roi-liche. Se moquant de Krik'thir, qui n'avait su ni arrêter ses troupes ni protéger sa demeure, Arthas le ressuscita sous forme de mort-vivant et lui ordonna de garder les portes mêmes qu'il n'avait pas su défendre de son vivant. ]], 0.501366, 0.450820, 3, 533, 6073, 272, -1, 0, 1},
         {586, "Hadronox", [[ Lorsque Azjol-Nerub tomba, les visirs nérubiens créèrent une araignée destinée à grandir avec le temps et à affronter l'armée invincible du Roi-liche. Ses créateurs insufflèrent à Hadronox une haine, ainsi qu'un désir ardent de venger leurs semblables tombés au combat et de reprendre leur demeure à quiconque oserait s'y aventurer. ]], 0.431694, 0.594262, 2, 533, 6351, 272, -1, 0, 2},
         {587, "Anub'arak", [[ Les destins d'Azjol-Nerub et d'Anub'arak sont depuis longtemps liés. De son vivant, il fut le roi de ces terres, et après sa mort, il en devint le conquérant. Le Roi-liche lui ordonna de garder le royaume qui lui appartenait autrefois, et ce roi-traître veille avec vigilance sur tous ceux qui pourraient représenter une menace pour ces terres. ]], 0.621585, 0.487705, 1, 533, 6355, 272, -1, 0, 3},
     },
     [273] = {
-        {588, "Troll de sang", [[ Les Drakkari sont parmi les trolls les plus assoiffés de sang, et le Troll de sang en est le représentant le plus violent et indompté. Ce monstre affronta le Roi-liche au combat et sentit que sa propre rage n'était rien comparée à la fureur d'Arthas. Il sert aujourd'hui d'avertissement pour quiconque oserait défier l'autorité du Roi-liche. ]], 0.565574, 0.182377, 1, 534, 6370, 273, -1, 0, 1},
+        {588, "Trollétripe", [[ Les Drakkari sont parmi les trolls les plus assoiffés de sang, et le Troll de sang en est le représentant le plus violent et indompté. Ce monstre affronta le Roi-liche au combat et sentit que sa propre rage n'était rien comparée à la fureur d'Arthas. Il sert aujourd'hui d'avertissement pour quiconque oserait défier l'autorité du Roi-liche. ]], 0.565574, 0.182377, 1, 534, 6370, 273, -1, 0, 1},
         {589, "Novos l'Invocateur", [[ Novos a toujours cherché, par tous les moyens, à s'élever au-dessus de la médiocrité qui l'entourait. Cet adepte du culte s'arracha lui-même le cœur pour l'offrir, encore battant, à son maître, quelques secondes avant sa propre mort. Ce zèle impressionna son maître, qui le récompensa en faisant de lui une liche. ]], 0.702186, 0.479508, 1, 534, 6375, 273, -1, 0, 2},
-        {590, "Roi Dred", [[ Le roi Dred est une légende parmi les Drakkari. Les légendes racontent l'histoire de chasseurs trolls ayant découvert une bête puissante habitant des terres frappées par la corruption du Fléau. Les trolls apprivoisèrent ce diablosaure, espérant qu'il les aiderait à trouver un remède à la terrible maladie ravageant leurs terres. ]], 0.612022, 0.862705, 1, 534, 6390, 273, -1, 0, 3},
-        {591, "Prophète Tharon'ja", [[ Même le pouvoir volé d'un loa ne put arrêter la main de la mort qui s'abattit sur les trolls lorsque le Fléau frappa la forteresse de Drak'Tharon. Les prophéties de Tharon'ja ne sont plus emplies que de visions du triomphe de son nouveau maître, et de nombreux trolls périssent devant le Roi-liche. ]], 0.476776, 0.133197, 2, 534, 6396, 273, -1, 0, 4},
+        {590, "Diablosaure Rex", [[ Le roi Dred est une légende parmi les Drakkari. Les légendes racontent l'histoire de chasseurs trolls ayant découvert une bête puissante habitant des terres frappées par la corruption du Fléau. Les trolls apprivoisèrent ce diablosaure, espérant qu'il les aiderait à trouver un remède à la terrible maladie ravageant leurs terres. ]], 0.612022, 0.862705, 1, 534, 6390, 273, -1, 0, 3},
+        {591, "Le prophète Tharon'ja", [[ Même le pouvoir volé d'un loa ne put arrêter la main de la mort qui s'abattit sur les trolls lorsque le Fléau frappa la forteresse de Drak'Tharon. Les prophéties de Tharon'ja ne sont plus emplies que de visions du triomphe de son nouveau maître, et de nombreux trolls périssent devant le Roi-liche. ]], 0.476776, 0.133197, 2, 534, 6396, 273, -1, 0, 4},
     },
     [274] = {
         {592, "Slad'ran", [[ Slad'ran n'éprouva aucun enthousiasme lorsqu'il dut détruire le loa qu'il avait servi toute sa vie. Doté de la puissance d'un dieu, le grand prophète jura que le Fléau paierait pour toutes les atrocités que les trolls Drakkari avaient été contraints de commettre. ]], 0.539617, 0.485656, 1, 530, 6411, 274, -1, 0, 1},
-        {593, "Colosse Drakkari", [[ Les trolls utilisent depuis longtemps le mojo dans leurs rituels vaudou, mais éveiller un golem à la vie représente une toute nouvelle étape dans le développement de leur magie. Le succès de cette entreprise poussa les trolls à créer de nombreux gardiens à partir du Colosse, leur première création. ]], 0.465847, 0.655737, 1, 530, 6418, 274, -1, 0, 2},
+        {593, "Colosse drakkari", [[ Les trolls utilisent depuis longtemps le mojo dans leurs rituels vaudou, mais éveiller un golem à la vie représente une toute nouvelle étape dans le développement de leur magie. Le succès de cette entreprise poussa les trolls à créer de nombreux gardiens à partir du Colosse, leur première création. ]], 0.465847, 0.655737, 1, 530, 6418, 274, -1, 0, 2},
         {594, "Moorabi", [[ Les Drakkari voulaient sacrifier Mam'toth pour s'emparer de son pouvoir, mais le loa se détruisit lui-même. Malgré cela, Moorabi possède indéniablement le pouvoir des dieux ; le grand prophète a bu le sang du loa, et il est désormais prêt à tout pour que Zul'Drak reste aux mains des trolls. ]], 0.393442, 0.489754, 1, 530, 6980, 274, -1, 0, 3},
         {595, "Eck le Féroce", [[ Après avoir mis fin à leurs expériences sur les gorlocs suite à d'innombrables tentatives ratées d'en faire des armes vivantes, les Drakkari les enfermèrent. Pendant que les trolls de glace combattaient les troupes du Fléau pour défendre leur terre natale, Eck et ses serviteurs attendaient une occasion de se libérer. ]], 0.251366, 0.704918, 1, 530, 6664, 274, 2, 0, 4},
         {596, "Gal'darah", [[ Les Drakkari se tournèrent vers les loas lorsque les forces du Fléau attaquèrent Zul'Drak. Les trolls de glace ne vinrent pas à eux avec des prières, mais avec des épées. Lorsque le sang du dieu déchu, Akali, macula la terre, le grand prophète Gal'darah et ses compagnons traîtres absorbèrent le pouvoir du loa. ]], 0.465847, 0.270492, 1, 530, 6989, 274, -1, 0, 5},
@@ -372,67 +372,67 @@ JOURNALENCOUNTER = {
     [276] = {
         {601, "Falric", [[ Ce puissant guerrier du Fléau fut l'un des premiers chevaliers de la mort créés par Arthas après qu'il eut trouvé Ronce-Hiver. Falric suivit le prince jusqu'au Norfendre, mais cette campagne militaire était vouée à l'échec, et Falric lui-même fut trahi par le maître qu'il avait servi loyalement toute sa vie. ]], 0.352459, 0.750000, 1, 603, 7265, 276, -1, 0, 1},
         {602, "Marwyn", [[ Marwyn connaissait Arthas depuis toujours et le considérait non seulement comme un prince, mais aussi comme un véritable ami. Ce chevalier n'hésita pas un instant à suivre Arthas lorsqu'il partit pour le Norfendre. Et bien que cet ami lui ait planté une lame maudite dans le cœur, celui-ci était déjà brisé par ce qu'était devenu le prince. ]], 0.434426, 0.627049, 1, 603, 7269, 276, -1, 0, 2},
-        {603, "Fuite face à Arthas", [[ Deux seigneurs voulaient vaincre le Roi-liche au combat, mettant fin une fois pour toutes à ses méfaits, mais ils réalisèrent rapidement qu'ils ne pouvaient rivaliser avec le véritable roi. Cherchant à échapper à ce triste sort, ils tentèrent de fuir son domaine. Arthas savoura chaque seconde en assistant à la vanité de leurs efforts : on ne peut échapper à l'inévitable. ]], 0.105191, 0.274590, 1, 603, 7273, 276, -1, 0, 3},
+        {603, "Omar le dragon de test", [[ Deux seigneurs voulaient vaincre le Roi-liche au combat, mettant fin une fois pour toutes à ses méfaits, mais ils réalisèrent rapidement qu'ils ne pouvaient rivaliser avec le véritable roi. Cherchant à échapper à ce triste sort, ils tentèrent de fuir son domaine. Arthas savoura chaque seconde en assistant à la vanité de leurs efforts : on ne peut échapper à l'inévitable. ]], 0.105191, 0.274590, 1, 603, 7273, 276, -1, 0, 3},
     },
     [277] = {
-        {604, "Cristalus", [[ Pour gagner une guerre, la seule force ne suffit pas ; il faut aussi des armées. Cette vérité incontestable inspira Loken à créer de fidèles serviteurs de pierre pour grossir les rangs de ses soldats. La tâche de Cristalus est de superviser l'avancement des travaux et de veiller à ce que rien ne les entrave. ]], 0.401639, 0.604508, 1, 526, 7285, 277, -1, 0, 1},
-        {605, "Vierge de la peine", [[ Loken commande les troupes d'Ulduar, mais tous ne lui obéissent pas de bon gré. La Vierge de la peine doit anéantir tous ceux qui tentent de reconquérir les Chambres de pierre. Elle est en deuil, car elle doit combattre d'anciens alliés, mais elle exécute cet ordre avec férocité et détermination. Même son chagrin est devenu une arme. ]], 0.502732, 0.862705, 1, 526, 7290, 277, -1, 0, 2},
-        {606, "Tribunal des âges", [[ Abednéum, Kaddrak et Marnak forment le Tribunal des âges. Ils sont les gardiens des connaissances rassemblées sur le disque des titans, qui contient toute l'histoire ancienne d'Azeroth. Ces statues immobiles ne sont pas prêtes à révéler aussi facilement les secrets des titans, mais des aventuriers tels que le courageux Brann Barbe-de-bronze estiment que le jeu en vaut la chandelle. ]], 0.845629, 0.760246, 1, 526, 7294, 277, -1, 0, 3},
-        {607, "Sjonnir le Fondeur", [[ Certains se sont opposés à Loken, mais Sjonnir le Fondeur ne demandait qu'à souiller la Forge de la volonté. Il estime que ses nouvelles créations surpassent de loin tous les autres habitants de ce monde, et lancera ses troupes contre quiconque osera défier la volonté de Loken. ]], 0.497268, 0.137295, 1, 526, 7313, 277, -1, 0, 4},
+        {604, "Krystallus", [[ Pour gagner une guerre, la seule force ne suffit pas ; il faut aussi des armées. Cette vérité incontestable inspira Loken à créer de fidèles serviteurs de pierre pour grossir les rangs de ses soldats. La tâche de Cristalus est de superviser l'avancement des travaux et de veiller à ce que rien ne les entrave. ]], 0.401639, 0.604508, 1, 526, 7285, 277, -1, 0, 1},
+        {605, "Damoiselle de peine", [[ Loken commande les troupes d'Ulduar, mais tous ne lui obéissent pas de bon gré. La Vierge de la peine doit anéantir tous ceux qui tentent de reconquérir les Chambres de pierre. Elle est en deuil, car elle doit combattre d'anciens alliés, mais elle exécute cet ordre avec férocité et détermination. Même son chagrin est devenu une arme. ]], 0.502732, 0.862705, 1, 526, 7290, 277, -1, 0, 2},
+        {606, "Brann Barbe-de-Bronze", [[ Abednéum, Kaddrak et Marnak forment le Tribunal des âges. Ils sont les gardiens des connaissances rassemblées sur le disque des titans, qui contient toute l'histoire ancienne d'Azeroth. Ces statues immobiles ne sont pas prêtes à révéler aussi facilement les secrets des titans, mais des aventuriers tels que le courageux Brann Barbe-de-bronze estiment que le jeu en vaut la chandelle. ]], 0.845629, 0.760246, 1, 526, 7294, 277, -1, 0, 3},
+        {607, "Sjonnir le Sculptefer", [[ Certains se sont opposés à Loken, mais Sjonnir le Fondeur ne demandait qu'à souiller la Forge de la volonté. Il estime que ses nouvelles créations surpassent de loin tous les autres habitants de ce monde, et lancera ses troupes contre quiconque osera défier la volonté de Loken. ]], 0.497268, 0.137295, 1, 526, 7313, 277, -1, 0, 4},
     },
     [278] = {
-        {608, "Maître forgeron Garfrost", [[ Garfrost a forgé les armes les plus meurtrières que les guerriers du Fléau aient jamais retournées contre les vivants. Il peut rapidement façonner en saronite de terribles instruments de torture, source de mort dans d'atroces souffrances, ou tout simplement jeter des morceaux de minerai sur ses ennemis. ]], 0.680328, 0.553278, 0, 602, 7327, 278, -1, 0, 1},
-        {609, "Ick et Krick", [[ Le nécromant chétif Krick supervise les ouvriers de la Fosse de Saron. Il est juché sur le dos du terrible Ick et lance sur ses ennemis des flacons de poison, des explosifs, et décoche des flèches d'énergie ténébreuse, tout en restant hors de leur portée. Perché sur le dos d'Ick, il peut observer beaucoup de choses : il a ainsi appris certains des secrets permettant de renverser le Roi-liche. ]], 0.475410, 0.397541, 0, 602, 7334, 278, -1, 0, 2},
-        {610, "Tyrannus, Seigneur du Fléau", [[ Le chevalier de la mort Tyrannus devint seigneur du Fléau après avoir tué le géant Garfrost. Il est fort, impitoyable, ne connaît aucune hésitation, et dispose en outre d'un dragon de givre, Rimefang. Tout cela fait de lui le gardien idéal de la Fosse de Saron et de l'entrée des Salles des reflets. ]], 0.441257, 0.266394, 0, 602, 7340, 278, -1, 0, 3},
+        {608, "Maître-forge Gargivre", [[ Garfrost a forgé les armes les plus meurtrières que les guerriers du Fléau aient jamais retournées contre les vivants. Il peut rapidement façonner en saronite de terribles instruments de torture, source de mort dans d'atroces souffrances, ou tout simplement jeter des morceaux de minerai sur ses ennemis. ]], 0.680328, 0.553278, 0, 602, 7327, 278, -1, 0, 1},
+        {609, "Krick", [[ Le nécromant chétif Krick supervise les ouvriers de la Fosse de Saron. Il est juché sur le dos du terrible Ick et lance sur ses ennemis des flacons de poison, des explosifs, et décoche des flèches d'énergie ténébreuse, tout en restant hors de leur portée. Perché sur le dos d'Ick, il peut observer beaucoup de choses : il a ainsi appris certains des secrets permettant de renverser le Roi-liche. ]], 0.475410, 0.397541, 0, 602, 7334, 278, -1, 0, 2},
+        {610, "Seigneur du Fléau Tyrannus", [[ Le chevalier de la mort Tyrannus devint seigneur du Fléau après avoir tué le géant Garfrost. Il est fort, impitoyable, ne connaît aucune hésitation, et dispose en outre d'un dragon de givre, Rimefang. Tout cela fait de lui le gardien idéal de la Fosse de Saron et de l'entrée des Salles des reflets. ]], 0.441257, 0.266394, 0, 602, 7340, 278, -1, 0, 3},
     },
     [280] = {
-        {615, "Broniam", [[ Broniam a servi le culte des Damnés depuis sa fondation. Kel'Thuzad lui a personnellement enseigné comment manipuler les âmes afin d'alimenter les armes meurtrières du Fléau. Broniam peut souiller et déchirer les âmes de ses adversaires, ce qui fait de lui le gardien idéal de la Forge des âmes du Roi-liche. ]], 0.435793, 0.495902, 1, 601, 7380, 280, -1, 0, 1},
+        {615, "Bronjahm", [[ Broniam a servi le culte des Damnés depuis sa fondation. Kel'Thuzad lui a personnellement enseigné comment manipuler les âmes afin d'alimenter les armes meurtrières du Fléau. Broniam peut souiller et déchirer les âmes de ses adversaires, ce qui fait de lui le gardien idéal de la Forge des âmes du Roi-liche. ]], 0.435793, 0.495902, 1, 601, 7380, 280, -1, 0, 1},
         {616, "Dévoreur d'âmes", [[ En raison des sombres agissements de Broniam, la Forge des âmes voit apparaître des âmes tourmentées et brisées. Mais le Roi-liche avait besoin même de fragments d'âmes damnées, et pour les empêcher de s'échapper, il créa le Dévoreur d'âmes. Cette créature traque les âmes égarées et les digère lentement dans son ventre répugnant. Les âmes absorbées sombrent dans la folie sous l'effet de tourments monstrueux, mais la faim du Dévoreur d'âmes est impossible à assouvir. ]], 0.434426, 0.120902, 1, 601, 7387, 280, -1, 0, 2},
     },
     [281] = {
         {833, "Commandant Kolurg", [[ Le commandant Kolurg était à la recherche d'artefacts dangereux qui auraient pu enrichir le trésor de la Horde. L'échec subi dans les Salles du repos l'a mis en colère, et une fois libéré de ses chaînes de glace, il ne se réjouira sans doute pas de voir les héros de l'Alliance dérober ce pourquoi il est venu. ]], 0.187159, 0.506146, 1, 520, 7428, 281, 2, 6, 1},
-        {617, "Commandant Bièrebarbe", [[ Le commandant Bièrebarbe et ses subordonnés ont combattu à de nombreuses reprises certains des ennemis les plus dangereux de l'Alliance. Et bien que les Salles du repos aient quelque peu calmé ses ardeurs, rien ne saurait mieux l'exciter que l'approche d'aventuriers de la Horde. ]], 0.187159, 0.506146, 1, 520, 6665, 281, 2, 10, 1},
-        {618, "Grande sorcière Telestra", [[ On raconte que la Grande sorcière Telestra fut le mentor de Kael'thas. Bien qu'elle considérât l'alliance du prince avec les naga comme une folie, elle ne put soutenir les mages de Dalaran, qui retenaient ses semblables prisonniers. Malygos n'eut pas besoin de la convaincre longtemps de devenir la mentor de ses chasseurs de mages : il lui suffit d'évoquer cette trahison. ]], 0.275956, 0.399590, 1, 520, 7392, 281, -1, 0, 2},
+        {617, "Commandant Rudebarbe", [[ Le commandant Bièrebarbe et ses subordonnés ont combattu à de nombreuses reprises certains des ennemis les plus dangereux de l'Alliance. Et bien que les Salles du repos aient quelque peu calmé ses ardeurs, rien ne saurait mieux l'exciter que l'approche d'aventuriers de la Horde. ]], 0.187159, 0.506146, 1, 520, 6665, 281, 2, 10, 1},
+        {618, "Grand magus Telestra", [[ On raconte que la Grande sorcière Telestra fut le mentor de Kael'thas. Bien qu'elle considérât l'alliance du prince avec les naga comme une folie, elle ne put soutenir les mages de Dalaran, qui retenaient ses semblables prisonniers. Malygos n'eut pas besoin de la convaincre longtemps de devenir la mentor de ses chasseurs de mages : il lui suffit d'évoquer cette trahison. ]], 0.275956, 0.399590, 1, 520, 7392, 281, -1, 0, 2},
         {619, "Anomalus", [[ Parce que Malygos tentait de contrôler les flux de magie arcanique d'Azeroth à travers le Nexus, une déchirure s'ouvrit dans le tissu de la réalité. Les forces de Malygos tentent de contenir l'afflux de créatures se déversant en Azeroth, mais l'énergie arcanique chaotique a fini par prendre la forme d'une créature connue sous le nom d'Anomalus. Si elle n'est pas arrêtée, elle détruira tout ce qu'elle touche. ]], 0.620218, 0.221312, 1, 520, 7405, 281, -1, 0, 3},
-        {620, "Ormorok le Sculpteur d'arbres", [[ L'énergie arcanique du Nexus a profondément transformé les Jardins chantants et leurs gardiens. Ormorok n'a pas échappé à ce sort : son esprit simple s'est troublé sous l'effet de l'énergie qui l'a transformé. Il ne sera sans doute guère loquace en voyant ceux qui ont interrompu ses réflexions, mais une chose est sûre : ces téméraires devront affronter de nombreuses difficultés. ]], 0.562842, 0.727459, 1, 520, 7416, 281, -1, 0, 4},
+        {620, "Ormorok le Sculpte-Arbre", [[ L'énergie arcanique du Nexus a profondément transformé les Jardins chantants et leurs gardiens. Ormorok n'a pas échappé à ce sort : son esprit simple s'est troublé sous l'effet de l'énergie qui l'a transformé. Il ne sera sans doute guère loquace en voyant ceux qui ont interrompu ses réflexions, mais une chose est sûre : ces téméraires devront affronter de nombreuses difficultés. ]], 0.562842, 0.727459, 1, 520, 7416, 281, -1, 0, 4},
         {621, "Keristrasza", [[ Personne ne peut dire avec certitude pourquoi Keristrasza fut soumise à de tels tourments : était-ce une vengeance pour la mort de Sarragosa, ou une tentative sophistiquée d'en faire une alliée... Seul Malygos connaît la réponse. Quelles que soient ses véritables intentions, les alliés de Keristrasza ont entendu ses cris de douleur et les murmures de sa raison déclinante. ]], 0.362022, 0.674180, 1, 520, 7422, 281, -1, 0, 5},
     },
     [282] = {
-        {622, "Drakos l'Inquisiteur", [[ Ceux qui enfreignent les lois de Malygos tombent directement entre les griffes de Drakos. Dès qu'il n'eut plus besoin de garder Keristrasza dans le Nexus, Drakos retourna à l'Oculus pour devenir le surveillant des dragons prisonniers qui avaient osé défier Malygos. Drakos ignore tout du mot « rédemption », et les métaphores ne sont pas son fort. Ses prisonniers doivent être punis, et ils ne pourront pas s'échapper. ]], 0.491803, 0.762295, 1, 528, 7437, 282, -1, 0, 1},
-        {623, "Varos l'Arpenteur des nuées", [[ Varos l'Arpenteur des nuées a personnellement mené des attaques féroces contre l'Alliance draconique depuis le début de la guerre du Nexus. Rappelé du front, il fut chargé de garder l'Oculus ; Drakos avait déjà transmis les ordres nécessaires à ses officiers et à ses dragons. De plus, Varos a obtenu accès au pouvoir qui imprègne tout l'Oculus, et il est désormais encore plus dangereux qu'auparavant. ]], 0.461749, 0.192623, 2, 528, 7440, 282, -1, 0, 2},
-        {624, "Maître-mage Urom", [[ Urom renia le Kirin Tor et prêta allégeance à Malygos, qui fut ravi de s'attacher un allié aussi puissant. Ce mage transfuge représente une valeur inestimable pour les dragons bleus, car il connaît toutes les forces et les faiblesses du Kirin Tor et peut penser comme ses membres. Urom ne manquera sans doute pas d'utiliser ces connaissances pour anéantir les mages du Kirin Tor. ]], 0.707650, 0.274590, 0, 528, 7445, 282, -1, 0, 3},
-        {625, "Gardien de l'énergie Eregos", [[ Même les héros les plus intrépides tremblent devant Eregos, protecteur de l'Oculus, gardien des flux de magie arcanique et tueur d'étrangers. Il est persuadé de suivre une prophétie et s'acquitte à merveille de ses fonctions. Il fera tout son possible pour défendre le pouvoir absolu du Gardien de la magie. ]], 0.469945, 0.209016, 0, 528, 7448, 282, -1, 0, 4},
+        {622, "Drakos l'Interrogateur", [[ Ceux qui enfreignent les lois de Malygos tombent directement entre les griffes de Drakos. Dès qu'il n'eut plus besoin de garder Keristrasza dans le Nexus, Drakos retourna à l'Oculus pour devenir le surveillant des dragons prisonniers qui avaient osé défier Malygos. Drakos ignore tout du mot « rédemption », et les métaphores ne sont pas son fort. Ses prisonniers doivent être punis, et ils ne pourront pas s'échapper. ]], 0.491803, 0.762295, 1, 528, 7437, 282, -1, 0, 1},
+        {623, "Varos Arpentenuée", [[ Varos l'Arpenteur des nuées a personnellement mené des attaques féroces contre l'Alliance draconique depuis le début de la guerre du Nexus. Rappelé du front, il fut chargé de garder l'Oculus ; Drakos avait déjà transmis les ordres nécessaires à ses officiers et à ses dragons. De plus, Varos a obtenu accès au pouvoir qui imprègne tout l'Oculus, et il est désormais encore plus dangereux qu'auparavant. ]], 0.461749, 0.192623, 2, 528, 7440, 282, -1, 0, 2},
+        {624, "Seigneur-mage Urom", [[ Urom renia le Kirin Tor et prêta allégeance à Malygos, qui fut ravi de s'attacher un allié aussi puissant. Ce mage transfuge représente une valeur inestimable pour les dragons bleus, car il connaît toutes les forces et les faiblesses du Kirin Tor et peut penser comme ses membres. Urom ne manquera sans doute pas d'utiliser ces connaissances pour anéantir les mages du Kirin Tor. ]], 0.707650, 0.274590, 0, 528, 7445, 282, -1, 0, 3},
+        {625, "Gardien-tellurique Eregos", [[ Même les héros les plus intrépides tremblent devant Eregos, protecteur de l'Oculus, gardien des flux de magie arcanique et tueur d'étrangers. Il est persuadé de suivre une prophétie et s'acquitte à merveille de ses fonctions. Il fera tout son possible pour défendre le pouvoir absolu du Gardien de la magie. ]], 0.469945, 0.209016, 0, 528, 7448, 282, -1, 0, 4},
     },
     [283] = {
         {626, "Erekem", [[ La Forteresse améthyste abrite les criminels les plus dangereux du Bassin de l'Æther, et Erekem ne fait pas exception. Le Kirin Tor réussit à contrecarrer les plans d'Erekem alors qu'il s'apprêtait à anéantir le Conseil des Six, mais les dragons bleus ont désormais engagé cet arakkoa rusé pour mettre en œuvre un projet bien plus ambitieux : exterminer tous les mages de Dalaran. ]], 0.275956, 0.622951, 1, 536, 7457, 283, -1, 0, 1},
-        {627, "Morragh", [[ Synigosa fit appel à Morragh pour l'aider à anéantir les mages rebelles de Dalaran. En son temps, ce terrible démon servit la Légion ardente, exterminant les ennemis de Sargeras d'un simple regard glaçant de ses sept yeux. Il montrera désormais aux héros d'Azeroth qu'on ne pénètre pas dans la Forteresse améthyste comme dans un moulin... ]], 0.678962, 0.528688, 1, 536, 7470, 283, -1, 0, 2},
-        {628, "Purulente", [[ Un apprenti manquant de prévoyance invoqua cette créature depuis le Domaine des éléments, mais lorsqu'il comprit que les Gardiens de la rage mécontents, au service des dieux anciens, faisaient de piètres animaux de compagnie, il était déjà trop tard. Purulente tua celui qui l'avait invoquée, et pourrit désormais dans les geôles de la Forteresse améthyste, espérant un jour se venger de ses geôliers. ]], 0.556011, 0.403688, 1, 536, 7475, 283, -1, 0, 3},
+        {627, "Collidus le Guetteur-Dimensionnel", [[ Synigosa fit appel à Morragh pour l'aider à anéantir les mages rebelles de Dalaran. En son temps, ce terrible démon servit la Légion ardente, exterminant les ennemis de Sargeras d'un simple regard glaçant de ses sept yeux. Il montrera désormais aux héros d'Azeroth qu'on ne pénètre pas dans la Forteresse améthyste comme dans un moulin... ]], 0.678962, 0.528688, 1, 536, 7470, 283, -1, 0, 2},
+        {628, "Ichoron", [[ Un apprenti manquant de prévoyance invoqua cette créature depuis le Domaine des éléments, mais lorsqu'il comprit que les Gardiens de la rage mécontents, au service des dieux anciens, faisaient de piètres animaux de compagnie, il était déjà trop tard. Purulente tua celui qui l'avait invoquée, et pourrit désormais dans les geôles de la Forteresse améthyste, espérant un jour se venger de ses geôliers. ]], 0.556011, 0.403688, 1, 536, 7475, 283, -1, 0, 3},
         {629, "Xevozz", [[ Xevozz faisait le commerce d'armes renforcées par la magie arcanique... jusqu'à ce que les sorciers du Kirin Tor découvrent qu'il vendait des armes à la Légion ardente. Cet éthéréen très pragmatique a désormais élaboré un plan en trois parties : anéantir ses adversaires, s'évader de prison et rétablir ses livraisons d'armes à son plus gros client. ]], 0.330601, 0.452869, 1, 536, 7482, 283, -1, 0, 4},
-        {630, "Lavanthor", [[ En son temps, la calculatrice Synigosa libéra l'un des plus terribles limiers des Abysses. Dans une tentative d'apaiser la soif de sang de ce monstre à deux têtes, les mages emprisonnèrent Lavanthor, et les années passées en captivité n'ont guère amélioré son caractère. ]], 0.618852, 0.750000, 1, 536, 7488, 283, -1, 0, 5},
-        {631, "Zuramat le Destructeur", [[ Pour maîtriser Zuramat, il fallut une centaine des meilleurs mages de Dalaran, et pour effacer les conséquences du massacre sanglant qu'il perpétra, il en fallut deux cents de plus. La soif de sang du Destructeur répugne même au Malygos le plus fou, qui trouve la soif de magie de ce seigneur des Abysses tout simplement répugnante. Néanmoins, un carnage sanglant rapproche parfois les contraires les plus opposés. ]], 0.271858, 0.336066, 1, 536, 7492, 283, -1, 0, 6},
-        {632, "Synigosa", [[ Malygos choisit Synigosa comme exécutrice de ses plans, car sa loyauté avait résisté à l'épreuve du temps. Synigosa ne renia pas Malygos lorsqu'il sombra dans la folie ; elle ne s'opposa pas à lui lorsqu'il s'empara des flux de magie arcanique d'Azeroth... et elle anéantira quiconque osera s'opposer à lui. ]], 0.450820, 0.551229, 1, 536, 7497, 283, -1, 0, 7},
+        {630, "La Bête", [[ En son temps, la calculatrice Synigosa libéra l'un des plus terribles limiers des Abysses. Dans une tentative d'apaiser la soif de sang de ce monstre à deux têtes, les mages emprisonnèrent Lavanthor, et les années passées en captivité n'ont guère amélioré son caractère. ]], 0.618852, 0.750000, 1, 536, 7488, 283, -1, 0, 5},
+        {631, "Zuramat l'Oblitérateur", [[ Pour maîtriser Zuramat, il fallut une centaine des meilleurs mages de Dalaran, et pour effacer les conséquences du massacre sanglant qu'il perpétra, il en fallut deux cents de plus. La soif de sang du Destructeur répugne même au Malygos le plus fou, qui trouve la soif de magie de ce seigneur des Abysses tout simplement répugnante. Néanmoins, un carnage sanglant rapproche parfois les contraires les plus opposés. ]], 0.271858, 0.336066, 1, 536, 7492, 283, -1, 0, 6},
+        {632, "Cyanigosa", [[ Malygos choisit Synigosa comme exécutrice de ses plans, car sa loyauté avait résisté à l'épreuve du temps. Synigosa ne renia pas Malygos lorsqu'il sombra dans la folie ; elle ne s'opposa pas à lui lorsqu'il s'empara des flux de magie arcanique d'Azeroth... et elle anéantira quiconque osera s'opposer à lui. ]], 0.450820, 0.551229, 1, 536, 7497, 283, -1, 0, 7},
     },
     [285] = {
         {638, "Prince Keleseth", [[ Le Roi-liche envoya Keleseth vers la forteresse d'Utgarde dans l'espoir d'exploiter la puissance destructrice des vrykuls. À son arrivée, ce messager découvrit que nombre des habitants de cette forteresse étaient ravis d'apporter leur aide au Fléau. La forteresse s'avéra être un excellent avant-poste, permettant de maintenir la terreur sur tout le Fjord Hurlant, et le prince Keleseth n'a pas l'intention de la céder sans combattre à d'audacieux étrangers. ]], 0.289618, 0.627049, 1, 523, 7601, 285, -1, 0, 1},
-        {639, "Skarvald et Dalronn", [[ Contraindre à travailler ensemble ceux qui se détestent est l'une des traditions des vrykuls. Certains estiment que cela permet aux capacités des antagonistes de se compléter, d'autres pensent qu'il ne s'agit que d'un caprice du roi Ymiron. Mais quelles qu'en soient les raisons, Skarvald et Dalronn illustrent parfaitement cette tradition. La force brute du vrykul et l'art de la nécromancie de l'humain forment un duo redoutable, dont la mission est d'anéantir quiconque met le nez dans les affaires du Fléau. ]], 0.587431, 0.620901, 2, 523, 7609, 285, -1, 0, 2},
-        {640, "Ingvar le Pillard", [[ La force incroyable d'Ingvar est légendaire, même parmi les vrykuls. La rumeur veut qu'il ait un jour battu le roi Ymiron en personne dans une bagarre. Vraie ou fausse, cette histoire a coûté cher à ceux qui la racontent, qui ne vivent généralement pas longtemps ensuite. Ingvar a promis au Roi-liche qu'il userait des mesures les plus cruelles pour tenir la forteresse, et il n'osera pas manquer à sa parole. ]], 0.724043, 0.381148, 0, 523, 7619, 285, -1, 0, 3},
+        {639, "Skarvald le Constructeur", [[ Contraindre à travailler ensemble ceux qui se détestent est l'une des traditions des vrykuls. Certains estiment que cela permet aux capacités des antagonistes de se compléter, d'autres pensent qu'il ne s'agit que d'un caprice du roi Ymiron. Mais quelles qu'en soient les raisons, Skarvald et Dalronn illustrent parfaitement cette tradition. La force brute du vrykul et l'art de la nécromancie de l'humain forment un duo redoutable, dont la mission est d'anéantir quiconque met le nez dans les affaires du Fléau. ]], 0.587431, 0.620901, 2, 523, 7609, 285, -1, 0, 2},
+        {640, "Ingvar le Pilleur", [[ La force incroyable d'Ingvar est légendaire, même parmi les vrykuls. La rumeur veut qu'il ait un jour battu le roi Ymiron en personne dans une bagarre. Vraie ou fausse, cette histoire a coûté cher à ceux qui la racontent, qui ne vivent généralement pas longtemps ensuite. Ingvar a promis au Roi-liche qu'il userait des mesures les plus cruelles pour tenir la forteresse, et il n'osera pas manquer à sa parole. ]], 0.724043, 0.381148, 0, 523, 7619, 285, -1, 0, 3},
     },
     [286] = {
-        {641, "Svala l'Éternelle affligée", [[ Svala fut autrefois commandant au service d'Ingvar le Pillard, et elle a mené de nombreuses opérations de reconnaissance dans les camps de la Horde et de l'Alliance. C'est Svala qui découvrit que des ennemis s'apprêtaient à s'infiltrer dans la forteresse d'Utgarde, ce qui permit au Roi-liche de préparer sa défense. En récompense de ses loyaux services, le Roi-liche la transforma en val'kyr, guerrière vénérée du Fléau. ]], 0.363388, 0.706967, 1, 524, 7660, 286, -1, 0, 1},
-        {642, "Gortok Sabot pâle", [[ Les vrykuls conservent dans la forteresse d'Utgarde de nombreux trophées de chasse, et Gortok est l'un des plus impressionnants. Le visage cruel de ce magnataure gelé rappelle au roi Ymiron que même les bêtes les plus sauvages ne sont rien de plus que des ornements dans la forteresse des vrykuls. Si l'on libère ce monstre de sa prison de glace, il déchaînera sa fureur sur tous ceux qui croiseront son chemin. ]], 0.606558, 0.688525, 2, 524, 7669, 286, -1, 0, 2},
-        {643, "Skadi l'Impitoyable", [[ Les surnoms des vrykuls témoignent de leurs exploits passés. Tuer une famille de Drakkari ou décapiter un taunka peut valoir le surnom de « Fervent », mais pour mériter le nom d'« Impitoyable », il faut accomplir quelque chose de bien plus cruel. Skadi a gagné son surnom il y a fort longtemps, lorsqu'il pourchassa et tua sans relâche les vrykuls qui cachaient leurs enfants malades : le roi Ymiron condamnait à mort quiconque osait faire preuve d'une telle compassion. ]], 0.684426, 0.362705, 2, 524, 7691, 286, -1, 0, 3},
+        {641, "Svala Tristetombe", [[ Svala fut autrefois commandant au service d'Ingvar le Pillard, et elle a mené de nombreuses opérations de reconnaissance dans les camps de la Horde et de l'Alliance. C'est Svala qui découvrit que des ennemis s'apprêtaient à s'infiltrer dans la forteresse d'Utgarde, ce qui permit au Roi-liche de préparer sa défense. En récompense de ses loyaux services, le Roi-liche la transforma en val'kyr, guerrière vénérée du Fléau. ]], 0.363388, 0.706967, 1, 524, 7660, 286, -1, 0, 1},
+        {642, "Gortok Pâle-sabot", [[ Les vrykuls conservent dans la forteresse d'Utgarde de nombreux trophées de chasse, et Gortok est l'un des plus impressionnants. Le visage cruel de ce magnataure gelé rappelle au roi Ymiron que même les bêtes les plus sauvages ne sont rien de plus que des ornements dans la forteresse des vrykuls. Si l'on libère ce monstre de sa prison de glace, il déchaînera sa fureur sur tous ceux qui croiseront son chemin. ]], 0.606558, 0.688525, 2, 524, 7669, 286, -1, 0, 2},
+        {643, "Skadi le Brutal", [[ Les surnoms des vrykuls témoignent de leurs exploits passés. Tuer une famille de Drakkari ou décapiter un taunka peut valoir le surnom de « Fervent », mais pour mériter le nom d'« Impitoyable », il faut accomplir quelque chose de bien plus cruel. Skadi a gagné son surnom il y a fort longtemps, lorsqu'il pourchassa et tua sans relâche les vrykuls qui cachaient leurs enfants malades : le roi Ymiron condamnait à mort quiconque osait faire preuve d'une telle compassion. ]], 0.684426, 0.362705, 2, 524, 7691, 286, -1, 0, 3},
         {644, "Roi Ymiron", [[ Le fier roi Ymiron régnait sur les étendues glacées du Nord, mais ce vrykul sombra dans un long sommeil, et le monde finit par l'oublier. À son réveil, il découvrit que sa femme avait été tuée et que sa terre natale était assiégée par des ennemis. Devenu immortel, il aspire ardemment à la vengeance, et un châtiment implacable attend quiconque se dressera sur le chemin de ce géant tout juste réveillé. ]], 0.415301, 0.534836, 2, 524, 7708, 286, -1, 0, 4},
     },
     [741] = {
         {1519, "Lucifron", [[ Lucifron est l'un des quatre Incendiaires et capitaines de Ragnaros, et le premier boss des Profondeurs ardentes. Les Incendiaires sont une race d'êtres serpentins impitoyables au service de Ragnaros, le Seigneur du feu. Féroces et terrifiants, les Éveilleurs de flammes comptent parmi les gardiens élémentaires les plus redoutables des Profondeurs ardentes. ]], 0.658633, 0.374995, 0, 877, 20173, 741, -1, 0, 1},
-        {1520, "Magmadar", [[ Magmadar est composé de roche volcanique et de magma en fusion. Il est à l'origine des limiers qui parcourent les couloirs de terre des Profondeurs ardentes. Pour Ragnaros, Magmadar fait office d'animal de compagnie, protégé par l'Incendiaire Lucifron et entouré de meutes vicieuses de limiers prédateurs. On raconte que, durant l'emprisonnement de Ragnaros dans le Plan des éléments, le Seigneur du feu nourrissait les jumeaux affamés de Magmadar avec les restes de ses ennemis capturés. Cela rendit le limier fort et loyal, et même aujourd'hui, sa férocité indomptable ne fait aucun doute. Magmadar est le mâle alpha de tous les limiers des Profondeurs. ]], 0.694339, 0.236793, 0, 877, 20177, 741, -1, 0, 2},
-        {1521, "Geddon le Damné", [[ Geddon le Damné et ses semblables Incendiaires ont émergé des éléments dans les Profondeurs ardentes. Contrairement aux élémentaires de feu, qui sont des créatures de flamme pure, les Incendiaires sont des élémentaires de chair et de sang. Geddon le Damné se situe tout en bas de la hiérarchie élémentaire du Seigneur du feu et convoite ardemment le pouvoir et le rang de ses supérieurs. Personne parmi ceux qui servent à ses côtés ne lui fait confiance, à l'exception de deux gardes fidèles persuadés qu'ils pourraient profiter de l'ascension de leur surveillant. Geddon le Damné utilise la magie des ombres et garde la Rune de Mone avec deux autres Incendiaires. ]], 0.330876, 0.485334, 0, 877, 20181, 741, -1, 0, 3},
-        {1522, "Garr", [[ Garr est une créature de lave et de terre. Il se trouve dans les Profondeurs ardentes, entre Geddon le Damné et le baron Geddon, où il garde la Rune de Flamme. C'est un boss de mêlée accompagné de 8 gardes de la Confrérie du feu. ]], 0.315094, 0.689623, 0, 877, 20184, 741, -1, 0, 4},
+        {1520, "La Bête", [[ Magmadar est composé de roche volcanique et de magma en fusion. Il est à l'origine des limiers qui parcourent les couloirs de terre des Profondeurs ardentes. Pour Ragnaros, Magmadar fait office d'animal de compagnie, protégé par l'Incendiaire Lucifron et entouré de meutes vicieuses de limiers prédateurs. On raconte que, durant l'emprisonnement de Ragnaros dans le Plan des éléments, le Seigneur du feu nourrissait les jumeaux affamés de Magmadar avec les restes de ses ennemis capturés. Cela rendit le limier fort et loyal, et même aujourd'hui, sa férocité indomptable ne fait aucun doute. Magmadar est le mâle alpha de tous les limiers des Profondeurs. ]], 0.694339, 0.236793, 0, 877, 20177, 741, -1, 0, 2},
+        {1521, "Messager de Sulfuron", [[ Geddon le Damné et ses semblables Incendiaires ont émergé des éléments dans les Profondeurs ardentes. Contrairement aux élémentaires de feu, qui sont des créatures de flamme pure, les Incendiaires sont des élémentaires de chair et de sang. Geddon le Damné se situe tout en bas de la hiérarchie élémentaire du Seigneur du feu et convoite ardemment le pouvoir et le rang de ses supérieurs. Personne parmi ceux qui servent à ses côtés ne lui fait confiance, à l'exception de deux gardes fidèles persuadés qu'ils pourraient profiter de l'ascension de leur surveillant. Geddon le Damné utilise la magie des ombres et garde la Rune de Mone avec deux autres Incendiaires. ]], 0.330876, 0.485334, 0, 877, 20181, 741, -1, 0, 3},
+        {1522, "Manifestation de terre mineure", [[ Garr est une créature de lave et de terre. Il se trouve dans les Profondeurs ardentes, entre Geddon le Damné et le baron Geddon, où il garde la Rune de Flamme. C'est un boss de mêlée accompagné de 8 gardes de la Confrérie du feu. ]], 0.315094, 0.689623, 0, 877, 20184, 741, -1, 0, 4},
         {1523, "Shazzrah", [[ Parmi tous les Incendiaires ayant suivi Ragnaros jusqu'au monde d'Azeroth, Shazzrah est le plus talentueux dans le domaine de la magie arcanique. Il sait que son collègue, le baron Geddon, soupçonne les élémentaires de Garr de trahison. Le conflit entre le baron Geddon et Garr convient tout à fait à Shazzrah, car c'est en réalité lui qui cherche à s'emparer des deux moitiés du Talisman du lien élémentaire, afin de trouver un moyen de canaliser son énergie à son propre profit. Ragnaros connaissait sans doute la duplicité de son subordonné lorsqu'il divisa le talisman en deux et en confia les parties au baron Geddon et à Garr. Shazzrah garde la Rune de Mazja. ]], 0.558406, 0.852617, 0, 877, 20190, 741, -1, 0, 5},
         {1524, "Baron Geddon", [[ Le baron Geddon est un boss élémentaire de feu se trouvant dans les Profondeurs ardentes. Il patrouille près de la zone de réapparition de Shazzrah, gardant la Rune de Zeth. ]], 0.523926, 0.776320, 0, 877, 20195, 741, -1, 0, 6},
-        {1525, "Précurseur Sulfuron", [[ Parmi les Incendiaires, le Précurseur Sulfuron est le terrifiant héraut de Ragnaros. Le Précurseur Sulfuron n'obéit qu'à Exécutus et garde la Rune de Koro, l'une des nombreuses runes renforçant les serviteurs du Seigneur du feu. Le Précurseur Sulfuron surveille étroitement Shazzrah, le soupçonnant de vouloir trahir Ragnaros. Escorté par ses quatre prêtres les plus zélés au service du Seigneur du feu, le Précurseur se prépare pour le jour où le Seigneur du feu conquerra le monde d'Azeroth. ]], 0.828302, 0.825472, 0, 877, 20199, 741, -1, 0, 7},
-        {1526, "Golemagg le Cuiseur", [[ Parmi les soldats élémentaires de Ragnaros, les géants de lave sont les plus redoutés, et parmi eux, Golemagg le Cuiseur n'a pas son pareil en cruauté et en efficacité sauvage. La force de ce monstre en fusion est si illimitée qu'il a intimidé ses deux principaux ennemis jurés, les rejetons du colossal Magmadar, qu'il utilise désormais comme animaux de compagnie. Pour cet affront, il a mérité la colère éternelle et inébranlable de Magmadar, bien que la redoutable créature n'ait pas encore réagi à ses provocations insensées. Golemagg est un boss géant en fusion accompagné de deux chiens de compagnie, appelés Enragés des Profondeurs, gardant la Rune de Teri. ]], 0.688680, 0.576416, 0, 877, 20208, 741, -1, 0, 8},
-        {1527, "Majordome Exécutus", [[ Tout en haut de la hiérarchie élémentaire, juste en dessous de Ragnaros lui-même, réside le Majordome Exécutus. Cet Incendiaire a obtenu ce statut élevé en prouvant qu'il était presque invulnérable dans les batailles ayant fait rage au niveau des élémentaires. On raconte qu'Exécutus a évincé le baron Geddon, et depuis, les deux seraient devenus rivaux. Bien que cette rumeur n'ait pas encore été confirmée, il ne fait aucun doute que Ragnaros ne tolère aucun échec. Ainsi, les Incendiaires de moindre importance (et bien sûr le baron Geddon) attendent avec impatience un faux pas d'Exécutus, guettant leur chance de rivaliser pour l'attention tant convoitée du Seigneur du feu. Exécutus sera secondé au combat par quatre Incendiaires-gardes et quatre Incendiaires-guérisseurs. ]], 0.841510, 0.652831, 0, 877, 20215, 741, -1, 0, 9},
+        {1525, "Messager de Sulfuron", [[ Parmi les Incendiaires, le Précurseur Sulfuron est le terrifiant héraut de Ragnaros. Le Précurseur Sulfuron n'obéit qu'à Exécutus et garde la Rune de Koro, l'une des nombreuses runes renforçant les serviteurs du Seigneur du feu. Le Précurseur Sulfuron surveille étroitement Shazzrah, le soupçonnant de vouloir trahir Ragnaros. Escorté par ses quatre prêtres les plus zélés au service du Seigneur du feu, le Précurseur se prépare pour le jour où le Seigneur du feu conquerra le monde d'Azeroth. ]], 0.828302, 0.825472, 0, 877, 20199, 741, -1, 0, 7},
+        {1526, "Golemagg l'Incinérateur", [[ Parmi les soldats élémentaires de Ragnaros, les géants de lave sont les plus redoutés, et parmi eux, Golemagg le Cuiseur n'a pas son pareil en cruauté et en efficacité sauvage. La force de ce monstre en fusion est si illimitée qu'il a intimidé ses deux principaux ennemis jurés, les rejetons du colossal Magmadar, qu'il utilise désormais comme animaux de compagnie. Pour cet affront, il a mérité la colère éternelle et inébranlable de Magmadar, bien que la redoutable créature n'ait pas encore réagi à ses provocations insensées. Golemagg est un boss géant en fusion accompagné de deux chiens de compagnie, appelés Enragés des Profondeurs, gardant la Rune de Teri. ]], 0.688680, 0.576416, 0, 877, 20208, 741, -1, 0, 8},
+        {1527, "Chambellan Executus", [[ Tout en haut de la hiérarchie élémentaire, juste en dessous de Ragnaros lui-même, réside le Majordome Exécutus. Cet Incendiaire a obtenu ce statut élevé en prouvant qu'il était presque invulnérable dans les batailles ayant fait rage au niveau des élémentaires. On raconte qu'Exécutus a évincé le baron Geddon, et depuis, les deux seraient devenus rivaux. Bien que cette rumeur n'ait pas encore été confirmée, il ne fait aucun doute que Ragnaros ne tolère aucun échec. Ainsi, les Incendiaires de moindre importance (et bien sûr le baron Geddon) attendent avec impatience un faux pas d'Exécutus, guettant leur chance de rivaliser pour l'attention tant convoitée du Seigneur du feu. Exécutus sera secondé au combat par quatre Incendiaires-gardes et quatre Incendiaires-guérisseurs. ]], 0.841510, 0.652831, 0, 877, 20215, 741, -1, 0, 9},
         {1528, "Ragnaros", [[ Ragnaros, le Seigneur du feu, était un chef incroyablement puissant des élémentaires de feu. Après avoir été invoqué en Azeroth par l'empereur Thaurissan, il prit le contrôle de la Montagne Noire et y régna pendant plus de deux cents ans sur des sbires nains venus du noyau profond situé au cœur même de la montagne. ]], 0.562265, 0.533963, 0, 877, 20226, 741, -1, 0, 10},
     },
     [742] = {
@@ -440,12 +440,12 @@ JOURNALENCOUNTER = {
 Dans la Montagne Noire, avec l'aide de ses fidèles créations draconiques, il livre une bataille constante contre Ragnaros et ses forces pour le contrôle de la montagne et, à terme, de toute la région. Dans ce but, il s'est efforcé de renforcer ses forces, comme son père Deathwing l'avait fait par le passé. Nefarian prend plaisir à capturer les serviteurs de Ragnaros pour les utiliser à ses propres fins perfides.
 Il s'est allié à Rend Poing-Noir, bien qu'il n'utilise ce dernier et sa Horde des Ténèbres que pour parvenir à ses fins. La quête effrénée de domination de Nefarian a même attiré la colère des dragons rouges, incarnée par le dragon rouge Vaelastrasz, qui a toujours été le plus grand ennemi de la couvée noire. Bien que les intentions de Nefarian soient connues, les méthodes qu'il emploie pour les atteindre demeurent un mystère.
 Aujourd'hui, avec les dragons noirs de nouveau fermement sous son commandement et soutenus par ces nouveaux dragons chromatiques, il prévoit de porter un coup aux autres dragons ainsi qu'aux nations mortelles du monde. ]], 0.703746, 0.724620, 4, 885, 20068, 742, -1, 0, 8},
-        {1529, "Mordefer l'Indomptable", [[ Le seigneur du Repaire de l'Aile Noire, Nefarian, a confié à Mordefer l'Indomptable la garde des nombreux et précieux œufs de dragon noir se trouvant dans la première salle de l'instance. Dans ce but, Mordefer a reçu le commandement d'une cohorte d'orcs et d'autres forces, et il ne reculera devant rien pour empêcher que ses précieuses charges ne soient blessées. ]], 0.419285, 0.602438, 1, 885, 20021, 742, -1, 0, 1},
+        {1529, "Général Drakkisath", [[ Le seigneur du Repaire de l'Aile Noire, Nefarian, a confié à Mordefer l'Indomptable la garde des nombreux et précieux œufs de dragon noir se trouvant dans la première salle de l'instance. Dans ce but, Mordefer a reçu le commandement d'une cohorte d'orcs et d'autres forces, et il ne reculera devant rien pour empêcher que ses précieuses charges ne soient blessées. ]], 0.419285, 0.602438, 1, 885, 20021, 742, -1, 0, 1},
         {1530, "Vaelastrasz le Corrompu", [[ Vaelastrasz le Corrompu est le deuxième boss du Repaire de l'Aile Noire. Il a été asservi par Nefarian et le sert désormais à contrecœur. ]], 0.332819, 0.275371, 1, 885, 20028, 742, -1, 0, 2},
-        {1531, "Chef draconique Fouettardent", [[ Le chef draconique Fouettardent garde les Salles de la Discorde, barrant la route vers le sanctuaire intérieur de Nefarian. ]], 0.505751, 0.617476, 3, 885, 20033, 742, -1, 0, 3},
-        {1532, "Ventre-de-feu", [[ Ventre-de-feu est le quatrième boss du Repaire de l'Aile Noire, patrouillant les Laboratoires écarlates après le Chef draconique et avant Écailles-noires. ]], 0.464398, 0.429507, 3, 885, 20037, 742, -1, 0, 4},
-        {1533, "Écailles-noires", [[ Écailles-noires est le cinquième boss du Repaire de l'Aile Noire, patrouillant la salle supérieure des Laboratoires écarlates après Ventre-de-feu et avant Flambloir. Il est l'un des trois puissants dragons noirs gardant le chemin menant à leur maître, Nefarian. ]], 0.349110, 0.209583, 3, 885, 20041, 742, -1, 0, 5},
-        {1534, "Flambloir", [[ Flambloir est le troisième des trois dragons du Repaire de l'Aile Noire, après Écailles-noires et avant Chromaggus. ]], 0.355376, 0.371237, 4, 885, 20045, 742, -1, 0, 6},
+        {1531, "Seigneur des couvées Lanistaire", [[ Le chef draconique Fouettardent garde les Salles de la Discorde, barrant la route vers le sanctuaire intérieur de Nefarian. ]], 0.505751, 0.617476, 3, 885, 20033, 742, -1, 0, 3},
+        {1532, "Hematus", [[ Ventre-de-feu est le quatrième boss du Repaire de l'Aile Noire, patrouillant les Laboratoires écarlates après le Chef draconique et avant Écailles-noires. ]], 0.464398, 0.429507, 3, 885, 20037, 742, -1, 0, 4},
+        {1533, "Hematus", [[ Écailles-noires est le cinquième boss du Repaire de l'Aile Noire, patrouillant la salle supérieure des Laboratoires écarlates après Ventre-de-feu et avant Flambloir. Il est l'un des trois puissants dragons noirs gardant le chemin menant à leur maître, Nefarian. ]], 0.349110, 0.209583, 3, 885, 20041, 742, -1, 0, 5},
+        {1534, "Hematus", [[ Flambloir est le troisième des trois dragons du Repaire de l'Aile Noire, après Écailles-noires et avant Chromaggus. ]], 0.355376, 0.371237, 4, 885, 20045, 742, -1, 0, 6},
         {1535, "Chromaggus", [[ Chromaggus est un dragon bicéphale au service de Nefarian, résidant dans le Repaire de l'Aile Noire, après Flambloir et avant Nefarian. ]], 0.394223, 0.726500, 4, 885, 20049, 742, -1, 0, 7},
     },
     [743] = {
@@ -453,56 +453,56 @@ Aujourd'hui, avec les dragons noirs de nouveau fermement sous son commandement e
         {1538, "Général Rajaxx", [[ Durant la Guerre des Sables mouvants, le monstrueux et gigantesque Rajaxx commandait les qirajis et les silithides au combat, brandissant ses membres griffus et hurlant des ordres à ses soldats. ]], 0.584020, 0.491280, 0, 881, 20080, 743, -1, 0, 2},
         {1539, "Moam", [[ Se préparant à la renaissance des qirajis dans le monde, le seigneur des ténèbres d'Ahn'Qiraj ordonna à l'empereur Vek'lor de créer une nouvelle statue d'obsidienne, surpassant tous les autres Destructeurs. Vek'lor demanda l'aide de son frère jumeau pour cette tâche, et tandis que Vek'nilash utilisait sa puissance physique pour créer un corps grandiose à partir de roche volcanique, Vek'lor renforça la coquille par une magie puissante.
 L'empereur Vek'lor nomma la construction achevée Moam et observa le maître des ténèbres lui insuffler la vie. Il fut ravi et surpris de découvrir que ce Destructeur obsidien amélioré était bien plus polyvalent que ses précédents équivalents. Les Empereurs jumeaux avaient l'intention d'utiliser Moam comme une arme colossale, sachant que ses points forts l'aideraient à survivre au cœur de la mêlée ainsi qu'au combat magique, mais ils n'avaient pas anticipé la capacité de la construction à progresser d'elle-même, sans leur aide. ]], 0.328635, 0.360511, 0, 881, 20083, 743, -1, 0, 3},
-        {1540, "Buru l'Insatiable", [[ Buru l'Insatiable est une créature immense dotée d'une force cruelle. Dans chacune des trois ruches de Silithus dort au moins un colosse silithide, attendant de rejoindre la bataille. Après que le Gong du Scarabée eut résonné et que les portes antiques d'Ahn'Qiraj se furent ouvertes, les horreurs des silithides et de leurs maîtres qirajis furent révélées. Les gigantesques cristaux résonants qirajis percèrent l'écorce terrestre du Kalimdor, et les colosses des ruches de Silithus émergèrent de leurs cocons sous les ruches. Ils entendirent l'appel au combat et se levèrent pour servir leurs maîtres. Ils projetèrent leur ombre immense sur tout Silithus et se lancèrent dans la guerre. ]], 0.697866, 0.620511, 0, 881, 20088, 743, -1, 0, 4},
-        {1541, "Ayamiss la Chasseresse", [[ Ayamiss la Chasseresse est la chef des silithides volants. Ils sont très agressifs et se rencontrent souvent en essaim. Il existe également une version bien plus petite d'entre eux, toujours en train de voler près des nids. ]], 0.616841, 0.905126, 0, 881, 20093, 743, -1, 0, 5},
-        {1542, "Ossirian l'Invulnérable", [[ Ossirian l'Invulnérable est le seul hurusat connu ; il fut à l'origine un anubisath, qui obtint cette nouvelle forme après avoir vaincu le dragon de bronze Grakkarond. ]], 0.429149, 0.695895, 0, 881, 20099, 743, -1, 0, 6},
+        {1540, "Buru Grandgosier", [[ Buru l'Insatiable est une créature immense dotée d'une force cruelle. Dans chacune des trois ruches de Silithus dort au moins un colosse silithide, attendant de rejoindre la bataille. Après que le Gong du Scarabée eut résonné et que les portes antiques d'Ahn'Qiraj se furent ouvertes, les horreurs des silithides et de leurs maîtres qirajis furent révélées. Les gigantesques cristaux résonants qirajis percèrent l'écorce terrestre du Kalimdor, et les colosses des ruches de Silithus émergèrent de leurs cocons sous les ruches. Ils entendirent l'appel au combat et se levèrent pour servir leurs maîtres. Ils projetèrent leur ombre immense sur tout Silithus et se lancèrent dans la guerre. ]], 0.697866, 0.620511, 0, 881, 20088, 743, -1, 0, 4},
+        {1541, "Ayamiss le Chasseur", [[ Ayamiss la Chasseresse est la chef des silithides volants. Ils sont très agressifs et se rencontrent souvent en essaim. Il existe également une version bien plus petite d'entre eux, toujours en train de voler près des nids. ]], 0.616841, 0.905126, 0, 881, 20093, 743, -1, 0, 5},
+        {1542, "Ossirian l'Intouché", [[ Ossirian l'Invulnérable est le seul hurusat connu ; il fut à l'origine un anubisath, qui obtint cette nouvelle forme après avoir vaincu le dragon de bronze Grakkarond. ]], 0.429149, 0.695895, 0, 881, 20099, 743, -1, 0, 6},
     },
     [744] = {
-        {1543, "Prophète Skeram", [[ Le prophète Skeram est un chef religieux important d'Ahn'Qiraj et l'auteur de la Prophétie de C'Thun. Il est le premier boss du Temple d'Ahn'Qiraj, et il doit être vaincu pour accéder au reste de la zone. ]], 0.457866, 0.522049, 2, 893, 20105, 744, -1, 0, 0},
-        {1544, "Gardien de guerre Sartura", [[ Le Gardien de guerre Sartura est un autre chef des gardes de combat qirajis et le deuxième boss du Temple d'Ahn'Qiraj. Il est accompagné de 3 gardes. Ils sont très rapides et maniables, mais nettement moins blindés que les autres types de qirajis. ]], 0.445559, 0.335896, 1, 893, 20124, 744, -1, 0, 2},
+        {1543, "Le prophète Skeram", [[ Le prophète Skeram est un chef religieux important d'Ahn'Qiraj et l'auteur de la Prophétie de C'Thun. Il est le premier boss du Temple d'Ahn'Qiraj, et il doit être vaincu pour accéder au reste de la zone. ]], 0.457866, 0.522049, 2, 893, 20105, 744, -1, 0, 0},
+        {1544, "Garde de guerre Sartura", [[ Le Gardien de guerre Sartura est un autre chef des gardes de combat qirajis et le deuxième boss du Temple d'Ahn'Qiraj. Il est accompagné de 3 gardes. Ils sont très rapides et maniables, mais nettement moins blindés que les autres types de qirajis. ]], 0.445559, 0.335896, 1, 893, 20124, 744, -1, 0, 2},
         {1545, "Fankriss l'Inflexible", [[ Fankriss l'Inflexible est un ver des sables, frère aîné de Kurinnaxx et troisième boss du Temple d'Ahn'Qiraj. On sait peu de choses à leur sujet, mais on les trouve dans les régions infestées de silithides. ]], 0.622995, 0.218973, 1, 893, 20130, 744, -1, 0, 3},
         {1546, "Princesse Huhuran", [[ La princesse Huhuran est une grande guêpe silithide et le quatrième boss du Temple d'Ahn'Qiraj. Pour la vaincre, tous les joueurs doivent disposer d'une résistance très élevée à la nature. Les guêpes silithides sont des troupes d'assaut volantes des silithides. Elles sont très agressives et se rencontrent souvent en essaim. Il existe également une version bien plus petite d'entre elles, toujours en train de voler près des nids. ]], 0.435303, 0.503588, 1, 893, 20138, 744, -1, 0, 5},
-        {1547, "Royauté silithide", [[ La Royauté silithide, également connue sous le nom de Trinité ou Triumvirat, est un boss facultatif du Temple d'Ahn'Qiraj. Elle est composée des créatures suivantes : seigneur Kri, princesse Yauj et Vem, qu'il faut combattre simultanément. ]], 0.284533, 0.497434, 1, 893, 20110, 744, -1, 0, 1},
-        {1548, "Vem l'Immonde", [[ Vem l'Immonde est un boss facultatif du Temple d'Ahn'Qiraj, une limace géante accessible après la mort de Fankriss l'Inflexible. Ce boss exige une résistance élevée à la nature, car il utilise des flèches empoisonnées à effet de zone infligeant des dégâts directs accompagnés d'un effet dans la durée. ]], 0.721456, 0.178973, 1, 893, 20135, 744, -1, 0, 4},
-        {1549, "Empereurs jumeaux", [[ Les frères ingénieux Vek'lor et Vek'nilash sont connus sous le nom d'Empereurs jumeaux. Ils gouvernent les qirajis depuis le sanctuaire de leur temple. Dans cette zone, des scarabées et des scorpions qirajis sont éparpillés sur tout le sol et, s'ils sont tués, réapparaissent constamment tout au long du combat. Ils sont neutres à l'origine, mais deviennent hostiles s'ils sont touchés par un sort à effet de zone ou lorsque l'empereur Vek'nilash provoque une mutation. ]], 0.606584, 0.697434, 1, 893, 20143, 744, -1, 0, 6},
+        {1547, "Seigneur Kri", [[ La Royauté silithide, également connue sous le nom de Trinité ou Triumvirat, est un boss facultatif du Temple d'Ahn'Qiraj. Elle est composée des créatures suivantes : seigneur Kri, princesse Yauj et Vem, qu'il faut combattre simultanément. ]], 0.284533, 0.497434, 1, 893, 20110, 744, -1, 0, 1},
+        {1548, "Viscidus", [[ Vem l'Immonde est un boss facultatif du Temple d'Ahn'Qiraj, une limace géante accessible après la mort de Fankriss l'Inflexible. Ce boss exige une résistance élevée à la nature, car il utilise des flèches empoisonnées à effet de zone infligeant des dégâts directs accompagnés d'un effet dans la durée. ]], 0.721456, 0.178973, 1, 893, 20135, 744, -1, 0, 4},
+        {1549, "Empereur Vek’lor", [[ Les frères ingénieux Vek'lor et Vek'nilash sont connus sous le nom d'Empereurs jumeaux. Ils gouvernent les qirajis depuis le sanctuaire de leur temple. Dans cette zone, des scarabées et des scorpions qirajis sont éparpillés sur tout le sol et, s'ils sont tués, réapparaissent constamment tout au long du combat. Ils sont neutres à l'origine, mais deviennent hostiles s'ils sont touchés par un sort à effet de zone ou lorsque l'empereur Vek'nilash provoque une mutation. ]], 0.606584, 0.697434, 1, 893, 20143, 744, -1, 0, 6},
         {1550, "Ouro", [[ Ancien ver des sables, Ouro est une créature d'une force légendaire. La rumeur veut qu'il ait été créé par le Dieu ancien C'Thun lui-même, comme une moquerie de la vie. Il réside dans le Temple d'Ahn'Qiraj. Sa peau, anormalement épaisse, est presque impénétrable. Elle demeure pourtant souple et lui permet de se déplacer avec la vitesse et la grâce d'une créature bien plus petite. ]], 0.301969, 0.818972, 1, 893, 20154, 744, -1, 0, 7},
-        {1551, "C'Thun", [[ C'Thun est un Dieu ancien de la folie et du chaos, l'une des quatre entités anciennes et puissantes ayant jadis régné sur le monde. C'Thun a créé les qirajis et vit dans la cité-royaume d'Ahn'Qiraj à Silithus. C'est une entité incompréhensiblement malveillante, dont le pouvoir envahissant imprègne Azeroth depuis des temps immémoriaux. Ces dernières années, C'Thun s'est libéré. Les défenseurs de l'Alliance et de la Horde décidèrent de ne pas attendre que le Dieu ancien ne rassemble ses forces. Ils envahirent la cité-royaume d'Ahn'Qiraj, combattant d'innombrables qirajis et silithides avant d'affronter enfin le dieu malveillant et de le vaincre. Néanmoins, nul ne sait si Azeroth a réellement vu le dernier de C'Thun. ]], 0.570687, 0.625126, 3, 893, 20160, 744, -1, 0, 8},
+        {1551, "Oeil de C'Thun", [[ C'Thun est un Dieu ancien de la folie et du chaos, l'une des quatre entités anciennes et puissantes ayant jadis régné sur le monde. C'Thun a créé les qirajis et vit dans la cité-royaume d'Ahn'Qiraj à Silithus. C'est une entité incompréhensiblement malveillante, dont le pouvoir envahissant imprègne Azeroth depuis des temps immémoriaux. Ces dernières années, C'Thun s'est libéré. Les défenseurs de l'Alliance et de la Horde décidèrent de ne pas attendre que le Dieu ancien ne rassemble ses forces. Ils envahirent la cité-royaume d'Ahn'Qiraj, combattant d'innombrables qirajis et silithides avant d'affronter enfin le dieu malveillant et de le vaincre. Néanmoins, nul ne sait si Azeroth a réellement vu le dernier de C'Thun. ]], 0.570687, 0.625126, 3, 893, 20160, 744, -1, 0, 8},
     },
     [745] = {
-        {11008, "Térestian Sabot-Tordu", [[ Les satyres sont des créatures répugnantes. Elfes de la nuit déchus, séduits par la puissance des démons, corrompus et brisés au point que leur apparence reflète leur état intérieur.
+        {11008, "Terestian Malsabot", [[ Les satyres sont des créatures répugnantes. Elfes de la nuit déchus, séduits par la puissance des démons, corrompus et brisés au point que leur apparence reflète leur état intérieur.
 Térestian Sabot-Tordu s'est introduit à Karazhan, espérant y ouvrir un portail vers le Maelström du Néant afin que son maître démoniaque puisse venir dans ce monde et, bien sûr, le récompenser. Mais ses plans sont voués à l'échec, car les héros d'Azeroth empêcheront ce rituel.
 Enfin, c'est ce qu'on espère... ]], 0.525638, 0.696924, 28, 867, 12265, 745, 4, 0, 7},
-        {11009, "Terreur du Néant", [[ Ce dragon du Néant, s'étant infiltré on ne sait comment à Karazhan, s'est installé dans l'observatoire de Medivh. Une telle créature se sent chez elle à Karazhan, et il semble que sa puissance n'ait fait que croître à force de côtoyer ce château maudit. En ouvrant des portails vers des lieux inconnus, la Terreur du Néant y puise sa force, et n'hésitera certainement pas à attaquer avec fureur quiconque menace son antre. ]], 0.359484, 0.418462, 30, 867, 12240, 745, 4, 0, 9},
-        {11010, "Ruine nocturne", [[ La puissance de Medivh était telle qu'il parvint, par la seule force de sa volonté, à consumer de l'intérieur le dragon bleu Arcanagos, venu se poser près de la tour du sorcier. Aujourd'hui, ce malheureux est connu sous le nom de Ruine nocturne, un squelette de dragon éternellement embrasé, enchaîné au lieu de sa terrible fin, condamné à revenir sans cesse.
+        {11009, "Taerar", [[ Ce dragon du Néant, s'étant infiltré on ne sait comment à Karazhan, s'est installé dans l'observatoire de Medivh. Une telle créature se sent chez elle à Karazhan, et il semble que sa puissance n'ait fait que croître à force de côtoyer ce château maudit. En ouvrant des portails vers des lieux inconnus, la Terreur du Néant y puise sa force, et n'hésitera certainement pas à attaquer avec fureur quiconque menace son antre. ]], 0.359484, 0.418462, 30, 867, 12240, 745, 4, 0, 9},
+        {11010, "Plaie-de-nuit", [[ La puissance de Medivh était telle qu'il parvint, par la seule force de sa volonté, à consumer de l'intérieur le dragon bleu Arcanagos, venu se poser près de la tour du sorcier. Aujourd'hui, ce malheureux est connu sous le nom de Ruine nocturne, un squelette de dragon éternellement embrasé, enchaîné au lieu de sa terrible fin, condamné à revenir sans cesse.
 Il est temps de mettre fin à ses souffrances. ]], 0.472000, 0.925000, 23, 867, 12292, 745, 4, 0, 10},
         {11011, "Prince Malchezaar", [[ Nul ne sait comment le prince Malchezaar, l'un des plus hauts hiérarques érédar, s'est retrouvé à Karazhan, mais ses activités dans ce château sinistre ne font aucun doute. L'étage supérieur de la tour de Karazhan, où l'on peut croiser Malchezaar, est enveloppé de ténèbres : la réalité elle-même a commencé à se déformer, se fondant avec un lieu étrange, le Néant-mer. Peut-être Malchezaar voulait-il faire de Karazhan son avant-poste pour une invasion future de sa légion en Azeroth, ou peut-être ne s'intéressait-il qu'aux sombres secrets du château et à la nature de sa malédiction. Quoi qu'il en soit, ce démon doit être détruit. ]], 0.514356, 0.309231, 34, 867, 12320, 745, 4, 0, 11},
-        {1552, "Chambres des serviteurs", [[ De nombreuses créatures dangereuses habitent Karazhan. Pour invoquer le boss des chambres des serviteurs, il faut tuer les créatures qui s'y trouvent. ]], 0.597000, 0.292000, 1, 867, 21153, 745, 1, 0, 1},
+        {1552, "Rodak le ravageur", [[ De nombreuses créatures dangereuses habitent Karazhan. Pour invoquer le boss des chambres des serviteurs, il faut tuer les créatures qui s'y trouvent. ]], 0.597000, 0.292000, 1, 867, 21153, 745, 1, 0, 1},
         {1553, "Attumen le Veneur", [[ Attumen le Veneur était un éleveur de chevaux connu de toute l'Alliance. Les chevaux lui obéissaient comme s'il leur parlait dans leur propre langue, et ses montures étaient achetées à prix d'or par la noblesse de tous les royaumes. Comment ce veneur et son cheval se sont-ils retrouvés sous les voûtes de Karazhan ? Nous ne le saurons jamais, car la tour maudite garde jalousement ses secrets, mais une chose est certaine : Attumen est devenu bien plus sanguinaire qu'il ne l'était de son vivant. ]], 0.452819, 0.826154, 1, 867, 12041, 745, 1, 0, 2},
         {1554, "Moroes", [[ Moroes était un vieil homme vivant à Karazhan, servant de majordome à Medivh. Il connaissait les visions révélées par la magie du château, mais s'efforçait de les éviter. Moroes périt de la main de son maître devenu fou et tomba sous l'effet de la malédiction de Karazhan, qui le fera renaître éternellement sous forme de mort-vivant. Il continue malgré tout de maintenir l'ordre dans le château et de le protéger des visiteurs indésirables. ]], 0.271280, 0.635385, 3, 867, 12060, 745, 1, 0, 3},
-        {1555, "Vierge pieuse", [[ Création des titans incarnant pureté et force de volonté, la Vierge pieuse arriva à Karazhan, révoltée par les vices et les crimes des habitants des lieux. Cependant, la malédiction de ce mystérieux château finit par l'engloutir également. Aujourd'hui, la Vierge pieuse est devenue, elle aussi, une esclave de Karazhan, condamnée à extirper sans espoir des vices qui ne cessent de réapparaître. ]], 0.834384, 0.500042, 4, 867, 12109, 745, 1, 0, 4},
-        {1556, "Salle d'opéra", [[ Karazhan est un immense château, et quel château sans salle d'opéra ? Barnes, le présentateur de l'Opéra, tout comme les autres habitants de Karazhan, est resté figé dans le temps, répétant sans cesse ses représentations. Mais tant que la représentation continue, impossible de traverser la salle d'opéra. Peut-être faudrait-il participer à la mise en scène de Barnes pour poursuivre son chemin vers les profondeurs de Karazhan... ]], 0.181023, 0.350770, 4, 867, 12123, 745, 1, 0, 5},
-        {1557, "Le Gardien", [[ Karazhan est immense et regorge de trésors qui attireraient sans doute avec plaisir voleurs et aventuriers de toutes sortes. Des gardiens ensorcelés, de puissants golems saturés de magie, protègent les couloirs de Karazhan, et le plus puissant d'entre eux, le Gardien, protège la galerie, empêchant toute exploration plus poussée de ce château maudit. ]], 0.494869, 0.366155, 9, 867, 12177, 745, 1, 0, 7},
+        {1555, "Damoiselle de vertu", [[ Création des titans incarnant pureté et force de volonté, la Vierge pieuse arriva à Karazhan, révoltée par les vices et les crimes des habitants des lieux. Cependant, la malédiction de ce mystérieux château finit par l'engloutir également. Aujourd'hui, la Vierge pieuse est devenue, elle aussi, une esclave de Karazhan, condamnée à extirper sans espoir des vices qui ne cessent de réapparaître. ]], 0.834384, 0.500042, 4, 867, 12109, 745, 1, 0, 4},
+        {1556, "Le Grand Méchant Loup", [[ Karazhan est un immense château, et quel château sans salle d'opéra ? Barnes, le présentateur de l'Opéra, tout comme les autres habitants de Karazhan, est resté figé dans le temps, répétant sans cesse ses représentations. Mais tant que la représentation continue, impossible de traverser la salle d'opéra. Peut-être faudrait-il participer à la mise en scène de Barnes pour poursuivre son chemin vers les profondeurs de Karazhan... ]], 0.181023, 0.350770, 4, 867, 12123, 745, 1, 0, 5},
+        {1557, "Le conservateur", [[ Karazhan est immense et regorge de trésors qui attireraient sans doute avec plaisir voleurs et aventuriers de toutes sortes. Des gardiens ensorcelés, de puissants golems saturés de magie, protègent les couloirs de Karazhan, et le plus puissant d'entre eux, le Gardien, protège la galerie, empêchant toute exploration plus poussée de ce château maudit. ]], 0.494869, 0.366155, 9, 867, 12177, 745, 1, 0, 7},
         {1559, "Ombre d'Aran", [[ Écho du père de Medivh, ombre pâle d'un mage jadis grandiose, erre sans but dans la bibliothèque de Karazhan. Cette ombre, ayant perdu jusqu'à la dernière once de raison dans cette torture éternelle du château maudit, mais n'ayant perdu aucune once de puissance, prendra sans hésiter tout visiteur indésirable de Karazhan pour la cause de ses souffrances éternelles. ]], 0.716407, 0.260001, 10, 867, 12212, 745, 1, 0, 8},
-        {1560, "Térestian Sabot-Tordu", [[ Les satyres sont des créatures répugnantes. Elfes de la nuit déchus, séduits par la puissance des démons, corrompus et brisés au point que leur apparence reflète leur état intérieur.
+        {1560, "Terestian Malsabot", [[ Les satyres sont des créatures répugnantes. Elfes de la nuit déchus, séduits par la puissance des démons, corrompus et brisés au point que leur apparence reflète leur état intérieur.
 Térestian Sabot-Tordu s'est introduit à Karazhan, espérant y ouvrir un portail vers le Maelström du Néant afin que son maître démoniaque puisse venir dans ce monde et, bien sûr, le récompenser. Mais ses plans sont voués à l'échec, car les héros d'Azeroth empêcheront ce rituel.
 Enfin, c'est ce qu'on espère... ]], 0.525638, 0.696924, 11, 867, 12265, 745, 1, 0, 9},
-        {1561, "Terreur du Néant", [[ Ce dragon du Néant, s'étant infiltré on ne sait comment à Karazhan, s'est installé dans l'observatoire de Medivh. Une telle créature se sent chez elle à Karazhan, et il semble que sa puissance n'ait fait que croître à force de côtoyer ce château maudit. En ouvrant des portails vers des lieux inconnus, la Terreur du Néant y puise sa force, et n'hésitera certainement pas à attaquer avec fureur quiconque menace son antre. ]], 0.359484, 0.418462, 13, 867, 12240, 745, 1, 0, 10},
-        {1562, "Ruine nocturne", [[ La puissance de Medivh était telle qu'il parvint, par la seule force de sa volonté, à consumer de l'intérieur le dragon bleu Arcanagos, venu se poser près de la tour du sorcier. Aujourd'hui, ce malheureux est connu sous le nom de Ruine nocturne, un squelette de dragon éternellement embrasé, enchaîné au lieu de sa terrible fin, condamné à revenir sans cesse.
+        {1561, "Taerar", [[ Ce dragon du Néant, s'étant infiltré on ne sait comment à Karazhan, s'est installé dans l'observatoire de Medivh. Une telle créature se sent chez elle à Karazhan, et il semble que sa puissance n'ait fait que croître à force de côtoyer ce château maudit. En ouvrant des portails vers des lieux inconnus, la Terreur du Néant y puise sa force, et n'hésitera certainement pas à attaquer avec fureur quiconque menace son antre. ]], 0.359484, 0.418462, 13, 867, 12240, 745, 1, 0, 10},
+        {1562, "Plaie-de-nuit", [[ La puissance de Medivh était telle qu'il parvint, par la seule force de sa volonté, à consumer de l'intérieur le dragon bleu Arcanagos, venu se poser près de la tour du sorcier. Aujourd'hui, ce malheureux est connu sous le nom de Ruine nocturne, un squelette de dragon éternellement embrasé, enchaîné au lieu de sa terrible fin, condamné à revenir sans cesse.
 Il est temps de mettre fin à ses souffrances. ]], 0.471000, 0.923000, 6, 867, 12292, 745, 1, 0, 6},
         {1563, "Prince Malchezaar", [[ Nul ne sait comment le prince Malchezaar, l'un des plus hauts hiérarques érédar, s'est retrouvé à Karazhan, mais ses activités dans ce château sinistre ne font aucun doute. L'étage supérieur de la tour de Karazhan, où l'on peut croiser Malchezaar, est enveloppé de ténèbres : la réalité elle-même a commencé à se déformer, se fondant avec un lieu étrange, le Néant-mer. Peut-être Malchezaar voulait-il faire de Karazhan son avant-poste pour une invasion future de sa légion en Azeroth, ou peut-être ne s'intéressait-il qu'aux sombres secrets du château et à la nature de sa malédiction. Quoi qu'il en soit, ce démon doit être détruit. ]], 0.514356, 0.309231, 17, 867, 12320, 745, 1, 0, 12},
-        {11656, "Échecs", [[ Pour lancer l'événement, il faut parler à l'Ombre de Medivh. Au fil de la partie, les joueurs peuvent contrôler différentes pièces d'échecs représentant les participants à la Première Guerre en Azeroth. Medivh triche parfois. Si le raid remporte la partie, il peut récupérer le butin une fois que Medivh a reconnu sa défaite. ]], 0.358000, 0.622000, 14, 867, 21159, 745, 1, 0, 11},
+        {11656, "Echo de Medivh", [[ Pour lancer l'événement, il faut parler à l'Ombre de Medivh. Au fil de la partie, les joueurs peuvent contrôler différentes pièces d'échecs représentant les participants à la Première Guerre en Azeroth. Medivh triche parfois. Si le raid remporte la partie, il peut récupérer le butin une fois que Medivh a reconnu sa défaite. ]], 0.358000, 0.622000, 14, 867, 21159, 745, 1, 0, 11},
         {11002, "Attumen le Veneur", [[ Attumen le Veneur était un éleveur de chevaux connu de toute l'Alliance. Les chevaux lui obéissaient comme s'il leur parlait dans leur propre langue, et ses montures étaient achetées à prix d'or par la noblesse de tous les royaumes. Comment ce veneur et son cheval se sont-ils retrouvés sous les voûtes de Karazhan ? Nous ne le saurons jamais, car la tour maudite garde jalousement ses secrets, mais une chose est certaine : Attumen est devenu bien plus sanguinaire qu'il ne l'était de son vivant. ]], 0.452819, 0.826154, 18, 867, 12041, 745, 4, 0, 1},
         {11003, "Moroes", [[ Moroes était un vieil homme vivant à Karazhan, servant de majordome à Medivh. Il connaissait les visions révélées par la magie du château, mais s'efforçait de les éviter. Moroes périt de la main de son maître devenu fou et tomba sous l'effet de la malédiction de Karazhan, qui le fera renaître éternellement sous forme de mort-vivant. Il continue malgré tout de maintenir l'ordre dans le château et de le protéger des visiteurs indésirables. ]], 0.271280, 0.635385, 20, 867, 12060, 745, 4, 0, 2},
-        {11004, "Vierge pieuse", [[ Création des titans incarnant pureté et force de volonté, la Vierge pieuse arriva à Karazhan, révoltée par les vices et les crimes des habitants des lieux. Cependant, la malédiction de ce mystérieux château finit par l'engloutir également. Aujourd'hui, la Vierge pieuse est devenue, elle aussi, une esclave de Karazhan, condamnée à extirper sans espoir des vices qui ne cessent de réapparaître. ]], 0.834384, 0.500042, 21, 867, 12109, 745, 4, 0, 3},
-        {11005, "Salle d'opéra", [[ Karazhan est un immense château, et quel château sans salle d'opéra ? Barnes, le présentateur de l'Opéra, tout comme les autres habitants de Karazhan, est resté figé dans le temps, répétant sans cesse ses représentations. Mais tant que la représentation continue, impossible de traverser la salle d'opéra. Peut-être faudrait-il participer à la mise en scène de Barnes pour poursuivre son chemin vers les profondeurs de Karazhan... ]], 0.181023, 0.350770, 21, 867, 12123, 745, 4, 0, 4},
-        {11006, "Le Gardien", [[ Karazhan est immense et regorge de trésors qui attireraient sans doute avec plaisir voleurs et aventuriers de toutes sortes. Des gardiens ensorcelés, de puissants golems saturés de magie, protègent les couloirs de Karazhan, et les plus puissants d'entre eux, les Gardiens, protègent la galerie, empêchant toute exploration plus poussée de ce château maudit. ]], 0.494869, 0.366155, 26, 867, 12177, 745, 4, 0, 6},
+        {11004, "Damoiselle de vertu", [[ Création des titans incarnant pureté et force de volonté, la Vierge pieuse arriva à Karazhan, révoltée par les vices et les crimes des habitants des lieux. Cependant, la malédiction de ce mystérieux château finit par l'engloutir également. Aujourd'hui, la Vierge pieuse est devenue, elle aussi, une esclave de Karazhan, condamnée à extirper sans espoir des vices qui ne cessent de réapparaître. ]], 0.834384, 0.500042, 21, 867, 12109, 745, 4, 0, 3},
+        {11005, "Le Grand Méchant Loup", [[ Karazhan est un immense château, et quel château sans salle d'opéra ? Barnes, le présentateur de l'Opéra, tout comme les autres habitants de Karazhan, est resté figé dans le temps, répétant sans cesse ses représentations. Mais tant que la représentation continue, impossible de traverser la salle d'opéra. Peut-être faudrait-il participer à la mise en scène de Barnes pour poursuivre son chemin vers les profondeurs de Karazhan... ]], 0.181023, 0.350770, 21, 867, 12123, 745, 4, 0, 4},
+        {11006, "The Curator", [[ Karazhan est immense et regorge de trésors qui attireraient sans doute avec plaisir voleurs et aventuriers de toutes sortes. Des gardiens ensorcelés, de puissants golems saturés de magie, protègent les couloirs de Karazhan, et les plus puissants d'entre eux, les Gardiens, protègent la galerie, empêchant toute exploration plus poussée de ce château maudit. ]], 0.494869, 0.366155, 26, 867, 12177, 745, 4, 0, 6},
         {11007, "Ombre d'Aran", [[ Écho du père de Medivh, ombre pâle d'un mage jadis grandiose, erre sans but dans la bibliothèque de Karazhan. Cette ombre, ayant perdu jusqu'à la dernière once de raison dans cette torture éternelle du château maudit, mais n'ayant perdu aucune once de puissance, prendra sans hésiter tout visiteur indésirable de Karazhan pour la cause de ses souffrances éternelles. ]], 0.716407, 0.260001, 27, 867, 12212, 745, 4, 0, 8},
     },
     [746] = {
-        {11012, "Roi Molgar", [[ Le roi Molgar et ses champions sont les ogres les plus puissants du Bassin de l'Æther ; ils forment la garde de Gruul, protégeant son Antre. Chacun de ces champions possède des capacités uniques, et leur puissance combinée ne peut être surpassée que par la poigne d'acier de Gruul. ]], 0.550255, 0.570769, 2, 864, 11981, 746, 8, 0, 0},
-        {11013, "Gruul le Tueur de dragons", [[ Ce gronn gigantesque s'est fait connaître sous le nom de Tueur de dragons lors du combat contre la Couvée noire de Deathwing, qui souhaitait cacher les œufs de sa couvée aux Hauteurs-du-Rongefer. Résidant dans l'immense caverne de l'Antre de Gruul, il représente à lui seul une menace terrifiante pour tout non-ogre aux Hauteurs-du-Rongefer. ]], 0.249486, 0.283077, 2, 864, 11960, 746, 8, 0, 1},
-        {1564, "Roi Molgar", [[ Le roi Molgar et ses champions sont les ogres les plus puissants du Bassin de l'Æther ; ils forment la garde de Gruul, protégeant son Antre. Chacun de ces champions possède des capacités uniques, et leur puissance combinée ne peut être surpassée que par la poigne d'acier de Gruul. ]], 0.550255, 0.570769, 1, 864, 11981, 746, 2, 0, 0},
-        {1565, "Gruul le Tueur de dragons", [[ Ce gronn gigantesque s'est fait connaître sous le nom de Tueur de dragons lors du combat contre la Couvée noire de Deathwing, qui souhaitait cacher les œufs de sa couvée aux Hauteurs-du-Rongefer. Résidant dans l'immense caverne de l'Antre de Gruul, il représente à lui seul une menace terrifiante pour tout non-ogre aux Hauteurs-du-Rongefer. ]], 0.199486, 0.283077, 1, 864, 11960, 746, 2, 0, 1},
+        {11012, "Cho'war le Pilleur", [[ Le roi Molgar et ses champions sont les ogres les plus puissants du Bassin de l'Æther ; ils forment la garde de Gruul, protégeant son Antre. Chacun de ces champions possède des capacités uniques, et leur puissance combinée ne peut être surpassée que par la poigne d'acier de Gruul. ]], 0.550255, 0.570769, 2, 864, 11981, 746, 8, 0, 0},
+        {11013, "Gruul le Tue-dragon", [[ Ce gronn gigantesque s'est fait connaître sous le nom de Tueur de dragons lors du combat contre la Couvée noire de Deathwing, qui souhaitait cacher les œufs de sa couvée aux Hauteurs-du-Rongefer. Résidant dans l'immense caverne de l'Antre de Gruul, il représente à lui seul une menace terrifiante pour tout non-ogre aux Hauteurs-du-Rongefer. ]], 0.249486, 0.283077, 2, 864, 11960, 746, 8, 0, 1},
+        {1564, "Cho'war le Pilleur", [[ Le roi Molgar et ses champions sont les ogres les plus puissants du Bassin de l'Æther ; ils forment la garde de Gruul, protégeant son Antre. Chacun de ces champions possède des capacités uniques, et leur puissance combinée ne peut être surpassée que par la poigne d'acier de Gruul. ]], 0.550255, 0.570769, 1, 864, 11981, 746, 2, 0, 0},
+        {1565, "Gruul le Tue-dragon", [[ Ce gronn gigantesque s'est fait connaître sous le nom de Tueur de dragons lors du combat contre la Couvée noire de Deathwing, qui souhaitait cacher les œufs de sa couvée aux Hauteurs-du-Rongefer. Résidant dans l'immense caverne de l'Antre de Gruul, il représente à lui seul une menace terrifiante pour tout non-ogre aux Hauteurs-du-Rongefer. ]], 0.199486, 0.283077, 1, 864, 11960, 746, 2, 0, 1},
     },
     [747] = {
         {11014, "Magtheridon", [[ Illidan aida Akama à vaincre les démons et les orcs de Magtheridon, et ensemble, ils prirent d'assaut la Citadelle des Flammes infernales. Magtheridon finit par tomber sous les coups d'Illidan. Du moins, c'est ce que l'on croyait... Lorsqu'Illidan écrasa Magtheridon, ce dernier se trouvait entre la vie et la mort, mais comprenant cela, Illidan décida de le laisser en vie. Il ordonna à ses serviteurs de cacher le corps de Magtheridon dans une grotte, afin d'utiliser son sang ardent pour entretenir la puissance démoniaque des orcs. Les serviteurs d'Illidan prélèvent quotidiennement la majeure partie du sang du démon, ce qui le maintient dans un état comateux. Si Magtheridon venait un jour à se réveiller, il tenterait sans doute de reconquérir le Bassin de l'Æther... ]], 0.691795, 0.743077, 1, 865, 11919, 747, 8, 0, 0},
@@ -510,52 +510,52 @@ Il est temps de mettre fin à ses souffrances. ]], 0.471000, 0.923000, 6, 867, 1
     },
     [748] = {
         {1567, "Hydross l'Instable", [[ Un énorme élémentaire d'eau habite le Sanctuaire des serpents, se purifiant de la corruption qui l'a frappé, comme une grande partie des élémentaires du Bassin de l'Æther, et aidant les élémentaires plus jeunes à se purifier également. Mais malgré tous les efforts des naga, l'état d'Hydross reste instable, et dès qu'il sort du rayon d'action des machines construites par les naga, le poison l'envahit de nouveau. ]], 0.363590, 0.847692, 1, 862, 700, 748, 2, 0, 0},
-        {1568, "Rôdeur des profondeurs", [[ D'étonnantes créatures peuplent le Bassin de l'Æther, et toutes n'habitent pas la surface. Au plus profond du Sanctuaire des serpents vit une créature étrange, semblable aux krakens habitant les mers du nord d'Azeroth : le Rôdeur des profondeurs. Quiconque perturbe cet étrange point d'eau, où les naga nourrissent le Rôdeur, y fera une découverte pour le moins... inhabituelle. ]], 0.402564, 0.581538, 1, 862, 711, 748, 2, 0, 1},
-        {1569, "Léotheras l'Aveugle", [[ Léotheras fut l'un des cinq elfes de sang qu'Illidan prit sous son aile pour en faire des chasseurs de démons. Mais la voie du chasseur de démons n'est pas pour les âmes faibles, et trois des cinq y perdirent la vie. Un sort bien plus sombre attendait Léotheras, faible d'esprit. Après avoir subi le rituel et acquis un démon intérieur, Léotheras ne parvint pas à en garder le contrôle et sombra dans la folie. Les tisseurs de sorts du Sanctuaire des serpents le maintiennent captif, tentant de lui rendre la raison, mais en vain, car dans l'esprit de Léotheras résonnent désormais toujours deux voix, la sienne et celle du démon. ]], 0.417949, 0.255385, 1, 862, 722, 748, 2, 0, 2},
-        {1570, "Seigneur des profondeurs Karathress", [[ Karathress commande la garde personnelle de dame Vashj. Guerrier expérimenté et commandant impitoyable, Karathress a choisi trois gardes dotés de capacités uniques. Ensemble, ils forment la dernière ligne de défense du Sanctuaire des serpents et demeurent invaincus, car Karathress possède un secret que l'on ne découvre qu'au seuil de la mort. ]], 0.504103, 0.176924, 1, 862, 738, 748, 2, 0, 3},
-        {1571, "Morogrim Marche-vagues", [[ Les géants marins, puissants, malveillants et généralement peu intelligents, sont des humanoïdes que l'on trouve sur les îles oubliées d'Azeroth, généralement hostiles à tout et à tous. Morogrim Marche-vagues fait exception à cette règle. On ignore comment les naga ont convaincu ce géant de s'installer dans le Sanctuaire des serpents, mais il réside désormais ici, entouré d'une horde de murlocs qui lui obéissent. ]], 0.596410, 0.260001, 1, 862, 769, 748, 2, 0, 4},
+        {1568, "Le Rôdeur d'En bas", [[ D'étonnantes créatures peuplent le Bassin de l'Æther, et toutes n'habitent pas la surface. Au plus profond du Sanctuaire des serpents vit une créature étrange, semblable aux krakens habitant les mers du nord d'Azeroth : le Rôdeur des profondeurs. Quiconque perturbe cet étrange point d'eau, où les naga nourrissent le Rôdeur, y fera une découverte pour le moins... inhabituelle. ]], 0.402564, 0.581538, 1, 862, 711, 748, 2, 0, 1},
+        {1569, "Leotheras l'Aveugle", [[ Léotheras fut l'un des cinq elfes de sang qu'Illidan prit sous son aile pour en faire des chasseurs de démons. Mais la voie du chasseur de démons n'est pas pour les âmes faibles, et trois des cinq y perdirent la vie. Un sort bien plus sombre attendait Léotheras, faible d'esprit. Après avoir subi le rituel et acquis un démon intérieur, Léotheras ne parvint pas à en garder le contrôle et sombra dans la folie. Les tisseurs de sorts du Sanctuaire des serpents le maintiennent captif, tentant de lui rendre la raison, mais en vain, car dans l'esprit de Léotheras résonnent désormais toujours deux voix, la sienne et celle du démon. ]], 0.417949, 0.255385, 1, 862, 722, 748, 2, 0, 2},
+        {1570, "Seigneur des fonds Karathress", [[ Karathress commande la garde personnelle de dame Vashj. Guerrier expérimenté et commandant impitoyable, Karathress a choisi trois gardes dotés de capacités uniques. Ensemble, ils forment la dernière ligne de défense du Sanctuaire des serpents et demeurent invaincus, car Karathress possède un secret que l'on ne découvre qu'au seuil de la mort. ]], 0.504103, 0.176924, 1, 862, 738, 748, 2, 0, 3},
+        {1571, "Morogrim Marcheur-des-flots", [[ Les géants marins, puissants, malveillants et généralement peu intelligents, sont des humanoïdes que l'on trouve sur les îles oubliées d'Azeroth, généralement hostiles à tout et à tous. Morogrim Marche-vagues fait exception à cette règle. On ignore comment les naga ont convaincu ce géant de s'installer dans le Sanctuaire des serpents, mais il réside désormais ici, entouré d'une horde de murlocs qui lui obéissent. ]], 0.596410, 0.260001, 1, 862, 769, 748, 2, 0, 4},
         {1572, "Dame Vashj", [[ Servante principale d'Azshara, transformée en naga comme sa maîtresse, elle fut envoyée pour aider Illidan dans son voyage visant à détruire le Trône de glace. Bien que son nouveau seigneur n'ait pas réussi, dame Vashj le suivit au Bassin de l'Æther, où Illidan et ses troupes se mirent à renforcer précipitamment leurs positions en prévision de la colère de la Légion. Cette puissante sorcière des mers gouverne le Sanctuaire des serpents et est un adversaire redoutable, même pour les guerriers les plus aguerris. ]], 0.722563, 0.589231, 1, 862, 777, 748, 2, 0, 5},
         {11650, "Hydross l'Instable", [[ Un énorme élémentaire d'eau habite le Sanctuaire des serpents, se purifiant de la corruption qui l'a frappé, comme une grande partie des élémentaires du Bassin de l'Æther, et aidant les élémentaires plus jeunes à se purifier également. Mais malgré tous les efforts des naga, l'état d'Hydross reste instable, et dès qu'il sort du rayon d'action des machines construites par les naga, le poison l'envahit de nouveau. ]], 0.359000, 0.799000, 2, 862, 20930, 748, 8, 0, 0},
-        {11651, "Gore'lac", [[ Au fond du bassin, dans les mystérieuses ramifications des grottes souterraines, fondue dans la roche, vit une créature d'une taille monstrueuse faite d'épines, de venin et de chitine, connue sous le nom de Gore'lac. Créature la plus ancienne de la Fondrialaise, dont l'esprit dépasse largement le niveau des créatures primitives peuplant le réservoir. Ce n'est que rarement, cédant à une proie alléchante, que ce crabe géant quitte son antre et remonte à la surface pour traîner sa nourriture dans les eaux profondes. Son apparition réveille d'autres créatures prédatrices du monde sous-marin, mais plusieurs surveillants de confiance de dame Vashj veillent à ce que Gore'lac ne quitte pas les profondeurs trop longtemps.
+        {11651, "Gore’lac", [[ Au fond du bassin, dans les mystérieuses ramifications des grottes souterraines, fondue dans la roche, vit une créature d'une taille monstrueuse faite d'épines, de venin et de chitine, connue sous le nom de Gore'lac. Créature la plus ancienne de la Fondrialaise, dont l'esprit dépasse largement le niveau des créatures primitives peuplant le réservoir. Ce n'est que rarement, cédant à une proie alléchante, que ce crabe géant quitte son antre et remonte à la surface pour traîner sa nourriture dans les eaux profondes. Son apparition réveille d'autres créatures prédatrices du monde sous-marin, mais plusieurs surveillants de confiance de dame Vashj veillent à ce que Gore'lac ne quitte pas les profondeurs trop longtemps.
 Se trouvera-t-il un pêcheur habile, muni d'une canne assez solide, pour tirer ce crabe antique hors des profondeurs ? ]], 0.403000, 0.589000, 2, 862, 20998, 748, 8, 0, 1},
-        {11652, "Léotheras l'Aveugle", [[ Léotheras fut l'un des cinq elfes de sang qu'Illidan prit sous son aile pour en faire des chasseurs de démons. Mais la voie du chasseur de démons n'est pas pour les âmes faibles, et trois des cinq y perdirent la vie. Un sort bien plus sombre attendait Léotheras, faible d'esprit. Après avoir subi le rituel et acquis un démon intérieur, Léotheras ne parvint pas à en garder le contrôle et sombra dans la folie. Les tisseurs de sorts du Sanctuaire des serpents le maintiennent captif, tentant de lui rendre la raison, mais en vain, car dans l'esprit de Léotheras résonnent désormais toujours deux voix, la sienne et celle du démon. ]], 0.417949, 0.255385, 2, 862, 20952, 748, 8, 0, 2},
-        {11653, "Seigneur des profondeurs Karathress", [[ Karathress commande la garde personnelle de dame Vashj. Guerrier expérimenté et commandant impitoyable, Karathress a choisi trois gardes dotés de capacités uniques. Ensemble, ils forment la dernière ligne de défense du Sanctuaire des serpents et demeurent invaincus, car Karathress possède un secret que l'on ne découvre qu'au seuil de la mort. ]], 0.504103, 0.176924, 2, 862, 21019, 748, 8, 0, 3},
-        {11654, "Morogrim Marche-vagues", [[ Les géants marins, puissants, malveillants et généralement peu intelligents, sont des humanoïdes que l'on trouve sur les îles oubliées d'Azeroth, généralement hostiles à tout et à tous. Morogrim Marche-vagues fait exception à cette règle. On ignore comment les naga ont convaincu ce géant de s'installer dans le Sanctuaire des serpents, mais il réside désormais ici, entouré d'une horde de murlocs qui lui obéissent. ]], 0.596410, 0.260001, 2, 862, 21080, 748, 8, 0, 4},
+        {11652, "Leotheras l'Aveugle", [[ Léotheras fut l'un des cinq elfes de sang qu'Illidan prit sous son aile pour en faire des chasseurs de démons. Mais la voie du chasseur de démons n'est pas pour les âmes faibles, et trois des cinq y perdirent la vie. Un sort bien plus sombre attendait Léotheras, faible d'esprit. Après avoir subi le rituel et acquis un démon intérieur, Léotheras ne parvint pas à en garder le contrôle et sombra dans la folie. Les tisseurs de sorts du Sanctuaire des serpents le maintiennent captif, tentant de lui rendre la raison, mais en vain, car dans l'esprit de Léotheras résonnent désormais toujours deux voix, la sienne et celle du démon. ]], 0.417949, 0.255385, 2, 862, 20952, 748, 8, 0, 2},
+        {11653, "Seigneur des fonds Karathress", [[ Karathress commande la garde personnelle de dame Vashj. Guerrier expérimenté et commandant impitoyable, Karathress a choisi trois gardes dotés de capacités uniques. Ensemble, ils forment la dernière ligne de défense du Sanctuaire des serpents et demeurent invaincus, car Karathress possède un secret que l'on ne découvre qu'au seuil de la mort. ]], 0.504103, 0.176924, 2, 862, 21019, 748, 8, 0, 3},
+        {11654, "Morogrim Tidewalker", [[ Les géants marins, puissants, malveillants et généralement peu intelligents, sont des humanoïdes que l'on trouve sur les îles oubliées d'Azeroth, généralement hostiles à tout et à tous. Morogrim Marche-vagues fait exception à cette règle. On ignore comment les naga ont convaincu ce géant de s'installer dans le Sanctuaire des serpents, mais il réside désormais ici, entouré d'une horde de murlocs qui lui obéissent. ]], 0.596410, 0.260001, 2, 862, 21080, 748, 8, 0, 4},
         {11655, "Dame Vashj", [[ Servante principale d'Azshara, transformée en naga comme sa maîtresse, elle fut envoyée pour aider Illidan dans son voyage visant à détruire le Trône de glace. Bien que son nouveau seigneur n'ait pas réussi, dame Vashj le suivit au Bassin de l'Æther, où Illidan et ses troupes se mirent à renforcer précipitamment leurs positions en prévision de la colère de la Légion. Cette puissante sorcière des mers gouverne le Sanctuaire des serpents et est un adversaire redoutable, même pour les guerriers les plus aguerris. ]], 0.722563, 0.589231, 2, 862, 21113, 748, 8, 0, 5},
     },
     [749] = {
         {1573, "Al'ar", [[ Ce phénix, compagnon de voyage de Kael'thas et son fidèle familier, Al'ar a considérablement gagné en puissance depuis le jour où lui et Kael'thas se sont rencontrés pour la première fois. Aujourd'hui, lui et sa progéniture servent leur maître, résidant dans la Force nomade. ]], 0.501026, 0.587692, 1, 782, 806, 749, 2, 0, 0},
-        {1574, "Gardien des Abysses", [[ Cette machine de la Corruption, construite par les démons de la Légion ardente au service de Kael'thas et perfectionnée par les mécaniciens des elfes de sang, use de sa force physique immense et de la puissance de la magie arcanique pour garder l'aile gauche de la Force nomade. ]], 0.264075, 0.490686, 1, 782, 819, 749, 2, 0, 1},
-        {1575, "Astrologue en chef Solarian", [[ Un astrologue en chef se doit de posséder un esprit vif, une connaissance approfondie de la magie arcanique, et la capacité de contempler les abysses sans y perdre la raison. Solarian s'acquitte parfaitement de sa tâche sous la direction de Kael'thas, et avec le temps, ses capacités se sont enrichies des connaissances tirées des Abysses. Faut-il préciser que ces connaissances seront mises à profit au combat en cas de besoin ? ]], 0.740000, 0.489230, 1, 782, 823, 749, 2, 0, 2},
-        {1576, "Kael'thas Sunstrider", [[ Souverain des elfes de sang, dernier prince de ce peuple, Kael'thas Sunstrider s'est emparé de la Force nomade et l'a transformée en son bastion, dans un seul but : prendre le contrôle des énergies chaotiques du Néant-tourbillon et les transformer en une puissance capable d'anéantir tout ennemi, aidant ainsi son peuple à assouvir sa soif de magie. ]], 0.500999, 0.138461, 1, 782, 836, 749, 2, 0, 3},
+        {1574, "Saccageur du Vide", [[ Cette machine de la Corruption, construite par les démons de la Légion ardente au service de Kael'thas et perfectionnée par les mécaniciens des elfes de sang, use de sa force physique immense et de la puissance de la magie arcanique pour garder l'aile gauche de la Force nomade. ]], 0.264075, 0.490686, 1, 782, 819, 749, 2, 0, 1},
+        {1575, "Grande astromancienne Solarian", [[ Un astrologue en chef se doit de posséder un esprit vif, une connaissance approfondie de la magie arcanique, et la capacité de contempler les abysses sans y perdre la raison. Solarian s'acquitte parfaitement de sa tâche sous la direction de Kael'thas, et avec le temps, ses capacités se sont enrichies des connaissances tirées des Abysses. Faut-il préciser que ces connaissances seront mises à profit au combat en cas de besoin ? ]], 0.740000, 0.489230, 1, 782, 823, 749, 2, 0, 2},
+        {1576, "Kael'thas Haut-Soleil", [[ Souverain des elfes de sang, dernier prince de ce peuple, Kael'thas Sunstrider s'est emparé de la Force nomade et l'a transformée en son bastion, dans un seul but : prendre le contrôle des énergies chaotiques du Néant-tourbillon et les transformer en une puissance capable d'anéantir tout ennemi, aidant ainsi son peuple à assouvir sa soif de magie. ]], 0.500999, 0.138461, 1, 782, 836, 749, 2, 0, 3},
         {11573, "Al'ar", [[ Ce phénix, compagnon de voyage de Kael'thas et son fidèle familier, Al'ar a considérablement gagné en puissance depuis le jour où lui et Kael'thas se sont rencontrés pour la première fois. Aujourd'hui, lui et sa progéniture servent leur maître, résidant dans la Force nomade. ]], 0.501026, 0.587692, 1, 782, 1500, 749, 8, 0, 0},
-        {11574, "Gardien des Abysses", [[ Cette machine de la Corruption, construite par les démons de la Légion ardente au service de Kael'thas et perfectionnée par les mécaniciens des elfes de sang, use de sa force physique immense et de la puissance de la magie arcanique pour garder l'aile gauche de la Force nomade. ]], 0.264075, 0.490686, 1, 782, 1539, 749, 8, 0, 1},
-        {11575, "Astrologue en chef Solarian", [[ Un astrologue en chef se doit de posséder un esprit vif, une connaissance approfondie de la magie arcanique, et la capacité de contempler les abysses sans y perdre la raison. Solarian s'acquitte parfaitement de sa tâche sous la direction de Kael'thas, et avec le temps, ses capacités se sont enrichies des connaissances tirées des Abysses. Faut-il préciser que ces connaissances seront mises à profit au combat en cas de besoin ? ]], 0.740000, 0.489230, 1, 782, 1559, 749, 8, 0, 2},
-        {11576, "Kael'thas Sunstrider", [[ Souverain des elfes de sang, dernier prince de ce peuple, Kael'thas Sunstrider s'est emparé de la Force nomade et l'a transformée en son bastion, dans un seul but : prendre le contrôle des énergies chaotiques du Néant-tourbillon et les transformer en une puissance capable d'anéantir tout ennemi, aidant ainsi son peuple à assouvir sa soif de magie. ]], 0.500999, 0.138461, 1, 782, 1604, 749, 8, 0, 3},
+        {11574, "Saccageur du Vide", [[ Cette machine de la Corruption, construite par les démons de la Légion ardente au service de Kael'thas et perfectionnée par les mécaniciens des elfes de sang, use de sa force physique immense et de la puissance de la magie arcanique pour garder l'aile gauche de la Force nomade. ]], 0.264075, 0.490686, 1, 782, 1539, 749, 8, 0, 1},
+        {11575, "Grande astromancienne Solarian", [[ Un astrologue en chef se doit de posséder un esprit vif, une connaissance approfondie de la magie arcanique, et la capacité de contempler les abysses sans y perdre la raison. Solarian s'acquitte parfaitement de sa tâche sous la direction de Kael'thas, et avec le temps, ses capacités se sont enrichies des connaissances tirées des Abysses. Faut-il préciser que ces connaissances seront mises à profit au combat en cas de besoin ? ]], 0.740000, 0.489230, 1, 782, 1559, 749, 8, 0, 2},
+        {11576, "Kael'thas Haut-Soleil", [[ Souverain des elfes de sang, dernier prince de ce peuple, Kael'thas Sunstrider s'est emparé de la Force nomade et l'a transformée en son bastion, dans un seul but : prendre le contrôle des énergies chaotiques du Néant-tourbillon et les transformer en une puissance capable d'anéantir tout ennemi, aidant ainsi son peuple à assouvir sa soif de magie. ]], 0.500999, 0.138461, 1, 782, 1604, 749, 8, 0, 3},
     },
     [753] = {
-        {1597, "Arcavon le Gardien de pierre", [[ Le plus faible des gardiens du Caveau, Arcavon le Gardien de pierre est un immense géant de pierre maîtrisant les pouvoirs de la terre. ]], 0.493350, 0.168738, 1, 532, 11475, 753, 3, 0, 0},
-        {1598, "Emalon le Gardien de la tempête", [[ Emalon le Gardien de la tempête est un géant doté des pouvoirs de la tempête. Lui et ses invocateurs de tempête gardent le Caveau d'Arcavon. ]], 0.627193, 0.553059, 1, 532, 11489, 753, 3, 0, 1},
-        {1599, "Koralon le Gardien du feu", [[ Koralon le Gardien du feu est l'un des gardiens du Caveau d'Arcavon, un puissant géant de pierre doté des pouvoirs du feu. ]], 0.363289, 0.551625, 1, 532, 11479, 753, 3, 0, 2},
-        {1600, "Toravon le Gardien de glace", [[ Toravon le Gardien de glace est le plus puissant des gardiens du Caveau d'Arcavon, un géant de pierre doté des pouvoirs de la glace. ]], 0.627151, 0.363767, 1, 532, 11484, 753, 3, 0, 3},
+        {1597, "Eisenfaust", [[ Le plus faible des gardiens du Caveau, Arcavon le Gardien de pierre est un immense géant de pierre maîtrisant les pouvoirs de la terre. ]], 0.493350, 0.168738, 1, 532, 11475, 753, 3, 0, 0},
+        {1598, "Emalon le Guetteur d'orage", [[ Emalon le Gardien de la tempête est un géant doté des pouvoirs de la tempête. Lui et ses invocateurs de tempête gardent le Caveau d'Arcavon. ]], 0.627193, 0.553059, 1, 532, 11489, 753, 3, 0, 1},
+        {1599, "Koralon le Veilleur des flammes", [[ Koralon le Gardien du feu est l'un des gardiens du Caveau d'Arcavon, un puissant géant de pierre doté des pouvoirs du feu. ]], 0.363289, 0.551625, 1, 532, 11479, 753, 3, 0, 2},
+        {1600, "Toravon la Sentinelle de glace", [[ Toravon le Gardien de glace est le plus puissant des gardiens du Caveau d'Arcavon, un géant de pierre doté des pouvoirs de la glace. ]], 0.627151, 0.363767, 1, 532, 11484, 753, 3, 0, 3},
     },
     [754] = {
         {1601, "Anub'Rekhan", [[ Anub'Rekhan est l'un des seigneurs nérubiens, gardien du Quartier des araignées à Naxxramas. ]], 0.306925, 0.469885, 2, 535, 11497, 754, 3, 0, 0},
-        {1602, "Grande veuve Fauceclaire", [[ Alchimiste autrefois talentueuse, Fauceclaire est aujourd'hui l'une des figures les plus haut placées du culte des Damnés. Résidant dans le Quartier des araignées à Naxxramas, elle enseigne l'art ténébreux à ses adeptes. ]], 0.441725, 0.360899, 2, 535, 11504, 754, 3, 0, 1},
+        {1602, "Grande veuve Faerlina", [[ Alchimiste autrefois talentueuse, Fauceclaire est aujourd'hui l'une des figures les plus haut placées du culte des Damnés. Résidant dans le Quartier des araignées à Naxxramas, elle enseigne l'art ténébreux à ses adeptes. ]], 0.441725, 0.360899, 2, 535, 11504, 754, 3, 0, 1},
         {1603, "Maexxna", [[ Cette araignée géante a tissé sa toile dans l'une des salles du Quartier des araignées à Naxxramas. Objet de vénération de Fauceclaire et de son culte, Maexxna accroît chaque jour le nombre de sa progéniture, conservant son venin aussi mortel qu'auparavant. ]], 0.686466, 0.152964, 2, 535, 11511, 754, 3, 0, 2},
-        {1604, "Noth le Pesteux", [[ Tout comme Arthas répondit à l'appel du Roi-liche, Noth rejoignit en son temps le Fléau en quête de pouvoir et de puissance. Cependant, durant la Troisième Guerre, Noth commença à douter de ses actes, et le Roi-liche, sans hésitation, gela le cœur dans sa poitrine. Depuis, Noth ne connaît ni doute ni pitié, et seule la mort peut désormais l'arrêter. ]], 0.346122, 0.564531, 4, 535, 11518, 754, 3, 0, 3},
-        {1605, "Heigan l'Impie", [[ Heigan l'Impie, l'un des nécromants s'étant intensément consacré à l'étude et à la manipulation directe de la peste destructrice, réside à Naxxramas, où il perfectionne et développe cette nouvelle forme de sorcellerie de combat. Son arsenal comprend des sorts destructeurs, des malédictions affaiblissantes, et il a sans doute encore quelques atouts en réserve. ]], 0.498172, 0.456978, 4, 535, 11525, 754, 3, 0, 4},
-        {1606, "Loatheb", [[ Les traînards sporés sont des créatures extrêmement intéressantes, issues des marais. Mais Loatheb est unique, même parmi elles. D'étranges mutations font que sa simple présence répand une aura nécrotique empêchant toute forme de guérison.
+        {1604, "Noth le Porte-peste", [[ Tout comme Arthas répondit à l'appel du Roi-liche, Noth rejoignit en son temps le Fléau en quête de pouvoir et de puissance. Cependant, durant la Troisième Guerre, Noth commença à douter de ses actes, et le Roi-liche, sans hésitation, gela le cœur dans sa poitrine. Depuis, Noth ne connaît ni doute ni pitié, et seule la mort peut désormais l'arrêter. ]], 0.346122, 0.564531, 4, 535, 11518, 754, 3, 0, 3},
+        {1605, "Heigan l'Impur", [[ Heigan l'Impie, l'un des nécromants s'étant intensément consacré à l'étude et à la manipulation directe de la peste destructrice, réside à Naxxramas, où il perfectionne et développe cette nouvelle forme de sorcellerie de combat. Son arsenal comprend des sorts destructeurs, des malédictions affaiblissantes, et il a sans doute encore quelques atouts en réserve. ]], 0.498172, 0.456978, 4, 535, 11525, 754, 3, 0, 4},
+        {1606, "Horreb", [[ Les traînards sporés sont des créatures extrêmement intéressantes, issues des marais. Mais Loatheb est unique, même parmi elles. D'étranges mutations font que sa simple présence répand une aura nécrotique empêchant toute forme de guérison.
 Il ne fallut pas longtemps avant que le culte des Damnés ne s'intéresse à lui, et Loatheb réside désormais dans le Quartier de la peste, à Naxxramas. ]], 0.760165, 0.283523, 4, 535, 11530, 754, 3, 0, 5},
         {1607, "Instructeur Razuvious", [[ L'un des anciens chevaliers de la mort restés fidèles au Roi-liche, même après la révolte des chevaliers de la Lame noire. Il forme désormais une nouvelle génération de chevaliers de la mort dans le Quartier militaire de Naxxramas. ]], 0.427469, 0.459909, 3, 535, 11537, 754, 3, 0, 6},
-        {1608, "Gothik le Fossoyeur", [[ Gothik le Fossoyeur est un expert en nécromancie et en magie noire, l'un des rares nécromants capables de ressusciter non seulement le corps, mais aussi l'âme, transformant les défunts en guerriers spectraux. Après la révolte des chevaliers de la Lame noire, il se trouve dans le Quartier militaire de Naxxramas, formant les novices à l'art de la magie ténébreuse. ]], 0.675078, 0.596142, 3, 535, 11545, 754, 3, 0, 7},
-        {1609, "Les Quatre Cavaliers", [[ Les chevaliers de la mort les plus puissants de Naxxramas sont les quatre cavaliers. Ils représentent l'apogée de la garde de Kel'Thuzad. Le premier, Thane Corhaz, possède le pouvoir des flammes. La suivante, lady Blaumeux, invoque le pouvoir des ombres, aspirant les âmes des vivants dans une étreinte insatiable. Sir Zeliek, paladin loyal de son vivant, est si fort dans sa foi que même dans le peu de pouvoir qu'il lui reste, la Lumière sacrée répond encore à son appel, frappant ses ennemis au combat. Le dernier chevalier de la mort, lord Mograine, fut le meilleur guerrier que les chevaliers de la mort aient jamais connu. Cependant, après les événements d'Azeroth, il disparut sans laisser de trace. Kel'Thuzad nomma le baron Rivendare pour le remplacer. ]], 0.301273, 0.768225, 3, 535, 11606, 754, 3, 0, 8},
-        {1610, "Patchwerk", [[ Patchwerk veut jouer !
+        {1608, "Gothik le Moissonneur", [[ Gothik le Fossoyeur est un expert en nécromancie et en magie noire, l'un des rares nécromants capables de ressusciter non seulement le corps, mais aussi l'âme, transformant les défunts en guerriers spectraux. Après la révolte des chevaliers de la Lame noire, il se trouve dans le Quartier militaire de Naxxramas, formant les novices à l'art de la magie ténébreuse. ]], 0.675078, 0.596142, 3, 535, 11545, 754, 3, 0, 7},
+        {1609, "Baron Vaillefendre", [[ Les chevaliers de la mort les plus puissants de Naxxramas sont les quatre cavaliers. Ils représentent l'apogée de la garde de Kel'Thuzad. Le premier, Thane Corhaz, possède le pouvoir des flammes. La suivante, lady Blaumeux, invoque le pouvoir des ombres, aspirant les âmes des vivants dans une étreinte insatiable. Sir Zeliek, paladin loyal de son vivant, est si fort dans sa foi que même dans le peu de pouvoir qu'il lui reste, la Lumière sacrée répond encore à son appel, frappant ses ennemis au combat. Le dernier chevalier de la mort, lord Mograine, fut le meilleur guerrier que les chevaliers de la mort aient jamais connu. Cependant, après les événements d'Azeroth, il disparut sans laisser de trace. Kel'Thuzad nomma le baron Rivendare pour le remplacer. ]], 0.301273, 0.768225, 3, 535, 11606, 754, 3, 0, 8},
+        {1610, "Le Recousu", [[ Patchwerk veut jouer !
 L'une des créations les plus monstrueuses jamais créées par le Fléau. Ayant survécu à la révolte des chevaliers de la Lame noire, Patchwerk se fait fièrement appeler « l'Incarnation de la guerre ». Il garde aujourd'hui les couloirs du Quartier des abominations, à Naxxramas. ]], 0.541192, 0.416887, 1, 535, 11622, 754, 3, 0, 9},
         {1611, "Grobbulus", [[ L'une des créations ratées d'une armée de géants de chair, Grobbulus habite le Quartier des abominations à Naxxramas. Monstre effrayant créé par l'armée du Fléau. Fruit de l'esprit dénaturé des ingénieurs et des chirurgiens de génie du Fléau. Cet énorme mutagène ambulant est imprégné de poison, de mort, de peur et de bave... une bave répugnante. ]], 0.615762, 0.531547, 1, 535, 11626, 754, 3, 0, 10},
-        {1612, "Glutt", [[ Cet énorme chien mort-vivant, qui dévore les zombies excédentaires, réside à Naxxramas. D'innombrables cadavres, dévorés par ce monstre, lui ont conféré une puissance impie surnaturelle. Il réside désormais dans une partie fermée du Quartier des abominations à Naxxramas, et le seul moyen d'y accéder est de passer par les égouts. ]], 0.462924, 0.438272, 1, 535, 11633, 754, 3, 0, 11},
+        {1612, "Gluth", [[ Cet énorme chien mort-vivant, qui dévore les zombies excédentaires, réside à Naxxramas. D'innombrables cadavres, dévorés par ce monstre, lui ont conféré une puissance impie surnaturelle. Il réside désormais dans une partie fermée du Quartier des abominations à Naxxramas, et le seul moyen d'y accéder est de passer par les égouts. ]], 0.462924, 0.438272, 1, 535, 11633, 754, 3, 0, 11},
         {1613, "Thaddius", [[ Géant de chair monstrueux, dans lequel sont scellées des âmes souffrantes et agonisantes appelant encore à l'aide, il réside dans le Quartier des abominations à Naxxramas. La nécromancie et les expériences sur l'électricité ont fait de ce monstre un mort-vivant, et malheur à quiconque affronte une créature capable de réduire ses ennemis en cendres d'un éclair de foudre. ]], 0.265857, 0.145792, 1, 535, 11639, 754, 3, 0, 12},
-        {1614, "Sapphiron", [[ Autrefois puissant serviteur de Malygos, gardien d'artefacts et dragon invaincu de la couvée bleue, Sapphiron affronta Arthas durant son périple vers le Trône de glace, et fut vaincu. Arthas sacrifia alors une part importante de ses pouvoirs de l'époque pour ressusciter Sapphiron sous la forme d'un puissant serpent de glace, et parvint grâce à lui à percer les défenses d'Azjol-Nerub. Aujourd'hui, ce dragon garde les appartements de Kel'Thuzad, dans le Repaire du serpent de glace, au Nécropole supérieur de Naxxramas. ]], 0.565133, 0.675014, 6, 535, 11652, 754, 3, 0, 13},
+        {1614, "Saphiron", [[ Autrefois puissant serviteur de Malygos, gardien d'artefacts et dragon invaincu de la couvée bleue, Sapphiron affronta Arthas durant son périple vers le Trône de glace, et fut vaincu. Arthas sacrifia alors une part importante de ses pouvoirs de l'époque pour ressusciter Sapphiron sous la forme d'un puissant serpent de glace, et parvint grâce à lui à percer les défenses d'Azjol-Nerub. Aujourd'hui, ce dragon garde les appartements de Kel'Thuzad, dans le Repaire du serpent de glace, au Nécropole supérieur de Naxxramas. ]], 0.565133, 0.675014, 6, 535, 11652, 754, 3, 0, 13},
         {1615, "Kel'Thuzad", [[ Kel'Thuzad est l'un des principaux serviteurs du Roi-liche, responsable de la propagation de la peste du Fléau à travers Lordaeron. Après avoir été tué par Arthas durant la Troisième Guerre, il renaquit sous la forme d'une liche. Avec l'aide d'Arthas, il invoqua Archimonde le Profanateur, chef de la Légion ardente. Néanmoins, Kel'Thuzad était réellement dévoué au Roi-liche, et non à la Légion ardente. Lorsqu'Arthas partit pour le Norfendre à l'époque des événements liés au Trône de glace, il laissa Kel'Thuzad comme régent pour commander le Fléau en Lordaeron. Auparavant, il gouvernait les Terres de la peste depuis le nécropole de Naxxramas, planant au-dessus de Hurlebas, mais aujourd'hui, Naxxramas et Kel'Thuzad avec lui se trouvent dans la partie orientale de la Nécrosceptre, où il sert de nouveau le Roi-liche. ]], 0.365324, 0.223293, 6, 535, 11660, 754, 3, 0, 14},
     },
     [755] = {
@@ -565,27 +565,27 @@ L'une des créations les plus monstrueuses jamais créées par le Fléau. Ayant 
         {1617, "Malygos", [[ Malygos, le Gardien de la magie, rendu fou par le chagrin et la douleur, a déclaré la guerre à tous ceux qui utilisent la magie, ne voyant dans les mages qu'une source de chaos et de désastres. Dans l'Œil d'éternité, dans le Nexus, il collecte l'énergie des lignes de force d'Azeroth, désireux de mettre fin, une fois pour toutes, à la menace d'un usage excessif de la magie. Votre objectif est de l'arrêter. ]], 0.384321, 0.498566, 1, 527, 11449, 756, 3, 0, 0},
     },
     [757] = {
-        {1618, "Monstres du Norfendre", [[  ]], 0.511514, 0.527373, 1, 543, 2450, 757, -1, 0, 0},
+        {1618, "Gormok l'Empaleur", [[  ]], 0.511514, 0.527373, 1, 543, 2450, 757, -1, 0, 0},
         {1619, "Seigneur Jaraxxus", [[  ]], 0.463713, 0.405480, 1, 543, 11000, 757, -1, 0, 1},
-        {1620, "Champions de l'Alliance", [[ L'Alliance exige justice et vous met au défi, champions de la Horde. Vos adversaires seront parmi les meilleurs guerriers de l'Alliance ayant participé à ce tournoi, mais ceux qui ont défié la Horde tomberont. Lok'tar ogar ! ]], 0.428340, 0.527373, 1, 543, 11059, 757, -1, 8, 2},
-        {1621, "Champions de la Horde", [[ La Horde a osé accuser l'Alliance de complot lié à l'invocation d'un seigneur érédar, et exige désormais justice, vous mettant au défi, champions de l'Alliance. Vos adversaires seront les guerriers les plus féroces et habiles de la Horde, mais ils ne font pas le poids face à vous, et doivent être anéantis. Gloire à l'Alliance ! ]], 0.428340, 0.527373, 1, 543, 11201, 757, -1, 4, 2},
-        {1622, "Val'kyrs jumelles", [[  ]], 0.463713, 0.649266, 1, 543, 11016, 757, -1, 0, 3},
+        {1620, "Alyssia Traquelune", [[ L'Alliance exige justice et vous met au défi, champions de la Horde. Vos adversaires seront parmi les meilleurs guerriers de l'Alliance ayant participé à ce tournoi, mais ceux qui ont défié la Horde tomberont. Lok'tar ogar ! ]], 0.428340, 0.527373, 1, 543, 11059, 757, -1, 8, 2},
+        {1621, "Birana Sabot-Tempête", [[ La Horde a osé accuser l'Alliance de complot lié à l'invocation d'un seigneur érédar, et exige désormais justice, vous mettant au défi, champions de l'Alliance. Vos adversaires seront les guerriers les plus féroces et habiles de la Horde, mais ils ne font pas le poids face à vous, et doivent être anéantis. Gloire à l'Alliance ! ]], 0.428340, 0.527373, 1, 543, 11201, 757, -1, 4, 2},
+        {1622, "Fjola Plaie-lumineuse", [[  ]], 0.463713, 0.649266, 1, 543, 11016, 757, -1, 0, 3},
         {1623, "Anub'arak", [[  ]], 0.532546, 0.355289, 2, 543, 11038, 757, -1, 0, 4},
     },
     [758] = {
-        {1624, "Seigneur Ébonos", [[ Le Roi-liche a créé Ébonos à partir des ossements de milliers d'aventuriers disparus, et il garde désormais le Trône de glace au pied de la Flèche, chargé de la puissance même du trône. ]], 0.391055, 0.593338, 1, 604, 11677, 758, -1, 0, 0},
-        {1625, "Dame Voix-de-la-mort", [[ Dame Voix-de-la-mort a définitivement remplacé Kel'Thuzad après la chute de Naxxramas, devenant la véritable dirigeante du culte des Damnés. À la Citadelle de la Couronne de glace, elle forme les adeptes les plus doués et ambitieux du culte, préparant une nouvelle garde magique pour le Fléau. ]], 0.391055, 0.869980, 1, 604, 11683, 758, -1, 0, 1},
-        {1626, "Bataille navale en Couronne de glace", [[  ]], 0.219927, 0.550191, 2, 604, 0, 758, -1, 4, 2},
-        {1627, "Bataille navale en Couronne de glace", [[  ]], 0.690500, 0.550191, 2, 604, 0, 758, -1, 8, 2},
-        {1628, "Saurfang le Sanguinaire", [[ Cet orc brave et puissant, tombé sous les coups du Roi-liche aux Portes de la Colère, fut transformé en chevalier de la mort et garde désormais l'entrée du sanctuaire intérieur de la Citadelle de la Couronne de glace. Le Roi-liche lui a accordé un pouvoir particulier : le sang de Saurfang possède un effet de guérison incroyable, lui permettant de contenir seul une armée entière, combattant jusqu'à la victoire. ]], 0.515422, 0.216060, 0, 604, 11713, 758, -1, 0, 3},
-        {1629, "Puanteur", [[ L'une des deux abominations géantes créées par Putrivore. Doté d'une force physique considérable et manipulant le gaz de la putréfaction immonde, Puanteur est une arme dangereuse du Fléau. ]], 0.198978, 0.654874, 0, 604, 11726, 758, -1, 0, 4},
-        {1630, "Pourrissure", [[ Créature favorite de Putrivore. Cette abomination, suintant une bave corrosive et parfois animée, dotée d'une force physique considérable, Pourrissure est une arme dangereuse du Fléau. ]], 0.198978, 0.418259, 0, 604, 11733, 758, -1, 0, 5},
-        {1631, "Professeur Putrivore", [[ On dit parfois que le génie côtoie la folie. Le professeur Putrivore en est un exemple frappant. Génie fou ayant créé de nombreux types de pestes, créateur d'abominations, meilleur alchimiste de tous les temps, Putrivore réside dans la Fabrique de la peste, à la Citadelle de la Couronne de glace, et son ingéniosité ne connaît aucune limite. ]], 0.131101, 0.532982, 0, 604, 11747, 758, -1, 0, 6},
-        {1632, "Conseil des princes du sang", [[ Valanar, Keleseth et Taldaram, les Sang'thraze, trois princes du sang vaincus par les héros d'Azeroth, anciens elfes de sang ayant remplacé le pouvoir du Puits-soleil par celui du sang. Leurs corps ont été soigneusement préservés et amenés dans la Salle écarlate de la Citadelle de la Couronne de glace, où ils sont destinés à ressusciter et à poursuivre leur service éternel. ]], 0.520160, 0.141491, 0, 604, 11779, 758, -1, 0, 7},
-        {1633, "Reine du sang Lana'thel", [[ Durant les combats sur les étendues glacées du Norfendre, Arthas remporta la victoire sur Illidan et Kael'thas, et les rares survivants tentèrent d'échapper au Fléau. Mais le Roi-liche était déterminé à retrouver tous les elfes qui avaient osé le défier. Acculée, Lana'thel attaqua désespérément Arthas, mais ne put résister à Ronce-Hiver.
+        {1624, "Seigneur Gargamoelle", [[ Le Roi-liche a créé Ébonos à partir des ossements de milliers d'aventuriers disparus, et il garde désormais le Trône de glace au pied de la Flèche, chargé de la puissance même du trône. ]], 0.391055, 0.593338, 1, 604, 11677, 758, -1, 0, 0},
+        {1625, "Dame Murmemort", [[ Dame Voix-de-la-mort a définitivement remplacé Kel'Thuzad après la chute de Naxxramas, devenant la véritable dirigeante du culte des Damnés. À la Citadelle de la Couronne de glace, elle forme les adeptes les plus doués et ambitieux du culte, préparant une nouvelle garde magique pour le Fléau. ]], 0.391055, 0.869980, 1, 604, 11683, 758, -1, 0, 1},
+        {1626, "Haut seigneur Saurcroc", [[  ]], 0.219927, 0.550191, 2, 604, 0, 758, -1, 4, 2},
+        {1627, "Muradin Barbe-de-bronze", [[  ]], 0.690500, 0.550191, 2, 604, 0, 758, -1, 8, 2},
+        {1628, "Porte-mort Saurcroc", [[ Cet orc brave et puissant, tombé sous les coups du Roi-liche aux Portes de la Colère, fut transformé en chevalier de la mort et garde désormais l'entrée du sanctuaire intérieur de la Citadelle de la Couronne de glace. Le Roi-liche lui a accordé un pouvoir particulier : le sang de Saurfang possède un effet de guérison incroyable, lui permettant de contenir seul une armée entière, combattant jusqu'à la victoire. ]], 0.515422, 0.216060, 0, 604, 11713, 758, -1, 0, 3},
+        {1629, "Pulentraille", [[ L'une des deux abominations géantes créées par Putrivore. Doté d'une force physique considérable et manipulant le gaz de la putréfaction immonde, Puanteur est une arme dangereuse du Fléau. ]], 0.198978, 0.654874, 0, 604, 11726, 758, -1, 0, 4},
+        {1630, "Trognepus", [[ Créature favorite de Putrivore. Cette abomination, suintant une bave corrosive et parfois animée, dotée d'une force physique considérable, Pourrissure est une arme dangereuse du Fléau. ]], 0.198978, 0.418259, 0, 604, 11733, 758, -1, 0, 5},
+        {1631, "Professeur Putricide", [[ On dit parfois que le génie côtoie la folie. Le professeur Putrivore en est un exemple frappant. Génie fou ayant créé de nombreux types de pestes, créateur d'abominations, meilleur alchimiste de tous les temps, Putrivore réside dans la Fabrique de la peste, à la Citadelle de la Couronne de glace, et son ingéniosité ne connaît aucune limite. ]], 0.131101, 0.532982, 0, 604, 11747, 758, -1, 0, 6},
+        {1632, "Prince Valanar", [[ Valanar, Keleseth et Taldaram, les Sang'thraze, trois princes du sang vaincus par les héros d'Azeroth, anciens elfes de sang ayant remplacé le pouvoir du Puits-soleil par celui du sang. Leurs corps ont été soigneusement préservés et amenés dans la Salle écarlate de la Citadelle de la Couronne de glace, où ils sont destinés à ressusciter et à poursuivre leur service éternel. ]], 0.520160, 0.141491, 0, 604, 11779, 758, -1, 0, 7},
+        {1633, "Reine de sang Lana'thel", [[ Durant les combats sur les étendues glacées du Norfendre, Arthas remporta la victoire sur Illidan et Kael'thas, et les rares survivants tentèrent d'échapper au Fléau. Mais le Roi-liche était déterminé à retrouver tous les elfes qui avaient osé le défier. Acculée, Lana'thel attaqua désespérément Arthas, mais ne put résister à Ronce-Hiver.
 
 Le Roi-liche ressuscita Lana'thel et fit d'elle la chef des Sang'thraze, ces elfes de sang qui supervisaient les opérations du Fléau à travers tout le continent nord. Aujourd'hui, Lana'thel se trouve dans la Salle écarlate de la Citadelle de la Couronne de glace, et sa puissance alimente le sceau menant au téléporteur situé au sommet du Trône de glace. ]], 0.511599, 0.435467, 0, 604, 11792, 758, -1, 0, 8},
-        {1634, "Valithria Rêvesonge", [[ L'une des filles d'Ysera, une puissante draconne tombée aux mains du Fléau. Emprisonnée dans les profondeurs des Salles Ailes-de-glace, à la Citadelle de la Couronne de glace, Valithria est torturée et ne sera sans doute pas laissée en vie si un risque de libération se présente. Aidez-la avant qu'il ne soit trop tard ! ]], 0.766814, 0.736678, 0, 604, 11808, 758, -1, 0, 9},
+        {1634, "Valithria Marcherêve", [[ L'une des filles d'Ysera, une puissante draconne tombée aux mains du Fléau. Emprisonnée dans les profondeurs des Salles Ailes-de-glace, à la Citadelle de la Couronne de glace, Valithria est torturée et ne sera sans doute pas laissée en vie si un risque de libération se présente. Aidez-la avant qu'il ne soit trop tard ! ]], 0.766814, 0.736678, 0, 604, 11808, 758, -1, 0, 9},
         {1635, "Sindragosa", [[ Sentant sa mort approcher, aveuglée, Sindragosa n'aspirait plus qu'à une chose : rejoindre le Repos des dragons pour y trouver la mort, comme tant d'autres dragons avant elle. Mais les forces du dragon ne suffirent pas longtemps. Épuisée, elle s'effondra sur les glaces de la Couronne de glace. Dans un dernier effort, dans un cri chargé de désespoir, Sindragosa appela son époux Malygos. Seuls les vents glacés de l'Arctique lui répondirent. Mais elle ne renonça pas et appela une seconde fois. La distance était trop grande. Comprenant que son âme ne trouverait jamais le repos au Repos des dragons, elle se résigna à son sort. La vie la quittait peu à peu, et son esprit s'embrumait.
 
 Dans son délire, ses dernières pensées étaient emplies de déception et de haine : haine envers la Légion, haine envers Neltharion, et même haine envers Malygos. Mais c'est le monde des mortels qu'elle haïssait le plus...
@@ -595,8 +595,8 @@ Et avant de mourir, Sindragosa jura de se venger.
 L'endroit où ce puissant dragon trouva la mort fut appelé le Canyon de la perte de Sindragosa.
 
 Tel fut le destin de ce dragon bleu. Cependant, comme nous le savons tous, l'histoire ne s'arrête pas là. Des milliers d'années plus tard, le puissant Roi-liche retrouva Sindragosa et lui offrit l'opportunité de concrétiser son serment mortel. Il fit d'elle la reine des dragons de glace et l'installa dans les Salles Ailes-de-glace. Aujourd'hui, Sindragosa exécute les ordres d'Arthas. Dans la Fosse de Saron, vous avez pu constater de vos propres yeux sa puissance actuelle. ]], 0.366325, 0.231898, 0, 604, 11829, 758, -1, 0, 10},
-        {1636, "Le Roi-liche", [[ Après son réveil, le Roi-liche s'empressa d'abord d'extraire son propre cœur, estimant que tout ce qui le rattachait aux mortels le rendait plus faible. Il se rendit au Canyon de la perte de Sindragosa et ressuscita l'antique dragonne Sindragosa, première épouse de Malygos, sous la forme d'un serpent de glace. Il observa ensuite sa gigantesque armée de morts-vivants, prête pour la guerre. Pendant son sommeil, les chevaliers de la mort s'entraînaient sur le territoire de la Couronne de glace. À son réveil, il leur ordonna de se rendre à la Chapelle du dernier espoir, où reposaient des milliers de héros de l'Alliance, chacun destiné à être ressuscité à son service, avant de conquérir ces terres pour le Fléau. Il siège aujourd'hui sur le Trône de glace, dans la Citadelle de la Couronne de glace, et seule sa mort pourra arrêter la machine de guerre du Fléau avant qu'elle n'anéantisse toute vie. ]], 0.499296, 0.528743, 0, 604, 11855, 758, -1, 0, 11},
-        {1637, "Dame Jaina Portvaillant", [[ Au sommet de la Citadelle de la Couronne de glace, un instant avant que le Roi-liche ne reçoive un coup mortel, l'histoire de ce monde changea. Dame Jaina Portvaillant renia la voix de la raison et se dressa pour défendre celui qu'elle avait jadis tant aimé. Le destin d'Arthas dépend désormais de la capacité des héros d'Azeroth à terrasser, non pas une incarnation du mal, mais un compagnon égaré. ]], 0.499296, 0.568743, 0, 604, 900, 758, 8, 0, 12},
+        {1636, "Omar le dragon de test", [[ Après son réveil, le Roi-liche s'empressa d'abord d'extraire son propre cœur, estimant que tout ce qui le rattachait aux mortels le rendait plus faible. Il se rendit au Canyon de la perte de Sindragosa et ressuscita l'antique dragonne Sindragosa, première épouse de Malygos, sous la forme d'un serpent de glace. Il observa ensuite sa gigantesque armée de morts-vivants, prête pour la guerre. Pendant son sommeil, les chevaliers de la mort s'entraînaient sur le territoire de la Couronne de glace. À son réveil, il leur ordonna de se rendre à la Chapelle du dernier espoir, où reposaient des milliers de héros de l'Alliance, chacun destiné à être ressuscité à son service, avant de conquérir ces terres pour le Fléau. Il siège aujourd'hui sur le Trône de glace, dans la Citadelle de la Couronne de glace, et seule sa mort pourra arrêter la machine de guerre du Fléau avant qu'elle n'anéantisse toute vie. ]], 0.499296, 0.528743, 0, 604, 11855, 758, -1, 0, 11},
+        {1637, "Lady Jaina Proudmoore", [[ Au sommet de la Citadelle de la Couronne de glace, un instant avant que le Roi-liche ne reçoive un coup mortel, l'histoire de ce monde changea. Dame Jaina Portvaillant renia la voix de la raison et se dressa pour défendre celui qu'elle avait jadis tant aimé. Le destin d'Arthas dépend désormais de la capacité des héros d'Azeroth à terrasser, non pas une incarnation du mal, mais un compagnon égaré. ]], 0.499296, 0.568743, 0, 604, 900, 758, 8, 0, 12},
     },
     [760] = {
         {1651, "Onyxia", [[ Au bord des Marais aux fondrières se dresse une grotte devenue le dernier refuge de la lignée maudite des dragons noirs. L'Antre d'Onyxia est le nom de ce refuge, et le nombre de dragons noirs y croît lentement, mais sûrement, chaque jour. Cette menace ne peut être négligée. ]], 0.672370, 0.309886, 0, 718, 11400, 760, 3, 0, 0},
@@ -605,29 +605,29 @@ Tel fut le destin de ce dragon bleu. Cependant, comme nous le savons tous, l'his
         {1652, "Halion", [[  ]], 0.491354, 0.535788, 0, 609, 1000, 761, -1, 0, 0},
     },
     [762] = {
-        {11585, "Oggleflint", [[ Oggleflint et les trogg ont autrefois régné sans partage sur les profondeurs de l'Abîme ardent, jusqu'à ce que les cultistes de la Lame flamboyante y fassent leur apparition. Trop faibles pour chasser la Lame flamboyante, Oggleflint et les trogg se replièrent vers les niveaux supérieurs du Gouffre de flammes furieuses, où ils attendent désormais patiemment cet invité indésirable. ]], 0.566000, 0.385000, 0, 680, 20001, 762, -1, 0, 1},
-        {11586, "Taragaman l'Insatiable", [[ On le considère comme le chef de la Lame flamboyante ; il se terre dans les profondeurs ardentes de l'Abîme ardent, usant de son influence démoniaque pour corrompre les citoyens d'Orgrimmar. En réalité, les véritables chefs de la Lame flamboyante sont Bazzalan et Jergosh, ce gardien de la Corruption n'étant qu'un leurre sacrifiable pour attirer les jeunes aventuriers de la Horde vers la mort. ]], 0.410000, 0.574000, 0, 680, 20002, 762, -1, 0, 2},
+        {11585, "Lorgnesilex", [[ Oggleflint et les trogg ont autrefois régné sans partage sur les profondeurs de l'Abîme ardent, jusqu'à ce que les cultistes de la Lame flamboyante y fassent leur apparition. Trop faibles pour chasser la Lame flamboyante, Oggleflint et les trogg se replièrent vers les niveaux supérieurs du Gouffre de flammes furieuses, où ils attendent désormais patiemment cet invité indésirable. ]], 0.566000, 0.385000, 0, 680, 20001, 762, -1, 0, 1},
+        {11586, "Taragaman l'Affameur", [[ On le considère comme le chef de la Lame flamboyante ; il se terre dans les profondeurs ardentes de l'Abîme ardent, usant de son influence démoniaque pour corrompre les citoyens d'Orgrimmar. En réalité, les véritables chefs de la Lame flamboyante sont Bazzalan et Jergosh, ce gardien de la Corruption n'étant qu'un leurre sacrifiable pour attirer les jeunes aventuriers de la Horde vers la mort. ]], 0.410000, 0.574000, 0, 680, 20002, 762, -1, 0, 2},
         {11587, "Bazzalan", [[ Bazzalan dirige les cultistes de la Lame flamboyante aux côtés de Jergosh l'Invocateur. Ses motivations restent floues, mais comme tous les satyres, c'est un adversaire rapide et rusé. ]], 0.420000, 0.861000, 0, 680, 20004, 762, -1, 0, 3},
-        {11588, "Jergosh l'Invocateur d'esprits", [[ Jergosh l'Invocateur a renié les idéaux des orcs et pratique les arts sombres et démoniaques du démoniste. Chef des cultistes de la Lame ardente, Jergosh réside dans l'Abîme ardent, échafaudant un plan suffisamment dangereux pour attirer l'attention de Thrall lui-même. Il garde une sphère remplie de sang, nécessaire pour invoquer les démons les plus dangereux. ]], 0.343000, 0.817000, 0, 680, 20006, 762, -1, 0, 7},
+        {11588, "Jergosh l'Invocateur", [[ Jergosh l'Invocateur a renié les idéaux des orcs et pratique les arts sombres et démoniaques du démoniste. Chef des cultistes de la Lame ardente, Jergosh réside dans l'Abîme ardent, échafaudant un plan suffisamment dangereux pour attirer l'attention de Thrall lui-même. Il garde une sphère remplie de sang, nécessaire pour invoquer les démons les plus dangereux. ]], 0.343000, 0.817000, 0, 680, 20006, 762, -1, 0, 7},
     },
     [763] = {
-        {11589, "Inquisiteur Vishas", [[ James Vishas est un croisé de l'Ordre écarlate et l'enquêteur principal de l'ordre. Il aime torturer tout mort-vivant capturé et est fier de son travail. Vishas est connu pour son sadisme implacable, son expérience cruelle et sa voix aiguë. L'inquisiteur Vishas a torturé Vorrel Sengutz pendant des semaines. Vishas prit l'anneau de fiançailles de Sengutz et l'offrit à sa propre épouse, Nancy Vishas. Nancy vit avec le grand-père de Vishas, vraisemblablement le père de James bien que cela ne soit jamais mentionné, dans un cottage sur la rive est du lac Lordamere, dans les monts d'Alterac. ]], 0.719000, 0.594000, 0, 889, 20272, 763, -1, 0, 1},
-        {11590, "Épine-de-fer", [[ Épine-de-fer est un squelette rare et élite de niveau 31 habitant le cimetière du Monastère écarlate. Longilignes et paraissant fragiles, ces squelettes possèdent une force surhumaine et une résistance élevée à la plupart des attaques physiques. ]], 0.517000, 0.675000, 0, 889, 20274, 763, -1, 0, 1},
-        {11591, "Le Champion déchu", [[ Autrefois saint paladin du Monastère écarlate, le Champion déchu était un héros de l'Ordre écarlate, tué plus tard puis ressuscité au service du Roi des morts. Il erre dans le cimetière, portant toujours l'armure et l'arme qu'il utilisait de son vivant, mais comme les morts-vivants ne peuvent pas manier les pouvoirs de la Lumière sacrée, il s'est transformé en guerrier. ]], 0.355000, 0.664000, 0, 889, 20276, 763, -1, 0, 1},
-        {11592, "Mage du sang Thalnos", [[ Le mage du sang Thalnos est un mini-boss squelette d'élite, que l'on trouve dans le cimetière du Monastère écarlate, juste sous l'escalier situé à l'extrémité du cimetière. ]], 0.243000, 0.560000, 0, 889, 20278, 763, -1, 0, 1},
+        {11589, "Interrogateur Vislar", [[ James Vishas est un croisé de l'Ordre écarlate et l'enquêteur principal de l'ordre. Il aime torturer tout mort-vivant capturé et est fier de son travail. Vishas est connu pour son sadisme implacable, son expérience cruelle et sa voix aiguë. L'inquisiteur Vishas a torturé Vorrel Sengutz pendant des semaines. Vishas prit l'anneau de fiançailles de Sengutz et l'offrit à sa propre épouse, Nancy Vishas. Nancy vit avec le grand-père de Vishas, vraisemblablement le père de James bien que cela ne soit jamais mentionné, dans un cottage sur la rive est du lac Lordamere, dans les monts d'Alterac. ]], 0.719000, 0.594000, 0, 889, 20272, 763, -1, 0, 1},
+        {11590, "Echine-de-fer", [[ Épine-de-fer est un squelette rare et élite de niveau 31 habitant le cimetière du Monastère écarlate. Longilignes et paraissant fragiles, ces squelettes possèdent une force surhumaine et une résistance élevée à la plupart des attaques physiques. ]], 0.517000, 0.675000, 0, 889, 20274, 763, -1, 0, 1},
+        {11591, "Champion déchu", [[ Autrefois saint paladin du Monastère écarlate, le Champion déchu était un héros de l'Ordre écarlate, tué plus tard puis ressuscité au service du Roi des morts. Il erre dans le cimetière, portant toujours l'armure et l'arme qu'il utilisait de son vivant, mais comme les morts-vivants ne peuvent pas manier les pouvoirs de la Lumière sacrée, il s'est transformé en guerrier. ]], 0.355000, 0.664000, 0, 889, 20276, 763, -1, 0, 1},
+        {11592, "Mage de sang Thalnos", [[ Le mage du sang Thalnos est un mini-boss squelette d'élite, que l'on trouve dans le cimetière du Monastère écarlate, juste sous l'escalier situé à l'extrémité du cimetière. ]], 0.243000, 0.560000, 0, 889, 20278, 763, -1, 0, 1},
     },
     [764] = {
-        {11593, "Grand inquisiteur Fairbanks", [[ Fairbanks fut un conseiller de confiance du seigneur suprême Mograine et assista à la réunion à Bord-du-Sud qui mena à la création du Ravageur.
+        {11593, "Grand Inquisiteur Fairbanks", [[ Fairbanks fut un conseiller de confiance du seigneur suprême Mograine et assista à la réunion à Bord-du-Sud qui mena à la création du Ravageur.
 
 Fairbanks et le seigneur suprême Mograine furent trompés par le fils de ce dernier, Renault, à Hurlebas, où des légions du Fléau les attendaient. Fairbanks fut le premier à tomber, mais ne mourut pas, piégé et caché sous des cadavres de morts-vivants. Il fut le témoin silencieux de la trahison de Renault, entendant les cris déchirants de Mograine tandis que le Ravageur transperçait son cœur et effleurait sa lame. Kel'Thuzad ressuscita plus tard Mograine en tant que chevalier de la mort.
 
 De retour au Monastère écarlate, Fairbanks raconta cette histoire de trahison à quiconque était prêt à l'écouter. Ceux qui le crurent quittèrent la croisade pour fonder l'Aube d'argent. Par la suite, Fairbanks fut tué par les croisés restants pour blasphème et, sans doute, pour avoir manifesté des symptômes de la peste. Son corps fut jeté dans une pièce secrète de la cathédrale du Monastère écarlate. ]], 0.553000, 0.256000, 0, 940, 20282, 764, -1, 0, 1},
         {11594, "Commandant écarlate Mograine", [[ Le commandant écarlate Mograine est un jeune commandant des forces armées de la Croisade écarlate au Monastère écarlate. C'est un boss d'élite, un paladin de niveau 40, se trouvant dans la Chapelle des croisés, dans la cathédrale du Monastère écarlate. ]], 0.492000, 0.271000, 0, 940, 20288, 764, -1, 0, 1},
-        {11595, "Grande inquisitrice Whitemane", [[ Sally Whitemane est une prêtresse de la lumière et Grande inquisitrice de l'Ordre écarlate. Elle dirige leurs activités depuis la cathédrale du Monastère écarlate. Encore jeune, Sally fut témoin de la mort de sa famille, emportée par la terrible peste des morts-vivants. Depuis ce jour, cette prêtresse redoutée n'a trouvé de satisfaction et de plaisir que dans une seule chose : purifier et anéantir les morts-vivants. ]], 0.490000, 0.168000, 0, 940, 20292, 764, -1, 0, 1},
+        {11595, "Grande inquisitrice Blanchetête", [[ Sally Whitemane est une prêtresse de la lumière et Grande inquisitrice de l'Ordre écarlate. Elle dirige leurs activités depuis la cathédrale du Monastère écarlate. Encore jeune, Sally fut témoin de la mort de sa famille, emportée par la terrible peste des morts-vivants. Depuis ce jour, cette prêtresse redoutée n'a trouvé de satisfaction et de plaisir que dans une seule chose : purifier et anéantir les morts-vivants. ]], 0.490000, 0.168000, 0, 940, 20292, 764, -1, 0, 1},
     },
     [765] = {
         {11596, "Maître-chien Loksey", [[ Le maître-chien Loksey est l'un des quatre chefs du Monastère écarlate et le capitaine responsable de l'entraînement des chiens que la Croisade écarlate utilise pour traquer ses ennemis. Loksey commande des chiens effrayants capables de déchiqueter leur proie en quelques minutes seulement. ]], 0.293000, 0.837000, 0, 938, 20298, 765, -1, 0, 1},
-        {11597, "Sorcier Doan", [[ Il est le gardien de la bibliothèque du monastère, gardien d'un secret dont, dit-on, la Croisade écarlate elle-même se méfie. Il n'en demeure pas moins un homme de confiance de la Croisade, détenant une clé vitale donnant accès aux opérations de l'Ordre écarlate dans les Terres de la peste. Le sorcier Doan est persuadé que la magie arcanique est le seul moyen de délivrer Lordaeron du Fléau. ]], 0.833000, 0.742000, 0, 938, 20300, 765, -1, 0, 1},
+        {11597, "Arcaniste Doan", [[ Il est le gardien de la bibliothèque du monastère, gardien d'un secret dont, dit-on, la Croisade écarlate elle-même se méfie. Il n'en demeure pas moins un homme de confiance de la Croisade, détenant une clé vitale donnant accès aux opérations de l'Ordre écarlate dans les Terres de la peste. Le sorcier Doan est persuadé que la magie arcanique est le seul moyen de délivrer Lordaeron du Fléau. ]], 0.833000, 0.742000, 0, 938, 20300, 765, -1, 0, 1},
     },
     [766] = {
         {11598, "Hérode", [[ L'Ordre écarlate dispose d'un vaste arsenal d'outils pour combattre les morts-vivants. Les novices doivent d'abord apprendre à manier les lames et les marteaux, les flèches et les boucliers. Hérode a consacré toute sa vie à l'art du combat avec ces instruments destructeurs, et il est plus que désireux de démontrer son talent aux ennemis impies de l'ordre. ]], 0.786000, 0.104000, 0, 939, 20305, 766, -1, 0, 1},
@@ -635,75 +635,75 @@ De retour au Monastère écarlate, Fairbanks raconta cette histoire de trahison 
     [767] = {
         {11599, "Kirtonos le Héraut", [[ Il est depuis longtemps devenu maître de la Nécroticité. Responsable de nombreuses atrocités durant le règne de Krastinov sur la Nécroticité, Kirtonos se nourrissait du sang de ses innocentes victimes. Pour apaiser son maître, le docteur Krastinov devait lui fournir des quantités toujours plus importantes de sang. ]], 0.497000, 0.101000, 2, 890, 20309, 767, -1, 0, 0},
         {11600, "Jandice Barov", [[ Jandice Barov est un fantôme humain, mini-boss se trouvant dans la Nécroticité, dans une pièce secrète. Elle est membre de la malheureuse famille Barov. C'était une famille extrêmement riche de Lordaeron, propriétaire de terres incluant Caer Darrow et bien d'autres. ]], 0.541000, 0.144000, 3, 890, 20317, 767, -1, 0, 1},
-        {11601, "Ossenoyer", [[ Ossenoyer est un boss golem d'os de la Nécroticité. Après avoir été vaincu par l'Alliance durant la bataille d'Andorhal, il fut recréé à partir d'ossements au sein de la Nécroticité, dans la crypte principale. ]], 0.321000, 0.650000, 3, 890, 20319, 767, -1, 0, 2},
-        {11602, "Rasa Chuchote-neige", [[ Rasa Chuchote-neige est une liche du Fléau et superviseur de tout ce qui se passe dans la Nécroticité. Il a observé et formé tous ceux qui ont accédé au rang de Maître des ténèbres. Il fut lieutenant et élève préféré de Kel'Thuzad. Rasa Chuchote-neige fut autrefois un mage humain de Strom-la-Rude. Il était un mage sauvage, un sorcier renégat qui n'avait jamais reçu de formation officielle à Dalaran. ]], 0.405000, 0.815000, 4, 890, 20322, 767, -1, 0, 5},
-        {11603, "Docteur Théolen Krastinov", [[ Surnommé « le Boucher », Krastinov était le serviteur de Kirtonos le Héraut, ainsi que le principal tortionnaire et fournisseur de corps et de parties de corps destinés aux expériences nécromantiques de la Nécroticité. Ses premières victimes furent recrutées au sein de la famille de Caer Darrow. ]], 0.888000, 0.462000, 3, 890, 20328, 767, -1, 0, 7},
-        {11604, "Marduk Piscine-noire", [[ Marduk Piscine-noire, également connu sous le nom de Marduk le Noir, était un tristement célèbre chevalier de la mort du Fléau. Il s'est notamment fait connaître pour sa participation à la bataille de Fenêtre-Sombre durant la Troisième Guerre, où il scella la défaite des humains en corrompant l'esprit de Joseph Redpath. Quelque temps plus tard, Marduk se retira dans la Nécroticité. ]], 0.442000, 0.644000, 2, 890, 20331, 767, -1, 0, 3},
+        {11601, "Cliquettripes", [[ Ossenoyer est un boss golem d'os de la Nécroticité. Après avoir été vaincu par l'Alliance durant la bataille d'Andorhal, il fut recréé à partir d'ossements au sein de la Nécroticité, dans la crypte principale. ]], 0.321000, 0.650000, 3, 890, 20319, 767, -1, 0, 2},
+        {11602, "Ras Murmegivre", [[ Rasa Chuchote-neige est une liche du Fléau et superviseur de tout ce qui se passe dans la Nécroticité. Il a observé et formé tous ceux qui ont accédé au rang de Maître des ténèbres. Il fut lieutenant et élève préféré de Kel'Thuzad. Rasa Chuchote-neige fut autrefois un mage humain de Strom-la-Rude. Il était un mage sauvage, un sorcier renégat qui n'avait jamais reçu de formation officielle à Dalaran. ]], 0.405000, 0.815000, 4, 890, 20322, 767, -1, 0, 5},
+        {11603, "Docteur Theolen Krastinov", [[ Surnommé « le Boucher », Krastinov était le serviteur de Kirtonos le Héraut, ainsi que le principal tortionnaire et fournisseur de corps et de parties de corps destinés aux expériences nécromantiques de la Nécroticité. Ses premières victimes furent recrutées au sein de la famille de Caer Darrow. ]], 0.888000, 0.462000, 3, 890, 20328, 767, -1, 0, 7},
+        {11604, "Marduk Noirétang", [[ Marduk Piscine-noire, également connu sous le nom de Marduk le Noir, était un tristement célèbre chevalier de la mort du Fléau. Il s'est notamment fait connaître pour sa participation à la bataille de Fenêtre-Sombre durant la Troisième Guerre, où il scella la défaite des humains en corrompant l'esprit de Joseph Redpath. Quelque temps plus tard, Marduk se retira dans la Nécroticité. ]], 0.442000, 0.644000, 2, 890, 20331, 767, -1, 0, 3},
         {11605, "Vectus", [[ Vectus est un mini-boss squelette mage et l'un des principaux instructeurs de nécromancie de la Nécroticité. Vectus a élevé une couvée de dragons torturés habitant la Nécroticité, qu'il a obtenue en payant Tinkey Steamboil, aux Steppes Ardentes, pour des œufs provenant du Pic de la Montagne Noire. ]], 0.486000, 0.658000, 2, 890, 20335, 767, -1, 0, 4},
         {11606, "Gardien du savoir Polkelt", [[ Polkelt est l'un des six mini-boss nécessaires pour invoquer Gandling. Comme son nom l'indique, il fut autrefois un gardien du savoir, un savoir malheureusement perdu, puisqu'il n'est plus aujourd'hui qu'un monstre maladroit et privé de raison. ]], 0.723000, 0.220000, 3, 890, 20339, 767, -1, 0, 8},
-        {11607, "Instructrice Malacrasse", [[ L'instructrice Malacrasse est une haut-elfe instructrice formant les cultistes de la Nécroticité. ]], 0.726000, 0.700000, 3, 890, 20343, 767, -1, 0, 6},
-        {11608, "Lady Illucia Barov", [[ Lady Illucia Barov est un fantôme mini-boss se trouvant dans la Nécroticité. Elle fut l'épouse de lord Alexei Barov et l'un des six mini-boss devant être vaincus pour invoquer le maître des ténèbres Gandling. ]], 0.675000, 0.141000, 4, 890, 20348, 767, -1, 0, 11},
-        {11609, "Lord Alexei Barov", [[ Lord Alexei Barov était seigneur de Caer Darrow, de Brill, de Moulin-Taren et de Bord-du-Sud. Il était le père d'Alexi, de Weldon et de Jandice Barov, ainsi que l'époux de lady Illucia Barov. Comme Jandice et Illucia, il est désormais un agent du Fléau au sein de la Nécroticité. Alexei Barov est l'un des six boss devant être vaincus pour invoquer le maître des ténèbres Gandling. Il garde également les actes de propriété de Caer Darrow. ]], 0.791000, 0.300000, 4, 890, 20353, 767, -1, 0, 10},
-        {11610, "Raven'ian", [[ Raven'ian est un type inhabituel de mort-vivant. On ignore comment cette transformation a eu lieu. Une rumeur prétend que Raven'ian dévore les élèves de la Nécroticité qui ne font pas preuve d'assez d'assiduité dans leurs études. De plus, Raven'ian est l'un des six boss devant être vaincus pour invoquer le Maître des ténèbres Gandling. ]], 0.673000, 0.477000, 4, 890, 20356, 767, -1, 0, 9},
-        {11611, "Maître des ténèbres Gandling", [[ Le Maître des ténèbres Gandling est le dernier boss de la Nécroticité. Son instructeur en nécromancie fut Rasa Chuchote-neige. Gandling est le directeur de l'École de nécromancie de Caer Darrow, nommé personnellement par Kel'Thuzad. ]], 0.681000, 0.302000, 4, 890, 20360, 767, -1, 0, 12},
+        {11607, "Instructrice Malicia", [[ L'instructrice Malacrasse est une haut-elfe instructrice formant les cultistes de la Nécroticité. ]], 0.726000, 0.700000, 3, 890, 20343, 767, -1, 0, 6},
+        {11608, "Dame Illucia Barov", [[ Lady Illucia Barov est un fantôme mini-boss se trouvant dans la Nécroticité. Elle fut l'épouse de lord Alexei Barov et l'un des six mini-boss devant être vaincus pour invoquer le maître des ténèbres Gandling. ]], 0.675000, 0.141000, 4, 890, 20348, 767, -1, 0, 11},
+        {11609, "Seigneur Alexei Barov", [[ Lord Alexei Barov était seigneur de Caer Darrow, de Brill, de Moulin-Taren et de Bord-du-Sud. Il était le père d'Alexi, de Weldon et de Jandice Barov, ainsi que l'époux de lady Illucia Barov. Comme Jandice et Illucia, il est désormais un agent du Fléau au sein de la Nécroticité. Alexei Barov est l'un des six boss devant être vaincus pour invoquer le maître des ténèbres Gandling. Il garde également les actes de propriété de Caer Darrow. ]], 0.791000, 0.300000, 4, 890, 20353, 767, -1, 0, 10},
+        {11610, "Le Voracien", [[ Raven'ian est un type inhabituel de mort-vivant. On ignore comment cette transformation a eu lieu. Une rumeur prétend que Raven'ian dévore les élèves de la Nécroticité qui ne font pas preuve d'assez d'assiduité dans leurs études. De plus, Raven'ian est l'un des six boss devant être vaincus pour invoquer le Maître des ténèbres Gandling. ]], 0.673000, 0.477000, 4, 890, 20356, 767, -1, 0, 9},
+        {11611, "Sombre Maître Gandling", [[ Le Maître des ténèbres Gandling est le dernier boss de la Nécroticité. Son instructeur en nécromancie fut Rasa Chuchote-neige. Gandling est le directeur de l'École de nécromancie de Caer Darrow, nommé personnellement par Kel'Thuzad. ]], 0.681000, 0.302000, 4, 890, 20360, 767, -1, 0, 12},
     },
     [771] = {
-        {11623, "« Léviathan enflammé »", [[ L'entrée de la cour intérieure d'Ulduar est gardée par un énorme char blindé. Le Gardien Mimiron a construit le « Léviathan enflammé » dans le cadre de la plateforme d'armement « V-0-7 TR0N ». ]], 0.491000, 0.389000, 1, 529, 20484, 771, -1, 0, 0},
-        {11624, "Seigneur des fourneaux Ignis", [[ Comme d'autres créations des titans à Ulduar, Ignis obéit désormais à la volonté du dieu ancien Yogg-Saron. Cet imposant géant de feu réside dans la Forge géante et crée des armées de guerriers de fer destinées à conquérir Azeroth, au nom de Yogg-Saron. ]], 0.383000, 0.266000, 1, 529, 20534, 771, -1, 0, 1},
-        {11625, "Aile-acérée", [[ Veranus, mère de la couvée de protodragons des Hauteurs de la tempête, servit le Gardien Thorim jusqu'à ce que Loken la capture et la transforme en une arme redoutable. Le Seigneur des fourneaux Ignis renforça les écailles du dragon de plaques de fer, rendant Aile-acérée encore plus mortelle. ]], 0.541000, 0.268000, 1, 529, 20545, 771, -1, 0, 2},
-        {11626, "Destructeur XT-002", [[ Mimiron a conçu ce mécanisme autonome pour garder la décharge d'Ulduar et lui a insufflé les rudiments d'intelligence nécessaires à l'exécution de tâches simples. XT-002 se considère comme le fils du Gardien et, tel un enfant capricieux, il lui arrive parfois de piquer des colères. ]], 0.485000, 0.145000, 1, 529, 20566, 771, -1, 0, 3},
-        {11627, "L'Assemblée de fer", [[ À la tête des légions de fer de Loken se trouvent trois généraux redoutables, chacun représentant l'une des races créées par les titans. Bouraq Tempêtefief, Molgeim le maître des runes et le géant Steelbreaker servent celui qui commande réellement le Gardien : le sinistre Yogg-Saron. ]], 0.154000, 0.568000, 2, 529, 20587, 771, -1, 0, 4},
+        {11623, "Tourelle de défense de léviathan", [[ L'entrée de la cour intérieure d'Ulduar est gardée par un énorme char blindé. Le Gardien Mimiron a construit le « Léviathan enflammé » dans le cadre de la plateforme d'armement « V-0-7 TR0N ». ]], 0.491000, 0.389000, 1, 529, 20484, 771, -1, 0, 0},
+        {11624, "Ignis le maître de la Fournaise", [[ Comme d'autres créations des titans à Ulduar, Ignis obéit désormais à la volonté du dieu ancien Yogg-Saron. Cet imposant géant de feu réside dans la Forge géante et crée des armées de guerriers de fer destinées à conquérir Azeroth, au nom de Yogg-Saron. ]], 0.383000, 0.266000, 1, 529, 20534, 771, -1, 0, 1},
+        {11625, "Tranchécaille", [[ Veranus, mère de la couvée de protodragons des Hauteurs de la tempête, servit le Gardien Thorim jusqu'à ce que Loken la capture et la transforme en une arme redoutable. Le Seigneur des fourneaux Ignis renforça les écailles du dragon de plaques de fer, rendant Aile-acérée encore plus mortelle. ]], 0.541000, 0.268000, 1, 529, 20545, 771, -1, 0, 2},
+        {11626, "Déconstructeur XT-002", [[ Mimiron a conçu ce mécanisme autonome pour garder la décharge d'Ulduar et lui a insufflé les rudiments d'intelligence nécessaires à l'exécution de tâches simples. XT-002 se considère comme le fils du Gardien et, tel un enfant capricieux, il lui arrive parfois de piquer des colères. ]], 0.485000, 0.145000, 1, 529, 20566, 771, -1, 0, 3},
+        {11627, "Brise-acier", [[ À la tête des légions de fer de Loken se trouvent trois généraux redoutables, chacun représentant l'une des races créées par les titans. Bouraq Tempêtefief, Molgeim le maître des runes et le géant Steelbreaker servent celui qui commande réellement le Gardien : le sinistre Yogg-Saron. ]], 0.154000, 0.568000, 2, 529, 20587, 771, -1, 0, 4},
         {11628, "Kologarn", [[ Loken ordonna au Seigneur des fourneaux Ignis de forger ce géant pour défendre la Galerie effondrée. De ses immenses mains, Kologarn est capable d'écraser quiconque tenterait de s'infiltrer dans le sanctuaire intérieur d'Ulduar. ]], 0.373000, 0.126000, 2, 529, 20607, 771, -1, 0, 5},
         {11629, "Auriaya", [[ L'archiviste d'Ulduar erre dans le Cercle de veille en compagnie de félins sauvages. De longues années passées dans la solitude ont brisé Auriaya, et l'influence croissante du dieu ancien a fini par lui faire perdre définitivement la raison. ]], 0.511000, 0.569000, 3, 529, 20619, 771, -1, 0, 6},
         {11630, "Hodir", [[ Hodir a jadis régné sur le Temple de l'hiver, commandant les géants des neiges des Hauteurs de la tempête. Aujourd'hui, ce Gardien réside dans une grotte glacée des Salles de l'hiver, son esprit soumis à la volonté de Yogg-Saron. ]], 0.667000, 0.637000, 3, 529, 20632, 771, -1, 0, 7},
         {11631, "Thorim", [[ Pendant des années, Thorim a cru que les géants avaient tué sa bien-aimée épouse Sif. Déchaînant sa colère sur ses alliés, il sombra dans le désespoir. Lorsque Thorim découvrit que son frère Loken était derrière ce crime, ce dernier l'emprisonna dans Ulduar, où le dieu ancien lui obscurcit l'esprit. ]], 0.718000, 0.484000, 3, 529, 20656, 771, -1, 0, 8},
         {11632, "Freya", [[ La Gardienne Freya était la protectrice de toute vie, aidée dans cette tâche par trois fidèles anciens. Et bien que son jardin continue d'être tué par une végétation débridée, sa raison n'a pas résisté au murmure du Dieu ancien. ]], 0.533000, 0.230000, 3, 529, 20711, 771, -1, 0, 9},
-        {11633, "Mimiron", [[ Inventeur de génie, Mimiron a conçu tout au long de l'histoire d'Azeroth de nombreux mécanismes qui suscitent encore aujourd'hui admiration et émerveillement. Mais tombé sous l'influence de Loken, ce Gardien d'Ulduar s'est mis à ne créer que des machines de guerre. ]], 0.436000, 0.414000, 5, 529, 20752, 771, -1, 0, 10},
+        {11633, "VX-001", [[ Inventeur de génie, Mimiron a conçu tout au long de l'histoire d'Azeroth de nombreux mécanismes qui suscitent encore aujourd'hui admiration et émerveillement. Mais tombé sous l'influence de Loken, ce Gardien d'Ulduar s'est mis à ne créer que des machines de guerre. ]], 0.436000, 0.414000, 5, 529, 20752, 771, -1, 0, 10},
         {11634, "Général Vezax", [[ D'étranges créatures, appelées les sans-visages, habitent les profondeurs d'Ulduar. L'un de leurs seigneurs, le général Vezax, garde les couloirs sinueux menant à la prison de Yogg-Saron. ]], 0.569000, 0.605000, 4, 529, 20793, 771, -1, 0, 11},
         {11635, "Yogg-Saron", [[ Rêve éveillé, monstre de vos cauchemars, démon aux mille visages.
 Tous doivent s'incliner devant la volonté du maître. Vos efforts dérisoires ne font que le renforcer... ]], 0.681000, 0.401000, 4, 529, 20805, 771, -1, 0, 12},
         {11636, "Algalon l'Observateur", [[ Après la mort de Loken, un avertissement fut envoyé au Panthéon indiquant qu'Azeroth avait perdu son Curateur en chef. Peu après, Algalon l'Observateur arriva en Azeroth, chargé de détecter les signes de corruption de la planète. En cas de nécessité, le constellaire lancerait l'algorithme de recréation du monde, ce qui entraînerait la mort de tous ses habitants. ]], 0.788000, 0.466000, 2, 529, 20863, 771, -1, 0, 13},
     },
     [773] = {
-        {11657, "Imporus", [[ Le premier de la garde de Murozond, un puissant guerrier combattant férocement au corps à corps et usant d'une magie temporelle destructrice, réduisant ses adversaires en poussière. ]], 0.661000, 0.648000, 0, 924, 21202, 773, 10, 0, 1},
-        {11658, "Elonus le Faussaire du temps", [[ Le plus grand des chronomanciens de Murozond, chargé par lui de garder l'un des deux passages menant hors du temps. Puissant lanceur de sorts, il ne poursuit pas ses adversaires, préférant les bombarder de sortilèges jusqu'à ce qu'ils s'engagent eux-mêmes au corps à corps. ]], 0.718000, 0.848000, 0, 924, 21215, 773, 10, 0, 2},
-        {11659, "Murozond", [[ Toute âme recèle une part de ténèbres et de folie. L'esprit de Nozdormu, jadis noble et fidèle à son devoir, fut rongé par la vision de sa propre mort, offerte par Aman'Thul. Il est désormais Murozond, seigneur des dragons de l'Infini, s'étant retourné contre son propre destin et déterminé à survivre à tout prix, même si cela signifie provoquer la Fin des Temps et la fin du monde tel que nous le connaissons.
+        {11657, "Chaman guette-terre", [[ Le premier de la garde de Murozond, un puissant guerrier combattant férocement au corps à corps et usant d'une magie temporelle destructrice, réduisant ses adversaires en poussière. ]], 0.661000, 0.648000, 0, 924, 21202, 773, 10, 0, 1},
+        {11658, "Chope imprégnée d'Eoin", [[ Le plus grand des chronomanciens de Murozond, chargé par lui de garder l'un des deux passages menant hors du temps. Puissant lanceur de sorts, il ne poursuit pas ses adversaires, préférant les bombarder de sortilèges jusqu'à ce qu'ils s'engagent eux-mêmes au corps à corps. ]], 0.718000, 0.848000, 0, 924, 21215, 773, 10, 0, 2},
+        {11659, "Griffon marteau-hardi", [[ Toute âme recèle une part de ténèbres et de folie. L'esprit de Nozdormu, jadis noble et fidèle à son devoir, fut rongé par la vision de sa propre mort, offerte par Aman'Thul. Il est désormais Murozond, seigneur des dragons de l'Infini, s'étant retourné contre son propre destin et déterminé à survivre à tout prix, même si cela signifie provoquer la Fin des Temps et la fin du monde tel que nous le connaissons.
 Ici, dans cette ligne temporelle mourante, ses travaux ont manifestement porté leurs fruits, et il ne lui reste plus qu'une dernière étape : effacer cette ligne temporelle... puis s'attaquer à la suivante. ]], 0.376000, 0.249000, 0, 924, 21238, 773, 10, 0, 3},
     },
     [774] = {
-        {11660, "Gog'onasz", [[ Incapables de retenir l'immense seigneur des Enfers Argaloth dans les geôles majestueuses de la Forteresse améthyste de Dalaran, les mages du Kirin Tor furent contraints d'enfermer ce puissant démon dans l'une des prisons les plus solides : les profondeurs de Tol Barad. Malheureusement, ou heureusement, les gardes ne purent résister longtemps à la haine brûlante émanant du démon, et dans une tentative de mettre fin à son existence, le démon se libéra. ]], 0.802000, 0.627000, 0, 954, 21288, 774, 3, 0, 0},
-        {11661, "Dévoreur d'esprit Ctrax", [[ Cette créature effrayante fut capturée dans les profondeurs d'Ulduar. Elle fut piégée alors qu'elle sombrait dans la torpeur après la défaite de Yogg-Saron. Craignant sa puissance, les mages du Kirin Tor décidèrent de l'envoyer dans un lieu ultra-sécurisé : la prison de Tol Barad ; cependant, avec le temps, la créature s'est mystérieusement réveillée, et désormais, les puissants systèmes de sécurité de Tol Barad ne parviennent plus à la contenir. ]], 0.478000, 0.175000, 0, 954, 21298, 774, 3, 0, 1},
+        {11660, "Gogonas", [[ Incapables de retenir l'immense seigneur des Enfers Argaloth dans les geôles majestueuses de la Forteresse améthyste de Dalaran, les mages du Kirin Tor furent contraints d'enfermer ce puissant démon dans l'une des prisons les plus solides : les profondeurs de Tol Barad. Malheureusement, ou heureusement, les gardes ne purent résister longtemps à la haine brûlante émanant du démon, et dans une tentative de mettre fin à son existence, le démon se libéra. ]], 0.802000, 0.627000, 0, 954, 21288, 774, 3, 0, 0},
+        {11661, "Dévoreur d’esprit Ktrax", [[ Cette créature effrayante fut capturée dans les profondeurs d'Ulduar. Elle fut piégée alors qu'elle sombrait dans la torpeur après la défaite de Yogg-Saron. Craignant sa puissance, les mages du Kirin Tor décidèrent de l'envoyer dans un lieu ultra-sécurisé : la prison de Tol Barad ; cependant, avec le temps, la créature s'est mystérieusement réveillée, et désormais, les puissants systèmes de sécurité de Tol Barad ne parviennent plus à la contenir. ]], 0.478000, 0.175000, 0, 954, 21298, 774, 3, 0, 1},
         {11662, "Dévoreur de magie", [[ Transporté encore « chiot », le dévoreur a lentement, mais sûrement grandi dans les profondeurs de Tol Barad, jusqu'à ce que des représentants de la magie des Ténèbres et de la Corruption s'installent à proximité. La magie qu'ils dégageaient s'infiltra peu à peu dans le corps encore faible du dévoreur, modifiant et transformant son essence. ]], 0.162000, 0.631000, 0, 954, 21322, 774, 3, 0, 2},
     },
     [777] = {
-        {11672, "Norgorn", [[ Beaucoup de sang a été versé dans l'affrontement entre l'Alliance, la Horde et les Renégats pour les ressources et les trésors de l'île de Tol Barad. Goutte à goutte, le sang a atteint la ligne de force au cœur même de l'île, sous terre, et le sang a trouvé un écho. Dans un grincement, les portes de la prison se sont ouvertes, et le passage désormais accessible appelle les chercheurs de trésors de toutes les factions. Il ne reste plus qu'un seul obstacle : le Gardien des lignes de force, Norgorn, réveillé par l'appel du sang. ]], 0.162000, 0.631000, 0, 0, 21530, 777, 1, 0, 0},
+        {11672, "Diablosaure primordial", [[ Beaucoup de sang a été versé dans l'affrontement entre l'Alliance, la Horde et les Renégats pour les ressources et les trésors de l'île de Tol Barad. Goutte à goutte, le sang a atteint la ligne de force au cœur même de l'île, sous terre, et le sang a trouvé un écho. Dans un grincement, les portes de la prison se sont ouvertes, et le passage désormais accessible appelle les chercheurs de trésors de toutes les factions. Il ne reste plus qu'un seul obstacle : le Gardien des lignes de force, Norgorn, réveillé par l'appel du sang. ]], 0.162000, 0.631000, 0, 0, 21530, 777, 1, 0, 0},
     },
 }
 JOURNALENCOUNTERCREATURE = {
     [89] = {
-        {"Rhahk'Zor", "", 14403, "interface\\encounterjournal\\ui-ej-boss-Rhahk'Zor.blp", 89, 0, 358, 644},
+        {"Rhahk'Zor", "Le contremaître", 14403, "interface\\encounterjournal\\ui-ej-boss-Rhahk'Zor.blp", 89, 0, 358, 644},
     },
     [90] = {
-        {"Déchiqueteur de Sneed", "", 1269, "interface\\encounterjournal\\ui-ej-boss-Sneed's-Shredder.blp", 90, 0, 359, 642},
-        {"Sneed", "", 7125, "", 90, 1, 630, 643},
+        {"Déchiqueteur de Sneed", "Bûcheron", 1269, "interface\\encounterjournal\\ui-ej-boss-Sneed's-Shredder.blp", 90, 0, 359, 642},
+        {"Sneed", "Bûcheron", 7125, "", 90, 1, 630, 643},
     },
     [91] = {
-        {"Gilnid", "", 7124, "interface\\encounterjournal\\ui-ej-boss-Gilnid.blp", 91, 0, 360, 1763},
+        {"Gilnid", "Le fondeur", 7124, "interface\\encounterjournal\\ui-ej-boss-Gilnid.blp", 91, 0, 360, 1763},
     },
     [92] = {
         {"Capitaine Vertepeau", "", 7113, "interface\\encounterjournal\\ui-ej-boss-Captain-Greenskin.blp", 92, 0, 361, 647},
     },
     [95] = {
-        {"Edwin VanCleef", "", 2029, "interface\\encounterjournal\\ui-ej-boss-Edwin-VanCleef.blp", 95, 0, 365, 639},
+        {"Edwin VanCleef", "Caïd défias", 2029, "interface\\encounterjournal\\ui-ej-boss-Edwin-VanCleef.blp", 95, 0, 365, 639},
     },
     [96] = {
-        {"Rethilgore", "", 524, "interface\\encounterjournal\\ui-ej-boss-Rethilgore.blp", 96, 0, 366, 3914},
+        {"Rethiltripe", "Le gardien de la cellule", 524, "interface\\encounterjournal\\ui-ej-boss-Rethilgore.blp", 96, 0, 366, 3914},
     },
     [97] = {
-        {"Baron Vaillefendre", "", 3222, "interface\\encounterjournal\\ui-ej-boss-baron silverlaine.blp", 97, 0, 367, 3887},
+        {"Baron d'Argelaine", "", 3222, "interface\\encounterjournal\\ui-ej-boss-baron silverlaine.blp", 97, 0, 367, 3887},
     },
     [98] = {
-        {"Commandant Printemps", "", 3223, "interface\\encounterjournal\\ui-ej-boss-commander springvale.blp", 98, 0, 368, 4278},
+        {"Commandant Printeval", "", 3223, "interface\\encounterjournal\\ui-ej-boss-commander springvale.blp", 98, 0, 368, 4278},
     },
     [99] = {
         {"Fenrus le Dévoreur", "", 20180, "interface\\encounterjournal\\ui-ej-boss-Fenrus-the-Devourer.blp", 99, 0, 369, 4274},
@@ -715,10 +715,10 @@ JOURNALENCOUNTERCREATURE = {
         {"Grand prêtre Venoxis", "", 15217, "interface\\encounterjournal\\UI-EJ-Boss-Venoxis.blp", 175, 0, 601, 14507},
     },
     [176] = {
-        {"Mandokir le seigneur sanglant", "", 11288, "interface\\encounterjournal\\UI-EJ-Boss-Mandokir.blp", 176, 0, 602, 11382},
+        {"Seigneur sanglant Mandokir", "", 11288, "interface\\encounterjournal\\UI-EJ-Boss-Mandokir.blp", 176, 0, 602, 11382},
     },
     [177] = {
-        {"Gri'lek", "", 8390, "interface\\encounterjournal\\ui-ej-boss-grilek.blp", 177, 0, 603, 8924},
+        {"Le Béhémoth", "", 8390, "interface\\encounterjournal\\ui-ej-boss-grilek.blp", 177, 0, 603, 8924},
     },
     [178] = {
         {"Hazza'rah", "", 15267, "interface\\encounterjournal\\ui-ej-boss-hazzarah.blp", 178, 0, 604, 15083},
@@ -736,19 +736,19 @@ JOURNALENCOUNTERCREATURE = {
         {"Jin'do le Maléficieur", "", 11311, "interface\\encounterjournal\\UI-EJ-Boss-Hexxer.blp", 184, 0, 616, 11380},
     },
     [185] = {
-        {"Hakkar l'Écorcheur d'âmes", "", 15295, "interface\\encounterjournal\\UI-EJ-Boss-Hakkar.blp", 185, 0, 617, 14834},
+        {"Hakkar", "", 15295, "interface\\encounterjournal\\UI-EJ-Boss-Hakkar.blp", 185, 0, 617, 14834},
     },
     [186] = {
-        {"Akil'zon", "", 21630, "interface\\encounterjournal\\ui-ej-boss-akilzon.blp", 186, 0, 618, 23574},
+        {"Akil'zon", "Avatar d'Aigle", 21630, "interface\\encounterjournal\\ui-ej-boss-akilzon.blp", 186, 0, 618, 23574},
     },
     [187] = {
-        {"Nalorakk", "", 21631, "interface\\encounterjournal\\ui-ej-boss-nalorakk.blp", 187, 0, 619, 23576},
+        {"Nalorakk", "Avatar d'Ours", 21631, "interface\\encounterjournal\\ui-ej-boss-nalorakk.blp", 187, 0, 619, 23576},
     },
     [188] = {
-        {"Jan'alai", "", 21633, "interface\\encounterjournal\\ui-ej-boss-janalai.blp", 188, 0, 620, 23578},
+        {"Jan'alai", "Avatar de faucon-dragon", 21633, "interface\\encounterjournal\\ui-ej-boss-janalai.blp", 188, 0, 620, 23578},
     },
     [189] = {
-        {"Halazzi", "", 21632, "interface\\encounterjournal\\ui-ej-boss-halazzi.blp", 189, 0, 621, 23577},
+        {"Halazzi", "Avatar de Lynx", 21632, "interface\\encounterjournal\\ui-ej-boss-halazzi.blp", 189, 0, 621, 23577},
     },
     [190] = {
         {"Seigneur des maléfices Malacrass", "", 22332, "interface\\encounterjournal\\ui-ej-boss-hex lord malacrass.blp", 190, 0, 622, 24239},
@@ -760,28 +760,28 @@ JOURNALENCOUNTERCREATURE = {
         {"Ghamoo-ra", "", 37143, "interface\\encounterjournal\\ui-ej-boss-ghamoo ra.blp", 368, 0, 3155, 4887},
     },
     [369] = {
-        {"Grand Interrogateur Gerstahn", "", 8761, "interface\\encounterjournal\\ui-ej-boss-high interrogator gerstahn.blp", 369, 0, 942, 9018},
+        {"Grande Interrogatrice Gerstahn", "Inquisitrice du Marteau du crépuscule", 8761, "interface\\encounterjournal\\ui-ej-boss-high interrogator gerstahn.blp", 369, 0, 942, 9018},
     },
     [370] = {
-        {"Lord Roccor", "", 5781, "interface\\encounterjournal\\ui-ej-boss-lord roccor.blp", 370, 0, 943, 7032},
+        {"Grand élémentaire d'obsidienne", "", 5781, "interface\\encounterjournal\\ui-ej-boss-lord roccor.blp", 370, 0, 943, 7032},
     },
     [371] = {
         {"Maître-chien Grebmar", "", 9212, "interface\\encounterjournal\\ui-ej-boss-houndmaster grebmar.blp", 371, 0, 944, 9319},
     },
     [372] = {
-        {"Grand juge Mrachnokam", "", 9329, "interface\\encounterjournal\\ui-ej-boss-high justice grimstone.blp", 372, 0, 1234, 10096},
+        {"Juge Supérieur Mornepierre", "", 9329, "interface\\encounterjournal\\ui-ej-boss-high justice grimstone.blp", 372, 0, 1234, 10096},
     },
     [373] = {
-        {"Pyromancien Cherchegrain", "", 8762, "interface\\encounterjournal\\ui-ej-boss-pyromancer loregrain.blp", 373, 0, 945, 9024},
+        {"Pyromancien Blé-du-Savoir", "", 8762, "interface\\encounterjournal\\ui-ej-boss-pyromancer loregrain.blp", 373, 0, 945, 9024},
     },
     [374] = {
-        {"Lord Incendius", "", 1204, "interface\\encounterjournal\\ui-ej-boss-lord incendius.blp", 374, 0, 946, 8281},
+        {"Brûlar", "", 1204, "interface\\encounterjournal\\ui-ej-boss-lord incendius.blp", 374, 0, 946, 8281},
     },
     [375] = {
         {"Gardien Stilgiss", "", 9089, "interface\\encounterjournal\\ui-ej-boss-warder stilgiss.blp", 375, 0, 947, 9041},
     },
     [376] = {
-        {"Fineous Sombrevire", "", 8704, "interface\\encounterjournal\\ui-ej-boss-fineous darkvire.blp", 376, 0, 948, 9056},
+        {"Fineous Sombrevire", "Chef architecte", 8704, "interface\\encounterjournal\\ui-ej-boss-fineous darkvire.blp", 376, 0, 948, 9056},
     },
     [377] = {
         {"Bael'Gar", "", 12162, "interface\\encounterjournal\\ui-ej-boss-baelgar.blp", 377, 0, 949, 9016},
@@ -796,41 +796,41 @@ JOURNALENCOUNTERCREATURE = {
         {"Hurley Soufflenoir", "", 8658, "interface\\encounterjournal\\ui-ej-boss-hurley blackbreath.blp", 380, 0, 952, 9537},
     },
     [381] = {
-        {"Phalange", "", 8177, "interface\\encounterjournal\\ui-ej-boss-phalanx.blp", 381, 0, 953, 8906},
+        {"Golem ravarage", "", 8177, "interface\\encounterjournal\\ui-ej-boss-phalanx.blp", 381, 0, 953, 8906},
     },
     [383] = {
-        {"Plugger Spazzringue", "", 8652, "interface\\encounterjournal\\ui-ej-boss-plugger spazzring.blp", 383, 0, 955, 9499},
+        {"Lanfiche Brouillecircuit", "", 8652, "interface\\encounterjournal\\ui-ej-boss-plugger spazzring.blp", 383, 0, 955, 9499},
     },
     [384] = {
         {"Ambassadeur Cinglefouet", "", 8329, "interface\\encounterjournal\\ui-ej-boss-ambassador flamelash.blp", 384, 0, 956, 9156},
     },
     [385] = {
-        {"Trucidan", "Chef des Sept", 8687, "interface\\encounterjournal\\ui-ej-boss-doomrel.blp", 385, 0, 1059, 9039},
+        {"Tragi'rel", "Chef des Sept", 8687, "interface\\encounterjournal\\ui-ej-boss-doomrel.blp", 385, 0, 1059, 9039},
     },
     [386] = {
-        {"Magmus", "", 12162, "interface\\encounterjournal\\ui-ej-boss-magmus.blp", 386, 0, 957, 9016},
+        {"Bael'Gar", "", 12162, "interface\\encounterjournal\\ui-ej-boss-magmus.blp", 386, 0, 957, 9016},
     },
     [387] = {
-        {"Princesse Moira Barbe-de-Bronze", "", 8705, "", 387, 1, 14141, 8929},
+        {"Princesse Moira Barbe-de-bronze", "Princesse de Forgefer", 8705, "", 387, 1, 14141, 8929},
         {"Empereur Dagran Thaurissan", "", 8807, "interface\\encounterjournal\\ui-ej-boss-emperor thaurissan.blp", 387, 0, 958, 9019},
     },
     [388] = {
-        {"Seigneur de guerre Omokk", "", 11565, "interface\\encounterjournal\\ui-ej-boss-highlord omokk.blp", 388, 0, 959, 9196},
+        {"Généralissime Omokk", "", 11565, "interface\\encounterjournal\\ui-ej-boss-highlord omokk.blp", 388, 0, 959, 9196},
     },
     [389] = {
-        {"Chasseuse des ombres Vosh'gajin", "", 9732, "interface\\encounterjournal\\ui-ej-boss-shadow hunter voshgajin.blp", 389, 0, 960, 9236},
+        {"Chasseresse des ombres Vosh'gajin", "", 9732, "interface\\encounterjournal\\ui-ej-boss-shadow hunter voshgajin.blp", 389, 0, 960, 9236},
     },
     [390] = {
         {"Maître de guerre Voone", "", 28281, "interface\\encounterjournal\\ui-ej-boss-war master voone.blp", 390, 0, 961, 9237},
     },
     [391] = {
-        {"Mère de la couvée", "", 9929, "interface\\encounterjournal\\ui-ej-boss-mother smolderweb.blp", 391, 0, 962, 10596},
+        {"Matriarche Couveuse", "", 9929, "interface\\encounterjournal\\ui-ej-boss-mother smolderweb.blp", 391, 0, 962, 10596},
     },
         [392] = {
         {"Urok Hurleruine", "", 11583, "interface\\encounterjournal\\ui-ej-boss-urok doomhowl.blp", 392, 0, 963, 10584},
     },
     [393] = {
-        {"Intendant Zigris", "", 9738, "interface\\encounterjournal\\ui-ej-boss-quartermaster zigris.blp", 393, 0, 964, 9736},
+        {"Intendant Zigris", "Légion Hache-sanglante", 9738, "interface\\encounterjournal\\ui-ej-boss-quartermaster zigris.blp", 393, 0, 964, 9736},
     },
     [394] = {
         {"Halycon", "", 9567, "interface\\encounterjournal\\ui-ej-boss-halycon.blp", 394, 0, 965, 10220},
@@ -842,7 +842,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Seigneur Wyrmthalak", "", 8711, "interface\\encounterjournal\\ui-ej-boss-overlord wyrmthalak.blp", 396, 0, 967, 9568},
     },
     [402] = {
-        {"Zevrim Sabot-de-Ronce", "", 11335, "interface\\encounterjournal\\ui-ej-boss-zevrim thornhoof.blp", 402, 0, 973, 7111},
+        {"Implorateur de l'enfer jadefeu", "", 11335, "interface\\encounterjournal\\ui-ej-boss-zevrim thornhoof.blp", 402, 0, 973, 7111},
     },
     [403] = {
         {"Hydrogénos", "", 5489, "interface\\encounterjournal\\ui-ej-boss-hydrospawn.blp", 403, 0, 974, 13280},
@@ -866,31 +866,31 @@ JOURNALENCOUNTERCREATURE = {
         {"Immol'thar", "", 14173, "interface\\encounterjournal\\ui-ej-boss-immolthar.blp", 409, 0, 980, 11496},
     },
     [410] = {
-        {"Prince Tortheldrin", "", 11256, "interface\\encounterjournal\\ui-ej-boss-prince tortheldrin.blp", 410, 0, 981, 11486},
+        {"Prince Tortheldrin", "Dirigeant des Shen’dralar", 11256, "interface\\encounterjournal\\ui-ej-boss-prince tortheldrin.blp", 410, 0, 981, 11486},
     },
     [411] = {
-        {"Garde Mol'dar", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard moldar.blp", 411, 0, 982, 5241},
+        {"Seigneur de guerre gordunni", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard moldar.blp", 411, 0, 982, 5241},
     },
     [412] = {
-        {"Kreeg le Marteleur", "", 11545, "interface\\encounterjournal\\ui-ej-boss-stomper kreeg.blp", 412, 0, 983, 2718},
+        {"Chaman crache-poussière", "", 11545, "interface\\encounterjournal\\ui-ej-boss-stomper kreeg.blp", 412, 0, 983, 2718},
     },
     [413] = {
-        {"Garde Fengus", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard fengus.blp", 413, 0, 984, 5241},
+        {"Seigneur de guerre gordunni", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard fengus.blp", 413, 0, 984, 5241},
     },
     [414] = {
-        {"Garde Slip'kik", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard slipkik.blp", 414, 0, 985, 5241},
+        {"Seigneur de guerre gordunni", "", 11561, "interface\\encounterjournal\\ui-ej-boss-guard slipkik.blp", 414, 0, 985, 5241},
     },
     [415] = {
-        {"Capitaine Kromcrush", "", 11564, "interface\\encounterjournal\\ui-ej-boss-captain kromcrush.blp", 415, 0, 986, 8297},
+        {"Magronos l'Inflexible", "", 11564, "interface\\encounterjournal\\ui-ej-boss-captain kromcrush.blp", 415, 0, 986, 8297},
     },
     [416] = {
-        {"Cho'Rush l'Observateur", "", 11537, "interface\\encounterjournal\\ui-ej-boss-chorush the observer.blp", 416, 0, 987, 7379},
+        {"Ogre-mage de Deuillevent", "", 11537, "interface\\encounterjournal\\ui-ej-boss-chorush the observer.blp", 416, 0, 987, 7379},
     },
     [417] = {
-        {"Roi Gordok", "", 11583, "interface\\encounterjournal\\ui-ej-boss-king gordok.blp", 417, 0, 988, 10584},
+        {"Urok Hurleruine", "", 11583, "interface\\encounterjournal\\ui-ej-boss-king gordok.blp", 417, 0, 988, 10584},
     },
     [418] = {
-        {"Disperseur de foule 9-60", "", 6774, "interface\\encounterjournal\\ui-ej-boss-crowd pummeler 9-60.blp", 418, 0, 989, 6229},
+        {"Faucheur de foule 9-60", "", 6774, "interface\\encounterjournal\\ui-ej-boss-crowd pummeler 9-60.blp", 418, 0, 989, 6229},
     },
     [419] = {
         {"Grubbis", "", 6533, "interface\\encounterjournal\\ui-ej-boss-grubbis.blp", 419, 0, 990, 7361},
@@ -899,19 +899,19 @@ JOURNALENCOUNTERCREATURE = {
         {"Retombée visqueuse", "", 5497, "interface\\encounterjournal\\ui-ej-boss-viscous fallout.blp", 420, 0, 1236, 7079},
     },
     [421] = {
-        {"Électrocuteur 6000", "", 6915, "interface\\encounterjournal\\ui-ej-boss-electrocutioner 6000.blp", 421, 0, 991, 6235},
+        {"Electrocuteur 6000", "", 6915, "interface\\encounterjournal\\ui-ej-boss-electrocutioner 6000.blp", 421, 0, 991, 6235},
     },
     [422] = {
         {"Mekgénieur Thermojoncteur", "", 6980, "interface\\encounterjournal\\ui-ej-boss-mekgineer thermaplugg.blp", 422, 0, 992, 7800},
     },
     [423] = {
-        {"Noxxion", "", 11172, "interface\\encounterjournal\\ui-ej-boss-noxxion.blp", 423, 0, 993, 8522},
+        {"Monstruosité de la peste", "", 11172, "interface\\encounterjournal\\ui-ej-boss-noxxion.blp", 423, 0, 993, 8522},
     },
     [424] = {
         {"Tranchefouet", "", 12389, "interface\\encounterjournal\\ui-ej-boss-razorlash.blp", 424, 0, 994, 12258},
     },
     [425] = {
-        {"Bricoleur Gizlock", "", 7125, "interface\\encounterjournal\\ui-ej-boss-tinkerer gizlock.blp", 425, 0, 995, 643},
+        {"Sneed", "Bûcheron", 7125, "interface\\encounterjournal\\ui-ej-boss-tinkerer gizlock.blp", 425, 0, 995, 643},
     },
     [426] = {
         {"Gelihast", "", 1773, "interface\\encounterjournal\\ui-ej-boss-gelihast.blp", 426, 0, 3157, 6243},
@@ -926,44 +926,44 @@ JOURNALENCOUNTERCREATURE = {
         {"Glissement de terrain", "", 12293, "interface\\encounterjournal\\ui-ej-boss-landslide.blp", 429, 0, 999, 12203},
     },
     [430] = {
-        {"Ruuzlu", "", 13589, "interface\\encounterjournal\\ui-ej-boss-rotgrip.blp", 430, 0, 1000, 13596},
+        {"Grippe-charogne", "", 13589, "interface\\encounterjournal\\ui-ej-boss-rotgrip.blp", 430, 0, 1000, 13596},
     },
     [431] = {
         {"Princesse Theradras", "", 12292, "interface\\encounterjournal\\ui-ej-boss-princess theradras.blp", 431, 0, 1001, 12201},
     },
     [433] = {
-        {"Mordresh Œil-de-Feu", "", 8055, "interface\\encounterjournal\\ui-ej-boss-Mordresh Fire Eye.blp", 433, 0, 3407, 7357},
+        {"Mordresh Oeil-de-feu", "", 8055, "interface\\encounterjournal\\ui-ej-boss-Mordresh Fire Eye.blp", 433, 0, 3407, 7357},
     },
     [436] = {
         {"Dame Sarevess", "", 4979, "interface\\encounterjournal\\ui-ej-boss-lady Sarevess.blp", 436, 0, 3156, 4831},
     },
     [437] = {
-        {"Seigneur du crépuscule Kelris", "", 4939, "interface\\encounterjournal\\ui-ej-boss-twilight lord kelris.blp", 437, 0, 3159, 4832},
+        {"Seigneur du Crépuscule Kelris", "", 4939, "interface\\encounterjournal\\ui-ej-boss-twilight lord kelris.blp", 437, 0, 3159, 4832},
     },
     [443] = {
-        {"Chantelaube Forresten", "", 10482, "interface\\encounterjournal\\ui-ej-boss-hearthsinger forresten.blp", 443, 0, 1011, 10558},
+        {"Chanteloge Forrestin", "", 10482, "interface\\encounterjournal\\ui-ej-boss-hearthsinger forresten.blp", 443, 0, 1011, 10558},
     },
     [444] = {
         {"Aku'mai", "Hydre", 2837, "interface\\encounterjournal\\ui-ej-boss-akumai.blp", 444, 0, 1012, 4829},
     },
     [445] = {
-        {"Timmy le Cruel", "", 571, "interface\\encounterjournal\\ui-ej-boss-timmy the cruel.blp", 445, 0, 1013, 8532},
+        {"Ecorcheur maladif", "", 571, "interface\\encounterjournal\\ui-ej-boss-timmy the cruel.blp", 445, 0, 1013, 8532},
     },
     [446] = {
         {"Fusilier ressuscité", "", 34481, "", 446, 1, 1239, 11054},
-        {"Maître-canonnier Willey", "", 34480, "interface\\encounterjournal\\ui-ej-boss-Cannon-Master-Willey.blp", 446, 0, 1014, 10997},
+        {"Willey Mutilespoir", "Maître canonnier", 34480, "interface\\encounterjournal\\ui-ej-boss-Cannon-Master-Willey.blp", 446, 0, 1014, 10997},
     },
     [447] = {
-        {"Vieil Serra'kis", "", 1816, "interface\\encounterjournal\\ui-ej-boss-old serrakis.blp", 447, 0, 3158, 4830},
+        {"Vieux Serra'kis", "", 1816, "interface\\encounterjournal\\ui-ej-boss-old serrakis.blp", 447, 0, 3158, 4830},
     },
     [448] = {
-        {"Archiviste Galford", "", 34498, "interface\\encounterjournal\\ui-ej-boss-Archivist-Galford.blp", 448, 0, 1016, 10811},
+        {"Instructeur Galford", "", 34498, "interface\\encounterjournal\\ui-ej-boss-Archivist-Galford.blp", 448, 0, 1016, 10811},
     },
     [449] = {
-        {"Balnazzar", "", 34424, "interface\\encounterjournal\\ui-ej-boss-balnazzar.blp", 449, 0, 1017, 59900},
+        {"Sphère de peur", "", 34424, "interface\\encounterjournal\\ui-ej-boss-balnazzar.blp", 449, 0, 1017, 59900},
     },
     [450] = {
-        {"L'Injuste", "", 10771, "interface\\encounterjournal\\ui-ej-boss-the unforgiven.blp", 450, 0, 1018, 10516},
+        {"Le Condamné", "", 10771, "interface\\encounterjournal\\ui-ej-boss-the unforgiven.blp", 450, 0, 1018, 10516},
     },
     [451] = {
         {"Baronne Anastari", "", 10698, "interface\\encounterjournal\\ui-ej-boss-baroness anastari.blp", 451, 0, 1019, 10436},
@@ -981,19 +981,19 @@ JOURNALENCOUNTERCREATURE = {
         {"Ramstein Grandgosier", "", 12818, "interface\\encounterjournal\\ui-ej-boss-ramstein the gorger.blp", 455, 0, 1024, 10439},
     },
     [456] = {
-        {"Seigneur Aurius Rivendare", "", 10729, "interface\\encounterjournal\\ui-ej-boss-Baron-Rivendare.blp", 456, 0, 1025, 10440},
+        {"Baron Vaillefendre", "", 10729, "interface\\encounterjournal\\ui-ej-boss-Baron-Rivendare.blp", 456, 0, 1025, 10440},
     },
     [457] = {
         {"Avatar d'Hakkar", "", 8053, "interface\\encounterjournal\\ui-ej-boss-avatar of hakkar.blp", 457, 0, 1026, 8443},
     },
     [458] = {
-        {"Jammal'an le prophète", "", 6708, "interface\\encounterjournal\\ui-ej-boss-jammalan the prophet.blp", 458, 0, 1027, 5710},
+        {"Jammal'an le Prophète", "", 6708, "interface\\encounterjournal\\ui-ej-boss-jammalan the prophet.blp", 458, 0, 1027, 5710},
     },
     [459] = {
-        {"Fauche-rêve", "", 7553, "interface\\encounterjournal\\ui-ej-boss-dreamscythe.blp", 459, 0, 1028, 5312},
+        {"Lethlas", "", 7553, "interface\\encounterjournal\\ui-ej-boss-dreamscythe.blp", 459, 0, 1028, 5312},
         {"Hazzas", "", 9584, "", 459, 3, 1346, 5722},
-        {"Weaver", "", 6375, "", 459, 1, 1347, 5720},
-        {"Morphaz", "", 7975, "", 459, 2, 1348, 1063},
+        {"Tisserand", "", 6375, "", 459, 1, 1347, 5720},
+        {"Jade", "Victime du Cauchemar", 7975, "", 459, 2, 1348, 1063},
     },
     [463] = {
         {"Ombre d'Eranikus", "", 7806, "interface\\encounterjournal\\ui-ej-boss-shade of eranikus.blp", 463, 0, 1032, 5709},
@@ -1002,16 +1002,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Dextren Ward", "", 2149, "interface\\encounterjournal\\ui-ej-boss-Dextren-Ward.blp", 464, 0, 1033, 1663},
     },
     [465] = {
-        {"Briseporc", "", 3250, "interface\\encounterjournal\\ui-ej-boss-Hamhock.blp", 465, 0, 1034, 1717},
+        {"Hamhock", "", 3250, "interface\\encounterjournal\\ui-ej-boss-Hamhock.blp", 465, 0, 1034, 1717},
     },
     [466] = {
-        {"Targorr l'Effroyable", "", 517, "interface\\encounterjournal\\ui-ej-boss-Targorr-the-Dread.blp", 466, 0, 1035, 1696},
+        {"Targorr le Terrifiant", "", 517, "interface\\encounterjournal\\ui-ej-boss-Targorr-the-Dread.blp", 466, 0, 1035, 1696},
     },
     [467] = {
         {"Revelosh", "", 5945, "interface\\encounterjournal\\ui-ej-boss-revelosh.blp", 467, 0, 1036, 6910},
     },
     [468] = {
-        {"Eric « le Rapide »", "", 5708, "", 468, 1, 1037, 6907},
+        {"Eric « l'Agile »", "", 5708, "", 468, 1, 1037, 6907},
         {"Olaf", "", 5709, "", 468, 2, 1038, 6908},
         {"Baelog", "", 5710, "interface\\encounterjournal\\ui-ej-boss-baelog.blp", 468, 0, 1039, 6906},
     },
@@ -1019,25 +1019,25 @@ JOURNALENCOUNTERCREATURE = {
         {"Ironaya", "", 6089, "interface\\encounterjournal\\ui-ej-boss-ironaya.blp", 469, 0, 1040, 7228},
     },
     [470] = {
-        {"Ancien Gardien des pierres", "", 10798, "interface\\encounterjournal\\ui-ej-boss-ancient stone keeper.blp", 470, 0, 1041, 7206},
+        {"Ancien gardien en pierre", "", 10798, "interface\\encounterjournal\\ui-ej-boss-ancient stone keeper.blp", 470, 0, 1041, 7206},
     },
     [471] = {
-        {"Galgann Martel-de-Feu", "", 6059, "interface\\encounterjournal\\ui-ej-boss-galgann firehammer.blp", 471, 0, 1042, 7291},
+        {"Galgann Martel-de-feu", "", 6059, "interface\\encounterjournal\\ui-ej-boss-galgann firehammer.blp", 471, 0, 1042, 7291},
     },
     [472] = {
-        {"Grimlok", "", 11165, "interface\\encounterjournal\\ui-ej-boss-grimlok.blp", 472, 0, 1043, 4854},
+        {"Grimelok", "Chef des Cavepierres", 11165, "interface\\encounterjournal\\ui-ej-boss-grimlok.blp", 472, 0, 1043, 4854},
     },
         [473] = {
-        {"Archaedas", "", 5988, "interface\\encounterjournal\\ui-ej-boss-archaedas.blp", 473, 0, 1044, 2748},
+        {"Archaedas", "Ancien gardien des pierres", 5988, "interface\\encounterjournal\\ui-ej-boss-archaedas.blp", 473, 0, 1044, 2748},
     },
     [474] = {
-        {"Dame Anacondra", "", 4313, "interface\\encounterjournal\\ui-ej-boss-lady anacondra.blp", 474, 0, 1045, 3671},
+        {"Dame Anacondra", "Seigneur-Croc", 4313, "interface\\encounterjournal\\ui-ej-boss-lady anacondra.blp", 474, 0, 1045, 3671},
     },
     [475] = {
-        {"Lord Cobrahn", "", 4213, "interface\\encounterjournal\\ui-ej-boss-lord cobrahn.blp", 475, 0, 1046, 3669},
+        {"Seigneur Cobrahn", "Seigneur-Croc", 4213, "interface\\encounterjournal\\ui-ej-boss-lord cobrahn.blp", 475, 0, 1046, 3669},
     },
     [476] = {
-        {"Lord Pythas", "", 4214, "interface\\encounterjournal\\ui-ej-boss-lord pythas.blp", 476, 0, 1047, 3670},
+        {"Seigneur Pythas", "Seigneur-Croc", 4214, "interface\\encounterjournal\\ui-ej-boss-lord pythas.blp", 476, 0, 1047, 3670},
     },
     [477] = {
         {"Kresh", "", 5126, "interface\\encounterjournal\\ui-ej-boss-kresh.blp", 477, 0, 1048, 3653},
@@ -1046,10 +1046,10 @@ JOURNALENCOUNTERCREATURE = {
         {"Skum", "", 4203, "interface\\encounterjournal\\ui-ej-boss-skum.blp", 478, 0, 1049, 3674},
     },
     [479] = {
-        {"Lord Serpentis", "", 4215, "interface\\encounterjournal\\ui-ej-boss-lord serpentis.blp", 479, 0, 1050, 3673},
+        {"Seigneur Serpentis", "Seigneur-Croc", 4215, "interface\\encounterjournal\\ui-ej-boss-lord serpentis.blp", 479, 0, 1050, 3673},
     },
     [480] = {
-        {"Verdan l'Éternel", "", 4256, "interface\\encounterjournal\\ui-ej-boss-verdan the everliving.blp", 480, 0, 1051, 5775},
+        {"Verdan l'Immortel", "", 4256, "interface\\encounterjournal\\ui-ej-boss-verdan the everliving.blp", 480, 0, 1051, 5775},
     },
     [481] = {
         {"Mutanus le Dévoreur", "", 4088, "interface\\encounterjournal\\ui-ej-boss-mutanus the devourer.blp", 481, 0, 1052, 3654},
@@ -1058,23 +1058,23 @@ JOURNALENCOUNTERCREATURE = {
         {"Gahz'rilla", "", 7271, "interface\\encounterjournal\\ui-ej-boss-ghazan.blp", 483, 0, 1054, 7273},
     },
     [484] = {
-        {"Antu'sul", "", 7353, "interface\\encounterjournal\\ui-ej-boss-antusul.blp", 484, 0, 1055, 8127},
+        {"Antu'sul", "Surveillant de Sul", 7353, "interface\\encounterjournal\\ui-ej-boss-antusul.blp", 484, 0, 1055, 8127},
     },
     [485] = {
         {"Theka le Martyr", "", 6696, "interface\\encounterjournal\\ui-ej-boss-theka the martyr.blp", 485, 0, 1056, 7272},
     },
     [486] = {
-        {"Sorcier-docteur Zum'rah", "", 6434, "interface\\encounterjournal\\ui-ej-boss-witch doctor zumrah.blp", 486, 0, 1057, 7271},
+        {"Féticheur Zum'rah", "", 6434, "interface\\encounterjournal\\ui-ej-boss-witch doctor zumrah.blp", 486, 0, 1057, 7271},
     },
     [487] = {
-        {"Nekrum Mâchetripes", "", 6690, "interface\\encounterjournal\\ui-ej-boss-nekrum gutchewer.blp", 487, 0, 1058, 7796},
+        {"Nekrum Mâchentrailles", "", 6690, "interface\\encounterjournal\\ui-ej-boss-nekrum gutchewer.blp", 487, 0, 1058, 7796},
         {"Prêtre des ombres Sezz'ziz", "", 6441, "interface\\encounterjournal\\ui-ej-boss-shadowpriest sezzizz.blp", 487, 1, 1240, 7275},
     },
     [489] = {
         {"Chef Ukorz Scalpessable", "", 6439, "interface\\encounterjournal\\ui-ej-boss-chief ukorz sandscalp.blp", 489, 0, 1061, 7267},
     },
     [523] = {
-        {"Shirrak le Gardien des morts", "", 18916, "interface\\encounterjournal\\ui-ej-boss-shirrak the dead watcher.blp", 523, 0, 1098, 18371},
+        {"Shirrak le Veillemort", "", 18916, "interface\\encounterjournal\\ui-ej-boss-shirrak the dead watcher.blp", 523, 0, 1098, 18371},
     },
     [524] = {
         {"Exarque Maladaar", "", 17715, "interface\\encounterjournal\\ui-ej-boss-exarch maladaar.blp", 524, 0, 1099, 18373},
@@ -1095,43 +1095,43 @@ JOURNALENCOUNTERCREATURE = {
         {"Tavarok", "", 19332, "interface\\encounterjournal\\ui-ej-boss-tavarok.blp", 535, 0, 1112, 18343},
     },
     [536] = {
-        {"Yor", "", 14173, "interface\\encounterjournal\\ui-ej-boss-yor.blp", 536, 0, 1113, 11496},
+        {"Immol'thar", "", 14173, "interface\\encounterjournal\\ui-ej-boss-yor.blp", 536, 0, 1113, 11496},
     },
     [537] = {
         {"Prince-nexus Shaffar", "", 19780, "interface\\encounterjournal\\ui-ej-boss-nexus prince shaffar.blp", 537, 0, 1114, 18344},
     },
     [541] = {
-        {"Tisseur-noir Syth", "", 20599, "interface\\encounterjournal\\ui-ej-boss-darkweaver syth.blp", 541, 0, 1118, 18472},
+        {"Tisseur d'ombre Syth", "", 20599, "interface\\encounterjournal\\ui-ej-boss-darkweaver syth.blp", 541, 0, 1118, 18472},
     },
     [542] = {
         {"Anzu", "", 21492, "interface\\encounterjournal\\ui-ej-boss-anzu.blp", 542, 0, 1119, 23035},
     },
     [543] = {
-        {"Roi-Serre Ikiss", "", 18636, "interface\\encounterjournal\\ui-ej-boss-talon king ikiss.blp", 543, 0, 1120, 18473},
+        {"Roi-serre Ikiss", "", 18636, "interface\\encounterjournal\\ui-ej-boss-talon king ikiss.blp", 543, 0, 1120, 18473},
     },
     [544] = {
         {"Ambassadeur Gueule-d'enfer", "", 18821, "interface\\encounterjournal\\ui-ej-boss-ambassador hellmaw.blp", 544, 0, 1121, 18731},
     },
     [545] = {
-        {"Coeur-Noir le Semeur", "", 18058, "interface\\encounterjournal\\ui-ej-boss-blackheart the inciter.blp", 545, 0, 1122, 18667},
+        {"Cœur-Noir le Séditieux", "", 18058, "interface\\encounterjournal\\ui-ej-boss-blackheart the inciter.blp", 545, 0, 1122, 18667},
     },
     [546] = {
-        {"Grand maître Vorpil", "", 18535, "interface\\encounterjournal\\ui-ej-boss-grandmaster vorpil.blp", 546, 0, 1123, 18732},
+        {"Grand Maître Vorpil", "", 18535, "interface\\encounterjournal\\ui-ej-boss-grandmaster vorpil.blp", 546, 0, 1123, 18732},
     },
     [547] = {
-        {"Murmur", "", 18839, "interface\\encounterjournal\\ui-ej-boss-murmur.blp", 547, 0, 1124, 18708},
+        {"Marmon", "", 18839, "interface\\encounterjournal\\ui-ej-boss-murmur.blp", 547, 0, 1124, 18708},
     },
     [548] = {
-        {"Zereketh l'Affranchi", "", 19882, "interface\\encounterjournal\\ui-ej-boss-zereketh the unbound.blp", 548, 0, 1125, 20870},
+        {"Zereketh le Délié", "", 19882, "interface\\encounterjournal\\ui-ej-boss-zereketh the unbound.blp", 548, 0, 1125, 20870},
     },
     [549] = {
-        {"Dalliah la Funeste", "", 19888, "interface\\encounterjournal\\ui-ej-boss-dalliah the doomsayer.blp", 549, 0, 1126, 20885},
+        {"Dalliah l'Auspice-Funeste", "", 19888, "interface\\encounterjournal\\ui-ej-boss-dalliah the doomsayer.blp", 549, 0, 1126, 20885},
     },
     [550] = {
-        {"Soccothrates le Cherche-rage", "", 19977, "interface\\encounterjournal\\ui-ej-boss-wrath scryer soccothrates.blp", 550, 0, 1127, 20886},
+        {"Scrute-courroux Soccothrates", "", 19977, "interface\\encounterjournal\\ui-ej-boss-wrath scryer soccothrates.blp", 550, 0, 1127, 20886},
     },
     [551] = {
-        {"Héraut Skyriss", "", 19943, "interface\\encounterjournal\\ui-ej-boss-harbinger skyriss.blp", 551, 0, 1128, 20912},
+        {"Messager Cieuriss", "", 19943, "interface\\encounterjournal\\ui-ej-boss-harbinger skyriss.blp", 551, 0, 1128, 20912},
     },
     [555] = {
         {"Le Faiseur", "", 18369, "interface\\encounterjournal\\ui-ej-boss-the maker.blp", 555, 0, 1132, 17381},
@@ -1149,16 +1149,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Grand botaniste Freywinn", "", 19045, "interface\\encounterjournal\\ui-ej-boss-high botanist freywinn.blp", 559, 0, 1136, 17975},
     },
     [560] = {
-        {"Rokad l'Agité", "", 14416, "interface\\encounterjournal\\ui-ej-boss-thorngrin the tender.blp", 560, 0, 1137, 11492},
+        {"Alzzin le Modeleur", "", 14416, "interface\\encounterjournal\\ui-ej-boss-thorngrin the tender.blp", 560, 0, 1137, 11492},
     },
     [561] = {
-        {"Laj", "", 13109, "interface\\encounterjournal\\ui-ej-boss-laj.blp", 561, 0, 1138, 13196},
+        {"Flagellant phasique", "", 13109, "interface\\encounterjournal\\ui-ej-boss-laj.blp", 561, 0, 1138, 13196},
     },
     [562] = {
-        {"Echine-sanglante", "", 19438, "interface\\encounterjournal\\ui-ej-boss-warp splinter.blp", 562, 0, 1139, 17977},
+        {"Brise-Dimension", "", 19438, "interface\\encounterjournal\\ui-ej-boss-warp splinter.blp", 562, 0, 1139, 17977},
     },
     [563] = {
-        {"Mécano-seigneur Capacitus", "", 19162, "interface\\encounterjournal\\ui-ej-boss-mechano lord capacitus.blp", 563, 0, 1140, 19219},
+        {"Mécanoseigneur Capacitus", "", 19162, "interface\\encounterjournal\\ui-ej-boss-mechano lord capacitus.blp", 563, 0, 1140, 19219},
     },
     [564] = {
         {"Néantomancienne Sepethrea", "", 19166, "interface\\encounterjournal\\ui-ej-boss-nethermancer sepethrea.blp", 564, 0, 1141, 19221},
@@ -1167,7 +1167,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Pathaleon le Calculateur", "", 20033, "interface\\encounterjournal\\ui-ej-boss-pathaleon the calculator.blp", 565, 0, 1142, 19220},
     },
     [566] = {
-        {"Grand démoniste Néantrurse", "", 16628, "interface\\encounterjournal\\ui-ej-boss-grand warlock nethekurse.blp", 566, 0, 1143, 16807},
+        {"Grand démoniste Néanathème", "", 16628, "interface\\encounterjournal\\ui-ej-boss-grand warlock nethekurse.blp", 566, 0, 1143, 16807},
     },
     [568] = {
         {"Porteguerre O'mrogg", "", 18031, "interface\\encounterjournal\\ui-ej-boss-warbringer omrogg.blp", 568, 0, 1145, 16809},
@@ -1182,25 +1182,25 @@ JOURNALENCOUNTERCREATURE = {
         {"Rokmar le Crépitant", "", 17729, "interface\\encounterjournal\\ui-ej-boss-rokmar the crackler.blp", 571, 0, 1148, 17991},
     },
     [572] = {
-        {"Ghazan", "", 18224, "interface\\encounterjournal\\ui-ej-boss-quagmirran.blp", 572, 0, 1149, 17942},
+        {"Bourbierreux", "", 18224, "interface\\encounterjournal\\ui-ej-boss-quagmirran.blp", 572, 0, 1149, 17942},
     },
     [573] = {
-        {"Hydromancienne Thespia", "", 11268, "interface\\encounterjournal\\ui-ej-boss-hydromancer thespia.blp", 573, 0, 1150, 7886},
+        {"Enchanteresse fouette-bile", "", 11268, "interface\\encounterjournal\\ui-ej-boss-hydromancer thespia.blp", 573, 0, 1150, 7886},
     },
     [574] = {
         {"Mekgénieur Montevapeur", "", 18638, "interface\\encounterjournal\\ui-ej-boss-mekgineer steamrigger.blp", 574, 0, 1151, 17796},
     },
     [575] = {
-        {"Chef de guerre Kalithresh", "", 20235, "interface\\encounterjournal\\ui-ej-boss-warlord kalithresh.blp", 575, 0, 1152, 17798},
+        {"Seigneur de guerre Kalithresh", "", 20235, "interface\\encounterjournal\\ui-ej-boss-warlord kalithresh.blp", 575, 0, 1152, 17798},
     },
     [576] = {
         {"Hungarfen", "", 17228, "interface\\encounterjournal\\ui-ej-boss-hungarfen.blp", 576, 0, 1153, 17770},
     },
     [577] = {
-        {"Ghazan", "", 17528, "interface\\encounterjournal\\ui-ej-boss-ghazan.blp", 577, 0, 1154, 18105},
+        {"Ghaz'an", "", 17528, "interface\\encounterjournal\\ui-ej-boss-ghazan.blp", 577, 0, 1154, 18105},
     },
     [578] = {
-        {"Seigneur des marécages Musel'ek", "", 18570, "interface\\encounterjournal\\ui-ej-boss-swamplord muselek.blp", 578, 0, 1155, 17826},
+        {"Seigneur des marais Musel'ek", "", 18570, "interface\\encounterjournal\\ui-ej-boss-swamplord muselek.blp", 578, 0, 1155, 17826},
     },
     [579] = {
         {"La Traqueuse noire", "", 18194, "interface\\encounterjournal\\ui-ej-boss-the black stalker.blp", 579, 0, 1156, 17882},
@@ -1236,25 +1236,25 @@ JOURNALENCOUNTERCREATURE = {
         {"Novos l'Invocateur", "", 26292, "interface\\encounterjournal\\ui-ej-boss-novos the summoner.blp", 589, 0, 1164, 26631},
     },
     [590] = {
-        {"Roi Dred", "", 5240, "interface\\encounterjournal\\ui-ej-boss-king dred.blp", 590, 0, 1165, 6500},
+        {"Diablosaure Rex", "", 5240, "interface\\encounterjournal\\ui-ej-boss-king dred.blp", 590, 0, 1165, 6500},
     },
     [591] = {
         {"Le prophète Tharon'ja", "", 27072, "interface\\encounterjournal\\ui-ej-boss-the prophet tharonja.blp", 591, 0, 1498, 26632},
     },
     [592] = {
-        {"Slad'ran", "", 27422, "interface\\encounterjournal\\ui-ej-boss-sladran.blp", 592, 0, 1167, 29304},
+        {"Slad'ran", "Grand prophète de Sseratus", 27422, "interface\\encounterjournal\\ui-ej-boss-sladran.blp", 592, 0, 1167, 29304},
     },
     [593] = {
         {"Colosse drakkari", "", 26589, "interface\\encounterjournal\\ui-ej-boss-drakkari colossus.blp", 593, 0, 1168, 29307},
     },
     [594] = {
-        {"Moorabi", "", 27059, "interface\\encounterjournal\\ui-ej-boss-moorabi.blp", 594, 0, 1169, 29305},
+        {"Moorabi", "Grand prophète de Mam'toth", 27059, "interface\\encounterjournal\\ui-ej-boss-moorabi.blp", 594, 0, 1169, 29305},
     },
     [595] = {
         {"Eck le Féroce", "", 26644, "interface\\encounterjournal\\ui-ej-boss-eck the ferocious.blp", 595, 0, 1170, 29932},
     },
     [596] = {
-        {"Gal'darah", "", 27061, "interface\\encounterjournal\\ui-ej-boss-galdarah.blp", 596, 0, 1171, 29306},
+        {"Gal'darah", "Grand prophète d'Akali", 27061, "interface\\encounterjournal\\ui-ej-boss-galdarah.blp", 596, 0, 1171, 29306},
     },
     [597] = {
         {"Général Bjarngrim", "", 27301, "interface\\encounterjournal\\ui-ej-boss-general bjarngrim.blp", 597, 0, 1172, 28586},
@@ -1275,7 +1275,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Marwyn", "", 30973, "interface\\encounterjournal\\ui-ej-boss-marwyn.blp", 602, 0, 1177, 38113},
     },
     [603] = {
-        {"Le roi-liche", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 603, 0, 1178, 16089},
+        {"Omar le dragon de test", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 603, 0, 1178, 16089},
     },
     [604] = {
         {"Krystallus", "", 20909, "interface\\encounterjournal\\ui-ej-boss-krystallus.blp", 604, 0, 1179, 27977},
@@ -1284,7 +1284,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Damoiselle de peine", "", 26657, "interface\\encounterjournal\\ui-ej-boss-maiden of grief.blp", 605, 0, 1180, 27975},
     },
     [606] = {
-        {"Brann Barbe-de-bronze", "", 26353, "interface\\encounterjournal\\ui-ej-boss-tribunal of the ages.blp", 606, 0, 1342, 28070},
+        {"Brann Barbe-de-Bronze", "", 26353, "interface\\encounterjournal\\ui-ej-boss-tribunal of the ages.blp", 606, 0, 1342, 28070},
     },
     [607] = {
         {"Sjonnir le Sculptefer", "", 27483, "interface\\encounterjournal\\ui-ej-boss-sjonnir the ironshaper.blp", 607, 0, 1181, 27978},
@@ -1293,14 +1293,14 @@ JOURNALENCOUNTERCREATURE = {
         {"Maître-forge Gargivre", "", 30843, "interface\\encounterjournal\\ui-ej-boss-forgemaster garfrost.blp", 608, 0, 1182, 36494},
     },
     [609] = {
-        {"Ick", "", 30347, "interface\\encounterjournal\\ui-ej-boss-ick.blp", 609, 1, 1183, 36476},
+        {"Ick", "Serviteur de Krick", 30347, "interface\\encounterjournal\\ui-ej-boss-ick.blp", 609, 1, 1183, 36476},
         {"Krick", "", 30331, "interface\\encounterjournal\\ui-ej-boss-krick.blp", 609, 0, 1184, 36477},
     },
     [610] = {
         {"Seigneur du Fléau Tyrannus", "", 30277, "interface\\encounterjournal\\ui-ej-boss-scourgelord tyrannus.blp", 610, 0, 1185, 36658},
     },
     [615] = {
-        {"Bronjahm", "", 30226, "interface\\encounterjournal\\ui-ej-boss-bronjahm.blp", 615, 0, 1190, 36497},
+        {"Bronjahm", "Parrain des âmes", 30226, "interface\\encounterjournal\\ui-ej-boss-bronjahm.blp", 615, 0, 1190, 36497},
     },
     [616] = {
         {"Dévoreur d'âmes", "", 30148, "interface\\encounterjournal\\ui-ej-boss-devourer of souls.blp", 616, 0, 1191, 36502},
@@ -1315,7 +1315,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Anomalus", "", 26259, "interface\\encounterjournal\\ui-ej-boss-anomalus.blp", 619, 0, 1195, 26763},
     },
     [620] = {
-        {"Ormorok le Sculpte-arbre", "", 26298, "interface\\encounterjournal\\ui-ej-boss-ormorok the tree shaper.blp", 620, 0, 1196, 26794},
+        {"Ormorok le Sculpte-Arbre", "", 26298, "interface\\encounterjournal\\ui-ej-boss-ormorok the tree shaper.blp", 620, 0, 1196, 26794},
     },
     [621] = {
         {"Keristrasza", "", 24307, "interface\\encounterjournal\\ui-ej-boss-keristrasza.blp", 621, 0, 1197, 26723},
@@ -1324,10 +1324,10 @@ JOURNALENCOUNTERCREATURE = {
         {"Drakos l'Interrogateur", "", 27032, "interface\\encounterjournal\\ui-ej-boss-drakos the interrogator.blp", 622, 0, 1198, 27654},
     },
     [623] = {
-        {"Varos Arpentenuée", "", 27033, "interface\\encounterjournal\\ui-ej-boss-varos cloudstrider.blp", 623, 0, 1199, 27447},
+        {"Varos Arpentenuée", "Seigneur-azur du Vol draconique bleu", 27033, "interface\\encounterjournal\\ui-ej-boss-varos cloudstrider.blp", 623, 0, 1199, 27447},
     },
     [624] = {
-        {"Mage-seigneur Urom", "", 25010, "interface\\encounterjournal\\ui-ej-boss-mage lord urom.blp", 624, 0, 1200, 27655},
+        {"Seigneur-mage Urom", "", 25010, "interface\\encounterjournal\\ui-ej-boss-mage lord urom.blp", 624, 0, 1200, 27655},
     },
     [625] = {
         {"Gardien-tellurique Eregos", "", 27034, "interface\\encounterjournal\\ui-ej-boss-ley guardian eregos.blp", 625, 0, 1201, 27656},
@@ -1336,7 +1336,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Erekem", "", 27488, "interface\\encounterjournal\\ui-ej-boss-erekem.blp", 626, 0, 1202, 29315},
     },
     [627] = {
-        {"Moragg", "", 20590, "interface\\encounterjournal\\ui-ej-boss-moragg.blp", 627, 0, 1203, 18694},
+        {"Collidus le Guetteur-Dimensionnel", "", 20590, "interface\\encounterjournal\\ui-ej-boss-moragg.blp", 627, 0, 1203, 18694},
     },
     [628] = {
         {"Ichoron", "", 27487, "interface\\encounterjournal\\ui-ej-boss-ichoron.blp", 628, 0, 1204, 29313},
@@ -1345,16 +1345,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Xevozz", "", 27486, "interface\\encounterjournal\\ui-ej-boss-xevozz.blp", 629, 0, 1205, 29266},
     },
     [630] = {
-        {"Lavanthor", "", 10193, "interface\\encounterjournal\\ui-ej-boss-lavanthor.blp", 630, 0, 1206, 10430},
+        {"La Bête", "", 10193, "interface\\encounterjournal\\ui-ej-boss-lavanthor.blp", 630, 0, 1206, 10430},
     },
     [631] = {
-        {"Zuramat le Destructeur", "", 27855, "interface\\encounterjournal\\ui-ej-boss-zuramat the obliterator.blp", 631, 0, 1207, 29314},
+        {"Zuramat l'Oblitérateur", "", 27855, "interface\\encounterjournal\\ui-ej-boss-zuramat the obliterator.blp", 631, 0, 1207, 29314},
     },
     [632] = {
         {"Cyanigosa", "", 27508, "interface\\encounterjournal\\ui-ej-boss-cyanigosa.blp", 632, 0, 1208, 31134},
     },
     [638] = {
-        {"Prince Keleseth", "", 25338, "interface\\encounterjournal\\ui-ej-boss-prince keleseth.blp", 638, 0, 1222, 23953},
+        {"Prince Keleseth", "Les San'layn", 25338, "interface\\encounterjournal\\ui-ej-boss-prince keleseth.blp", 638, 0, 1222, 23953},
     },
     [639] = {
         {"Skarvald le Constructeur", "", 24605, "interface\\encounterjournal\\ui-ej-boss-skarvald the constructor.blp", 639, 0, 1223, 27390},
@@ -1368,8 +1368,8 @@ JOURNALENCOUNTERCREATURE = {
     },
     [642] = {
         {"Gortok Pâle-sabot", "", 27419, "interface\\encounterjournal\\ui-ej-boss-gortok palehoof.blp", 642, 0, 1227, 26687},
-        {"Rhinocéros furieux", "", 26284, "", 642, 1, 1228, 26686},
-        {"Jormungar massif", "", 24564, "", 642, 3, 1229, 25454},
+        {"Rhino féroce", "", 26284, "", 642, 1, 1228, 26686},
+        {"Rampant des neiges", "", 24564, "", 642, 3, 1229, 25454},
         {"Worgen frénétique", "", 26327, "", 642, 2, 1230, 26683},
         {"Furbolg vorace", "", 23999, "", 642, 4, 1231, 26684},
     },
@@ -1380,7 +1380,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Roi Ymiron", "", 28019, "interface\\encounterjournal\\ui-ej-boss-king ymiron.blp", 644, 0, 1233, 24321},
     },
     [728] = {
-        {"Garde de sang Porung", "", 17725, "interface\\encounterjournal\\ui-ej-boss-blood guard porung.blp", 728, 0, 1394, 17461},
+        {"Garde de sang de la Main brisée", "", 17725, "interface\\encounterjournal\\ui-ej-boss-blood guard porung.blp", 728, 0, 1394, 17461},
     },
     [748] = {
         {"Sentinelle d'obsidienne", "", 5285, "interface\\encounterjournal\\ui-ej-boss-obsidian sentinel.blp", 748, 0, 1423, 7023},
@@ -1392,22 +1392,22 @@ JOURNALENCOUNTERCREATURE = {
         {"Commandant Kolurg", "", 24352, "interface\\encounterjournal\\ui-ej-boss-commander kolurg.blp", 833, 0, 1574, 26798},
     },
     [895] = {
-        {"Nécrorateur Jargba", "", 4756, "interface\\encounterjournal\\ui-ej-boss-death speaker jargba.blp", 895, 0, 2860, 4428},
+        {"Nécrorateur Jargba", "Capitaine des Têtes de mort", 4756, "interface\\encounterjournal\\ui-ej-boss-death speaker jargba.blp", 895, 0, 2860, 4428},
     },
     [896] = {
-        {"Aggem Malépine", "", 4645, "interface\\encounterjournal\\ui-ej-boss-aggem thorncurse.blp", 896, 0, 2861, 4424},
+        {"Aggem Malépine", "Prophète de la Tête de mort", 4645, "interface\\encounterjournal\\ui-ej-boss-aggem thorncurse.blp", 896, 0, 2861, 4424},
     },
     [899] = {
-        {"Seigneur Overlord Ramtusk", "", 4652, "interface\\encounterjournal\\ui-ej-boss-overlord ramtusk.blp", 899, 0, 2859, 4420},
+        {"Seigneur Brusquebroche", "", 4652, "interface\\encounterjournal\\ui-ej-boss-overlord ramtusk.blp", 899, 0, 2859, 4420},
     },
     [900] = {
-        {"Le chasseur aveugle", "", 4735, "interface\\encounterjournal\\ui-ej-boss-Groyat.blp", 900, 0, 2853, 4425},
+        {"Chasseur aveugle", "", 4735, "interface\\encounterjournal\\ui-ej-boss-Groyat.blp", 900, 0, 2853, 4425},
     },
     [901] = {
-        {"Charlga Trancheflanc", "", 31042, "interface\\encounterjournal\\ui-ej-boss-charlga razorflank.blp", 901, 0, 2856, 4421},
+        {"Charlga Trancheflanc", "La mégère", 31042, "interface\\encounterjournal\\ui-ej-boss-charlga razorflank.blp", 901, 0, 2856, 4421},
     },
     [1141] = {
-        {"Amnennar le Porte-froid", "", 32610, "interface\\encounterjournal\\ui-ej-boss-amnennar the coldbringer.blp", 1141, 0, 3401, 7358},
+        {"Amnennar le Porte-Froid", "", 32610, "interface\\encounterjournal\\ui-ej-boss-amnennar the coldbringer.blp", 1141, 0, 3401, 7358},
     },
     [1142] = {
         {"Tuten'kash", "", 7845, "interface\\encounterjournal\\ui-ej-boss-Tutenkash.blp", 1142, 0, 3398, 7355},
@@ -1416,19 +1416,19 @@ JOURNALENCOUNTERCREATURE = {
         {"Glouton", "", 25730, "interface\\encounterjournal\\ui-ej-boss-Glutton.blp", 1143, 0, 3399, 8567},
     },
     [1146] = {
-        {"Roogug", "", 11382, "interface\\encounterjournal\\ui-ej-boss-death speaker jargba.blp", 1146, 0, 3400, 7354},
+        {"Groinfendu", "", 11382, "interface\\encounterjournal\\ui-ej-boss-death speaker jargba.blp", 1146, 0, 3400, 7354},
     },
     [1519] = {
         {"Lucifron", "", 13031, "interface\\encounterjournal\\ui-ej-boss-lucifron.blp", 1519, 0, 3733, 12118},
     },
     [1520] = {
-        {"Magmadar", "", 10193, "interface\\encounterjournal\\ui-ej-boss-magmadar.blp", 1520, 0, 3734, 10430},
+        {"La Bête", "", 10193, "interface\\encounterjournal\\ui-ej-boss-magmadar.blp", 1520, 0, 3734, 10430},
     },
     [1521] = {
-        {"Gehennas", "", 13030, "interface\\encounterjournal\\ui-ej-boss-gehennas.blp", 1521, 0, 3735, 12098},
+        {"Messager de Sulfuron", "", 13030, "interface\\encounterjournal\\ui-ej-boss-gehennas.blp", 1521, 0, 3735, 12098},
     },
     [1522] = {
-        {"Garr", "", 12110, "interface\\encounterjournal\\ui-ej-boss-garr.blp", 1522, 0, 3736, 5891},
+        {"Manifestation de terre mineure", "", 12110, "interface\\encounterjournal\\ui-ej-boss-garr.blp", 1522, 0, 3736, 5891},
     },
     [1523] = {
         {"Shazzrah", "", 13032, "interface\\encounterjournal\\ui-ej-boss-shazzrah.blp", 1523, 0, 3737, 12264},
@@ -1437,7 +1437,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Baron Geddon", "", 12129, "interface\\encounterjournal\\ui-ej-boss-baron geddon.blp", 1524, 0, 3738, 12056},
     },
     [1525] = {
-        {"Prêtre flamboyant", "", 12030, "", 1525, 1, 3739, 11661},
+        {"Attise-flammes", "", 12030, "", 1525, 1, 3739, 11661},
         {"Messager de Sulfuron", "", 13030, "interface\\encounterjournal\\ui-ej-boss-sulfuron harbinger.blp", 1525, 0, 3740, 12098},
     },
     [1526] = {
@@ -1445,29 +1445,29 @@ JOURNALENCOUNTERCREATURE = {
     },
     [1527] = {
         {"Chambellan Executus", "", 12029, "interface\\encounterjournal\\ui-ej-boss-majordomo executus.blp", 1527, 0, 3742, 12018},
-        {"Soigneur flamboyant", "", 13029, "", 1527, 1, 3743, 11663},
-        {"Garde flamboyant", "", 12002, "", 1527, 2, 3744, 11664},
+        {"Soigneur attise-flammes", "", 13029, "", 1527, 1, 3743, 11663},
+        {"Elite attise-flammes", "", 12002, "", 1527, 2, 3744, 11664},
     },
     [1528] = {
         {"Ragnaros", "", 11121, "interface\\encounterjournal\\ui-ej-boss-ragnaros.blp", 1528, 0, 3745, 11502},
     },
     [1529] = {
-        {"Tranchetripe l'Indompté", "", 10115, "interface\\encounterjournal\\ui-ej-boss-razorgore the untamed.blp", 1529, 0, 3746, 10363},
+        {"Général Drakkisath", "", 10115, "interface\\encounterjournal\\ui-ej-boss-razorgore the untamed.blp", 1529, 0, 3746, 10363},
     },
     [1530] = {
         {"Vaelastrasz le Corrompu", "", 13992, "interface\\encounterjournal\\ui-ej-boss-vaelastrasz the corrupt.blp", 1530, 0, 3747, 13020},
     },
     [1531] = {
-        {"Seigneur des couvées Lashlayer", "", 14308, "interface\\encounterjournal\\ui-ej-boss-broodlord lashlayer.blp", 1531, 0, 3748, 12017},
+        {"Seigneur des couvées Lanistaire", "", 14308, "interface\\encounterjournal\\ui-ej-boss-broodlord lashlayer.blp", 1531, 0, 3748, 12017},
     },
     [1532] = {
-        {"Crachombre", "", 6377, "interface\\encounterjournal\\ui-ej-boss-firemaw.blp", 1532, 0, 3749, 2759},
+        {"Hematus", "", 6377, "interface\\encounterjournal\\ui-ej-boss-firemaw.blp", 1532, 0, 3749, 2759},
     },
     [1533] = {
-        {"Rochébène", "", 6377, "interface\\encounterjournal\\ui-ej-boss-ebonroc.blp", 1533, 0, 3750, 2759},
+        {"Hematus", "", 6377, "interface\\encounterjournal\\ui-ej-boss-ebonroc.blp", 1533, 0, 3750, 2759},
     },
     [1534] = {
-        {"Flamegor", "", 6377, "interface\\encounterjournal\\ui-ej-boss-flamegor.blp", 1534, 0, 3751, 2759},
+        {"Hematus", "", 6377, "interface\\encounterjournal\\ui-ej-boss-flamegor.blp", 1534, 0, 3751, 2759},
     },
     [1535] = {
         {"Chromaggus", "", 14367, "interface\\encounterjournal\\ui-ej-boss-chromaggus.blp", 1535, 0, 3752, 14020},
@@ -1485,20 +1485,20 @@ JOURNALENCOUNTERCREATURE = {
         {"Moam", "", 15392, "interface\\encounterjournal\\ui-ej-boss-moam.blp", 1539, 0, 3756, 15340},
     },
     [1540] = {
-        {"Buru le Gorger", "", 15654, "interface\\encounterjournal\\ui-ej-boss-buru the gorger.blp", 1540, 0, 3757, 15370},
+        {"Buru Grandgosier", "", 15654, "interface\\encounterjournal\\ui-ej-boss-buru the gorger.blp", 1540, 0, 3757, 15370},
     },
     [1541] = {
-        {"Ayamiss la Chasseresse", "", 15431, "interface\\encounterjournal\\ui-ej-boss-ayamiss the hunter.blp", 1541, 0, 3758, 15369},
+        {"Ayamiss le Chasseur", "", 15431, "interface\\encounterjournal\\ui-ej-boss-ayamiss the hunter.blp", 1541, 0, 3758, 15369},
     },
     [1542] = {
         {"Ossirian l'Intouché", "", 15432, "interface\\encounterjournal\\ui-ej-boss-ossirian the unscarred.blp", 1542, 0, 3760, 15339},
     },
     [1543] = {
-        {"Prophète Skeram", "", 15345, "interface\\encounterjournal\\ui-ej-boss-the prophet skeram.blp", 1543, 0, 3761, 15263},
+        {"Le prophète Skeram", "", 15345, "interface\\encounterjournal\\ui-ej-boss-the prophet skeram.blp", 1543, 0, 3761, 15263},
     },
     [1544] = {
-        {"Garde de bataille Sartura", "", 15583, "interface\\encounterjournal\\ui-ej-boss-battleguard sartura.blp", 1544, 0, 3762, 15516},
-        {"Garde royale Sartura", "", 15465, "", 1544, 1, 3765, 15249},
+        {"Garde de guerre Sartura", "", 15583, "interface\\encounterjournal\\ui-ej-boss-battleguard sartura.blp", 1544, 0, 3762, 15516},
+        {"Aiguillonneur courroucé qiraji", "", 15465, "", 1544, 1, 3765, 15249},
     },
     [1545] = {
         {"Fankriss l'Inflexible", "", 15743, "interface\\encounterjournal\\ui-ej-boss-fankriss the unyielding.blp", 1545, 0, 3766, 15510},
@@ -1515,38 +1515,38 @@ JOURNALENCOUNTERCREATURE = {
         {"Viscidus", "", 15686, "interface\\encounterjournal\\ui-ej-boss-viscidus.blp", 1548, 0, 3771, 15299},
     },
     [1549] = {
-        {"Empereur Vek'lor", "", 15778, "interface\\encounterjournal\\ui-ej-boss-twin emperors.blp", 1549, 0, 3772, 15276},
-        {"Empereur Vek'nilash", "", 15761, "", 1549, 1, 3773, 15275},
+        {"Empereur Vek’lor", "", 15778, "interface\\encounterjournal\\ui-ej-boss-twin emperors.blp", 1549, 0, 3772, 15276},
+        {"Empereur Vek’nilash", "", 15761, "", 1549, 1, 3773, 15275},
     },
     [1550] = {
         {"Ouro", "", 15509, "interface\\encounterjournal\\ui-ej-boss-ouro.blp", 1550, 0, 3774, 15517},
     },
     [1551] = {
-        {"C'Thun", "", 15556, "interface\\encounterjournal\\ui-ej-boss-cthun.blp", 1551, 0, 3775, 15589},
+        {"Oeil de C'Thun", "", 15556, "interface\\encounterjournal\\ui-ej-boss-cthun.blp", 1551, 0, 3775, 15589},
     },
     [1552] = {
-        {"Rokad le Ravageur", "", 16054, "interface\\encounterjournal\\UI-EJ-BOSS-Servant Quarters.blp", 1552, 0, 14160, 16181},
-        {"Hiakiss le Discret", "", 15938, "", 1552, 1, 14161, 16179},
-        {"Shadikith le Glisseur", "", 16053, "", 1552, 2, 14162, 16180},
+        {"Rodak le ravageur", "", 16054, "interface\\encounterjournal\\UI-EJ-BOSS-Servant Quarters.blp", 1552, 0, 14160, 16181},
+        {"Hyakiss la Rôdeuse", "", 15938, "", 1552, 1, 14161, 16179},
+        {"Shadikith le glisseur", "", 16053, "", 1552, 2, 14162, 16180},
     },
     [1553] = {
         {"Minuit", "", 19640, "", 1553, 1, 3779, 16151},
         {"Attumen le Veneur", "", 16416, "interface\\encounterjournal\\ui-ej-boss-attumen the huntsman.blp", 1553, 0, 3780, 15550},
     },
     [1554] = {
-        {"Moroes", "", 16540, "interface\\encounterjournal\\ui-ej-boss-moroes.blp", 1554, 0, 3781, 15687},
+        {"Moroes", "Régisseur de la tour", 16540, "interface\\encounterjournal\\ui-ej-boss-moroes.blp", 1554, 0, 3781, 15687},
     },
     [1555] = {
-        {"Demoiselle de vertu", "", 16198, "interface\\encounterjournal\\ui-ej-boss-maiden of virtue.blp", 1555, 0, 3782, 16457},
+        {"Damoiselle de vertu", "", 16198, "interface\\encounterjournal\\ui-ej-boss-maiden of virtue.blp", 1555, 0, 3782, 16457},
     },
     [1556] = {
         {"Le Grand Méchant Loup", "", 17053, "interface\\encounterjournal\\ui-ej-boss-opera.blp", 1556, 0, 3783, 17521},
-        {"Sorcière", "", 17550, "", 1556, 3, 3784, 18168},
+        {"La Mégère", "", 17550, "", 1556, 3, 3784, 18168},
         {"Romulo", "", 17067, "", 1556, 1, 3785, 17533},
-        {"Juliana", "", 17068, "", 1556, 2, 3786, 17534},
+        {"Julianne", "", 17068, "", 1556, 2, 3786, 17534},
     },
     [1557] = {
-        {"Le Conservateur", "", 16958, "interface\\encounterjournal\\ui-ej-boss-the curator.blp", 1557, 0, 3787, 15691},
+        {"Le conservateur", "", 16958, "interface\\encounterjournal\\ui-ej-boss-the curator.blp", 1557, 0, 3787, 15691},
     },
     [1559] = {
         {"Ombre d'Aran", "", 16621, "interface\\encounterjournal\\ui-ej-boss-shade of aran.blp", 1559, 0, 3789, 16524},
@@ -1555,7 +1555,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Terestian Malsabot", "", 11343, "interface\\encounterjournal\\ui-ej-boss-terestian illhoof.blp", 1560, 0, 3790, 15688},
     },
     [1561] = {
-        {"Courroux du Néant", "", 15363, "interface\\encounterjournal\\ui-ej-boss-netherspite.blp", 1561, 0, 3791, 14890},
+        {"Taerar", "", 15363, "interface\\encounterjournal\\ui-ej-boss-netherspite.blp", 1561, 0, 3791, 14890},
     },
     [1562] = {
         {"Plaie-de-nuit", "", 18062, "interface\\encounterjournal\\UI-EJ-BOSS-Nightbane.blp", 1562, 0, 3792, 17225},
@@ -1564,71 +1564,71 @@ JOURNALENCOUNTERCREATURE = {
         {"Prince Malchezaar", "", 19274, "interface\\encounterjournal\\ui-ej-boss-prince malchezaar.blp", 1563, 0, 3793, 15690},
     },
     [1564] = {
-        {"Roi Maulgar", "", 18649, "interface\\encounterjournal\\ui-ej-boss-high king maulgar.blp", 1564, 0, 3794, 18423},
-        {"Krosh Main-de-Feu", "", 20194, "", 1564, 4, 3795, 18832},
-        {"Kiggler le Fou", "", 12472, "", 1564, 1, 3796, 11443},
-        {"Œil-aveugle le Voyant", "", 11585, "", 1564, 2, 3797, 10602},
+        {"Cho'war le Pilleur", "", 18649, "interface\\encounterjournal\\ui-ej-boss-high king maulgar.blp", 1564, 0, 3794, 18423},
+        {"Krosh Brasemain", "", 20194, "", 1564, 4, 3795, 18832},
+        {"Ogre-mage gordok", "", 12472, "", 1564, 1, 3796, 11443},
+        {"Ogre-magus d'Urok", "", 11585, "", 1564, 2, 3797, 10602},
         {"Olm l'Invocateur", "", 20195, "", 1564, 3, 3798, 18834},
     },
     [1565] = {
-        {"Grull le Dragonkiller", "", 18698, "interface\\encounterjournal\\ui-ej-boss-gruul the dragonkiller.blp", 1565, 0, 3799, 19044},
+        {"Gruul le Tue-dragon", "", 18698, "interface\\encounterjournal\\ui-ej-boss-gruul the dragonkiller.blp", 1565, 0, 3799, 19044},
     },
     [1566] = {
-        {"Occultiste de la Citadelle des Flammes infernales", "", 9865, "", 1566, 1, 3800, 17256},
+        {"Canaliste des Flammes infernales", "", 9865, "", 1566, 1, 3800, 17256},
         {"Magtheridon", "", 18527, "interface\\encounterjournal\\ui-ej-boss-magtheridon.blp", 1566, 0, 3801, 17257},
         {"Diablotin pyromancien", "", 48900, "", 1566, 2, 11000, 99950},
         {"Garde-furie des flammes infernales", "", 48903, "", 1566, 3, 11001, 99951},
         {"Démoniste noir", "", 48899, "", 1566, 4, 11002, 99952},
     },
     [1567] = {
-        {"Hydross l'Instable", "", 20162, "interface\\encounterjournal\\ui-ej-boss-hydross the unstable.blp", 1567, 0, 3802, 21216},
+        {"Hydross l'Instable", "Duc des courants", 20162, "interface\\encounterjournal\\ui-ej-boss-hydross the unstable.blp", 1567, 0, 3802, 21216},
     },
     [1568] = {
-        {"Le Rôdeur d'en bas", "", 20216, "interface\\encounterjournal\\ui-ej-boss-the lurker below.blp", 1568, 0, 3803, 21217},
+        {"Le Rôdeur d'En bas", "", 20216, "interface\\encounterjournal\\ui-ej-boss-the lurker below.blp", 1568, 0, 3803, 21217},
     },
     [1569] = {
-        {"Ombre de Léotheras", "", 20568, "", 1569, 1, 3804, 21875},
-        {"Léotheras l'Aveugle", "", 20514, "interface\\encounterjournal\\ui-ej-boss-leotheras the blind.blp", 1569, 0, 3805, 21215},
+        {"Ombre de Leotheras", "", 20568, "", 1569, 1, 3804, 21875},
+        {"Leotheras l'Aveugle", "", 20514, "interface\\encounterjournal\\ui-ej-boss-leotheras the blind.blp", 1569, 0, 3805, 21215},
     },
     [1570] = {
-        {"Sharkkis", "", 20671, "", 1570, 1, 3806, 21966},
-        {"Caribdis", "", 20672, "", 1570, 3, 3807, 21964},
-        {"Volniis", "", 20670, "", 1570, 2, 3808, 21965},
-        {"Morogrim Marcheur-des-marées", "", 20662, "interface\\encounterjournal\\ui-ej-boss-fathom lord karathress.blp", 1570, 0, 3809, 21214},
+        {"Garde-fonds Squallis", "", 20671, "", 1570, 1, 3806, 21966},
+        {"Garde-fonds Caribdis", "", 20672, "", 1570, 3, 3807, 21964},
+        {"Garde-fonds Marevess", "", 20670, "", 1570, 2, 3808, 21965},
+        {"Seigneur des fonds Karathress", "", 20662, "interface\\encounterjournal\\ui-ej-boss-fathom lord karathress.blp", 1570, 0, 3809, 21214},
     },
     [1571] = {
-        {"Morogrim Voile-Tidewalker", "", 20739, "interface\\encounterjournal\\ui-ej-boss-morogrim tidewalker.blp", 1571, 0, 3810, 21213},
+        {"Morogrim Marcheur-des-flots", "", 20739, "interface\\encounterjournal\\ui-ej-boss-morogrim tidewalker.blp", 1571, 0, 3810, 21213},
     },
     [1572] = {
-        {"Dame Vashj", "", 20748, "interface\\encounterjournal\\ui-ej-boss-lady vashj.blp", 1572, 0, 3811, 21212},
+        {"Dame Vashj", "Matrone de Glissecroc", 20748, "interface\\encounterjournal\\ui-ej-boss-lady vashj.blp", 1572, 0, 3811, 21212},
     },
     [1573] = {
-        {"Al'ar", "", 18945, "interface\\encounterjournal\\ui-ej-boss-alar.blp", 1573, 0, 3812, 19514},
+        {"Al'ar", "Dieu phénix", 18945, "interface\\encounterjournal\\ui-ej-boss-alar.blp", 1573, 0, 3812, 19514},
     },
     [1574] = {
-        {"Déchiqueteur dimensionnel", "", 18951, "interface\\encounterjournal\\ui-ej-boss-void reaver.blp", 1574, 0, 3813, 19516},
+        {"Saccageur du Vide", "", 18951, "interface\\encounterjournal\\ui-ej-boss-void reaver.blp", 1574, 0, 3813, 19516},
     },
     [1575] = {
         {"Grande astromancienne Solarian", "", 18239, "interface\\encounterjournal\\ui-ej-boss-high astromancer solarian.blp", 1575, 0, 3814, 18805},
     },
     [1576] = {
-        {"Kael'thas Haut-Soleil", "", 20023, "interface\\encounterjournal\\ui-ej-boss-kaelthas sunstrider.blp", 1576, 0, 3818, 19622},
-        {"Grand astromancien Capernian", "", 20237, "", 1576, 3, 3815, 20062},
-        {"Seigneur Sanguinar", "", 20178, "", 1576, 2, 3816, 20060},
-        {"Ingénieur supérieur Telonicus", "", 20177, "", 1576, 4, 3817, 20063},
-        {"Taladred le Briseur de Lumière", "", 20236, "", 1576, 1, 3819, 20064},
+        {"Kael'thas Haut-Soleil", "Seigneur des elfes de sang", 20023, "interface\\encounterjournal\\ui-ej-boss-kaelthas sunstrider.blp", 1576, 0, 3818, 19622},
+        {"Grande astromancienne Capernian", "Conseillère de Kael'thas", 20237, "", 1576, 3, 3815, 20062},
+        {"Seigneur Sanguinar", "Le Marteau de sang", 20178, "", 1576, 2, 3816, 20060},
+        {"Maître ingénieur Telonicus", "Conseiller de Kael'thas", 20177, "", 1576, 4, 3817, 20063},
+        {"Thaladred l'Assombrisseur", "Conseiller de Kael'thas", 20236, "", 1576, 1, 3819, 20064},
     },
     [1597] = {
-        {"Archavon le Guetteur de pierre", "", 26967, "interface\\encounterjournal\\ui-ej-boss-archavon the stone watcher.blp", 1597, 0, 3849, 30341},
+        {"Eisenfaust", "Serviteur de Loken", 26967, "interface\\encounterjournal\\ui-ej-boss-archavon the stone watcher.blp", 1597, 0, 3849, 30341},
     },
     [1598] = {
-        {"Emalon le Guetteur de tempêtes", "", 27108, "interface\\encounterjournal\\ui-ej-boss-emalon the storm watcher.blp", 1598, 0, 3850, 33993},
+        {"Emalon le Guetteur d'orage", "", 27108, "interface\\encounterjournal\\ui-ej-boss-emalon the storm watcher.blp", 1598, 0, 3850, 33993},
     },
     [1599] = {
-        {"Koralon le Guetteur de flammes", "", 29524, "interface\\encounterjournal\\ui-ej-boss-koralon the flame watcher.blp", 1599, 0, 3851, 35013},
+        {"Koralon le Veilleur des flammes", "", 29524, "interface\\encounterjournal\\ui-ej-boss-koralon the flame watcher.blp", 1599, 0, 3851, 35013},
     },
     [1600] = {
-        {"Toravon le Guetteur de glace", "", 31089, "interface\\encounterjournal\\ui-ej-boss-taravon the ice watcher.blp", 1600, 0, 3852, 38433},
+        {"Toravon la Sentinelle de glace", "", 31089, "interface\\encounterjournal\\ui-ej-boss-taravon the ice watcher.blp", 1600, 0, 3852, 38433},
     },
     [1601] = {
         {"Anub'Rekhan", "", 15931, "interface\\encounterjournal\\ui-ej-boss-anubrekhan.blp", 1601, 0, 3853, 15956},
@@ -1640,7 +1640,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Maexxna", "", 15928, "interface\\encounterjournal\\ui-ej-boss-maexxna.blp", 1603, 0, 3855, 15952},
     },
     [1604] = {
-        {"Noth le Porte-Peste", "", 16590, "interface\\encounterjournal\\ui-ej-boss-noth the plaguebringer.blp", 1604, 0, 3856, 15954},
+        {"Noth le Porte-peste", "", 16590, "interface\\encounterjournal\\ui-ej-boss-noth the plaguebringer.blp", 1604, 0, 3856, 15954},
     },
     [1605] = {
         {"Heigan l'Impur", "", 16309, "interface\\encounterjournal\\ui-ej-boss-heigan the unclean.blp", 1605, 0, 3857, 15936},
@@ -1649,7 +1649,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Horreb", "", 16110, "interface\\encounterjournal\\ui-ej-boss-loatheb.blp", 1606, 0, 3858, 16011},
     },
     [1607] = {
-        {"Apprenti chevalier de la mort", "", 16539, "", 1607, 1, 3859, 16803},
+        {"Doublure de chevalier de la mort", "", 16539, "", 1607, 1, 3859, 16803},
         {"Instructeur Razuvious", "", 16582, "interface\\encounterjournal\\ui-ej-boss-instructor razuvious.blp", 1607, 0, 3860, 16061},
     },
     [1608] = {
@@ -1658,7 +1658,7 @@ JOURNALENCOUNTERCREATURE = {
     [1609] = {
         {"Dame Blaumeux", "", 16153, "", 1609, 2, 3862, 16065},
         {"Baron Vaillefendre", "", 10729, "interface\\encounterjournal\\ui-ej-boss-four horseman.blp", 1609, 0, 3863, 10440},
-        {"Sir Zeliek", "", 16154, "", 1609, 3, 3864, 16063},
+        {"Sire Zeliek", "", 16154, "", 1609, 3, 3864, 16063},
         {"Thane Korth'azz", "", 16155, "", 1609, 1, 3865, 16064},
     },
     [1610] = {
@@ -1674,82 +1674,82 @@ JOURNALENCOUNTERCREATURE = {
         {"Thaddius", "", 16137, "interface\\encounterjournal\\ui-ej-boss-thaddius.blp", 1613, 0, 3869, 15928},
     },
     [1614] = {
-        {"Sapphiron", "", 16033, "interface\\encounterjournal\\ui-ej-boss-sapphiron.blp", 1614, 0, 3870, 15989},
+        {"Saphiron", "", 16033, "interface\\encounterjournal\\ui-ej-boss-sapphiron.blp", 1614, 0, 3870, 15989},
     },
     [1615] = {
         {"Kel'Thuzad", "", 15945, "interface\\encounterjournal\\ui-ej-boss-kelthuzad.blp", 1615, 0, 3871, 15990},
     },
     [1616] = {
-        {"Shadron", "", 27421, "", 1616, 2, 3872, 30451},
-        {"Tenebron", "", 27082, "", 1616, 1, 3873, 30452},
-        {"Vesperon", "", 27039, "", 1616, 3, 3874, 30449},
-        {"Sartharion", "", 27035, "interface\\encounterjournal\\ui-ej-boss-sartharion.blp", 1616, 0, 3875, 28860},
+        {"Obscuron", "", 27421, "", 1616, 2, 3872, 30451},
+        {"Ténébron", "", 27082, "", 1616, 1, 3873, 30452},
+        {"Vespéron", "", 27039, "", 1616, 3, 3874, 30449},
+        {"Sartharion", "Le gardien d'Onyx", 27035, "interface\\encounterjournal\\ui-ej-boss-sartharion.blp", 1616, 0, 3875, 28860},
     },
     [1617] = {
         {"Malygos", "", 26752, "interface\\encounterjournal\\ui-ej-boss-malygos.blp", 1617, 0, 3876, 28859},
     },
     [1618] = {
-        {"Acidmaw and Dreadscale", "", 29815, "", 1618, 1, 3877, 35144},
-        {"Gormok the Impaler", "", 29614, "interface\\encounterjournal\\ui-ej-boss-northrend beasts.blp", 1618, 0, 3878, 35469},
-        {"Icehowl", "", 21601, "", 1618, 2, 3879, 23517},
+        {"Gueule-d'acide", "", 29815, "", 1618, 1, 3877, 35144},
+        {"Gormok l'Empaleur", "", 29614, "interface\\encounterjournal\\ui-ej-boss-northrend beasts.blp", 1618, 0, 3878, 35469},
+        {"Yéti du Norfendre (blanc)", "", 21601, "", 1618, 2, 3879, 23517},
     },
     [1619] = {
-        {"Wilfred Fizzlebang", "", 29814, "", 1619, 1, 3880, 35458},
-        {"Lord Jaraxxus", "", 29615, "interface\\encounterjournal\\ui-ej-boss-lord jaraxxus.blp", 1619, 0, 3881, 34780},
+        {"Wilfred Flopboum", "", 29814, "", 1619, 1, 3880, 35458},
+        {"Seigneur Jaraxxus", "", 29615, "interface\\encounterjournal\\ui-ej-boss-lord jaraxxus.blp", 1619, 0, 3881, 34780},
     },
     [1620] = {
-        {"Shockwave", "", 29779, "", 1620, 7, 3883, 34475},
-        {"Antar Forgemender", "", 29767, "", 1620, 1, 3884, 34466},
-        {"Serissa Grimdabbler", "", 29777, "", 1620, 6, 3885, 34474},
-        {"Irieth Shadowstep", "", 29776, "", 1620, 3, 3886, 34472},
-        {"Thyra Blade of Twilight", "", 29765, "", 1620, 8, 3887, 34461},
-        {"Nuzza Gadgeteer", "", 29772, "", 1620, 5, 3888, 34468},
-        {"Melador Farstrider", "", 29780, "", 1620, 4, 3892, 34459},
-        {"Belnor Lightbearer", "", 29774, "", 1620, 2, 3893, 34471},
-        {"Alissa Moonpaw", "", 29770, "interface\\encounterjournal\\ui-ej-boss-pvp event vs horde.blp", 1620, 0, 3895, 34467},
+        {"Shocuul", "Guerrier", 29779, "", 1620, 7, 3883, 34475},
+        {"Anthar Soigneforge", "Prêtre", 29767, "", 1620, 1, 3884, 34466},
+        {"Serissa Funèbricole", "Démoniste", 29777, "", 1620, 6, 3885, 34474},
+        {"Irieth Pas-de-l'ombre", "Voleuse", 29776, "", 1620, 3, 3886, 34472},
+        {"Tyrius Lamebrune", "Chevalier de la mort", 29765, "", 1620, 8, 3887, 34461},
+        {"Touillert Vizitige", "Mage", 29772, "", 1620, 5, 3888, 34468},
+        {"Erin Sabot-de-brume", "Druide", 29780, "", 1620, 4, 3892, 34459},
+        {"Baelnor Portelumière", "Paladin", 29774, "", 1620, 2, 3893, 34471},
+        {"Alyssia Traquelune", "Chasseur", 29770, "interface\\encounterjournal\\ui-ej-boss-pvp event vs horde.blp", 1620, 0, 3895, 34467},
     },
     [1621] = {
-        {"Kaifa the Unyielding", "", 29783, "", 1621, 2, 3897, 34447},
-        {"Narrok Steelbreaker", "", 29793, "", 1621, 7, 3898, 34453},
-        {"Ginzella Blightweaver", "", 29787, "", 1621, 3, 3900, 34449},
-        {"Maz'dinah", "", 29790, "", 1621, 6, 3901, 34454},
-        {"Gorgrim Darkbane", "", 29782, "", 1621, 4, 3902, 34458},
-        {"Vivienne Whisperwind", "", 29791, "", 1621, 9, 3905, 34441},
-        {"Harkzog", "", 29792, "", 1621, 5, 3906, 34450},
-        {"Birana Stormhoof", "", 29781, "interface\\encounterjournal\\ui-ej-boss-pvp event vs alliance.blp", 1621, 0, 3907, 34451},
-        {"Brolln Ironhorn", "", 29784, "", 1621, 1, 3908, 34455},
-        {"Ruj'ka", "", 29786, "", 1621, 8, 3909, 34448},
+        {"Caiphus le Sévère", "Prêtre", 29783, "", 1621, 2, 3897, 34447},
+        {"Narrhok Brise-acier", "Guerrier", 29793, "", 1621, 7, 3898, 34453},
+        {"Ginselle Jettechancre", "Mage", 29787, "", 1621, 3, 3900, 34449},
+        {"Maz'dinah", "Voleuse", 29790, "", 1621, 6, 3901, 34454},
+        {"Gorgrim Fend-les-ombres", "Chevalier de la mort", 29782, "", 1621, 4, 3902, 34458},
+        {"Vivienne Murmenoir", "Prêtre", 29791, "", 1621, 9, 3905, 34441},
+        {"Harkzog", "Démoniste", 29792, "", 1621, 5, 3906, 34450},
+        {"Birana Sabot-Tempête", "Druide", 29781, "interface\\encounterjournal\\ui-ej-boss-pvp event vs alliance.blp", 1621, 0, 3907, 34451},
+        {"Broln Corne-Rude", "Chaman", 29784, "", 1621, 1, 3908, 34455},
+        {"Ruj'kah", "Chasseur", 29786, "", 1621, 8, 3909, 34448},
     },
     [1622] = {
-        {"Eydis Darkbane", "", 29267, "", 1622, 1, 3910, 36066},
-        {"Fjola Lightbane", "", 29240, "interface\\encounterjournal\\ui-ej-boss-twin valkyr.blp", 1622, 0, 3911, 36065},
+        {"Eydis Plaie-sombre", "", 29267, "", 1622, 1, 3910, 36066},
+        {"Fjola Plaie-lumineuse", "", 29240, "interface\\encounterjournal\\ui-ej-boss-twin valkyr.blp", 1622, 0, 3911, 36065},
     },
     [1623] = {
         {"Anub'arak", "", 29268, "interface\\encounterjournal\\ui-ej-boss-anubarak.blp", 1623, 0, 3912, 34564},
     },
     [1624] = {
-        {"Lord Marrowgar", "", 31119, "interface\\encounterjournal\\ui-ej-boss-lord marrowgar.blp", 1624, 0, 3913, 36612},
+        {"Seigneur Gargamoelle", "", 31119, "interface\\encounterjournal\\ui-ej-boss-lord marrowgar.blp", 1624, 0, 3913, 36612},
     },
     [1625] = {
-        {"Lady Deathwhisper", "", 30893, "interface\\encounterjournal\\ui-ej-boss-lady deathwhisper.blp", 1625, 0, 3914, 36855},
+        {"Dame Murmemort", "", 30893, "interface\\encounterjournal\\ui-ej-boss-lady deathwhisper.blp", 1625, 0, 3914, 36855},
     },
     [1626] = {
-        {"High Overlord Saurfang", "", 30416, "interface\\encounterjournal\\ui-ej-boss-gunship horde.blp", 1626, 0, 3915, 36939},
+        {"Haut seigneur Saurcroc", "", 30416, "interface\\encounterjournal\\ui-ej-boss-gunship horde.blp", 1626, 0, 3915, 36939},
     },
     [1627] = {
-        {"Muradin Bronzebeard", "", 30508, "interface\\encounterjournal\\ui-ej-boss-gunship alliance.blp", 1627, 0, 3916, 36948},
+        {"Muradin Barbe-de-bronze", "", 30508, "interface\\encounterjournal\\ui-ej-boss-gunship alliance.blp", 1627, 0, 3916, 36948},
     },
     [1628] = {
-        {"Deathbringer Saurfang", "", 30790, "interface\\encounterjournal\\ui-ej-boss-deathbringer saurfang.blp", 1628, 0, 3917, 37813},
+        {"Porte-mort Saurcroc", "", 30790, "interface\\encounterjournal\\ui-ej-boss-deathbringer saurfang.blp", 1628, 0, 3917, 37813},
     },
     [1629] = {
-        {"Festergut", "", 31006, "interface\\encounterjournal\\ui-ej-boss-festergut.blp", 1629, 0, 3918, 36626},
+        {"Pulentraille", "", 31006, "interface\\encounterjournal\\ui-ej-boss-festergut.blp", 1629, 0, 3918, 36626},
     },
     [1630] = {
-        {"Rotface", "", 31005, "interface\\encounterjournal\\ui-ej-boss-rotface.blp", 1630, 0, 3919, 36627},
+        {"Trognepus", "", 31005, "interface\\encounterjournal\\ui-ej-boss-rotface.blp", 1630, 0, 3919, 36627},
     },
     [1631] = {
-        {"Professor Putricide", "", 30881, "interface\\encounterjournal\\ui-ej-boss-professor putricide.blp", 1631, 0, 3920, 36678},
+        {"Professeur Putricide", "", 30881, "interface\\encounterjournal\\ui-ej-boss-professor putricide.blp", 1631, 0, 3920, 36678},
     },
     [1632] = {
         {"Prince Taldaram", "", 30856, "", 1632, 2, 3921, 37973},
@@ -1757,16 +1757,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Prince Keleseth", "", 30857, "", 1632, 1, 3923, 37972},
     },
     [1633] = {
-        {"Blood-Queen Lana'thel", "", 31165, "interface\\encounterjournal\\ui-ej-boss-blood queen lanathel.blp", 1633, 0, 3924, 37955},
+        {"Reine de sang Lana'thel", "", 31165, "interface\\encounterjournal\\ui-ej-boss-blood queen lanathel.blp", 1633, 0, 3924, 37955},
     },
     [1634] = {
-        {"Valithria Dreamwalker", "", 30318, "interface\\encounterjournal\\ui-ej-boss-valithria dreamwalker.blp", 1634, 0, 3925, 36789},
+        {"Valithria Marcherêve", "", 30318, "interface\\encounterjournal\\ui-ej-boss-valithria dreamwalker.blp", 1634, 0, 3925, 36789},
     },
     [1635] = {
-        {"Sindragosa", "", 30362, "interface\\encounterjournal\\ui-ej-boss-sindragosa.blp", 1635, 0, 3926, 37755},
+        {"Sindragosa", "Reine des Couvegivres", 30362, "interface\\encounterjournal\\ui-ej-boss-sindragosa.blp", 1635, 0, 3926, 37755},
     },
     [1636] = {
-        {"Le Roi-liche", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 1636, 0, 3927, 16089},
+        {"Omar le dragon de test", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 1636, 0, 3927, 16089},
     },
     [1637] = {
         {"Lady Jaina Proudmoore", "", 30864, "interface\\encounterjournal\\UI-EJ-BOSS-Lady-Jaina-Proudmoure-ICC.blp", 1637, 1, 3928, 200000},
@@ -1777,116 +1777,116 @@ JOURNALENCOUNTERCREATURE = {
         {"Magic Blob", "", 26259, "", 1637, 2, 3933, 130509},
     },
     [1651] = {
-        {"Onyxia's Lair Guardian", "", 12891, "", 1651, 1, 14158, 36561},
-        {"Onyxian Whelp", "", 397, "", 1651, 2, 14159, 11262},
+        {"Garde du repaire onyxien", "", 12891, "", 1651, 1, 14158, 36561},
+        {"Dragonnet onyxien", "", 397, "", 1651, 2, 14159, 11262},
         {"Onyxia", "", 8570, "interface\\encounterjournal\\ui-ej-boss-onyxia.blp", 1651, 0, 3948, 10184},
     },
     [1652] = {
-        {"Halion", "", 31952, "interface\\encounterjournal\\ui-ej-boss-halion.blp", 1652, 0, 3949, 39863},
+        {"Halion", "Le destructeur du Crépuscule", 31952, "interface\\encounterjournal\\ui-ej-boss-halion.blp", 1652, 0, 3949, 39863},
     },
     [11001] = {
-        {"Sacrifice", "", 51048, "interface\\encounterjournal\\ui-ej-boss-ZA-Chest.blp", 11001, 0, 14000, 70190},
+        {"Harvest White Turnip Credit", "", 51048, "interface\\encounterjournal\\ui-ej-boss-ZA-Chest.blp", 11001, 0, 14000, 70190},
     },
     [11002] = {
-        {"Attumen the Huntsman", "", 16416, "interface\\encounterjournal\\ui-ej-boss-attumen the huntsman.blp", 11002, 0, 11004, 15550},
+        {"Attumen le Veneur", "", 16416, "interface\\encounterjournal\\ui-ej-boss-attumen the huntsman.blp", 11002, 0, 11004, 15550},
     },
     [11003] = {
-        {"Moroes", "", 16540, "interface\\encounterjournal\\ui-ej-boss-moroes.blp", 11003, 0, 11005, 15687},
+        {"Moroes", "Régisseur de la tour", 16540, "interface\\encounterjournal\\ui-ej-boss-moroes.blp", 11003, 0, 11005, 15687},
     },
     [11004] = {
-        {"Maiden of Virtue", "", 16198, "interface\\encounterjournal\\ui-ej-boss-maiden of virtue.blp", 11004, 0, 11006, 16457},
+        {"Damoiselle de vertu", "", 16198, "interface\\encounterjournal\\ui-ej-boss-maiden of virtue.blp", 11004, 0, 11006, 16457},
     },
     [11005] = {
-        {"The Big Bad Wolf", "", 17053, "interface\\encounterjournal\\ui-ej-boss-opera.blp", 11005, 0, 11007, 17521},
+        {"Le Grand Méchant Loup", "", 17053, "interface\\encounterjournal\\ui-ej-boss-opera.blp", 11005, 0, 11007, 17521},
     },
     [11006] = {
         {"The Curator", "", 16838, "interface\\encounterjournal\\ui-ej-boss-The-Curator-Violet.blp", 11006, 0, 11008, 99973},
     },
     [11007] = {
-        {"Shade of Aran", "", 16621, "interface\\encounterjournal\\ui-ej-boss-shade of aran.blp", 11007, 0, 11009, 16524},
+        {"Ombre d'Aran", "", 16621, "interface\\encounterjournal\\ui-ej-boss-shade of aran.blp", 11007, 0, 11009, 16524},
     },
     [11008] = {
-        {"Terestian Illhoof", "", 11343, "interface\\encounterjournal\\ui-ej-boss-terestian illhoof.blp", 11008, 0, 11010, 15688},
+        {"Terestian Malsabot", "", 11343, "interface\\encounterjournal\\ui-ej-boss-terestian illhoof.blp", 11008, 0, 11010, 15688},
     },
     [11009] = {
-        {"Netherspite", "", 15363, "interface\\encounterjournal\\ui-ej-boss-netherspite.blp", 11009, 0, 11011, 14890},
+        {"Taerar", "", 15363, "interface\\encounterjournal\\ui-ej-boss-netherspite.blp", 11009, 0, 11011, 14890},
     },
     [11010] = {
-        {"Nightbane", "", 18062, "interface\\encounterjournal\\UI-EJ-BOSS-Nightbane.blp", 11010, 0, 11012, 17225},
+        {"Plaie-de-nuit", "", 18062, "interface\\encounterjournal\\UI-EJ-BOSS-Nightbane.blp", 11010, 0, 11012, 17225},
     },
     [11011] = {
         {"Prince Malchezaar", "", 19274, "interface\\encounterjournal\\ui-ej-boss-prince malchezaar.blp", 11011, 0, 11013, 15690},
     },
     [11012] = {
-        {"High King Maulgar", "", 18649, "interface\\encounterjournal\\ui-ej-boss-high king maulgar.blp", 11012, 0, 11014, 18423},
-        {"Krosh Firehand", "", 20194, "", 11012, 4, 14137, 18832},
-        {"Kiggler the Crazed", "", 12472, "", 11012, 1, 14138, 11443},
-        {"Blindeye the Seer", "", 11585, "", 11012, 2, 14139, 10602},
-        {"Olm the Summoner", "", 20195, "", 11012, 3, 14140, 18834},
+        {"Cho'war le Pilleur", "", 18649, "interface\\encounterjournal\\ui-ej-boss-high king maulgar.blp", 11012, 0, 11014, 18423},
+        {"Krosh Brasemain", "", 20194, "", 11012, 4, 14137, 18832},
+        {"Ogre-mage gordok", "", 12472, "", 11012, 1, 14138, 11443},
+        {"Ogre-magus d'Urok", "", 11585, "", 11012, 2, 14139, 10602},
+        {"Olm l'Invocateur", "", 20195, "", 11012, 3, 14140, 18834},
     },
     [11013] = {
-        {"Gruul the Dragonkiller", "", 18698, "interface\\encounterjournal\\ui-ej-boss-gruul the dragonkiller.blp", 11013, 0, 11015, 19044},
+        {"Gruul le Tue-dragon", "", 18698, "interface\\encounterjournal\\ui-ej-boss-gruul the dragonkiller.blp", 11013, 0, 11015, 19044},
     },
     [11014] = {
         {"Magtheridon", "", 48902, "interface\\encounterjournal\\ui-ej-boss-magtheridon.blp", 11014, 0, 11003, 17257},
     },
     [11573] = {
-        {"Al'ar", "", 18945, "interface\\encounterjournal\\ui-ej-boss-alar.blp", 11573, 0, 5000, 19514},
+        {"Al'ar", "Dieu phénix", 18945, "interface\\encounterjournal\\ui-ej-boss-alar.blp", 11573, 0, 5000, 19514},
     },
     [11574] = {
-        {"Void Reaver", "", 18951, "interface\\encounterjournal\\ui-ej-boss-void reaver.blp", 11574, 0, 5001, 19516},
+        {"Saccageur du Vide", "", 18951, "interface\\encounterjournal\\ui-ej-boss-void reaver.blp", 11574, 0, 5001, 19516},
     },
     [11575] = {
-        {"High Astromancer Solarian", "", 18239, "interface\\encounterjournal\\ui-ej-boss-high astromancer solarian.blp", 11575, 0, 5002, 18805},
+        {"Grande astromancienne Solarian", "", 18239, "interface\\encounterjournal\\ui-ej-boss-high astromancer solarian.blp", 11575, 0, 5002, 18805},
     },
     [11576] = {
-        {"Grand Astromancer Capernian", "", 20237, "", 11576, 3, 5003, 20062},
-        {"Lord Sanguinar", "", 20178, "", 11576, 2, 5004, 20060},
-        {"Senior Engineer Telonicus", "", 20177, "", 11576, 4, 5005, 20063},
-        {"Kael'thas Sunstrider", "", 20023, "interface\\encounterjournal\\ui-ej-boss-kaelthas sunstrider.blp", 11576, 0, 5006, 19622},
-        {"Thaladred the Darkener", "", 20236, "", 11576, 1, 5007, 20064},
+        {"Grande astromancienne Capernian", "Conseillère de Kael'thas", 20237, "", 11576, 3, 5003, 20062},
+        {"Seigneur Sanguinar", "Le Marteau de sang", 20178, "", 11576, 2, 5004, 20060},
+        {"Maître ingénieur Telonicus", "Conseiller de Kael'thas", 20177, "", 11576, 4, 5005, 20063},
+        {"Kael'thas Haut-Soleil", "Seigneur des elfes de sang", 20023, "interface\\encounterjournal\\ui-ej-boss-kaelthas sunstrider.blp", 11576, 0, 5006, 19622},
+        {"Thaladred l'Assombrisseur", "Conseiller de Kael'thas", 20236, "", 11576, 1, 5007, 20064},
     },
     [11577] = {
-        {"Pyroguard Emberseer", "", 2172, "interface\\encounterjournal\\ui-ej-boss-Pyroguard Emberseer.blp", 11577, 0, 14001, 9816},
+        {"Pyrogarde Prophète ardent", "", 2172, "interface\\encounterjournal\\ui-ej-boss-Pyroguard Emberseer.blp", 11577, 0, 14001, 9816},
     },
     [11578] = {
-        {"Warlord Wyrmthalak", "", 8711, "interface\\encounterjournal\\ui-ej-boss-Overlord Wyrmthalak.blp", 11578, 0, 14002, 9568},
+        {"Seigneur Wyrmthalak", "", 8711, "interface\\encounterjournal\\ui-ej-boss-Overlord Wyrmthalak.blp", 11578, 0, 14002, 9568},
     },
     [11579] = {
-        {"Warchief Rend Blackhand", "", 9778, "interface\\encounterjournal\\ui-ej-boss-Warchief Rend Blackhand.blp", 11579, 0, 14003, 10429},
+        {"Chef de guerre Rend Main-Noire", "", 9778, "interface\\encounterjournal\\ui-ej-boss-Warchief Rend Blackhand.blp", 11579, 0, 14003, 10429},
     },
     [11580] = {
-        {"The Beast", "", 10193, "interface\\encounterjournal\\ui-ej-boss-The Beast.blp", 11580, 0, 14004, 10430},
+        {"La Bête", "", 10193, "interface\\encounterjournal\\ui-ej-boss-The Beast.blp", 11580, 0, 14004, 10430},
     },
     [11581] = {
-        {"Broodlord Lashlayer", "", 14308, "interface\\encounterjournal\\ui-ej-boss-broodlord lashlayer.blp", 11581, 0, 14005, 12017},
+        {"Seigneur des couvées Lanistaire", "", 14308, "interface\\encounterjournal\\ui-ej-boss-broodlord lashlayer.blp", 11581, 0, 14005, 12017},
     },
     [11582] = {
-        {"Goraluk Anvilcrack", "", 10222, "interface\\encounterjournal\\ui-ej-boss-Goraluk-Anvilcrack.blp", 11582, 0, 14006, 10899},
+        {"Goraluk Brisenclume", "Fabricant d'armures de la légion Main-noire", 10222, "interface\\encounterjournal\\ui-ej-boss-Goraluk-Anvilcrack.blp", 11582, 0, 14006, 10899},
     },
     [11583] = {
-        {"Jed Runewatcher", "", 9686, "interface\\encounterjournal\\ui-ej-boss-Jed-Runewatcher.blp", 11583, 0, 14007, 10509},
+        {"Jed Guette-runes", "Légion Main-noire", 9686, "interface\\encounterjournal\\ui-ej-boss-Jed-Runewatcher.blp", 11583, 0, 14007, 10509},
     },
     [11584] = {
-        {"General Drakkisath", "", 10115, "interface\\encounterjournal\\ui-ej-boss-General Drakkisath.blp", 11584, 0, 14030, 10363},
+        {"Général Drakkisath", "", 10115, "interface\\encounterjournal\\ui-ej-boss-General Drakkisath.blp", 11584, 0, 14030, 10363},
     },
     [11585] = {
-        {"Oggleflint", "", 11611, "interface\\encounterjournal\\ui-ej-boss-Oggleflint.blp", 11585, 0, 14008, 11517},
+        {"Lorgnesilex", "Chef ragefeu", 11611, "interface\\encounterjournal\\ui-ej-boss-Oggleflint.blp", 11585, 0, 14008, 11517},
     },
     [11586] = {
-        {"Taragaman the Hungerer", "", 7970, "interface\\encounterjournal\\ui-ej-boss-taragaman the hungerer.blp", 11586, 0, 14009, 11520},
+        {"Taragaman l'Affameur", "", 7970, "interface\\encounterjournal\\ui-ej-boss-taragaman the hungerer.blp", 11586, 0, 14009, 11520},
     },
     [11587] = {
         {"Bazzalan", "", 2007, "interface\\encounterjournal\\ui-ej-boss-Bazzalan.blp", 11587, 0, 14010, 11519},
     },
     [11588] = {
-        {"Jergosh the Invoker", "", 11429, "interface\\encounterjournal\\ui-ej-boss-jergosh the invoker.blp", 11588, 0, 14011, 11518},
+        {"Jergosh l'Invocateur", "", 11429, "interface\\encounterjournal\\ui-ej-boss-jergosh the invoker.blp", 11588, 0, 14011, 11518},
     },
     [11589] = {
-        {"Interrogator Vishas", "", 2044, "interface\\encounterjournal\\ui-ej-boss-Interrogator Vishas.blp", 11589, 0, 14012, 3983},
+        {"Interrogateur Vislar", "", 2044, "interface\\encounterjournal\\ui-ej-boss-Interrogator Vishas.blp", 11589, 0, 14012, 3983},
     },
     [11590] = {
-        {"Ironspine", "", 5231, "interface\\encounterjournal\\ui-ej-boss-Ironspine.blp", 11590, 0, 14013, 6489},
+        {"Echine-de-fer", "", 5231, "interface\\encounterjournal\\ui-ej-boss-Ironspine.blp", 11590, 0, 14013, 6489},
     },
     [11591] = {
         {"Champion déchu", "", 5230, "interface\\encounterjournal\\ui-ej-boss-Fallen-Champion.blp", 11591, 0, 14014, 6488},
@@ -1895,13 +1895,13 @@ JOURNALENCOUNTERCREATURE = {
         {"Mage de sang Thalnos", "", 11396, "interface\\encounterjournal\\ui-ej-boss-Bloodmage Thalnos.blp", 11592, 0, 14015, 4543},
     },
     [11593] = {
-        {"Grand inquisiteur Fairbanks", "", 2605, "interface\\encounterjournal\\ui-ej-boss-High Inquisitor Fairbanks.blp", 11593, 0, 14016, 4542},
+        {"Grand Inquisiteur Fairbanks", "", 2605, "interface\\encounterjournal\\ui-ej-boss-High Inquisitor Fairbanks.blp", 11593, 0, 14016, 4542},
     },
     [11594] = {
-        {"Commandant de la Croisade écarlate Mograine", "", 2042, "interface\\encounterjournal\\ui-ej-boss-Scarlet Commander Mograine.blp", 11594, 0, 14017, 3976},
+        {"Commandant écarlate Mograine", "", 2042, "interface\\encounterjournal\\ui-ej-boss-Scarlet Commander Mograine.blp", 11594, 0, 14017, 3976},
     },
     [11595] = {
-        {"Grand inquisiteur Whitemane", "", 2043, "interface\\encounterjournal\\ui-ej-boss-High Inquisitor Whitemane.blp", 11595, 0, 14018, 3977},
+        {"Grande inquisitrice Blanchetête", "", 2043, "interface\\encounterjournal\\ui-ej-boss-High Inquisitor Whitemane.blp", 11595, 0, 14018, 3977},
     },
     [11596] = {
         {"Maître-chien Loksey", "", 2040, "interface\\encounterjournal\\ui-ej-boss-Houndmaster Loksey.blp", 11596, 0, 14019, 3974},
@@ -1910,7 +1910,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Arcaniste Doan", "", 5266, "interface\\encounterjournal\\ui-ej-boss-Arcanist Doan.blp", 11597, 0, 14020, 6487},
     },
     [11598] = {
-        {"Hérode", "", 2041, "interface\\encounterjournal\\ui-ej-boss-Herod.blp", 11598, 0, 14021, 3975},
+        {"Hérode", "Le champion écarlate", 2041, "interface\\encounterjournal\\ui-ej-boss-Herod.blp", 11598, 0, 14021, 3975},
     },
     [11599] = {
         {"Kirtonos le Héraut", "", 9943, "interface\\encounterjournal\\UI-EJ-BOSS-Kirtonos the Herald.blp", 11599, 0, 14022, 10506},
@@ -1919,16 +1919,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Jandice Barov", "", 11073, "interface\\encounterjournal\\UI-EJ-BOSS-Jandice Barov.blp", 11600, 0, 14023, 10503},
     },
     [11601] = {
-        {"Rasoiran", "", 12073, "interface\\encounterjournal\\UI-EJ-BOSS-Rattlegore.blp", 11601, 0, 14024, 11622},
+        {"Cliquettripes", "", 12073, "interface\\encounterjournal\\UI-EJ-BOSS-Rattlegore.blp", 11601, 0, 14024, 11622},
     },
     [11602] = {
-        {"Ras Frostwhisper", "", 7919, "interface\\encounterjournal\\UI-EJ-BOSS-Ras Frostwhisper.blp", 11602, 0, 14025, 10508},
+        {"Ras Murmegivre", "", 7919, "interface\\encounterjournal\\UI-EJ-BOSS-Ras Frostwhisper.blp", 11602, 0, 14025, 10508},
     },
     [11603] = {
-        {"Docteur Theolen Krastinov", "", 10901, "interface\\encounterjournal\\UI-EJ-BOSS-Doctor Theolen Krastinov.blp", 11603, 0, 14026, 11261},
+        {"Docteur Theolen Krastinov", "Le Boucher", 10901, "interface\\encounterjournal\\UI-EJ-BOSS-Doctor Theolen Krastinov.blp", 11603, 0, 14026, 11261},
     },
     [11604] = {
-        {"Marduk Blackpool", "", 10248, "interface\\encounterjournal\\UI-EJ-BOSS-Marduk Blackpool.blp", 11604, 0, 14027, 10433},
+        {"Marduk Noirétang", "", 10248, "interface\\encounterjournal\\UI-EJ-BOSS-Marduk Blackpool.blp", 11604, 0, 14027, 10433},
     },
     [11605] = {
         {"Vectus", "", 2606, "interface\\encounterjournal\\UI-EJ-BOSS-Vectus.blp", 11605, 0, 14028, 10432},
@@ -1937,7 +1937,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Gardien du savoir Polkelt", "", 11492, "interface\\encounterjournal\\UI-EJ-BOSS-Lorekeeper Polkelt.blp", 11606, 0, 14029, 10901},
     },
     [11607] = {
-        {"Instructeur Malicia", "", 20981, "interface\\encounterjournal\\UI-EJ-BOSS-Instructor Malicia.blp", 11607, 0, 14031, 10505},
+        {"Instructrice Malicia", "", 20981, "interface\\encounterjournal\\UI-EJ-BOSS-Instructor Malicia.blp", 11607, 0, 14031, 10505},
     },
     [11608] = {
         {"Dame Illucia Barov", "", 11835, "interface\\encounterjournal\\UI-EJ-BOSS-Lady Illucia Barov.blp", 11608, 0, 14032, 10502},
@@ -1946,126 +1946,126 @@ JOURNALENCOUNTERCREATURE = {
         {"Seigneur Alexei Barov", "", 11072, "interface\\encounterjournal\\UI-EJ-BOSS-Lord Alexei Barov.blp", 11609, 0, 14033, 10504},
     },
     [11610] = {
-        {"Ravenian", "", 10433, "interface\\encounterjournal\\UI-EJ-BOSS-The Ravenian.blp", 11610, 0, 14034, 10507},
+        {"Le Voracien", "", 10433, "interface\\encounterjournal\\UI-EJ-BOSS-The Ravenian.blp", 11610, 0, 14034, 10507},
     },
     [11611] = {
-        {"Maître noir Gandling", "", 11070, "interface\\encounterjournal\\ui-ej-boss-Darkmaster-Gandling.blp", 11611, 0, 14035, 1853},
+        {"Sombre Maître Gandling", "", 11070, "interface\\encounterjournal\\ui-ej-boss-Darkmaster-Gandling.blp", 11611, 0, 14035, 1853},
     },
     [11623] = {
-        {"Machine de siège trophée", "", 28650, "", 11623, 1, 14080, 33060},
-        {"Démolisseur trophée", "", 27658, "", 11623, 2, 14081, 33109},
-        {"Chopper trophée", "", 25871, "", 11623, 3, 14082, 33062},
-        {"Canon défensif de Léviathan", "", 51449, "", 11623, 0, 14083, 33142},
-        {"Lifteur mécanique 304-A", "", 28830, "", 11623, 5, 14084, 33214},
-        {"Calamite liquide", "", 28475, "", 11623, 6, 14085, 33218},
-        {"Léviathan flamboyant", "", 28875, "interface\\encounterjournal\\UI-EJ-BOSS-Flame Leviathan.blp", 11623, 0, 14047, 33113},
+        {"Engin de siège de récupération", "", 28650, "", 11623, 1, 14080, 33060},
+        {"Démolisseur de récupération", "", 27658, "", 11623, 2, 14081, 33109},
+        {"Bécane de récupération", "", 25871, "", 11623, 3, 14082, 33062},
+        {"Tourelle de défense de léviathan", "", 51449, "", 11623, 0, 14083, 33142},
+        {"Mécascenseur 304-A", "", 28830, "", 11623, 5, 14084, 33214},
+        {"Récipient à pyrite de sûreté", "", 28475, "", 11623, 6, 14085, 33218},
+        {"Léviathan des flammes", "", 28875, "interface\\encounterjournal\\UI-EJ-BOSS-Flame Leviathan.blp", 11623, 0, 14047, 33113},
     },
     [11624] = {
-        {"Créature de fer", "", 26154, "", 11624, 1, 14086, 33121},
-        {"Maître des runes Ignis", "", 29185, "interface\\encounterjournal\\UI-EJ-BOSS-Ignis the Furnace Master.blp", 11624, 0, 14048, 33118},
+        {"Assemblage de fer", "", 26154, "", 11624, 1, 14086, 33121},
+        {"Ignis le maître de la Fournaise", "", 29185, "interface\\encounterjournal\\UI-EJ-BOSS-Ignis the Furnace Master.blp", 11624, 0, 14048, 33118},
     },
     [11625] = {
-        {"Sentinelle du clan des Runes sombres", "", 26053, "", 11625, 1, 14087, 33846},
-        {"Veilleur du clan des Runes sombres", "", 25987, "", 11625, 2, 14088, 33453},
-        {"Garde du clan des Runes sombres", "", 26239, "", 11625, 3, 14089, 33388},
+        {"Sentinelle sombre-rune", "", 26053, "", 11625, 1, 14087, 33846},
+        {"Veilleur sombre-rune", "", 25987, "", 11625, 2, 14088, 33453},
+        {"Gardien sombre-rune", "", 26239, "", 11625, 3, 14089, 33388},
         {"Tranchécaille", "", 28787, "interface\\encounterjournal\\UI-EJ-BOSS-Razorscale.blp", 11625, 0, 14049, 33186},
     },
     [11626] = {
-        {"Cœur du destructeur", "", 28887, "", 11626, 1, 14090, 33329},
-        {"Écraseur XM-024", "", 28577, "", 11626, 2, 14091, 33344},
-        {"Ferrailleur XS-013", "", 28575, "", 11626, 3, 14092, 33343},
-        {"Bombot XE-321", "", 26442, "", 11626, 4, 14093, 33346},
+        {"Cœur du déconstructeur", "", 28887, "", 11626, 1, 14090, 33329},
+        {"Roueur XM-024", "", 28577, "", 11626, 2, 14091, 33344},
+        {"Robot-ferrailleur XS-013", "", 28575, "", 11626, 3, 14092, 33343},
+        {"Robot-boum XE-321", "", 26442, "", 11626, 4, 14093, 33346},
         {"Déconstructeur XT-002", "", 28611, "interface\\encounterjournal\\UI-EJ-BOSS-XT 002 Deconstructor.blp", 11626, 0, 14050, 33293},
     },
     [11627] = {
-        {"Casse-acier", "", 28344, "interface\\encounterjournal\\UI-EJ-BOSS-Assembly Of Iron.blp", 11627, 0, 14051, 32867},
+        {"Brise-acier", "", 28344, "interface\\encounterjournal\\UI-EJ-BOSS-Assembly Of Iron.blp", 11627, 0, 14051, 32867},
         {"Maître des runes Molgeim", "", 28381, "", 11627, 0, 14062, 32927},
-        {"Bourrasque Brundir", "", 28324, "", 11627, 0, 14063, 32857},
+        {"Mande-foudre Brundir", "", 28324, "", 11627, 0, 14063, 32857},
     },
     [11628] = {
-        {"Main droite", "", 28822, "", 11628, 1, 14095, 32934},
-        {"Main gauche", "", 28821, "", 11628, 2, 14096, 32933},
-        {"Fragment", "", 1127, "", 11628, 3, 14097, 33768},
+        {"Bras droit", "", 28822, "", 11628, 1, 14095, 32934},
+        {"Bras gauche", "", 28821, "", 11628, 2, 14096, 32933},
+        {"Débris", "", 1127, "", 11628, 3, 14097, 33768},
         {"Kologarn", "", 28638, "interface\\encounterjournal\\UI-EJ-BOSS-Kologarn.blp", 11628, 0, 14052, 32930},
     },
     [11629] = {
-        {"Gardien du sanctuaire", "", 25501, "", 11629, 1, 14098, 34014},
-        {"Défenseur sauvage", "", 29082, "", 11629, 2, 14099, 34035},
+        {"Factionnaire du sanctum", "", 25501, "", 11629, 1, 14098, 34014},
+        {"Défenseur farouche", "", 29082, "", 11629, 2, 14099, 34035},
         {"Auriaya", "", 28651, "interface\\encounterjournal\\UI-EJ-BOSS-Auriaya.blp", 11629, 0, 14053, 33515},
     },
     [11630] = {
         {"Hodir", "", 28743, "interface\\encounterjournal\\UI-EJ-BOSS-Hodir.blp", 11630, 0, 14054, 32845},
     },
     [11631] = {
-        {"Serviteur du clan des Runes sombres", "", 25990, "", 11631, 2, 14100, 33110},
-        {"Protecteur du clan des Runes sombres", "", 25984, "", 11631, 3, 14101, 32922},
-        {"Villageois du clan des Runes sombres", "", 25995, "", 11631, 4, 14102, 32904},
-        {"Éveilleur du clan des Runes sombres", "", 25990, "", 11631, 5, 14103, 32878},
-        {"Conquérant du clan des Runes sombres", "", 28466, "", 11631, 6, 14104, 32877},
-        {"Garde de fer du Cercle", "", 26065, "", 11631, 7, 14105, 32874},
-        {"Serviteur du clan des Runes sombres", "", 25990, "", 11631, 8, 14106, 33110},
+        {"Acolyte sombre-rune", "", 25990, "", 11631, 2, 14100, 33110},
+        {"Champion sombre-rune", "", 25984, "", 11631, 3, 14101, 32922},
+        {"Roturier sombre-rune", "", 25995, "", 11631, 4, 14102, 32904},
+        {"Evocateur sombre-rune", "", 25990, "", 11631, 5, 14103, 32878},
+        {"Porteguerre sombre-rune", "", 28466, "", 11631, 6, 14104, 32877},
+        {"Garde de fer de l'arène", "", 26065, "", 11631, 7, 14105, 32874},
+        {"Acolyte sombre-rune", "", 25990, "", 11631, 8, 14106, 33110},
         {"Colosse runique", "", 26965, "", 11631, 9, 14107, 32872},
-        {"Garde de fer de l’Honneur", "", 26239, "", 11631, 10, 14108, 33125},
+        {"Garde d'honneur de fer", "", 26239, "", 11631, 10, 14108, 33125},
         {"Ancien géant runique", "", 28349, "", 11631, 11, 14109, 32873},
         {"Thorim", "", 28977, "interface\\encounterjournal\\UI-EJ-BOSS-Thorim.blp", 11631, 0, 14055, 32865},
         {"Sif", "", 28488, "", 11631, 1, 14061, 33196},
     },
     [11632] = {
-        {"Don d’Eonar", "", 28989, "", 11632, 4, 14110, 33228},
-        {"Floraison explosive", "", 11636, "", 11632, 5, 14111, 32918},
-        {"Ancien protecteur", "", 16975, "", 11632, 6, 14112, 33203},
-        {"Ancien esprit de l’eau", "", 26650, "", 11632, 7, 14113, 33202},
-        {"Floraison tempétueuse", "", 14213, "", 11632, 8, 14114, 32919},
-        {"Grappin-vigne", "", 28531, "", 11632, 9, 14115, 32916},
+        {"Cadeau d'Eonar", "", 28989, "", 11632, 4, 14110, 33228},
+        {"Flagellant explosif", "", 11636, "", 11632, 5, 14111, 32918},
+        {"Ancien conservateur", "", 16975, "", 11632, 6, 14112, 33203},
+        {"Esprit de l'eau ancien", "", 26650, "", 11632, 7, 14113, 33202},
+        {"Flagellant des tempêtes", "", 14213, "", 11632, 8, 14114, 32919},
+        {"Flagellant mordant", "", 28531, "", 11632, 9, 14115, 32916},
         {"Freya", "", 28777, "interface\\encounterjournal\\UI-EJ-BOSS-Freya.blp", 11632, 0, 14056, 32906},
-        {"Ancien Écorce-Pierre", "", 29176, "", 11632, 1, 14057, 32914},
-        {"Ancien Brindefeu", "", 29175, "", 11632, 2, 14058, 32913},
-        {"Ancien Feuillargent", "", 29174, "", 11632, 3, 14059, 32915},
+        {"Ancien Ecorcepierre", "", 29176, "", 11632, 1, 14057, 32914},
+        {"Ancien Branchefer", "", 29175, "", 11632, 2, 14058, 32913},
+        {"Ancien Brillefeuille", "", 29174, "", 11632, 3, 14059, 32915},
     },
     [11633] = {
-        {"Léviathan II", "", 28831, "", 11633, 1, 14116, 33432},
-        {"VX-001", "", 28841, "", 11633, 0, 14117, 33651},
-        {"Vaisseau aérien", "", 28979, "", 11633, 3, 14118, 33670},
-        {"Robot d’assaut", "", 29079, "", 11633, 4, 14119, 34057},
-        {"Bombot", "", 6977, "", 11633, 5, 14120, 33836},
-        {"Récupérateur", "", 14379, "", 11633, 6, 14121, 33855},
-        {"Robot signal", "", 6888, "", 11633, 7, 14122, 34147},
+        {"Léviathan Mod. II", "", 28831, "", 11633, 1, 14116, 33432},
+        {"VX-001", "Canon d'assaut antipersonnel", 28841, "", 11633, 0, 14117, 33651},
+        {"Unité de commandement aérien", "", 28979, "", 11633, 3, 14118, 33670},
+        {"Robot d'assaut", "", 29079, "", 11633, 4, 14119, 34057},
+        {"Robo-bombe", "", 6977, "", 11633, 5, 14120, 33836},
+        {"Robot camelote", "", 14379, "", 11633, 6, 14121, 33855},
+        {"Robot pompier d'urgence", "", 6888, "", 11633, 7, 14122, 34147},
         {"Mimiron", "", 28578, "interface\\encounterjournal\\UI-EJ-BOSS-Mimiron.blp", 11633, 0, 14060, 33350},
     },
     [11634] = {
-        {"Animus saronite", "", 28992, "", 11634, 1, 14123, 33524},
+        {"Animus de saronite", "", 28992, "", 11634, 1, 14123, 33524},
         {"Général Vezax", "", 28548, "interface\\encounterjournal\\UI-EJ-BOSS-General Vezax.blp", 11634, 0, 14064, 33271},
     },
     [11635] = {
         {"Sara", "", 29117, "", 11635, 1, 14124, 33134},
-        {"Garde de Yogg-Saron", "", 28465, "", 11635, 2, 14125, 33136},
+        {"Gardien de Yogg-Saron", "", 28465, "", 11635, 2, 14125, 33136},
         {"Sara", "", 29182, "", 11635, 3, 14126, 34313},
-        {"Tentacule écrasant", "", 28814, "", 11635, 4, 14127, 33966},
-        {"Tentacule décomposition", "", 28813, "", 11635, 5, 14128, 33985},
-        {"Tentacule étouffant", "", 28815, "", 11635, 6, 14129, 33983},
-        {"Tentacule sensible", "", 28813, "", 11635, 7, 14130, 33943},
-        {"Crâne joyeux", "", 28089, "", 11635, 8, 14131, 29147},
+        {"Tentacule écraseur", "", 28814, "", 11635, 4, 14127, 33966},
+        {"Tentacule corrupteur", "", 28813, "", 11635, 5, 14128, 33985},
+        {"Tentacule constricteur", "", 28815, "", 11635, 6, 14129, 33983},
+        {"Tentacule d'influence", "", 28813, "", 11635, 7, 14130, 33943},
+        {"Crâne fantomatique", "", 28089, "", 11635, 8, 14131, 29147},
         {"Cerveau de Yogg-Saron", "", 28951, "", 11635, 9, 14132, 33890},
         {"Gardien immortel", "", 29024, "", 11635, 10, 14133, 33988},
         {"Yogg-Saron", "", 28817, "interface\\encounterjournal\\UI-EJ-BOSS-Yogg Saron.blp", 11635, 0, 14065, 33288},
     },
     [11636] = {
-        {"Étoile explosive", "", 28988, "", 11636, 1, 14134, 32955},
+        {"Effondrement d'étoile", "", 28988, "", 11636, 1, 14134, 32955},
         {"Constellation vivante", "", 28741, "", 11636, 2, 14135, 33052},
-        {"Entité sombre", "", 18957, "", 11636, 3, 14136, 33089},
-        {"Algalon l’Observateur", "", 28641, "interface\\encounterjournal\\UI-EJ-BOSS-Algalon the Observer.blp", 11636, 0, 14066, 32871},
+        {"Matière noire", "", 18957, "", 11636, 3, 14136, 33089},
+        {"Algalon l'Observateur", "", 28641, "interface\\encounterjournal\\UI-EJ-BOSS-Algalon the Observer.blp", 11636, 0, 14066, 32871},
     },
     [11637] = {
-        {"Mr. Grabsou", "", 2026, "interface\\encounterjournal\\ui-ej-boss-Mr-Smite.blp", 11637, 0, 14067, 646},
+        {"M. Châtiment", "Le second du navire", 2026, "interface\\encounterjournal\\ui-ej-boss-Mr-Smite.blp", 11637, 0, 14067, 646},
     },
     [11638] = {
-        {"Rugug", "", 6110, "interface\\encounterjournal\\UI-EJ-BOSS-Roogug.blp", 11638, 0, 14068, 6168},
+        {"Roogug", "", 6110, "interface\\encounterjournal\\UI-EJ-BOSS-Roogug.blp", 11638, 0, 14068, 6168},
     },
     [11639] = {
-        {"Agathelos le Furieux", "", 2450, "interface\\encounterjournal\\UI-EJ-BOSS-Agathelos the Raging.blp", 11639, 0, 14069, 4422},
+        {"Agathelos le Déchaîné", "", 2450, "interface\\encounterjournal\\UI-EJ-BOSS-Agathelos the Raging.blp", 11639, 0, 14069, 4422},
     },
     [11643] = {
-        {"Atal’alarion", "", 7873, "interface\\encounterjournal\\ui-ej-boss-Atal'alarion.blp", 11643, 0, 14073, 8580},
+        {"Atal'alarion", "Gardien de l'idole", 7873, "interface\\encounterjournal\\ui-ej-boss-Atal'alarion.blp", 11643, 0, 14073, 8580},
     },
     [11644] = {
         {"Loro", "", 6700, "interface\\encounterjournal\\ui-ej-boss-Loro.blp", 11644, 0, 14074, 5714},
@@ -2077,16 +2077,16 @@ JOURNALENCOUNTERCREATURE = {
         {"Mijan", "", 6707, "interface\\encounterjournal\\ui-ej-boss-Mijan.blp", 11646, 0, 14076, 5717},
     },
     [11647] = {
-        {"Zul’Lor", "", 6701, "interface\\encounterjournal\\ui-ej-boss-Zul'Lor.blp", 11647, 0, 14077, 5716},
+        {"Zul'Lor", "", 6701, "interface\\encounterjournal\\ui-ej-boss-Zul'Lor.blp", 11647, 0, 14077, 5716},
     },
     [11648] = {
         {"Zolo", "", 6699, "interface\\encounterjournal\\ui-ej-boss-Zolo.blp", 11648, 0, 14078, 5712},
     },
     [11649] = {
-        {"Ranokkol", "", 6698, "interface\\encounterjournal\\ui-ej-boss-Gasher.blp", 11649, 0, 14079, 5713},
+        {"Balafreur", "", 6698, "interface\\encounterjournal\\ui-ej-boss-Gasher.blp", 11649, 0, 14079, 5713},
     },
     [11650] = {
-        {"Hydross l’Instable", "", 20162, "interface\\encounterjournal\\ui-ej-boss-hydross the unstable.blp", 11650, 0, 14142, 21216},
+        {"Hydross l'Instable", "Duc des courants", 20162, "interface\\encounterjournal\\ui-ej-boss-hydross the unstable.blp", 11650, 0, 14142, 21216},
     },
     [11651] = {
         {"Gore’lac", "", 48173, "interface\\encounterjournal\\ui-ej-boss-Gorelac.blp", 11651, 0, 14143, 121217},
@@ -2094,14 +2094,14 @@ JOURNALENCOUNTERCREATURE = {
         {"Briseur des courants", "", 20772, "", 11651, 2, 14153, 200053},
     },
     [11652] = {
-        {"Leotheras l’Aveugle", "", 20514, "interface\\encounterjournal\\ui-ej-boss-leotheras the blind.blp", 11652, 0, 14144, 21215},
+        {"Leotheras l'Aveugle", "", 20514, "interface\\encounterjournal\\ui-ej-boss-leotheras the blind.blp", 11652, 0, 14144, 21215},
         {"Ombre de Leotheras", "", 91709, "", 11652, 1, 14145, 200045},
     },
     [11653] = {
         {"Seigneur des fonds Karathress", "", 20662, "interface\\encounterjournal\\ui-ej-boss-fathom lord karathress.blp", 11653, 0, 14146, 21214},
-        {"Gardien des fonds Volniis", "", 20670, "", 11653, 2, 14147, 21965},
-        {"Gardienne des fonds Caribdis", "", 20672, "", 11653, 3, 14148, 21964},
-        {"Gardien des fonds Sharkkis", "", 20671, "", 11653, 1, 14149, 21966},
+        {"Garde-fonds Marevess", "", 20670, "", 11653, 2, 14147, 21965},
+        {"Garde-fonds Caribdis", "", 20672, "", 11653, 3, 14148, 21964},
+        {"Garde-fonds Squallis", "", 20671, "", 11653, 1, 14149, 21966},
     },
     [11654] = {
         {"Morogrim Tidewalker", "", 91646, "interface\\encounterjournal\\ui-ej-boss-morogrim-tidewalker.blp", 11654, 0, 14150, 121213},
@@ -2109,25 +2109,25 @@ JOURNALENCOUNTERCREATURE = {
         {"Gardien de Tidewalker", "", 66813, "", 11654, 2, 14155, 200035},
     },
     [11655] = {
-        {"Dame Vashj", "", 20748, "interface\\encounterjournal\\ui-ej-boss-lady vashj.blp", 11655, 0, 14151, 21212},
+        {"Dame Vashj", "Matrone de Glissecroc", 20748, "interface\\encounterjournal\\ui-ej-boss-lady vashj.blp", 11655, 0, 14151, 21212},
         {"Élémentaire enchanté", "", 20076, "", 11655, 0, 14156, 200054},
         {"Raie venimeuse", "", 20828, "", 11655, 0, 14157, 200055},
     },
     [11656] = {
-        {"Écho de Medivh", "", 18720, "interface\\encounterjournal\\UI-EJ-BOSS-Chess Alliance.blp", 11656, 0, 14163, 16816},
+        {"Echo de Medivh", "", 18720, "interface\\encounterjournal\\UI-EJ-BOSS-Chess Alliance.blp", 11656, 0, 14163, 16816},
     },
     [11657] = {
-        {"Emporus", "", 20513, "interface\\encounterjournal\\UI-EJ-BOSS-emporus.blp", 11657, 0, 14164, 50608},
+        {"Chaman guette-terre", "Le Cercle terrestre", 20513, "interface\\encounterjournal\\UI-EJ-BOSS-emporus.blp", 11657, 0, 14164, 50608},
     },
     [11658] = {
-        {"Élu du temps Elonus", "", 20513, "interface\\encounterjournal\\UI-EJ-BOSS-elonus.blp", 11658, 0, 14165, 50610},
+        {"Chope imprégnée d'Eoin", "", 20513, "interface\\encounterjournal\\UI-EJ-BOSS-elonus.blp", 11658, 0, 14165, 50610},
     },
     [11659] = {
-        {"Murozond", "", 38931, "interface\\encounterjournal\\UI-EJ-BOSS-Murozond.blp", 11659, 0, 14166, 50612},
-        {"Destructeur d’Infini", "", 20102, "", 11659, 1, 14167, 50602},
-        {"Gardien d’Infini", "", 20513, "", 11659, 2, 14168, 50603},
-        {"Altérateur temporel d’Infini", "", 20102, "", 11659, 3, 14169, 50600},
-        {"Brûleur de temps d’Infini", "", 19326, "", 11659, 4, 14170, 50601},
+        {"Griffon marteau-hardi", "", 38931, "interface\\encounterjournal\\UI-EJ-BOSS-Murozond.blp", 11659, 0, 14166, 50612},
+        {"Soldat de la halte de la Victoire", "", 20102, "", 11659, 1, 14167, 50602},
+        {"Hellion marteau-hardi", "", 20513, "", 11659, 2, 14168, 50603},
+        {"Griffe-du-ciel gueule-de-dragon", "", 20102, "", 11659, 3, 14169, 50600},
+        {"Snevik la Lame", "Opérations spéciales de Gnomeregan", 19326, "", 11659, 4, 14170, 50601},
     },
     [11660] = {
         {"Gogonas", "", 35426, "interface\\encounterjournal\\UI-EJ-BOSS-Argaloth.blp", 11660, 0, 14171, 84000},
@@ -2141,11 +2141,11 @@ JOURNALENCOUNTERCREATURE = {
         {"Dévoreur de magie", "", 555671, "interface\\encounterjournal\\ui-ej-boss-shadhar.blp", 11662, 0, 14175, 84017},
     },
     [11672] = {
-        {"Norigorn", "", 557969, "interface\\encounterjournal\\UI-EJ-BOSS-Norigorn.blp", 11672, 0, 14200, 70010},
+        {"Diablosaure primordial", "", 557969, "interface\\encounterjournal\\UI-EJ-BOSS-Norigorn.blp", 11672, 0, 14200, 70010},
         {"Pilier de la Terre", "", 565122, "", 11672, 0, 14201, 83221},
         {"Pilier du Feu", "", 565123, "", 11672, 0, 14202, 83222},
         {"Pilier des Vents", "", 565124, "", 11672, 0, 14203, 83223},
-        {"Araignée de lignes telluriques", "", 34068, "", 11672, 0, 14204, 70014},
+        {"Jeune navrecorne primordial", "", 34068, "", 11672, 0, 14204, 70014},
         {"Pilier de Recréation", "", 565125, "", 11672, 0, 14205, 83224},
         {"Pilier de Destruction", "", 565126, "", 11672, 0, 14206, 83225},
     }
