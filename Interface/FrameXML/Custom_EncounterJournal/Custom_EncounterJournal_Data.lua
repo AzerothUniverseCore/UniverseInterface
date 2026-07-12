@@ -372,7 +372,7 @@ JOURNALENCOUNTER = {
     [276] = {
         {601, "Falric", [[ Ce puissant guerrier du Fléau fut l'un des premiers chevaliers de la mort créés par Arthas après qu'il eut trouvé Ronce-Hiver. Falric suivit le prince jusqu'au Norfendre, mais cette campagne militaire était vouée à l'échec, et Falric lui-même fut trahi par le maître qu'il avait servi loyalement toute sa vie. ]], 0.352459, 0.750000, 1, 603, 7265, 276, -1, 0, 1},
         {602, "Marwyn", [[ Marwyn connaissait Arthas depuis toujours et le considérait non seulement comme un prince, mais aussi comme un véritable ami. Ce chevalier n'hésita pas un instant à suivre Arthas lorsqu'il partit pour le Norfendre. Et bien que cet ami lui ait planté une lame maudite dans le cœur, celui-ci était déjà brisé par ce qu'était devenu le prince. ]], 0.434426, 0.627049, 1, 603, 7269, 276, -1, 0, 2},
-        {603, "Omar le dragon de test", [[ Deux seigneurs voulaient vaincre le Roi-liche au combat, mettant fin une fois pour toutes à ses méfaits, mais ils réalisèrent rapidement qu'ils ne pouvaient rivaliser avec le véritable roi. Cherchant à échapper à ce triste sort, ils tentèrent de fuir son domaine. Arthas savoura chaque seconde en assistant à la vanité de leurs efforts : on ne peut échapper à l'inévitable. ]], 0.105191, 0.274590, 1, 603, 7273, 276, -1, 0, 3},
+        {603, "Le roi-liche", [[ Deux seigneurs voulaient vaincre le Roi-liche au combat, mettant fin une fois pour toutes à ses méfaits, mais ils réalisèrent rapidement qu'ils ne pouvaient rivaliser avec le véritable roi. Cherchant à échapper à ce triste sort, ils tentèrent de fuir son domaine. Arthas savoura chaque seconde en assistant à la vanité de leurs efforts : on ne peut échapper à l'inévitable. ]], 0.105191, 0.274590, 1, 603, 7273, 276, -1, 0, 3},
     },
     [277] = {
         {604, "Krystallus", [[ Pour gagner une guerre, la seule force ne suffit pas ; il faut aussi des armées. Cette vérité incontestable inspira Loken à créer de fidèles serviteurs de pierre pour grossir les rangs de ses soldats. La tâche de Cristalus est de superviser l'avancement des travaux et de veiller à ce que rien ne les entrave. ]], 0.401639, 0.604508, 1, 526, 7285, 277, -1, 0, 1},
@@ -595,7 +595,7 @@ Et avant de mourir, Sindragosa jura de se venger.
 L'endroit où ce puissant dragon trouva la mort fut appelé le Canyon de la perte de Sindragosa.
 
 Tel fut le destin de ce dragon bleu. Cependant, comme nous le savons tous, l'histoire ne s'arrête pas là. Des milliers d'années plus tard, le puissant Roi-liche retrouva Sindragosa et lui offrit l'opportunité de concrétiser son serment mortel. Il fit d'elle la reine des dragons de glace et l'installa dans les Salles Ailes-de-glace. Aujourd'hui, Sindragosa exécute les ordres d'Arthas. Dans la Fosse de Saron, vous avez pu constater de vos propres yeux sa puissance actuelle. ]], 0.366325, 0.231898, 0, 604, 11829, 758, -1, 0, 10},
-        {1636, "Omar le dragon de test", [[ Après son réveil, le Roi-liche s'empressa d'abord d'extraire son propre cœur, estimant que tout ce qui le rattachait aux mortels le rendait plus faible. Il se rendit au Canyon de la perte de Sindragosa et ressuscita l'antique dragonne Sindragosa, première épouse de Malygos, sous la forme d'un serpent de glace. Il observa ensuite sa gigantesque armée de morts-vivants, prête pour la guerre. Pendant son sommeil, les chevaliers de la mort s'entraînaient sur le territoire de la Couronne de glace. À son réveil, il leur ordonna de se rendre à la Chapelle du dernier espoir, où reposaient des milliers de héros de l'Alliance, chacun destiné à être ressuscité à son service, avant de conquérir ces terres pour le Fléau. Il siège aujourd'hui sur le Trône de glace, dans la Citadelle de la Couronne de glace, et seule sa mort pourra arrêter la machine de guerre du Fléau avant qu'elle n'anéantisse toute vie. ]], 0.499296, 0.528743, 0, 604, 11855, 758, -1, 0, 11},
+        {1636, "Le roi-liche", [[ Après son réveil, le Roi-liche s'empressa d'abord d'extraire son propre cœur, estimant que tout ce qui le rattachait aux mortels le rendait plus faible. Il se rendit au Canyon de la perte de Sindragosa et ressuscita l'antique dragonne Sindragosa, première épouse de Malygos, sous la forme d'un serpent de glace. Il observa ensuite sa gigantesque armée de morts-vivants, prête pour la guerre. Pendant son sommeil, les chevaliers de la mort s'entraînaient sur le territoire de la Couronne de glace. À son réveil, il leur ordonna de se rendre à la Chapelle du dernier espoir, où reposaient des milliers de héros de l'Alliance, chacun destiné à être ressuscité à son service, avant de conquérir ces terres pour le Fléau. Il siège aujourd'hui sur le Trône de glace, dans la Citadelle de la Couronne de glace, et seule sa mort pourra arrêter la machine de guerre du Fléau avant qu'elle n'anéantisse toute vie. ]], 0.499296, 0.528743, 0, 604, 11855, 758, -1, 0, 11},
         {1637, "Lady Jaina Proudmoore", [[ Au sommet de la Citadelle de la Couronne de glace, un instant avant que le Roi-liche ne reçoive un coup mortel, l'histoire de ce monde changea. Dame Jaina Portvaillant renia la voix de la raison et se dressa pour défendre celui qu'elle avait jadis tant aimé. Le destin d'Arthas dépend désormais de la capacité des héros d'Azeroth à terrasser, non pas une incarnation du mal, mais un compagnon égaré. ]], 0.499296, 0.568743, 0, 604, 900, 758, 8, 0, 12},
     },
     [760] = {
@@ -1275,7 +1275,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Marwyn", "", 30973, "interface\\encounterjournal\\ui-ej-boss-marwyn.blp", 602, 0, 1177, 38113},
     },
     [603] = {
-        {"Omar le dragon de test", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 603, 0, 1178, 16089},
+        {"Le roi-liche", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 603, 0, 1178, 37226},
     },
     [604] = {
         {"Krystallus", "", 20909, "interface\\encounterjournal\\ui-ej-boss-krystallus.blp", 604, 0, 1179, 27977},
@@ -1766,7 +1766,7 @@ JOURNALENCOUNTERCREATURE = {
         {"Sindragosa", "Reine des Couvegivres", 30362, "interface\\encounterjournal\\ui-ej-boss-sindragosa.blp", 1635, 0, 3926, 37755},
     },
     [1636] = {
-        {"Omar le dragon de test", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 1636, 0, 3927, 16089},
+        {"Le roi-liche", "", 30721, "interface\\encounterjournal\\ui-ej-boss-lich king.blp", 1636, 0, 3927, 36597},
     },
     [1637] = {
         {"Lady Jaina Proudmoore", "", 30864, "interface\\encounterjournal\\UI-EJ-BOSS-Lady-Jaina-Proudmoure-ICC.blp", 1637, 1, 3928, 200000},
