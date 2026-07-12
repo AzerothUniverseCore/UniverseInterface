@@ -1107,3 +1107,180 @@ if not AddChatTyppedMessage then
 		end
 	end
 end
+
+-- ============================================================
+-- PATCH Collection (round 101) : classes personnalisees manquantes dans le
+-- filtre "Classe" de l'onglet Heritage (Reliques).
+--
+-- Diagnostic : Custom_HeirloomCollection.lua construit ce menu via
+-- "for i = 1, GetNumClasses() do ... GetClassInfo(i) ... end", et pour la
+-- selection courante via C_CreatureInfo.GetClassInfo(classID)
+-- (Utils\C_CreatureInfo.lua). Ces 3 fonctions s'appuient TOUTES sur
+-- S_CLASS_SORT_ORDER (SharedXML\SharedConstants.lua), qui ne liste QUE 11
+-- classes (WARRIOR..WARLOCK, DRUID=11, DEMONHUNTER=13) -- absent : BloodMage
+-- (10), Knight (12), Monk (14), Tamer (15), Hero (16), Evoker (17),
+-- Necromancer (18), Venomancer (19), Pyromancer (20), Chronomancer (21),
+-- Geomancer (22), ChaosRavager (23), soit les 12 classes custom du serveur
+-- (cf. enum Classes, SharedDefines.h fourni par l'utilisateur). Pire :
+-- S_CLASS_SORT_ORDER est explicitement VERROUILLEE en lecture seule
+-- (table.lockTable, SharedConstants.lua) -- toute tentative d'y ecrire de
+-- nouvelles entrees est silencieusement ignoree (Extensions\table.lua :
+-- __newindex se contente d'imprimer un avertissement).
+--
+-- A l'inverse, Universe possede DEJA cote FrameXML\Constants.lua un jeu de
+-- donnees complet et NON verrouille pour les 23 classes + UNKCLASS :
+-- RAID_CLASS_COLORS (couleurs), CLASS_ICON_TCOORDS (icones) et
+-- CLASS_SORT_ORDER (liste des jetons) sont deja renseignes pour BLOODMAGE,
+-- KNIGHT, MONK, TAMER, HERO, EVOKER, NECROMANCER, VENOMANCER, PYROMANCER,
+-- CHRONOMANCER, GEOMANCER et CHAOSRAVAGER -- seule la correspondance
+-- classID -> jeton (utilisee par le menu Heritage) manquait. On construit
+-- donc notre propre table complete (non verrouillee) et on remplace
+-- GetNumClasses/GetClassInfo/C_CreatureInfo.GetClassInfo pour s'appuyer
+-- dessus, sans jamais toucher a S_CLASS_SORT_ORDER.
+--
+-- Les noms FR proviennent de LOCALIZED_CLASS_NAMES_MALE/FEMALE (rempli
+-- nativement par FillLocalizedClassList, Constants.lua, a partir des
+-- memes donnees compilees que RAID_CLASS_COLORS/CLASS_ICON_TCOORDS -- donc
+-- deja disponibles pour les 23 classes) ; un nom de secours (traduction FR
+-- standard) est fourni au cas ou une entree serait malgre tout absente.
+--
+-- Les specialisations (sous-menu par classe) restent inchangees : elles
+-- s'appuient sur S_CALSS_SPECIALIZATION_DATA (non verrouillee, non touchee
+-- ici), qui ne couvre que les 11 classes d'origine. Pour les 12 classes
+-- custom, GetNumSpecializationsForClassID renvoie 0 nativement (code de
+-- repli deja present dans EJ_CompatLate.lua) : le menu affiche alors
+-- simplement la classe sans sous-liste de specialisations, sans erreur.
+-- ============================================================
+do
+	local CLASS_ID_TO_TOKEN = {
+		[1]  = "WARRIOR",
+		[2]  = "PALADIN",
+		[3]  = "HUNTER",
+		[4]  = "ROGUE",
+		[5]  = "PRIEST",
+		[6]  = "DEATHKNIGHT",
+		[7]  = "SHAMAN",
+		[8]  = "MAGE",
+		[9]  = "WARLOCK",
+		[10] = "BLOODMAGE",
+		[11] = "DRUID",
+		[12] = "KNIGHT",
+		[13] = "DEMONHUNTER",
+		[14] = "MONK",
+		[15] = "TAMER",
+		[16] = "HERO",
+		[17] = "EVOKER",
+		[18] = "NECROMANCER",
+		[19] = "VENOMANCER",
+		[20] = "PYROMANCER",
+		[21] = "CHRONOMANCER",
+		[22] = "GEOMANCER",
+		[23] = "CHAOSRAVAGER",
+	};
+
+	-- Nom de secours FR, utilise seulement si LOCALIZED_CLASS_NAMES_MALE/FEMALE
+	-- ne connait pas encore le jeton (filet de securite).
+	local FALLBACK_CLASS_NAME_FR = {
+		WARRIOR      = "Guerrier",
+		PALADIN      = "Paladin",
+		HUNTER       = "Chasseur",
+		ROGUE        = "Voleur",
+		PRIEST       = "Prêtre",
+		DEATHKNIGHT  = "Chevalier de la mort",
+		SHAMAN       = "Chaman",
+		MAGE         = "Mage",
+		WARLOCK      = "Démoniste",
+		BLOODMAGE    = "Mage de sang",
+		DRUID        = "Druide",
+		KNIGHT       = "Chevalier",
+		DEMONHUNTER  = "Chasseur de démons",
+		MONK         = "Moine",
+		TAMER        = "Dompteur",
+		HERO         = "Héros",
+		EVOKER       = "Évocateur",
+		NECROMANCER  = "Nécromancien",
+		VENOMANCER   = "Venimancien",
+		PYROMANCER   = "Pyromancien",
+		CHRONOMANCER = "Chronomancien",
+		GEOMANCER    = "Géomancien",
+		CHAOSRAVAGER = "Ravageur du Chaos",
+	};
+
+	local NUM_CUSTOM_CLASSES = 23;
+
+	local function ResolveClassName(token, useFemale)
+		local pool = useFemale and LOCALIZED_CLASS_NAMES_FEMALE or LOCALIZED_CLASS_NAMES_MALE;
+		local name = pool and pool[token];
+		if not name or name == "" then
+			name = FALLBACK_CLASS_NAME_FR[token];
+		end
+		return name;
+	end
+
+	function GetNumClasses()
+		return NUM_CUSTOM_CLASSES;
+	end
+
+	function GetClassInfo(index, declension)
+		local token = CLASS_ID_TO_TOKEN[index];
+		if not token then
+			return;
+		end
+
+		local className;
+		if declension then
+			local gender = UnitSex("player");
+			className = ResolveClassName(token, gender == 3);
+		else
+			className = ResolveClassName(token, false);
+		end
+
+		local classFlag = bit.lshift(1, index - 1);
+		return className, token, index, classFlag;
+	end
+
+	C_CreatureInfo = C_CreatureInfo or {};
+	function C_CreatureInfo.GetClassInfo(class)
+		local token = CLASS_ID_TO_TOKEN[class];
+		if not token then
+			return;
+		end
+
+		local nameMale = ResolveClassName(token, false);
+		local nameFemale = ResolveClassName(token, true);
+		local classFlag = bit.lshift(1, class - 1);
+
+		local ClassInfo = {};
+		ClassInfo.classFile = token;
+		ClassInfo.className = nameMale;
+		ClassInfo.classID = class;
+		ClassInfo.classFlag = classFlag;
+		ClassInfo.localizeName = {
+			male = nameMale,
+			female = nameFemale,
+		};
+
+		return ClassInfo;
+	end
+
+	-- Meme correctif pour le shim UnitClass (round 92, plus haut dans ce
+	-- fichier) : sa resolution de classID passait par S_CLASS_SORT_ORDER,
+	-- donc un joueur dont la classe est l'une des 12 classes custom se
+	-- retrouvait avec un classID nil (UnitClass("player") -> classID
+	-- introuvable), empechant la selection par defaut de sa propre classe
+	-- dans le filtre Heritage. On l'etend pour couvrir les 23 classes.
+	local CLASS_TOKEN_TO_ID = {};
+	for id, token in pairs(CLASS_ID_TO_TOKEN) do
+		CLASS_TOKEN_TO_ID[token] = id;
+	end
+
+	local PreviousUnitClass = _G.UnitClass;
+	_G.UnitClass = function(unit)
+		local className, classToken, classID, classFlag = PreviousUnitClass(unit);
+		if not classID and classToken and CLASS_TOKEN_TO_ID[classToken] then
+			classID = CLASS_TOKEN_TO_ID[classToken];
+			classFlag = bit.lshift(1, classID - 1);
+		end
+		return className, classToken, classID, classFlag;
+	end
+end

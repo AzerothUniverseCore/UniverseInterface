@@ -149,18 +149,49 @@ local NO_COLLECTION_MESSAGE_SOURCE_TYPES = {
 
 local MAX_PLAYER_OUTFITS = 16
 
+-- PATCH Collection (round 102, corrige round 105) : classes personnalisees
+-- (cf. enum Classes, SharedDefines.h) absentes de cette table locale.
+-- UNIT_CLASS tombait sur PLAYER_CLASS_FLAG = nil pour tout joueur d'une de
+-- ces classes, provoquant "bad argument #2 to 'band' (number expected, got
+-- nil)" dans IsKnownItemModifiedAppearance -- Garde-robe entierement vide
+-- pour ces joueurs.
+--
+-- Round 102 avait mis 0 (aucun bit) pour les 12 classes custom par securite,
+-- faute de certitude sur la convention reelle -- l'entree DEMONHUNTER=512
+-- deja presente ne correspondait pas a 1 << (classID-1) pour son classID
+-- reel (13), ce qui semblait indiquer une convention differente.
+--
+-- L'utilisateur a fourni indexAU.php (son propre outil de calcul de
+-- masques), qui confirme sans ambiguite : "classmask = 1 << (id - 1)" en
+-- utilisant le classID de SharedDefines.h, pour LES 23 classes sans
+-- exception. L'entree DEMONHUNTER=512 heritee de Sirus etait donc bien un
+-- bug residuel (jamais mise a jour lors de la reorganisation des classID
+-- qui a introduit BloodMage/Knight avant elle) -- corrigee ici avec les
+-- autres, plutot que laissee de cote comme au round 102.
 local CLASS_FLAGS = {
-    ["WARRIOR"] = 1,
-    ["PALADIN"] = 2,
-    ["HUNTER"] = 4,
-    ["ROGUE"] = 8,
-    ["PRIEST"] = 16,
-    ["DEATHKNIGHT"] = 32,
-    ["SHAMAN"] = 64,
-    ["MAGE"] = 128,
-    ["WARLOCK"] = 256,
-    ["DEMONHUNTER"] = 512,
-    ["DRUID"] = 1024,
+    ["WARRIOR"]      = 1,        -- 1 << 0,  classID 1
+    ["PALADIN"]      = 2,        -- 1 << 1,  classID 2
+    ["HUNTER"]       = 4,        -- 1 << 2,  classID 3
+    ["ROGUE"]        = 8,        -- 1 << 3,  classID 4
+    ["PRIEST"]       = 16,       -- 1 << 4,  classID 5
+    ["DEATHKNIGHT"]  = 32,       -- 1 << 5,  classID 6
+    ["SHAMAN"]       = 64,       -- 1 << 6,  classID 7
+    ["MAGE"]         = 128,      -- 1 << 7,  classID 8
+    ["WARLOCK"]      = 256,      -- 1 << 8,  classID 9
+    ["BLOODMAGE"]    = 512,      -- 1 << 9,  classID 10
+    ["DRUID"]        = 1024,     -- 1 << 10, classID 11
+    ["KNIGHT"]       = 2048,     -- 1 << 11, classID 12
+    ["DEMONHUNTER"]  = 4096,     -- 1 << 12, classID 13 (corrige : etait 512)
+    ["MONK"]         = 8192,     -- 1 << 13, classID 14
+    ["TAMER"]        = 16384,    -- 1 << 14, classID 15
+    ["HERO"]         = 32768,    -- 1 << 15, classID 16
+    ["EVOKER"]       = 65536,    -- 1 << 16, classID 17
+    ["NECROMANCER"]  = 131072,   -- 1 << 17, classID 18
+    ["VENOMANCER"]   = 262144,   -- 1 << 18, classID 19
+    ["PYROMANCER"]   = 524288,   -- 1 << 19, classID 20
+    ["CHRONOMANCER"] = 1048576,  -- 1 << 20, classID 21
+    ["GEOMANCER"]    = 2097152,  -- 1 << 21, classID 22
+    ["CHAOSRAVAGER"] = 4194304,  -- 1 << 22, classID 23
 };
 
 local PLAYER_CLASS_FLAG = CLASS_FLAGS[UNIT_CLASS];

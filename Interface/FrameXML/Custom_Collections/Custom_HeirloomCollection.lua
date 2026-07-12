@@ -793,16 +793,22 @@ do
 			info.func = SetClassAndSpecFilters;
 			UIDropDownMenu_AddButton(info, level);
 
+			-- PATCH Collection (round 103) : ce "if i ~= 10 then" (code
+			-- d'origine Sirus) excluait systematiquement l'index 10 de la
+			-- liste -- vraisemblablement un contournement pour une entree
+			-- invalide dans l'ancien S_CLASS_SORT_ORDER a l'epoque. Avec notre
+			-- table complete des 23 classes (round 101), l'index 10 est
+			-- desormais BLOODMAGE (Mage de combat sanglant) -- une classe
+			-- valide -- et ce garde-fou la faisait disparaitre entierement du
+			-- menu, signale par l'utilisateur. Retire.
 			for i = 1, GetNumClasses() do
-				if i ~= 10 then
-					local classDisplayName, _, classID = GetClassInfo(i);
-					info.text = classDisplayName;
-					info.checked = filterClassID == classID;
-					info.arg1 = classID;
-					info.arg2 = NO_SPEC_FILTER;
-					info.func = SetClassAndSpecFilters;
-					UIDropDownMenu_AddButton(info, level);
-				end
+				local classDisplayName, _, classID = GetClassInfo(i);
+				info.text = classDisplayName;
+				info.checked = filterClassID == classID;
+				info.arg1 = classID;
+				info.arg2 = NO_SPEC_FILTER;
+				info.func = SetClassAndSpecFilters;
+				UIDropDownMenu_AddButton(info, level);
 			end
 		end
 
@@ -824,6 +830,24 @@ do
 				end
 			else
 				classDisplayName, _, classID = UnitClass("player");
+			end
+
+			-- PATCH Collection (round 102) : garde-fou contre classID non
+			-- numerique (nil) en repli sur "Toutes les classes". Signale par
+			-- l'utilisateur : "Usage: C_Heirloom.SetClassAndSpecFilters(classID,
+			-- specID)" en cliquant "Toutes les specialisations", ce bouton
+			-- (ajoute inconditionnellement plus bas, ligne ~858) recevait
+			-- classID = nil lorsque UnitClass("player") ne parvenait pas a
+			-- resoudre un classID numerique pour la classe du joueur (cause
+			-- exacte non confirmee -- possible que le client natif ne
+			-- renvoie pas encore un jeton de classe exploitable pour
+			-- certaines classes tres recentes). Plutot que de laisser
+			-- passer un classID invalide jusqu'au clic (crash), on retombe
+			-- ici sur NO_CLASS_FILTER : le sous-menu de specialisations sera
+			-- simplement vide (GetNumSpecializationsForClassID(0) = 0, deja
+			-- gere nativement), sans aucune erreur.
+			if type(classID) ~= "number" then
+				classID = NO_CLASS_FILTER;
 			end
 
 			info.text = classDisplayName;

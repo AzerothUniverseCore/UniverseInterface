@@ -885,3 +885,34 @@ UI_CAMERA = {
 		["Female"]	= {[1] = 956, [2] = 957, [3] = 958, [4] = 959, [5] = 960, [6] = 961, [7] = 962, [8] = 963, [9] = 964, [10] = 965, [11] = 966, [12] = 967, [14] = 969, [15] = 970, [20] = 3046},
 	},
 };
+
+-- ============================================================
+-- PATCH Collection (round 106) : alias des tokens raciaux custom.
+-- UnitRace("player") renvoie le ClientFileString exact de chrraces
+-- (ex: "Pandaren_h", "BloodElf_Dh", "DarkIronDwarf_h", "Vulpera_a",
+-- "Dracthyr_h"/"_a", "Goblin_"), mais UI_CAMERA ci-dessus n'indexe
+-- que le nom de base sans suffixe. Sans alias, UI_CAMERA[UNIT_RACE]
+-- est nil -> cameraID retombe a 0 -> Model_ApplyUICamera degenere a
+-- (0,0,0,0,0) -> caméra fausse ou aperçu "à poil" dans la grille
+-- Garde-robe pour ces races. Confirmé via chrraces.sql (Id -> 
+-- ClientFileString) : mêmes races de base, juste un suffixe de
+-- variante/faction en plus.
+-- ============================================================
+UI_CAMERA["Pandaren_h"]       = UI_CAMERA["Pandaren"];
+UI_CAMERA["Pandaren_a"]       = UI_CAMERA["Pandaren"];
+UI_CAMERA["BloodElf_Dh"]      = UI_CAMERA["BloodElf"];
+UI_CAMERA["NightElf_Dh"]      = UI_CAMERA["NightElf"];
+UI_CAMERA["DarkIronDwarf_h"]  = UI_CAMERA["DarkIronDwarf"];
+UI_CAMERA["Vulpera_a"]        = UI_CAMERA["Vulpera"];
+UI_CAMERA["Dracthyr_h"]       = UI_CAMERA["Dracthyr"];
+UI_CAMERA["Dracthyr_a"]       = UI_CAMERA["Dracthyr"];
+UI_CAMERA["Goblin_"]          = UI_CAMERA["Goblin"];
+
+-- Races custom sans équivalent de base dans UI_CAMERA (jamais eu de
+-- caméra WotLK d'origine) : alias sur la race dont elles dérivent
+-- visuellement (même famille de squelette/modèle). A vérifier en jeu
+-- si le cadrage semble décalé pour l'une de ces 4 races précises.
+UI_CAMERA["HighElf"]             = UI_CAMERA["BloodElf"];
+UI_CAMERA["HighmountainTauren"]  = UI_CAMERA["Tauren"];
+UI_CAMERA["Maghar"]              = UI_CAMERA["Orc"];
+UI_CAMERA["KulTiran"]            = UI_CAMERA["Human"];
