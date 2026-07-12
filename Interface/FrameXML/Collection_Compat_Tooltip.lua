@@ -348,6 +348,23 @@ HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_7 = "Vous pouvez ici sélectionner l'objet 
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_8 = "Vous pouvez ici choisir le type d'apparence d'objet souhaité.";
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_9 = "Toutes vos apparences d'objets correspondant aux filtres et à la recherche s'affichent ici.\n\nPour placer une apparence en tête de liste, ajoutez-la à vos Favoris. Pour cela, faites un clic droit sur l'objet et sélectionnez \"Ajouter aux Favoris\".";
 
+-- PATCH round 110 : MAIN_HELP_BUTTON_TOOLTIP manquant (meme cause que les
+-- HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1.._9 : uniquement defini en russe
+-- dans Sirus/GlobalStrings.lua, absent d'Universe). C'est le texte affiche
+-- par la grosse fleche qui part de l'icone "i" principale (portrait, en
+-- haut a gauche) quand on la survole - le bouton maitre qui active/desactive
+-- tout le plan d'aide, distinct des 9 bulles numerotees deja traduites.
+MAIN_HELP_BUTTON_TOOLTIP = "Afficher/masquer les info-bulles de cette fenêtre.";
+
+-- PATCH round 111 : meme cause, 4 nouveaux globaux manquants (uniquement
+-- en russe dans Sirus/GlobalStrings.lua) : les tooltips (GameTooltip classique,
+-- pas HelpPlate) affiches au survol de l'icone "i" des onglets Jouets et
+-- Heritage (Custom_ToyBox.xml / Custom_HeirloomCollection.xml).
+HELPTIP_TOYS_HEAD = "Particularités de la collection « Jouets »";
+HELPTIP_TOYS = "Les jouets sont des objets destinés au divertissement.\n\nCertains apportent un effet cosmétique, d'autres permettent d'invoquer un objet du monde avec lequel interagir.\n\nSurvolez le jouet qui vous intéresse pour connaître son utilisation ou sa méthode d'obtention.";
+HELPTIP_HEIRLOOM_HEAD = "Particularités de la collection « Héritage »";
+HELPTIP_HEIRLOOM = "Les objets d'Héritage sont des objets destinés à faciliter la montée en niveau de votre personnage. Ce type d'objet augmente généralement l'expérience gagnée par le personnage lors des quêtes et de la mise à mort de monstres. Leurs caractéristiques augmentent également avec le niveau du personnage, jusqu'au niveau 80.\n\nSur notre serveur, les objets d'Héritage sont ajoutés à la collection à l'aide de jetons spéciaux. Vous pouvez vous les procurer en jeu contre de la monnaie interne, ou dans notre boutique.\n\nUne fois un objet ajouté à la collection, il devient accessible sur n'importe quel personnage du compte, dans le monde de jeu.\n\nPour obtenir un objet d'Héritage, faites un clic gauche dessus : il rejoindra alors votre sac. Cette action peut être répétée un nombre illimité de fois.";
+
 -- PATCH round 109: diagnostic dedie aux bulles d'aide (HelpPlate) vides du
 -- Garde-robe. L'utilisateur confirme avoir survole une icone "i" et vu une
 -- bulle sans texte, MEME APRES le round 108 (traduction frFR ajoutee en fin
