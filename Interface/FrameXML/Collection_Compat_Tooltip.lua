@@ -33,6 +33,24 @@ if GameTooltip and not GameTooltip.SetHeirloomByItemID then
 	end
 end
 
+-- FIX : GameTooltip:SetItemByID n'existe pas nativement sur ce client
+-- (methode absente sur ce build WotLK 3.3.5), ce qui plantait
+-- TransmogrifierClient.lua (bouton d'objet, OnEnter) avec "attempt to call
+-- method 'SetItemByID' (a nil value)". Meme schema que SetToyByItemID /
+-- SetHeirloomByItemID ci-dessus : on redirige vers SetHyperlink.
+if GameTooltip and not GameTooltip.SetItemByID then
+	function GameTooltip:SetItemByID(itemID)
+		if type(itemID) == "string" then
+			itemID = tonumber(itemID)
+		end
+		if type(itemID) ~= "number" then
+			return false
+		end
+		self:SetHyperlink(string.format("item:%d", itemID))
+		return true
+	end
+end
+
 -- ============================================================
 -- PKBT_ButtonMixin:OnLoad / :InitButton : Universe fait
 -- PKBT_ButtonMixin = CreateFromMixins(ThreeSliceButtonMixin), mais

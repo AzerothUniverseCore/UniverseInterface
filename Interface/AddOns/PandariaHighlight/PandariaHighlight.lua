@@ -99,7 +99,12 @@ local frame    = CreateFrame("Frame")
 local lastZone = nil
 
 frame:SetScript("OnUpdate", function(self, elapsed)
-    if GetCurrentMapContinent() ~= PANDARIA_CONTINENT_ID or GetCurrentMapZone() ~= 0 then
+    -- FIX : WorldMapDetailFrame:GetLeft()/GetTop() renvoient nil quand la
+    -- carte du monde n'est pas affichee (frame non positionnee), ce qui
+    -- plantait "attempt to perform arithmetic on a nil value" en boucle des
+    -- que le joueur se trouvait sur le continent de Pandarie, meme carte
+    -- fermee (ce script tourne en permanence via OnUpdate).
+    if not WorldMapFrame:IsShown() or GetCurrentMapContinent() ~= PANDARIA_CONTINENT_ID or GetCurrentMapZone() ~= 0 then
         if highlightTexture then highlightTexture:Hide() end
         if clickFrame       then clickFrame:Hide()       end
         lastZone = nil
