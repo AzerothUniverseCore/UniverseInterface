@@ -19,6 +19,20 @@ Talented.defaults = {
 	char = {targets = {}}
 }
 
+-- FIX : LoadFramePosition (plus bas dans ce fichier) appelle self:OnInitialize()
+-- si self.db n'existe pas encore, mais cette methode n'etait definie nulle
+-- part dans les fichiers presents (elle vivait probablement dans Data.lua,
+-- absent de ce paquet -- voir #Data.lua commente dans le .toc). Resultat :
+-- "attempt to call method 'OnInitialize' (a nil value)" des la premiere
+-- ouverture de la fenetre Glyphes/Talents. On la definit ici avec
+-- l'initialisation AceDB-3.0 standard, en utilisant les defaults ci-dessus.
+function Talented:OnInitialize()
+	if self.db then
+		return
+	end
+	self.db = LibStub("AceDB-3.0"):New("TalentedDB", self.defaults, true)
+end
+
 function Talented:SetOption(info, value)
 	local name = info[#info]
 	self.db.profile[name] = value

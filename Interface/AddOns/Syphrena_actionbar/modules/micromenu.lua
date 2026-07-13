@@ -244,6 +244,16 @@ end)
 LFDSearchStatus:SetParent(MinimapBackdrop)
 LFDSearchStatus:SetClearPoint('TOPRIGHT', MinimapBackdrop, 'TOPLEFT')
 
+-- PATCH ShowHead (v2) : la texture native MicroButtonPortrait est
+-- positionnee/dimensionnee par le FrameXML de base pour la taille de bouton
+-- Blizzard d'origine (~36x36) ; une fois le bouton redimensionne a 14x19 par
+-- cette barre custom (voir setupMicroButtons plus bas), MicroButtonPortrait
+-- se retrouve hors de la zone visible du bouton et reste invisible meme
+-- avec Alpha(1) -- c'est pourquoi la premiere tentative laissait une case
+-- vide. On la garde donc masquee, et on cree a la place notre propre
+-- texture, ancree directement sur les bords REELS du bouton (comme sur le
+-- Grimoire d'identite), pour garantir un rendu correct quelle que soit sa
+-- taille finale.
 hooksecurefunc('CharacterMicroButton_SetPushed',function()
 	MicroButtonPortrait:SetTexCoord(0,0,0,0);
 	MicroButtonPortrait:SetAlpha(0);
@@ -253,6 +263,90 @@ hooksecurefunc('CharacterMicroButton_SetNormal',function()
 	MicroButtonPortrait:SetTexCoord(0,0,0,0);
 	MicroButtonPortrait:SetAlpha(0);
 end)
+
+local characterPortrait = CharacterMicroButton:CreateTexture(nil, "ARTWORK")
+characterPortrait:SetPoint("TOPLEFT", CharacterMicroButton, "TOPLEFT", 0, -2)
+characterPortrait:SetPoint("BOTTOMRIGHT", CharacterMicroButton, "BOTTOMRIGHT", 0, 2)
+
+local function pUiUpdateCharacterPortrait()
+	SetPortraitTexture(characterPortrait, "player")
+end
+
+hooksecurefunc('CharacterMicroButton_SetPushed', pUiUpdateCharacterPortrait)
+hooksecurefunc('CharacterMicroButton_SetNormal', pUiUpdateCharacterPortrait)
+
+-- Cause racine trouvee via InterfaceMainMenuBarMicroButtons/FrameXML/MainMenuBarMicroButtons.lua :
+-- SetNormal/SetPushed ne font que changer l'aspect visuel (TexCoord/Alpha) du
+-- bouton, ce n'est PAS ce qui met a jour le contenu du portrait nativement.
+-- Le client d'origine rafraichit MicroButtonPortrait via deux evenements
+-- dedies (CharacterMicroButton_OnLoad/OnEvent) : PLAYER_ENTERING_WORLD (a
+-- chaque connexion/changement de zone) et UNIT_PORTRAIT_UPDATE (quand
+-- l'apparence du joueur change). Comme cette barre custom ne relaie pas ces
+-- evenements vers notre texture, le portrait ne s'affichait qu'apres un
+-- clic (qui declenche SetPushed/SetNormal manuellement). On ecoute donc ces
+-- deux memes evenements ici, exactement comme le fait le client de base.
+local characterPortraitWatcher = CreateFrame("Frame")
+characterPortraitWatcher:RegisterEvent("PLAYER_ENTERING_WORLD")
+characterPortraitWatcher:RegisterEvent("UNIT_PORTRAIT_UPDATE")
+characterPortraitWatcher:SetScript("OnEvent", function(self, event, unit)
+	if event == "UNIT_PORTRAIT_UPDATE" and unit ~= "player" then
+		return
+	end
+	pUiUpdateCharacterPortrait()
+end)
+
+pUiUpdateCharacterPortrait()
+
+-- Garder l'anneau hover_button_or allume en continu tant que la fenetre
+-- "Infos personnage" (CharacterFrame) est ouverte, et l'eteindre a sa
+-- fermeture, comme le font deja les autres micro-boutons (Sortilege,
+-- Talents, etc. via SetButtonState("PUSHED")). On se branche sur
+-- UpdateMicroButtons, la fonction native deja appelee par le client a
+-- chaque ouverture/fermeture de CharacterFrame (et sur de nombreux autres
+-- evenements de rafraichissement des micro-boutons), pour rester
+-- parfaitement synchronise sans dupliquer sa logique de detection.
+local function pUiSyncCharacterHighlight()
+	if CharacterFrame and CharacterFrame:IsShown() then
+		CharacterMicroButton:LockHighlight()
+	else
+		CharacterMicroButton:UnlockHighlight()
+	end
+end
+
+hooksecurefunc('UpdateMicroButtons', pUiSyncCharacterHighlight)
+
+if CharacterFrame then
+	CharacterFrame:HookScript("OnShow", pUiSyncCharacterHighlight)
+	CharacterFrame:HookScript("OnHide", pUiSyncCharacterHighlight)
+end
+
+-- Ni le hook sur UpdateMicroButtons ni OnShow/OnHide de CharacterFrame ne se
+-- declenchent de facon fiable sur ce client (le panneau reskinne semble
+-- passer par un chemin different pour s'afficher). Plutot que de continuer a
+-- deviner le bon evenement, on verifie l'etat toutes les 0.2s : ca fonctionne
+-- quelle que soit la maniere dont le panneau est ouvert/ferme.
+local characterHighlightTicker = CreateFrame("Frame")
+characterHighlightTicker.elapsed = 0
+characterHighlightTicker:SetScript("OnUpdate", function(self, elapsed)
+	self.elapsed = self.elapsed + elapsed
+	if self.elapsed < 0 then
+		return
+	end
+	self.elapsed = 0
+	pUiSyncCharacterHighlight()
+end)
+
+-- On force aussi l'anneau tout en haut de la pile d'affichage du bouton, au
+-- cas ou notre texture de portrait (creee par-dessus, layer ARTWORK) passe
+-- malgre tout devant le HIGHLIGHT sur ce client.
+do
+	local hl = CharacterMicroButton:GetHighlightTexture()
+	if hl then
+		hl:SetDrawLayer("HIGHLIGHT", 7)
+	end
+end
+
+pUiSyncCharacterHighlight()
 
 function MainMenuMicroButtonMixin:OnUpdate(elapsed)
 	local _, _, latencyHome = GetNetStats();
@@ -305,8 +399,18 @@ local function setupMicroButtons(xOffset)
 		button:GetNormalTexture():set_atlas('ui-hud-micromenu-'..name..'-up-2x')
 		button:GetPushedTexture():set_atlas('ui-hud-micromenu-'..name..'-down-2x')
 		button:GetDisabledTexture():set_atlas('ui-hud-micromenu-'..name..'-disabled-2x')
-		button:GetHighlightTexture():set_atlas('ui-hud-micromenu-'..name..'-mouseover-2x')
-		button:GetHighlightTexture():SetBlendMode('ADD')
+
+		if name == 'character' then
+			-- PATCH ShowHead : la case "character" de l'atlas uimicromenu2x a ete
+			-- videe (cadre dore retire pour laisser la place au portrait), ce qui
+			-- vide aussi la sous-case "mouseover" au meme endroit et supprime donc
+			-- le highlight au survol pour ce bouton precis. On utilise a la place
+			-- la texture de highlight custom fournie par l'utilisateur.
+			button:SetHighlightTexture('Interface\\Buttons\\hover_button_or', 'ADD')
+		else
+			button:GetHighlightTexture():set_atlas('ui-hud-micromenu-'..name..'-mouseover-2x')
+			button:GetHighlightTexture():SetBlendMode('ADD')
+		end
 
 		buttonxOffset = buttonxOffset + 15
 	end
@@ -314,12 +418,37 @@ end
 
 addon.package:RegisterEvents(function()
 	local xOffset
+	-- PATCH Collection (round 97) : MICRO_BUTTONS (ligne 24) contient
+	-- desormais 11 boutons (CollectionsMicroButton a ete ajoute a la
+	-- liste), mais ces deux valeurs de xOffset (-180/-166) etaient encore
+	-- calibrees pour 10 boutons. Chaque bouton en plus dans MICRO_BUTTONS
+	-- decale tous les boutons SUIVANTS de 15px vers la droite (voir
+	-- buttonxOffset, incremente de 15 par bouton dans la boucle
+	-- setupMicroButtons plus bas) sans que xOffset ne soit recalcule en
+	-- consequence -- Help (dernier bouton de la liste) se retrouvait donc
+	-- pousse de 15px de trop vers le bord droit de l'ecran, jusqu'a en
+	-- sortir partiellement. On decale donc le point de depart de toute la
+	-- rangee de 15px supplementaires vers la gauche pour compenser
+	-- exactement ce bouton en plus.
 	if IsAddOnLoaded('ezCollections') then
-		xOffset = -180
-		_G.CollectionsMicroButton:UnregisterEvent('UPDATE_BINDINGS')
+		xOffset = -195
 	else
-		xOffset = -166
+		xOffset = -181
 	end
+	-- PATCH Collection (round 116) : LoadMicroButtonTextures (Interface/FrameXML/
+	-- MainMenuBarMicroButtons.lua) reenregistre CollectionsMicroButton sur
+	-- UPDATE_BINDINGS a CHAQUE appel, et le <OnEvent> du bouton (MainMenuBarMicroButtons.xml)
+	-- rappelle LoadMicroButtonTextures(self, "Mounts") a chaque UPDATE_BINDINGS, ce qui
+	-- reecrit les 4 textures (Normal/Pushed/Disabled/Highlight) avec les chemins Blizzard
+	-- d'origine (Interface\Buttons\UI-MicroButton-Mounts-*), ecrasant le skin custom
+	-- applique juste en dessous par setupMicroButtons()/set_atlas(). N'importe quel
+	-- SetBinding/SetBindingSpell ailleurs sur le client (ex: script Eluna Glide_Client du
+	-- Chasseur de demons, mais ca peut venir de n'importe quel autre addon/keybind) declenche
+	-- UPDATE_BINDINGS et fait donc revenir l'icone Collections a l'apparence Blizzard stock.
+	-- Ce desenregistrement n'avait lieu avant que si l'addon ezCollections etait charge ; le
+	-- skin de cette barre n'a de toute facon jamais besoin d'etre rafraichi par UPDATE_BINDINGS,
+	-- donc on le fait desormais TOUJOURS, quel que soit l'etat de ezCollections.
+	_G.CollectionsMicroButton:UnregisterEvent('UPDATE_BINDINGS')
 	setupMicroButtons(xOffset + config.micromenu.x_position);
 	if config.micromenu.hide_on_vehicle then
 		RegisterStateDriver(pUiMicroMenu, 'visibility', '[vehicleui] hide;show')

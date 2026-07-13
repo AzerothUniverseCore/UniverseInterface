@@ -910,9 +910,16 @@ end
 do
 	local classNames = {}
 	FillLocalizedClassList(classNames, false)
-	classNames["Ferocity"] = Talented.tabdata["Ferocity"][1].name
-	classNames["Tenacity"] = Talented.tabdata["Tenacity"][1].name
-	classNames["Cunning"] = Talented.tabdata["Cunning"][1].name
+	-- PATCH AzerothUniverse : meme correctif que dans Talented.lua (Data.lua/
+	-- Exporters.lua sont volontairement absents de ce build ; Talented.tabdata
+	-- reste donc nil et ces 3 lignes -- qui n'alimentent que le menu d'arbre de
+	-- talents de familier de l'UI Talents classique, jamais ouverte ici --
+	-- faisaient planter l'addon des l'ouverture de la fenetre Glyphes).
+	if Talented.tabdata then
+		classNames["Ferocity"] = Talented.tabdata["Ferocity"][1].name
+		classNames["Tenacity"] = Talented.tabdata["Tenacity"][1].name
+		classNames["Cunning"] = Talented.tabdata["Cunning"][1].name
+	end
 
 	local menuColorCodes = {}
 	local function fill_menuColorCodes()

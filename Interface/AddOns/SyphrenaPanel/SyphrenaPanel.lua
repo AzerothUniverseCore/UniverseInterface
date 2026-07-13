@@ -1,57 +1,56 @@
-----------------------
---  Minimap Button  --
-----------------------
+----------------------------------------------------------------
+--  Bouton "Grimoire d'identité" dans le CharacterFrame
+--  (remplace l'ancien bouton accroché à la Minimap)
+----------------------------------------------------------------
 do
-	local dragMode = nil
-	
-	local function moveButton(self)
-		if dragMode == "free" then
-			local centerX, centerY = Minimap:GetCenter()
-			local x, y = GetCursorPosition()
-			x, y = x / self:GetEffectiveScale() - centerX, y / self:GetEffectiveScale() - centerY
-			self:ClearAllPoints()
-			self:SetPoint("CENTER", x, y)
-		else
-			local centerX, centerY = Minimap:GetCenter()
-			local x, y = GetCursorPosition()
-			x, y = x / self:GetEffectiveScale() - centerX, y / self:GetEffectiveScale() - centerY
-			centerX, centerY = math.abs(x), math.abs(y)
-			centerX, centerY = (centerX / math.sqrt(centerX^2 + centerY^2)) * 80, (centerY / sqrt(centerX^2 + centerY^2)) * 80
-			centerX = x < 0 and -centerX or centerX
-			centerY = y < 0 and -centerY or centerY
-			self:ClearAllPoints()
-			self:SetPoint("CENTER", centerX, centerY)
-		end
-	end
+	-- >>> RÉGLAGES POSITION : ajuste ces 3 valeurs pour repositionner l'icône <<<
+	local CF_ANCHOR         = "TOPRIGHT" -- point d'ancrage du bouton
+	local CF_RELATIVE_POINT = "TOPRIGHT" -- point de référence sur CharacterFrame
+	local CF_OFFSET_X       = -10       -- décalage horizontal (négatif = vers la gauche)
+	local CF_OFFSET_Y       = -30        -- décalage vertical (négatif = vers le bas)
+	--------------------------------------------------------------
 
-	-- Button infos (textures, size and all)
-	local button = CreateFrame("Button", "PanelMinimapButton", Minimap)
-	button:SetHeight(32)
-	button:SetWidth(32)
-	button:SetFrameStrata("MEDIUM")
-	button:SetPoint("CENTER", -45.35, -60.8)
+	local button = CreateFrame("Button", "PanelCharacterFrameButton", CharacterFrame)
+	button:SetHeight(28)
+	button:SetWidth(28)
+	button:SetFrameStrata("HIGH")
+	button:SetPoint(CF_ANCHOR, CharacterFrame, CF_RELATIVE_POINT, CF_OFFSET_X, CF_OFFSET_Y)
 	button:SetMovable(true)
-	button:SetUserPlaced(true)
 	button:SetNormalTexture("Interface\\AddOns\\SyphrenaPanel\\textures\\Panel-Button-Up.blp")
 	button:SetPushedTexture("Interface\\AddOns\\SyphrenaPanel\\textures\\Panel-Button-Down.blp")
 	button:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
 
-	-- Drag script condition
-	button:SetScript("OnMouseDown", function(self, button)
-		if IsShiftKeyDown() and IsAltKeyDown() then
-			dragMode = "free"
-			self:SetScript("OnUpdate", moveButton)
-		elseif IsShiftKeyDown() or button == "RightButton" then
-			dragMode = nil
-			self:SetScript("OnUpdate", moveButton)
+	-- Suit l'affichage/masquage de l'onglet "Personnage" uniquement
+	-- (PaperDollFrame = le sous-panneau affiché par cet onglet précis,
+	-- contrairement à CharacterFrame qui reste affiché sur tous les onglets)
+	button:Hide()
+	PaperDollFrame:HookScript("OnShow", function() button:Show() end)
+	PaperDollFrame:HookScript("OnHide", function() button:Hide() end)
+	if PaperDollFrame:IsShown() then button:Show() end
+
+	-- Tooltip au survol
+	button:SetScript("OnEnter", function(self)
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+		GameTooltip:SetText("Grimoire d'identité", 1, 1, 1)
+		GameTooltip:AddLine("Informations sur votre personnage.", 1, 0.82, 0, true)
+		GameTooltip:Show()
+	end)
+	button:SetScript("OnLeave", function(self)
+		GameTooltip:Hide()
+	end)
+
+	-- Déplacement libre en maintenant Shift (facultatif, pour affiner la position en jeu)
+	button:SetScript("OnMouseDown", function(self, mouseButton)
+		if IsShiftKeyDown() then
+			self:StartMoving()
 		end
 	end)
 	button:SetScript("OnMouseUp", function(self)
-		self:SetScript("OnUpdate", nil)
+		self:StopMovingOrSizing()
 	end)
-	
-    -- Sends a chat message on click.
-    button:SetScript("OnClick", function(self, button)
-    SendChatMessage(".modmepanel")
-	end);
+
+	-- Envoie un message dans le chat au clic
+	button:SetScript("OnClick", function(self, mouseButton)
+		SendChatMessage(".modmepanel")
+	end)
 end
