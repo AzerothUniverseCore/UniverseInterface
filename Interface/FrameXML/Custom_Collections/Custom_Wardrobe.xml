@@ -1176,6 +1176,74 @@
 			<Anchor point="CENTER" x="0" y="0"/>
 		</Anchors>
 		<Frames>
+			<!-- ROUND Transmog-4 : meme rangee d'onglets que CollectionsJournal
+			     (Montures/Familiers/Garde-robe/Jouets/Heritage/Transmogrification),
+			     pour pouvoir changer d'onglet sans devoir fermer le
+			     Transmogrificateur puis rouvrir le journal. Chaque bouton a son
+			     propre OnClick (WardrobeFrame_SwitchToJournalTab, voir
+			     Custom_Wardrobe.lua) plutot que d'heriter de celui du template
+			     CollectionsJournalTab : ce dernier appelle
+			     CollectionsJournal_SetTab(self:GetParent(), ...), qui suppose que
+			     self:GetParent() EST CollectionsJournal (MountJournal/PetJournal/
+			     etc. sont ses enfants directs) : appele avec WardrobeFrame comme
+			     parent, cette logique n'aurait aucun sens et casserait des
+			     frames qui n'existent pas dans cette hierarchie. Le bouton 6
+			     (Transmogrification) ne fait rien : on est deja sur cette vue. -->
+			<Button name="$parentTab1" inherits="CollectionsJournalTab" text="MOUNTS" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="11" y="2"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WardrobeFrame_SwitchToJournalTab(self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab2" inherits="CollectionsJournalTab" text="PETS" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WardrobeFrame_SwitchToJournalTab(self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab3" inherits="CollectionsJournalTab" text="WARDROBE" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WardrobeFrame_SwitchToJournalTab(self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab4" inherits="CollectionsJournalTab" text="TOY_BOX" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WardrobeFrame_SwitchToJournalTab(self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab5" inherits="CollectionsJournalTab" text="HEIRLOOMS" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab4" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						WardrobeFrame_SwitchToJournalTab(self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTab6" inherits="CollectionsJournalTab" text="TRANSMOGRIFY" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab5" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+			</Button>
 			<Button name="$parentTutorialButton" parentKey="TutorialButton" inherits="MainHelpPlateButton" toplevel="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" x="36" y="24" />
@@ -1425,9 +1493,15 @@
 				<Anchors>
 					<Anchor point="BOTTOM" x="0" y="22"/>
 				</Anchors>
+				<!-- Fix Round Transmog-8 : "kbase:1:47" est un lien retail vers un
+				     article de la base de connaissances Battle.net (ouvre un
+				     navigateur web) : type de lien inconnu de notre ItemRefTooltip
+				     WotLK ("Unknown link type"), on n'a pas d'equivalent local. On
+				     retire simplement l'appel plutot que de renvoyer vers un lien
+				     casse. -->
 				<Scripts>
 					<OnClick>
-						SetItemRef("kbase:1:47", nil, button)
+						HelpPlate_Show(WardrobeFrame.helpPlate, WardrobeFrame, WardrobeFrame.TutorialButton);
 					</OnClick>
 				</Scripts>
 			</Button>

@@ -21,6 +21,7 @@ local titles = {
 	[3] = WARDROBE,
 	[4] = TOY_BOX,
 	[5] = HEIRLOOMS,
+	[6] = TRANSMOGRIFY,
 };
 
 local function GetTitleText(titleIndex)
@@ -50,12 +51,41 @@ function CollectionsJournal_UpdateSelectedTab(self)
 	EventRegistry:TriggerEvent("CollectionsJournal.SetTab", selected)
 end
 
+--- Ouvre le Transmogrificateur et ferme le journal Collections.
+---
+--- IMPORTANT : n'utilise PAS FireCustomClientEvent("TRANSMOGRIFY_OPEN"). Ce
+--- systeme d'evenement personnalise n'est ecoute que par le WardrobeFrame
+--- historique defini dans NOTRE PROPRE Custom_Wardrobe.lua (porte depuis
+--- Sirus, jamais reellement exerce jusqu'ici, cf. rounds precedents). Or le
+--- Transmogrificateur reellement fonctionnel et utilise en jeu aujourd'hui
+--- (celui qu'eZCollection ouvre depuis son propre onglet Transmog) est un
+--- WardrobeFrame DIFFERENT, fourni par l'addon eZCollection
+--- (Blizzard_Wardrobe.xml, charge apres tout le FrameXML de base -> son
+--- <Frame name="WardrobeFrame"> ecrase la variable globale WardrobeFrame et
+--- devient LA version reellement utilisee en jeu). Ce nouveau WardrobeFrame
+--- n'a jamais entendu parler de notre evenement TRANSMOGRIFY_OPEN (il n'a
+--- pas ete ecrit pour notre systeme), donc FireCustomClientEvent ne
+--- l'atteint jamais -- d'ou le symptome observe (le journal se ferme mais
+--- rien ne s'ouvre).
+---
+--- Fix : appeler ShowUIPanel(WardrobeFrame) directement, comme le fait
+--- eZCollection lui-meme depuis son propre bouton d'onglet. WardrobeFrame
+--- est lu ici comme variable GLOBALE au moment du clic (pas une reference
+--- capturee a l'avance), donc on obtient toujours la version reellement
+--- active en jeu, quelle qu'elle soit.
+function CollectionsJournal_OpenTransmogrify(self)
+	HideUIPanel(self);
+	if WardrobeFrame then
+		ShowUIPanel(WardrobeFrame);
+	end
+end
+
 function CollectionsJournal_OnLoad(self)
 	self:RegisterEvent("VARIABLES_LOADED");
 
 	SetPortraitToTexture(CollectionsJournalPortrait, "Interface\\Icons\\MountJournalPortrait");
 
-	PanelTemplates_SetNumTabs(self, 5);
+	PanelTemplates_SetNumTabs(self, 6);
 end
 
 function CollectionsJournal_OnEvent(self, event)

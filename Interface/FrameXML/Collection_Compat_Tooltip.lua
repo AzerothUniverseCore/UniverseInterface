@@ -3,6 +3,29 @@
 -- GameTooltipMixin), copiees verbatim. Doit charger APRES GameTooltip.xml
 -- (le widget GameTooltip global n'existe pas encore avant), donc ce fichier
 -- est place juste avant Custom_Collections.xml et non dans Collection_Compat.lua.
+-- ============================================================
+-- ROUND Transmog-3 : garde-fou GameTooltip:SetText. Erreur observee au survol
+-- d'elements du Transmogrificateur : "[string \"*:OnEnter\"]:2: Usage:
+-- GameTooltip:SetText(\"text\" [, color])" -- cette erreur native (le C
+-- valide les types d'arguments) se declenche des qu'un script OnEnter
+-- lui passe autre chose qu'une chaine (nil le plus souvent, ex. une
+-- constante globale non definie sur ce client). Plutot que de traquer
+-- un par un chaque site d'appel fragile dans le tres volumineux
+-- Custom_Wardrobe.lua (2700+ lignes, jamais reellement exerce avant ce
+-- round), on blinde SetText lui-meme sur ce frame precis : si l'appelant
+-- ne fournit pas une chaine, on ne fait rien plutot que de planter.
+-- ============================================================
+if GameTooltip and not GameTooltip.__CollectionSetTextGuarded then
+	local CollectionCompat_OrigSetText = GameTooltip.SetText;
+	function GameTooltip:SetText(text, ...)
+		if type(text) ~= "string" then
+			return;
+		end
+		return CollectionCompat_OrigSetText(self, text, ...);
+	end
+	GameTooltip.__CollectionSetTextGuarded = true;
+end
+
 if GameTooltip and not GameTooltip.SetToyByItemID then
 	function GameTooltip:SetToyByItemID(itemID)
 		if type(itemID) == "string" then
@@ -52,6 +75,40 @@ if GameTooltip and not GameTooltip.SetItemByID then
 end
 
 -- ============================================================
+-- PATCH round Transmog-26 : GameTooltip:SetTransmogrifyItem n'existe pas sur
+-- ce client (methode retail absente sur ce build WotLK 3.3.5). Elle est
+-- appelee par Custom_Wardrobe.lua:513 (TransmogSlotButtonMixin:OnEnter, APRES
+-- GameTooltip:SetInventoryItem) pour completer la tooltip du slot survole
+-- avec une ligne d'info sur l'apparence en attente / annulable, et plantait
+-- avec "attempt to call method 'SetTransmogrifyItem' (a nil value)".
+-- Contrairement a SetItemByID/SetHeirloomByItemID ci-dessus, on n'appelle PAS
+-- SetHyperlink ici : la tooltip de l'objet equipe est deja affichee par
+-- SetInventoryItem juste avant, donc on se contente d'AJOUTER les lignes
+-- d'info (meme logique que la branche illusion un peu plus haut dans
+-- Custom_Wardrobe.lua, qui utilise deja TRANSMOGRIFY_FONT_COLOR /
+-- WILL_BE_TRANSMOGRIFIED_HEADER / TRANSMOGRIFY_TOOLTIP_REVERT - ces globales
+-- existent donc deja bien sur ce client).
+-- ============================================================
+if GameTooltip and not GameTooltip.SetTransmogrifyItem then
+	function GameTooltip:SetTransmogrifyItem(itemID, hasPending, hasUndo)
+		if type(itemID) == "string" then
+			itemID = tonumber(itemID)
+		end
+		if hasUndo then
+			GameTooltip:AddLine(TRANSMOGRIFY_TOOLTIP_REVERT, TRANSMOGRIFY_FONT_COLOR.r, TRANSMOGRIFY_FONT_COLOR.g, TRANSMOGRIFY_FONT_COLOR.b)
+		elseif hasPending and type(itemID) == "number" and itemID > 0 then
+			GameTooltip:AddLine(WILL_BE_TRANSMOGRIFIED_HEADER, TRANSMOGRIFY_FONT_COLOR.r, TRANSMOGRIFY_FONT_COLOR.g, TRANSMOGRIFY_FONT_COLOR.b)
+			local name = GetItemInfo(itemID)
+			if name then
+				GameTooltip:AddLine(name, 1.0, 1.0, 1.0)
+			end
+		end
+		GameTooltip:Show()
+		return true
+	end
+end
+
+-- ============================================================
 -- PKBT_ButtonMixin:OnLoad / :InitButton : Universe fait
 -- PKBT_ButtonMixin = CreateFromMixins(ThreeSliceButtonMixin), mais
 -- ThreeSliceButtonMixin (SharedXML\SharedUIPanelTemplates.lua cote Sirus)
@@ -80,6 +137,18 @@ if PKBT_ButtonMixin then
 			-- bouton d'aide du PNJ transmogrificateur (hors Codex), on
 			-- s'arrete ici : le bouton garde sa texture par defaut du
 			-- template XML, mais ne crashe plus.
+		end
+	end
+	if not PKBT_ButtonMixin.UpdateButton then
+		-- ROUND Transmog : PKBT_ButtonMixin:OnShow/:OnEnable/:OnDisable
+		-- (SharedXML\SharedUIPanelPKBTTemplates.lua) appellent tous les
+		-- trois self:UpdateButton() sans jamais verifier son existence.
+		-- Sans ce stub, le seul fait d'AFFICHER un bouton PKBT minimal (ex.
+		-- WardrobeFrameHelpFrameKnowledgeBaseButton) plantait des l'OnShow,
+		-- avant meme d'atteindre InitButton/OnLoad ci-dessus. Meme
+		-- philosophie que les deux stubs precedents : no-op pur, le bouton
+		-- garde sa texture par defaut mais ne crashe plus.
+		function PKBT_ButtonMixin:UpdateButton()
 		end
 	end
 end
@@ -143,6 +212,38 @@ SlashCmdList["COLLECTIONDEBUG"] = function()
 		Collection_DebugSkills()
 	else
 		print("|cffff0000[Collection Debug]|r Collection_DebugSkills indisponible (ouvrez d'abord le Garde-robe au moins une fois).")
+	end
+end
+
+-- ============================================================
+-- PATCH round Transmog-26: /diagcp v7 - le round 25 a signale
+-- "CRASH ENTRE LIGNE 1032 ET LIGNE 1047", mais c'etait un FAUX signal : le
+-- checkpoint 1047 avait ete place par erreur A L'INTERIEUR du constructeur de
+-- table COLLECTION_SHIMMED_CVARS = { ... } (le ';' est un separateur de champ
+-- valide en Lua a cet endroit, donc "DIAGv25_CP1047 = true" ajoutait juste une
+-- cle a la table au lieu d'assigner la variable globale -> elle restait donc
+-- nil meme si le fichier continuait de s'executer normalement). Verifie
+-- (script Python, comptage d'accolades) : c'est le SEUL checkpoint sur les 51
+-- concerne par ce probleme. Corrige en deplacant ce checkpoint juste apres la
+-- fermeture de la table. Devrait maintenant afficher FICHIER COMPLET.
+-- ============================================================
+SLASH_DIAGCP1 = "/diagcp"
+SlashCmdList["DIAGCP"] = function()
+	local checkpoints = {13,41,64,102,133,149,172,192,223,240,259,285,315,330,349,364,381,397,415,447,479,494,509,534,556,575,593,608,624,639,683,722,986,1001,1032,1047,1066,1149,1180,1201,1247,1270,1287,1312,1345,1371,1393,1428,1454,1519,1661};
+	local last = 0;
+	for i = 1, #checkpoints do
+		local v = checkpoints[i];
+		if _G["DIAGv26_CP" .. v] then
+			last = v;
+		else
+			print("CRASH ENTRE LIGNE " .. last .. " ET LIGNE " .. v);
+			return;
+		end
+	end
+	if DIAGv26_END then
+		print("FICHIER COMPLET - dernier checkpoint=" .. last);
+	else
+		print("CRASH APRES LIGNE " .. last .. " (avant la fin du fichier)");
 	end
 end
 
@@ -556,4 +657,341 @@ TOGGLEPROFESSIONBOOK = "TOGGLEPROFESSIONBOOK";
 if not LootWonAlertFrame_ShowAlert then
 	function LootWonAlertFrame_ShowAlert(itemLink)
 	end
+end
+
+-- ============================================================
+-- ROUND Transmog-2 : SetUIPanelAttribute manquant. Cette fonction (introduite
+-- dans une expansion posterieure a 3.3.5, cote retail elle passe par un frame
+-- secure FramePositionDelegate:SetAttribute) n'existe pas du tout sur ce
+-- client -- plantait WardrobeFrameMixin:SetShowHelpFrame (Custom_Wardrobe.lua)
+-- des le premier clic sur le bouton d'aide "i" du Transmogrificateur :
+-- "attempt to call global 'SetUIPanelAttribute' (a nil value)".
+-- Stub minimal : ecrit directement l'attribut dans UIPanelWindows[nomDuFrame],
+-- la meme table simple que ce client utilise deja pour toute la gestion des
+-- panneaux (area/pushable/width/xOffset/yOffset, voir UIPanelWindows["WardrobeFrame"]
+-- dans Custom_Wardrobe.lua). Suffisant pour eliminer le crash ; l'elargissement
+-- visuel du panneau pour le volet d'aide reste cosmetique et secondaire face au
+-- besoin principal (transmogrifier sans planter).
+-- ============================================================
+if not SetUIPanelAttribute then
+	function SetUIPanelAttribute(frame, attribute, value)
+		local info = UIPanelWindows[frame:GetName()];
+		if info then
+			info[attribute] = value;
+		end
+	end
+end
+
+-- ============================================================
+-- ROUND Transmog-2 : C_Item.DoesItemExist manquant. ItemLocationMixin:IsValid()
+-- (Interface\FrameXML\ItemLocation.lua) appelle C_Item.DoesItemExist(self) sans
+-- garde -- absent sur ce client, ce qui plantait TransmogSlotButtonMixin:GetEffectiveTransmogID
+-- (Custom_Wardrobe.lua) des l'affichage du Transmogrificateur, empechant TOUTE
+-- case d'equipement de se peupler (Update() s'arretait la pour chaque slot,
+-- d'ou les cases vides malgre un equipement porte). Stub : verifie directement
+-- via les API natives WotLK 3.3.5 (GetInventoryItemID / GetContainerItemID)
+-- si un objet existe reellement a l'emplacement decrit par l'ItemLocation.
+-- ============================================================
+if C_Item and not C_Item.DoesItemExist then
+	function C_Item.DoesItemExist(itemLocation)
+		if not itemLocation then
+			return false;
+		end
+		if itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
+			return GetInventoryItemID("player", itemLocation:GetEquipmentSlot()) ~= nil;
+		elseif itemLocation.IsBagAndSlot and itemLocation:IsBagAndSlot() then
+			local bagID, slotIndex = itemLocation:GetBagAndSlot();
+			return GetContainerItemID(bagID, slotIndex) ~= nil;
+		end
+		return false;
+	end
+end
+
+-- ============================================================
+-- ROUND Transmog-31 : /tclickdebug -- tracage live du clic dans la grille
+-- ============================================================
+-- Le round 30 (fallback frame:OnEvent dans FireCustomClientEvent) n'a PAS
+-- resolu "impossible de selectionner un item directement dans l'onglet
+-- Transmogrification". Plutot que de continuer a deviner, cette commande
+-- instrumente EN DIRECT (sans rien changer au comportement reel) toute la
+-- chaine impliquee par un clic sur un item de la grille :
+--   OnClick -> WardrobeItemsCollectionMixin:SelectVisual
+--           -> TransmogFrameMixin:SetPendingTransmog (necessite
+--              WardrobeTransmogFrame.selectedSlotButton != nil !)
+--           -> C_Transmog.SetPending (ecrit _pending[slotID] + notifie)
+--           -> FireCustomClientEvent("TRANSMOGRIFY_UPDATE")
+--           -> WardrobeItemsCollectionMixin:OnEvent (doit maintenant etre
+--              atteint grace au fix round 30) -> UpdateItems (recalcule la
+--              bordure via C_Transmog.GetSlotVisualInfo)
+--
+-- Usage : taper /tclickdebug UNE FOIS pour activer (la commande le redit),
+-- puis cliquer un item dans l'onglet Transmogrification, puis copier-coller
+-- les lignes "[TDEBUG]" qui apparaissent dans le chat. Retaper /tclickdebug
+-- pour desactiver.
+-- ============================================================
+TCLICKDEBUG_ENABLED = false;
+TCLICKDEBUG_HOOKED = false;
+TCLICKDEBUG_LAST_ONEVENT_FIRED = nil;
+
+local function tdbg(...)
+	if TCLICKDEBUG_ENABLED then
+		print("|cff00ff88[TDEBUG]|r", ...);
+	end
+end
+
+local function TClickDebug_InstallHooks()
+	if TCLICKDEBUG_HOOKED then
+		return true;
+	end
+
+	-- FIX ROUND TRANSMOG-32 : le premier jet de /tclickdebug (round 31)
+	-- accrochait les methodes sur les TABLES MIXIN partagees
+	-- (WardrobeItemsCollectionMixin.SelectVisual = ..., etc). Or Mixin(objet,
+	-- MixinTable) -- utilise par ce code retail porte tel quel -- COPIE les
+	-- fonctions UNE FOIS sur l'INSTANCE au moment du OnLoad (bien avant que le
+	-- joueur ne tape /tclickdebug) : reassigner la table mixin APRES coup n'a
+	-- alors plus aucun effet sur les frames deja charges (WardrobeTransmogFrame,
+	-- WardrobeCollectionFrame.ItemsCollectionFrame). Resultat observe : seul le
+	-- hook sur C_Transmog.SetPending (une fonction de table normale, jamais
+	-- "copiee" nulle part, toujours relue en direct) se declenchait -- d'ou des
+	-- lignes "[TDEBUG] C_Transmog.SetPending(...)" san aucune ligne
+	-- SelectVisual/SelectSlotButton/SetPendingTransmog avant. On accroche
+	-- desormais directement sur les INSTANCES reelles (WardrobeTransmogFrame et
+	-- WardrobeCollectionFrame.ItemsCollectionFrame), qui existent forcement deja
+	-- a ce stade (le joueur doit avoir ouvert Garde-robe ou Transmogrification
+	-- au moins une fois avant de taper la commande).
+	if not (C_Transmog and WardrobeTransmogFrame and WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame) then
+		return false; -- pas encore charge, on reessaiera au prochain toggle
+	end
+
+	local itemsFrame = WardrobeCollectionFrame.ItemsCollectionFrame;
+	local transmogFrame = WardrobeTransmogFrame;
+
+	-- 1) SelectVisual : point d'entree du clic gauche sur un item (sur
+	-- l'INSTANCE reelle de la grille, pas sur la table mixin).
+	local orig_SelectVisual = itemsFrame.SelectVisual;
+	itemsFrame.SelectVisual = function(self, visualID, ...)
+		local atNPC = C_Transmog.IsAtTransmogNPC();
+		local gridSlotID = self.transmogLocation and self.transmogLocation:GetSlotID();
+		tdbg(string.format("SelectVisual(visualID=%s) | IsAtTransmogNPC=%s | grid.transmogLocation:GetSlotID()=%s | activeCategory=%s/%s",
+			tostring(visualID), tostring(atNPC), tostring(gridSlotID), tostring(self.activeCategory), tostring(self.activeSubCategory)));
+		if not atNPC then
+			tdbg("  -> ABANDON ICI : IsAtTransmogNPC() = false, SelectVisual s'arrete (retour immediat, rien d'autre ne s'execute).");
+		end
+		return orig_SelectVisual(self, visualID, ...);
+	end
+
+	-- 2) SelectSlotButton : quel emplacement (Tete/Torse/...) est actuellement
+	-- selectionne sur le mannequin, cote WardrobeTransmogFrame.
+	local orig_SelectSlotButton = transmogFrame.SelectSlotButton;
+	transmogFrame.SelectSlotButton = function(self, slotButton, fromOnClick, ...)
+		local slotID = slotButton and slotButton.transmogLocation and slotButton.transmogLocation:GetSlotID();
+		tdbg(string.format("SelectSlotButton(slotID=%s, fromOnClick=%s)", tostring(slotID), tostring(fromOnClick)));
+		return orig_SelectSlotButton(self, slotButton, fromOnClick, ...);
+	end
+
+	-- 3) SetPendingTransmog : n'ecrit REELLEMENT quelque chose que si
+	-- self.selectedSlotButton est deja renseigne -- suspect n°1 si ca reste
+	-- nil pendant qu'on est sur l'onglet Transmogrification.
+	local orig_SetPendingTransmog = transmogFrame.SetPendingTransmog;
+	transmogFrame.SetPendingTransmog = function(self, transmogID, category, subCategory, ...)
+		local hasSlotButton = self.selectedSlotButton ~= nil;
+		local slotID = hasSlotButton and self.selectedSlotButton.transmogLocation and self.selectedSlotButton.transmogLocation:GetSlotID();
+		tdbg(string.format("SetPendingTransmog(transmogID=%s) | selectedSlotButton=%s | slotID=%s",
+			tostring(transmogID), tostring(hasSlotButton), tostring(slotID)));
+		if not hasSlotButton then
+			tdbg("  -> ABANDON ICI : WardrobeTransmogFrame.selectedSlotButton est nil, C_Transmog.SetPending n'est JAMAIS appele.");
+		end
+		return orig_SetPendingTransmog(self, transmogID, category, subCategory, ...);
+	end
+
+	-- 4) C_Transmog.SetPending : ecriture reelle de _pending[slotID].
+	local orig_SetPending = C_Transmog.SetPending;
+	C_Transmog.SetPending = function(transmogLocation, pendingInfo, ...)
+		local slotID = transmogLocation and transmogLocation:GetSlotID();
+		tdbg(string.format("C_Transmog.SetPending(slotID=%s, transmogID=%s)", tostring(slotID), tostring(pendingInfo and pendingInfo.transmogID)));
+		return orig_SetPending(transmogLocation, pendingInfo, ...);
+	end
+
+	-- 5) OnEvent (instance) : confirme si TRANSMOGRIFY_UPDATE est bien recu
+	-- par la grille (cense etre corrige par le round 30).
+	local orig_OnEvent = itemsFrame.OnEvent;
+	itemsFrame.OnEvent = function(self, event, ...)
+		if event == "TRANSMOGRIFY_UPDATE" or event == "TRANSMOGRIFY_SUCCESS" then
+			TCLICKDEBUG_LAST_ONEVENT_FIRED = event;
+			tdbg(string.format("ItemsCollectionFrame:OnEvent RECU event=%s | grid.transmogLocation:GetSlotID()=%s",
+				tostring(event), tostring(self.transmogLocation and self.transmogLocation:GetSlotID())));
+		end
+		return orig_OnEvent(self, event, ...);
+	end
+
+	-- 5bis) FireCustomClientEvent (ROUND 32/34) : verifie EMPIRIQUEMENT si le
+	-- correctif du round 30 (repli vers frame:OnEvent quand frame:GetScript
+	-- ("OnEvent") est nil) est reellement actif chez toi. Round 33 mesurait
+	-- juste "atteint=true/false" via un flag -- toujours false chez toi meme
+	-- apres avoir remplace Collection_Compat.lua. Round 34 : au lieu d'inferer,
+	-- on INSPECTE DIRECTEMENT chaque listener enregistre pour TRANSMOGRIFY_UPDATE
+	-- (frame:GetScript("OnEvent") existe ? frame.OnEvent existe ?) -- ceci ne
+	-- depend d'AUCUNE hypothese sur le code reellement installe, juste de l'etat
+	-- reel des frames en jeu au moment du clic.
+	if type(FireCustomClientEvent) == "function" then
+		local orig_FireCustomClientEvent = FireCustomClientEvent;
+		FireCustomClientEvent = function(event, ...)
+			if event == "TRANSMOGRIFY_UPDATE" then
+				TCLICKDEBUG_LAST_ONEVENT_FIRED = nil;
+				local listeners = REGISTERED_CUSTOM_EVENTS and REGISTERED_CUSTOM_EVENTS[event];
+				local count = 0;
+				if listeners then
+					for frame in pairs(listeners) do
+						count = count + 1;
+						local isItemsFrame = (frame == itemsFrame);
+						local isTransmogFrame = (frame == transmogFrame);
+						local hasScript = frame.GetScript and frame:GetScript("OnEvent") ~= nil;
+						local hasOnEventMethod = type(frame.OnEvent) == "function";
+						tdbg(string.format("  listener #%d : itemsFrame=%s transmogFrame=%s GetScript(OnEvent)=%s frame.OnEvent(methode)=%s",
+							count, tostring(isItemsFrame), tostring(isTransmogFrame), tostring(hasScript), tostring(hasOnEventMethod)));
+					end
+				end
+				tdbg(string.format("FireCustomClientEvent(%s) | listeners enregistres=%d", tostring(event), count));
+				local a, b, c, d, e, f = orig_FireCustomClientEvent(event, ...);
+				local reached = (TCLICKDEBUG_LAST_ONEVENT_FIRED == event);
+				tdbg(string.format("FireCustomClientEvent(%s) termine | ItemsCollectionFrame:OnEvent atteint=%s%s",
+					tostring(event), tostring(reached),
+					(not reached) and "  <-- voir le detail 'GetScript(OnEvent)'/'frame.OnEvent' ci-dessus pour la vraie raison." or ""));
+				return a, b, c, d, e, f;
+			end
+			return orig_FireCustomClientEvent(event, ...);
+		end
+	end
+
+	-- 6) UpdateItems (instance) : etat final utilise pour dessiner la bordure.
+	local orig_UpdateItems = itemsFrame.UpdateItems;
+	itemsFrame.UpdateItems = function(self, ...)
+		local atNPC = C_Transmog.IsAtTransmogNPC();
+		local ok, baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID = pcall(C_Transmog.GetSlotVisualInfo, self.transmogLocation);
+		if ok then
+			tdbg(string.format("UpdateItems() | IsAtTransmogNPC=%s | baseVisualID=%s appliedVisualID=%s pendingVisualID=%s",
+				tostring(atNPC), tostring(baseVisualID), tostring(appliedVisualID), tostring(pendingVisualID)));
+		else
+			tdbg("UpdateItems() | IsAtTransmogNPC=" .. tostring(atNPC) .. " | GetSlotVisualInfo ERREUR: " .. tostring(baseSourceID));
+		end
+		return orig_UpdateItems(self, ...);
+	end
+
+	TCLICKDEBUG_HOOKED = true;
+	return true;
+end
+
+SLASH_TCLICKDEBUG1 = "/tclickdebug"
+SlashCmdList["TCLICKDEBUG"] = function()
+	TCLICKDEBUG_ENABLED = not TCLICKDEBUG_ENABLED;
+	if TCLICKDEBUG_ENABLED then
+		local installed = TClickDebug_InstallHooks();
+		if installed then
+			print("|cff00ff88[TDEBUG]|r ACTIVE. Ouvre l'onglet Transmogrification et clique un item de la grille : les etapes vont s'afficher ici.");
+		else
+			TCLICKDEBUG_ENABLED = false;
+			print("|cffff0000[TDEBUG]|r Impossible d'activer : ouvre d'abord une fois le Garde-robe ou la Transmogrification (le code necessaire n'est pas encore charge), puis retape /tclickdebug.");
+		end
+	else
+		print("|cff00ff88[TDEBUG]|r DESACTIVE.");
+	end
+end
+
+-- ============================================================
+-- ROUND Transmog-38 : /tbagdebug -- pourquoi seulement 5/13 epaulettes
+-- (et 0 arme) detectees en sac malgre le fix round 37.
+-- ============================================================
+-- Usage : ouvre l'onglet Transmogrification sur l'emplacement concerne
+-- (ex. Epaules, filtre "Tous"), PUIS tape /tbagdebug. Affiche : combien
+-- d'objets bruts sont vus dans les sacs, et pour chaque apparence NON
+-- collectionnee de la liste actuelle, si son sourceID correspond a un objet
+-- en sac (avec la methode round 37) ou pas -- au lieu de deviner plus loin.
+SLASH_TBAGDEBUG1 = "/tbagdebug"
+SlashCmdList["TBAGDEBUG"] = function()
+	local frame = WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame;
+	if not frame or not frame.visualsList then
+		print("|cffff0000[TBAGDEBUG]|r Ouvre d'abord Garde-robe ou Transmogrification sur un emplacement.");
+		return;
+	end
+
+	local bagItemIDs = frame:BuildBagItemIDSet();
+	local bagCount = 0;
+	local bagList = {};
+	for itemID in pairs(bagItemIDs) do
+		bagCount = bagCount + 1;
+		bagList[#bagList + 1] = itemID;
+	end
+	table.sort(bagList);
+	print(string.format("|cff00ff88[TBAGDEBUG]|r NUM_BAG_SLOTS=%s | objets bruts distincts trouves dans les sacs (bag 0 a NUM_BAG_SLOTS)=%d", tostring(NUM_BAG_SLOTS), bagCount));
+	print("  Liste des item IDs trouves en sac : " .. table.concat(bagList, ", "));
+
+	print(string.format("|cff00ff88[TBAGDEBUG]|r activeCategory=%s activeSubCategory=%s | #visualsList=%d | #filteredVisualsList=%d",
+		tostring(frame.activeCategory), tostring(frame.activeSubCategory), #frame.visualsList, frame.filteredVisualsList and #frame.filteredVisualsList or 0));
+
+	local shown, checked = 0, 0;
+	for i, visualInfo in ipairs(frame.visualsList) do
+		if checked < 3 and not visualInfo.isCollected then
+			local fields = {};
+			for k, v in pairs(visualInfo) do
+				fields[#fields + 1] = tostring(k) .. "=" .. tostring(v);
+			end
+			table.sort(fields);
+			print("  [champs bruts visualInfo] " .. table.concat(fields, ", "));
+		end
+		if not visualInfo.isCollected then
+			checked = checked + 1;
+			local directHit = visualInfo.sourceID and bagItemIDs[visualInfo.sourceID];
+			local ok, sources = pcall(CollectionWardrobeUtil.GetSortedAppearanceSources, visualInfo.visualID, nil, nil, nil);
+			local numSources = (ok and type(sources) == "table") and #sources or -1;
+			local anyBagSourceMatch = false;
+			local matchedSourceID;
+			if ok and type(sources) == "table" then
+				for j = 1, #sources do
+					if bagItemIDs[sources[j].sourceID] then
+						anyBagSourceMatch = true;
+						matchedSourceID = sources[j].sourceID;
+						break;
+					end
+				end
+			end
+			if directHit or anyBagSourceMatch then
+				shown = shown + 1;
+			end
+			if checked <= 20 then
+				local sourceIDList = {};
+				if ok and type(sources) == "table" then
+					for j = 1, #sources do
+						sourceIDList[#sourceIDList + 1] = tostring(sources[j].sourceID);
+					end
+				end
+				print(string.format("  visualID=%s directHit=%s anyBagMatch=%s | sources reelles=[%s]",
+					tostring(visualInfo.visualID), tostring(directHit),
+					tostring(anyBagSourceMatch), table.concat(sourceIDList, ", ")));
+			end
+		end
+	end
+	print(string.format("|cff00ff88[TBAGDEBUG]|r Sur %d apparences NON collectionnees, %d seraient affichees comme 'en sac' avec la methode actuelle (limite a 20 lignes de detail ci-dessus).", checked, shown));
+end
+
+-- ============================================================
+-- ROUND Transmog-38 : tracage de la confirmation serveur ASMSG_TRANSMOG_APPLIED
+-- (le round 37 y a ajoute un rafraichissement direct du mannequin -- ceci
+-- verifie s'il se declenche vraiment et sans erreur).
+-- ============================================================
+if EventHandler and EventHandler.ASMSG_TRANSMOG_APPLIED and not EventHandler.__transmog38Traced then
+	local orig_ASMSG_TRANSMOG_APPLIED = EventHandler.ASMSG_TRANSMOG_APPLIED;
+	EventHandler.ASMSG_TRANSMOG_APPLIED = function(self, msg, ...)
+		print("|cff00ff88[TDEBUG]|r ASMSG_TRANSMOG_APPLIED recu, msg=" .. tostring(msg));
+		local ok, err = pcall(orig_ASMSG_TRANSMOG_APPLIED, self, msg, ...);
+		if not ok then
+			print("|cffff0000[TDEBUG]|r ASMSG_TRANSMOG_APPLIED ERREUR : " .. tostring(err));
+		else
+			local hasItemsFrame = WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame ~= nil;
+			local hasTransmogFrame = WardrobeTransmogFrame ~= nil;
+			print(string.format("|cff00ff88[TDEBUG]|r ASMSG_TRANSMOG_APPLIED traite sans erreur | ItemsCollectionFrame present=%s | WardrobeTransmogFrame present=%s",
+				tostring(hasItemsFrame), tostring(hasTransmogFrame)));
+		end
+	end
+	EventHandler.__transmog38Traced = true;
 end

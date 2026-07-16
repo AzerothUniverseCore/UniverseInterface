@@ -149,49 +149,18 @@ local NO_COLLECTION_MESSAGE_SOURCE_TYPES = {
 
 local MAX_PLAYER_OUTFITS = 16
 
--- PATCH Collection (round 102, corrige round 105) : classes personnalisees
--- (cf. enum Classes, SharedDefines.h) absentes de cette table locale.
--- UNIT_CLASS tombait sur PLAYER_CLASS_FLAG = nil pour tout joueur d'une de
--- ces classes, provoquant "bad argument #2 to 'band' (number expected, got
--- nil)" dans IsKnownItemModifiedAppearance -- Garde-robe entierement vide
--- pour ces joueurs.
---
--- Round 102 avait mis 0 (aucun bit) pour les 12 classes custom par securite,
--- faute de certitude sur la convention reelle -- l'entree DEMONHUNTER=512
--- deja presente ne correspondait pas a 1 << (classID-1) pour son classID
--- reel (13), ce qui semblait indiquer une convention differente.
---
--- L'utilisateur a fourni indexAU.php (son propre outil de calcul de
--- masques), qui confirme sans ambiguite : "classmask = 1 << (id - 1)" en
--- utilisant le classID de SharedDefines.h, pour LES 23 classes sans
--- exception. L'entree DEMONHUNTER=512 heritee de Sirus etait donc bien un
--- bug residuel (jamais mise a jour lors de la reorganisation des classID
--- qui a introduit BloodMage/Knight avant elle) -- corrigee ici avec les
--- autres, plutot que laissee de cote comme au round 102.
 local CLASS_FLAGS = {
-    ["WARRIOR"]      = 1,        -- 1 << 0,  classID 1
-    ["PALADIN"]      = 2,        -- 1 << 1,  classID 2
-    ["HUNTER"]       = 4,        -- 1 << 2,  classID 3
-    ["ROGUE"]        = 8,        -- 1 << 3,  classID 4
-    ["PRIEST"]       = 16,       -- 1 << 4,  classID 5
-    ["DEATHKNIGHT"]  = 32,       -- 1 << 5,  classID 6
-    ["SHAMAN"]       = 64,       -- 1 << 6,  classID 7
-    ["MAGE"]         = 128,      -- 1 << 7,  classID 8
-    ["WARLOCK"]      = 256,      -- 1 << 8,  classID 9
-    ["BLOODMAGE"]    = 512,      -- 1 << 9,  classID 10
-    ["DRUID"]        = 1024,     -- 1 << 10, classID 11
-    ["KNIGHT"]       = 2048,     -- 1 << 11, classID 12
-    ["DEMONHUNTER"]  = 4096,     -- 1 << 12, classID 13 (corrige : etait 512)
-    ["MONK"]         = 8192,     -- 1 << 13, classID 14
-    ["TAMER"]        = 16384,    -- 1 << 14, classID 15
-    ["HERO"]         = 32768,    -- 1 << 15, classID 16
-    ["EVOKER"]       = 65536,    -- 1 << 16, classID 17
-    ["NECROMANCER"]  = 131072,   -- 1 << 17, classID 18
-    ["VENOMANCER"]   = 262144,   -- 1 << 18, classID 19
-    ["PYROMANCER"]   = 524288,   -- 1 << 19, classID 20
-    ["CHRONOMANCER"] = 1048576,  -- 1 << 20, classID 21
-    ["GEOMANCER"]    = 2097152,  -- 1 << 21, classID 22
-    ["CHAOSRAVAGER"] = 4194304,  -- 1 << 22, classID 23
+    ["WARRIOR"] = 1,
+    ["PALADIN"] = 2,
+    ["HUNTER"] = 4,
+    ["ROGUE"] = 8,
+    ["PRIEST"] = 16,
+    ["DEATHKNIGHT"] = 32,
+    ["SHAMAN"] = 64,
+    ["MAGE"] = 128,
+    ["WARLOCK"] = 256,
+    ["DEMONHUNTER"] = 512,
+    ["DRUID"] = 1024,
 };
 
 local PLAYER_CLASS_FLAG = CLASS_FLAGS[UNIT_CLASS];
@@ -234,66 +203,21 @@ local SKILL_ID_BY_NAME = {
 	[SKILL_NAME_CLOTH] = 415,
 };
 
--- PATCH Collection (correction round 27) : SKILL_ID_BY_NAME normalise
--- (accents/casse/espaces). Diagnostic via /cdebug : le serveur Universe
--- renvoie des noms de competence AVEC accents ("Epees" -> reellement
--- "Ãpees", "Batons" -> "BÃ¢tons", "Arbaletes" -> "ArbalÃ¨tes",
--- "Masses a deux mains" -> "Masses Ã  deux mains", etc.), alors que nos
--- constantes SKILL_NAME_* (traductions devinees a la main) sont ecrites SANS
--- accents. Un seul caractere different = correspondance ratee = la
--- sous-categorie entiere reste bloquee a 0/0 dans le Garde-robe, sans la
--- moindre erreur Lua (juste un lookup de table qui rate silencieusement).
---
--- Plutot que de corriger accent par accent (fragile : la moindre variante
--- non testee refait planter le meme bug), on normalise les DEUX cotes de la
--- comparaison : accents retires, casse uniforme, espaces reduits.
-local function NormalizeSkillNameForLookup(name)
-	if type(name) ~= "string" then
-		return name
-	end
-	local accentMap = {
-		["\xc3\xa9"] = "e",
-		["\xc3\xa8"] = "e",
-		["\xc3\xaa"] = "e",
-		["\xc3\xab"] = "e",
-		["\xc3\xa0"] = "a",
-		["\xc3\xa2"] = "a",
-		["\xc3\xae"] = "i",
-		["\xc3\xaf"] = "i",
-		["\xc3\xb4"] = "o",
-		["\xc3\xb9"] = "u",
-		["\xc3\xbb"] = "u",
-		["\xc3\xbc"] = "u",
-		["\xc3\xa7"] = "c",
-		["\xc3\x89"] = "e",
-		["\xc3\x88"] = "e",
-		["\xc3\x8a"] = "e",
-		["\xc3\x8b"] = "e",
-		["\xc3\x80"] = "a",
-		["\xc3\x82"] = "a",
-		["\xc3\x8e"] = "i",
-		["\xc3\x8f"] = "i",
-		["\xc3\x94"] = "o",
-		["\xc3\x99"] = "u",
-		["\xc3\x9b"] = "u",
-		["\xc3\x9c"] = "u",
-		["\xc3\x87"] = "c",
-	}
-	-- Remplace chaque sequence UTF-8 accentuee (2 octets, prefixe \xc3) par
-	-- sa version simple, PUIS met le reste (ASCII pur) en minuscule.
-	name = name:gsub("\xc3[\x80-\xbf]", accentMap)
-	name = name:lower()
-	name = name:gsub("%s+", " ")
-	name = name:gsub("^%s+", ""):gsub("%s+$", "")
-	return name
-end
-
-local SKILL_ID_BY_NAME_NORMALIZED = {}
-for skillName, skillID in pairs(SKILL_ID_BY_NAME) do
-	SKILL_ID_BY_NAME_NORMALIZED[NormalizeSkillNameForLookup(skillName)] = skillID
-end
-
-local PLAYER_SKILLS = {};
+-- ============================================================
+-- PATCH round Transmog-27 (mode libre demande par l'utilisateur) : cette
+-- table decide, pour chaque type d'armure/arme (Tissu/Cuir/Maille/Plaque,
+-- Epees/Haches/Masses/...), si l'apparence correspondante est "utilisable"
+-- par le joueur (IsUsableItemModifiedAppearanceByCategory ci-dessous, et
+-- BuildTransmogCollection un peu plus bas) -- exactement la restriction
+-- retail qui empeche par exemple un Voleur (Cuir) de voir/porter des
+-- apparences Tissu en transmog. Le joueur veut un mode libre sans cette
+-- restriction (n'importe quelle apparence sur n'importe quel emplacement,
+-- Tete Tissu sur un perso Cuir, etc.) : la metatable ci-dessous fait que
+-- PLAYER_SKILLS[N'IMPORTE_QUEL_ID_DE_COMPETENCE] renvoie toujours true, sans
+-- toucher au reste de la logique (BuildTransmogCollection, IsUsable*, la
+-- mise a jour SKILL_LINES_CHANGED plus bas, etc. continuent de fonctionner
+-- normalement, ils concluent juste desormais toujours "utilisable").
+local PLAYER_SKILLS = setmetatable({}, { __index = function() return true end });
 if UNIT_CLASS == "WARRIOR" or UNIT_CLASS == "HUNTER" or UNIT_CLASS == "ROGUE" or UNIT_CLASS == "SHAMAN" or UNIT_CLASS == "DRUID" then
 	PLAYER_SKILLS[SKILL_ID_BY_NAME[SKILL_NAME_FIST_WEAPONS]] = true;
 end
@@ -370,8 +294,19 @@ end
 local function IsKnownItemModifiedAppearance(itemModifiedAppearanceID)
 	local sourceInfo = ITEM_MODIFIED_APPEARANCE_STORAGE[itemModifiedAppearanceID]
 	if sourceInfo then
+		-- FIX ROUND TRANSMOG-30 : PLAYER_CLASS_FLAG peut valoir nil dans une
+		-- fenetre transitoire (UnitClass("player") pas encore pret au moment ou
+		-- ce fichier a ete charge -- theme recurrent de ce portage). bit.band
+		-- plantait alors ("bad argument #2 to 'band' (number expected, got nil)"),
+		-- a CHAQUE PLAYER_LOGIN, via BuildTransmogCollection. On "fail open" :
+		-- si on ne connait pas encore la classe du joueur, on n'exclut PAS
+		-- l'apparence sur ce seul critere (les autres conditions restent
+		-- evaluees normalement) plutot que de planter. Le self-heal ci-dessous
+		-- (PLAYER_LOGIN/PLAYER_ENTERING_WORLD) reevalue PLAYER_CLASS_FLAG des
+		-- que possible, donc cette fenetre est de toute facon tres courte.
+		local classExcluded = PLAYER_CLASS_FLAG ~= nil and bit.band(sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_CLASSMASK], PLAYER_CLASS_FLAG) == 0;
 		if HIDDEN_APPEARANCE_SOURCE_TYPES[sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_SOURCETYPE]]
-			or bit.band(sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_CLASSMASK], PLAYER_CLASS_FLAG) == 0
+			or classExcluded
 			or (PLAYER_FACTION_ID and PLAYER_FACTION_ID < 2 and sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_FACTIONID] ~= 3 and sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_FACTIONID] ~= PLAYER_FACTION_ID)
 			or (not SIRUS_COLLECTION_COLLECTED_ITEM_APPEARANCES[itemModifiedAppearanceID] and HIDDEN_NOT_COLLECTED_APPEARANCE_SOURCE_TYPES[sourceInfo[ITEM_MODIFIED_APPEARANCE_STORAGE_SOURCETYPE]])
 		then
@@ -773,6 +708,20 @@ if UNIT_CLASS == "WARRIOR" then
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
+	-- FIX ROUND TRANSMOG-30 : re-evalue PLAYER_CLASS_FLAG (et UNIT_CLASS) a
+	-- chaque PLAYER_LOGIN/PLAYER_ENTERING_WORLD tant qu'on n'a pas obtenu une
+	-- classe reconnue. UNIT_CLASS/PLAYER_CLASS_FLAG sont des upvalues locales
+	-- partagees par TOUT ce fichier (meme chunk) : les reassigner ici met a
+	-- jour instantanement IsKnownItemModifiedAppearance et tout le reste, sans
+	-- avoir a toucher chaque site d'utilisation.
+	if (event == "PLAYER_LOGIN" or event == "PLAYER_ENTERING_WORLD") and not PLAYER_CLASS_FLAG then
+		local _, resolvedClass = UnitClass("player");
+		if resolvedClass and CLASS_FLAGS[resolvedClass] then
+			UNIT_CLASS = resolvedClass;
+			PLAYER_CLASS_FLAG = CLASS_FLAGS[resolvedClass];
+		end
+	end
+
 	if event == "PLAYER_LOGIN" then
 		self:RegisterCustomEvent("STORE_ROLLED_ITEM_HASHES");
 
@@ -796,7 +745,7 @@ frame:SetScript("OnEvent", function(self, event, ...)
 				local skillName, header = GetSkillLineInfo(i)
 
 				if not header then
-					local skillID = SKILL_ID_BY_NAME[skillName] or SKILL_ID_BY_NAME_NORMALIZED[NormalizeSkillNameForLookup(skillName)];
+					local skillID = SKILL_ID_BY_NAME[skillName];
 					if skillID then
 						local oldValue = not not PLAYER_SKILLS[skillID];
 
@@ -2365,50 +2314,5 @@ function EventHandler:ASMSG_C_E_ADD(msg)
 
 			FireCustomClientEvent("TRANSMOG_COLLECTION_UPDATED");
 		end
-	end
-end
--- ============================================================
--- PATCH Collection (correction round 22) : outil de diagnostic.
---
--- Le Garde-robe filtre desormais correctement par sous-categorie (armure
--- Cuir/Tissu/Mailles/Plaques, etc.) MAIS certaines sous-categories affichent
--- encore 0/0 alors que la liste globale (non filtree) montre des objets.
--- Hypothese : PLAYER_SKILLS (plus haut dans ce fichier) est rempli via
--- SKILL_ID_BY_NAME[skillName], ou skillName vient du VRAI nom de competence
--- renvoye par GetSkillLineInfo() du serveur Universe - et SKILL_ID_BY_NAME
--- est indexe par des constantes SKILL_NAME_* (traductions francaises
--- DEVINEES, jamais confirmees face au serveur reel). Si une seule ne
--- correspond pas mot pour mot, la sous-categorie correspondante reste
--- bloquee a 0/0 pour tout le monde, sans la moindre erreur Lua.
---
--- Cette fonction expose l'etat interne (normalement prive/local a ce
--- fichier) pour comparer d'un coup : ce que le serveur renvoie vraiment vs
--- ce que nos constantes attendent. Appelable via la commande /cdebug
--- (voir Collection_Compat.lua).
--- ============================================================
-function Collection_DebugSkills()
-	print("|cffffcc00[Collection Debug] Lignes de competence du joueur :|r")
-	local numSkillLines = GetNumSkillLines()
-	for i = 1, numSkillLines do
-		local skillName, header = GetSkillLineInfo(i)
-		if not header then
-			local matchedID = SKILL_ID_BY_NAME[skillName]
-			print(string.format("  [%d] %q -> SKILL_ID_BY_NAME = %s", i, tostring(skillName), tostring(matchedID)))
-		end
-	end
-
-	print("|cffffcc00[Collection Debug] Nos constantes SKILL_NAME_* attendues :|r")
-	for name, id in pairs(SKILL_ID_BY_NAME) do
-		print(string.format("  %q (skillID=%d)", tostring(name), id))
-	end
-
-	print("|cffffcc00[Collection Debug] PLAYER_SKILLS actuellement reconnus :|r")
-	local any = false
-	for skillID, v in pairs(PLAYER_SKILLS) do
-		any = true
-		print(string.format("  skillID=%s -> %s", tostring(skillID), tostring(v)))
-	end
-	if not any then
-		print("  (aucun)")
 	end
 end

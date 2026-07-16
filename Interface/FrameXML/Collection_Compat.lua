@@ -11,6 +11,7 @@
 --    UnregisterCallback / UnregisterEvents / GenerateCallbackEvents : suffisant
 --    pour tout ce que le systeme de Collection utilise reellement.
 -- ============================================================
+DIAGv26_CP13 = true;
 if not EventRegistry then
 	EventRegistry = CreateFromMixins(CallbackRegistryMixin)
 
@@ -39,6 +40,7 @@ end
 --    partagee des Frame (meme technique que SharedXML\SharedExtendedMethods.lua,
 --    qui fait deja "function Frame.__index:SetShown(...) ... end").
 -- ============================================================
+DIAGv26_CP41 = true;
 REGISTERED_CUSTOM_EVENTS = REGISTERED_CUSTOM_EVENTS or {}
 
 local CollectionCompat_FrameMeta = getmetatable(CreateFrame("Frame"))
@@ -62,6 +64,7 @@ end
 
 -- Fonctions globales equivalentes (au cas ou du code les appelle en syntaxe
 -- fonction plutot qu'en syntaxe methode).
+DIAGv26_CP64 = true;
 if not RegisterCustomEvent then
 	function RegisterCustomEvent(self, event)
 		self:RegisterCustomEvent(event)
@@ -100,6 +103,7 @@ end
 --    script OnEvent du frame (un simple appel de fonction Lua, sans passer
 --    par ExecuteFrameScript), ce qui n'a aucune restriction de reentrance.
 -- ============================================================
+DIAGv26_CP102 = true;
 if not FireCustomClientEvent then
 	function FireCustomClientEvent(event, ...)
 		local listeners = REGISTERED_CUSTOM_EVENTS[event]
@@ -108,9 +112,34 @@ if not FireCustomClientEvent then
 		end
 		local frame = securecall(next, listeners, nil)
 		while frame do
+			-- FIX ROUND TRANSMOG-30 : cette fonction ne savait dispatcher
+			-- l'evenement QUE vers un frame ayant un vrai script XML
+			-- <OnEvent function="..."/> (recupere via frame:GetScript("OnEvent")).
+			-- Or WardrobeItemsCollectionMixin (la grille PARTAGEE entre l'onglet
+			-- "Garde-robe" et l'onglet "Transmogrification", cf.
+			-- Custom_Wardrobe.lua) est du code retail porte tel quel : il
+			-- definit une METHODE Lua ":OnEvent(event, ...)" sur le mixin, sans
+			-- jamais appeler self:SetScript("OnEvent", ...) ni declarer de
+			-- <OnEvent> XML -- a la retail, le moteur du jeu appelle
+			-- automatiquement self:OnEvent(...) pour n'importe quel frame qui a
+			-- une methode de ce nom, meme sans script explicite. Notre moteur
+			-- WotLK n'a pas ce comportement, donc frame:GetScript("OnEvent")
+			-- renvoyait toujours nil pour ce frame precis : TRANSMOGRIFY_UPDATE
+			-- etait fidelement envoye (SelectVisual -> C_Transmog.SetPending ->
+			-- FireCustomClientEvent) mais JAMAIS RECU, donc WardrobeItemsCollectionMixin:
+			-- UpdateItems() (qui redessine la bordure rose de selection) ne se
+			-- declenchait jamais tout de suite apres un clic -- ni dans
+			-- Garde-robe ni dans Transmogrification. La selection etait bien
+			-- enregistree (d'ou l'effet "cache" rapporte), mais ne se voyait
+			-- qu'apres un OnShow complet (changer d'onglet et revenir), qui lui
+			-- force un rafraichissement independant de ce mecanisme. On ajoute
+			-- donc un repli : si le frame n'a pas de script OnEvent natif mais
+			-- possede une methode Lua ":OnEvent", on l'appelle directement.
 			local handler = frame.GetScript and frame:GetScript("OnEvent")
 			if handler then
 				securecall(handler, frame, event, ...)
+			elseif type(frame.OnEvent) == "function" then
+				securecall(frame.OnEvent, frame, event, ...)
 			end
 			frame = securecall(next, listeners, frame)
 		end
@@ -131,6 +160,7 @@ end
 --    (player:AddItem). Sans ce script Eluna installe et actif, cette
 --    fonction envoie le message mais rien ne se passera cote serveur.
 -- ============================================================
+DIAGv26_CP133 = true;
 AZUCOL_ADDON_PREFIX = "AZUCOL"
 
 function AzuCollection_RequestItem(kind, itemID)
@@ -147,6 +177,7 @@ end
 --    le fournit quand meme par securite pour eviter un crash si un jour
 --    quelque chose s'appuie dessus.
 -- ============================================================
+DIAGv26_CP149 = true;
 C_EventUtils = C_EventUtils or {}
 if not C_EventUtils.IsEventValid then
 	function C_EventUtils.IsEventValid(event)
@@ -170,6 +201,7 @@ if not GetCVarBitfield then
 	end
 end
 
+DIAGv26_CP172 = true;
 if not SetCVarBitfield then
 	function SetCVarBitfield(name, index, value, scriptCvar)
 		if type(name) ~= "string" or type(index) ~= "number" then
@@ -190,6 +222,7 @@ end
 --    d'Universe. Universe a deja IsGMAccount() (SharedXML\Utils\C_Service.lua),
 --    on s'appuie dessus.
 -- ============================================================
+DIAGv26_CP192 = true;
 if not GMError then
 	function GMError(err)
 		if IsGMAccount and IsGMAccount() then
@@ -221,6 +254,7 @@ end
 --    dans Sirus\FrameXML\UIParent.lua. Suit le meme schema que les autres
 --    ToggleXFrame() du client (ShowUIPanel/HideUIPanel).
 -- ============================================================
+DIAGv26_CP223 = true;
 if not ToggleCollectionsJournal then
 	function ToggleCollectionsJournal(tab)
 		if CollectionsJournal and CollectionsJournal:IsShown() then
@@ -238,6 +272,7 @@ end
 -- 8) Chaines de localisation manquantes (absentes de GlobalStrings.lua
 --    d'Universe ; MOUNTS et PETS existent deja et ne sont pas touches).
 -- ============================================================
+DIAGv26_CP240 = true;
 if not COLLECTIONS then COLLECTIONS = "Collections" end
 if not WARDROBE then WARDROBE = "Garde-robe" end
 if not TOY_BOX then TOY_BOX = "Jouets" end
@@ -257,6 +292,7 @@ if not HEIRLOOMS then HEIRLOOMS = "Héritage" end
 --    sans erreur mais remplissait 0 categorie sur 24 objets pourtant
 --    valides).
 -- ============================================================
+DIAGv26_CP259 = true;
 if not HEIRLOOMS_CATEGORY_HEAD then HEIRLOOMS_CATEGORY_HEAD = "Tête" end
 if not HEIRLOOMS_CATEGORY_SHOULDER then HEIRLOOMS_CATEGORY_SHOULDER = "Épaule" end
 if not HEIRLOOMS_CATEGORY_BACK then HEIRLOOMS_CATEGORY_BACK = "Dos" end
@@ -283,13 +319,22 @@ end
 --    dont le UIMenuButtonStretchTemplate gere deja OnMouseDown/OnMouseUp en
 --    scripts XML inline).
 -- ============================================================
+DIAGv26_CP285 = true;
 if not UIResettableDropdownButtonMixin then
 	UIResettableDropdownButtonMixin = {}
 
 	function UIResettableDropdownButtonMixin:OnLoad()
 		self.ResetButton:SetScript("OnClick", function(button, buttonName, down)
 			if self.resetFunction then
-				self.resetFunction()
+				-- Fix Round Transmog-10 : pcall defensif. self.resetFunction
+				-- (SetDefaultFilters cote Montures/Garde-robe/etc.) peut
+				-- planter sur une CVar non enregistree (cf. le shim
+				-- CVar generique plus haut) ; meme avec ce shim, on evite
+				-- qu'une erreur imprevue empeche le bouton de se cacher.
+				local ok, err = pcall(self.resetFunction)
+				if not ok then
+					geterrorhandler()(err)
+				end
 			end
 			self.ResetButton:Hide()
 		end)
@@ -305,6 +350,7 @@ end
 --     utilisees par C_TransmogCollection.lua (SKILL_ID_BY_NAME), absentes du
 --     GlobalStrings.lua d'Universe. Traductions FR officielles Blizzard.
 -- ============================================================
+DIAGv26_CP315 = true;
 if not SKILL_NAME_SWORDS then SKILL_NAME_SWORDS = "Epees" end
 if not SKILL_NAME_AXES then SKILL_NAME_AXES = "Haches" end
 if not SKILL_NAME_BOWS then SKILL_NAME_BOWS = "Arcs" end
@@ -320,6 +366,7 @@ if not SKILL_NAME_CROSSBOWS then SKILL_NAME_CROSSBOWS = "Arbaletes" end
 if not SKILL_NAME_WANDS then SKILL_NAME_WANDS = "Baguettes" end
 if not SKILL_NAME_POLEARMS then SKILL_NAME_POLEARMS = "Armes d'hast" end
 if not SKILL_NAME_CHIELD then SKILL_NAME_CHIELD = "Bouclier" end
+DIAGv26_CP330 = true;
 if not SKILL_NAME_FIST_WEAPONS then SKILL_NAME_FIST_WEAPONS = "Armes de pugilat" end
 if not SKILL_NAME_FISHING then SKILL_NAME_FISHING = "Peche" end
 if not SKILL_NAME_PLATE_MAIL then SKILL_NAME_PLATE_MAIL = "Plaques" end
@@ -339,6 +386,7 @@ if not SKILL_NAME_CLOTH then SKILL_NAME_CLOTH = "Tissu" end
 -- Plutot que re-deviner, on force desormais explicitement TOUTE la serie
 -- 0-6 (valeurs FR officielles Blizzard) pour eliminer tout residu russe,
 -- quel que soit l'index reellement affiche pour un emplacement donne.
+DIAGv26_CP349 = true;
 ITEM_SUB_CLASS_4_0 = "Divers";
 ITEM_SUB_CLASS_4_1 = "Tissu";
 ITEM_SUB_CLASS_4_2 = "Cuir";
@@ -354,6 +402,7 @@ ITEM_SUB_CLASS_4_6 = "Boucliers";
 --     FLYOUT_STORAGE/C_GlobalStorage non portes ici ; comme cette fonction ne
 --     sert qu'a du filtrage cosmetique de popups, un stub inoffensif suffit.
 -- ============================================================
+DIAGv26_CP364 = true;
 C_SpellBook = C_SpellBook or {}
 if not C_SpellBook.FilterOutSpellLearn then
 	function C_SpellBook.FilterOutSpellLearn(spellID, spellName)
@@ -371,6 +420,7 @@ end
 --     l'ordre de chargement (le "or {}" plus loin dans le .toc ne remplacera
 --     pas une table deja non-nil).
 -- ============================================================
+DIAGv26_CP381 = true;
 S_ATLAS_STORAGE = S_ATLAS_STORAGE or {}
 if PRETTY_ATLAS_STORAGE then
 	for atlasName, atlasData in pairs(PRETTY_ATLAS_STORAGE) do
@@ -387,6 +437,7 @@ end
 --     Universe (SharedXML\Extensions\enum.lua). On ajoute seulement les 2
 --     fonctions manquantes, basees sur tInvert/tContains (deja presents).
 -- ============================================================
+DIAGv26_CP397 = true;
 EnumUtil = EnumUtil or {}
 if not EnumUtil.MakeEnum then
 	function EnumUtil.MakeEnum(...)
@@ -405,6 +456,7 @@ end
 --     d'Universe (seul UIDropDownMenu_AddButton existe). Copies verbatim
 --     depuis Sirus.
 -- ============================================================
+DIAGv26_CP415 = true;
 if not UIDropDownMenu_AddSeparator then
 	function UIDropDownMenu_AddSeparator(level)
 		local separatorInfo = {
@@ -437,6 +489,7 @@ if not UIDropDownMenu_AddSeparator then
 	end
 end
 
+DIAGv26_CP447 = true;
 if not UIDropDownMenu_AddSpace then
 	function UIDropDownMenu_AddSpace(level)
 		local spaceInfo = {
@@ -469,6 +522,7 @@ end
 --     d'Universe (confirme par les erreurs en jeu : ERR_NO_RIDING_SKILL,
 --     RANDOM_FAVORITE_MOUNT, YOU_IN_COLLECTED, WARDROBE_ITEMS, etc.)
 -- ============================================================
+DIAGv26_CP479 = true;
 if not ADD_TO_FAVORITE then ADD_TO_FAVORITE = "Ajouter aux favoris" end
 if not ALL_CLASSES then ALL_CLASSES = "Toutes les classes" end
 if not ALL_MOUNTS then ALL_MOUNTS = "Toutes les montures" end
@@ -484,6 +538,7 @@ if not COLLECTION_PAGE_NUMBER then COLLECTION_PAGE_NUMBER = "Page %d / %d" end
 if not COLLECTION_TRAVELING_MERCHANTS then COLLECTION_TRAVELING_MERCHANTS = "Marchands itinerants" end
 if not COMMUNITIES_LIST_DROP_DOWN_FAVORITE then COMMUNITIES_LIST_DROP_DOWN_FAVORITE = "Ajouter aux favoris" end
 if not DELETE_FAVORITE then DELETE_FAVORITE = "Retirer des favoris" end
+DIAGv26_CP494 = true;
 if not ERR_NO_RIDING_SKILL then ERR_NO_RIDING_SKILL = "Vous pouvez apprendre l'equitation et obtenir une monture aupres de votre dresseur d'equitation au niveau 20" end
 if not FAVORITES then FAVORITES = "Favoris" end
 if not GO_TO_BATTLE_BASS then GO_TO_BATTLE_BASS = "Aller au Passe de combat" end
@@ -499,6 +554,7 @@ if not NOT_COLLECTED then NOT_COLLECTED = "Non collectionne" end
 if not PET_FAMILIES then PET_FAMILIES = "Familles de familiers" end
 if not PET_JOURNAL_SUMMON_RANDOM_FAVORITE_PET then PET_JOURNAL_SUMMON_RANDOM_FAVORITE_PET = "Invoquer un familier\nfavori aleatoire" end
 if not PICK_UP then PICK_UP = "Prendre" end
+DIAGv26_CP509 = true;
 if not RANDOM_FAVORITE_MOUNT then RANDOM_FAVORITE_MOUNT = "Invoquer une monture favorite aleatoire" end
 if not SOURCES then SOURCES = "Sources" end
 if not TOY_PROGRESS_FORMAT then TOY_PROGRESS_FORMAT = "%d/%d" end
@@ -524,6 +580,7 @@ if not YOU_IN_COLLECTED then YOU_IN_COLLECTED = "Votre collection :" end
 --     qui n'existent nulle part cote Universe et planterait a l'OnLoad) : on
 --     fournit un stub minimal suffisant (retourne toujours "pas GM").
 -- ============================================================
+DIAGv26_CP534 = true;
 if not IsGMAccount then
 	function IsGMAccount()
 		return false
@@ -546,6 +603,7 @@ end
 -- 17) LE_MOUNT_JOURNAL_FILTER_* : constantes de Interface\FrameXML\Constants.lua
 --     de Sirus, absentes de la version d'Universe de ce fichier.
 -- ============================================================
+DIAGv26_CP556 = true;
 if not LE_MOUNT_JOURNAL_FILTER_COLLECTED then LE_MOUNT_JOURNAL_FILTER_COLLECTED = 1 end
 if not LE_MOUNT_JOURNAL_FILTER_NOT_COLLECTED then LE_MOUNT_JOURNAL_FILTER_NOT_COLLECTED = 2 end
 if not LE_MOUNT_JOURNAL_FILTER_FAVORITES then LE_MOUNT_JOURNAL_FILTER_FAVORITES = 3 end
@@ -565,6 +623,7 @@ if not C_FactionManager.RegisterCallback then
 		end
 	end
 end
+DIAGv26_CP575 = true;
 if not C_FactionManager.GetFactionOverrideCVar then
 	function C_FactionManager.GetFactionOverrideCVar()
 		return nil
@@ -583,6 +642,7 @@ if not MicroButtonPulse then
 		end
 	end
 end
+DIAGv26_CP593 = true;
 if not MicroButtonPulseStop then
 	function MicroButtonPulseStop(self)
 		if self and self.Flash and UIFrameFlashStop then
@@ -598,6 +658,7 @@ end
 --     de Collection). On fournit juste l'enum, utilise par Custom_Wardrobe.xml.
 -- ============================================================
 Enum = Enum or {}
+DIAGv26_CP608 = true;
 if not Enum.TransmogType then
 	Enum.TransmogType = {Appearance = 0, Illusion = 1}
 end
@@ -614,6 +675,7 @@ if not C_StorePublic.IsEnabled then function C_StorePublic.IsEnabled() return fa
 if not C_StorePublic.IsValidCurrencyType then function C_StorePublic.IsValidCurrencyType(currencyType) return false end end
 if not C_StorePublic.GetRolledItemInfoByHash then function C_StorePublic.GetRolledItemInfoByHash(hash) return nil end end
 
+DIAGv26_CP624 = true;
 C_StoreSecure = C_StoreSecure or {}
 if not C_StoreSecure.GetVirtualCategoryByRemoteID then
 	function C_StoreSecure.GetVirtualCategoryByRemoteID(...)
@@ -629,6 +691,7 @@ if not NO_TRANSMOG_VISUAL_ID then NO_TRANSMOG_VISUAL_ID = 0 end
 if not FIRST_TRANSMOG_COLLECTION_SUB_CATEGORY then FIRST_TRANSMOG_COLLECTION_SUB_CATEGORY = 0 end
 if not LAST_TRANSMOG_COLLECTION_SUB_CATEGORY then LAST_TRANSMOG_COLLECTION_SUB_CATEGORY = 5 end
 
+DIAGv26_CP639 = true;
 Enum = Enum or {}
 if not Enum.TransmogModification then
 	Enum.TransmogModification = {Main = 0, Secondary = 1}
@@ -638,38 +701,434 @@ if not Enum.TransmogPendingType then
 end
 
 -- ============================================================
--- 24) C_Transmog : stub minimal. Le systeme complet (Sirus\Utils\C_Transmog.lua,
---     950 lignes) s'appuie sur un protocole d'addon-message serveur (ASMSG_*)
---     que le serveur Universe n'implemente pas, donc on ne le porte PAS
---     integralement (crasherait sur SendServerMessage/evenements jamais recus).
---     Ce stub couvre uniquement les appels faits par WardrobeCollectionFrame
---     (onglet Garde-robe du Codex) pour eviter les crashs OnLoad/OnShow.
---     Consequence : le Codex peut etre parcouru normalement, mais le bouton
---     "Appliquer" d'un transmogrificateur ne sera pas fonctionnel tant que le
---     serveur ne parle pas ce protocole.
+-- 24) C_Transmog : implementation reelle (ROUND Transmog-5).
+--
+--     L'ancien stub minimal (ci-dessous en commentaire pour memoire)
+--     rendait le Codex parcourable mais le bouton "Appliquer" totalement
+--     inoperant : SetPending/GetPending/GetSlotInfo/ApplyAllPending ne
+--     faisaient jamais rien de reel. On implemente maintenant le vrai
+--     mecanisme, en reutilisant EXACTEMENT la meme astuce que
+--     Transmog/TransmogrifierServer.lua (systeme AIO independant, deja
+--     fonctionnel sur Universe depuis longtemps) : ecrire directement les
+--     champs PLAYER_VISIBLE_ITEM_x_ENTRYID du joueur cote SERVEUR
+--     (PLAYER_VISIBLE_ITEM_1_ENTRYID = 283 pour le slot Tete, +2 par slot
+--     suivant) -- un pur artifice protocole qui change l'apparence SANS
+--     toucher a l'objet reellement equipe. Aucune magie cote client requise.
+--
+--     Protocole (addon-message, meme famille ACMSG_*/ASMSG_* que
+--     Utils\C_TransmogCollection.lua) :
+--       ACMSG_TRANSMOG_APPLY   "slot:itemEntry"   client -> serveur
+--                              (itemEntry=0 = revert/retirer la transmog)
+--       ASMSG_TRANSMOG_APPLIED "slot:itemEntry"   serveur -> client (confirmation)
+--       ASMSG_TRANSMOG_SYNC    "slot:item,slot:item,..." serveur -> client (au login)
+--       ASMSG_TRANSMOG_ERROR   texte              serveur -> client (refus)
+--     Cote serveur : voir AzuCollections/AzuCollection_TransmogApply_v1.lua.
+--     Necessite AzuCollection_TransmogTracker_v2.lua (deja installe) : on ne
+--     peut appliquer qu'une apparence deja "collectee" (deja portee au moins
+--     une fois), meme principe que le Garde-robe retail.
 -- ============================================================
-if not C_Transmog then
-	C_Transmog = {}
-	function C_Transmog.IsAtTransmogNPC() return false end
-	function C_Transmog.Close() end
-	function C_Transmog.GetSlotEffectiveCategory(transmogLocation) return nil, nil end
-	function C_Transmog.SetPending(transmogLocation, pendingInfo) end
-	function C_Transmog.GetApplyCost() return 0 end
-	function C_Transmog.GetApplyWarnings() return {} end
-	function C_Transmog.ApplyAllPending() return false end
-	function C_Transmog.LoadOutfit(outfitID) end
+--- Table de correspondance code-erreur -> tag utilisee par
+--- TransmogSlotButtonMixin:Update (Custom_Wardrobe.lua:565) pour decider
+--- quelle icone afficher quand un emplacement ne peut pas etre
+--- transmogrifie. Notre C_Transmog.GetSlotInfo (plus bas) ne renvoie
+--- actuellement qu'un seul code (1 = rien d'equipe dans cet emplacement),
+--- mappe sur le tag retail "NO_ITEM" (fait afficher le contour vide de
+--- l'emplacement plutot qu'une icone noire/nil). Global absent = crash
+--- ("attempt to index global 'TRANSMOG_INVALID_CODES' (a nil value)"),
+--- rapporte plusieurs fois par l'utilisateur (Round Transmog-7).
+DIAGv26_CP683 = true;
+if not TRANSMOG_INVALID_CODES then
+	TRANSMOG_INVALID_CODES = {
+		[1] = "NO_ITEM",
+	}
+end
+
+--- Fix Round Transmog-8 : _AnimateTexCoords manquant (crash en boucle sur
+--- OnUpdate, 727 occurences rapportees) -- utilise par les 2 "Ants" (halo
+--- anime violet autour d'un emplacement en attente d'application,
+--- Custom_Wardrobe.xml, PurpleIconAlertAnts) via
+--- _AnimateTexCoords(self.Ants, 256, 256, 48, 48, 22, elapsed, 0.01).
+--- Polyfill standard retail (feuille de sprite en grille, avance d'une frame
+--- toutes les <throttle> secondes).
+if not _AnimateTexCoords then
+	function _AnimateTexCoords(texture, width, height, frameWidth, frameHeight, numFrames, elapsed, throttle, numColumns)
+		throttle = throttle or 0.1;
+		numColumns = numColumns or numFrames;
+
+		texture.transmogAnimElapsed = (texture.transmogAnimElapsed or 0) + elapsed;
+		if texture.transmogAnimElapsed >= throttle then
+			local framesElapsed = floor(texture.transmogAnimElapsed / throttle);
+			texture.transmogAnimElapsed = texture.transmogAnimElapsed - (throttle * framesElapsed);
+			local currentFrame = texture.transmogAnimCurrentFrame or 1;
+			currentFrame = ((currentFrame + framesElapsed - 1) % numFrames) + 1;
+			texture.transmogAnimCurrentFrame = currentFrame;
+
+			local column = (currentFrame - 1) % numColumns;
+			local row = floor((currentFrame - 1) / numColumns);
+
+			local left = column * frameWidth / width;
+			local right = (column + 1) * frameWidth / width;
+			local top = row * frameHeight / height;
+			local bottom = (row + 1) * frameHeight / height;
+
+			texture:SetTexCoord(left, right, top, bottom);
+		end
+	end
+end
+
+DIAGv26_CP722 = true;
+do
+	C_Transmog = C_Transmog or {}
+	-- FIX ROUND TRANSMOG-24 (cause racine trouvee via bissection /diagcp) :
+	-- C_Item n'est jamais cree par ce fichier lui-meme, seulement utilise
+	-- (ligne "if not C_Item.GetBaseItemTransmogInfo then" un peu plus bas).
+	-- Sur ce client, C_Item n'existe pas encore a ce stade precis du
+	-- chargement (le vrai C_Item, avec GetItemInfo etc., est cree par un
+	-- fichier qui charge APRES Collection_Compat.lua) -- d'ou
+	-- "attempt to index a nil value (global 'C_Item')", qui interrompait
+	-- tout le reste du fichier (EventHandler:ASMSG_TRANSMOG_*, C_Talent,
+	-- PET_TYPE_SUFFIX, COLLECTION_ITEM_HYPERLINK_FORMAT, StringSplitEx,
+	-- GetSlotInfo, /ccheck, etc.). Meme idiome que C_Transmog ci-dessus :
+	-- si C_Item existe deja, on ne touche a rien ; sinon on cree une table
+	-- vide que le vrai fichier C_Item (charge plus tard) completera lui
+	-- normalement via le meme idiome "C_Item = C_Item or {}".
+	C_Item = C_Item or {}
+
+	local _pending = {};	-- [slotID] = {type = Enum.TransmogPendingType.*, transmogID = itemID}
+	local _applied = {};	-- [slotID] = itemID actuellement applique (nil = aucun, objet de base affiche)
+
+	--- IMPORTANT (fix Round Transmog-7) : dans le systeme retail original,
+	--- cette fonction indique si le joueur est physiquement pres du PNJ
+	--- Transmogrificateur ; sinon la plupart des actions de l'UI -- dont la
+	--- SELECTION d'un objet dans la grille (WardrobeItemsCollectionMixin:
+	--- SelectVisual) -- sont des no-op. Notre systeme est un journal en
+	--- libre-service (AzuCollections), sans PNJ requis : on considere donc
+	--- le joueur "au transmogrificateur" des que la fenetre
+	--- WardrobeTransmogFrame est affichee. Avant ce fix, IsAtTransmogNPC
+	--- renvoyait toujours false, ce qui empechait tout clic sur un objet de
+	--- la grille de faire quoi que ce soit (symptome rapporte : "je clique
+	--- sur l'item, rien ne se passe, ca ne le selectionne meme pas").
+	if not C_Transmog.IsAtTransmogNPC then
+		function C_Transmog.IsAtTransmogNPC()
+			return WardrobeTransmogFrame ~= nil and WardrobeTransmogFrame:IsShown();
+		end
+	end
+	if not C_Transmog.Close then
+		function C_Transmog.Close() end
+	end
+	if not C_Transmog.GetSlotEffectiveCategory then
+		function C_Transmog.GetSlotEffectiveCategory(transmogLocation) return nil, nil end
+	end
+	if not C_Transmog.LoadOutfit then
+		function C_Transmog.LoadOutfit(outfitID) end
+	end
+	--- Fix Round Transmog-8 : cette fonction etait un stub renvoyant toujours
+	--- des zeros. Or TransmogUtil.GetInfoForEquippedSlot (TransmogUtil.lua)
+	--- s'appuie DESSUS pour calculer le "selectedSourceID" transmis a
+	--- WardrobeItemsCollectionMixin:GoToSourceID au clic sur un emplacement
+	--- (TransmogFrameMixin:SelectSlotButton, Custom_Wardrobe.lua) : avec des
+	--- zeros partout, GoToSourceID n'obtenait jamais de visualID valide et
+	--- n'appelait donc jamais SetActiveSlot -- la grille ne changeait jamais
+	--- de categorie/contenu au clic sur un emplacement (symptome rapporte :
+	--- "je clique sur torse, rien ne s'affiche, seul le menu Tissu/Cuir/...
+	--- fonctionne"). Dans notre systeme, "sourceID" == l'itemID lui-meme
+	--- (verifie dans Utils/C_TransmogCollection.lua : GetAppearanceSourceInfo
+	--- traite son parametre comme un itemID direct, pas d'ID de source
+	--- separe). On calcule donc reellement : la base = l'objet equipe, et
+	--- l'applique/en-attente a partir de nos tables _applied/_pending.
+	if not C_Transmog.GetSlotVisualInfo then
+		function C_Transmog.GetSlotVisualInfo(transmogLocation)
+			local slotID = transmogLocation:GetSlotID();
+
+			local baseSourceID = GetInventoryItemID("player", slotID) or 0;
+			local baseVisualID = 0;
+			if baseSourceID ~= 0 and C_TransmogCollection and C_TransmogCollection.GetAppearanceSourceInfo then
+				local _, _, visID = C_TransmogCollection.GetAppearanceSourceInfo(baseSourceID);
+				baseVisualID = visID or 0;
+			end
+
+			local appliedItemID = _applied[slotID];
+			local appliedSourceID = NO_TRANSMOG_SOURCE_ID or 0;
+			local appliedVisualID = 0;
+			if appliedItemID and appliedItemID ~= 0 then
+				appliedSourceID = appliedItemID;
+				if C_TransmogCollection and C_TransmogCollection.GetAppearanceSourceInfo then
+					local _, _, visID = C_TransmogCollection.GetAppearanceSourceInfo(appliedItemID);
+					appliedVisualID = visID or 0;
+				end
+			end
+
+			local pending = _pending[slotID];
+			local pendingSourceID = REMOVE_TRANSMOG_ID or 0;
+			local pendingVisualID = 0;
+			local hasPendingUndo = false;
+			if pending then
+				if pending.type == Enum.TransmogPendingType.Apply then
+					pendingSourceID = pending.transmogID or 0;
+					if C_TransmogCollection and C_TransmogCollection.GetAppearanceSourceInfo then
+						local _, _, visID = C_TransmogCollection.GetAppearanceSourceInfo(pendingSourceID);
+						pendingVisualID = visID or 0;
+					end
+				elseif pending.type == Enum.TransmogPendingType.Revert then
+					hasPendingUndo = true;
+				end
+			end
+
+			return baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID, hasPendingUndo, nil, nil;
+		end
+	end
+	if not C_Transmog.GetSlotUseError then
+		function C_Transmog.GetSlotUseError(transmogLocation) return nil, nil end
+	end
+	if not C_Transmog.GetInventoryTransmogInfo then
+		function C_Transmog.GetInventoryTransmogInfo(unit, slotID) return nil end
+	end
+
+	--- Fix Round Transmog-8 : GetBaseItemTransmogInfo/GetAppliedItemTransmogInfo
+	--- etaient des stubs (definis dans Collection_Compat_Late.lua, sous garde
+	--- "if not X then" -- notre definition ICI charge plus tot, cf.
+	--- FrameXML.toc : Collection_Compat.xml avant Collection_Compat_Late.lua
+	--- -- donc notre version prend le dessus). Utilisees par
+	--- TransmogSlotButtonMixin:GetEffectiveTransmogID (Custom_Wardrobe.lua)
+	--- pour decider quelle apparence habiller sur le mannequin 3D.
+	if not C_Item.GetBaseItemTransmogInfo then
+		function C_Item.GetBaseItemTransmogInfo(itemLocation)
+			local itemID = 0;
+			if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
+				itemID = GetInventoryItemID("player", itemLocation:GetEquipmentSlot()) or 0;
+			end
+			return { appearanceID = itemID, illusionID = 0 };
+		end
+	end
+	if not C_Item.GetAppliedItemTransmogInfo then
+		function C_Item.GetAppliedItemTransmogInfo(itemLocation)
+			local appliedItemID = 0;
+			if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
+				appliedItemID = _applied[itemLocation:GetEquipmentSlot()] or 0;
+			end
+			return { appearanceID = appliedItemID, illusionID = 0 };
+		end
+	end
+
+	-- FIX ROUND TRANSMOG-35 : diagnostic (/tclickdebug, rounds 31-34) confirme
+	-- que ni WardrobeCollectionFrame.ItemsCollectionFrame ni WardrobeTransmogFrame
+	-- ne se rafraichissent en direct suite a TRANSMOGRIFY_UPDATE, MEME apres le
+	-- fix round 30 -- les deux ont bien un script OnEvent natif herite d'un
+	-- template (GetScript("OnEvent")=true chez les deux), mais ce script herite
+	-- n'appelle visiblement pas notre methode ":OnEvent" personnalisee (probable
+	-- template partage generique, hors de ce patch, qu'on ne peut pas inspecter
+	-- ni modifier surement). Plutot que de continuer a deviner sur un mecanisme
+	-- qu'on ne maitrise pas entierement, on rafraichit desormais DIRECTEMENT et
+	-- explicitement les 2 frames connues juste apres avoir change _pending,
+	-- sans dependre du tout de FireCustomClientEvent/OnEvent pour ce cas precis
+	-- (celui-ci reste appele en plus, au cas ou d'autres listeners en beneficient).
+	local function RefreshTransmogDisplaysNow()
+		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
+			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
+		end
+		-- FIX ROUND TRANSMOG-36 : le round 35 appelait aussi WardrobeTransmogFrame:
+		-- MarkDirty(), qui programme un TransmogFrameMixin:Update() complet au
+		-- prochain OnUpdate. Or Update() fait systematiquement
+		-- WardrobeTransmogFrame.ModelFrame:Undress() puis redresse via
+		-- slotButton:RefreshItemModel() pour chaque emplacement -- en le
+		-- declenchant a CHAQUE clic sur la grille (au lieu des seuls vrais
+		-- changements d'equipement/slot prevus a l'origine), le mannequin a fini
+		-- par disparaitre completement (signale par l'utilisateur : "je ne vois
+		-- plus le personnage"). On ne rafraichit donc plus que le bouton
+		-- Appliquer/le cout (leger, sans toucher au mannequin), pas plus.
+		if WardrobeTransmogFrame and WardrobeTransmogFrame.UpdateApplyButton then
+			pcall(WardrobeTransmogFrame.UpdateApplyButton, WardrobeTransmogFrame);
+		end
+	end
+
+	function C_Transmog.SetPending(transmogLocation, pendingInfo)
+		_pending[transmogLocation:GetSlotID()] = pendingInfo;
+		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
+		RefreshTransmogDisplaysNow();
+	end
+
+	function C_Transmog.GetPending(transmogLocation)
+		return _pending[transmogLocation:GetSlotID()];
+	end
+
+	function C_Transmog.ClearPending(transmogLocation)
+		_pending[transmogLocation:GetSlotID()] = nil;
+		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
+		RefreshTransmogDisplaysNow();
+	end
+
+	--- Cout de la transmogrification (fix Round Transmog-7) : 500000 cuivre
+	--- (50 pieces d'or) par emplacement APPLIQUE, exactement la meme valeur
+	--- que TRANSMOG_COST dans Transmog/TransmogrifierServer.lua (le systeme
+	--- AIO deja fonctionnel), pour rester coherent entre les deux systemes.
+	--- Annuler une transmogrification (Revert) reste gratuit, comme dans
+	--- TransmogrifierServer.lua (ResetSlot/ResetAll). Le cout reel est
+	--- verifie et preleve cote serveur dans
+	--- AzuCollection_TransmogApply_v1.lua ; ce calcul cote client ne sert
+	--- qu'a l'affichage/activation du bouton Appliquer.
+	local TRANSMOG_COST_PER_SLOT = 500000;
+
+	function C_Transmog.GetApplyCost()
+		local hasPending, cost = false, 0;
+		for _, pending in pairs(_pending) do
+			hasPending = true;
+			if pending.type == Enum.TransmogPendingType.Apply then
+				cost = cost + TRANSMOG_COST_PER_SLOT;
+			end
+		end
+		if not hasPending then
+			return nil;
+		end
+		return cost;
+	end
+
+	function C_Transmog.GetApplyWarnings()
+		return {};
+	end
+
 	function C_Transmog.GetSlotInfo(transmogLocation)
-		-- isTransmogrified, hasPending, isPendingCollected, canTransmogrify, cannotTransmogrifyReason, hasUndo, isHideVisual, texture
-		return false, false, false, true, nil, false, false, nil
+		local slotID = transmogLocation:GetSlotID();
+		local pending = _pending[slotID];
+		local appliedID = _applied[slotID];
+		local equippedID = GetInventoryItemID("player", slotID);
+
+		local isTransmogrified = appliedID ~= nil and appliedID ~= 0;
+		local hasPending = pending ~= nil;
+		local hasUndo = hasPending and pending.type == Enum.TransmogPendingType.Revert;
+		-- FIX ROUND TRANSMOG-28 (mode libre demande par l'utilisateur) : on
+		-- exigeait un objet reellement equipe dans l'emplacement pour pouvoir
+		-- transmogrifier (canTransmogrify = equippedID ~= nil). Mode libre =
+		-- sans restriction, meme un emplacement vide doit pouvoir recevoir une
+		-- apparence. Note honnete : le mecanisme d'application
+		-- (PLAYER_VISIBLE_ITEM_x_ENTRYID, cote serveur) ne fait que RHABILLER
+		-- visuellement un objet deja equipe -- sur un emplacement VRAIMENT
+		-- vide (aucun objet du tout), le moteur du jeu n'a simplement aucune
+		-- geometrie sur laquelle appliquer l'apparence. Ce fix retire donc le
+		-- blocage logiciel (le clic/la selection fonctionnera desormais), mais
+		-- si l'emplacement est reellement vide le rendu visuel pourrait ne
+		-- rien montrer quand meme -- limite du moteur, pas du script.
+		local canTransmogrify = true;
+		local cannotTransmogrifyReason = nil;
+		local isPendingCollected = true;
+		local isHideVisual = false;
+
+		local textureItemID;
+		if hasPending and pending.type == Enum.TransmogPendingType.Apply then
+			textureItemID = pending.transmogID;
+		elseif isTransmogrified then
+			textureItemID = appliedID;
+		else
+			textureItemID = equippedID;
+		end
+		local texture = textureItemID and textureItemID ~= 0 and GetItemIcon(textureItemID) or nil;
+
+		return isTransmogrified, hasPending, isPendingCollected, canTransmogrify, cannotTransmogrifyReason, hasUndo, isHideVisual, texture;
 	end
-	function C_Transmog.ClearPending(transmogLocation) end
-	function C_Transmog.GetSlotVisualInfo(transmogLocation)
-		-- baseSourceID, baseVisualID, appliedSourceID, appliedVisualID, pendingSourceID, pendingVisualID, hasPendingUndo, _, itemSubclass
-		return 0, 0, 0, 0, 0, 0, false, nil, nil
+
+	function C_Transmog.ApplyAllPending()
+		local sentAny = false;
+		for slotID, pending in pairs(_pending) do
+			local itemID = 0;
+			if pending.type == Enum.TransmogPendingType.Apply then
+				itemID = pending.transmogID or 0;
+			end
+			SendServerMessage("ACMSG_TRANSMOG_APPLY", string.format("%d:%d", slotID, itemID));
+			sentAny = true;
+		end
+		wipe(_pending);
+		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
+		return sentAny;
 	end
-	function C_Transmog.GetSlotUseError(transmogLocation) return nil, nil end
-	function C_Transmog.GetPending(transmogLocation) return nil end
-	function C_Transmog.GetInventoryTransmogInfo(unit, slotID) return nil end
+
+	-- ------------------------------------------------------------
+	-- Reception des messages serveur (meme dispatcher EventHandler que
+	-- Utils\C_TransmogCollection.lua : une methode nommee exactement comme
+	-- le prefixe de l'addon-message est appelee automatiquement).
+	-- ------------------------------------------------------------
+	-- FIX ROUND TRANSMOG-37 : ces 2 confirmations serveur (sync au login,
+	-- confirmation d'application) sont des VRAIS changements d'equipement --
+	-- contrairement au simple survol/clic de navigation dans la grille
+	-- (round 36, ou on a volontairement arrete de rafraichir le mannequin a
+	-- chaque clic pour ne pas le faire disparaitre), ici un rafraichissement
+	-- complet du mannequin est legitime et attendu : "le visuel du
+	-- personnage ne se met pas a jour" apres avoir clique Appliquer. On
+	-- appelle donc explicitement MarkDirty (redessine le mannequin via
+	-- Undress/RefreshItemModel) EN PLUS du rafraichissement leger de la
+	-- grille, uniquement ici (evenements rares, pas a chaque clic).
+	-- FIX ROUND TRANSMOG-40 : le round 37 ne faisait que MarkDirty() (poser un
+	-- drapeau self.dirty=true, consomme au prochain OnUpdate natif de
+	-- WardrobeTransmogFrame). Le script OnUpdate est bien cable en XML donc
+	-- ca devrait marcher tout seul -- mais on supprime cette dependance a un
+	-- aller-retour supplementaire (drapeau + attente du prochain tick) et on
+	-- appelle desormais Update() directement et immediatement, en synchrone,
+	-- au moment meme ou le serveur confirme. On garde aussi MarkDirty() en
+	-- filet de securite (inoffensif, coute rien de plus).
+	local function RefreshTransmogModelAfterServerConfirm()
+		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
+			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
+		end
+		if WardrobeTransmogFrame then
+			if WardrobeTransmogFrame.Update then
+				local ok, err = pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
+				if not ok then
+					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:Update() a echoue : " .. tostring(err));
+				end
+			end
+			if WardrobeTransmogFrame.MarkDirty then
+				pcall(WardrobeTransmogFrame.MarkDirty, WardrobeTransmogFrame);
+			end
+		end
+	end
+
+	function EventHandler:ASMSG_TRANSMOG_SYNC(msg)
+		wipe(_applied);
+		if msg and msg ~= "" then
+			for slotStr, itemStr in msg:gmatch("(%d+):(%d+)") do
+				local slotID = tonumber(slotStr);
+				local itemID = tonumber(itemStr);
+				if slotID and itemID and itemID > 0 then
+					_applied[slotID] = itemID;
+				end
+			end
+		end
+		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
+		RefreshTransmogModelAfterServerConfirm();
+	end
+
+	function EventHandler:ASMSG_TRANSMOG_APPLIED(msg)
+		-- FIX ROUND TRANSMOG-40 : trace inline (independante de tout ordre de
+		-- chargement entre fichiers, contrairement au wrap externe du round 38
+		-- dans Collection_Compat_Tooltip.lua qui ne s'installe que si ce
+		-- fichier-ci est deja charge) + protection pcall pour ne jamais
+		-- laisser une erreur silencieuse interrompre le rafraichissement du
+		-- mannequin.
+		print("|cff00ff88[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED recu, msg=" .. tostring(msg));
+		local slotStr, itemStr = msg:match("(%d+):(%d+)");
+		local slotID = tonumber(slotStr);
+		local itemID = tonumber(itemStr);
+		if slotID then
+			if itemID and itemID > 0 then
+				_applied[slotID] = itemID;
+			else
+				_applied[slotID] = nil;
+			end
+		else
+			print("|cffff0000[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED : message mal forme, slotID introuvable dans '" .. tostring(msg) .. "'");
+		end
+		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
+		local ok, err = pcall(RefreshTransmogModelAfterServerConfirm);
+		if ok then
+			print("|cff00ff88[TDEBUG40]|r rafraichissement mannequin declenche sans erreur.");
+		else
+			print("|cffff0000[TDEBUG40]|r rafraichissement mannequin ERREUR : " .. tostring(err));
+		end
+	end
+
+	function EventHandler:ASMSG_TRANSMOG_ERROR(msg)
+		if UIErrorsFrame then
+			UIErrorsFrame:AddMessage(msg or "Transmogrification impossible.", 1.0, 0.1, 0.1);
+		end
+	end
 end
 
 -- ============================================================
@@ -678,6 +1137,7 @@ end
 --     GetActiveTalentGroup, 1 ou 2), sans notion de "specID" a la retail.
 --     On fournit un alias sans danger (nil = pas de filtre par spe applique).
 -- ============================================================
+DIAGv26_CP986 = true;
 C_Talent = C_Talent or {}
 if not C_Talent.GetCurrentSpecID then
 	function C_Talent.GetCurrentSpecID()
@@ -693,6 +1153,7 @@ end
 --     LE_MOUNT_JOURNAL_FILTER_* avaient ete ajoutees au round precedent).
 -- ============================================================
 if not LE_PET_JOURNAL_FILTER_COLLECTED then LE_PET_JOURNAL_FILTER_COLLECTED = 1 end
+DIAGv26_CP1001 = true;
 if not LE_PET_JOURNAL_FILTER_NOT_COLLECTED then LE_PET_JOURNAL_FILTER_NOT_COLLECTED = 2 end
 
 -- ============================================================
@@ -724,6 +1185,7 @@ end
 --     les redirige vers une table Lua ; tous les autres noms de CVar passent
 --     par les fonctions natives normalement.
 -- ============================================================
+DIAGv26_CP1032 = true;
 local COLLECTION_SHIMMED_CVARS = {
 	heirloomCollectedFilters = true,
 	heirloomSourceFilters = true,
@@ -748,6 +1210,7 @@ local COLLECTION_SHIMMED_CVARS = {
 	wardrobeShowUncollected = true,
 	wardrobeSourceFilters = true,
 }
+DIAGv26_CP1047 = true;
 COLLECTION_CVAR_SHIM_VALUES = COLLECTION_CVAR_SHIM_VALUES or {}
 
 -- PATCH round 80 : valeurs par defaut pour les CVars "afficher
@@ -758,6 +1221,7 @@ COLLECTION_CVAR_SHIM_VALUES = COLLECTION_CVAR_SHIM_VALUES or {}
 -- INCONDITIONNELLE tous les objets non collectionnes quand
 -- wardrobeShowUncollected est faux -- d'ou la grille Garde-robe vide (0/N)
 -- au premier affichage de l'onglet, jusqu'a cliquer sur la petite croix.
+DIAGv26_CP1066 = true;
 if COLLECTION_CVAR_SHIM_VALUES.wardrobeShowCollected == nil then
 	COLLECTION_CVAR_SHIM_VALUES.wardrobeShowCollected = "1"
 end
@@ -777,11 +1241,31 @@ if not COLLECTION_CVAR_SHIM_INSTALLED then
 	local RealGetCVar = GetCVar
 	local RealSetCVar = SetCVar
 
+	--- Fix Round Transmog-10 : liste blanche non exhaustive. Plusieurs noms
+	--- de CVar invente par les differents systemes de Collection portes
+	--- (ex : "mountJournalGeneralFilters" appele par
+	--- C_MountJournal.SetDefaultFilters, "wardrobeShowCollected" par
+	--- C_TransmogCollection.SetDefaultFilters) ETAIENT deja dans
+	--- COLLECTION_SHIMMED_CVARS mais l'appel plantait quand meme avec
+	--- "Couldn't find CVar named ..." -- symptome observe sur le bouton
+	--- Reinitialiser les filtres (Montures ET Garde-robe/Transmog). Plutot
+	--- que de chasser un a un chaque nom de CVar invente non encore
+	--- recense, on rend le filet de securite generique : si l'appel natif
+	--- echoue (nom vraiment inconnu du moteur client), on bascule
+	--- automatiquement ce nom sur la table de secours au lieu de laisser
+	--- planter tout le call-stack (et on le memorise dans
+	--- COLLECTION_SHIMMED_CVARS pour ne plus jamais retenter l'appel natif
+	--- pour ce nom).
 	function GetCVar(name, ...)
 		if COLLECTION_SHIMMED_CVARS[name] then
 			return COLLECTION_CVAR_SHIM_VALUES[name] or "0"
 		end
-		return RealGetCVar(name, ...)
+		local ok, result = pcall(RealGetCVar, name, ...)
+		if ok then
+			return result
+		end
+		COLLECTION_SHIMMED_CVARS[name] = true
+		return COLLECTION_CVAR_SHIM_VALUES[name] or "0"
 	end
 
 	function SetCVar(name, value, ...)
@@ -789,7 +1273,11 @@ if not COLLECTION_CVAR_SHIM_INSTALLED then
 			COLLECTION_CVAR_SHIM_VALUES[name] = tostring(value)
 			return
 		end
-		return RealSetCVar(name, value, ...)
+		local ok = pcall(RealSetCVar, name, value, ...)
+		if not ok then
+			COLLECTION_SHIMMED_CVARS[name] = true
+			COLLECTION_CVAR_SHIM_VALUES[name] = tostring(value)
+		end
 	end
 
 	if GetCVarBool then
@@ -799,9 +1287,46 @@ if not COLLECTION_CVAR_SHIM_INSTALLED then
 				local value = COLLECTION_CVAR_SHIM_VALUES[name]
 				return value == "1" or value == "true"
 			end
-			return RealGetCVarBool(name, ...)
+			local ok, result = pcall(RealGetCVarBool, name, ...)
+			if ok then
+				return result
+			end
+			COLLECTION_SHIMMED_CVARS[name] = true
+			local value = COLLECTION_CVAR_SHIM_VALUES[name]
+			return value == "1" or value == "true"
 		end
 	end
+end
+
+--- Fix Round Transmog-10 : commande de diagnostic. Plusieurs rapports de
+--- bugs recents (rounds 8-9) montraient des erreurs "(a nil value)" sur des
+--- fonctions/tables qui SONT bien presentes dans ce fichier tel que livre
+--- (verifie ligne par ligne avant chaque livraison) -- le symptome typique
+--- d'un client qui charge encore une version perimee/tronquee de
+--- Collection_Compat.lua. Cette commande permet de verifier EN JEU, sans
+--- ambiguite, si les correctifs des derniers rounds sont reellement actifs.
+DIAGv26_CP1149 = true;
+SLASH_COLLECTIONCOMPATCHECK1 = "/ccheck"
+SlashCmdList = SlashCmdList or {}
+SlashCmdList["COLLECTIONCOMPATCHECK"] = function()
+	local function report(label, isPresent)
+		if isPresent then
+			print("|cff00ff00[ccheck] OK|r - " .. label)
+		else
+			print("|cffff0000[ccheck] MANQUANT|r - " .. label .. " (fichier Collection_Compat.lua perime ou tronque, recopiez le patch a nouveau et redemarrez completement le client)")
+		end
+	end
+	print("|cffffcc00=== Collection_Compat.lua : diagnostic ===|r");
+	report("TRANSMOG_INVALID_CODES (round 7)", TRANSMOG_INVALID_CODES ~= nil)
+	report("C_Transmog.GetSlotInfo (round 6)", C_Transmog ~= nil and C_Transmog.GetSlotInfo ~= nil)
+	report("C_Transmog.GetSlotVisualInfo reel (round 8)", C_Transmog ~= nil and C_Transmog.GetSlotVisualInfo ~= nil)
+	report("C_Item.GetBaseItemTransmogInfo reel (round 8)", C_Item ~= nil and C_Item.GetBaseItemTransmogInfo ~= nil)
+	report("_AnimateTexCoords (round 8)", _AnimateTexCoords ~= nil)
+	report("PET_TYPE_SUFFIX (ancien round)", PET_TYPE_SUFFIX ~= nil)
+	report("C_Talent.GetCurrentSpecID (ancien round)", C_Talent ~= nil and C_Talent.GetCurrentSpecID ~= nil)
+	report("COLLECTION_ITEM_HYPERLINK_FORMAT (ancien round)", COLLECTION_ITEM_HYPERLINK_FORMAT ~= nil)
+	report("CVar shim generique/pcall (round 10)", COLLECTION_CVAR_SHIM_INSTALLED == true)
+	print("|cffffcc00=== fin du diagnostic ===|r");
 end
 
 -- ============================================================
@@ -812,6 +1337,7 @@ end
 --     recevait nil a la place d'un nombre -> crash a chaque clic sur
 --     l'etoile "Favori" (montures/familiers/jouets/apparences/reliques).
 -- ============================================================
+DIAGv26_CP1180 = true;
 if not CHAR_COLLECTION_MOUNT then CHAR_COLLECTION_MOUNT = 0 end
 if not CHAR_COLLECTION_PET then CHAR_COLLECTION_PET = 1 end
 if not CHAR_COLLECTION_APPEARANCE then CHAR_COLLECTION_APPEARANCE = 2 end
@@ -833,6 +1359,7 @@ if not WARDROBE_NO_SEARCH then WARDROBE_NO_SEARCH = "Aucun resultat pour cette r
 --     "'for' initial value must be a number" des qu'on cliquait sur un
 --     emplacement d'arme dans l'onglet Garde-robe.
 -- ============================================================
+DIAGv26_CP1201 = true;
 if not FIRST_TRANSMOG_COLLECTION_WEAPON_TYPE then FIRST_TRANSMOG_COLLECTION_WEAPON_TYPE = 12 end
 if not LAST_TRANSMOG_COLLECTION_WEAPON_TYPE then LAST_TRANSMOG_COLLECTION_WEAPON_TYPE = 30 end
 
@@ -879,6 +1406,7 @@ end
 --     proactive car utilisees dans le meme fichier / la meme fonction de
 --     tooltip (CollectionsUtil.lua:SetAppearanceTooltip).
 -- ============================================================
+DIAGv26_CP1247 = true;
 if not COLLECTION_ADD_FORMAT then COLLECTION_ADD_FORMAT = "Modele %s ajoute a votre collection." end
 if not COLLECTION_REMOVE_FORMAT then COLLECTION_REMOVE_FORMAT = "Modele %s retire de votre collection." end
 if not COLLECTION_ITEM_HYPERLINK_FORMAT then COLLECTION_ITEM_HYPERLINK_FORMAT = "|cffff80ff|Hcollection:2:%d|h[Modeles : %s]|h|r" end
@@ -902,6 +1430,7 @@ if not PLAYER_LIST_DELIMITER then PLAYER_LIST_DELIMITER = ", " end
 -- lors du survol d'un objet ayant plusieurs sources/illusions (SetIllusionTooltip).
 -- Valeurs recuperees verbatim depuis Sirus\FrameXML\Constants.lua.
 -- ============================================================
+DIAGv26_CP1270 = true;
 if not WARDROBE_TOOLTIP_CYCLE_ARROW_ICON then WARDROBE_TOOLTIP_CYCLE_ARROW_ICON = "|TInterface\\Transmogrify\\transmog-tooltip-arrow:12:11:-1:-1|t" end
 if not WARDROBE_TOOLTIP_CYCLE_SPACER_ICON then WARDROBE_TOOLTIP_CYCLE_SPACER_ICON = "|TInterface\\Common\\spacer:12:11:-1:-1|t" end
 if not ENCHANT_EMPTY_SLOT_FILEDATAID then ENCHANT_EMPTY_SLOT_FILEDATAID = "Interface\\Icons\\INV_Scroll_05" end
@@ -919,6 +1448,7 @@ if not WARDROBE_OTHER_ITEMS then WARDROBE_OTHER_ITEMS = "Autres objets utilisant
 --   -> HEIRLOOMS_CLASS_FILTER_FORMAT / HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT
 --      manquantes. Valeurs verbatim depuis Sirus\FrameXML\GlobalStrings.lua.
 -- ============================================================
+DIAGv26_CP1287 = true;
 if not HEIRLOOMS_CLASS_FILTER_FORMAT then HEIRLOOMS_CLASS_FILTER_FORMAT = "|c%s%s|r" end
 if not HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT then HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT = "|c%s%s|r (%s)" end
 
@@ -944,6 +1474,7 @@ if not HEIRLOOMS_CLASS_SPEC_FILTER_FORMAT then HEIRLOOMS_CLASS_SPEC_FILTER_FORMA
 -- Repose sur S_CLASS_SORT_ORDER, deja present cote Universe
 -- (SharedXML\SharedConstants.lua).
 -- ============================================================
+DIAGv26_CP1312 = true;
 do
 	local NativeUnitClass = UnitClass
 
@@ -977,6 +1508,7 @@ end
 -- ailleurs) et sert a un usage interne different. On complete donc la table
 -- GLOBALE en ajoutant colorStr a chaque entree, calcule depuis r/g/b.
 -- ============================================================
+DIAGv26_CP1345 = true;
 if RAID_CLASS_COLORS then
 	for classFile, colorInfo in pairs(RAID_CLASS_COLORS) do
 		if type(colorInfo) == "table" and not colorInfo.colorStr then
@@ -1003,6 +1535,7 @@ end
 -- On complete donc la table existante avec un objet Color, et on ajoute l'entree 7
 -- manquante (couleur Reliques/Heirloom classique : bleu clair).
 -- ============================================================
+DIAGv26_CP1371 = true;
 if ITEM_QUALITY_COLORS and CreateColor then
 	for quality, info in pairs(ITEM_QUALITY_COLORS) do
 		if type(info) == "table" and not info.color then
@@ -1025,6 +1558,7 @@ end
 -- SharedXML\SharedConstants.lua) - seule la fonction d'acces manquait.
 -- Portee verbatim depuis Sirus.
 -- ============================================================
+DIAGv26_CP1393 = true;
 if not GetSpecializationNameForSpecID then
 	function GetSpecializationNameForSpecID(specID)
 		if type(specID) ~= "number" then
@@ -1060,6 +1594,7 @@ end
 -- strsplit) qui retire d'abord un delimiteur final eventuel pour eviter
 -- un dernier morceau vide parasite.
 -- ============================================================
+DIAGv26_CP1428 = true;
 if not StringSplitEx then
 	function StringSplitEx(delimiter, str, pieces)
 		str = string.gsub(str, strconcat(delimiter, "$"), "")
@@ -1086,6 +1621,7 @@ end
 -- deja toutes dans le client de base Universe - seule cette fonction
 -- elle-meme manquait.
 -- ============================================================
+DIAGv26_CP1454 = true;
 if not AddChatTyppedMessage then
 	function AddChatTyppedMessage(messageType, message)
 		if messageType == "SYSTEM" then
@@ -1151,6 +1687,7 @@ end
 -- repli deja present dans EJ_CompatLate.lua) : le menu affiche alors
 -- simplement la classe sans sous-liste de specialisations, sans erreur.
 -- ============================================================
+DIAGv26_CP1519 = true;
 do
 	local CLASS_ID_TO_TOKEN = {
 		[1]  = "WARRIOR",
@@ -1293,6 +1830,7 @@ end
 -- dans Sirus/GlobalStrings.lua) -> ToolTipText = nil -> bulles
 -- d'aide vides. Traduction frFR depuis le texte russe original.
 -- ============================================================
+DIAGv26_CP1661 = true;
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_1 = "La Transmogrification vous permet de modifier l'apparence de votre équipement. Mais il y a quelques points importants à connaître.\n\n1. Une fois la Transmogrification effectuée, vous ne pourrez plus rendre les objets au marchand. Cela concerne aussi bien l'objet dont vous avez changé l'apparence que celui dont vous avez utilisé l'apparence.\n\n2. Si vous détruisez ou vendez un objet possédant un minuteur de retour ou d'échange, vous perdrez l'apparence associée à la Transmogrification.\n\n3. Après la Transmogrification, les deux objets deviennent personnels. Cela s'applique également aux objets d'Héritage (armure et armes).\n\n4. Appliquer un enchantement visuel sur une arme la rend également personnelle.\n\n5. L'effet de Transmogrification est retiré des objets d'Héritage envoyés par courrier.";
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_2 = "Ce compteur indique le nombre d'apparences d'objets que vous avez collectées. Le nombre affiché varie selon l'emplacement et le type d'objet sélectionnés.";
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_3 = "Pour trouver l'apparence d'un objet qui vous intéresse, commencez à saisir son nom dans le champ \"Recherche\".";
@@ -1302,3 +1840,5 @@ HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_6 = "Vous pouvez ici enregistrer toutes vos
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_7 = "Vous pouvez ici sélectionner l'objet auquel vous souhaitez donner une nouvelle apparence.\n\nPour annuler les modifications d'un objet en particulier, cliquez dessus avec le bouton droit de la souris ou sur la flèche qui apparaît à côté.\n\nSi vous souhaitez annuler les modifications pour tous les objets à la fois, cliquez sur la flèche en haut à droite.\n\nNotez que l'annulation groupée n'est possible que tant que le service de Transmogrification n'a pas été payé.";
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_8 = "Vous pouvez ici choisir le type d'apparence d'objet souhaité.";
 HEPLPLATE_WARDROBE_TRANSMOG_TUTORIAL_9 = "Toutes vos apparences d'objets correspondant aux filtres et à la recherche s'affichent ici.\n\nPour placer une apparence en tête de liste, ajoutez-la à vos Favoris. Pour cela, faites un clic droit sur l'objet et sélectionnez \"Ajouter aux Favoris\".";
+
+DIAGv26_END = true;

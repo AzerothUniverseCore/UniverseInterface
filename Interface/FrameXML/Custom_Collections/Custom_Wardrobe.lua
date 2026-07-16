@@ -6,6 +6,20 @@ local function GetPage(entryIndex, pageSize)
 	return floor((entryIndex - 1) / pageSize) + 1;
 end
 
+--- ROUND Transmog-4 : bascule depuis un des onglets communs
+--- (Montures/Familiers/Garde-robe/Jouets/Heritage), affiches maintenant
+--- directement sur WardrobeFrame lui-meme (voir Custom_Wardrobe.xml), vers le
+--- journal Collections normal, sur l'onglet demande. Symetrique de
+--- CollectionsJournal_OpenTransmogrify (Custom_Collections.lua), qui fait le
+--- chemin inverse.
+function WardrobeFrame_SwitchToJournalTab(tab)
+	HideUIPanel(WardrobeFrame);
+	ShowUIPanel(CollectionsJournal);
+	if CollectionsJournal_SetTab then
+		CollectionsJournal_SetTab(CollectionsJournal, tab);
+	end
+end
+
 WardrobeFrameMixin = {}
 
 function WardrobeFrameMixin:OnLoad()
@@ -14,6 +28,19 @@ function WardrobeFrameMixin:OnLoad()
 
 	self:RegisterCustomEvent("TRANSMOGRIFY_OPEN");
 	self:RegisterCustomEvent("TRANSMOGRIFY_CLOSE");
+
+	--- Fix Round Transmog-7 : les 6 boutons $parentTab1..6 (Custom_Wardrobe.xml,
+	--- mirroir des onglets Montures/Familiers/.../Transmogrification) heritent
+	--- du template CollectionsJournalTab mais personne n'appelait jamais
+	--- PanelTemplates_SetNumTabs/SetTab sur WardrobeFrame : sans etat
+	--- "selectedTab" connu, PanelTemplates_UpdateTabs ne pouvait jamais
+	--- distinguer l'onglet actif des autres, et les 6 s'affichaient tous
+	--- "allumes" (texture active). WardrobeFrame.selectedTab est un etat
+	--- independant de CollectionsJournal.selectedTab (frames differentes) :
+	--- pas de risque de recreer le bug de fermeture en boucle deja corrige
+	--- pour l'onglet 6 du journal.
+	PanelTemplates_SetNumTabs(self, 6);
+	PanelTemplates_SetTab(self, 6);
 
 	self.helpPlate = {
 		FramePos = { x = 0, y = -24 },
@@ -372,6 +399,18 @@ function TransmogSlotButtonMixin:OnLoad()
 	end
 	self.itemLocation = ItemLocation:CreateFromEquipmentSlot(slotID);
 
+	-- FIX ROUND TRANSMOG-36 (demande utilisateur) : indicateur visuel "rond
+	-- stop" pour un emplacement VRAIMENT vide (rien porte, rien applique/en
+	-- attente) -- cree une seule fois ici en Lua (pas touche a la XML) plutot
+	-- qu'un simple emplacement vide sans aucune indication.
+	if not self.StopIcon then
+		self.StopIcon = self:CreateTexture(nil, "OVERLAY");
+		self.StopIcon:SetTexture("Interface\\RaidFrame\\ReadyCheck-NotReady");
+		self.StopIcon:SetPoint("CENTER", self.Icon, "CENTER", 0, 0);
+		self.StopIcon:SetSize(20, 20);
+		self.StopIcon:Hide();
+	end
+
 	self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 
 	local parent = self:GetParent();
@@ -624,6 +663,21 @@ function TransmogSlotButtonMixin:Update()
 			self.HiddenVisualCover:Hide();
 			self.HiddenVisualIcon:Hide();
 		end
+	end
+
+	-- FIX ROUND TRANSMOG-36 (demande utilisateur) : "rond stop" quand
+	-- l'emplacement est VRAIMENT vide -- rien porte dans cet emplacement, et
+	-- rien en attente/deja applique dessus. Le "mode libre" (round 27-28)
+	-- laisse canTransmogrify toujours vrai (on peut quand meme y cliquer si
+	-- jamais un objet apparait dans les sacs plus tard), ce rond n'est qu'une
+	-- indication visuelle, pas un blocage.
+	if self.StopIcon then
+		local genuinelyEmpty = false;
+		if self.transmogLocation and self.transmogLocation:IsAppearance() then
+			local equippedItemID = GetInventoryItemID("player", self.slotID);
+			genuinelyEmpty = (not equippedItemID) and (not hasPending) and (not hasUndo) and (not isTransmogrified);
+		end
+		self.StopIcon:SetShown(genuinelyEmpty);
 	end
 end
 
@@ -1393,10 +1447,63 @@ function WardrobeItemsCollectionMixin:SetActiveSlot(transmogLocation, category, 
 					if usePreviousArmorCategory and self.hasLastArmorSubCategory and self:HasArmorCategorySubCategories(category, self.lastArmorSubCategory) then
 						subCategory = self.lastArmorSubCategory
 					else
-						for subCategoryID = (LAST_TRANSMOG_COLLECTION_SUB_CATEGORY - 1), FIRST_TRANSMOG_COLLECTION_SUB_CATEGORY, -1 do
-							if self:IsValidArmorSubCategoryForSlot(category, subCategoryID) then
-								subCategory = subCategoryID;
-								break;
+						-- FIX ROUND TRANSMOG-28 : cette boucle testait les
+						-- sous-categories d'armure de la PLUS HAUTE (Plaque) a
+						-- la plus basse (Tissu) et s'arretait des la premiere
+						-- "valide" -- IsValidArmorSubCategoryForSlot renvoie
+						-- toujours vrai des qu'un nom existe pour ce
+						-- sous-type, donc elle tombait quasi-systematiquement
+						-- sur Plaque en premier, quelle que soit la classe/
+						-- l'objet du joueur. Resultat rapporte : la grille
+						-- restait vide tant qu'on ne choisissait pas
+						-- manuellement Tissu/Cuir/etc dans le menu. On
+						-- privilegie desormais le sous-type de l'objet
+						-- REELLEMENT equipe dans cet emplacement (comme a la
+						-- retail), et on ne retombe sur l'ancienne recherche
+						-- que si rien n'y est equipe ou si son sous-type est
+						-- indetermine.
+						-- FIX ROUND TRANSMOG-37 : le round 28 essayait de deduire le
+						-- sous-type (Tissu/Cuir/Maille/Plaque) de l'objet equipe via
+						-- C_Item.GetItemInfo(item, nil, nil, nil, true) puis classID/
+						-- subClassID -> C_TransmogCollection.GetCategory(...). Signale
+						-- par l'utilisateur : ca retombe systematiquement sur "Plaques"
+						-- pour un Voleur qui porte du Cuir -- cette signature d'appel
+						-- ne renvoie visiblement pas ce qu'on attendait sur ce client
+						-- (silencieusement, sans erreur : ok/classID restaient nil, donc
+						-- on retombait toujours sur l'ancienne recherche "la plus haute
+						-- d'abord", qui tombe sur Plaque en general). Nouvelle methode,
+						-- plus simple et basee sur des fonctions deja utilisees et
+						-- confirmees fonctionnelles ailleurs dans ce meme fichier :
+						-- on lit le sous-type de l'objet equipe en TEXTE (itemSubType,
+						-- ex. "Cuir") via GetItemInfo (alias local de C_Item.GetItemInfoRaw,
+						-- deja utilise partout dans ce fichier), puis on le compare au nom
+						-- de chaque sous-categorie (C_TransmogCollection.GetSubCategoryInfo,
+						-- deja utilise pour le texte du menu deroulant) jusqu'a trouver
+						-- une correspondance exacte.
+						local equippedItemID = GetInventoryItemID("player", self.transmogLocation:GetSlotID());
+						local equippedSubCategory;
+						if equippedItemID then
+							local ok, itemSubType = pcall(function()
+								return select(7, GetItemInfo(equippedItemID));
+							end);
+							if ok and itemSubType then
+								for subCategoryID = FIRST_TRANSMOG_COLLECTION_SUB_CATEGORY, (LAST_TRANSMOG_COLLECTION_SUB_CATEGORY - 1) do
+									local subCategoryName = C_TransmogCollection.GetSubCategoryInfo(category, subCategoryID);
+									if subCategoryName and subCategoryName == itemSubType then
+										equippedSubCategory = subCategoryID;
+										break;
+									end
+								end
+							end
+						end
+						if equippedSubCategory and self:IsValidArmorSubCategoryForSlot(category, equippedSubCategory) then
+							subCategory = equippedSubCategory;
+						else
+							for subCategoryID = (LAST_TRANSMOG_COLLECTION_SUB_CATEGORY - 1), FIRST_TRANSMOG_COLLECTION_SUB_CATEGORY, -1 do
+								if self:IsValidArmorSubCategoryForSlot(category, subCategoryID) then
+									subCategory = subCategoryID;
+									break;
+								end
 							end
 						end
 					end
@@ -1582,19 +1689,127 @@ function WardrobeItemsCollectionMixin:ResetPage()
 	self:UpdateItems();
 end
 
+-- FIX ROUND TRANSMOG-27/29 : a la retail, quand on est "au
+-- transmogrificateur" (C_Transmog.IsAtTransmogNPC, toujours vrai ici des que
+-- la fenetre est ouverte, notre systeme n'a pas de vrai PNJ), seules les
+-- apparences DEJA COLLECTIONNEES ET UTILISABLES par la classe du joueur
+-- sont affichees -- ce qui limitait la grille a 1 seul item. Le round 27
+-- avait retire cette restriction entierement (tout s'affichait, y compris
+-- des objets jamais vus/possedes). Precision de l'utilisateur au round 29 :
+-- trop large -- seuls les items COLLECTIONNES ou PRESENTS DANS LES SACS
+-- doivent apparaitre (pas n'importe quel objet du jeu jamais possede).
+function WardrobeItemsCollectionMixin:BuildBagItemIDSet()
+	local set = {};
+	for bag = 0, (NUM_BAG_SLOTS or 4) do
+		local numSlots = GetContainerNumSlots(bag);
+		if numSlots and numSlots > 0 then
+			for slot = 1, numSlots do
+				local itemID = GetContainerItemID(bag, slot);
+				if itemID then
+					set[itemID] = true;
+				end
+			end
+		end
+	end
+	return set;
+end
+
+-- FIX ROUND TRANSMOG-40 : root cause reelle du souscomptage (5/13 epaulettes,
+-- 0 arme) trouvee via /tbagdebug (round 39) : ITEM_MODIFIED_APPEARANCE_STORAGE
+-- est en fait indexee PAR itemID (chaque itemID pointe directement vers ses
+-- propres infos d'apparence -- c'est ce que confirme la fonction native
+-- C_TransmogCollection.GetItemVisualID(itemID), qui fait juste
+-- ITEM_MODIFIED_APPEARANCE_STORAGE[itemID][...APPERANCEID]). La methode
+-- precedente (chercher, pour CHAQUE apparence candidate, la liste de ses
+-- "sources" via GetSortedAppearanceSources puis verifier si un itemID de sac
+-- y figure) s'appuie sur un enumerateur qui ne remonte pas tous les itemID
+-- customs de ce serveur -- d'ou le dump round 39 montrant des sourceID
+-- reels totalement differents des itemID en sac. La bonne methode, directe
+-- et fiable, est l'INVERSE : pour chaque item EN SAC, demander sa PROPRE
+-- visualID (lookup direct, O(1), fiable pour n'importe quel itemID, y
+-- compris les items customs), puis comparer cette visualID a celle de
+-- l'apparence candidate. Ca fonctionne de la meme facon pour armures
+-- (tete/epaule/dos/torse/etc, tissu/cuir/maille/plaque confondus) et armes,
+-- exactement comme demande.
+function WardrobeItemsCollectionMixin:BuildBagVisualIDSet()
+	local set = {};
+	if not (C_TransmogCollection and C_TransmogCollection.GetItemVisualID) then
+		return set;
+	end
+	for bag = 0, (NUM_BAG_SLOTS or 4) do
+		local numSlots = GetContainerNumSlots(bag);
+		if numSlots and numSlots > 0 then
+			for slot = 1, numSlots do
+				local itemID = GetContainerItemID(bag, slot);
+				if itemID then
+					local ok, visualID = pcall(C_TransmogCollection.GetItemVisualID, itemID);
+					if ok and visualID then
+						set[visualID] = itemID;
+					end
+				end
+			end
+		end
+	end
+	return set;
+end
+
+function WardrobeItemsCollectionMixin:HasSourceInBags(visualID, bagItemIDs, directSourceID, bagVisualIDs)
+	-- FIX ROUND TRANSMOG-40 : verification directe et fiable en premier --
+	-- voir le commentaire de BuildBagVisualIDSet ci-dessus pour le detail du
+	-- root cause. Cette seule ligne suffit en pratique a couvrir tous les
+	-- cas (armures tous types confondus + armes) ; le reste de la fonction
+	-- (rounds 37 et anterieurs) est conserve tel quel comme filet de
+	-- securite si jamais GetItemVisualID n'est pas disponible.
+	if bagVisualIDs and bagVisualIDs[visualID] then
+		return true;
+	end
+	if not bagItemIDs then
+		return false;
+	end
+	-- FIX ROUND TRANSMOG-37 : ce test appelait GetSortedAppearanceSources en
+	-- filtrant par self.activeCategory/self.activeSubCategory (le type
+	-- d'armure actuellement selectionne dans le menu deroulant, ex "Cuir").
+	-- Resultat : un objet en Plaque/Maille/Tissu dans les sacs (pourtant
+	-- toujours autorise en "mode libre", rounds 27-28) ne remontait jamais
+	-- comme "trouve" tant que le filtre actif ne correspondait pas
+	-- exactement a son propre type -- d'ou tres peu d'objets detectes
+	-- (5 sur 13 epaulettes reellement en sac, aucune arme). On verifie
+	-- d'abord la maniere la plus directe et fiable : le sourceID deja connu
+	-- pour ce visuel (transmis directement par l'appelant, FilterVisuals,
+	-- qui l'a deja sous la main). En repli, on recherche aussi TOUTES les
+	-- sources de ce visuel sans aucun filtre de categorie.
+	if directSourceID and bagItemIDs[directSourceID] then
+		return true;
+	end
+	local ok, sources = pcall(CollectionWardrobeUtil.GetSortedAppearanceSources, visualID, nil, nil, nil);
+	if ok and type(sources) == "table" then
+		for i = 1, #sources do
+			if bagItemIDs[sources[i].sourceID] then
+				return true;
+			end
+		end
+	end
+	-- Repli final : meme filtre qu'avant (categorie active), au cas ou le
+	-- repli sans categorie ne serait pas supporte par cette fonction.
+	local ok2, sourcesFiltered = pcall(CollectionWardrobeUtil.GetSortedAppearanceSources, visualID, self.activeCategory, self.activeSubCategory, self:GetExclusionForSlotName());
+	if ok2 and type(sourcesFiltered) == "table" then
+		for i = 1, #sourcesFiltered do
+			if bagItemIDs[sourcesFiltered[i].sourceID] then
+				return true;
+			end
+		end
+	end
+	return false;
+end
+
 function WardrobeItemsCollectionMixin:FilterVisuals()
-	local isAtTransmogrifier = C_Transmog.IsAtTransmogNPC();
+	local bagItemIDs = self:BuildBagItemIDSet();
+	local bagVisualIDs = self:BuildBagVisualIDSet(); -- FIX ROUND TRANSMOG-40
 	local visualsList = self.visualsList;
 	local filteredVisualsList = {};
 	for i, visualInfo in ipairs(visualsList) do
-		if isAtTransmogrifier then
-			if (visualInfo.isUsable and visualInfo.isCollected) or visualInfo.alwaysShowItem then
-				tinsert(filteredVisualsList, visualInfo);
-			end
-		else
-			if not visualInfo.isHideVisual then
-				tinsert(filteredVisualsList, visualInfo);
-			end
+		if not visualInfo.isHideVisual and (visualInfo.isCollected or self:HasSourceInBags(visualInfo.visualID, bagItemIDs, visualInfo.sourceID, bagVisualIDs)) then
+			tinsert(filteredVisualsList, visualInfo);
 		end
 	end
 	self.filteredVisualsList = filteredVisualsList;
@@ -1842,11 +2057,20 @@ function WardrobeItemsCollectionMixin:GetExclusionForSlotName(slotName)
 	end
 end
 
+--- Fix Round Transmog-9 : garde defensive. Si RefreshVisualsList est
+--- declenche (ex : OnTextChanged de la recherche) avant qu'un premier
+--- emplacement/categorie n'ait jamais ete selectionne, self.transmogLocation
+--- et/ou self.activeCategory valent encore nil -> C_TransmogCollection.
+--- GetCategoryAppearances renvoie "Usage: ..." (categorie invalide).
+--- Symptome observe : erreur en tapant dans Recherche juste apres
+--- l'ouverture de l'onglet Transmogrification.
 function WardrobeItemsCollectionMixin:RefreshVisualsList()
-	if self.transmogLocation:IsIllusion() then
+	if self.transmogLocation and self.transmogLocation:IsIllusion() then
 		self.visualsList = C_TransmogCollection.GetIllusions();
-	else
+	elseif self.activeCategory then
 		self.visualsList = C_TransmogCollection.GetCategoryAppearances(self.activeCategory, self.activeSubCategory, self:GetExclusionForSlotName());
+	else
+		self.visualsList = {};
 	end
 
 	self:FilterVisuals();
@@ -1868,6 +2092,15 @@ function WardrobeItemsCollectionMixin:GetAnAppearanceSourceFromVisual(visualID, 
 				sourceID = sources[i].sourceID;
 				break;
 			end
+		end
+		-- FIX ROUND TRANSMOG-28 (mode libre) : symptome rapporte -- cliquer
+		-- sur un item de la grille pour le selectionner ne faisait rien pour
+		-- certains items. Si la recherche "mustBeUsable" ci-dessus ne trouve
+		-- rien mais qu'il existe quand meme au moins une source, on la prend
+		-- plutot que de renvoyer NO_TRANSMOG_VISUAL_ID (0) et de laisser le
+		-- clic sans effet.
+		if sourceID == NO_TRANSMOG_VISUAL_ID and sources[1] then
+			sourceID = sources[1].sourceID;
 		end
 	end
 	return sourceID;
