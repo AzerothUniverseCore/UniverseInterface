@@ -719,8 +719,16 @@ function TransmogSlotButtonMixin:RefreshItemModel()
 	-- si GetEffectiveTransmogID() renvoie bien le nouvel item applique ou
 	-- encore l'ancien.
 	if TMODELTRACE_ENABLED then
-		print(string.format("|cff00ccff[TMODELTRACE]|r slot=%s appearanceID=%s (NO_TRANSMOG_VISUAL_ID=%s)",
-			tostring(self.slotID), tostring(appearanceID), tostring(NO_TRANSMOG_VISUAL_ID)));
+		-- FIX ROUND TRANSMOG-46 : ajoute l'etat BRUT de _applied/_pending
+		-- (via C_Transmog.DebugGetRawState, expose cote Collection_Compat.lua)
+		-- pour savoir si _applied[slotID] contient bien le nouvel itemID
+		-- juste apres confirmation serveur, ou si le probleme est ailleurs.
+		local rawApplied, rawPendingDesc = "?", "?";
+		if C_Transmog.DebugGetRawState then
+			rawApplied, rawPendingDesc = C_Transmog.DebugGetRawState(self.slotID);
+		end
+		print(string.format("|cff00ccff[TMODELTRACE]|r slot=%s appearanceID=%s (NO_TRANSMOG_VISUAL_ID=%s) | _applied[slot]=%s | _pending[slot]=%s",
+			tostring(self.slotID), tostring(appearanceID), tostring(NO_TRANSMOG_VISUAL_ID), rawApplied, rawPendingDesc));
 	end
 	if appearanceID ~= NO_TRANSMOG_VISUAL_ID then
 		local slotID = self.transmogLocation:GetSlotID();

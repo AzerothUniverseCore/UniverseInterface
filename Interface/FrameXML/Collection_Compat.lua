@@ -951,6 +951,23 @@ do
 		return _pending[transmogLocation:GetSlotID()];
 	end
 
+	-- FIX ROUND TRANSMOG-46 (diagnostic uniquement, aucun changement de
+	-- comportement) : _pending et _applied sont des upvalues locales a ce
+	-- bloc "do...end", invisibles depuis Custom_Wardrobe.lua. On expose ici
+	-- un acces en lecture seule pour que /tmodeltrace puisse afficher leur
+	-- contenu REEL au moment precis ou RefreshItemModel() s'execute, afin de
+	-- determiner si le probleme vient de l'ecriture (ASMSG_TRANSMOG_APPLIED
+	-- ne met pas _applied a jour comme attendu) ou de la lecture
+	-- (GetEffectiveTransmogID ne consulte pas la bonne valeur).
+	function C_Transmog.DebugGetRawState(slotID)
+		local pending = _pending[slotID];
+		local pendingDesc = "nil";
+		if pending then
+			pendingDesc = string.format("type=%s transmogID=%s", tostring(pending.type), tostring(pending.transmogID));
+		end
+		return tostring(_applied[slotID]), pendingDesc;
+	end
+
 	function C_Transmog.ClearPending(transmogLocation)
 		_pending[transmogLocation:GetSlotID()] = nil;
 		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
