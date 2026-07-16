@@ -1,0 +1,97 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RebirthExpBar.lua"/>
+
+	<Frame name="RebirthExpBar" enableMouse="true" parent="UIParent" hidden="true" frameLevel="3">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="MainMenuBar" relativePoint="TOPLEFT">
+				<Offset><AbsDimension x="278" y="9"/></Offset>
+			</Anchor>
+			<Anchor point="BOTTOMRIGHT" relativeTo="MainMenuBar" relativePoint="TOPRIGHT">
+				<Offset><AbsDimension x="-278" y="9"/></Offset>
+			</Anchor>
+		</Anchors>
+
+		<Frames>
+			<StatusBar name="$parentStatusBar" frameLevel="3" parentKey="StatusBar" minValue="0" maxValue="100" defaultValue="0">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+
+				<Layers>
+					<!-- Fond sombre de la barre (meme texture que l'interface Rebirth) -->
+					<Layer level="BACKGROUND">
+						<Texture name="$parentBackground" file="Interface/HUD/UIExperienceBar2x">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+							<TexCoords left="0.000488281" right="0.550293" top="0.0820312" bottom="0.152344"/>
+						</Texture>
+					</Layer>
+
+					<!-- Cadre decoratif par-dessus la progression (meme texture) -->
+					<Layer level="OVERLAY">
+						<Texture name="$parentFrame" file="Interface/HUD/UIExperienceBar2x">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+							<TexCoords left="0.000488281" right="0.558105" top="0.785156" bottom="0.917969"/>
+						</Texture>
+					</Layer>
+				</Layers>
+
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0.90" g="0.80" b="0.50"/>
+			</StatusBar>
+
+			<!-- Texte au-dessus de tout -->
+			<Frame name="$parentOverlayFrame" frameLevel="999">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentText" inherits="TextStatusBarText">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset><AbsDimension x="0" y="1"/></Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("PLAYER_ENTERING_WORLD");
+				self:RegisterEvent("PLAYER_LEVEL_UP");
+				self:RegisterEvent("UPDATE_FACTION");
+				RebirthExpBar_OnLoad(self);
+			</OnLoad>
+			<OnEvent>
+				RebirthExpBar_OnEvent(self, event, ...);
+			</OnEvent>
+			<OnShow>
+				RebirthExpBar_Update();
+				UIParent_ManageFramePositions();
+			</OnShow>
+			<OnHide>
+				UIParent_ManageFramePositions();
+			</OnHide>
+			<OnEnter>
+				RebirthExpBarOverlayFrameText:Show();
+			</OnEnter>
+			<OnLeave>
+				if (not RebirthExpBar.textLocked) then
+					RebirthExpBarOverlayFrameText:Hide();
+				end
+			</OnLeave>
+		</Scripts>
+	</Frame>
+</Ui>

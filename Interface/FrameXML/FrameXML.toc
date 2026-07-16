@@ -249,5 +249,21 @@ XML_IXXUI.xml
 # add new modules above here
 LocalizationPost.xml
 
+## START - Rebirth
+
+## Lib
+lib\c_timer.lua
+lib\smallfolk.lua
+lib\CMH.lua
+
+## Retail Template
+Templates\UITemplate2X.xml
+
+## UI
+Rebirth\UIRebirth.xml
+Rebirth\RebirthExpBar.xml
+
+## END - Rebirth
+
 # Do not remove
 Controller.lua
