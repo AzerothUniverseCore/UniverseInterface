@@ -975,6 +975,87 @@ SlashCmdList["TBAGDEBUG"] = function()
 end
 
 -- ============================================================
+-- ROUND Transmog-41 : /titemdebug -- pipeline complet par itemID reel de sac.
+-- ============================================================
+-- Le round 40 a corrige la METHODE DE CORRESPONDANCE (matching), mais si le
+-- vrai probleme se situe plus en amont -- dans la construction meme de la
+-- liste de candidats (BASE_APPEARANCES, utilisee par
+-- C_TransmogCollection.GetCategoryAppearances, donc par self.visualsList) --
+-- aucune amelioration du matching ne peut faire apparaitre un objet qui
+-- n'est jamais entre dans cette liste de candidats en premier lieu. Ce
+-- diagnostic prend chaque objet REELLEMENT en sac et affiche a quelle etape
+-- precise du pipeline il "disparait" : pas d'entree dans
+-- ITEM_MODIFIED_APPEARANCE_STORAGE ? categorie/sous-categorie non resolue ?
+-- sourceType exclu ? IsKnownItemModifiedAppearance renvoie faux ? ou bien
+-- tout est correct mais il n'est simplement pas encore dans
+-- BASE_APPEARANCES (inBaseAppearances=false) ?
+-- Usage : ouvre Garde-robe ou Transmogrification sur l'emplacement concerne
+-- (ex. Epaules), tape /titemdebug.
+SLASH_TITEMDEBUG1 = "/titemdebug"
+SlashCmdList["TITEMDEBUG"] = function()
+	local frame = WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame;
+	if not frame then
+		print("|cffff0000[TITEMDEBUG]|r Ouvre d'abord Garde-robe ou Transmogrification.");
+		return;
+	end
+	if not (C_TransmogCollection and C_TransmogCollection.DebugItemPipeline) then
+		print("|cffff0000[TITEMDEBUG]|r C_TransmogCollection.DebugItemPipeline indisponible (patch pas a jour ?).");
+		return;
+	end
+
+	local bagItemIDs = frame:BuildBagItemIDSet();
+	local list = {};
+	for itemID in pairs(bagItemIDs) do
+		list[#list + 1] = itemID;
+	end
+	table.sort(list);
+
+	print(string.format("|cff00ff88[TITEMDEBUG]|r activeCategory=%s activeSubCategory=%s | %d objets en sac a analyser (limite 25 lignes).",
+		tostring(frame.activeCategory), tostring(frame.activeSubCategory), #list));
+
+	local n = 0;
+	for i = 1, #list do
+		if n >= 25 then break; end
+		local itemID = list[i];
+		local ok, result = pcall(C_TransmogCollection.DebugItemPipeline, itemID);
+		if ok and result then
+			if not result.hasStorageEntry then
+				print(string.format("  itemID=%d : PAS d'entree dans ITEM_MODIFIED_APPEARANCE_STORAGE (jamais reference comme apparence).", itemID));
+			else
+				print(string.format("  itemID=%d categoryID=%s subCategoryID=%s equipLocID=%s appearanceID=%s sourceType=%s classMask=%s isKnown=%s inBaseAppearances=%s",
+					itemID, tostring(result.categoryID), tostring(result.subCategoryID), tostring(result.equipLocID),
+					tostring(result.appearanceID), tostring(result.sourceType), tostring(result.classMask),
+					tostring(result.isKnown), tostring(result.inBaseAppearances)));
+				if result.categoryID == 0 then
+					print(string.format("      -> categoryID=0 (rejete) | rawEquipLocStr=%s itemSubTypeStr=%s (utile si c'est une arme)",
+						tostring(result.rawEquipLocStr), tostring(result.itemSubTypeStr)));
+				end
+			end
+			n = n + 1;
+		else
+			print(string.format("  itemID=%d : erreur diagnostic (%s)", itemID, tostring(result)));
+			n = n + 1;
+		end
+	end
+end
+
+-- ============================================================
+-- ROUND Transmog-41 : /tmodeltrace -- bascule pour voir en direct ce que
+-- GetEffectiveTransmogID()/RefreshItemModel calculent reellement au moment
+-- ou le mannequin devrait changer (utile pour le point "mannequin ne se met
+-- pas a jour apres Appliquer", meme quand ShowingHelm() est confirme actif).
+-- Usage : tape /tmodeltrace pour activer, clique Appliquer, regarde les
+-- lignes [TMODELTRACE], puis retape /tmodeltrace pour desactiver (sinon ca
+-- imprime a chaque clic dans la grille).
+-- ============================================================
+TMODELTRACE_ENABLED = false;
+SLASH_TMODELTRACE1 = "/tmodeltrace"
+SlashCmdList["TMODELTRACE"] = function()
+	TMODELTRACE_ENABLED = not TMODELTRACE_ENABLED;
+	print("|cff00ccff[TMODELTRACE]|r " .. (TMODELTRACE_ENABLED and "ACTIVE" or "DESACTIVE"));
+end
+
+-- ============================================================
 -- ROUND Transmog-38 : tracage de la confirmation serveur ASMSG_TRANSMOG_APPLIED
 -- (le round 37 y a ajoute un rafraichissement direct du mannequin -- ceci
 -- verifie s'il se declenche vraiment et sans erreur).

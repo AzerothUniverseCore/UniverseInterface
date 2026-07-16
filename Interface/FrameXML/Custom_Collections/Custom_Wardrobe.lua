@@ -712,6 +712,16 @@ end
 
 function TransmogSlotButtonMixin:RefreshItemModel()
 	local appearanceID = self:GetEffectiveTransmogID();
+	-- FIX ROUND TRANSMOG-41 : trace optionnelle (activee via /tmodeltrace,
+	-- desactivee par defaut pour ne pas spammer a chaque clic) pour voir la
+	-- VRAIE valeur calculee ici au moment precis ou le mannequin devrait se
+	-- rafraichir apres confirmation serveur -- sans ca on ne peut pas savoir
+	-- si GetEffectiveTransmogID() renvoie bien le nouvel item applique ou
+	-- encore l'ancien.
+	if TMODELTRACE_ENABLED then
+		print(string.format("|cff00ccff[TMODELTRACE]|r slot=%s appearanceID=%s (NO_TRANSMOG_VISUAL_ID=%s)",
+			tostring(self.slotID), tostring(appearanceID), tostring(NO_TRANSMOG_VISUAL_ID)));
+	end
 	if appearanceID ~= NO_TRANSMOG_VISUAL_ID then
 		local slotID = self.transmogLocation:GetSlotID();
 		local isEitherHand = self.transmogLocation:IsEitherHand();
@@ -772,11 +782,21 @@ function TransmogSlotButtonMixin:RefreshItemModel()
 				if isEitherHand then
 					local transmogID = self.dependencySlot:GetEffectiveTransmogID();
 					if transmogID ~= NO_TRANSMOG_VISUAL_ID then
+						if TMODELTRACE_ENABLED then
+							print(string.format("|cff00ccff[TMODELTRACE]|r TryOn (arme) item:%d:%d", transmogID, appearanceID));
+						end
 						WardrobeTransmogFrame.ModelFrame:TryOn(string.format("item:%d:%d", transmogID, appearanceID));
 					end
 				end
 			else
+				if TMODELTRACE_ENABLED then
+					print(string.format("|cff00ccff[TMODELTRACE]|r TryOn(%s) sur slot=%s canTryOn=true", tostring(appearanceID), tostring(slotID)));
+				end
 				WardrobeTransmogFrame.ModelFrame:TryOn(appearanceID);
+			end
+		else
+			if TMODELTRACE_ENABLED then
+				print(string.format("|cff00ccff[TMODELTRACE]|r canTryOn=FALSE pour slot=%s (ShowingHelm/ShowingCloak/main desactivee) -- TryOn NON appele.", tostring(slotID)));
 			end
 		end
 	end
@@ -2064,10 +2084,34 @@ end
 --- GetCategoryAppearances renvoie "Usage: ..." (categorie invalide).
 --- Symptome observe : erreur en tapant dans Recherche juste apres
 --- l'ouverture de l'onglet Transmogrification.
+-- FIX ROUND TRANSMOG-43 : force l'enregistrement des objets de sac dans le
+-- pool de candidats AVANT de construire la liste (voir le commentaire de
+-- C_TransmogCollection.RegisterKnownAppearanceForItem pour le detail du
+-- root cause). Sans ca, un objet en sac jamais "connu" du systeme de
+-- collection ne peut jamais apparaitre, meme si le matching (round 40) est
+-- parfait -- il n'est simplement jamais candidat.
+function WardrobeItemsCollectionMixin:RegisterBagAppearances()
+	if not (C_TransmogCollection and C_TransmogCollection.RegisterKnownAppearanceForItem) then
+		return;
+	end
+	for bag = 0, (NUM_BAG_SLOTS or 4) do
+		local numSlots = GetContainerNumSlots(bag);
+		if numSlots and numSlots > 0 then
+			for slot = 1, numSlots do
+				local itemID = GetContainerItemID(bag, slot);
+				if itemID then
+					pcall(C_TransmogCollection.RegisterKnownAppearanceForItem, itemID);
+				end
+			end
+		end
+	end
+end
+
 function WardrobeItemsCollectionMixin:RefreshVisualsList()
 	if self.transmogLocation and self.transmogLocation:IsIllusion() then
 		self.visualsList = C_TransmogCollection.GetIllusions();
 	elseif self.activeCategory then
+		self:RegisterBagAppearances(); -- FIX ROUND TRANSMOG-43
 		self.visualsList = C_TransmogCollection.GetCategoryAppearances(self.activeCategory, self.activeSubCategory, self:GetExclusionForSlotName());
 	else
 		self.visualsList = {};
