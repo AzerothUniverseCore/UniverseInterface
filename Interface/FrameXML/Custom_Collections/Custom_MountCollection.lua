@@ -102,6 +102,27 @@ function MountJournal_FullUpdate(self)
 	end
 end
 
+--- Cancels and clears CollectionsJournal.resetPositionTimer, regardless of
+--- whether C_Timer.After() on this client returned a real cancelable Ticker
+--- object (retail-style, has a :Cancel() method) or a plain number id (this
+--- client's lightweight C_Timer polyfill) -- calling :Cancel() directly on a
+--- number crashes with "attempt to index field 'resetPositionTimer' (a
+--- number value)", which is exactly the bug this guards against.
+local function MountJournal_CancelResetPositionTimer()
+	local timer = CollectionsJournal.resetPositionTimer
+	if not timer then
+		return
+	end
+
+	if type(timer) == "table" and timer.Cancel then
+		timer:Cancel()
+	elseif type(timer) == "number" and C_Timer and C_Timer.Cancel then
+		C_Timer.Cancel(timer)
+	end
+
+	CollectionsJournal.resetPositionTimer = nil
+end
+
 function MountJournal_OnShow(self)
 	SetPortraitToTexture(CollectionsJournalPortrait, "Interface\\Icons\\MountJournalPortrait");
 
@@ -110,10 +131,7 @@ function MountJournal_OnShow(self)
 
 	self.IsOpenStore = nil
 
-	if CollectionsJournal.resetPositionTimer then
-		CollectionsJournal.resetPositionTimer:Cancel()
-		CollectionsJournal.resetPositionTimer = nil
-	end
+	MountJournal_CancelResetPositionTimer()
 
 	MountJournal_FullUpdate(self);
 
@@ -123,10 +141,7 @@ end
 
 function MountJournal_OnHide(self)
 	if not self.IsOpenStore then
-		if CollectionsJournal.resetPositionTimer then
-			CollectionsJournal.resetPositionTimer:Cancel();
-			CollectionsJournal.resetPositionTimer = nil;
-		end
+		MountJournal_CancelResetPositionTimer()
 
 		CollectionsJournal.resetPositionTimer = C_Timer.After(5, function()
 			MountJournal_SetDefaultCategory();
@@ -135,10 +150,7 @@ function MountJournal_OnHide(self)
 			MountJournal_UpdateScrollPos(MountJournalListScrollFrame, 1);
 			MountJournal_Select(1);
 
-			if CollectionsJournal.resetPositionTimer then
-				CollectionsJournal.resetPositionTimer:Cancel();
-				CollectionsJournal.resetPositionTimer = nil;
-			end
+			MountJournal_CancelResetPositionTimer()
 		end)
 	end
 end
@@ -839,10 +851,7 @@ function MountJournalBuyButton_OnClick(self, button)
 
 	HideUIPanel(CollectionsJournal);
 
-	if CollectionsJournal.resetPositionTimer then
-		CollectionsJournal.resetPositionTimer:Cancel();
-		CollectionsJournal.resetPositionTimer = nil;
-	end
+	MountJournal_CancelResetPositionTimer()
 
 	CollectionsJournal.resetPositionTimer = C_Timer.After(30, function()
 		MountJournal_SetDefaultCategory();
@@ -852,10 +861,7 @@ function MountJournalBuyButton_OnClick(self, button)
 		MountJournal_Select(1);
 
 		MountJournal.IsOpenStore = false;
-		if CollectionsJournal.resetPositionTimer then
-			CollectionsJournal.resetPositionTimer:Cancel();
-			CollectionsJournal.resetPositionTimer = nil;
-		end
+		MountJournal_CancelResetPositionTimer()
 	end);
 
 	if MountJournal.selectedMountID then
