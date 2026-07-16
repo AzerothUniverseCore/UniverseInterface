@@ -1,3 +1,6 @@
+-- ============================================================================
+-- Autora: Noa
+-- ============================================================================
 function RealmWizard_OnLoad(self)
 	self:SetCamera(0);
 	self:SetSequence(0);
@@ -54,6 +57,12 @@ function RealmWizard_UpdateCategories(...)
 		end
 	end
 	RealmWizardLocation:SetHeight(numCategoriesShown * 28 + RealmWizardLocationLabelDescription:GetHeight() + 50);
+
+	if (GetCVar("realmName") == "") or not(GetCVar("realmName")) then
+		RealmWizardSuggest:Enable();
+		RealmWizard.selectedCategory = 1;
+		RealmWizardSuggest:GetScript("OnClick")(RealmWizardSuggest)
+	end
 end
 
 function RealmWizardLocationButton_OnClick(id)
