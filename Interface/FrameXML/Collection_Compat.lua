@@ -1091,35 +1091,47 @@ do
 	-- appelle desormais Update() directement et immediatement, en synchrone,
 	-- au moment meme ou le serveur confirme. On garde aussi MarkDirty() en
 	-- filet de securite (inoffensif, coute rien de plus).
-	local function RefreshTransmogModelAfterServerConfirm()
-		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
-			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
-		end
+	local function DoRefreshTransmogModel()
 		if WardrobeTransmogFrame then
-			-- FIX ROUND TRANSMOG-51 : le round 48 recreait ici le widget
-			-- DressUpModel avant de redresser, sur la foi d'un commentaire
-			-- trouve dans TransmogUniverse.zip evoquant un widget qui se
-			-- "bloque" a l'usage. Le round 49 a prouve que la VRAIE cause
-			-- racine du mannequin qui ne se mettait pas a jour etait ailleurs
-			-- (Model:TryOn appele avec un NOMBRE brut au lieu d'une chaine
-			-- "item:ID") -- la theorie du widget bloque etait donc une fausse
-			-- piste. Or recreer le widget PUIS le redresser dans le MEME tick
-			-- (CreateFrame + Undress + TryOn, sans laisser une image s'ecouler
-			-- entre les deux) semble introduire son propre probleme de timing
-			-- ici, alors que le clic dans la grille (qui NE recree PAS le
-			-- widget, redresse juste celui deja pret) fonctionne bien depuis
-			-- le round 49. On retire donc RecreateModelFrame() de ce chemin
-			-- precis et on revient a un simple Update() sur le widget deja en
-			-- place, exactement comme le fait le clic grille qui, lui, marche.
-			if WardrobeTransmogFrame.Update then
-				local ok, err = pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
+			if WardrobeTransmogFrame.RefreshPlayerModel then
+				local ok, err = pcall(WardrobeTransmogFrame.RefreshPlayerModel, WardrobeTransmogFrame, true);
 				if not ok then
-					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:Update() a echoue : " .. tostring(err));
+					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModel() a echoue : " .. tostring(err));
 				end
+			elseif WardrobeTransmogFrame.Update then
+				pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
 			end
 			if WardrobeTransmogFrame.MarkDirty then
 				pcall(WardrobeTransmogFrame.MarkDirty, WardrobeTransmogFrame);
 			end
+		end
+	end
+
+	local function RefreshTransmogModelAfterServerConfirm()
+		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
+			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
+		end
+		-- FIX ROUND TRANSMOG-53 : le round 52 appelait deja RefreshPlayerModel()
+		-- -- exactement la fonction qui marche a l'ouverture/reaffichage de
+		-- l'onglet (OnShow) -- et ca n'a toujours rien change. L'utilisateur a
+		-- aussi confirme un fait important : cliquer dans la grille (choisir un
+		-- objet) ne redresse JAMAIS le mannequin, meme sans ce bug -- c'est
+		-- voulu depuis le round 36 (retire expres pour eviter un mannequin qui
+		-- disparaissait). Le seul chemin qui redresse vraiment le mannequin est
+		-- OnShow. Donc la seule vraie difference qui reste entre "ca marche"
+		-- (changer d'onglet) et "ca ne marche pas" (ce code-ci) est le
+		-- CONTEXTE D'APPEL : OnShow est un callback natif du moteur (Show()),
+		-- alors que ce code-ci s'execute a l'interieur du traitement d'un
+		-- message addon/chat (ASMSG_TRANSMOG_APPLIED). Sur ce client, modifier
+		-- un DressUpModel (Undress/TryOn) depuis ce contexte prcis semble ne
+		-- pas "prendre" visuellement. On differe donc l'appel d'exactement une
+		-- frame via C_Timer.After(0, ...), pour sortir du contexte du handler
+		-- de message et laisser le moteur traiter le rafraichissement comme un
+		-- vrai callback independant, plus proche de ce qui se passe pour OnShow.
+		if C_Timer and C_Timer.After then
+			C_Timer.After(0, DoRefreshTransmogModel);
+		else
+			DoRefreshTransmogModel();
 		end
 	end
 
