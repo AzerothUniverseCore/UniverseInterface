@@ -374,13 +374,32 @@ function TransmogFrameMixin:Update(fromOnEvent)
 	self.dirty = false;
 
 	DummyWardrobeUnitModel:Dress();
-	WardrobeTransmogFrame.ModelFrame:Undress();
 
+	-- FIX ROUND TRANSMOG-57 : la trace du round 55 a prouve que
+	-- TransmogSlotButtonMixin:GetEffectiveTransmogID(), dans sa branche
+	-- "applique" (pas de pending en cours), ne renvoie JAMAIS le bon item
+	-- transmogrifie -- il retombe systematiquement sur l'objet de base
+	-- physiquement equipe, pour TOUS les emplacements, meme quand
+	-- _applied[slot] contient la bonne valeur (bug de resolution confirme,
+	-- pas une histoire de timing). Le round 55/56 a deja retire cette boucle
+	-- du chemin post-Appliquer (RefreshPlayerModelAfterApply s'appuie
+	-- uniquement sur SetUnit("player"), qui lit l'etat natif reel et
+	-- fonctionne). Mais CETTE fonction-ci (Update()) est AUSSI appelee par
+	-- RefreshPlayerModel(), utilisee a l'ouverture de l'onglet (OnShow) et
+	-- sur l'evenement natif UNIT_MODEL_CHANGED -- et elle rejouait encore
+	-- Undress()+TryOn(mauvais item) juste apres que RecreateModelFrame()
+	-- ait deja correctement positionne le mannequin via SetUnit("player").
+	-- C'est exactement pour ca que fermer/rouvrir l'onglet remettait le
+	-- visuel de base : cette boucle ecrasait le bon resultat de SetUnit
+	-- avec le mauvais item calcule par GetEffectiveTransmogID(). On retire
+	-- donc Undress()+la boucle RefreshItemModel() d'ici aussi -- le
+	-- mannequin 3D est desormais TOUJOURS gere uniquement via SetUnit
+	-- (RecreateModelFrame, appele par RefreshPlayerModel() et
+	-- RefreshPlayerModelAfterApply() avant que Update() ne s'execute).
+	-- Cette fonction ne touche plus qu'aux icones 2D des cases, au bouton
+	-- Appliquer et a la selection de slot -- jamais au modele 3D.
 	for i, slotButton in ipairs(self.SlotButtons) do
 		slotButton:Update();
-	end
-	for i, slotButton in ipairs(self.SlotButtons) do
-		slotButton:RefreshItemModel();
 	end
 
 	self:UpdateApplyButton();
