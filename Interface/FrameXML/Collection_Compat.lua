@@ -1093,7 +1093,23 @@ do
 	-- filet de securite (inoffensif, coute rien de plus).
 	local function DoRefreshTransmogModel()
 		if WardrobeTransmogFrame then
-			if WardrobeTransmogFrame.RefreshPlayerModel then
+			-- FIX ROUND TRANSMOG-55 : les rounds 51-54 appelaient tous
+			-- RefreshPlayerModel(), qui recree le widget PUIS rejoue quand
+			-- meme Undress()+TryOn() manuellement pour chaque emplacement
+			-- (via Update()). Voir le long commentaire dans Custom_Wardrobe.lua
+			-- au-dessus de RefreshPlayerModelAfterApply() : la reference
+			-- fonctionnelle (TransmogUniverse.zip) ne rejoue JAMAIS TryOn()
+			-- pour un objet deja confirme par le serveur, seulement
+			-- SetUnit("player") sur le widget fraichement recree. On utilise
+			-- donc desormais cette nouvelle fonction dediee ici, qui ne fait
+			-- QUE la recreation + SetUnit (+ rafraichissement des icones 2D),
+			-- sans boucle TryOn manuelle.
+			if WardrobeTransmogFrame.RefreshPlayerModelAfterApply then
+				local ok, err = pcall(WardrobeTransmogFrame.RefreshPlayerModelAfterApply, WardrobeTransmogFrame);
+				if not ok then
+					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModelAfterApply() a echoue : " .. tostring(err));
+				end
+			elseif WardrobeTransmogFrame.RefreshPlayerModel then
 				local ok, err = pcall(WardrobeTransmogFrame.RefreshPlayerModel, WardrobeTransmogFrame, true);
 				if not ok then
 					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModel() a echoue : " .. tostring(err));
@@ -1101,9 +1117,22 @@ do
 			elseif WardrobeTransmogFrame.Update then
 				pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
 			end
-			if WardrobeTransmogFrame.MarkDirty then
-				pcall(WardrobeTransmogFrame.MarkDirty, WardrobeTransmogFrame);
-			end
+			-- FIX ROUND TRANSMOG-56 (BUG TROUVE VIA TRACE UTILISATEUR) : cette
+			-- ligne "filet de securite" (heritee du round 40) posait
+			-- self.dirty=true, ce qui programme un TransmogFrameMixin:Update()
+			-- COMPLET au tout prochain OnUpdate natif (frame suivante). Or
+			-- Update() refait exactement ce qu'on essaie d'eviter depuis le
+			-- round 55 : Undress() + reboucle TryOn(...) manuellement pour
+			-- CHAQUE emplacement. La trace /tmodeltrace fournie par
+			-- l'utilisateur (round 55 test) le prouve noir sur blanc : juste
+			-- apres CHACUN des 4 appels a RefreshPlayerModelAfterApply(), une
+			-- boucle Update()/TryOn() complete se redeclenchait sur la frame
+			-- suivante et ecrasait tout -- annulant totalement le fix "SetUnit
+			-- seul" du round 55, qui n'avait donc jamais eu la moindre chance
+			-- de "tenir". On retire donc cet appel : RefreshPlayerModelAfterApply
+			-- s'occupe deja des icones 2D des cases (slotButton:Update()) et du
+			-- bouton Appliquer, ce filet de securite n'est plus necessaire et
+			-- est meme activement nuisible ici.
 		end
 	end
 
@@ -1111,31 +1140,49 @@ do
 		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
 			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
 		end
-		-- FIX ROUND TRANSMOG-53 : le round 52 appelait deja RefreshPlayerModel()
-		-- -- exactement la fonction qui marche a l'ouverture/reaffichage de
-		-- l'onglet (OnShow) -- et ca n'a toujours rien change. L'utilisateur a
-		-- aussi confirme un fait important : cliquer dans la grille (choisir un
-		-- objet) ne redresse JAMAIS le mannequin, meme sans ce bug -- c'est
-		-- voulu depuis le round 36 (retire expres pour eviter un mannequin qui
-		-- disparaissait). Le seul chemin qui redresse vraiment le mannequin est
-		-- OnShow. Donc la seule vraie difference qui reste entre "ca marche"
-		-- (changer d'onglet) et "ca ne marche pas" (ce code-ci) est le
-		-- CONTEXTE D'APPEL : OnShow est un callback natif du moteur (Show()),
-		-- alors que ce code-ci s'execute a l'interieur du traitement d'un
-		-- message addon/chat (ASMSG_TRANSMOG_APPLIED). Sur ce client, modifier
-		-- un DressUpModel (Undress/TryOn) depuis ce contexte prcis semble ne
-		-- pas "prendre" visuellement. On differe donc l'appel d'exactement une
-		-- frame via C_Timer.After(0, ...), pour sortir du contexte du handler
-		-- de message et laisser le moteur traiter le rafraichissement comme un
-		-- vrai callback independant, plus proche de ce qui se passe pour OnShow.
+		-- FIX ROUND TRANSMOG-53 (insuffisant) : un seul appel differe de zero
+		-- seconde (C_Timer.After(0, ...)) ne suffisait pas. Le probleme
+		-- persistait meme apres etre sorti du contexte du handler de message.
+		--
+		-- FIX ROUND TRANSMOG-54 : TransmogFrameMixin ecoute deja l'evenement
+		-- natif UNIT_MODEL_CHANGED et rappelle RefreshPlayerModel() dessus --
+		-- ce qui suggere que le moteur du client a besoin d'un certain temps
+		-- APRES l'ecriture serveur des champs PLAYER_VISIBLE_ITEM_x_ENTRYID
+		-- avant que son etat de modele interne soit vraiment a jour. Notre
+		-- confirmation (ASMSG_TRANSMOG_APPLIED) arrive peut-etre avant que ce
+		-- traitement natif soit termine : un seul essai, meme differe d'une
+		-- frame, peut donc encore lire les anciennes donnees.
+		--
+		-- Par analogie avec le mecanisme deja utilise cote serveur pour un
+		-- probleme de course similaire au login (REAPPLY_ON_LOGIN_ATTEMPTS /
+		-- REAPPLY_ON_LOGIN_DELAY_MS), on reessaie ici le rafraichissement du
+		-- mannequin PLUSIEURS fois a des delais croissants, au lieu d'une
+		-- seule tentative a delai fixe. Meme si les premiers essais arrivent
+		-- encore trop tot, un des essais suivants (jusqu'a 1.5s) devrait
+		-- forcement arriver apres que le moteur ait fini son traitement
+		-- natif -- exactement comme quand on change d'onglet et qu'on revient.
 		if C_Timer and C_Timer.After then
 			C_Timer.After(0, DoRefreshTransmogModel);
+			C_Timer.After(0.15, DoRefreshTransmogModel);
+			C_Timer.After(0.4, DoRefreshTransmogModel);
+			C_Timer.After(0.8, DoRefreshTransmogModel);
+			C_Timer.After(1.5, DoRefreshTransmogModel);
 		else
 			DoRefreshTransmogModel();
 		end
 	end
 
 	function EventHandler:ASMSG_TRANSMOG_SYNC(msg)
+		-- FIX ROUND TRANSMOG-55 (diagnostic) : ce handler REMPLACE
+		-- integralement _applied (wipe + repeuplement depuis msg). Si le
+		-- serveur envoie un SYNC juste apres un APPLIED (par exemple au
+		-- meme moment qu'un evenement d'equipement natif), et que ce SYNC
+		-- ne contient pas encore le nouvel objet (snapshot legerement en
+		-- retard cote serveur), ce handler EFFACERAIT silencieusement notre
+		-- correction. On trace donc systematiquement (pas seulement sous
+		-- /tmodeltrace) l'heure et le contenu brut recu ici, pour verifier
+		-- si c'est bien ce qui se passe.
+		print(string.format("|cffffcc00[TDEBUG55]|r ASMSG_TRANSMOG_SYNC recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
 		wipe(_applied);
 		if msg and msg ~= "" then
 			for slotStr, itemStr in msg:gmatch("(%d+):(%d+)") do
@@ -1157,7 +1204,7 @@ do
 		-- fichier-ci est deja charge) + protection pcall pour ne jamais
 		-- laisser une erreur silencieuse interrompre le rafraichissement du
 		-- mannequin.
-		print("|cff00ff88[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED recu, msg=" .. tostring(msg));
+		print(string.format("|cff00ff88[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
 		local slotStr, itemStr = msg:match("(%d+):(%d+)");
 		local slotID = tonumber(slotStr);
 		local itemID = tonumber(itemStr);

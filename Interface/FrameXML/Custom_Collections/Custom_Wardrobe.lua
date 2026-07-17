@@ -247,6 +247,55 @@ function TransmogFrameMixin:RefreshPlayerModel(fromOnEvent)
 	self:Update(fromOnEvent);
 end
 
+-- FIX ROUND TRANSMOG-55 : nouvelle piste, differente des 4 precedentes.
+-- Relecture attentive de TransmogUniverse.zip (RecreateModel(), le
+-- systeme de reference qui, LUI, rafraichit correctement le mannequin
+-- apres Appliquer) : apres avoir recree le widget, ce systeme appelle
+-- SEULEMENT playerModel:SetUnit("player") -- il ne rappelle JAMAIS
+-- TryOn() pour les objets deja appliques/confirmes par le serveur (il ne
+-- s'en sert que pour l'apercu glisser-deposer NON encore valide). Il fait
+-- confiance a SetUnit("player") seul pour refleter l'etat natif courant
+-- du joueur (deja ecrit cote serveur via PLAYER_VISIBLE_ITEM_x_ENTRYID).
+--
+-- Notre RefreshPlayerModel() ci-dessus fait la meme chose EN PLUS de
+-- rappeler self:Update(), qui fait Undress() puis reboucle
+-- RefreshItemModel() -> TryOn(...) manuellement pour CHAQUE emplacement.
+-- Les rounds 51/52/53/54 ont tous les quatre garde cette boucle
+-- Undress()+TryOn() manuelle dans le chemin post-Appliquer, et aucun n'a
+-- fonctionne -- meme en reessayant 5 fois sur 1.5 seconde (round 54),
+-- confirme par l'utilisateur ("il se rafraichit bien au moins 4 fois mais
+-- le visuel item ne se charge pas"). Vu que le seul chemin confirme
+-- fonctionnel (reference ET notre propre OnShow) fonctionne QUAND MEME
+-- avec cette boucle Update() en plus (OnShow n'a jamais ete signale comme
+-- casse), la boucle TryOn() manuelle n'est peut-etre pas LA cause -- mais
+-- elle n'est clairement pas non plus INDISPENSABLE (la reference fonctionne
+-- sans elle pour le cas confirme-par-serveur). Cette fonction reproduit
+-- donc fidelement l'approche de la reference pour le cas post-Appliquer
+-- specifiquement : recreation du widget (qui fait deja SetUnit("player")
+-- en interne) SANS boucle Undress()/TryOn() manuelle ensuite -- seuls les
+-- icones 2D des cases et le bouton Appliquer sont rafraichis en plus.
+function TransmogFrameMixin:RefreshPlayerModelAfterApply()
+	if self.RecreateModelFrame then
+		local ok, err = pcall(self.RecreateModelFrame, self);
+		if TMODELTRACE_ENABLED then
+			print(string.format("|cff00ccff[TMODELTRACE]|r RefreshPlayerModelAfterApply @ %.3f : RecreateModelFrame ok=%s err=%s",
+				GetTime(), tostring(ok), tostring(err)));
+		end
+	end
+
+	-- Rafraichit uniquement les icones 2D des cases (pas le modele 3D) --
+	-- meme role que TransmogHandlers.UpdateSlots() cote reference.
+	for i, slotButton in ipairs(self.SlotButtons) do
+		slotButton:Update();
+	end
+
+	self:UpdateApplyButton();
+
+	if TMODELTRACE_ENABLED then
+		print(string.format("|cff00ccff[TMODELTRACE]|r RefreshPlayerModelAfterApply @ %.3f : termine (SetUnit seul, pas de TryOn manuel)", GetTime()));
+	end
+end
+
 -- FIX ROUND TRANSMOG-48 : le fichier de reference TransmogUniverse.zip (un
 -- autre systeme de transmog, drag&drop, deja fonctionnel sur CE MEME
 -- client) documente explicitement -- dans son propre code, pas une
