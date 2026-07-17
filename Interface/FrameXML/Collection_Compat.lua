@@ -933,20 +933,35 @@ do
 	-- explicitement les 2 frames connues juste apres avoir change _pending,
 	-- sans dependre du tout de FireCustomClientEvent/OnEvent pour ce cas precis
 	-- (celui-ci reste appele en plus, au cas ou d'autres listeners en beneficient).
-	local function RefreshTransmogDisplaysNow()
+	local function RefreshTransmogDisplaysNow(transmogLocation)
 		if WardrobeCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame and WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems then
 			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
 		end
-		-- FIX ROUND TRANSMOG-36 : le round 35 appelait aussi WardrobeTransmogFrame:
-		-- MarkDirty(), qui programme un TransmogFrameMixin:Update() complet au
-		-- prochain OnUpdate. Or Update() fait systematiquement
-		-- WardrobeTransmogFrame.ModelFrame:Undress() puis redresse via
-		-- slotButton:RefreshItemModel() pour chaque emplacement -- en le
-		-- declenchant a CHAQUE clic sur la grille (au lieu des seuls vrais
-		-- changements d'equipement/slot prevus a l'origine), le mannequin a fini
-		-- par disparaitre completement (signale par l'utilisateur : "je ne vois
-		-- plus le personnage"). On ne rafraichit donc plus que le bouton
-		-- Appliquer/le cout (leger, sans toucher au mannequin), pas plus.
+		-- FIX ROUND TRANSMOG-36 (historique) : le round 35 appelait aussi
+		-- WardrobeTransmogFrame:MarkDirty(), qui programmait un
+		-- TransmogFrameMixin:Update() COMPLET (tous les emplacements) au
+		-- prochain OnUpdate, a CHAQUE clic sur la grille -- le mannequin a
+		-- fini par disparaitre completement. D'ou la regle depuis : ne
+		-- jamais redresser TOUS les emplacements a chaque clic.
+		--
+		-- FIX ROUND TRANSMOG-58 : l'utilisateur demande maintenant un vrai
+		-- apercu en direct (avant de cliquer Appliquer), ce qui est
+		-- raisonnable et n'est PAS la meme chose que le round 36 evitait.
+		-- On ne redresse ici QUE l'unique emplacement concerne par ce clic
+		-- precis (transmogLocation, passe par SetPending/ClearPending),
+		-- jamais toute la boucle -- donc pas de risque de reproduire le bug
+		-- du round 36. RefreshItemModel() est deja fiable pour un objet en
+		-- attente (pendingInfo.transmogID est renvoye directement par
+		-- GetEffectiveTransmogID, sans passer par le calcul "applique/base"
+		-- qui, lui, est bugue -- voir rounds 55-57). Widget existant reutilise
+		-- (pas de RecreateModelFrame ici : trop lourd pour un simple aperçu
+		-- au clic, et inutile puisqu'on ne fait que TryOn un seul objet).
+		if transmogLocation and WardrobeTransmogFrame and WardrobeTransmogFrame.GetSlotButton then
+			local slotButton = WardrobeTransmogFrame:GetSlotButton(transmogLocation);
+			if slotButton and slotButton.RefreshItemModel then
+				pcall(slotButton.RefreshItemModel, slotButton);
+			end
+		end
 		if WardrobeTransmogFrame and WardrobeTransmogFrame.UpdateApplyButton then
 			pcall(WardrobeTransmogFrame.UpdateApplyButton, WardrobeTransmogFrame);
 		end
@@ -955,11 +970,28 @@ do
 	function C_Transmog.SetPending(transmogLocation, pendingInfo)
 		_pending[transmogLocation:GetSlotID()] = pendingInfo;
 		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
-		RefreshTransmogDisplaysNow();
+		RefreshTransmogDisplaysNow(transmogLocation);
 	end
 
 	function C_Transmog.GetPending(transmogLocation)
 		return _pending[transmogLocation:GetSlotID()];
+	end
+
+	-- FIX ROUND TRANSMOG-58 : accesseur direct pour _applied, en
+	-- contournant completement la chaine ItemLocation/GetRelevantTransmogID/
+	-- C_Item.GetAppliedItemTransmogInfo utilisee jusqu'ici par
+	-- TransmogSlotButtonMixin:GetEffectiveTransmogID(). Cette chaine s'est
+	-- averee peu fiable (confirme par la trace /tmodeltrace du round 55 :
+	-- meme quand _applied[slot] contient la bonne valeur, la resolution
+	-- via cette chaine retombait systematiquement sur l'objet de base).
+	-- Plutot que de continuer a deviner ou exactement ca casse dans cette
+	-- indirection (ItemLocation natif non modifiable par ce patch),
+	-- GetEffectiveTransmogID lit desormais _applied[slotID] directement via
+	-- cet accesseur -- la meme table que C_Transmog.DebugGetRawState lit
+	-- deja, dont la fiabilite est confirmee par toutes les traces
+	-- precedentes.
+	function C_Transmog.GetAppliedTransmogID(slotID)
+		return (slotID and _applied[slotID]) or 0;
 	end
 
 	-- FIX ROUND TRANSMOG-46 (diagnostic uniquement, aucun changement de
@@ -982,7 +1014,7 @@ do
 	function C_Transmog.ClearPending(transmogLocation)
 		_pending[transmogLocation:GetSlotID()] = nil;
 		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
-		RefreshTransmogDisplaysNow();
+		RefreshTransmogDisplaysNow(transmogLocation);
 	end
 
 	--- Cout de la transmogrification (fix Round Transmog-7) : 500000 cuivre

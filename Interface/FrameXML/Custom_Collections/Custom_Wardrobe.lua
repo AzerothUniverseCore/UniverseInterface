@@ -850,7 +850,20 @@ function TransmogSlotButtonMixin:GetEffectiveTransmogID()
 			return NO_TRANSMOG_VISUAL_ID;
 		end
 	end
-	local appliedTransmogID = GetTransmogIDFrom(C_Item.GetAppliedItemTransmogInfo);
+
+	-- FIX ROUND TRANSMOG-58 : lecture directe de _applied[slotID] via
+	-- C_Transmog.GetAppliedTransmogID (Collection_Compat.lua), au lieu de
+	-- passer par C_Item.GetAppliedItemTransmogInfo(self.itemLocation) +
+	-- TransmogUtil.GetRelevantTransmogID -- cette chaine s'est averee
+	-- retourner l'objet de base au lieu de l'objet applique (confirme par
+	-- trace, rounds 55-57). On garde l'ancienne chaine en repli uniquement
+	-- si le nouvel accesseur n'existe pas (patch pas a jour).
+	local appliedTransmogID;
+	if C_Transmog.GetAppliedTransmogID then
+		appliedTransmogID = C_Transmog.GetAppliedTransmogID(self.slotID);
+	else
+		appliedTransmogID = GetTransmogIDFrom(C_Item.GetAppliedItemTransmogInfo);
+	end
 	-- if nothing is applied, get base
 	if appliedTransmogID == NO_TRANSMOG_VISUAL_ID then
 		return GetTransmogIDFrom(C_Item.GetBaseItemTransmogInfo);
