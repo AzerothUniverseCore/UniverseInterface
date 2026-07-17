@@ -891,23 +891,34 @@ do
 	--- -- donc notre version prend le dessus). Utilisees par
 	--- TransmogSlotButtonMixin:GetEffectiveTransmogID (Custom_Wardrobe.lua)
 	--- pour decider quelle apparence habiller sur le mannequin 3D.
-	if not C_Item.GetBaseItemTransmogInfo then
-		function C_Item.GetBaseItemTransmogInfo(itemLocation)
-			local itemID = 0;
-			if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
-				itemID = GetInventoryItemID("player", itemLocation:GetEquipmentSlot()) or 0;
-			end
-			return { appearanceID = itemID, illusionID = 0 };
+	-- FIX ROUND TRANSMOG-47 (cause racine reelle du point 2, prouvee par la
+	-- trace /tmodeltrace du round 46) : ces 2 fonctions etaient definies ici
+	-- SOUS GARDE "if not C_Item.XXX then", en partant du principe que ce
+	-- fichier charge forcement avant Collection_Compat_Late.lua (qui definit
+	-- les memes noms, sous garde identique, comme simples stubs -- pour
+	-- GetAppliedItemTransmogInfo son stub renvoie TOUJOURS {appearanceID=0},
+	-- ignorant totalement _applied). La trace du round 46 a prouve que
+	-- _applied[slotID] contenait bien le bon itemID juste apres application,
+	-- mais que GetEffectiveTransmogID() calculait quand meme l'objet de base
+	-- -- la seule explication est que c'est le STUB de Collection_Compat_Late
+	-- qui gagnait dans les faits, pas notre version ici, quel que soit
+	-- l'ordre suppose du FrameXML.toc. On retire donc la garde : ces 2
+	-- fonctions sont maintenant TOUJOURS (re)definies ici, ce qui garantit
+	-- que notre version -- la seule a vraiment lire _applied -- l'emporte
+	-- systematiquement, independamment de l'ordre de chargement reel.
+	function C_Item.GetBaseItemTransmogInfo(itemLocation)
+		local itemID = 0;
+		if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
+			itemID = GetInventoryItemID("player", itemLocation:GetEquipmentSlot()) or 0;
 		end
+		return { appearanceID = itemID, illusionID = 0 };
 	end
-	if not C_Item.GetAppliedItemTransmogInfo then
-		function C_Item.GetAppliedItemTransmogInfo(itemLocation)
-			local appliedItemID = 0;
-			if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
-				appliedItemID = _applied[itemLocation:GetEquipmentSlot()] or 0;
-			end
-			return { appearanceID = appliedItemID, illusionID = 0 };
+	function C_Item.GetAppliedItemTransmogInfo(itemLocation)
+		local appliedItemID = 0;
+		if itemLocation and itemLocation.IsEquipmentSlot and itemLocation:IsEquipmentSlot() then
+			appliedItemID = _applied[itemLocation:GetEquipmentSlot()] or 0;
 		end
+		return { appearanceID = appliedItemID, illusionID = 0 };
 	end
 
 	-- FIX ROUND TRANSMOG-35 : diagnostic (/tclickdebug, rounds 31-34) confirme
@@ -1085,6 +1096,21 @@ do
 			pcall(WardrobeCollectionFrame.ItemsCollectionFrame.UpdateItems, WardrobeCollectionFrame.ItemsCollectionFrame);
 		end
 		if WardrobeTransmogFrame then
+			-- FIX ROUND TRANSMOG-51 : le round 48 recreait ici le widget
+			-- DressUpModel avant de redresser, sur la foi d'un commentaire
+			-- trouve dans TransmogUniverse.zip evoquant un widget qui se
+			-- "bloque" a l'usage. Le round 49 a prouve que la VRAIE cause
+			-- racine du mannequin qui ne se mettait pas a jour etait ailleurs
+			-- (Model:TryOn appele avec un NOMBRE brut au lieu d'une chaine
+			-- "item:ID") -- la theorie du widget bloque etait donc une fausse
+			-- piste. Or recreer le widget PUIS le redresser dans le MEME tick
+			-- (CreateFrame + Undress + TryOn, sans laisser une image s'ecouler
+			-- entre les deux) semble introduire son propre probleme de timing
+			-- ici, alors que le clic dans la grille (qui NE recree PAS le
+			-- widget, redresse juste celui deja pret) fonctionne bien depuis
+			-- le round 49. On retire donc RecreateModelFrame() de ce chemin
+			-- precis et on revient a un simple Update() sur le widget deja en
+			-- place, exactement comme le fait le clic grille qui, lui, marche.
 			if WardrobeTransmogFrame.Update then
 				local ok, err = pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
 				if not ok then

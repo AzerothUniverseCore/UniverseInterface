@@ -236,8 +236,89 @@ function TransmogFrameMixin:GetSelectedTransmogLocation()
 end
 
 function TransmogFrameMixin:RefreshPlayerModel(fromOnEvent)
+	-- FIX ROUND TRANSMOG-48 : recree aussi le mannequin a chaque ouverture
+	-- de l'onglet (comme TransmogUniverse.zip le fait dans CreateUI), pour
+	-- repartir d'un widget propre a chaque fois plutot que de laisser un
+	-- eventuel etat bloque persister d'une ouverture a l'autre.
+	if self.RecreateModelFrame then
+		pcall(self.RecreateModelFrame, self);
+	end
 	self.ModelFrame:SetUnit("player");
 	self:Update(fromOnEvent);
+end
+
+-- FIX ROUND TRANSMOG-48 : le fichier de reference TransmogUniverse.zip (un
+-- autre systeme de transmog, drag&drop, deja fonctionnel sur CE MEME
+-- client) documente explicitement -- dans son propre code, pas une
+-- supposition -- qu'un widget DressUpModel reutilise indefiniment via
+-- Undress()/TryOn() a repetition finit par se "bloquer" en interne sur ce
+-- client precis (le mannequin cesse de refleter les changements, seul un
+-- rechargement complet de l'UI le debloquait). Leur solution, prouvee en
+-- production, est de detruire et recreer entierement le frame plutot que
+-- de le reinitialiser sans cesse. WardrobeTransmogFrame.ModelFrame est
+-- exactement dans ce cas : un DressUpModel unique, reutilise a chaque
+-- Update() (ouverture fenetre, clic sur la grille, confirmation Appliquer)
+-- via Undress()+TryOn() en boucle -- ce qui correspond precisement au
+-- scenario de blocage decrit. Cette fonction reproduit fidelement le
+-- contenu XML d'origine (Custom_Wardrobe.xml, DressUpModel "$parentModelFrame")
+-- -- taille/ancrage, bouton ClearAllPendingButton, scripts OnLoad/OnShow --
+-- pour qu'un frame flambant neuf remplace l'ancien sans rien perdre.
+function TransmogFrameMixin:RecreateModelFrame()
+	local oldModel = self.ModelFrame;
+	if not oldModel then
+		return;
+	end
+
+	oldModel:Hide();
+	oldModel:SetScript("OnUpdate", nil);
+	oldModel:SetScript("OnMouseDown", nil);
+	oldModel:SetScript("OnMouseUp", nil);
+	oldModel:SetParent(nil);
+
+	local newModel = CreateFrame("DressUpModel", nil, self, "ModelWithControlsPlayerTemplate");
+	newModel:SetSize(294, 488);
+	newModel:ClearAllPoints();
+	newModel:SetPoint("TOP", 3, -4);
+
+	-- Reconstruction du bouton "Tout annuler" (ClearAllPendingButton),
+	-- defini en ligne sur l'instance XML d'origine -- pas fourni par le
+	-- template ModelWithControlsPlayerTemplate, donc perdu si on ne le
+	-- recree pas nous-memes ici.
+	local clearAllPendingButton = CreateFrame("Button", nil, newModel, "UIMenuButtonStretchTemplate");
+	clearAllPendingButton:SetSize(26, 26);
+	clearAllPendingButton:SetPoint("TOPRIGHT", -5, -10);
+	clearAllPendingButton:Hide();
+	local icon = clearAllPendingButton:CreateTexture(nil, "ARTWORK");
+	icon:SetPoint("LEFT", 1, 0);
+	clearAllPendingButton.Icon = icon;
+	local highlight = clearAllPendingButton:CreateTexture(nil, "HIGHLIGHT");
+	highlight:SetAllPoints();
+	highlight:SetTexture("Interface\\Buttons\\UI-Common-MouseHilight");
+	highlight:SetBlendMode("ADD");
+	clearAllPendingButton:SetScript("OnClick", function()
+		for index, button in ipairs(WardrobeTransmogFrame.SlotButtons) do
+			C_Transmog.ClearPending(button.transmogLocation);
+		end
+	end);
+	clearAllPendingButton:SetScript("OnEnter", function(selfButton)
+		GameTooltip:SetOwner(selfButton, "ANCHOR_RIGHT");
+		GameTooltip:SetText(TRANSMOGRIFY_CLEAR_ALL_PENDING);
+	end);
+	clearAllPendingButton:SetScript("OnLeave", GameTooltip_Hide);
+	newModel.ClearAllPendingButton = clearAllPendingButton;
+
+	if SharedXML_Model_OnLoad then
+		pcall(SharedXML_Model_OnLoad, newModel);
+	end
+	newModel:SetUnit("player");
+	if clearAllPendingButton.Icon.SetAtlas then
+		clearAllPendingButton.Icon:SetAtlas("transmog-icon-revert-small", true);
+	end
+	if newModel.RefreshUnit then
+		pcall(newModel.RefreshUnit, newModel);
+	end
+
+	self.ModelFrame = newModel;
 end
 
 function TransmogFrameMixin:Update(fromOnEvent)
@@ -797,10 +878,27 @@ function TransmogSlotButtonMixin:RefreshItemModel()
 					end
 				end
 			else
+				-- FIX ROUND TRANSMOG-49 : TransmogUniverse.zip (l'autre systeme,
+				-- fonctionnel) n'appelle JAMAIS Model:TryOn() avec un simple
+				-- NOMBRE -- il passe systematiquement une CHAINE de type lien
+				-- d'objet ("item:12345:..."), meme pour l'aperçu en direct au
+				-- glisser-deposer (playerModel:TryOn(itemLink)). Notre branche
+				-- juste en dessous (armes+enchant) construit deja une chaine
+				-- "item:%d:%d" -- seule CETTE branche-ci (la plus courante :
+				-- tete/epaule/torse/etc, tout ce qui n'est pas une arme) passait
+				-- encore un nombre BRUT. Si TryOn sur ce client ignore
+				-- silencieusement les nombres bruts (au lieu de les convertir
+				-- en interne comme le ferait un client retail standard), c'est
+				-- exactement pour ca que rien ne s'affichait jamais, malgre des
+				-- valeurs par ailleurs correctes (confirme par la trace round 46
+				-- + le fix round 47). On construit maintenant systematiquement
+				-- une chaine "item:ID" ici aussi, par coherence avec le reste du
+				-- code et avec le systeme de reference qui, lui, fonctionne.
+				local tryOnArg = "item:" .. tostring(appearanceID);
 				if TMODELTRACE_ENABLED then
-					print(string.format("|cff00ccff[TMODELTRACE]|r TryOn(%s) sur slot=%s canTryOn=true", tostring(appearanceID), tostring(slotID)));
+					print(string.format("|cff00ccff[TMODELTRACE]|r TryOn(%s) [%s] sur slot=%s canTryOn=true", tryOnArg, type(appearanceID), tostring(slotID)));
 				end
-				WardrobeTransmogFrame.ModelFrame:TryOn(appearanceID);
+				WardrobeTransmogFrame.ModelFrame:TryOn(tryOnArg);
 			end
 		else
 			if TMODELTRACE_ENABLED then
