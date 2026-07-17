@@ -1139,12 +1139,12 @@ do
 			if WardrobeTransmogFrame.RefreshPlayerModelAfterApply then
 				local ok, err = pcall(WardrobeTransmogFrame.RefreshPlayerModelAfterApply, WardrobeTransmogFrame);
 				if not ok then
-					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModelAfterApply() a echoue : " .. tostring(err));
+					--print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModelAfterApply() a echoue : " .. tostring(err));
 				end
 			elseif WardrobeTransmogFrame.RefreshPlayerModel then
 				local ok, err = pcall(WardrobeTransmogFrame.RefreshPlayerModel, WardrobeTransmogFrame, true);
 				if not ok then
-					print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModel() a echoue : " .. tostring(err));
+					--print("|cffff0000[TDEBUG]|r WardrobeTransmogFrame:RefreshPlayerModel() a echoue : " .. tostring(err));
 				end
 			elseif WardrobeTransmogFrame.Update then
 				pcall(WardrobeTransmogFrame.Update, WardrobeTransmogFrame, true);
@@ -1214,7 +1214,7 @@ do
 		-- correction. On trace donc systematiquement (pas seulement sous
 		-- /tmodeltrace) l'heure et le contenu brut recu ici, pour verifier
 		-- si c'est bien ce qui se passe.
-		print(string.format("|cffffcc00[TDEBUG55]|r ASMSG_TRANSMOG_SYNC recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
+		--print(string.format("|cffffcc00[TDEBUG55]|r ASMSG_TRANSMOG_SYNC recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
 		wipe(_applied);
 		if msg and msg ~= "" then
 			for slotStr, itemStr in msg:gmatch("(%d+):(%d+)") do
@@ -1236,7 +1236,7 @@ do
 		-- fichier-ci est deja charge) + protection pcall pour ne jamais
 		-- laisser une erreur silencieuse interrompre le rafraichissement du
 		-- mannequin.
-		print(string.format("|cff00ff88[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
+		--print(string.format("|cff00ff88[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED recu @ %.3f, msg=%s", GetTime(), tostring(msg)));
 		local slotStr, itemStr = msg:match("(%d+):(%d+)");
 		local slotID = tonumber(slotStr);
 		local itemID = tonumber(itemStr);
@@ -1247,14 +1247,14 @@ do
 				_applied[slotID] = nil;
 			end
 		else
-			print("|cffff0000[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED : message mal forme, slotID introuvable dans '" .. tostring(msg) .. "'");
+			--print("|cffff0000[TDEBUG40]|r ASMSG_TRANSMOG_APPLIED : message mal forme, slotID introuvable dans '" .. tostring(msg) .. "'");
 		end
 		FireCustomClientEvent("TRANSMOGRIFY_UPDATE");
 		local ok, err = pcall(RefreshTransmogModelAfterServerConfirm);
 		if ok then
-			print("|cff00ff88[TDEBUG40]|r rafraichissement mannequin declenche sans erreur.");
+			--print("|cff00ff88[TDEBUG40]|r rafraichissement mannequin declenche sans erreur.");
 		else
-			print("|cffff0000[TDEBUG40]|r rafraichissement mannequin ERREUR : " .. tostring(err));
+			--print("|cffff0000[TDEBUG40]|r rafraichissement mannequin ERREUR : " .. tostring(err));
 		end
 	end
 
