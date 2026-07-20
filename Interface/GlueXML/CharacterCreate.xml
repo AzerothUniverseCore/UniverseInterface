@@ -3,51 +3,83 @@
 	<Script file="CharacterCreate.lua"/>
 	<Frame name="CharacterCreateTooltip" frameStrata="TOOLTIP" hidden="true" clampedToScreen="true">
 		<Size>
-			<AbsDimension x="268" y="0"/>
+			<AbsDimension x="300" y="0"/>
 		</Size>
-		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-			<EdgeSize>
-				<AbsValue val="16"/>
-			</EdgeSize>
-			<TileSize>
-				<AbsValue val="16"/>
-			</TileSize>
-			<BackgroundInsets>
-				<AbsInset left="5" right="5" top="5" bottom="5"/>
-			</BackgroundInsets>
-		</Backdrop>
 		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="$parentText1" inherits="GlueFontNormalSmall" justifyH="LEFT">
+			<Layer level="BACKGROUND">
+
+				<Texture name="$parentPanelTop" file="Interface\Journeys\journeysframe2x">
 					<Size>
-						<AbsDimension x="250" y="0"/>
+						<AbsDimension x="0" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.08789" right="0.32227" top="0.37939" bottom="0.38916"/>
+				</Texture>
+				<Texture name="$parentPanelBottom" file="Interface\Journeys\journeysframe2x">
+					<Size>
+						<AbsDimension x="0" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.08789" right="0.32227" top="0.48242" bottom="0.49219"/>
+				</Texture>
+				<Texture name="$parentPanelMiddle" file="Interface\Journeys\journeysframe2x">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentPanelTop" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentPanelBottom" relativePoint="TOPRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.08789" right="0.32227" top="0.38916" bottom="0.48242"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText1" inherits="GlueFontNormal" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="282" y="0"/>
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
-								<AbsDimension x="10" y="-10"/>
+								<AbsDimension x="16" y="-16"/>
 							</Offset>
 						</Anchor>
 						<Anchor point="RIGHT">
 							<Offset>
-								<AbsDimension x="-8" y="0"/>
+								<AbsDimension x="-14" y="0"/>
 							</Offset>
 						</Anchor>
-					</Anchors> 
-				</FontString> 
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDivider" parentKey="divider" file="Interface\Journeys\journeysframe2x" hidden="true">
+					<Size>
+						<AbsDimension x="270" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentText1" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.08496" right="0.79590" top="0.77832" bottom="0.80078"/>
+				</Texture> 
 				<FontString name="$parentText2" inherits="GlueFontNormalSmall" justifyH="LEFT">
 					<Size>
-						<AbsDimension x="250" y="0"/>
+						<AbsDimension x="282" y="0"/>
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentText1" relativePoint="BOTTOMLEFT">
 							<Offset>
-								<AbsDimension x="0" y="-2"/>
+								<AbsDimension x="0" y="-20"/>
 							</Offset>
 						</Anchor>
 						<Anchor point="RIGHT">
 							<Offset>
-								<AbsDimension x="-8" y="0"/>
+								<AbsDimension x="-14" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -56,8 +88,6 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
-				self:SetBackdropBorderColor(1.0, 1.0, 1.0);
-				self:SetBackdropColor(0.09, 0.09, 0.19 );
 				local name = self:GetName();
 
 				-- setup text lines
@@ -65,6 +95,7 @@
 					_G[name .. "Text1"],
 					_G[name .. "Text2"],
 				};
+				self.divider = _G[name .. "Divider"];
 
 				-- setup tooltip functions
 				self.SetOwner = 
@@ -72,10 +103,10 @@
 						self:Hide();
 						self:ClearAllPoints();
 						self:SetParent(owner);
-						-- HACK: bumping the frame level up seems to get around a bug where frames on the same frame
-						-- level are drawing as if they were on the same frame strata as the tooltip, even when their
-						-- frame strata is lower than the tooltip
-						self:SetFrameLevel(owner:GetFrameLevel() + 2);
+
+						self:SetFrameStrata("TOOLTIP");
+						
+						self:SetFrameLevel(math.max((owner:GetFrameLevel() or 0) + 2, 400));
 						ownerPoint = ownerPoint or "TOPRIGHT";
 						myPoint = myPoint or "BOTTOMLEFT";
 						xOffset = xOffset or 8;
@@ -88,6 +119,9 @@
 							line:SetText("");
 							line:SetTextColor(1, .82, 0, 1);
 							line:Hide();
+						end
+						if ( self.divider ) then
+							self.divider:Hide();
 						end
 					end
 				self.AddLine = 
@@ -107,20 +141,33 @@
 						freeLine:SetTextColor(r, g, b, a);
 						freeLine:SetText(text); 
 						freeLine:Show();
-						if ( self:IsShown() ) then
-							local height = 0;
-							for _, line in next, self.lines do
-								height = height + line:GetHeight();
-							end
-							self:SetHeight(height + 22);
-						else
-							self:Show();
-						end
+						
+						self:Show();
 					end
 				self.SetText = 
 					function (self, text, r, g, b, a) 
 						self:Clear();
-						self:AddLine(text, r, g, b, a);
+						if ( not text or text == "" ) then
+							return;
+						end
+						
+						text = string.gsub(text, "^|r", "");
+						text = string.gsub(text, "^\n+", "");
+						local nlPos = string.find(text, "\n", 1, true);
+						if ( nlPos ) then
+							local header = string.sub(text, 1, nlPos - 1);
+							local body = string.sub(text, nlPos + 1);
+							body = string.gsub(body, "^\n+", "");
+							self:AddLine(header, r or 1, g or 0.82, b or 0.15, 1);
+							if ( self.divider ) then
+								self.divider:Show();
+							end
+							if ( body ~= "" ) then
+								self:AddLine(body, 1, 1, 1, 1);
+							end
+						else
+							self:AddLine(text, r, g, b, a);
+						end
 					end
 			</OnLoad>
 			<OnShow>
@@ -128,8 +175,18 @@
 				for _, line in next, self.lines do
 					height = height + line:GetHeight();
 				end
-				self:SetHeight(height + 22);
+				self:SetHeight(height + 54);
 			</OnShow>
+			<OnUpdate>
+				local height = 0;
+				for _, line in next, self.lines do
+					height = height + line:GetHeight();
+				end
+				height = height + 54;
+				if ( math.abs((self:GetHeight() or 0) - height) > 0.5 ) then
+					self:SetHeight(height);
+				end
+			</OnUpdate>
 		</Scripts>
 	</Frame>
 	<Frame name="CharacterCreateTooltip2" frameStrata="TOOLTIP" hidden="true" clampedToScreen="true">
@@ -203,10 +260,9 @@
 						self:Hide();
 						self:ClearAllPoints();
 						self:SetParent(owner);
-						-- HACK: bumping the frame level up seems to get around a bug where frames on the same frame
-						-- level are drawing as if they were on the same frame strata as the tooltip, even when their
-						-- frame strata is lower than the tooltip
-						self:SetFrameLevel(owner:GetFrameLevel() + 2);
+						
+						self:SetFrameStrata("TOOLTIP");
+						self:SetFrameLevel(math.max((owner:GetFrameLevel() or 0) + 2, 400));
 						ownerPoint = ownerPoint or "TOPRIGHT";
 						myPoint = myPoint or "BOTTOMLEFT";
 						xOffset = xOffset or 8;
