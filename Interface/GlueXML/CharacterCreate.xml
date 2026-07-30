@@ -8,7 +8,7 @@
 		<Layers>
 			<Layer level="BACKGROUND">
 
-				<Texture name="$parentPanelTop" file="Interface\Journeys\journeysframe2x">
+				<Texture name="$parentPanelTop" file="Interface\Journeys\journeysframeuniverse2x">
 					<Size>
 						<AbsDimension x="0" y="13"/>
 					</Size>
@@ -18,7 +18,7 @@
 					</Anchors>
 					<TexCoords left="0.08789" right="0.32227" top="0.37939" bottom="0.38916"/>
 				</Texture>
-				<Texture name="$parentPanelBottom" file="Interface\Journeys\journeysframe2x">
+				<Texture name="$parentPanelBottom" file="Interface\Journeys\journeysframeuniverse2x">
 					<Size>
 						<AbsDimension x="0" y="13"/>
 					</Size>
@@ -28,7 +28,7 @@
 					</Anchors>
 					<TexCoords left="0.08789" right="0.32227" top="0.48242" bottom="0.49219"/>
 				</Texture>
-				<Texture name="$parentPanelMiddle" file="Interface\Journeys\journeysframe2x">
+				<Texture name="$parentPanelMiddle" file="Interface\Journeys\journeysframeuniverse2x">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentPanelTop" relativePoint="BOTTOMLEFT"/>
 						<Anchor point="BOTTOMRIGHT" relativeTo="$parentPanelBottom" relativePoint="TOPRIGHT"/>
@@ -54,7 +54,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<Texture name="$parentDivider" parentKey="divider" file="Interface\Journeys\journeysframe2x" hidden="true">
+				<Texture name="$parentDivider" parentKey="divider" file="Interface\Journeys\journeysframeuniverse2x" hidden="true">
 					<Size>
 						<AbsDimension x="270" y="8"/>
 					</Size>
@@ -1282,6 +1282,95 @@
 						<PushedTexture file="Interface\Glues\CharacterCreate\Glue_Random_Up"/>
 						<HighlightTexture file="Interface\Glues\CharacterCreate\Glue_Random_Up" alphaMode="ADD"/>
 					</Button>
+					<!-- Character starting zone selection system -->
+					<Frame name="CharCreateStartZoneFrame" hidden="true">
+						<Size x="230" y="70"/>
+						<Anchors>
+							<Anchor point="TOP" x="550" y="-50"/>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString name="CharCreateStartZoneTitle" inherits="GlueFontHighlightSmall" text="Choisissez votre région de départ">
+									<Size x="230" y="20"/>
+									<Anchors>
+										<Anchor point="TOP" x="0" y="0"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<CheckButton name="CharCreateStartZoneAzerothButton">
+								<Size x="20" y="20"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" x="8" y="-24"/>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+								<Layers>
+									<Layer level="ARTWORK">
+										<FontString name="$parentText" inherits="GlueFontHighlightSmall" text="Azeroth / Kalimdor" justifyH="LEFT">
+											<Size x="190" y="20"/>
+											<Anchors>
+												<Anchor point="LEFT" relativePoint="RIGHT" x="4" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										CharacterCreate_SelectStartZone("azeroth");
+									</OnClick>
+									<OnEnter>
+										CharacterCreateTooltip:SetOwner(self);
+										CharacterCreateTooltip:Clear();
+										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
+										CharacterCreateTooltip:AddLine("Azeroth/Kalimdor/Outreterre/Norfendre|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons S0 a S8 + Quete Arme Prodigieuse|n|cffffd100->|r Donjons M0 a M8|n|cffffd100->|r Suite de quetes Scenario Legion M+ FULL |cffffd100->|r End Game", 1, 1, 1, 1);
+										CharacterCreateTooltip:Show();
+									</OnEnter>
+									<OnLeave>
+										CharacterCreateTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="CharCreateStartZoneShadowlandsButton">
+								<Size x="20" y="20"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="CharCreateStartZoneAzerothButton" relativePoint="BOTTOMLEFT" x="0" y="-12"/>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+								<Layers>
+									<Layer level="ARTWORK">
+										<FontString inherits="GlueFontHighlightSmall" text="Confins de l’Exil" justifyH="LEFT">
+											<Size x="190" y="20"/>
+											<Anchors>
+												<Anchor point="LEFT" relativePoint="RIGHT" x="4" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										CharacterCreate_SelectStartZone("shadowlands");
+									</OnClick>
+									<OnEnter>
+										CharacterCreateTooltip:SetOwner(self);
+										CharacterCreateTooltip:Clear();
+										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
+										CharacterCreateTooltip:AddLine("Mer Boreale|n|cffffd100->|r Confins de l'Exil|n|cffffd100->|r Citadelle de Cognenuit|n|cffffd100->|r Port Oubliees|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons S0 a S8 + Quete Arme Prodigieuse|n|cffffd100->|r Donjons M0 a M8|n|cffffd100->|r Suite de quetes Scenario Legion M+ FULL |cffffd100->|r End Game", 1, 1, 1, 1);
+										CharacterCreateTooltip:Show();
+									</OnEnter>
+									<OnLeave>
+										CharacterCreateTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</CheckButton>
+						</Frames>
+					</Frame>
 					<Frame name="CharCreateRaceFrame">
 						<Size x="243" y="104"/>
 						<Anchors>

@@ -728,6 +728,7 @@ function CharacterCreate_OnLoad(self)
 	CharacterCreate.numClasses = 0;
 	CharacterCreate.selectedClass = 0;
 	CharacterCreate.selectedGender = 0;
+	CharacterCreate.selectedStartZone = "azeroth";
 
 	SetCharCustomizeFrame("CharacterCreate");
 
@@ -1789,6 +1790,65 @@ function CharacterCreate_UpdateModel(self)
 	self:AdvanceTime();
 end
 
+AU_RACE_START_ZONE_NAME = {
+	[1] = "Comté-du-Nord",
+	[2] = "Vallée des Frigères",
+	[3] = "Sombrevallon",
+	[4] = "Dun Morogh",
+	[5] = "Val d'Ammen",
+	[6] = "Gilneas",
+	[7] = "L'île Vagabonde",
+	[8] = "Sombrevallon",
+	[9] = "Faille de Telogrus",
+	[10] = "Royaumes de l'Est",
+	[11] = "Royaumes de l'Est",
+	[12] = "Comté-du-Nord",
+	[13] = "Royaumes de l'Est",
+	[14] = "Comté-du-Nord",
+	[15] = "Comté-du-Nord",
+	[16] = "Vallée des Épreuves",
+	[17] = "Le Glas",
+	[18] = "Camp Narache",
+	[19] = "L'îles de l'Écho",
+	[20] = "Kezan",
+	[21] = "L'Île de Haut-Soleil",
+	[22] = "L'île Vagabonde",
+	[23] = "L'Île de Haut-Soleil",
+	[24] = "Kalimdor",
+	[25] = "Kalimdor",
+	[26] = "Kalimdor",
+	[27] = "Kalimdor",
+	[28] = "Kalimdor",
+	[29] = "Camp Narache",
+	[30] = "L'Île de Haut-Soleil",
+	[31] = "Kalimdor",
+};
+
+AU_HIDDEN_START_ZONE_CLASSES = {
+	[10] = true, [12] = true, [13] = true, [14] = true, [15] = true,
+	[16] = true, [17] = true, [18] = true, [19] = true, [20] = true,
+	[21] = true, [22] = true, [23] = true,
+};
+
+function CharacterCreate_SelectStartZone(zone)
+	CharacterCreate.selectedStartZone = zone;
+	PlaySound("igMainMenuOptionCheckBoxOn");
+	CharacterCreate_UpdateStartZoneButtons();
+end
+
+function CharacterCreate_UpdateStartZoneButtons()
+	local zoneName = AU_RACE_START_ZONE_NAME[CharacterCreate.selectedRace] or "Azeroth / Kalimdor";
+	CharCreateStartZoneAzerothButtonText:SetText(zoneName);
+
+	if ( CharacterCreate.selectedStartZone == "shadowlands" ) then
+		CharCreateStartZoneAzerothButton:SetChecked(false);
+		CharCreateStartZoneShadowlandsButton:SetChecked(true);
+	else
+		CharCreateStartZoneAzerothButton:SetChecked(true);
+		CharCreateStartZoneShadowlandsButton:SetChecked(false);
+	end
+end
+
 function CharacterCreate_Finish()
 	PlaySound("gsCharacterCreationCreateChar");
 
@@ -1806,7 +1866,11 @@ function CharacterCreate_Finish()
 		--if ( IsUsingCharacterTemplate() and ( faction ~= "Alliance" and faction ~= "Horde" ) ) then
 		--	CharacterTemplateConfirmDialog:Show();
 		--else
-			CreateCharacter(CharacterCreateNameEdit:GetText());
+			local charName = CharacterCreateNameEdit:GetText();
+			if ( CharacterCreate.selectedStartZone == "shadowlands" ) then
+				charName = charName.."u";
+			end
+			CreateCharacter(charName);
 		--end
 	end
 end
@@ -1824,6 +1888,7 @@ function CharacterCreate_Back()
 		CharCreatePreviewFrame:Hide();
 		CharCreateOkayButton:SetText(NEXT);
 		CharacterCreateNameEdit:Hide();
+		CharCreateStartZoneFrame:Hide();
 		CharacterCreateRandomName:Hide();
 		CustomizationBG:Hide()
 		CharCreateRandomizeButton:Hide()
@@ -1921,6 +1986,13 @@ function CharacterCreate_Forward()
 
 		CharCreateOkayButton:SetText(FINISH);
 		CharacterCreateNameEdit:Show();
+		if ( AU_HIDDEN_START_ZONE_CLASSES[CharacterCreate.selectedClass] ) then
+			CharCreateStartZoneFrame:Hide();
+			CharacterCreate.selectedStartZone = "azeroth";
+		else
+			CharCreateStartZoneFrame:Show();
+			CharacterCreate_UpdateStartZoneButtons();
+		end
 		if ( ALLOW_RANDOM_NAME_BUTTON ) then
 			CharacterCreateRandomName:Show();
 		end
