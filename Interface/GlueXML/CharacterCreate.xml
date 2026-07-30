@@ -1326,7 +1326,7 @@
 										CharacterCreateTooltip:SetOwner(self);
 										CharacterCreateTooltip:Clear();
 										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
-										CharacterCreateTooltip:AddLine("Azeroth/Kalimdor/Outreterre/Norfendre|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons S0 a S8 + Quete Arme Prodigieuse|n|cffffd100->|r Donjons M0 a M8|n|cffffd100->|r Suite de quetes Scenario Legion M+ FULL |cffffd100->|r End Game", 1, 1, 1, 1);
+										CharacterCreateTooltip:AddLine("Départ : Azeroth|n|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons héroïque S0 à S8|n|cffffd100->|r Armes prodigieuse AM0 à AM+FULL|n|cffffd100->|r Donjons mythique M0 à M+8|n|cffffd100->|r Scénario Legion M+FULL|n|cffffd100->|r Antorus, le Trône ardent|n|nUn départ classique dans le monde de World of Warcraft avant de rejoindre le contenu personnalisé d'Azeroth Universe.", 1, 1, 1, 1);
 										CharacterCreateTooltip:Show();
 									</OnEnter>
 									<OnLeave>
@@ -1361,7 +1361,7 @@
 										CharacterCreateTooltip:SetOwner(self);
 										CharacterCreateTooltip:Clear();
 										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
-										CharacterCreateTooltip:AddLine("Mer Boreale|n|cffffd100->|r Confins de l'Exil|n|cffffd100->|r Citadelle de Cognenuit|n|cffffd100->|r Port Oubliees|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons S0 a S8 + Quete Arme Prodigieuse|n|cffffd100->|r Donjons M0 a M8|n|cffffd100->|r Suite de quetes Scenario Legion M+ FULL |cffffd100->|r End Game", 1, 1, 1, 1);
+										CharacterCreateTooltip:AddLine("Départ : Mer Boréale|n|n|cffffd100->|r Confins de l'Exil|n|cffffd100->|r Citadelle de Cognenuit|n|cffffd100->|r Port Oubliées|n|cffffd100->|r Netheril|n|cffffd100->|r Donjons héroïque S0 à S8|n|cffffd100->|r Armes prodigieuse AM0 à AM+FULL|n|cffffd100->|r Donjons mythique M0 à M+8|n|cffffd100->|r Scénario Légion M+FULL|n|cffffd100->|r Antorus, le Trône ardent|n|nUne progression entièrement scénarisée, où chaque zone s'enchaîne naturellement jusqu'au contenu de haut niveau.", 1, 1, 1, 1);
 										CharacterCreateTooltip:Show();
 									</OnEnter>
 									<OnLeave>
