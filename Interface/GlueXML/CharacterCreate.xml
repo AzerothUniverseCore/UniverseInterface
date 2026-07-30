@@ -1212,7 +1212,7 @@
 					<EditBox name="CharacterCreateNameEdit" letters="12" hidden="true">
 						<Size x="156" y="40"/>
 						<Anchors>
-							<Anchor point="TOP" x="-450" y="-120"/> <!-- Déplacement du container EditBox CharacterCreateNameEdit -->
+							<Anchor point="TOP" x="535" y="-80"/> <!-- Déplacement du container EditBox CharacterCreateNameEdit -->
 						</Anchors>
 						<Layers>
 							<Layer level="BORDER">
@@ -1286,7 +1286,7 @@
 					<Frame name="CharCreateStartZoneFrame" hidden="true">
 						<Size x="230" y="70"/>
 						<Anchors>
-							<Anchor point="TOP" x="550" y="-50"/>
+							<Anchor point="TOP" x="-450" y="-150"/>
 						</Anchors>
 						<Layers>
 							<Layer level="ARTWORK">
@@ -2166,7 +2166,7 @@
 							</Button>
 					<CheckButton name="CharCreateBodyButton" inherits="CharacterCreateBodyButtonTemplate" frameStrata="HIGH">
 						<Anchors>
-							<Anchor point="TOP" relativeTo="CharCreateRandomizeButton" relativePoint="CENTER" x="-170" y="15"/>
+							<Anchor point="TOP" relativeTo="CharCreateRandomizeButton" relativePoint="CENTER" x="-130" y="40"/>
 						</Anchors>
 						<Layers>
 							<Layer level="ARTWORK">
