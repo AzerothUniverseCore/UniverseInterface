@@ -1212,7 +1212,7 @@
 					<EditBox name="CharacterCreateNameEdit" letters="12" hidden="true">
 						<Size x="156" y="40"/>
 						<Anchors>
-							<Anchor point="TOP" x="-450" y="-120"/> <!-- Déplacement du container EditBox CharacterCreateNameEdit -->
+							<Anchor point="TOP" x="535" y="-80"/> <!-- Déplacement du container EditBox CharacterCreateNameEdit -->
 						</Anchors>
 						<Layers>
 							<Layer level="BORDER">
@@ -1282,6 +1282,95 @@
 						<PushedTexture file="Interface\Glues\CharacterCreate\Glue_Random_Up"/>
 						<HighlightTexture file="Interface\Glues\CharacterCreate\Glue_Random_Up" alphaMode="ADD"/>
 					</Button>
+					<!-- Character starting zone selection system -->
+					<Frame name="CharCreateStartZoneFrame" hidden="true">
+						<Size x="230" y="70"/>
+						<Anchors>
+							<Anchor point="TOP" x="-450" y="-150"/>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString name="CharCreateStartZoneTitle" inherits="GlueFontHighlightSmall" text="Choose you starting zone">
+									<Size x="230" y="20"/>
+									<Anchors>
+										<Anchor point="TOP" x="0" y="0"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<CheckButton name="CharCreateStartZoneAzerothButton">
+								<Size x="20" y="20"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" x="8" y="-24"/>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+								<Layers>
+									<Layer level="ARTWORK">
+										<FontString name="$parentText" inherits="GlueFontHighlightSmall" text="Azeroth / Kalimdor" justifyH="LEFT">
+											<Size x="190" y="20"/>
+											<Anchors>
+												<Anchor point="LEFT" relativePoint="RIGHT" x="4" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										CharacterCreate_SelectStartZone("azeroth");
+									</OnClick>
+									<OnEnter>
+										CharacterCreateTooltip:SetOwner(self);
+										CharacterCreateTooltip:Clear();
+										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
+										CharacterCreateTooltip:AddLine("Start : Azeroth|n|n|cffffd100->|r Netheril|n|cffffd100->|r Heroic dungeons S0 to S8|n|cffffd100->|r Prodigious weapons AM0 to AM+FULL|n|cffffd100->|r Mythic dungeons M0 to M+8|n|cffffd100->|r Legion scenarios M+FULL|n|cffffd100->|r Antorus, the Burning Throne|n|nA classic start in the world of World of Warcraft before moving on to the custom content of Azeroth Universe.", 1, 1, 1, 1);
+										CharacterCreateTooltip:Show();
+									</OnEnter>
+									<OnLeave>
+										CharacterCreateTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</CheckButton>
+							<CheckButton name="CharCreateStartZoneShadowlandsButton">
+								<Size x="20" y="20"/>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="CharCreateStartZoneAzerothButton" relativePoint="BOTTOMLEFT" x="0" y="-12"/>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+								<Layers>
+									<Layer level="ARTWORK">
+										<FontString inherits="GlueFontHighlightSmall" text="Exile's Reach" justifyH="LEFT">
+											<Size x="190" y="20"/>
+											<Anchors>
+												<Anchor point="LEFT" relativePoint="RIGHT" x="4" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										CharacterCreate_SelectStartZone("shadowlands");
+									</OnClick>
+									<OnEnter>
+										CharacterCreateTooltip:SetOwner(self);
+										CharacterCreateTooltip:Clear();
+										CharacterCreateTooltip:AddLine("Roadmap", 1, 0.82, 0, 1);
+										CharacterCreateTooltip:AddLine("Start : The North Sea|n|n|cffffd100->|r Exile's Reach|n|cffffd100->|r Darkmaul Citadel|n|cffffd100->|r Isle Reach|n|cffffd100->|r Netheril|n|cffffd100->|r Heroic dungeons S0 to S8|n|cffffd100->|r Prodigious weapons AM0 to AM+FULL|n|cffffd100->|r Mythic dungeons M0 to M+8|n|cffffd100->|r Legion scenarios M+FULL|n|cffffd100->|r Antorus, the Burning Throne|n|nA fully scripted progression, where each zone flows naturally into the next, leading up to endgame content.", 1, 1, 1, 1);
+										CharacterCreateTooltip:Show();
+									</OnEnter>
+									<OnLeave>
+										CharacterCreateTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</CheckButton>
+						</Frames>
+					</Frame>
 					<Frame name="CharCreateRaceFrame">
 						<Size x="243" y="104"/>
 						<Anchors>
@@ -2077,7 +2166,7 @@
 							</Button>
 					<CheckButton name="CharCreateBodyButton" inherits="CharacterCreateBodyButtonTemplate" frameStrata="HIGH">
 						<Anchors>
-							<Anchor point="TOP" relativeTo="CharCreateRandomizeButton" relativePoint="CENTER" x="-170" y="15"/>
+							<Anchor point="TOP" relativeTo="CharCreateRandomizeButton" relativePoint="CENTER" x="-130" y="40"/>
 						</Anchors>
 						<Layers>
 							<Layer level="ARTWORK">
