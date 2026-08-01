@@ -101,6 +101,12 @@ for i = -1, 6 do
 	ITEM_QUALITY_COLORS[i].b,
 	ITEM_QUALITY_COLORS[i].hex = GetItemQualityColor(i);
 end
+-- Azeroth Universe : le client de base ne connait que les qualites -1 a 6
+-- (GetItemQualityColor natif ne gere pas la qualite 7, Reliquat/Heirloom).
+-- On complete manuellement l'entree 7, avec la meme couleur deja utilisee
+-- pour LE_ITEM_QUALITY_HEIRLOOM dans SharedXML/SharedConstants.lua, pour
+-- rester coherent avec le reste de l'UI (bordure de sac, etc).
+ITEM_QUALITY_COLORS[7] = { r = 0.90196, g = 0.8, b = 0.50196, hex = "|cffe6cc80" };
 
 function UIParent_OnLoad(self)
 	DisableAddOn("Blizzard_TokenUI")
