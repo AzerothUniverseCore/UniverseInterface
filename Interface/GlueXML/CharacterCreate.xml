@@ -1371,6 +1371,70 @@
 							</CheckButton>
 						</Frames>
 					</Frame>
+					<!-- Gear Update -->
+					<Button name="CharCreateGearUpdateButton" hidden="true">
+						<Size x="52" y="52"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CharCreateStartZoneFrame" relativePoint="BOTTOMLEFT" x="54" y="-86"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentShadow" file="Interface\Glues\CharacterCreate\UI-CharacterCreatePatchwerk">
+									<Size x="62" y="62"/>
+									<Anchors>
+										<Anchor point="CENTER" x="0" y="0"/>
+									</Anchors>
+									<TexCoords left="0.41601563" right="0.54101563" top="0.53710938" bottom="0.59960938"/>
+								</Texture>
+							</Layer>
+							<Layer level="ARTWORK">
+								<Texture name="$parentBevelEdge" file="Interface\Glues\CharacterCreate\UI-CharacterCreatePatchwerk">
+									<Size x="64" y="64"/>
+									<Anchors>
+										<Anchor point="CENTER" x="1" y="-1"/>
+									</Anchors>
+									<TexCoords left="0.79296875" right="0.95312500" top="0.08300781" bottom="0.16308594"/>
+								</Texture>
+								<Texture name="$parentIcon" file="Interface\Glues\GearUpdate\uigearupdate">
+									<Size x="34" y="32"/>
+									<TexCoords left="0.714844" right="0.886719" top="0.002930" bottom="0.083008"/>
+									<Anchors>
+										<Anchor point="CENTER" x="0" y="1"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<HighlightTexture file="Interface\Glues\CharacterCreate\UI-CharacterCreatePatchwerk" alphaMode="ADD">
+							<Size x="64" y="64"/>
+							<Anchors>
+								<Anchor point="CENTER" x="1" y="-1"/>
+							</Anchors>
+							<TexCoords left="0.79296875" right="0.95312500" top="0.08300781" bottom="0.16308594"/>
+						</HighlightTexture>
+						<Frames>
+							<Frame name="$parentNameFrame" parentKey="nameFrame">
+								<Size x="140" y="30"/>
+								<Anchors>
+									<Anchor point="TOP" relativePoint="BOTTOM" x="0" y="-15"/>
+								</Anchors>
+								<Layers>
+									<Layer level="ARTWORK">
+										<FontString name="$parentText" inherits="GlueFontNormalSmall" parentKey="text" justifyH="CENTER" text="Mise à niveau de l'équipement">
+											<Size x="140" y="0"/>
+											<Anchors>
+												<Anchor point="TOP" x="0" y="0"/>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+							</Frame>
+						</Frames>
+						<Scripts>
+							<OnClick>
+								CharacterCreate_GearUpdate_OnButtonClick();
+							</OnClick>
+						</Scripts>
+					</Button>
 					<Frame name="CharCreateRaceFrame">
 						<Size x="243" y="104"/>
 						<Anchors>
@@ -2653,6 +2717,299 @@
 			</OnChar>
 			<OnKeyDown>
 				-- block keys
+			</OnKeyDown>
+		</Scripts>
+	</Frame>
+
+	<Button name="CharCreateGUSpecRowTemplate" virtual="true">
+		<Size x="318" y="82"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="Interface\Glues\GearUpdate\uigearupdate" setAllPoints="true">
+					<TexCoords left="0.005859" right="0.705078" top="0.714844" bottom="0.797852"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentName" inherits="GlueFontNormal" justifyH="LEFT">
+					<Size x="270" y="0"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="16" y="-8"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRole" inherits="GlueFontHighlightSmall" justifyH="LEFT">
+					<Size x="270" y="0"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT" x="0" y="-4"/>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCheck" file="Interface\RaidFrame\ReadyCheck-Ready" hidden="true">
+					<Size x="24" y="24"/>
+					<Anchors>
+						<Anchor point="RIGHT" x="-14" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterCreate_GearUpdate_RowOnClick(self);
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="CharCreateGUWelcomeDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharCreateGUWelcomeBackground">
+				<Size x="358" y="593"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="130" y="-95"/>
+				</Anchors>
+				<Backdrop edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<EdgeSize val="32"/>
+					<TileSize val="32"/>
+				</Backdrop>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="CharCreateGUWelcomePanel" file="Interface\Glues\GearUpdate\uigearupdate" setAllPoints="true">
+							<TexCoords left="0.005859" right="0.705078" top="0.002930" bottom="0.582031"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<Texture name="CharCreateGUWelcomeGiftIcon" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="88" y="82"/>
+							<TexCoords left="0.714844" right="0.886719" top="0.002930" bottom="0.083008"/>
+							<Anchors>
+								<Anchor point="TOP" x="0" y="-40"/>
+							</Anchors>
+						</Texture>
+						<Texture name="CharCreateGUWelcomeDivider" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="300" y="112"/>
+							<TexCoords left="0" right="0.687500" top="0.581055" bottom="0.708984"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharCreateGUWelcomeGiftIcon" relativePoint="BOTTOM" x="0" y="88"/>
+							</Anchors>
+						</Texture>
+						<FontString name="CharCreateGUWelcomeTitle" inherits="GlueFontNormalLarge" text="Mise à niveau de l'équipement" justifyH="CENTER">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharCreateGUWelcomeDivider" relativePoint="BOTTOM" x="0" y="-8"/>
+							</Anchors>
+						</FontString>
+						<FontString name="CharCreateGUWelcomeDesc" inherits="GlueFontHighlightSmall" justifyH="CENTER" text="Choisis ton niveau d’équipement et préparez-vous pour l’aventure.">
+							<Color r="0.88" g="0.88" b="0.88" a="1"/>
+							<Size x="280" y="0"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharCreateGUWelcomeTitle" relativePoint="BOTTOM" x="0" y="-14"/>
+							</Anchors>
+						</FontString>
+						<Texture name="CharCreateGUWelcomeBullet1" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="18" y="18"/>
+							<TexCoords left="0.898438" right="0.955078" top="0.047852" bottom="0.076172"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUWelcomeDesc" relativePoint="BOTTOMLEFT" x="10" y="-74"/>
+							</Anchors>
+						</Texture>
+						<FontString name="CharCreateGUWelcomeItem1" inherits="GlueFontNormalSmall" justifyH="LEFT" text="Niveaux et Équipement">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="280" y="0"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="CharCreateGUWelcomeBullet1" relativePoint="RIGHT" x="8" y="0"/>
+							</Anchors>
+						</FontString>
+						<Texture name="CharCreateGUWelcomeBullet2" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="18" y="18"/>
+							<TexCoords left="0.898438" right="0.955078" top="0.047852" bottom="0.076172"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUWelcomeBullet1" relativePoint="BOTTOMLEFT" x="0" y="-22"/>
+							</Anchors>
+						</Texture>
+						<FontString name="CharCreateGUWelcomeItem2" inherits="GlueFontNormalSmall" justifyH="LEFT" text="Prêt pour l'aventure">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="280" y="0"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="CharCreateGUWelcomeBullet2" relativePoint="RIGHT" x="8" y="0"/>
+							</Anchors>
+						</FontString>
+						<Texture name="CharCreateGUWelcomeBullet3" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="18" y="18"/>
+							<TexCoords left="0.898438" right="0.955078" top="0.047852" bottom="0.076172"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUWelcomeBullet2" relativePoint="BOTTOMLEFT" x="0" y="-22"/>
+							</Anchors>
+						</Texture>
+						<FontString name="CharCreateGUWelcomeItem3" inherits="GlueFontNormalSmall" justifyH="LEFT" text="Départ |cffffd100:|r Chemin du Rêve d'émeraude">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Size x="280" y="0"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="CharCreateGUWelcomeBullet3" relativePoint="RIGHT" x="8" y="0"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharCreateGUWelcomeNextButton" inherits="GlueDialogButtonTemplate" text="Suivant">
+						<Size x="130" y="36"/>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" x="-20" y="20"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterCreate_GearUpdate_WelcomeOnNext();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CharCreateGUWelcomeCloseButton">
+						<Size x="32" y="32"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="8" y="-8"/>
+						</Anchors>
+						<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+						<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+						<Scripts>
+							<OnClick>
+								CharacterCreate_SelectGearUpdateTier("none");
+								CharCreateGUWelcomeDialog:Hide();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+				-- Les polices "Glue*" imposent leur propre couleur (la balise
+				-- Color statique en XML est ignoree) : on force ici explicitement,
+				-- seul moyen fiable observe dans ce client.
+				CharCreateGUWelcomeTitle:SetTextColor(1, 1, 1, 1);
+				CharCreateGUWelcomeDesc:SetTextColor(1, 0.82, 0, 1);
+				CharCreateGUWelcomeItem1:SetTextColor(1, 1, 1, 1);
+				CharCreateGUWelcomeItem2:SetTextColor(1, 1, 1, 1);
+				CharCreateGUWelcomeItem3:SetTextColor(1, 1, 1, 1);
+			</OnShow>
+			<OnKeyDown>
+				if key == "ESCAPE" then
+					CharCreateGUWelcomeDialog:Hide();
+				end
+			</OnKeyDown>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CharCreateGUSpecDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharCreateGUSpecBackground">
+				<Size x="358" y="593"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="130" y="-95"/>
+				</Anchors>
+				<Backdrop edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<EdgeSize val="32"/>
+					<TileSize val="32"/>
+				</Backdrop>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="CharCreateGUSpecPanel" file="Interface\Glues\GearUpdate\uigearupdate" setAllPoints="true">
+							<TexCoords left="0.005859" right="0.705078" top="0.002930" bottom="0.582031"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="CharCreateGUSpecTitle" inherits="GlueFontNormalLarge" text="Mise à niveau de l'équipement" justifyH="CENTER">
+							<Color r="1" g="1" b="1" a="1"/>
+							<Anchors>
+								<Anchor point="TOP" x="0" y="-48"/>
+							</Anchors>
+						</FontString>
+						<FontString name="CharCreateGUSpecCharacterLabel" inherits="GlueFontDisableSmall" text="PERSONNAGE" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecBackground" relativePoint="TOPLEFT" x="18" y="-84"/>
+							</Anchors>
+						</FontString>
+						<Texture name="CharCreateGUSpecCharacterRowBackground" file="Interface\Glues\GearUpdate\uigearupdate">
+							<Size x="322" y="60"/>
+							<TexCoords left="0.005859" right="0.705078" top="0.714844" bottom="0.797852"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecCharacterLabel" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+							</Anchors>
+						</Texture>
+						<FontString name="CharCreateGUSpecCharacterInfo" inherits="GlueFontNormal" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="CharCreateGUSpecCharacterRowBackground" relativePoint="LEFT" x="16" y="0"/>
+							</Anchors>
+						</FontString>
+						<FontString name="CharCreateGUSpecChooseLabel" inherits="GlueFontDisableSmall" text="CHOISISSEZ VOTRE PALIER" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecCharacterRowBackground" relativePoint="BOTTOMLEFT" x="0" y="-16"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharCreateGUSpecRow1" inherits="CharCreateGUSpecRowTemplate" id="1">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecChooseLabel" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+						</Anchors>
+					</Button>
+					<Button name="CharCreateGUSpecRow2" inherits="CharCreateGUSpecRowTemplate" id="2">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecRow1" relativePoint="BOTTOMLEFT" x="0" y="-8"/>
+						</Anchors>
+					</Button>
+					<Button name="CharCreateGUSpecRow3" inherits="CharCreateGUSpecRowTemplate" id="3">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="CharCreateGUSpecRow2" relativePoint="BOTTOMLEFT" x="0" y="-8"/>
+						</Anchors>
+					</Button>
+					<Button name="CharCreateGUSpecBackButton" inherits="GlueDialogButtonTemplate" text="Retour">
+						<Size x="120" y="36"/>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" x="20" y="20"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharCreateGUSpecDialog:Hide();
+								CharCreateGUWelcomeDialog:Show();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CharCreateGUSpecUpdateButton" inherits="GlueDialogButtonTemplate" text="Mettre a jour">
+						<Size x="190" y="36"/>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" x="-20" y="20"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterCreate_GearUpdate_OnConfirm();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CharCreateGUSpecCloseButton">
+						<Size x="32" y="32"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="8" y="-8"/>
+						</Anchors>
+						<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+						<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+						<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+						<Scripts>
+							<OnClick>
+								CharacterCreate_SelectGearUpdateTier("none");
+								CharCreateGUSpecDialog:Hide();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+				CharCreateGUSpecTitle:SetTextColor(1, 1, 1, 1);
+			</OnShow>
+			<OnKeyDown>
+				if key == "ESCAPE" then
+					CharCreateGUSpecDialog:Hide();
+				end
 			</OnKeyDown>
 		</Scripts>
 	</Frame>
