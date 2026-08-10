@@ -1873,7 +1873,7 @@ function CharacterCreate_GearUpdate_UpdateButtonLabel()
 	else
 		for _, data in ipairs(AU_GEARUPDATE_TIERS) do
 			if ( data.tier == tier ) then
-				CharCreateGearUpdateButton.nameFrame.text:SetText("Palier choisi : "..data.name);
+				CharCreateGearUpdateButton.nameFrame.text:SetText("Palier selectionné : "..data.name);
 				break;
 			end
 		end

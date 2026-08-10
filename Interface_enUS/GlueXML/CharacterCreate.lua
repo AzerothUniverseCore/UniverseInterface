@@ -729,6 +729,7 @@ function CharacterCreate_OnLoad(self)
 	CharacterCreate.selectedClass = 0;
 	CharacterCreate.selectedGender = 0;
 	CharacterCreate.selectedStartZone = "azeroth";
+	CharacterCreate.selectedGearTier = "none";
 
 	SetCharCustomizeFrame("CharacterCreate");
 
@@ -1850,6 +1851,93 @@ function CharacterCreate_UpdateStartZoneButtons()
 	end
 end
 
+-- Gear Update
+AU_GEARUPDATE_TIERS = {
+	{ tier = "S0", name = "Equipement S0", role = "Level 80 - PvE Fyraland", cost = 8000 },
+	{ tier = "S4", name = "Equipement S4", role = "Level 80 - PvE Heart of Fear", cost = 12000 },
+	{ tier = "S7", name = "Equipement S7", role = "Level 90 - PvE Halls of Valor", cost = 20000 },
+};
+
+function CharacterCreate_SelectGearUpdateTier(tier)
+	CharacterCreate.selectedGearTier = tier;
+	CharacterCreate_GearUpdate_UpdateButtonLabel();
+end
+
+function CharacterCreate_GearUpdate_UpdateButtonLabel()
+	if ( not (CharCreateGearUpdateButton and CharCreateGearUpdateButton.nameFrame) ) then
+		return;
+	end
+	local tier = CharacterCreate.selectedGearTier or "none";
+	if ( tier == "none" ) then
+		CharCreateGearUpdateButton.nameFrame.text:SetText("Gear Update");
+	else
+		for _, data in ipairs(AU_GEARUPDATE_TIERS) do
+			if ( data.tier == tier ) then
+				CharCreateGearUpdateButton.nameFrame.text:SetText("Selected tier : "..data.name);
+				break;
+			end
+		end
+	end
+end
+
+function CharacterCreate_GearUpdate_OnButtonClick()
+	PlaySound("gsCharacterSelectionCreateNew");
+	CharCreateGUSpecDialog:Hide();
+	CharCreateGUWelcomeDialog:Show();
+end
+
+function CharacterCreate_GearUpdate_WelcomeOnNext()
+	CharCreateGUWelcomeDialog:Hide();
+	CharacterCreate_GearUpdate_PopulateSpecDialog();
+	CharCreateGUSpecDialog:Show();
+end
+
+function CharacterCreate_GearUpdate_PopulateSpecDialog()
+	local raceButton = _G["CharCreateRaceButton"..(CharacterCreate.selectedRace or 0)];
+	local raceName = (raceButton and raceButton.name) or "";
+	local classButton = _G["CharCreateClassButton"..(CharacterCreate.selectedClass or 0)];
+	local className = (classButton and classButton.nameFrame and classButton.nameFrame.text:GetText()) or "";
+	CharCreateGUSpecCharacterInfo:SetText(className.." - "..raceName);
+
+	CharacterCreate.gearUpdatePendingTier = CharacterCreate.selectedGearTier;
+
+	for i, data in ipairs(AU_GEARUPDATE_TIERS) do
+		local row = _G["CharCreateGUSpecRow"..i];
+		if ( row ) then
+			row.tier = data.tier;
+			row:Show();
+			_G[row:GetName().."Name"]:SetText(data.name);
+			_G[row:GetName().."Role"]:SetText(data.role.."\n"..data.cost.." Superior Charms.");
+			if ( CharacterCreate.gearUpdatePendingTier == data.tier ) then
+				_G[row:GetName().."Check"]:Show();
+			else
+				_G[row:GetName().."Check"]:Hide();
+			end
+		end
+	end
+end
+
+function CharacterCreate_GearUpdate_RowOnClick(self)
+	PlaySound("igMainMenuOptionCheckBoxOn");
+	CharacterCreate.gearUpdatePendingTier = self.tier;
+	for i = 1, 3 do
+		local row = _G["CharCreateGUSpecRow"..i];
+		if ( row ) then
+			if ( row.tier == self.tier ) then
+				_G[row:GetName().."Check"]:Show();
+			else
+				_G[row:GetName().."Check"]:Hide();
+			end
+		end
+	end
+end
+
+function CharacterCreate_GearUpdate_OnConfirm()
+	PlaySound("gsCharacterCreationCreateChar");
+	CharacterCreate_SelectGearUpdateTier(CharacterCreate.gearUpdatePendingTier or "none");
+	CharCreateGUSpecDialog:Hide();
+end
+
 function CharacterCreate_Finish()
 	PlaySound("gsCharacterCreationCreateChar");
 
@@ -1871,6 +1959,14 @@ function CharacterCreate_Finish()
 			if ( CharacterCreate.selectedStartZone == "shadowlands" ) then
 				charName = charName.."u";
 			end
+			
+			if ( CharacterCreate.selectedGearTier == "S0" ) then
+				charName = charName.."qz";
+			elseif ( CharacterCreate.selectedGearTier == "S4" ) then
+				charName = charName.."xk";
+			elseif ( CharacterCreate.selectedGearTier == "S7" ) then
+				charName = charName.."vq";
+			end
 			CreateCharacter(charName);
 		--end
 	end
@@ -1890,6 +1986,7 @@ function CharacterCreate_Back()
 		CharCreateOkayButton:SetText(NEXT);
 		CharacterCreateNameEdit:Hide();
 		CharCreateStartZoneFrame:Hide();
+		CharCreateGearUpdateButton:Hide();
 		CharacterCreateRandomName:Hide();
 		CustomizationBG:Hide()
 		CharCreateRandomizeButton:Hide()
@@ -1994,6 +2091,9 @@ function CharacterCreate_Forward()
 			CharCreateStartZoneFrame:Show();
 			CharacterCreate_UpdateStartZoneButtons();
 		end
+		
+		CharCreateGearUpdateButton:Show();
+		CharacterCreate_GearUpdate_UpdateButtonLabel();
 		if ( ALLOW_RANDOM_NAME_BUTTON ) then
 			CharacterCreateRandomName:Show();
 		end
