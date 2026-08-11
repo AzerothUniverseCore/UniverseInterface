@@ -1,0 +1,606 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ../UI.xsd">
+
+    <!-- Load Lua modules in order -->
+    <Script file="Rebirth_Locales.lua"/>
+    <Script file="Rebirth_Network.lua"/>
+    <Script file="Rebirth_Animations.lua"/>
+    <Script file="Rebirth_Tutorial.lua"/>
+    <Script file="Rebirth_Interface.lua"/>
+    <Script file="Rebirth_TargetLevel.lua"/>
+
+    <!-- Rebirth XP Bar on MainMenuBar -->
+    <Include file="RebirthExpBar.xml"/>
+
+    <!-- Custom Font -->
+    <Font name="Game24Font" virtual="true" font="Fonts\FRIZQT__.ttf">
+        <FontHeight val="24"/>
+    </Font>
+
+    <!-- Divider Template -->
+    <Frame name="RebirthDivider" virtual="true">
+        <Size x="650" y="16"/>
+        <Layers>
+            <Layer>
+                <Texture file="Interface/Journeys/JourneysFrame2x">
+                    <TexCoords left="0.158691" right="0.874512" top="0.655762" bottom="0.671387"/>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="RebirthCharacterLevel" parent="PlayerFrame" hidden="false" frameLevel="999">
+        <Size x="50" y="50"/>
+        <Anchors>
+            <Anchor point="CENTER" x="-40" y="-30"></Anchor>
+        </Anchors>
+        <Layers level="BACKGROUND">
+            <Layer>
+                <Texture file="Interface/Common/portrait-ring-withbgPG"/>
+            </Layer>
+        </Layers>
+
+        <Layers level="BACKGROUND">
+            <Layer>
+                <FontString name="Text" parentKey="Text" inherits="GameFontNormalSmall" text="1">
+                    <Color r="0.812" g="0.373" b="0.878" />
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="-1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="RebirthTargetLevel" parent="TargetFrame" hidden="false" frameLevel="999">
+        <Size x="50" y="50"/>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="TargetFrame" relativePoint="CENTER">
+                <Offset>
+                    <AbsDimension x="41" y="-30"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+
+        <!-- Background ring texture -->
+        <Layers level="BACKGROUND">
+            <Layer>
+                <Texture file="Interface/Common/portrait-ring-withbgPG"/>
+            </Layer>
+        </Layers>
+
+        <!-- Level text overlay -->
+        <Layers level="OVERLAY">
+            <Layer>
+                <FontString name="$parentText" parentKey="Text" inherits="GameFontNormalSmall" text="1">
+                    <Color r="0.812" g="0.373" b="0.878"/>
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="-1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnLoad>
+                RebirthTargetLevel_OnLoad(self)
+            </OnLoad>
+            <OnUpdate>
+                RebirthTargetLevel_OnUpdate(self, elapsed)
+            </OnUpdate>
+            <OnHide>
+                RebirthTargetLevel_OnHide(self)
+            </OnHide>
+        </Scripts>
+    </Frame>
+
+    <!-- Category Icon Slot Template (one icon button inside a category row) -->
+    <Button name="RebirthCategoryIconTemplate" virtual="true" enableMouse="true">
+        <Size x="46" y="46"/>
+        <Layers>
+            <!-- Icon background (drawn BEHIND the icon) -->
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBg" parentKey="Bg" file="Interface/Journeys/JourneysFrame2x">
+                    <TexCoords left="0.762207" right="0.814941" top="0.124512" bottom="0.177246"/>
+                </Texture>
+            </Layer>
+
+            <!-- Icon -->
+            <Layer level="ARTWORK">
+                <Texture name="$parentIcon" parentKey="Icon">
+                    <Size x="36" y="36"/>
+                    <Anchors>
+                        <Anchor point="CENTER" x="-1" y="1"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <!-- Lock / Claimed overlays, and the icon border drawn IN FRONT
+                 of the icon (same texture as Bg above, duplicated on top),
+                 exactly matching Paragon's ParagonStatItemTemplate (Bg in
+                 BACKGROUND + Border in OVERLAY, same file/texcoords). -->
+            <Layer level="OVERLAY">
+                <Texture name="$parentBorder" parentKey="Border" file="Interface/Journeys/JourneysFrame2x">
+                    <TexCoords left="0.762207" right="0.814941" top="0.124512" bottom="0.177246"/>
+                </Texture>
+
+                <Texture name="$parentLockIcon" parentKey="LockIcon" file="Interface\Buttons\UI-StopButton" hidden="true">
+                    <Size x="22" y="22"/>
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+
+                <Texture name="$parentClaimedIcon" parentKey="ClaimedIcon" file="Interface\RaidFrame\ReadyCheck-Ready" hidden="true">
+                    <Size x="20" y="20"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT" x="3" y="-3"/>
+                    </Anchors>
+                </Texture>
+
+                <!-- Name label, shown below the icon via a fade-in animation
+                     on hover (RebirthCategoryIcon_AnimateDescription), same
+                     behavior as Paragon's ParagonStatItemTemplate. -->
+                <FontString name="$parentDescription" parentKey="Description" inherits="GameFontNormalSmall">
+                    <Anchors>
+                        <Anchor point="TOP" y="-48"/>
+                    </Anchors>
+                    <Color r="1" g="1" b="1"/>
+                    <Shadow>
+                        <Color r="0" g="0" b="0"/>
+                        <Offset x="-1" y="-1"/>
+                    </Shadow>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnLoad>
+                RebirthCategoryIcon_OnLoad(self)
+            </OnLoad>
+            <OnUpdate>
+                RebirthCategoryIcon_AnimateDescription(self)
+                RebirthCategoryIcon_AnimateZoom(self)
+            </OnUpdate>
+            <OnClick>
+                RebirthCategoryIcon_OnClick(self)
+            </OnClick>
+            <OnEnter>
+                RebirthCategoryIcon_OnEnter(self)
+            </OnEnter>
+            <OnLeave>
+                RebirthCategoryIcon_OnLeave(self)
+            </OnLeave>
+        </Scripts>
+    </Button>
+
+    <!-- Category Line Template (title box + row of icon slots + pagination arrow) -->
+    <Frame name="RebirthCategoryLineTemplate" virtual="true">
+        <Size x="620" y="100"/>
+        <Layers>
+            <!-- Gradient background : kept thin (610x40), matching Paragon's
+                 ParagonStatLineTemplate proportions (600x40 inside a 50px
+                 line) instead of nearly filling this template's taller
+                 100px line, which looked like a big dark block. -->
+            <Layer>
+                <Texture name="$parentGradient">
+                    <Anchors>
+                        <Anchor point="LEFT" x="5" y="0"/>
+                    </Anchors>
+                    <Size x="610" y="40"/>
+                    <Gradient orientation="HORIZONTAL">
+                        <MinColor r="0" g="0" b="0" a="0.3"/>
+                        <MaxColor r="0" g="0" b="0" a="0.01"/>
+                    </Gradient>
+                    <Color r="0" g="0" b="0"/>
+                </Texture>
+            </Layer>
+
+            <!-- Page indicator ("1/12" etc.), shown right next to the arrow
+                 (only when there is more than one page). Anchored to
+                 $parentArrow, a sibling frame created below in Frames,
+                 resolved after all named frames exist, so declaration order
+                 doesn't matter. -->
+            <Layer level="OVERLAY">
+                <FontString name="$parentPageText" parentKey="PageText" inherits="GameFontNormalSmall" hidden="true">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentArrow" relativePoint="RIGHT" x="6" y="0"/>
+                    </Anchors>
+                    <Color r="0.8" g="0.8" b="0.8"/>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <!-- Title section (shows Pierre / Pierre Preuve / Héritage / Récompenses).
+                 Kept at Paragon's original thin 50px height (not the line's
+                 full 100px) so the label reads as a slim banner instead of a
+                 thick block, vertically centered by the LEFT anchor. -->
+            <Frame name="$parentTitle" parentKey="Title">
+                <Size x="170" y="50"/>
+                <Anchors>
+                    <Anchor point="LEFT"/>
+                </Anchors>
+
+                <Layers>
+                    <Layer>
+                        <Texture file="Interface/CovenantRenown/TheWarWithinMajorFactionsFlame">
+                            <TexCoords left="0.000976562" right="0.459961" top="0.8125" bottom="0.949219"/>
+                        </Texture>
+                    </Layer>
+
+                    <Layer>
+                        <FontString name="$parentText" parentKey="Text" inherits="AchievementPointsFont">
+                            <Color r="0.90" g="0.80" b="0.50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Icon slots : fixed pool of ICONS_PER_PAGE (6), reused across
+                 pages by Rebirth_Interface.lua's RebirthCategoryLine_RefreshPage -->
+            <Button name="$parentIcon1" parentKey="Icon1" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="185" y="0"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentIcon2" parentKey="Icon2" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="239" y="0"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentIcon3" parentKey="Icon3" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="293" y="0"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentIcon4" parentKey="Icon4" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="347" y="0"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentIcon5" parentKey="Icon5" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="401" y="0"/>
+                </Anchors>
+            </Button>
+            <Button name="$parentIcon6" parentKey="Icon6" inherits="RebirthCategoryIconTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="455" y="0"/>
+                </Anchors>
+            </Button>
+
+            <!-- Pagination arrow : advances to the next page of entries -->
+            <Button name="$parentArrow" parentKey="Arrow" enableMouse="true">
+                <Size x="34" y="34"/>
+                <Anchors>
+                    <Anchor point="RIGHT" x="-48" y="0"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture name="$parentIcon" parentKey="Icon" file="Interface\Rebirth\RebirthUI">
+                            <Size x="30" y="30"/>
+                            <Anchors>
+                                <Anchor point="CENTER"/>
+                            </Anchors>
+                            <TexCoords left="0.491351563" right="0.508484375" top="0.752257813" bottom="0.784570313"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        RebirthCategoryArrow_OnClick(self)
+                    </OnClick>
+                    <OnEnter>
+                        RebirthCategoryArrow_OnEnter(self)
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide()
+                    </OnLeave>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+
+    <!-- Main Rebirth Frame -->
+    <Frame name="UIRebirth" parent="UIParent" hidden="true" inherits="PortraitFrame2X" movable="true" enableMouse="true" clampedToScreen="true" frameStrata="DIALOG">
+        <Size x="750" y="680"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBackground" file="Interface\Housing\housingbasicpanelstonebackground2x">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0.000976562" right="0.916992" top="0.000976562" bottom="0.709961"/>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <Texture name="HighlightBottom" file="Interface\CovenantRenown\TheWarWithinMajorFactionsFlame" alpha="0.5">
+                    <Size x="750" y="150"/>
+                    <Anchors>
+                        <Anchor point="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0.000976562" right="0.674805" top="0.551758" bottom="0.258789"/>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <!-- Title -->
+            <Frame name="$parentTitle" parentKey="Title" toplevel="true" frameLevel="11">
+                <Size x="150" y="150"/>
+
+                <Anchors>
+                    <Anchor point="TOP"/>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BORDER">
+                        <FontString name="$parentText" parentKey="Text" inherits="GameFontNormal" text="Rebirth">
+                            <Anchors>
+                                <Anchor point="TOP" x="0" y="7"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- Top Banner (Level + Experience Bar) -->
+            <Frame name="$parentTopBanner" parentKey="TopBanner">
+                <Size x="650" y="100"/>
+                <Anchors>
+                    <Anchor point="TOP" y="-15"/>
+                </Anchors>
+
+                <Frames>
+                    <!-- Level Display -->
+                    <Frame name="$parentLevel" parentKey="Level">
+                        <Size x="82" y="100"/>
+                        <Anchors>
+                            <Anchor point="CENTER" x="0" y="5"/>
+                        </Anchors>
+
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture name="$parentLevelTexture" file="Interface\CovenantRenown\TheWarWithinMajorFactionsFlame">
+                                    <Size x="82" y="100"/>
+                                    <Anchors>
+                                        <Anchor point="CENTER"/>
+                                    </Anchors>
+                                    <TexCoords left="0.75293" right="0.930664" top="0.553711" bottom="0.768555"/>
+                                </Texture>
+
+                                <FontString name="$parentText" parentKey="Text" inherits="Game24Font" text="1">
+                                    <Anchors>
+                                        <Anchor point="CENTER" x="-1" y="5"/>
+                                    </Anchors>
+                                    <Shadow>
+                                        <Color r="0" g="0" b="0"/>
+                                        <Offset x="1" y="-1"/>
+                                    </Shadow>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- Experience Bar -->
+                    <Frame name="$parentExperienceBar" parentKey="ExperienceBar" enableMouse="true">
+                        <Size x="570" y="20"/>
+                        <Anchors>
+                            <Anchor point="CENTER" relativeTo="$parentLevel" relativePoint="BOTTOM" y="-15"/>
+                        </Anchors>
+
+                        <Frames>
+                            <StatusBar name="$parentStatusBar" parentKey="StatusBar" minValue="0" maxValue="100" defaultValue="0">
+                                <Size x="561" y="13"/>
+                                <Anchors>
+                                    <Anchor point="CENTER" x="-2" y="2"/>
+                                </Anchors>
+
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture name="$parentBackground" file="Interface/HUD/UIExperienceBar2x">
+                                            <Size x="565" y="13"/>
+                                            <Anchors>
+                                                <Anchor point="CENTER"/>
+                                            </Anchors>
+                                            <TexCoords left="0.000488281" right="0.550293" top="0.0820312" bottom="0.152344"/>
+                                        </Texture>
+                                    </Layer>
+
+                                    <Layer level="OVERLAY">
+                                        <Texture file="Interface/HUD/UIExperienceBar2x">
+                                            <Size x="570" y="18"/>
+                                            <Anchors>
+                                                <Anchor point="CENTER" x="2" y="-2"/>
+                                            </Anchors>
+                                            <TexCoords left="0.000488281" right="0.558105" top="0.785156" bottom="0.917969"/>
+                                        </Texture>
+                                    </Layer>
+                                </Layers>
+
+                                <BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+                                <BarColor r="0.90" g="0.80" b="0.50"/>
+                            </StatusBar>
+
+                            <Frame name="$parentOverlayFrame" parentKey="OverlayFrame" frameLevel="999">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT"/>
+                                    <Anchor point="BOTTOMRIGHT"/>
+                                </Anchors>
+
+                                <Layers>
+                                    <Layer level="OVERLAY">
+                                        <FontString name="$parentHoverText" parentKey="HoverText" inherits="GameFontNormal">
+                                            <Anchors>
+                                                <Anchor point="CENTER" y="5"/>
+                                            </Anchors>
+                                            <Color r="1" g="1" b="1"/>
+                                            <Shadow>
+                                                <Color r="0" g="0" b="0"/>
+                                                <Offset x="-1" y="-2"/>
+                                            </Shadow>
+                                        </FontString>
+
+                                        <FontString name="$parentText" parentKey="Text" inherits="GameFontNormal">
+                                            <Anchors>
+                                                <Anchor point="CENTER" y="3"/>
+                                            </Anchors>
+                                            <Color r="1" g="1" b="1"/>
+                                            <Shadow>
+                                                <Color r="0" g="0" b="0"/>
+                                                <Offset x="-1" y="-1"/>
+                                            </Shadow>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                            </Frame>
+                        </Frames>
+
+                        <Scripts>
+                            <OnLoad>
+                                UIRebirthExperienceBar_OnLoad(self)
+                            </OnLoad>
+                            <OnShow>
+                                UIRebirthExperienceBar_OnShow(self)
+                            </OnShow>
+                            <OnUpdate>
+                                UIRebirthExperienceBar_AnimateTextSwap(self)
+                            </OnUpdate>
+                            <OnEnter>
+                                UIRebirthExperienceBar_OnEnter(self)
+                            </OnEnter>
+                            <OnLeave>
+                                UIRebirthExperienceBar_OnLeave(self)
+                            </OnLeave>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+            </Frame>
+
+            <!-- Help Button : small "i" icon below the close button, same
+                 texture/position as Paragon's HelpButton. Clicking it opens
+                 the full interactive tutorial (Rebirth_Tutorial.lua), same
+                 mechanism as Paragon's UIParagon_ShowTutorial, just with
+                 Rebirth-specific step content. -->
+            <Button name="$parentHelpButton" parentKey="HelpButton" alpha="0.5">
+                <Size x="24" y="24"/>
+                <Anchors>
+                    <Anchor point="BOTTOM" relativeTo="$parentCloseButton" x="0" y="-20"/>
+                </Anchors>
+                <NormalTexture file="Interface\Common\help-iPG"/>
+                <HighlightTexture file="Interface\Common\help-iPG" alphaMode="ADD"/>
+                <Scripts>
+                    <OnClick>
+                        RebirthHelpButton_OnClick(self)
+                    </OnClick>
+                    <OnEnter>
+                        RebirthHelpButton_OnEnter(self)
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide()
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <!-- MainMenuBar XP Checkbox -->
+            <CheckButton name="$parentShowMainMenuXP" parentKey="ShowMainMenuXP" inherits="UICheckButtonTemplate">
+                <Size x="18" y="18"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentTopBannerExperienceBar" x="0" y="-18"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" parentKey="Text" inherits="GameFontNormalSmall">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="RIGHT">
+                                    <Offset>
+                                        <AbsDimension x="0" y="1"/>
+                                    </Offset>
+
+                                </Anchor>
+                            </Anchors>
+                            <Color r="0.90" g="0.80" b="0.50"/>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        UIRebirth_ShowMainMenuXP_OnLoad(self)
+                    </OnLoad>
+                    <OnClick>
+                        UIRebirth_ShowMainMenuXP_OnClick(self)
+                    </OnClick>
+                    <OnEnter>
+                        UIRebirth_ShowMainMenuXP_OnEnter(self)
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide()
+                    </OnLeave>
+                </Scripts>
+            </CheckButton>
+
+            <!-- Body (Categories Section) -->
+            <Frame name="$parentBody" parentKey="Body">
+                <Size x="650" y="450"/>
+                <Anchors>
+                    <Anchor point="CENTER" x="0" y="-85"/>
+                </Anchors>
+
+                <Frames>
+                    <!-- Top Spacer with Title -->
+                    <Frame name="$parentTopSpacer" parentKey="TopSpacer" inherits="RebirthDivider">
+                        <Anchors>
+                            <Anchor point="TOP" y="10"/>
+                        </Anchors>
+
+                        <Layers>
+                            <Layer>
+                                <FontString name="$parentTitle" parentKey="Title" text="REBIRTH" justifyH="LEFT" inherits="GameFontNormalHuge">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" x="20" y="20"/>
+                                    </Anchors>
+                                    <Color r="0.90" g="0.80" b="0.50" a="1"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- Categories Container : 4 dynamic RebirthCategoryLineTemplate
+                         rows created here by Lua (UIRebirth_RebuildCategories) -->
+                    <Frame name="$parentCategoriesList" parentKey="CategoriesList">
+                        <Size x="620" y="420"/>
+                        <Anchors>
+                            <Anchor point="TOP" relativeTo="$parentTopSpacer" relativePoint="BOTTOM" y="-15"/>
+                        </Anchors>
+
+                        <Frames>
+                            <!-- Dynamic category rows are created here by Lua (UIRebirth_RebuildCategories) -->
+                        </Frames>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad function="UIRebirth_OnLoad"/>
+            <OnShow function="UIRebirth_OnShow"/>
+            <OnHide function="UIRebirth_OnHide"/>
+        </Scripts>
+    </Frame>
+
+</Ui>

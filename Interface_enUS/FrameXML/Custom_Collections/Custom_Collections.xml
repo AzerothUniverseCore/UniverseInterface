@@ -1,0 +1,94 @@
+<!--
+
+	Filename:	Custom_Collections.xml
+	Project:	Custom Game Interface
+	Author:		Nyll & Blizzard Entertainment
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="Custom_Collections.lua"/>
+
+	<Button name="CollectionsJournalTab" inherits="CharacterFrameTabButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				CollectionsJournal_SetTab(self:GetParent(), self:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="CollectionsJournal" inherits="PortraitFrameTemplate" toplevel="true" frameStrata="HIGH" enableMouse="true" parent="UIParent" hidden="true">
+		<Size x="703" y="606"/>
+		<Anchors>
+			<Anchor point="CENTER" x="0" y="0"/>
+		</Anchors>
+		<Frames>
+			<Button name="$parentTab1" inherits="CollectionsJournalTab" text="MOUNTS" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" x="11" y="2"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab2" inherits="CollectionsJournalTab" text="PETS" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab3" inherits="CollectionsJournalTab" text="WARDROBE" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab4" inherits="CollectionsJournalTab" text="TOY_BOX" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+			</Button>
+			<Button name="$parentTab5" inherits="CollectionsJournalTab" text="HEIRLOOMS" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab4" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+			</Button>
+			<!-- Onglet 6 : Transmogrification. Ne montre pas de contenu propre a
+			     l'interieur du journal : c'est un raccourci qui ferme
+			     CollectionsJournal et ouvre directement le Transmogrificateur
+			     (WardrobeFrame, Custom_Wardrobe.lua) via TRANSMOGRIFY_OPEN.
+			     Volontairement cable sur son propre OnClick (au lieu de
+			     l'OnClick herite de CollectionsJournalTab qui passe par
+			     CollectionsJournal_SetTab/PanelTemplates_SetTab) : router ce
+			     bouton via le systeme d'onglets normal laissait le "dernier
+			     onglet selectionne" bloque sur 6 en permanence, ce qui
+			     provoquait une boucle de fermeture automatique a chaque
+			     reouverture du journal (CollectionsJournal_OnShow rappelle
+			     CollectionsJournal_UpdateSelectedTab, qui relisait ce 6 et
+			     refermait aussitot). Ce cablage independant reproduit
+			     l'approche d'eZCollection, qui special-case egalement l'onglet
+			     Transmog plutot que de le faire transiter par son SetTab
+			     generique. -->
+			<Button name="$parentTab6" inherits="CollectionsJournalTab" text="TRANSMOGRIFY" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentTab5" relativePoint="RIGHT" x="-16" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						CollectionsJournal_OpenTransmogrify(self:GetParent());
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad function="CollectionsJournal_OnLoad"/>
+			<OnEvent function="CollectionsJournal_OnEvent"/>
+			<OnShow function="CollectionsJournal_OnShow"/>
+			<OnHide function="CollectionsJournal_OnHide"/>
+		</Scripts>
+	</Frame>
+
+	<Include file="Custom_MountCollection.xml"/>
+	<Include file="Custom_PetCollection.xml"/>
+
+	<Include file="Custom_CollectionTemplates.xml"/>
+	<Include file="Custom_Wardrobe.xml"/>
+	<Include file="Custom_ToyBox.xml"/>
+	<Include file="Custom_HeirloomCollection.xml"/>
+</Ui>
