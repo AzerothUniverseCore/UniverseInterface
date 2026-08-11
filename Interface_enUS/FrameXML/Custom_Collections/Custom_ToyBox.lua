@@ -4,10 +4,10 @@ local TOYS_PER_PAGE = 18;
 -- (Custom_HeirloomCollection.lua) et que le script serveur Eluna
 -- AzuCollection_ItemGrant.lua -- a garder synchronisees si le cout ou
 -- l'item-monnaie changent un jour.
-local TOY_CURRENCY_ITEM_ID = 43228; -- Eclat du gardien des pierres
+local TOY_CURRENCY_ITEM_ID = 43228; -- Stone Keeper's Shard
 local TOY_CURRENCY_COST = 50;
 local TOY_CURRENCY_ICON = "Interface\\Icons\\INV_Misc_Platnumdisks";
-local TOY_CURRENCY_NAME = "Eclat du gardien des pierres";
+local TOY_CURRENCY_NAME = "Stone Keeper's Shard";
 
 -- Affichage de la monnaie (icone + compteur) dans la fenetre -- meme
 -- logique que HeirloomsMixin:UpdateCurrencyDisplay (round 67/72).
@@ -26,7 +26,7 @@ function ToyBox_UpdateCurrencyDisplay(self)
 		currencyFrame.CountText:SetText("|cffff4444"..count.."|r");
 	end
 
-	currencyFrame.CostText:SetText(("|cffffffffCout : %d %s par objet|r"):format(TOY_CURRENCY_COST, TOY_CURRENCY_NAME));
+	currencyFrame.CostText:SetText(("|cffffffffPrice : %d %s per items|r"):format(TOY_CURRENCY_COST, TOY_CURRENCY_NAME));
 end
 
 function ToyBox_OnLoad(self)
@@ -173,18 +173,18 @@ function ToySpellButton_OnEnter(self)
 	-- que le tooltip Heritage (round 67/72).
 	if PlayerHasToy(self.itemID) then
 		GameTooltip:AddLine(" ");
-		GameTooltip:AddLine("|cff00ff00Vous possedez deja cet objet.|r");
+		GameTooltip:AddLine("|cff00ff00You already own this item.|r");
 	else
 		local count = GetItemCount(TOY_CURRENCY_ITEM_ID) or 0;
 		local iconTag = "|T"..TOY_CURRENCY_ICON..":14:14|t";
 
 		GameTooltip:AddLine(" ");
-		GameTooltip:AddLine("Cout : "..iconTag.." |cffffd700"..TOY_CURRENCY_COST.." Eclat(s) du gardien des pierres|r");
+		GameTooltip:AddLine("Price : "..iconTag.." |cffffd700"..TOY_CURRENCY_COST.." Stone Keeper's Shard|r");
 
 		if count >= TOY_CURRENCY_COST then
-			GameTooltip:AddLine("|cff00ff00Vous avez "..count.." Eclat(s). Vous pouvez recuperer cet objet.|r");
+			GameTooltip:AddLine("|cff00ff00You have "..count.." Gleam. You can retrieve this item.|r");
 		else
-			GameTooltip:AddLine("|cffff0000Vous avez "..count.." / "..TOY_CURRENCY_COST.." Eclat(s). Insuffisant.|r");
+			GameTooltip:AddLine("|cffff0000You have "..count.." / "..TOY_CURRENCY_COST.." Gleam. Insufficient.|r");
 		end
 	end
 	GameTooltip:Show();
