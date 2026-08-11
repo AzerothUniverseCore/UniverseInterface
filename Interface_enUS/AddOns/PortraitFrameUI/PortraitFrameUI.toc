@@ -1,0 +1,16 @@
+## Interface: 30300
+## Title: |cffc79c6eAzerothUniversePortraitFrameUI|r
+## Notes: Fonctionnalité, repos, animation et design du profile UI similaires à Dragonflight.
+## Author: delayy
+## Version: 1.4.0
+## SavedVariables: PortraitFrameUIDB
+
+Libs.xml
+
+Core.lua
+Config.lua
+Atlas.lua
+NineSlice.lua
+
+Modules\UnitFrame.lua
+Modules\CastingBar.lua

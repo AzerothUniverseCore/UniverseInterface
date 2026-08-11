@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: |cffc79c6eUniversePanel|r
+## Author: AzerothUniverse
+## Version: 3.3.8.01
+## Notes: Ajoute un bouton sur l'onglet Personnage pour ouvrir le menu d'identification du personnage.
+## Notes-frFR: Ajoute un bouton sur l'onglet Personnage pour ouvrir le menu d'identification du personnage.
+## Notes-enUS: Adds a button on the Character tab to open the character identification menu.
+## DefaultState: Enabled
+
+SyphrenaPanel.lua

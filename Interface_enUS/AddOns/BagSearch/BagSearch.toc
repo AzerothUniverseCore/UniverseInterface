@@ -1,0 +1,9 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseBagSearchUI|r
+## Notes: Addons de recherche dans les sacs.
+##
+## URL: http://azerothuniverse.org/
+## Author: robinsch
+##
+BagSearch.lua
+BagSearch.xml

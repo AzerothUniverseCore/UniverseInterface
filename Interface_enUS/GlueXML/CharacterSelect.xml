@@ -1,0 +1,1489 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="CharacterSelect.lua"/>
+	<Frame name="CharacterSelectTooltip" frameStrata="TOOLTIP" hidden="true" parent="GlueParent" inherits="GlueTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				GlueTooltip_SetFont(self, GlueFontNormalSmall);
+				self:SetBackdropBorderColor(1.0, 1.0, 1.0);
+				self:SetBackdropColor(0.09, 0.09, 0.19 );
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="CharacterSelectTooltip2" frameStrata="TOOLTIP" hidden="true" parent="GlueParent" inherits="GlueTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				GlueTooltip_SetFont(self, GlueFontNormalSmall);
+				self:SetBackdropBorderColor(1.0, 1.0, 1.0);
+				self:SetBackdropColor(0.09, 0.09, 0.19 );
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="CharacterSelectTooltip3" frameStrata="TOOLTIP" hidden="true" parent="GlueParent" inherits="GlueTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				GlueTooltip_SetFont(self, GlueFontNormalSmall);
+				self:SetBackdropBorderColor(1.0, 1.0, 1.0);
+				self:SetBackdropColor(0.09, 0.09, 0.19 );
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Button name="CharCreateNewButtonTemplate" inherits="128ButtonRedCustom" virtual="true">
+		<Scripts>
+			<OnClick>
+				CharacterSelect_EnterWorld();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+	<Button name="CharSelectCharacterButtonTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="100" y="50"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentButtonText" setAllPoints="true">
+				<Layers>
+					<Layer level="BORDER">
+						<FontString name="$parentName" inherits="GlueFontNormalCustom" justifyH="CENTER">
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentInfo" inherits="GlueFontHighlightCustom" justifyH="CENTER">
+							<Size>
+								<AbsDimension x="128" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentName" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLocation" inherits="GlueFontDisableSmall" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="128" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentInfo" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				CharacterSelectButton_OnClick(self);
+			</OnClick>
+			<OnDoubleClick>
+				CharacterSelectButton_OnDoubleClick(self);
+			</OnDoubleClick>
+		</Scripts>
+		<NormalTexture file="Interface\UniverseCharSelect\CharSelectBase">
+			<Size>
+				<AbsDimension x="100" y="50"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\UniverseCharSelect\CharSelectHighlight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="100" y="50"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlight"/>
+	</Button>
+	<Button name="CharSelectNewCharacterTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="AddIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.5234375" right="0.611328125" top="0.0859375" bottom="0.263671875"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_SelectCharacter(self:GetID());
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText("New character", CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+
+	<Button name="CharSelectDeleteCharacterTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="DeleteIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.3642578125" right="0.4541015625" top="0.0859375" bottom="0.265625"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_Delete();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText("Delete character", CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	<Button name="CharSelectRealmTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="RealmIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="27" y="30"/>
+					<TexCoords left="0.8662109375" right="0.947265625" top="0.0859375" bottom="0.265625"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_ChangeRealm();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip2, 0, 0, "RIGHT", "LEFT");
+				GlueTooltip_SetText("List of kingdoms", CharacterSelectTooltip2);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip2:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	<Button name="CharSelectAddonCharacterTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="AddonIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.697265625" right="0.787109375" top="0.0859375" bottom="0.265625"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				AddonList:Show();
+			</OnClick>
+			<OnUpdate>
+				GlueButtonMaster_OnUpdate(self, elapsed);
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip2, 0, 0, "RIGHT", "LEFT");
+				GlueTooltip_SetText("Add-ons", CharacterSelectTooltip2);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip2:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+
+	<Button name="CharSelectBackCharacterTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="BackIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.8642578125" right="0.9501953125" top="0.427734375" bottom="0.599609375"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_Exit();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip2, 0, 0, "RIGHT", "LEFT");
+				GlueTooltip_SetText("Log Out", CharacterSelectTooltip2);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip2:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+
+	<Button name="CharSelectPlayCharacterTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="200" y="50"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_EnterWorld();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip3, 0, 0, "TOP", "BOTTOM");
+				GlueTooltip_SetText("Enter Azeroth", CharacterSelectTooltip3);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip3:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\UniverseCharSelect\CharSelectEnter">
+			<Size>
+				<AbsDimension x="200" y="50"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\UniverseCharSelect\CharSelectEnterHighlight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="200" y="50"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+		<NormalFont style="GlueFontNormal"/>
+		<HighlightFont style="GlueFontHighlight"/>
+	</Button>
+
+	<Button name="CharSelectNoCustomization" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="NoCustomIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.3681640625" right="0.4501953125" top="0.638671875" bottom="0.802734375"/>	
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText("This character does not have any active services", CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+	</Button>
+	<Button name="CharSelectCharacterCustomizeTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="CustomIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.3681640625" right="0.4501953125" top="0.396484375" bottom="0.560546875"/>							
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_PaidServiceOnClick(self, button, down, PAID_CHARACTER_CUSTOMIZATION);
+			</OnClick>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText(PAID_CHARACTER_CUSTOMIZE_TOOLTIP, CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	<Button name="CharSelectRaceChangeTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="CustomIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.7041015625" right="0.78125" top="0.416015625" bottom="0.572265625"/>									
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="-1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_PaidServiceOnClick(self, button, down, PAID_RACE_CHANGE);
+			</OnClick>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText(PAID_RACE_CHANGE_TOOLTIP, CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	<Button name="CharSelectFactionChangeTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="CustomIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.5302734375" right="0.6044921875" top="0.40234375" bottom="0.568359375"/>										
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="1"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_PaidServiceOnClick(self, button, down, PAID_FACTION_CHANGE);
+			</OnClick>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText(PAID_FACTION_CHANGE_TOOLTIP, CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+	<ModelFFX name="CharacterSelect" toplevel="true" parent="GlueParent" setAllPoints="true" enableKeyboard="true" hidden="true">
+		<Frames>
+			<Frame name="CharacterSelectUI" setAllPoints="true" enableMouse="true">
+				<Layers>	
+					<Layer level="ARTWORK">
+						<FontString name="CharSelectRealmName" inherits="GlueFontDisableLarge">
+							<Size>
+								<AbsDimension x="0" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1180" y="-730"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture name="CharacterSelectLogo" file="Interface\Glues\CharacterSelect\CharSelectSmallLogo">
+							<Size>
+								<AbsDimension x="141" y="140"/>
+							</Size>
+							<TexCoords left="0." right="0.384765625" top="0." bottom="0.78515625"/>		
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharSelectEnterWorldButton" inherits="CharCreateNewButtonTemplate" text="Enter Azeroth">
+						<Layers>
+							<Layer level="OVERLAY">
+							<!-- Suppression de l'affichage du nom de personnage sur l'UI Personnage (CharSelectCharacterName) -->
+								<!-- <FontString name="CharSelectCharacterName" inherits="GlueFontNormalHuge">
+									<Anchors>
+										<Anchor point="TOP" relativePoint="BOTTOM">
+											<Offset>
+												<AbsDimension x="0" y="-20"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString> -->
+							</Layer>
+						</Layers>
+						<Anchors>
+							<Anchor point="TOP">
+								<Offset>
+									<AbsDimension x="560" y="-40"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharSelectCreateCharacterButton" inherits="CharSelectNewCharacterTemplate" hidden="true">
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="20" y="70"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharacterSelectDeleteButton" inherits="CharSelectDeleteCharacterTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharSelectCreateCharacterButton" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharSelectNoCustomizationButton" inherits="CharSelectNoCustomization">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterSelectDeleteButton" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharacterSelectAddonsButton" inherits="CharSelectAddonCharacterTemplate" hidden="true">
+						<Anchors>
+							<Anchor point="RIGHT">
+								<Offset>
+									<AbsDimension x="-20" y="70"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<Texture name="$parentGlow" hidden="true">
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="CharSelectChangeRealmButton" inherits="CharSelectRealmTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterSelectAddonsButton" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharacterSelectBackButton" inherits="CharSelectBackCharacterTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharSelectChangeRealmButton" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CharacterSelectRealmSplitButton" inherits="GlueButtonTemplate" hidden="true" text="SERVER_SPLIT_BUTTON">
+						<Size>
+							<AbsDimension x="150" y="55"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterSelectLogo" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<Texture name="$parentGlow" file="Interface\Glues\Common\Glue-Panel-Button-Glow" hidden="false" alphaMode="ADD">
+									<TexCoords left="0" right="0.578125" top="0" bottom="0.75"/>
+								</Texture>
+							</Layer>
+							<Layer level="BACKGROUND">
+								<FontString name="RealmSplitCurrentChoice" inherits="GlueFontNormal" justifyH="CENTER">
+									<Size>
+										<AbsDimension x="256" y="0"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOP" relativePoint="BOTTOM">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="RealmSplitPending" inherits="GlueFontNormal" justifyH="CENTER" text="SERVER_SPLIT_PENDING">
+									<Size>
+										<AbsDimension x="256" y="0"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOP" relativeTo="RealmSplitCurrentChoice" relativePoint="BOTTOM">
+											<Offset>
+												<AbsDimension x="0" y="-10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>
+								SERVER_SPLIT_SHOW_DIALOG = true;
+							</OnClick>
+							<OnUpdate>
+								GlueButtonMaster_OnUpdate(self, elapsed);
+							</OnUpdate>
+						</Scripts>
+						<NormalFont style="GlueFontHighlight"/>
+					</Button>
+					<Button name="CharacterSelectUpgradeAccountButton" inherits="GlueButtonTemplate" text="UPGRADE_ACCOUNT" hidden="true">
+						<Size x="320" y="60"/>
+						<Anchors>
+							<Anchor point="TOP" x="0" y="-10"/>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								UpgradeAccount();
+							</OnClick>
+							<OnUpdate>
+								CharacterSelect_DeathKnightSwap(self);
+							</OnUpdate>
+						</Scripts>
+					</Button>
+					<Frame name="CharacterSelectCharacterFrame">
+						<Size>
+							<AbsDimension x="0" y="100"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="CharSelectCharacterButton1" inherits="CharSelectCharacterButtonTemplate" id="1">
+							</Button>
+							<Button name="CharSelectCharacterButton2" inherits="CharSelectCharacterButtonTemplate" id="2">
+							</Button>
+							<Button name="CharSelectCharacterButton3" inherits="CharSelectCharacterButtonTemplate" id="3">
+							</Button>
+							<Button name="CharSelectCharacterButton4" inherits="CharSelectCharacterButtonTemplate" id="4">
+							</Button>
+							<Button name="CharSelectCharacterButton5" inherits="CharSelectCharacterButtonTemplate" id="5">
+							</Button>
+							<Button name="CharSelectCharacterButton6" inherits="CharSelectCharacterButtonTemplate" id="6">
+							</Button>
+							<Button name="CharSelectCharacterButton7" inherits="CharSelectCharacterButtonTemplate" id="7">
+							</Button>
+							<Button name="CharSelectCharacterButton8" inherits="CharSelectCharacterButtonTemplate" id="8">
+							</Button>
+							<Button name="CharSelectCharacterButton9" inherits="CharSelectCharacterButtonTemplate" id="9">
+							</Button>
+							<Button name="CharSelectCharacterButton10" inherits="CharSelectCharacterButtonTemplate" id="10">
+							</Button>
+							<Button name="CharSelectCharacterButton11" inherits="CharSelectCharacterButtonTemplate" id="11">
+							</Button>
+							<Button name="CharSelectCharacterButton12" inherits="CharSelectCharacterButtonTemplate" id="12">
+							</Button>
+							<Button name="CharSelectCharacterButton13" inherits="CharSelectCharacterButtonTemplate" id="13">
+							</Button>
+							<Button name="CharSelectCharacterButton14" inherits="CharSelectCharacterButtonTemplate" id="14">
+							</Button>
+							<Button name="CharSelectCharacterButton15" inherits="CharSelectCharacterButtonTemplate" id="15">
+							</Button>
+							<Button name="CharSelectCharacterButton16" inherits="CharSelectCharacterButtonTemplate" id="16">
+							</Button>
+							<Button name="CharSelectCharacterButton17" inherits="CharSelectCharacterButtonTemplate" id="17">
+							</Button>
+							<Button name="CharSelectCharacterButton18" inherits="CharSelectCharacterButtonTemplate" id="18">
+							</Button>
+							<Button name="CharSelectCharacterButton19" inherits="CharSelectCharacterButtonTemplate" id="19">
+							</Button>
+							<Button name="CharSelectCharacterButton20" inherits="CharSelectCharacterButtonTemplate" id="20">
+							</Button>
+
+							<Button name="CharSelectCharacterCustomize1" inherits="CharSelectCharacterCustomizeTemplate" id="1">
+							</Button>
+							<Button name="CharSelectCharacterCustomize2" inherits="CharSelectCharacterCustomizeTemplate" id="2">
+							</Button>
+							<Button name="CharSelectCharacterCustomize3" inherits="CharSelectCharacterCustomizeTemplate" id="3">
+							</Button>
+							<Button name="CharSelectCharacterCustomize4" inherits="CharSelectCharacterCustomizeTemplate" id="4">
+							</Button>
+							<Button name="CharSelectCharacterCustomize5" inherits="CharSelectCharacterCustomizeTemplate" id="5">
+							</Button>
+							<Button name="CharSelectCharacterCustomize6" inherits="CharSelectCharacterCustomizeTemplate" id="6">
+							</Button>
+							<Button name="CharSelectCharacterCustomize7" inherits="CharSelectCharacterCustomizeTemplate" id="7">
+							</Button>
+							<Button name="CharSelectCharacterCustomize8" inherits="CharSelectCharacterCustomizeTemplate" id="8">
+							</Button>
+							<Button name="CharSelectCharacterCustomize9" inherits="CharSelectCharacterCustomizeTemplate" id="9">
+							</Button>
+							<Button name="CharSelectCharacterCustomize10" inherits="CharSelectCharacterCustomizeTemplate" id="10">
+							</Button>
+							<Button name="CharSelectCharacterCustomize11" inherits="CharSelectCharacterCustomizeTemplate" id="11">
+							</Button>
+							<Button name="CharSelectCharacterCustomize12" inherits="CharSelectCharacterCustomizeTemplate" id="12">
+							</Button>
+							<Button name="CharSelectCharacterCustomize13" inherits="CharSelectCharacterCustomizeTemplate" id="13">
+							</Button>
+							<Button name="CharSelectCharacterCustomize14" inherits="CharSelectCharacterCustomizeTemplate" id="14">
+							</Button>
+							<Button name="CharSelectCharacterCustomize15" inherits="CharSelectCharacterCustomizeTemplate" id="15">
+							</Button>
+							<Button name="CharSelectCharacterCustomize16" inherits="CharSelectCharacterCustomizeTemplate" id="16">
+							</Button>
+							<Button name="CharSelectCharacterCustomize17" inherits="CharSelectCharacterCustomizeTemplate" id="17">
+							</Button>
+							<Button name="CharSelectCharacterCustomize18" inherits="CharSelectCharacterCustomizeTemplate" id="18">
+							</Button>
+							<Button name="CharSelectCharacterCustomize19" inherits="CharSelectCharacterCustomizeTemplate" id="19">
+							</Button>
+							<Button name="CharSelectCharacterCustomize20" inherits="CharSelectCharacterCustomizeTemplate" id="20">
+							</Button>
+							<Button name="CharSelectRaceChange1" inherits="CharSelectRaceChangeTemplate" id="1">
+							</Button>
+							<Button name="CharSelectRaceChange2" inherits="CharSelectRaceChangeTemplate" id="2">
+							</Button>
+							<Button name="CharSelectRaceChange3" inherits="CharSelectRaceChangeTemplate" id="3">
+							</Button>
+							<Button name="CharSelectRaceChange4" inherits="CharSelectRaceChangeTemplate" id="4">
+							</Button>
+							<Button name="CharSelectRaceChange5" inherits="CharSelectRaceChangeTemplate" id="5">
+							</Button>
+							<Button name="CharSelectRaceChange6" inherits="CharSelectRaceChangeTemplate" id="6">
+							</Button>
+							<Button name="CharSelectRaceChange7" inherits="CharSelectRaceChangeTemplate" id="7">
+							</Button>
+							<Button name="CharSelectRaceChange8" inherits="CharSelectRaceChangeTemplate" id="8">
+							</Button>
+							<Button name="CharSelectRaceChange9" inherits="CharSelectRaceChangeTemplate" id="9">
+							</Button>
+							<Button name="CharSelectRaceChange10" inherits="CharSelectRaceChangeTemplate" id="10">
+							</Button>
+							<Button name="CharSelectRaceChange11" inherits="CharSelectRaceChangeTemplate" id="11">
+							</Button>
+							<Button name="CharSelectRaceChange12" inherits="CharSelectRaceChangeTemplate" id="12">
+							</Button>
+							<Button name="CharSelectRaceChange13" inherits="CharSelectRaceChangeTemplate" id="13">
+							</Button>
+							<Button name="CharSelectRaceChange14" inherits="CharSelectRaceChangeTemplate" id="14">
+							</Button>
+							<Button name="CharSelectRaceChange15" inherits="CharSelectRaceChangeTemplate" id="15">
+							</Button>
+							<Button name="CharSelectRaceChange16" inherits="CharSelectRaceChangeTemplate" id="16">
+							</Button>
+							<Button name="CharSelectRaceChange17" inherits="CharSelectRaceChangeTemplate" id="17">
+							</Button>
+							<Button name="CharSelectRaceChange18" inherits="CharSelectRaceChangeTemplate" id="18">
+							</Button>
+							<Button name="CharSelectRaceChange19" inherits="CharSelectRaceChangeTemplate" id="19">
+							</Button>
+							<Button name="CharSelectRaceChange20" inherits="CharSelectRaceChangeTemplate" id="20">
+							</Button>
+							<Button name="CharSelectFactionChange1" inherits="CharSelectFactionChangeTemplate" id="1">
+							</Button>
+							<Button name="CharSelectFactionChange2" inherits="CharSelectFactionChangeTemplate" id="2">
+							</Button>
+							<Button name="CharSelectFactionChange3" inherits="CharSelectFactionChangeTemplate" id="3">
+							</Button>
+							<Button name="CharSelectFactionChange4" inherits="CharSelectFactionChangeTemplate" id="4">
+							</Button>
+							<Button name="CharSelectFactionChange5" inherits="CharSelectFactionChangeTemplate" id="5">
+							</Button>
+							<Button name="CharSelectFactionChange6" inherits="CharSelectFactionChangeTemplate" id="6">
+							</Button>
+							<Button name="CharSelectFactionChange7" inherits="CharSelectFactionChangeTemplate" id="7">
+							</Button>
+							<Button name="CharSelectFactionChange8" inherits="CharSelectFactionChangeTemplate" id="8">
+							</Button>
+							<Button name="CharSelectFactionChange9" inherits="CharSelectFactionChangeTemplate" id="9">
+							</Button>
+							<Button name="CharSelectFactionChange10" inherits="CharSelectFactionChangeTemplate" id="10">
+							</Button>
+							<Button name="CharSelectFactionChange11" inherits="CharSelectFactionChangeTemplate" id="11">
+							</Button>
+							<Button name="CharSelectFactionChange12" inherits="CharSelectFactionChangeTemplate" id="12">
+							</Button>
+							<Button name="CharSelectFactionChange13" inherits="CharSelectFactionChangeTemplate" id="13">
+							</Button>
+							<Button name="CharSelectFactionChange14" inherits="CharSelectFactionChangeTemplate" id="14">
+							</Button>
+							<Button name="CharSelectFactionChange15" inherits="CharSelectFactionChangeTemplate" id="15">
+							</Button>
+							<Button name="CharSelectFactionChange16" inherits="CharSelectFactionChangeTemplate" id="16">
+							</Button>
+							<Button name="CharSelectFactionChange17" inherits="CharSelectFactionChangeTemplate" id="17">
+							</Button>
+							<Button name="CharSelectFactionChange18" inherits="CharSelectFactionChangeTemplate" id="18">
+							</Button>
+							<Button name="CharSelectFactionChange19" inherits="CharSelectFactionChangeTemplate" id="19">
+							</Button>
+							<Button name="CharSelectFactionChange20" inherits="CharSelectFactionChangeTemplate" id="20">
+							</Button>
+							</Frames>
+						<Backdrop bgFile="Interface\Glues\Common\Glue-Tooltip-Background" edgeFile="Interface\Glues\Common\Glue-Tooltip-Border" tile="true">
+							<BackgroundInsets>
+								<AbsInset left="10" right="5" top="4" bottom="9"/>
+							</BackgroundInsets>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+							<EdgeSize>
+								<AbsValue val="16"/>
+							</EdgeSize>
+						</Backdrop>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnMouseDown>
+						CharacterSelectFrame_OnMouseDown(button);
+					</OnMouseDown>
+					<OnMouseUp>
+						CharacterSelectFrame_OnMouseUp(button);
+					</OnMouseUp>
+					<OnUpdate>
+						CharacterSelectFrame_OnUpdate();
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<Frame name="BillingWarningFrame" hidden="true">
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="BillingWarningText" inherits="GlueFontHighlight">
+							<Size>
+								<AbsDimension x="300" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOM" relativeTo="CharacterSelect" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="200" y="120"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="BillingWarningButton" inherits="GlueButtonTemplate" text="MANAGE_ACCOUNT">
+						<Anchors>
+							<Anchor point="BOTTOM" relativeTo="CharacterSelect" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="200" y="50"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterSelect_ManageAccount();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			<Frame name="GameRoomBillingFrame" hidden="true">
+				<Size>
+					<AbsDimension x="255" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="CharacterSelectLogo" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="GameRoomBillingFrameText" inherits="GlueFontNormalSmall" justifyH="LEFT">
+							<Size>
+								<AbsDimension x="235" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="13" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Backdrop bgFile="Interface\Glues\Common\Glue-Tooltip-Background" edgeFile="Interface\Glues\Common\Glue-Tooltip-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="10" right="5" top="4" bottom="9"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+				</Backdrop>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CharacterSelect_OnLoad(self);
+			</OnLoad>
+			<OnShow>
+				CharacterSelect_OnShow();
+			</OnShow>
+			<OnHide>
+				CharacterSelect_OnHide();
+			</OnHide>
+			<OnUpdate>
+				CharacterSelect_OnUpdate(elapsed);
+			</OnUpdate>
+			<OnKeyDown>
+				CharacterSelect_OnKeyDown(self,key);
+			</OnKeyDown>
+			<OnEvent>
+				CharacterSelect_OnEvent(self, event, ...);
+			</OnEvent>
+			<OnUpdateModel>
+				CharacterSelect_UpdateModel(self);
+			</OnUpdateModel>
+		</Scripts>
+	</ModelFFX>
+	<Frame name="CharacterDeleteDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharacterDeleteBackground">
+				<Size>
+					<AbsDimension x="512" y="256"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="CharacterDeleteText1" inherits="GlueFontNormalLarge">
+							<Size>
+								<AbsDimension x="400" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="CharacterDeleteText2" inherits="GlueFontNormalSmall" text="CONFIRM_CHAR_DELETE_INSTRUCTIONS">
+							<Size>
+								<AbsDimension x="400" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharacterDeleteText1" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="CharacterDeleteAlertIcon" file="Interface\DialogFrame\UI-Dialog-Icon-AlertNew">
+							<Size>
+								<AbsDimension x="48" y="48"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="24" y="10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharacterDeleteButton1" inherits="GlueDialogButtonTemplate" id="1" text="OKAY">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CharacterDeleteBackground" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="-6" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								DeleteCharacter(CharacterSelect.selectedIndex);
+								CharacterDeleteDialog:Hide();
+								PlaySound("gsTitleOptionOK");
+							</OnClick> 
+							<OnUpdate>
+								CharacterSelect_DeathKnightSwap(self);
+							</OnUpdate>
+						</Scripts>
+					</Button>
+					<Button name="CharacterDeleteButton2" inherits="GlueDialogButtonTemplate" id="2" text="CANCEL">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CharacterDeleteButton1" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="13" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterDeleteDialog:Hide();
+								PlaySound("gsTitleOptionExit");
+							</OnClick>
+							<OnUpdate>
+								CharacterSelect_DeathKnightSwap(self);
+							</OnUpdate>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			<EditBox name="CharacterDeleteEditBox" letters="32" historyLines="1">
+				<Size>
+					<AbsDimension x="130" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="CharacterDeleteText2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+							<Size>
+								<AbsDimension x="75" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.29296875" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+							<Size>
+								<AbsDimension x="75" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.70703125" right="1.0" top="0" bottom="1.0"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnTextChanged>
+						if ( strupper(self:GetText()) == strupper(DELETE_CONFIRM_STRING) ) then
+							CharacterDeleteButton1:Enable();
+						else
+							CharacterDeleteButton1:Disable();
+						end
+					</OnTextChanged> 
+					<OnEnterPressed>
+						if ( CharacterDeleteButton1:IsEnabled() == 1 ) then
+							DeleteCharacter(CharacterSelect.selectedIndex);
+							CharacterDeleteDialog:Hide();
+						end
+					</OnEnterPressed>
+					<OnEscapePressed>
+						CharacterDeleteDialog:Hide();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="GlueFontHighlight"/>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+				CharacterDeleteDialog_OnShow();
+			</OnShow>
+			<OnHide>
+				CharacterDeleteEditBox:SetText("");
+			</OnHide>
+		</Scripts>
+	</Frame>
+	<Frame name="CharacterRenameDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharacterRenameBackground">
+				<Size>
+					<AbsDimension x="512" y="256"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="CharacterRenameText1" inherits="GlueFontNormalLarge" text="CHAR_RENAME_DESCRIPTION">
+							<Size>
+								<AbsDimension x="400" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="CharacterRenameText2" inherits="GlueFontNormalSmall" text="CHAR_RENAME_INSTRUCTIONS">
+							<Size>
+								<AbsDimension x="400" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharacterRenameText1" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="CharacterRenameAlertIcon" file="Interface\DialogFrame\UI-Dialog-Icon-AlertNew">
+							<Size>
+								<AbsDimension x="48" y="48"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="24" y="10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharacterRenameButton1" inherits="GlueDialogButtonTemplate" id="1" text="OKAY">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CharacterRenameBackground" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="-6" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if ( RenameCharacter(CharacterSelect.selectedIndex, CharacterRenameEditBox:GetText()) ) then
+									CharacterRenameDialog:Hide();
+								end
+							</OnClick> 
+							<OnUpdate>
+								CharacterSelect_DeathKnightSwap(self);
+							</OnUpdate>
+						</Scripts>
+					</Button>
+					<Button name="CharacterRenameButton2" inherits="GlueDialogButtonTemplate" id="2" text="CANCEL">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CharacterRenameButton1" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="13" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterRenameDialog:Hide();
+							</OnClick>
+							<OnUpdate>
+								CharacterSelect_DeathKnightSwap(self);
+							</OnUpdate>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+			<EditBox name="CharacterRenameEditBox" letters="12" historyLines="1">
+				<Size>
+					<AbsDimension x="130" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="CharacterRenameText2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+							<Size>
+								<AbsDimension x="75" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.29296875" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+							<Size>
+								<AbsDimension x="75" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="RIGHT">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.70703125" right="1.0" top="0" bottom="1.0"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnterPressed>
+						if ( RenameCharacter(CharacterSelect.selectedIndex, CharacterRenameEditBox:GetText()) ) then
+							CharacterRenameDialog:Hide();
+						end
+					</OnEnterPressed>
+					<OnEscapePressed>
+						CharacterRenameDialog:Hide();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="GlueFontHighlight"/>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+			</OnShow>
+			<OnHide>
+				CharacterRenameEditBox:SetText("");
+			</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

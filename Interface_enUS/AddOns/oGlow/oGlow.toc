@@ -1,0 +1,20 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseoGlowUI|r
+## Author: AzerothUniverse
+## Version: 1.12
+## X-eMail: azerothuniverse@universe.io
+## X-Website: http://azerothuniverse.org/
+## Notes: Faites briller vos objets dans les sacs
+
+core\glow.lua
+
+core\bags.lua
+core\char.lua
+core\inspect.lua
+core\bank.lua
+core\gbank.lua
+core\trade.lua
+core\tradeskill.lua
+core\craft.lua
+core\merchant.lua
+core\mail.lua

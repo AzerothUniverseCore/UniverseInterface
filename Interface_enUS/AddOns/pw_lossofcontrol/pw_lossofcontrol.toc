@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseLossControlUI|r
+## Notes: Alertes de perte de contrôle.
+## Version: 1.0
+## Author: AzerothUniverse
+## SavedVariables: LosOfControl
+
+pw_lossofcontrol.xml

@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: |cffd50000UniversePandariaHighlight|r
+## Notes: Zone highlight for Pandaria continent map
+## Author: AzerothUniverse
+## Version: 1.0
+
+PandariaHighlight.lua

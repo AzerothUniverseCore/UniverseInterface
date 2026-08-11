@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: |cffc79c6eUniverseBNetToastUI|r
+## Version: 1.0
+## Notes: Indicateur en ligne/hors ligne de type BattleNET pour vos amis/compagnons de guilde.
+## Author: AzerothUniverse
+
+BNetToast.lua
