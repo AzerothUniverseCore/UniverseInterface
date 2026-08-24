@@ -9,7 +9,7 @@ local TEXTURE_SIZE = 36
 
 local REALM_BACKGROUNDS = {
     ["RealmListRealmButton1"] = "Interface\\GluesVideo\\Assets\\RealmSelection\\Realm1.blp",
-    ["RealmListRealmButton2"] = "Interface\\GluesVideo\\Assets\\RealmSelection\\Realm2.blp",
+    ["RealmListRealmButton2"] = "Interface\\GluesVideo\\Assets\\RealmSelection\\Realm8.blp",
 }
 
 local logoAnimationInProgress = false
@@ -229,7 +229,7 @@ local function CreateRealmButtonBorder(button)
         texture1:SetTexture("Interface\\GluesVideo\\Assets\\RealmSelection\\RealmIcon\\TypeGame2")
         texture2:SetTexture("Interface\\GluesVideo\\Assets\\RealmSelection\\RealmIcon\\Characters2")
         texture3:SetTexture("Interface\\GluesVideo\\Assets\\RealmSelection\\RealmIcon\\Population2")
-        texture4:SetTexture("Interface\\GluesVideo\\Assets\\RealmSelection\\RealmIcon\\Expansion2")
+        texture4:SetTexture("Interface\\GluesVideo\\Assets\\RealmSelection\\RealmIcon\\Expansion8")
     else
         texture1:SetTexture("Interface\\Icons\\inv_misc_questionmark")
         texture2:SetTexture("Interface\\Icons\\inv_misc_questionmark")
@@ -415,7 +415,7 @@ function RealmListUpdate()
                 local expansionText = _G["RealmListRealmButton"..i.."ExpansionText"] or button:CreateFontString("$parentExpansionText", "ARTWORK", "GlueFontHighlightSmall");
                 local expansionNames = {
                     ["RealmListRealmButton1"] = "Azeroth Universe",
-                    ["RealmListRealmButton2"] = "Dragonflight",
+                    ["RealmListRealmButton2"] = "Azerion Universe",
                 };
                 local buttonName = "RealmListRealmButton"..i;
                 local expansionName = expansionNames[buttonName] or "Clásico";

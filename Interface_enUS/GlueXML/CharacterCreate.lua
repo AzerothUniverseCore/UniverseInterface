@@ -1827,10 +1827,15 @@ AU_RACE_START_ZONE_NAME = {
 
 AU_HIDDEN_START_ZONE_CLASSES = {
 	[6] = true,
-	[12] = true, [14] = true, [15] = true, [16] = true, 
+	[12] = true, [14] = true, [15] = true, [16] = true,
 	[17] = true, [18] = true, [19] = true, [20] = true,
 	[21] = true, [22] = true, [23] = true, [24] = true,
 };
+
+function AU_IsAzerionRealm()
+	local realmName = GetCVar and GetCVar("realmName");
+	return realmName == "Azerion Universe";
+end
 
 function CharacterCreate_SelectStartZone(zone)
 	CharacterCreate.selectedStartZone = zone;
@@ -2084,7 +2089,7 @@ function CharacterCreate_Forward()
 
 		CharCreateOkayButton:SetText(FINISH);
 		CharacterCreateNameEdit:Show();
-		if ( AU_HIDDEN_START_ZONE_CLASSES[CharacterCreate.selectedClass] ) then
+		if ( AU_IsAzerionRealm() or AU_HIDDEN_START_ZONE_CLASSES[CharacterCreate.selectedClass] ) then
 			CharCreateStartZoneFrame:Hide();
 			CharacterCreate.selectedStartZone = "azeroth";
 		else
@@ -2092,8 +2097,13 @@ function CharacterCreate_Forward()
 			CharacterCreate_UpdateStartZoneButtons();
 		end
 		
-		CharCreateGearUpdateButton:Show();
-		CharacterCreate_GearUpdate_UpdateButtonLabel();
+		if ( AU_IsAzerionRealm() ) then
+			CharCreateGearUpdateButton:Hide();
+			CharacterCreate.selectedGearTier = "none";
+		else
+			CharCreateGearUpdateButton:Show();
+			CharacterCreate_GearUpdate_UpdateButtonLabel();
+		end
 		if ( ALLOW_RANDOM_NAME_BUTTON ) then
 			CharacterCreateRandomName:Show();
 		end
