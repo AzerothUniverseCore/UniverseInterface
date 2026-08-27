@@ -14,8 +14,8 @@
 local EJ_ANCHOR          = "TOPLEFT"       -- button anchor point
 local EJ_RELATIVE_FRAME  = "LFDParentFrame" -- reference frame (the "Dungeons" panel)
 local EJ_RELATIVE_POINT  = "TOPLEFT"       -- reference point on that frame
-local EJ_OFFSET_X        = 25              -- horizontal offset (negative = to the left)
-local EJ_OFFSET_Y         = -60              -- vertical offset (positive = upward)
+local EJ_OFFSET_X        = 97              -- horizontal offset (negative = to the left)
+local EJ_OFFSET_Y         = -100              -- vertical offset (positive = upward)
 
 -- >>> TEXTURE SETTING <<<
 -- false = use a guaranteed-visible fallback icon (recommended default)

@@ -14,8 +14,8 @@
 local EJ_ANCHOR          = "TOPLEFT"       -- point d'ancrage du bouton
 local EJ_RELATIVE_FRAME  = "LFDParentFrame" -- frame de référence (panneau "Donjons")
 local EJ_RELATIVE_POINT  = "TOPLEFT"       -- point de référence sur cette frame
-local EJ_OFFSET_X        = 25              -- décalage horizontal (négatif = vers la gauche)
-local EJ_OFFSET_Y         = -60              -- décalage vertical (positif = vers le haut)
+local EJ_OFFSET_X        = 97              -- décalage horizontal (négatif = vers la gauche)
+local EJ_OFFSET_Y         = -100              -- décalage vertical (positif = vers le haut)
 
 -- >>> RÉGLAGE TEXTURE <<<
 -- false = utilise une icône de secours garantie visible (recommandé par défaut)
