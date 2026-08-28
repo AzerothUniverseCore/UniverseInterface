@@ -574,12 +574,12 @@ function PVPFrame_SetToOffSeason()
 	PVPTeam2Standard:Hide();
 	PVPTeam3:Hide();
 	PVPTeam3Standard:Hide();
-	
-	PVPFrameBlackFilter:Show();
-	PVPFrameOffSeason:Show();
-	
-	local previousArenaSeason = GetPreviousArenaSeason();
-	PVPFrameOffSeasonText:SetText(format(ARENA_OFF_SEASON_TEXT, previousArenaSeason, previousArenaSeason+1));
+
+	-- Azeroth Universe: PvE-focused server, the "off season" message and
+	-- its black filter are disabled (they caused an unidentified visual
+	-- overlap and add nothing on this server).
+	PVPFrameBlackFilter:Hide();
+	PVPFrameOffSeason:Hide();
 end
 
 function PVPFrame_SetToInSeason()

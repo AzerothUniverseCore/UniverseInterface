@@ -574,12 +574,12 @@ function PVPFrame_SetToOffSeason()
 	PVPTeam2Standard:Hide();
 	PVPTeam3:Hide();
 	PVPTeam3Standard:Hide();
-	
-	PVPFrameBlackFilter:Show();
-	PVPFrameOffSeason:Show();
-	
-	local previousArenaSeason = GetPreviousArenaSeason();
-	PVPFrameOffSeasonText:SetText(format(ARENA_OFF_SEASON_TEXT, previousArenaSeason, previousArenaSeason+1));
+
+	-- Azeroth Universe : serveur axe PvE, le message "hors saison" et son
+	-- cadre noir sont desactives (ils provoquaient un chevauchement visuel
+	-- non identifie et n'apportent rien sur ce serveur).
+	PVPFrameBlackFilter:Hide();
+	PVPFrameOffSeason:Hide();
 end
 
 function PVPFrame_SetToInSeason()
