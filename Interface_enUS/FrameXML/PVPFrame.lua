@@ -16,6 +16,10 @@ PVPBATTLEGROUND_TEXTURELIST[7] = "Interface\\PVPFrame\\PvpBg-EyeOfTheStorm";
 PVPBATTLEGROUND_TEXTURELIST[9] = "Interface\\PVPFrame\\PvpBg-StrandOfTheAncients";
 PVPBATTLEGROUND_TEXTURELIST[30] = "Interface\\PVPFrame\\PvpBg-IsleOfConquest";
 PVPBATTLEGROUND_TEXTURELIST[32] = "Interface\\PVPFrame\\PvpRandomBg";
+PVPBATTLEGROUND_TEXTURELIST[31] = "Interface\\PVPFrame\\PvpBg-Battlefield";
+PVPBATTLEGROUND_TEXTURELIST[108] = "Interface\\PVPFrame\\PvpBg-TwinPeaks";
+PVPBATTLEGROUND_TEXTURELIST[120] = "Interface\\PVPFrame\\PvpBg-Gilneas";
+PVPBATTLEGROUND_TEXTURELIST[121] = "Interface\\PVPFrame\\PvpBg-TempleofKotmogu";
 -- ====================================================================
 -- PVPFRAME FUNCTIONS
 -- ====================================================================
