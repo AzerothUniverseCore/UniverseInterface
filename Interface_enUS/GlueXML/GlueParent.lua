@@ -449,68 +449,68 @@ function SetBackgroundModel(model, race, class)
 		if(class == 'DEATHKNIGHT') then
 			name = 'DeathKnight';
 		elseif (GetSelectedRace() == 1) then -- Humain Alliance
-			name = 'Human';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 2) then -- Nain Alliance
-			name = 'Dwarf';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 3) then -- Elf de la nuit Alliance
-			name = 'Pirate';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 4) then -- Gnome Alliance
-			name = 'Gnome';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 5) then -- Draenei Alliance
-			name = 'Draenei';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 6) then -- Worgen Alliance
-			name = 'Worgen';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 7) then -- Pandaren Alliance
-			name = 'Pandaren';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 8) then -- Elfe de la nuit Illidari Alliance
-			name = 'DemonHunter';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 9) then -- Elf du Vide Alliance
-			name = 'VoidElf';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 10) then -- Lightforged Draenei Alliance
-			name = 'Draenei';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 11) then -- Nain sombrefer Alliance
-			name = 'Dwarf';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 12) then -- HighElf Alliance
-			name = 'BloodElf';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 13) then -- Vulpera Alliance
-			name = 'Vulpera';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 14) then -- Dracthyr Alliance
-			name = 'Dracthyr';
+			name = 'Alliance';
 		elseif (GetSelectedRace() == 15) then -- Kultiran Alliance
-			name = 'Kultiran';
+			name = 'Alliance';
 			
 		elseif (GetSelectedRace() == 16) then -- Orc Horde
 			name = 'Horde';
 		elseif (GetSelectedRace() == 17) then -- Mort Vivant Horde
-			name = 'Scourge';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 18) then -- Tauren Horde
-			name = 'Pirate';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 19) then -- Troll Horde
-			name = 'Trol2';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 20) then -- Goblin Horde
-			name = 'Goblin';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 21) then -- Elfe de sang Horde
-			name = 'BloodElf';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 22) then -- Pandaren Horde
-			name = 'Pandaren';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 23) then -- Elfe de sang Illidari Horde
-			name = 'DemonHunter';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 24) then -- Eredar Horde
-			name = 'Draenei';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 25) then -- Vulpera Horde
-			name = 'Vulpera';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 26) then -- Nightborne Horde
-			name = 'NightElf';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 27) then -- Troll Zandalari Horde
-			name = 'Troll';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 28) then -- Nain Sombrefer Horde
-			name = 'Dwarf';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 29) then -- Highmountain Tauren Horde
-			name = 'Tauren';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 30) then -- Dracthyr Horde
-			name = 'Dracthyr';
+			name = 'Horde';
 		elseif (GetSelectedRace() == 31) then -- Mag'har Horde
-			name = 'ORCCLAN';
+			name = 'Horde';
 		end
 		SetCharCustomizeBackground("Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2");
 	else
