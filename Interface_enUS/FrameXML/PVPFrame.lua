@@ -16,10 +16,6 @@ PVPBATTLEGROUND_TEXTURELIST[7] = "Interface\\PVPFrame\\PvpBg-EyeOfTheStorm";
 PVPBATTLEGROUND_TEXTURELIST[9] = "Interface\\PVPFrame\\PvpBg-StrandOfTheAncients";
 PVPBATTLEGROUND_TEXTURELIST[30] = "Interface\\PVPFrame\\PvpBg-IsleOfConquest";
 PVPBATTLEGROUND_TEXTURELIST[32] = "Interface\\PVPFrame\\PvpRandomBg";
-PVPBATTLEGROUND_TEXTURELIST[31] = "Interface\\PVPFrame\\PvpBg-Battlefield";
-PVPBATTLEGROUND_TEXTURELIST[108] = "Interface\\PVPFrame\\PvpBg-TwinPeaks";
-PVPBATTLEGROUND_TEXTURELIST[120] = "Interface\\PVPFrame\\PvpBg-Gilneas";
-PVPBATTLEGROUND_TEXTURELIST[121] = "Interface\\PVPFrame\\PvpBg-TempleofKotmogu";
 -- ====================================================================
 -- PVPFRAME FUNCTIONS
 -- ====================================================================
@@ -568,30 +564,40 @@ function PVPMicroButton_SetNormal()
 end
 
 function PVPFrame_SetToOffSeason()
-	PVPTeam1:Hide();
-	PVPTeam1Standard:Hide();
-	PVPTeam2:Hide();
-	PVPTeam2Standard:Hide();
-	PVPTeam3:Hide();
-	PVPTeam3Standard:Hide();
-
-	-- Azeroth Universe: PvE-focused server, the "off season" message and
-	-- its black filter are disabled (they caused an unidentified visual
-	-- overlap and add nothing on this server).
-	PVPFrameBlackFilter:Hide();
-	PVPFrameOffSeason:Hide();
+    PVPTeam1:Hide();
+    PVPTeam1Standard:Hide();
+    PVPTeam2:Hide();
+    PVPTeam2Standard:Hide();
+    PVPTeam3:Hide();
+    PVPTeam3Standard:Hide();
+    
+    if PVPFrameBlackFilter then
+        PVPFrameBlackFilter:Show();
+    end
+    
+    local previousArenaSeason = GetPreviousArenaSeason();
+    if PVPFrameOffSeasonText then
+        PVPFrameOffSeasonText:SetText(format(ARENA_OFF_SEASON_TEXT, previousArenaSeason, previousArenaSeason+1));
+    end
+    if PVPFrameOffSeason then
+        PVPFrameOffSeason:Show();
+    end
 end
 
 function PVPFrame_SetToInSeason()
-	PVPTeam1:Show();
-	PVPTeam1Standard:Show();
-	PVPTeam2:Show();
-	PVPTeam2Standard:Show();
-	PVPTeam3:Show();
-	PVPTeam3Standard:Show();
-	
-	PVPFrameBlackFilter:Hide();
-	PVPFrameOffSeason:Hide();
+    PVPTeam1:Show();
+    PVPTeam1Standard:Show();
+    PVPTeam2:Show();
+    PVPTeam2Standard:Show();
+    PVPTeam3:Show();
+    PVPTeam3Standard:Show();
+    
+    if PVPFrameBlackFilter then
+        PVPFrameBlackFilter:Hide();
+    end
+    if PVPFrameOffSeason then
+        PVPFrameOffSeason:Hide();
+    end
 end
 
 function TogglePVPFrame()
