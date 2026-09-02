@@ -2432,44 +2432,33 @@ function CharacterChangeFixup()
 		for i=1, MAX_RACES, 1 do
 			local allow = false;
 			if ( PAID_SERVICE_TYPE == PAID_FACTION_CHANGE ) then
-				--[[local faction = PaidChange_GetCurrentFaction();
-				if ( (i == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(i) ~= faction) and (IsRaceClassValid(i,CharacterCreate.selectedClass))) ) then
-					allow = true;
-				end]]
-				for i=1,MAX_RACES do
+				if ( IsRaceClassValid(i, CharacterCreate.selectedClass) ) then
 					allow = true
 				end
 			elseif ( PAID_SERVICE_TYPE == PAID_RACE_CHANGE ) then
-				--[[local faction = PaidChange_GetCurrentFaction();
-				if ( (i == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(i) == faction or IsNeutralRace(i)) and (IsRaceClassValid(i,CharacterCreate.selectedClass))) ) then
-					allow = true
-				end]]
 				local fact = CharacterCreate.selectedRace
-				--local str = tostring(fact)..": "
-				for i=1,MAX_RACES do
-					if (fact < MAX_RACES and i < MAX_RACES) or (fact > (MAX_RACES-1) and i > (MAX_RACES-1)) then
-						allow = true
-						local button = _G["CharCreateRaceButton"..i];
-						button:Enable();
-						SetButtonDesaturated(button, false);
-					else
-						allow = false
-						--str = str..tostring(i)..", "
-						local button = _G["CharCreateRaceButton"..i];
-						button:Disable();
-						SetButtonDesaturated(button, true);
-					end
+				if ( ((fact < MAX_RACES and i < MAX_RACES) or (fact > (MAX_RACES-1) and i > (MAX_RACES-1))) and IsRaceClassValid(i, CharacterCreate.selectedClass) ) then
+					allow = true
+					local button = _G["CharCreateRaceButton"..i];
+					button:Enable();
+					SetButtonDesaturated(button, false);
+				else
+					allow = false
+					local button = _G["CharCreateRaceButton"..i];
+					button:Disable();
+					SetButtonDesaturated(button, true);
 				end
-				--message(str)
 			elseif ( PAID_SERVICE_TYPE == PAID_CHARACTER_CUSTOMIZATION ) then
 				if ( i == CharacterCreate.selectedRace ) then
 					allow = true
 				end
 			end
 			if (not allow) then
-				--local button = _G["CharCreateRaceButton"..i];
-				--button:Disable();
-				--SetButtonDesaturated(button, true);
+				local button = _G["CharCreateRaceButton"..i];
+				if ( button ) then
+					button:Disable();
+					SetButtonDesaturated(button, true);
+				end
 			else
 				numAllowedRaces = numAllowedRaces + 1;
 			end

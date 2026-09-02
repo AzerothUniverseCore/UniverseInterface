@@ -270,6 +270,51 @@ function CharacterSelect_OnUpdate(elapsed)
 	end
 end
 
+local CharSelectHideableFrames = {
+	"CharSelectCreateCharacterButton",
+	"CharacterSelectDeleteButton",
+	"CharacterSelectAddonsButton",
+	"CharSelectChangeRealmButton",
+	"CharacterSelectBackButton",
+	"CharacterSelectCharacterFrame",
+	"CharSelectEnterWorldButton",
+};
+
+local CharSelectUIHidden = false;
+
+function CharacterSelect_ToggleUIVisibility()
+	CharSelectUIHidden = not CharSelectUIHidden;
+
+	for _, frameName in pairs(CharSelectHideableFrames) do
+		local frame = _G[frameName];
+		if ( frame ) then
+			if ( CharSelectUIHidden ) then
+				frame:Hide();
+			else
+				frame:Show();
+			end
+		end
+	end
+
+	if ( CharSelectUIHidden ) then
+		if ( CharSelectNoCustomizationButton ) then
+			CharSelectNoCustomizationButton:Hide();
+		end
+		for i = 1, MAX_CHARACTERS_DISPLAYED do
+			local customizeButton = _G["CharSelectCharacterCustomize"..i];
+			local raceButton = _G["CharSelectRaceChange"..i];
+			local factionButton = _G["CharSelectFactionChange"..i];
+			if ( customizeButton ) then customizeButton:Hide(); end
+			if ( raceButton ) then raceButton:Hide(); end
+			if ( factionButton ) then factionButton:Hide(); end
+		end
+	else
+		if ( CharacterSelect.selectedIndex and CharacterSelect.selectedIndex > 0 ) then
+			SetupCharacterCustomizationButtons(CharacterSelect.selectedIndex);
+		end
+	end
+end
+
 function CharacterSelect_OnKeyDown(self,key)
 	if ( key == "ESCAPE" ) then
 		CharacterSelect_Exit();
@@ -277,6 +322,8 @@ function CharacterSelect_OnKeyDown(self,key)
 		CharacterSelect_EnterWorld();
 	elseif ( key == "PRINTSCREEN" ) then
 		Screenshot();
+	elseif ( key == "N" ) then
+		CharacterSelect_ToggleUIVisibility();
 	elseif ( key == "UP" or key == "LEFT" ) then
 		local numChars = GetNumCharacters();
 		if ( numChars > 1 ) then
@@ -577,9 +624,10 @@ function CharacterSelect_SelectCharacter(id, noCreate)
 	else
 
 		local name, race, raceid, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(id);
-	
+
 		SetBackgroundModel(CharacterSelect, race, class);
 		SelectCharacter(id);
+		SetupCharacterCustomizationButtons(id);
 	end
 end
 
