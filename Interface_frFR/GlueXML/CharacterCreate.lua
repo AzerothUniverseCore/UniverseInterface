@@ -1201,9 +1201,19 @@ function CharacterCreateEnumerateRaces(...)
 	end
 	for i=1, select("#", ...), 3 do
 		local name = select(i, ...);
-		local unlocalizedname = strupper(select(i+1, ...))
+		local rawUnlocalizedName = select(i+1, ...);
 
-		coords = RACE_ICON_TCOORDS[strupper(select(i+1, ...).."_"..gender)];
+		if ( not rawUnlocalizedName ) then
+			DEFAULT_CHAT_FRAME:AddMessage("|cffff4444[CharacterCreate] Incomplete race entry ignored (index "..i.."/"..select("#", ...).." values received) - check GetAvailableRaces() client-side.|r");
+			break;
+		end
+		local unlocalizedname = strupper(rawUnlocalizedName)
+
+		coords = RACE_ICON_TCOORDS[unlocalizedname.."_"..gender];
+		if ( not coords ) then
+			DEFAULT_CHAT_FRAME:AddMessage("|cffff4444[CharacterCreate] No RACE_ICON_TCOORDS icon for '"..unlocalizedname.."_"..gender.."', race ignored.|r");
+			break;
+		end
 		_G["CharCreateRaceButton"..index.."NormalTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 		_G["CharCreateRaceButton"..index.."PushedTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 		button = _G["CharCreateRaceButton"..index];
@@ -1239,8 +1249,7 @@ function CharacterCreateEnumerateRaces(...)
 		end
 
 		text = GetFlavorText("RACE_INFO_"..unlocalizedname, gender)
-		-- button.tooltip = "|r"..text
-		button.tooltip = button.tooltip.."\n\n|cffFFFFFF"..abilityText
+		button.tooltip = (button.tooltip or "").."\n\n|cffFFFFFF"..abilityText
 
 
 		index = index + 1;
@@ -1260,9 +1269,18 @@ function CharacterCreateEnumerateClasses(...)
 	local index = 1;
 	local button;
 	for i=1, select("#", ...), 3 do
-		local unlocalizedname = strupper(select(i+1, ...))
+		local rawUnlocalizedName = select(i+1, ...);
+		if ( not rawUnlocalizedName ) then
+			DEFAULT_CHAT_FRAME:AddMessage("|cffff4444[CharacterCreate] Incomplete class entry ignored (index "..i.."/"..select("#", ...).." values received).|r");
+			break;
+		end
+		local unlocalizedname = strupper(rawUnlocalizedName)
 
-		coords = CLASS_ICON_TCOORDS[strupper(select(i+1, ...))];
+		coords = CLASS_ICON_TCOORDS[unlocalizedname];
+		if ( not coords ) then
+			DEFAULT_CHAT_FRAME:AddMessage("|cffff4444[CharacterCreate] No CLASS_ICON_TCOORDS icon for '"..unlocalizedname.."', class ignored.|r");
+			break;
+		end
 		_G["CharCreateClassButton"..index.."NormalTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 		_G["CharCreateClassButton"..index.."PushedTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 		button = _G["CharCreateClassButton"..index];
