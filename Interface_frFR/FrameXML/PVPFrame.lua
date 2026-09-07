@@ -16,6 +16,9 @@ PVPBATTLEGROUND_TEXTURELIST[7] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-eyeo
 PVPBATTLEGROUND_TEXTURELIST[9] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-strandoftheancients-toastbg";
 PVPBATTLEGROUND_TEXTURELIST[30] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-isleofconquest-toastbg";
 PVPBATTLEGROUND_TEXTURELIST[32] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-twinpeaks-toastbg";
+PVPBATTLEGROUND_TEXTURELIST[108] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-twinpeaks-toastbg";
+PVPBATTLEGROUND_TEXTURELIST[120] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-gilneas-toastbg";
+PVPBATTLEGROUND_TEXTURELIST[121] = "Interface\\PVPFrame\\pvpbackground\\pvpbg-templekotmogu-toastbg";
 -- ====================================================================
 -- PVPFRAME FUNCTIONS
 -- ====================================================================
