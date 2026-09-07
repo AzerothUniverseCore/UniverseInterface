@@ -2,6 +2,16 @@
 -- Reproduit le comportement de UpdateMapHighlight() pour la Pandarie
 -- GetCurrentMapContinent() == 6 => Pandarie
 -- GetCurrentMapZone() == 0      => vue continent (pas de sous-zone)
+--
+-- FIX (Aurora, backport QuestMap) : ce script ne verifiait que
+-- WorldMapFrame:IsShown() pour s'activer. Depuis que la touche M (et le
+-- comportement par defaut) ouvre QuestMapFrame plutot que la WorldMapFrame
+-- classique, WorldMapFrame reste cachee et WorldMapFrame:IsShown() est
+-- toujours faux : le survol/clic des zones ne s'activait donc plus jamais.
+-- On verifie desormais les deux frames, et on resynchronise le FrameStrata/
+-- FrameLevel du clickFrame sur ceux de WorldMapDetailFrame a chaque
+-- affichage plutot qu'une seule fois a la creation, puisque QuestMapFrame
+-- les eleve dynamiquement (jusqu'a FULLSCREEN_DIALOG) quand elle est active.
 
 local PANDARIA_CONTINENT_ID = 6
 
@@ -54,7 +64,6 @@ end
 local function GetClickFrame()
     if not clickFrame then
         clickFrame = CreateFrame("Button", "PandariaZoneClickFrame", WorldMapDetailFrame)
-        clickFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 5)
         clickFrame:Hide()
         clickFrame:SetScript("OnClick", function(self, button)
             if self.zoneID and button == "LeftButton" then
@@ -62,7 +71,16 @@ local function GetClickFrame()
             end
         end)
     end
+    -- FIX (Aurora) : resynchronise Strata/Level a CHAQUE appel (pas seulement a la creation),
+    -- pour rester au-dessus de WorldMapDetailFrame quelle que soit la Strata/le Level courants
+    -- (QuestMapFrame les eleve dynamiquement quand la carte lui est attachee).
+    clickFrame:SetFrameStrata(WorldMapDetailFrame:GetFrameStrata())
+    clickFrame:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() + 5)
     return clickFrame
+end
+
+local function IsWorldMapUIVisible()
+    return (WorldMapFrame and WorldMapFrame:IsShown()) or (QuestMapFrame and QuestMapFrame:IsShown())
 end
 
 local function NormalizedToWorld(nx, ny)
@@ -104,7 +122,7 @@ frame:SetScript("OnUpdate", function(self, elapsed)
     -- plantait "attempt to perform arithmetic on a nil value" en boucle des
     -- que le joueur se trouvait sur le continent de Pandarie, meme carte
     -- fermee (ce script tourne en permanence via OnUpdate).
-    if not WorldMapFrame:IsShown() or GetCurrentMapContinent() ~= PANDARIA_CONTINENT_ID or GetCurrentMapZone() ~= 0 then
+    if not IsWorldMapUIVisible() or GetCurrentMapContinent() ~= PANDARIA_CONTINENT_ID or GetCurrentMapZone() ~= 0 then
         if highlightTexture then highlightTexture:Hide() end
         if clickFrame       then clickFrame:Hide()       end
         lastZone = nil
@@ -184,3 +202,12 @@ WorldMapFrame:HookScript("OnHide", function()
     if clickFrame       then clickFrame:Hide()       end
     lastZone = nil
 end)
+
+-- FIX (Aurora) : meme nettoyage quand c'est QuestMapFrame qui se ferme (backport QuestMap).
+if QuestMapFrame then
+    QuestMapFrame:HookScript("OnHide", function()
+        if highlightTexture then highlightTexture:Hide() end
+        if clickFrame       then clickFrame:Hide()       end
+        lastZone = nil
+    end)
+end

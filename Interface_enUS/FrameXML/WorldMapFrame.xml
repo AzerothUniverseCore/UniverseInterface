@@ -499,9 +499,13 @@
 							<AbsDimension x="-16" y="4"/>
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 				<Scripts>
-					<OnClick function="WorldMapFrame_ToggleWindowSize" />
+					<OnClick>
+						QuestMap_PendingFromWorldMap = WORLDMAP_SETTINGS and WORLDMAP_SETTINGS.selectedQuestId;
+						HideUIPanel(WorldMapFrame);
+						ShowUIPanel(QuestMapFrame);
+					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Buttons\UI-Panel-SmallerButton-Up"/>
 				<PushedTexture file="Interface\Buttons\UI-Panel-SmallerButton-Down"/>

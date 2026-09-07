@@ -246,6 +246,9 @@ Custom_Collections\Custom_Collections.xml
 XML_TXXUI.xml
 XML_IXXUI.xml
 
+# QuestMap (Astrolabe - bundled, no TomTom dependency) - backport depuis WoW-Interface
+QuestMap\QuestMap.xml
+
 # add new modules above here
 LocalizationPost.xml
 

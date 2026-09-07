@@ -135,9 +135,21 @@ function WorldMapFrame_OnShow(self)
 		WorldMap_LoadTextures();
 		if ( not WatchFrame.showObjectives and WORLDMAP_SETTINGS.size ~= WORLDMAP_FULLMAP_SIZE ) then
 			WorldMapFrame_SetFullMapView();
-		end		
+		end
 	end
-	
+
+	-- Ensure QuestMap custom markers don't bleed through onto WorldMapFrame.
+	-- Pool markers may carry an elevated strata from the previous QuestMap
+	-- session; forcibly hide them here as a safety net.
+	if QM_poiPool then
+		for _, pm in ipairs(QM_poiPool) do
+			pm:Hide();
+		end
+	end
+	if QuestMapFrame and QuestMapFrame._playerArrow then
+		QuestMapFrame._playerArrow:Hide();
+	end
+
 	UpdateMicroButtons();
 	SetMapToCurrentZone();
 	PlaySound("igQuestLogOpen");

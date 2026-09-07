@@ -666,7 +666,13 @@
 		ToggleMinimap();
 	</Binding>
 	<Binding name="TOGGLEWORLDMAP">
-		ToggleFrame(WorldMapFrame);
+		<!-- FIX (Aurora) : ouvre desormais QuestMapFrame (taille moyenne/fenetree, 960x500)
+		     directement au lieu de la WorldMapFrame classique plein ecran. QuestMapFrame gere
+		     elle-meme l'attache/detache de la carte (cf. QuestMapFrame_AttachWorldMap). -->
+		if ( WorldMapFrame:IsShown() ) then
+			HideUIPanel(WorldMapFrame);
+		end
+		ToggleFrame(QuestMapFrame);
 	</Binding>
 	<Binding name="TOGGLEWORLDMAPSIZE">
 		if ( WorldMapFrame:IsShown() ) then
