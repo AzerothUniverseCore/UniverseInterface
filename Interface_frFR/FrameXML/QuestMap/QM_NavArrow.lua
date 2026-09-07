@@ -614,7 +614,7 @@ local function QM_Nav_UpdateArrow(elapsed)
 	end
 
 	if distYards then
-		f.distStr:SetText(string.format("%d yd", math.floor(distYards + 0.5)));
+		f.distStr:SetText(string.format("%d km", math.floor(distYards + 0.5)));
 	elseif not sameRegion and not QM_navTransit then
 		f.distStr:SetText("(no route)");
 	elseif hasDir then
