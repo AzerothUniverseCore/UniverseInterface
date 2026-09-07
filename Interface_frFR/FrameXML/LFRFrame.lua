@@ -1,10 +1,7 @@
+-- ============================================================
+--  LFRFrame - Noa –  WoW 3.3.5a
+-- ============================================================
 --Extra lines added because looking upward was too much work.
-
-
-
-
-
-
 
 LFR_MAX_SHOWN_LEVEL_DIFF = 15;
 
@@ -16,14 +13,28 @@ LFR_BROWSE_AUTO_REFRESH_TIME = 20;
 
 local heroicIcon = "|TInterface\\LFGFrame\\UI-LFG-ICON-HEROIC:16:13:-5:-3:32:32:0:16:0:20|t";
 
+function ToggleLFRParentFrame()
+	if ( LFDParentFrame:IsShown() and
+		 LFDParentFrame.activeLFGSection == "RaidFinder" ) then
+		HideUIPanel(LFDParentFrame);
+		return;
+	end
+
+	LFDParentFrame.selectedTab = 1;
+	ShowUIPanel(LFDParentFrame);
+	LFDQueueParentFrame:Show();
+	LFDQueueFrame_ShowSection("RaidFinder");
+	LFDParentFrame_UpdatePortrait();
+	UpdateMicroButtons();
+end
+
 function LFRFrame_OnLoad(self)
 	self:RegisterEvent("UPDATE_LFG_LIST");
 	self:RegisterEvent("LFG_UPDATE");
 	self:RegisterEvent("PARTY_MEMBERS_CHANGED");
-	
-	PanelTemplates_SetNumTabs(self, 2);
+
 	LFRFrame_SetActiveTab(1);
-	
+
 	self.lastInGroup = GetNumPartyMembers() > 0 or GetNumRaidMembers() > 0;
 end
 
@@ -136,12 +147,14 @@ end
 
 function LFRList_SetHeaderEnabled(headerID, isEnabled)
 	for _, dungeonID in pairs(LFRRaidList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFRList_SetRaidEnabled(dungeonID, isEnabled);
 		end
 	end
 	for _, dungeonID in pairs(LFRHiddenByCollapseList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFRList_SetRaidEnabled(dungeonID, isEnabled);
 		end
 	end
@@ -153,12 +166,14 @@ function LFRList_SetHeaderCollapsed(headerID, isCollapsed)
 	SetLFGHeaderCollapsed(headerID, isCollapsed);
 	LFGCollapseList[headerID] = isCollapsed;
 	for _, dungeonID in pairs(LFRRaidList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFGCollapseList[dungeonID] = isCollapsed;
 		end
 	end
 	for _, dungeonID in pairs(LFRHiddenByCollapseList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFGCollapseList[dungeonID] = isCollapsed;
 		end
 	end
@@ -226,8 +241,7 @@ function LFRQueueFrameSpecificListButton_SetDungeon(button, dungeonID, mode, sub
 		
 		button.isCollapsed = false;
 	end
-	
-	--Could probably use being refactored.
+
 	if ( not LFR_CanQueueForLockedInstances() and LFGLockList[dungeonID] ) then
 		button.enableButton:Hide();
 		button.lockedIndicator:Show();
@@ -321,6 +335,8 @@ function LFRQueueFrame_QueueForInstanceIfEnabled(queueID)
 end
 
 function LFRQueueFrame_Join()
+	LFDParentFrame.lfgQueueSection = "RaidFinder";
+
 	ClearAllLFGDungeons();
 	
 	if ( LFR_CanQueueForMultiple() ) then
@@ -487,7 +503,6 @@ function LFRFrame_SetActiveTab(tab)
 		LFRBrowseFrame:Show();
 		LFRQueueFrame:Hide();
 	end
-	PanelTemplates_SetTab(LFRParentFrame, tab);
 end
 
 function LFRBrowseFrameRefreshButton_OnUpdate(self, elapsed)
@@ -535,8 +550,35 @@ function LFRBrowseFrameList_Update()
 	LFRBrowse_UpdateButtonStates();
 end
 
-function LFRBrowseFrameListButton_SetData(button, index)
+LFRBrowseResultButtonMixin = {};
+
+function LFRBrowseResultButtonMixin:CacheResult(index)
 	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = SearchLFGGetResults(index);
+	self.resultName = name;
+	self.resultLevel = level;
+	self.resultClassName = className;
+	self.resultComment = comment;
+	self.resultPartyMembers = partyMembers;
+	self.resultEncountersTotal = encountersTotal;
+	self.resultEncountersComplete = encountersComplete;
+	self.resultIsTank = isTank;
+	self.resultIsHealer = isHealer;
+	self.resultIsDamage = isDamage;
+	return name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage;
+end
+
+function LFRBrowseResultButtonMixin:GetCachedResult()
+	return self.resultName, self.resultLevel, nil, self.resultClassName, self.resultComment,
+		self.resultPartyMembers, nil, nil, self.resultEncountersTotal,
+		self.resultEncountersComplete, nil, self.resultIsTank, self.resultIsHealer,
+		self.resultIsDamage;
+end
+
+function LFRBrowseFrameListButton_SetData(button, index)
+	if ( not button.CacheResult ) then
+		Mixin(button, LFRBrowseResultButtonMixin);
+	end
+	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = button:CacheResult(index);
 	
 	button.index = index;
 	button.unitName = name;
@@ -609,7 +651,12 @@ function LFRBrowseFrameListButton_SetData(button, index)
 end
 
 function LFRBrowseButton_OnEnter(self)
-	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = SearchLFGGetResults(self.index);
+	local name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage;
+	if ( self.GetCachedResult and self.resultName ) then
+		name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = self:GetCachedResult();
+	else
+		name, level, areaName, className, comment, partyMembers, status, class, encountersTotal, encountersComplete, isLeader, isTank, isHealer, isDamage = SearchLFGGetResults(self.index);
+	end
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT", 27, -37);
 	
 	if ( partyMembers > 0 ) then

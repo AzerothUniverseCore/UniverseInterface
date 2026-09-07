@@ -1,7 +1,7 @@
--- ====================================================================
--- Noa - LFDFRAME - MERGED FILE
--- ====================================================================
-EXPANSION_LEVEL = GetExpansionLevel(); --This doesn't change while logged in, so we just need to do it once.
+-- ============================================================
+--  LFDFrame - Noa –  WoW 3.3.5a
+-- ============================================================
+EXPANSION_LEVEL = GetExpansionLevel();
 
 LFD_MAX_REWARDS = 2;
 NUM_LFD_CHOICE_BUTTONS = 15;
@@ -9,7 +9,7 @@ TYPEID_DUNGEON = 1;
 TYPEID_HEROIC_DIFFICULTY = 5;
 TYPEID_RANDOM_DUNGEON = 6;
 NUM_LFD_MEMBERS = 5;
-LFD_STATISTIC_CHANGE_TIME = 10; --In secs.
+LFD_STATISTIC_CHANGE_TIME = 10;
 LFD_PROPOSAL_FAILED_CLOSE_TIME = 5;
 LFD_NUM_ROLES = 3;
 LFD_MAX_SHOWN_LEVEL_DIFF = 15;
@@ -19,91 +19,134 @@ local NUM_STATISTIC_TYPES = 1;
 LFD_MODE = "dungeon";
 
 local SHOW_LFD_LEVEL = 15;
+
 local LFD_EYE_TEXTURE_PREFIX = "Interface\\LFGFrame\\LFGEYEicon\\BattlenetWorking";
 local LFD_EYE_TEXTURE_IDLE = LFD_EYE_TEXTURE_PREFIX.."0";
 local LFD_EYE_TOTAL_FRAMES = 79;
 local LFD_EYE_TIME_PER_FRAME = 0.05;
+
 local LFD_SPECIFIC_LIST_BIG_WIDTH = 315;
 local LFD_SPECIFIC_LIST_NORMAL_WIDTH = 295;
+
 -------------------------------------
 -----------LFD Frame--------------
 -------------------------------------
 
 function LFDFrame_OnLoad(self)
-	self:RegisterEvent("LFG_PROPOSAL_UPDATE");
-	self:RegisterEvent("LFG_PROPOSAL_SHOW");
-	self:RegisterEvent("LFG_PROPOSAL_FAILED");
-	self:RegisterEvent("LFG_PROPOSAL_SUCCEEDED");
-	self:RegisterEvent("LFG_UPDATE");
-	self:RegisterEvent("PLAYER_ENTERING_WORLD");
-	self:RegisterEvent("LFG_ROLE_CHECK_SHOW");
-	self:RegisterEvent("LFG_ROLE_CHECK_HIDE");
-	self:RegisterEvent("LFG_BOOT_PROPOSAL_UPDATE");
-	self:RegisterEvent("VOTE_KICK_REASON_NEEDED");
-	self:RegisterEvent("LFG_ROLE_UPDATE");
-	self:RegisterEvent("LFG_UPDATE_RANDOM_INFO");
-	self:RegisterEvent("LFG_OPEN_FROM_GOSSIP");
-	self:RegisterEvent("GOSSIP_CLOSED");
-	
-	self.selectedTab = 1;
+    self:RegisterEvent("LFG_PROPOSAL_UPDATE");
+    self:RegisterEvent("LFG_PROPOSAL_SHOW");
+    self:RegisterEvent("LFG_PROPOSAL_FAILED");
+    self:RegisterEvent("LFG_PROPOSAL_SUCCEEDED");
+    self:RegisterEvent("LFG_UPDATE");
+    self:RegisterEvent("PLAYER_ENTERING_WORLD");
+    self:RegisterEvent("LFG_ROLE_CHECK_SHOW");
+    self:RegisterEvent("LFG_ROLE_CHECK_HIDE");
+    self:RegisterEvent("LFG_BOOT_PROPOSAL_UPDATE");
+    self:RegisterEvent("VOTE_KICK_REASON_NEEDED");
+    self:RegisterEvent("LFG_ROLE_UPDATE");
+    self:RegisterEvent("LFG_UPDATE_RANDOM_INFO");
+    self:RegisterEvent("LFG_OPEN_FROM_GOSSIP");
+    self:RegisterEvent("GOSSIP_CLOSED");
+    
+    self.selectedTab = 1;
 end
 
 function LFDFrame_OnEvent(self, event, ...)
-	if ( event == "LFG_PROPOSAL_UPDATE" ) then
-		LFDDungeonReadyPopup_Update();
-	elseif ( event == "LFG_PROPOSAL_SHOW" ) then
-		LFDDungeonReadyPopup.closeIn = nil;
-		LFDDungeonReadyPopup:SetScript("OnUpdate", nil);
-		LFDDungeonReadyStatus_ResetReadyStates();
-		StaticPopupSpecial_Show(LFDDungeonReadyPopup);
-		LFDSearchStatus:Hide();
-		PlaySound("ReadyCheck");
-	elseif ( event == "LFG_PROPOSAL_FAILED" ) then
-		LFDDungeonReadyPopup_OnFail();
-	elseif ( event == "LFG_PROPOSAL_SUCCEEDED" ) then
-		LFGDebug("Proposal Hidden: Proposal succeeded.");
-		StaticPopupSpecial_Hide(LFDDungeonReadyPopup);
-	elseif ( event == "LFG_ROLE_CHECK_SHOW" ) then
-		StaticPopupSpecial_Show(LFDRoleCheckPopup);
-		LFDQueueFrameSpecificList_Update();
-	elseif ( event == "LFG_ROLE_CHECK_HIDE" ) then
-		StaticPopupSpecial_Hide(LFDRoleCheckPopup);
-		LFDQueueFrameSpecificList_Update();
-	elseif ( event == "LFG_BOOT_PROPOSAL_UPDATE" ) then
-		local voteInProgress, didVote, myVote, targetName, totalVotes, bootVotes, timeLeft, reason = GetLFGBootProposal();
-		if ( voteInProgress and not didVote and targetName ) then
-			StaticPopup_Show("VOTE_BOOT_PLAYER", targetName, reason);
-		else
-			StaticPopup_Hide("VOTE_BOOT_PLAYER");
-		end
-	elseif ( event == "VOTE_KICK_REASON_NEEDED" ) then
-		local targetName = ...;
-		StaticPopup_Show("VOTE_BOOT_REASON_REQUIRED", targetName, nil, targetName);
-	elseif ( event == "LFG_ROLE_UPDATE" ) then
-		LFG_UpdateRoleCheckboxes();
-	elseif ( event == "LFG_UPDATE_RANDOM_INFO" ) then
-		if ( not LFDQueueFrame.type or (type(LFDQueueFrame.type) == "number" and not IsLFGDungeonJoinable(LFDQueueFrame.type)) ) then
-			LFDQueueFrame.type = GetRandomDungeonBestChoice();
-			UIDropDownMenu_SetSelectedValue(LFDQueueFrameTypeDropDown, LFDQueueFrame.type);
-		end
-		if ( not LFDQueueFrame.type ) then
-			LFDQueueFrame.type = "specific";
-			UIDropDownMenu_SetSelectedValue(LFDQueueFrameTypeDropDown, LFDQueueFrame.type);
-			LFDQueueFrame_SetTypeSpecificDungeon();
-		elseif ( LFDQueueFrameRandom:IsShown() ) then
-			LFDQueueFrameRandom_UpdateFrame();
-		end
-	elseif ( event == "LFG_OPEN_FROM_GOSSIP" ) then
-		local dungeonID = ...;
-		LFDParentFrame.fromGossip = true;
-		ShowUIPanel(LFDParentFrame);
-		LFDQueueFrame_SetType(dungeonID);
-	elseif ( event == "GOSSIP_CLOSED" ) then
-		if ( LFDParentFrame.fromGossip ) then
-			HideUIPanel(LFDParentFrame);
-		end
-	end
-	LFDQueueFrame_UpdatePortrait();
+    if ( event == "LFG_PROPOSAL_UPDATE" ) then
+        LFDDungeonReadyPopup_Update();
+    elseif ( event == "LFG_PROPOSAL_SHOW" ) then
+        LFDDungeonReadyPopup.closeIn = nil;
+        LFDDungeonReadyPopup:SetScript("OnUpdate", nil);
+        LFDDungeonReadyStatus_ResetReadyStates();
+        StaticPopupSpecial_Show(LFDDungeonReadyPopup);
+        LFDSearchStatus:Hide();
+        PlaySound("ReadyCheck");
+    elseif ( event == "LFG_PROPOSAL_FAILED" ) then
+        LFDDungeonReadyPopup_OnFail();
+    elseif ( event == "LFG_PROPOSAL_SUCCEEDED" ) then
+        LFGDebug("Proposal Hidden: Proposal succeeded.");
+        StaticPopupSpecial_Hide(LFDDungeonReadyPopup);
+    elseif ( event == "LFG_ROLE_CHECK_SHOW" ) then
+        StaticPopupSpecial_Show(LFDRoleCheckPopup);
+        LFDQueueFrameSpecificList_Update();
+    elseif ( event == "LFG_ROLE_CHECK_HIDE" ) then
+        StaticPopupSpecial_Hide(LFDRoleCheckPopup);
+        LFDQueueFrameSpecificList_Update();
+    elseif ( event == "LFG_BOOT_PROPOSAL_UPDATE" ) then
+        local voteInProgress, didVote, myVote, targetName, totalVotes, bootVotes, timeLeft, reason = GetLFGBootProposal();
+        if ( voteInProgress and not didVote and targetName ) then
+            StaticPopup_Show("VOTE_BOOT_PLAYER", targetName, reason);
+        else
+            StaticPopup_Hide("VOTE_BOOT_PLAYER");
+        end
+    elseif ( event == "VOTE_KICK_REASON_NEEDED" ) then
+        local targetName = ...;
+        StaticPopup_Show("VOTE_BOOT_REASON_REQUIRED", targetName, nil, targetName);
+    elseif ( event == "LFG_ROLE_UPDATE" ) then
+        LFG_UpdateRoleCheckboxes();
+    elseif ( event == "LFG_UPDATE_RANDOM_INFO" ) then
+        if ( not LFDQueueFrame.type or (type(LFDQueueFrame.type) == "number" and not IsLFGDungeonJoinable(LFDQueueFrame.type)) ) then
+            LFDQueueFrame.type = GetRandomDungeonBestChoice();
+            UIDropDownMenu_SetSelectedValue(LFDQueueFrameTypeDropDown, LFDQueueFrame.type);
+        end
+        if ( not LFDQueueFrame.type ) then
+            LFDQueueFrame.type = "specific";
+            UIDropDownMenu_SetSelectedValue(LFDQueueFrameTypeDropDown, LFDQueueFrame.type);
+            LFDQueueFrame_SetTypeSpecificDungeon();
+        elseif ( LFDQueueFrameRandom:IsShown() ) then
+            LFDQueueFrameRandom_UpdateFrame();
+        end
+    elseif ( event == "LFG_OPEN_FROM_GOSSIP" ) then
+        local dungeonID = ...;
+        LFDParentFrame.fromGossip = true;
+        ShowUIPanel(LFDParentFrame);
+        LFDQueueFrame_SetType(dungeonID);
+    elseif ( event == "GOSSIP_CLOSED" ) then
+        if ( LFDParentFrame.fromGossip ) then
+            HideUIPanel(LFDParentFrame);
+        end
+    end
+    LFDQueueFrame_UpdatePortrait();
+end
+
+local LFDEyeAnimationMixin = {};
+
+function LFDEyeAnimationMixin:ShowStatic()
+    self:SetScript("OnUpdate", nil);
+    self.animation = nil;
+    self.isAnimating = false;
+    self.texture:SetTexture(LFD_EYE_TEXTURE_IDLE);
+    self.texture:Show();
+end
+
+function LFDEyeAnimationMixin:OnUpdate(elapsed)
+    if not self.isAnimating then return; end
+    
+    self.elapsed = self.elapsed + elapsed;
+    local frameIndex = math.floor(self.elapsed / LFD_EYE_TIME_PER_FRAME);
+    
+    if frameIndex >= LFD_EYE_TOTAL_FRAMES then
+        frameIndex = 0;
+        self.elapsed = 0;
+    end
+    
+    if frameIndex ~= self.currentFrame then
+        self.currentFrame = frameIndex;
+        self.texture:SetTexture(LFD_EYE_TEXTURE_PREFIX..frameIndex);
+    end
+end
+
+function LFDEyeAnimationMixin:SetSearching(searching)
+    if searching then
+        if not self.isAnimating then
+            self.isAnimating = true;
+            self.elapsed = 0;
+            self.currentFrame = -1;
+            self:SetScript("OnUpdate", self.OnUpdate);
+        end
+    elseif self.isAnimating then
+        self:ShowStatic();
+    end
 end
 
 local function EnsureLFDPortrait(self)
@@ -119,20 +162,17 @@ local function EnsureLFDPortrait(self)
     end
 
     self.customPortraitFrame = CreateFrame("Frame", nil, self);
-    self.customPortraitFrame:SetSize(60, 60);
-    self.customPortraitFrame:SetPoint("TOPLEFT", -4, 8);
+    self.customPortraitFrame:SetSize(62, 62);
+    self.customPortraitFrame:SetPoint("TOPLEFT", -4.5, 8);
 
     self.customPortrait = self.customPortraitFrame:CreateTexture(nil, "OVERLAY");
     self.customPortrait:SetAllPoints();
     self.customPortrait:SetTexture(LFD_EYE_TEXTURE_IDLE);
 
     self.portraitAnimator = CreateFrame("Frame", nil, self);
+    Mixin(self.portraitAnimator, LFDEyeAnimationMixin);
     self.portraitAnimator.texture = self.customPortrait;
-    self.portraitAnimator.currentFrame = 0;
-    self.portraitAnimator.totalFrames = LFD_EYE_TOTAL_FRAMES;
-    self.portraitAnimator.timePerFrame = LFD_EYE_TIME_PER_FRAME;
-    self.portraitAnimator.timeSinceLastFrame = 0;
-    self.portraitAnimator.isAnimating = false;
+    self.portraitAnimator:ShowStatic();
 end
 
 function LFDFrame_OnShow(self)
@@ -150,51 +190,8 @@ function LFDFrame_OnShow(self)
     LFDParentFrame_ShowTab(1);
 end
 
-local function AnimatorFrame_OnUpdate(self, elapsed)
-    if not self.isAnimating then
-        return;
-    end
-
-    self.timeSinceLastFrame = self.timeSinceLastFrame + elapsed;
-    if self.timeSinceLastFrame >= self.timePerFrame then
-        self.timeSinceLastFrame = 0;
-        self.currentFrame = self.currentFrame + 1;
-        if self.currentFrame > self.totalFrames then
-            self.currentFrame = 0;
-        end
-        self.texture:SetTexture(LFD_EYE_TEXTURE_PREFIX .. self.currentFrame);
-    end
-end
-
-local function StartEyeAnimation(animator)
-    if not animator or animator.isAnimating then
-        return;
-    end
-
-    animator.isAnimating = true;
-    animator.currentFrame = 0;
-    animator.timeSinceLastFrame = 0;
-    animator:SetScript("OnUpdate", AnimatorFrame_OnUpdate);
-end
-
-local function StopEyeAnimation(animator, texture)
-    if not animator then
-        return;
-    end
-
-    if animator.isAnimating then
-        animator.isAnimating = false;
-        animator.currentFrame = 0;
-        animator:SetScript("OnUpdate", nil);
-    end
-
-    if texture then
-        texture:SetTexture(LFD_EYE_TEXTURE_IDLE);
-    end
-end
-
 local function LFDPortrait_ShouldAnimate(mode)
-    return mode == "queued" or mode == "rolecheck";
+    return mode == "queued" or mode == "rolecheck" or mode == "proposal" or mode == "listed";
 end
 
 local function LFDPortrait_Update(portrait, animator, mode, forceShow)
@@ -206,11 +203,7 @@ local function LFDPortrait_Update(portrait, animator, mode, forceShow)
         portrait:Show();
     end
 
-    if LFDPortrait_ShouldAnimate(mode or GetLFGMode()) then
-        StartEyeAnimation(animator);
-    else
-        StopEyeAnimation(animator, portrait);
-    end
+    animator:SetSearching(LFDPortrait_ShouldAnimate(mode or GetLFGMode()));
 end
 
 function LFDParentFrame_SetPortrait()
@@ -224,10 +217,20 @@ function LFDParentFrame_UpdatePortrait()
 end
 
 function LFDFrame_OnHide(self)
-	if ( self.fromGossip ) then
-		CloseGossip();
-		self.fromGossip = false;
-	end
+    if ( self.fromGossip ) then
+        CloseGossip();
+        self.fromGossip = false;
+    end
+
+    if LFDTabsFrame then
+        local pvpStatsVisible = false;
+        if PvPStatsParentFrame then
+            pvpStatsVisible = PvPStatsParentFrame:IsShown();
+        end
+        if not PVPParentFrame:IsShown() and not pvpStatsVisible then
+            LFDTabsFrame:Hide()
+        end
+    end
 end
 
 function LFDQueueFrame_UpdatePortrait()
@@ -460,12 +463,14 @@ function LFDList_SetHeaderCollapsed(headerID, isCollapsed)
 	SetLFGHeaderCollapsed(headerID, isCollapsed);
 	LFGCollapseList[headerID] = isCollapsed;
 	for _, dungeonID in pairs(LFDDungeonList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFGCollapseList[dungeonID] = isCollapsed;
 		end
 	end
 	for _, dungeonID in pairs(LFDHiddenByCollapseList) do
-		if ( LFGGetDungeonInfoByID(dungeonID)[LFG_RETURN_VALUES.groupID] == headerID ) then
+		local dungeonInfo = LFGGetDungeonInfoByID(dungeonID);
+		if ( dungeonInfo and dungeonInfo[LFG_RETURN_VALUES.groupID] == headerID ) then
 			LFGCollapseList[dungeonID] = isCollapsed;
 		end
 	end
@@ -481,6 +486,8 @@ function LFDQueueFrame_QueueForInstanceIfEnabled(queueID)
 end
 
 function LFDQueueFrame_Join()
+	LFDParentFrame.lfgQueueSection = "GroupFinder";
+
 	if ( LFDQueueFrame.type == "specific" ) then
 		ClearAllLFGDungeons();
 		for _, queueID in pairs(LFDDungeonList) do
@@ -1316,6 +1323,9 @@ end
 
 LFD_CURRENT_FILTER = LFDList_DefaultFilterFunction
 
+-- ================================================
+-- Sistema de botones internos
+-- ================================================
 function LFDQueueFrame_SetButtonSelected(buttonName, isSelected)
     local button = _G[buttonName];
     if button and button.selection then
@@ -1327,6 +1337,11 @@ function LFDQueueFrame_SetButtonSelected(buttonName, isSelected)
     end
 end
 
+-- ================================================
+-- Selección de botones del menú (GroupFinder / RaidFinder / Premade)
+-- Cada Select* deja su propio botón marcado/disabled y libera los demás,
+-- sin tocar nada de la lógica interna de LFR o Premade.
+-- ================================================
 local function LFDQueueFrame_SelectGroupFinderButton()
     LFDQueueFrame_SetButtonSelected("LFDQueueParentFrameGroupFinderButton", true)
     LFDQueueFrame_SetButtonSelected("LFDQueueParentFrameRaidFinderButton", false)
@@ -1376,6 +1391,8 @@ local function LFDQueueFrame_SelectPremadeButton()
 end
 
 function LFDQueueFrame_ShowSection(section)
+	LFDParentFrame.activeLFGSection = section
+
     if ( section == "GroupFinder" ) then
         LFDQueueFrame:Show()
         if LFRParentFrame then
@@ -1426,18 +1443,25 @@ function LFDQueueFrame_ShowSection(section)
     end
 end
 
+function LFDQueueFrame_GetOpenSection()
+    local mode = GetLFGMode()
+    local isSearching = mode == "queued" or mode == "rolecheck" or
+                        mode == "proposal" or mode == "listed"
+
+    if isSearching and LFDParentFrame.lfgQueueSection then
+        return LFDParentFrame.lfgQueueSection
+    end
+
+    return "GroupFinder"
+end
+
 function LFDQueueParentFrame_OnShow(self)
-    LFDQueueFrame_ShowSection("GroupFinder")
+    LFDQueueFrame_ShowSection(LFDQueueFrame_GetOpenSection())
 end
 function LFDParentFrame_ResetButtonSelection()
     if LFDParentFrame.selectedTab == 1 then
         LFDQueueFrame_SelectGroupFinderButton()
     end
-end
-
-function GroupFinderTabs_OnClick(self, tabID)
-    PlaySound("igCharacterInfoTab")
-    LFDParentFrame_ShowTab(tabID)
 end
 
 function LFDParentFrame_ShowTab(tabID)
@@ -1448,8 +1472,14 @@ function LFDParentFrame_ShowTab(tabID)
         ShowUIPanel(LFDParentFrame)
 
         LFDQueueParentFrame:Show()
-        LFDQueueFrame_ShowSection("GroupFinder")
+        LFDQueueFrame_ShowSection(LFDQueueFrame_GetOpenSection())
         LFDParentFrame_UpdatePortrait()
+
+        LFDTabsFrame:ClearAllPoints()
+        LFDTabsFrame:SetPoint("BOTTOMLEFT", LFDParentFrame, "BOTTOMLEFT", 20, -27)
+        LFDTabsFrame:Show()
+        PanelTemplates_SetTab(LFDTabsFrame, 1)
+        PanelTemplates_TabResize(LFDTabsFrameTab1, 0)
 
         UpdateMicroButtons()
 
@@ -1457,7 +1487,12 @@ function LFDParentFrame_ShowTab(tabID)
         HideUIPanel(LFDParentFrame)
         ShowUIPanel(PVPParentFrame)
 
-        PVPFrame_SetPortrait()
+        LFDTabsFrame:ClearAllPoints()
+        LFDTabsFrame:SetPoint("BOTTOMLEFT", PVPParentFrame, "BOTTOMLEFT", 20, -27)
+        LFDTabsFrame:Show()
+        PanelTemplates_SetTab(LFDTabsFrame, 2)
+        PanelTemplates_TabResize(LFDTabsFrameTab1, 0)
+
         UpdateMicroButtons()
     end
 end

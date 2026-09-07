@@ -9010,6 +9010,13 @@ ZOOM_OUT = "Zoom Out";
 ZOOM_OUT_BUTTON_TEXT = "Right Click On Map To Zoom Out";
 _RECORDING_WARNING_CORRUPTED = "This movie file is not valid.";
 
+LOOKING_FOR_DUNGEON_RAID = "Dungeons and Raids";
+
+RANDOM_BATTLEGROUND_EXPLANATION = "|cffffffffCompleting Random Battlegrounds will earn you extra rewards.|r";
+BATTLEGROUND_HOLIDAY_EXPLANATION = "|cffffffffYour urgent assistance is needed to combat our foes! Completing this Battleground will earn you extra rewards.|r";
+BATTLE_HONOR_LIMIT = "Honor Limit";
+WINTERGRASP = "Wintergrasp";
+
 local DESTINY_LOCALIZATION = {
 	["PROFESSIONS_3"] = {
         enUS = "Tertiary Profession"

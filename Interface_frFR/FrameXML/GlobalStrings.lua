@@ -9010,6 +9010,13 @@ ZOOM_OUT = "Dézoomer";
 ZOOM_OUT_BUTTON_TEXT = "Bouton droit de la souris pour effectuer un zoom arrière";
 _RECORDING_WARNING_CORRUPTED = "Fichier vidéo non valide.";
 
+LOOKING_FOR_DUNGEON_RAID = "Donjons et raids";
+
+RANDOM_BATTLEGROUND_EXPLANATION = "|cffffffffEn terminant des champs de bataille aléatoires, vous gagnerez des récompenses supplémentaires.|r";
+BATTLEGROUND_HOLIDAY_EXPLANATION = "|cffffffffNous avons besoin de votre aide de toute urgence pour combattre nos ennemis ! En terminant ce champ de bataille, vous gagnerez des récompenses supplémentaires.|r";
+BATTLE_HONOR_LIMIT = "Limite d'honneur";
+WINTERGRASP = "Joug-d’Hiver";
+
 local DESTINY_LOCALIZATION = {
 	["PROFESSIONS_3"] = {
         frFR = "Profession Tertiaire"

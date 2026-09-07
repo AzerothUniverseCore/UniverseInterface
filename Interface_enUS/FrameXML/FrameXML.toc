@@ -194,7 +194,6 @@ DressUpFrame.xml
 RaidWarning.xml
 ClassTrainerFrameTemplates.xml
 PVPFrame.xml
-PVPBattlegroundFrame.xml
 ArenaFrame.xml
 ArenaRegistrarFrame.xml
 LFGFrame.xml
