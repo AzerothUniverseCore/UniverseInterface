@@ -1566,12 +1566,117 @@ zeroData = { xOffset = 0, height = 0, yOffset = 0, width = 0, __index = function
 setmetatable(zeroData, zeroData);
 setmetatable(WorldMapSize, zeroData);
 
+-- Alias the real zone-name strings returned by GetMapZones() (with proper
+-- spacing/apostrophes/spelling) to the compressed internal keys used above,
+-- and point known sub-zones that have no map page of their own at their
+-- parent zone's data. Without this, Astrolabe never finds a zoneData entry
+-- for these names and falls back to zeroData, spamming
+-- "Astrolabe is missing data for X" and leaving the player arrow unplaced.
+do
+	local zoneNameAliases = {
+		[1] = { -- Kalimdor
+			["Darnassus"] = "Darnassis",
+			["The Barrens"] = "Barrens",
+			["Southern Barrens"] = "Barrens",
+			["Azshara"] = "Aszhara",
+			["Azuremyst Isle"] = "AzuremystIsle",
+			["Bloodmyst Isle"] = "BloodmystIsle",
+			["Orgrimmar"] = "Ogrimmar",
+			["Dustwallow Marsh"] = "Dustwallow",
+			["Stonetalon Mountains"] = "StonetalonMountains",
+			["The Exodar"] = "TheExodar",
+			["Thousand Needles"] = "ThousandNeedles",
+			["Thunder Bluff"] = "ThunderBluff",
+			["Un'Goro Crater"] = "UngoroCrater",
+			["Ammen Vale"] = "AzuremystIsle",
+			["Camp Narache"] = "Mulgore",
+			["Valley of Trials"] = "Durotar",
+			["Echo Isles"] = "Durotar",
+			["Shadowglen"] = "Teldrassil",
+			["Ahn'Qiraj: The Fallen Kingdom"] = "Silithus",
+			["Hyjal"] = "Winterspring",
+			["Mount Hyjal"] = "Winterspring",
+			["Uldum"] = "Tanaris",
+		},
+		[2] = { -- Eastern Kingdoms
+			["Alterac Mountains"] = "Alterac",
+			["Arathi Highlands"] = "Arathi",
+			["Blasted Lands"] = "BlastedLands",
+			["Burning Steppes"] = "BurningSteppes",
+			["Deadwind Pass"] = "DeadwindPass",
+			["Dun Morogh"] = "DunMorogh",
+			["New Tinkertown"] = "DunMorogh",
+			["Eastern Plaguelands"] = "EasternPlaguelands",
+			["Elwynn Forest"] = "Elwynn",
+			["Northshire"] = "Elwynn",
+			["Eversong Woods"] = "EversongWoods",
+			["Isle of Quel'Danas"] = "Ghostlands",
+			["Hillsbrad Foothills"] = "Hilsbrad",
+			["The Hinterlands"] = "Hinterlands",
+			["Loch Modan"] = "LochModan",
+			["Redridge Mountains"] = "Redridge",
+			["Searing Gorge"] = "SearingGorge",
+			["Silvermoon City"] = "SilvermoonCity",
+			["Silverpine Forest"] = "Silverpine",
+			["Ruins of Gilneas"] = "Silverpine",
+			["Ruins of Gilneas (City)"] = "Silverpine",
+			["Stormwind City"] = "Stormwind",
+			["Stranglethorn Vale"] = "Stranglethorn",
+			["Stranglethorn Point"] = "Stranglethorn",
+			["Tol Barad Peninsula"] = "Stranglethorn",
+			["Vashj'ir"] = "Stranglethorn",
+			["Kelp'thar Forest"] = "Stranglethorn",
+			["Shimmering Expanse"] = "Stranglethorn",
+			["Abyssal Depths"] = "Stranglethorn",
+			["Sunsail Anchorage"] = "Stranglethorn",
+			["Swamp of Sorrows"] = "SwampOfSorrows",
+			["Tirisfal Glades"] = "Tirisfal",
+			["Deathknell"] = "Tirisfal",
+			["Coldridge Valley"] = "DunMorogh",
+			["Western Plaguelands"] = "WesternPlaguelands",
+			["Twilight Highlands"] = "Wetlands",
+		},
+		[3] = { -- Outland
+			["Blade's Edge Mountains"] = "BladesEdgeMountains",
+			["Hellfire Peninsula"] = "Hellfire",
+			["Shadowmoon Valley"] = "ShadowmoonValley",
+			["Shattrath City"] = "ShattrathCity",
+			["Terokkar Forest"] = "TerokkarForest",
+		},
+		[4] = { -- Northrend
+			["Borean Tundra"] = "BoreanTundra",
+			["Crystalsong Forest"] = "CrystalsongForest",
+			["Grizzly Hills"] = "GrizzlyHills",
+			["Hrothgar's Landing"] = "HrothgarsLanding",
+			["Howling Fjord"] = "HowlingFjord",
+			["Icecrown"] = "IcecrownGlacier",
+			["Icecrown Glacier"] = "IcecrownGlacier",
+			["Lake Wintergrasp"] = "LakeWintergrasp",
+			["Sholazar Basin"] = "SholazarBasin",
+			["The Storm Peaks"] = "TheStormPeaks",
+			["Zul'Drak"] = "ZulDrak",
+		},
+	}
+	for continentIndex, aliasesForContinent in pairs(zoneNameAliases) do
+		local continentData = WorldMapSize[continentIndex];
+		local zoneData = continentData and continentData.zoneData;
+		if zoneData then
+			for realZoneName, existingKey in pairs(aliasesForContinent) do
+				if not zoneData[realZoneName] and zoneData[existingKey] then
+					zoneData[realZoneName] = zoneData[existingKey];
+				end
+			end
+		end
+	end
+end
+
 for continent, zones in pairs(Astrolabe.ContinentList) do
 	local mapData = WorldMapSize[continent];
 	for index, mapName in pairs(zones) do
 		if not ( mapData.zoneData[mapName] ) then
 			--WE HAVE A PROBLEM!!!
-			ChatFrame1:AddMessage("Astrolabe is missing data for "..select(index, GetMapZones(continent))..".");
+			-- Silently fall back to zeroData instead of spamming the chat frame;
+			-- see the zoneNameAliases table above for the real fix path.
 			mapData.zoneData[mapName] = zeroData;
 		end
 		mapData[index] = mapData.zoneData[mapName];
