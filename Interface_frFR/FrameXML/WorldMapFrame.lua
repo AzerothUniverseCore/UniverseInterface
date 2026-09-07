@@ -142,8 +142,18 @@ function WorldMapFrame_OnShow(self)
 	SetMapToCurrentZone();
 	PlaySound("igQuestLogOpen");
 	CloseDropDownMenus();
-	WorldMapFrame_PingPlayerPosition();	
+	WorldMapFrame_PingPlayerPosition();
 	WorldMapFrame_UpdateUnits("WorldMapRaid", "WorldMapParty");
+
+	-- Ensure QuestMap custom markers don't bleed through onto WorldMapFrame.
+	if QM_poiPool then
+		for _, pm in ipairs(QM_poiPool) do
+			pm:Hide();
+		end
+	end
+	if QuestMapFrame and QuestMapFrame._playerArrow then
+		QuestMapFrame._playerArrow:Hide();
+	end
 end
 
 function WorldMapFrame_OnHide(self)

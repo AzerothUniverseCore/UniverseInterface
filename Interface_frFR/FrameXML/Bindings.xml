@@ -666,7 +666,10 @@
 		ToggleMinimap();
 	</Binding>
 	<Binding name="TOGGLEWORLDMAP">
-		ToggleFrame(WorldMapFrame);
+		if ( WorldMapFrame:IsShown() ) then
+			HideUIPanel(WorldMapFrame);
+		end
+		ToggleFrame(QuestMapFrame);
 	</Binding>
 	<Binding name="TOGGLEWORLDMAPSIZE">
 		if ( WorldMapFrame:IsShown() ) then
