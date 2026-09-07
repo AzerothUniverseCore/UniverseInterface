@@ -28,7 +28,7 @@ local QM_mapPinMenuBD = nil;
 --      (they get a clickable [Map Pin] link injected into their chat frame).
 --
 -- For SAY/YELL there is no valid SendAddonMessage distribution, so we instead
--- hook CHAT_MSG_SAY/YELL and re-render any "Map Pin: Name (X, Y)" message that
+-- hook CHAT_MSG_SAY/YELL and re-render any "Repère : Name (X, Y)" message that
 -- arrives as a clickable link (works for both sender and receiver if they have
 -- the addon, no extra network message needed).
 local QM_PIN_PREFIX = "QMAP_PIN";
@@ -38,15 +38,15 @@ local function QM_MakeLinkFromParts(cont, zone, dl, fxI, fyI, zoneName)
 	local xPct = math.floor(fxI / 100 + 0.5);
 	local yPct = math.floor(fyI / 100 + 0.5);
 	return string.format(
-		"|cff4fc3f7|Hqmpin:%d:%d:%d:%d:%d|h[Map Pin: %s (%d, %d)]|h|r",
+		"|cff4fc3f7|Hqmpin:%d:%d:%d:%d:%d|h[Repère : %s (%d, %d)]|h|r",
 		cont, zone, dl, fxI, fyI, zoneName, xPct, yPct);
 end
 
 -- Parse a plain-text "Map Pin: Name (X, Y)" into a clickable link.
 -- Uses the *current* map state to fill in cont/zone/dl (best effort for SAY).
 local function QM_MakeLinkFromPlainText(plain)
-	-- plain = "Map Pin: ZoneName (71, 75)"
-	local zoneName, xStr, yStr = plain:match("^Map Pin: (.+) %((%d+), (%d+)%)$");
+	-- plain = "Repère : ZoneName (71, 75)"
+	local zoneName, xStr, yStr = plain:match("^Repère : (.+) %((%d+), (%d+)%)$");
 	if not zoneName then return nil end;
 	-- fxI/fyI from the percentage strings (lose sub-percent precision, acceptable for SAY)
 	local fxI = tonumber(xStr) * 100;
@@ -61,8 +61,8 @@ end
 local function QM_InjectPinLink(sender, cont, zone, dl, fxI, fyI, zoneName)
 	if not DEFAULT_CHAT_FRAME then return; end
 	local link = QM_MakeLinkFromParts(cont, zone, dl, fxI, fyI, zoneName);
-	local label = (sender == UnitName("player")) and "|cffffff78You|r" or ("|cffffff78" .. sender .. "|r");
-	DEFAULT_CHAT_FRAME:AddMessage(label .. " pinned: " .. link);
+	local label = (sender == UnitName("player")) and "|cffffff78Vous avez|r" or ("|cffffff78" .. sender .. " a|r");
+	DEFAULT_CHAT_FRAME:AddMessage(label .. " placé un repère : " .. link);
 end
 
 -- Chat events we intercept to inject clickable links on both sender and receiver.
@@ -100,7 +100,7 @@ QM_pinMsgFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3, arg4
 	elseif QM_CHAT_EVENT_SET[event] then
 		-- arg1 = message text, arg2 = sender name (arg4 for CHANNEL is channel number — ignored)
 		local msg, sender = arg1, arg2;
-		if not msg or not msg:match("^Map Pin: .+ %(%d+, %d+%)$") then return; end
+		if not msg or not msg:match("^Repère : .+ %(%d+, %d+%)$") then return; end
 		local link, cont, zone, dl, fxI, fyI, zoneName = QM_MakeLinkFromPlainText(msg);
 		if link then
 			QM_InjectPinLink(sender, cont, zone, dl, fxI, fyI, zoneName);
@@ -111,7 +111,7 @@ end);
 -- (Navigation state managed by QM_NavArrow.lua via QM_Nav_Start / QM_Nav_Stop)
 
 -- ── Chat-link support ─────────────────────────────────────────────────────────
--- Link format: |Hqmpin:C:Z:DL:FX:FY|h[Map Pin: ZoneName (X, Y)]|h
+-- Link format: |Hqmpin:C:Z:DL:FX:FY|h[Repère : ZoneName (X, Y)]|h
 --   C/Z/DL = integers; FX/FY = fx/fy * 10000 (4 decimal places of precision).
 --
 -- When another player with the addon clicks the link their pin is placed at
@@ -126,7 +126,7 @@ local function QM_MapPin_MakeLink()
 	local yPct = math.floor(p.fy * 100 + 0.5);
 	local data = string.format("qmpin:%d:%d:%d:%d:%d",
 		p.continent, p.zone, p.dungeonLevel, fxI, fyI);
-	local disp = string.format("Map Pin: %s (%d, %d)", p.zoneName, xPct, yPct);
+	local disp = string.format("Repère : %s (%d, %d)", p.zoneName, xPct, yPct);
 	-- |cff4fc3f7 = light-blue, same style as spell links; |r resets color after |h.
 	return string.format("|cff4fc3f7|H%s|h[%s]|h|r", data, disp);
 end
@@ -134,7 +134,7 @@ end
 -- Called when a qmpin link is clicked in chat.
 local function QM_MapPin_HandleChatLink(link, text)
 	-- link  = "qmpin:C:Z:DL:FX:FY"
-	-- text  = "[Map Pin: ZoneName (X, Y)]"  (includes brackets)
+	-- text  = "[Repère : ZoneName (X, Y)]"  (includes brackets)
 	local cont, zone, dlevel, fxI, fyI =
 		link:match("^qmpin:(-?%d+):(-?%d+):(-?%d+):(%d+):(%d+)$");
 	if not cont then return; end
@@ -142,8 +142,8 @@ local function QM_MapPin_HandleChatLink(link, text)
 		tonumber(cont), tonumber(zone), tonumber(dlevel), tonumber(fxI), tonumber(fyI);
 	local fx = fxI / 10000;
 	local fy = fyI / 10000;
-	-- Extract zone name from the display text  "[Map Pin: ZoneName (X, Y)]"
-	local zoneName = text:match("%[Map Pin: (.+) %(%d+, %d+%)%]") or "Unknown";
+	-- Extract zone name from the display text  "[Repère : ZoneName (X, Y)]"
+	local zoneName = text:match("%[Repère : (.+) %(%d+, %d+%)%]") or "Inconnu";
 	QM_mapPin = {
 		continent    = cont,
 		zone         = zone,
@@ -267,7 +267,7 @@ local function QM_MapPin_BuildMenu()
 	end
 
 	-- Navigate via TomTom
-	local navBtn = makeBtn("Navigate", 0.4, 1.0, 0.5);
+	local navBtn = makeBtn("Naviguer", 0.4, 1.0, 0.5);
 	navBtn:SetPoint("TOPLEFT", divider, "BOTTOMLEFT", -2, -3);
 	navBtn:SetScript("OnClick", function()
 		QM_mapPinMenuBD:Hide();
@@ -276,15 +276,15 @@ local function QM_MapPin_BuildMenu()
 	end);
 	navBtn:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_RIGHT");
-		GameTooltip:SetText("Navigate to Pin", 1, 1, 1);
-		GameTooltip:AddLine("Shows a HUD direction arrow pointing toward the pin.", 0.7, 0.7, 0.7, true);
-		GameTooltip:AddLine("Also places a blip on the minimap (requires Astrolabe).", 0.5, 0.5, 0.5, true);
+		GameTooltip:SetText("Naviguer vers le repère", 1, 1, 1);
+		GameTooltip:AddLine("Affiche une flèche à l'écran pointant vers le repère.", 0.7, 0.7, 0.7, true);
+		GameTooltip:AddLine("Place aussi un point sur la minicarte (nécessite Astrolabe).", 0.5, 0.5, 0.5, true);
 		GameTooltip:Show();
 	end);
 	navBtn:SetScript("OnLeave", function() GameTooltip:Hide(); end);
 
 	-- Remove Pin
-	local removeBtn = makeBtn("Remove Pin", 1, 0.35, 0.35);
+	local removeBtn = makeBtn("Retirer le repère", 1, 0.35, 0.35);
 	removeBtn:SetPoint("TOPLEFT", navBtn, "BOTTOMLEFT", 0, -2);
 	removeBtn:SetScript("OnClick", function()
 		QM_mapPinMenuBD:Hide();
@@ -301,7 +301,7 @@ local function QM_MapPin_BuildMenu()
 	end);
 
 	-- Share in Chat
-	local shareBtn = makeBtn("Share Pin", 0.85, 0.85, 0.85);
+	local shareBtn = makeBtn("Partager le repère", 0.85, 0.85, 0.85);
 	shareBtn:SetPoint("TOPLEFT", removeBtn, "BOTTOMLEFT", 0, -2);
 	shareBtn:SetScript("OnClick", function()
 		QM_mapPinMenuBD:Hide();
@@ -311,14 +311,14 @@ local function QM_MapPin_BuildMenu()
 		local xPct = math.floor(p.fx * 100 + 0.5);
 		local yPct = math.floor(p.fy * 100 + 0.5);
 		-- Paste plain-text into the chat input box so the player can choose channel & send.
-		local plainText = string.format("Map Pin: %s (%d, %d)", p.zoneName, xPct, yPct);
+		local plainText = string.format("Repère : %s (%d, %d)", p.zoneName, xPct, yPct);
 		ChatFrame_OpenChat(plainText);
 	end);
 	shareBtn:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_RIGHT");
-		GameTooltip:SetText("Share Pin", 1, 1, 1);
-		GameTooltip:AddLine("Pastes the pin coordinates into your chat input box.", 0.7, 0.7, 0.7, true);
-		GameTooltip:AddLine("Choose your channel and press Enter to send.", 0.5, 0.5, 0.5, true);
+		GameTooltip:SetText("Partager le repère", 1, 1, 1);
+		GameTooltip:AddLine("Colle les coordonnées du repère dans votre zone de discussion.", 0.7, 0.7, 0.7, true);
+		GameTooltip:AddLine("Choisissez votre canal et appuyez sur Entrée pour envoyer.", 0.5, 0.5, 0.5, true);
 		GameTooltip:Show();
 	end);
 	shareBtn:SetScript("OnLeave", function() GameTooltip:Hide(); end);
@@ -399,7 +399,7 @@ function QM_MapPin_InitMarker(qmf)
 	end);
 	pinF:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_CURSOR");
-		GameTooltip:SetText("Map Pin", 1, 0.82, 0);
+		GameTooltip:SetText("Repère", 1, 0.82, 0);
 		if QM_mapPin then
 			local xPct = math.floor(QM_mapPin.fx * 100 + 0.5);
 			local yPct = math.floor(QM_mapPin.fy * 100 + 0.5);
@@ -407,7 +407,7 @@ function QM_MapPin_InitMarker(qmf)
 				string.format("%s  (%d, %d)", QM_mapPin.zoneName, xPct, yPct),
 				0.7, 0.7, 0.7);
 		end
-		GameTooltip:AddLine("Right-click to navigate, remove, or share.", 0.5, 0.5, 0.5);
+		GameTooltip:AddLine("Clic droit pour naviguer, retirer ou partager.", 0.5, 0.5, 0.5);
 		GameTooltip:Show();
 	end);
 	pinF:SetScript("OnLeave", function() GameTooltip:Hide(); end);
@@ -458,13 +458,13 @@ function QM_MapPin_InitButton(qmf, locBtn)
 	end);
 	mapPinBtn:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_BOTTOMLEFT");
-		GameTooltip:SetText("Map Pin", 1, 1, 1);
+		GameTooltip:SetText("Repère", 1, 1, 1);
 		if QM_mapPinMode then
-			GameTooltip:AddLine("Click on the map to place the pin.", 1, 0.85, 0, true);
+			GameTooltip:AddLine("Cliquez sur la carte pour placer le repère.", 1, 0.85, 0, true);
 		else
-			GameTooltip:AddLine("Click to enter placement mode, then click the map.", 0.7, 0.7, 0.7, true);
-			GameTooltip:AddLine("Double-click to jump the map view to the pin location.", 0.7, 0.7, 0.7, true);
-			GameTooltip:AddLine("Right-click the pin icon on the map for navigation/sharing.", 0.5, 0.5, 0.5, true);
+			GameTooltip:AddLine("Cliquez pour entrer en mode placement, puis cliquez sur la carte.", 0.7, 0.7, 0.7, true);
+			GameTooltip:AddLine("Double-cliquez pour centrer la carte sur le repère.", 0.7, 0.7, 0.7, true);
+			GameTooltip:AddLine("Clic droit sur l'icône du repère pour naviguer ou partager.", 0.5, 0.5, 0.5, true);
 		end
 		GameTooltip:Show();
 	end);
@@ -483,7 +483,7 @@ function QM_MapPin_PlaceAtCursor()
 	if (not placeCont) or placeCont <= 0 or (not placeZone) or placeZone == 0 then
 		if DEFAULT_CHAT_FRAME then
 			DEFAULT_CHAT_FRAME:AddMessage(
-				"|cffffff78QuestMap:|r Zoom into a specific zone to place a Map Pin.");
+				"|cffffff78QuestMap :|r Effectuez un zoom sur une zone précise pour placer un repère.");
 		end
 		return false;
 	end	local cx, cy = GetCursorPosition();
@@ -498,7 +498,7 @@ function QM_MapPin_PlaceAtCursor()
 		dungeonLevel = GetCurrentMapDungeonLevel(),
 		fx           = fx,
 		fy           = fy,
-		zoneName     = GetMapInfo() or "Unknown",
+		zoneName     = GetMapInfo() or "Inconnu",
 	};
 	QM_mapPinMode = false;
 	local pb = QuestMapFrame._mapPinBtn;

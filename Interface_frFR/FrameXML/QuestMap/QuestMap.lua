@@ -127,7 +127,7 @@ local _TI_BM   = "Interface\\MINIMAP\\Tracking\\Battlemaster";
 local _TI_RPR  = "Interface\\MINIMAP\\Tracking\\Repair";
 local _TI_MINE = "Interface\\MINIMAP\\Tracking\\Mining";
 local _TI_INN  = "Interface\\MINIMAP\\Tracking\\Innkeeper";
-local _TI_DEF  = { _TI_NONE, 0.70,0.70,0.70, 10, "Unknown" };
+local _TI_DEF  = { _TI_NONE, 0.70,0.70,0.70, 10, "Inconnu" };
 local QM_TI_INFO;
 do
 	local function _r(from, to, tex, r, g, b, sz, label)
@@ -139,90 +139,90 @@ do
 	_r(1,  1,  _TI_MINE, 0.75,0.75,0.75, 11, "Mine");
 	_r(2,  2,  _TI_MINE, 0.90,0.25,0.20, 11, "Mine");
 	_r(3,  3,  _TI_MINE, 0.25,0.50,1.00, 11, "Mine");
-	_r(4,  4,  _TI_NONE, 0.55,0.75,0.55, 11, "Graveyard");
-	_r(5,  5,  _TI_FM,  0.90,0.85,0.50, 13, "Flightmaster");
-	_r(6,  6,  _TI_BM,   1.00,0.82,0.00, 16, "City");
-	_r(7,  7,  _TI_BM,   1.00,1.00,1.00, 11, "Flag");
-	_r(8,  8,  _TI_NONE, 0.55,0.55,0.55, 10, "Graveyard");
-	_r(9,  9,  _TI_BM,   0.25,0.50,1.00, 11, "Tower");
-	_r(10, 10, _TI_BM,   0.90,0.25,0.20, 11, "Tower");
-	_r(11, 11, _TI_BM,   0.25,0.50,1.00, 11, "Tower");
-	_r(12, 12, _TI_BM,   0.90,0.25,0.20, 11, "Tower");
-	_r(13, 14, _TI_NONE, 0.90,0.25,0.20, 11, "Graveyard");
-	_r(15, 15, _TI_NONE, 0.25,0.50,1.00, 11, "Graveyard");
-	_r(16, 16, _TI_NONE, 0.65,0.65,0.65, 11, "Graveyard");
-	_r(17, 18, _TI_NONE, 0.35,0.55,1.00, 11, "Graveyard");
-	_r(19, 19, _TI_NONE, 0.90,0.25,0.20, 11, "Graveyard");
-	_r(20, 20, _TI_MINE, 0.85,0.65,0.10, 11, "Gold Mine");
-	_r(21, 21, _TI_NONE, 0.70,0.60,0.40, 10, "Lumber Mill");
-	_r(22, 22, _TI_NONE, 0.25,0.50,1.00, 10, "Lumber Mill");
-	_r(23, 23, _TI_NONE, 0.25,0.50,1.00, 10, "Lumber Mill");
-	_r(24, 24, _TI_NONE, 0.90,0.25,0.20, 10, "Lumber Mill");
-	_r(25, 25, _TI_NONE, 0.90,0.25,0.20, 10, "Lumber Mill");
-	_r(26, 26, _TI_RPR,  0.75,0.75,0.75, 10, "Blacksmith");
-	_r(27, 27, _TI_RPR,  0.25,0.50,1.00, 10, "Blacksmith");
-	_r(28, 28, _TI_RPR,  0.25,0.50,1.00, 10, "Blacksmith");
-	_r(29, 29, _TI_RPR,  0.90,0.25,0.20, 10, "Blacksmith");
-	_r(30, 30, _TI_RPR,  0.90,0.25,0.20, 10, "Blacksmith");
-	_r(31, 31, _TI_NONE, 0.60,0.80,0.40, 10, "Farm");
-	_r(32, 32, _TI_NONE, 0.25,0.50,1.00, 10, "Farm");
-	_r(33, 33, _TI_NONE, 0.25,0.50,1.00, 10, "Farm");
-	_r(34, 34, _TI_NONE, 0.90,0.25,0.20, 10, "Farm");
-	_r(35, 35, _TI_NONE, 0.90,0.25,0.20, 10, "Farm");
-	_r(36, 36, _TI_SB,   0.80,0.65,0.30, 10, "Stables");
-	_r(37, 37, _TI_SB,   0.25,0.50,1.00, 10, "Stables");
-	_r(38, 38, _TI_SB,   0.25,0.50,1.00, 10, "Stables");
-	_r(39, 39, _TI_SB,   0.90,0.25,0.20, 10, "Stables");
-	_r(40, 40, _TI_SB,   0.90,0.25,0.20, 10, "Stables");
-	_r(41, 41, _TI_NONE, 0.60,0.20,0.80, 11, "Skull");
-	_r(42, 42, _TI_NONE, 0.70,0.70,0.70, 10, "Unknown");
-	_r(43, 43, _TI_BM,   0.25,0.50,1.00, 10, "Flag");
-	_r(44, 44, _TI_BM,   0.90,0.25,0.20, 10, "Flag");
-	_r(45, 45, _TI_BM,   0.85,0.85,0.85, 10, "Flag");
-	_r(46, 46, _TI_BM,   0.25,0.50,1.00, 10, "Crest");
-	_r(47, 47, _TI_BM,   0.50,0.65,0.90, 10, "Crest");
-	_r(48, 48, _TI_BM,   0.90,0.25,0.20, 10, "Crest");
-	_r(49, 49, _TI_BM,   0.90,0.55,0.50, 10, "Crest");
-	_r(50, 51, _TI_BM,   0.25,0.50,1.00, 10, "Tower");
-	_r(52, 53, _TI_BM,   0.90,0.25,0.20, 10, "Tower");
-	_r(54, 55, _TI_BM,   0.75,0.75,0.75, 10, "Tower");
-	_r(56, 58, _TI_NONE, 0.70,0.70,0.70, 10, "Bridge");
-	_r(59, 61, _TI_NONE, 0.90,0.25,0.20, 10, "Bridge");
-	_r(62, 64, _TI_NONE, 0.25,0.50,1.00, 10, "Bridge");
-	_r(65, 67, _TI_RPR,  0.75,0.75,0.75, 10, "Workshop");
-	_r(68, 70, _TI_RPR,  0.90,0.25,0.20, 10, "Workshop");
-	_r(71, 73, _TI_RPR,  0.25,0.50,1.00, 10, "Workshop");
-	_r(74, 76, _TI_NONE, 0.75,0.75,0.75, 10, "Gate");
-	_r(77, 79, _TI_NONE, 0.90,0.25,0.20, 10, "Gate");
-	_r(80, 82, _TI_NONE, 0.25,0.50,1.00, 10, "Gate");
-	_r(83, 85, _TI_NONE, 0.70,0.70,0.70, 10, "Wall");
-	_r(86, 88, _TI_NONE, 0.90,0.25,0.20, 10, "Wall");
-	_r(89, 91, _TI_NONE, 0.25,0.50,1.00, 10, "Wall");
-	_r(92,  94, _TI_NONE, 0.70,0.70,0.70, 10, "Wall");
-	_r(95,  97, _TI_NONE, 0.90,0.25,0.20, 10, "Wall");
-	_r(98, 100, _TI_NONE, 0.25,0.50,1.00, 10, "Wall");
+	_r(4,  4,  _TI_NONE, 0.55,0.75,0.55, 11, "Cimetière");
+	_r(5,  5,  _TI_FM,  0.90,0.85,0.50, 13, "Maître du vol");
+	_r(6,  6,  _TI_BM,   1.00,0.82,0.00, 16, "Ville");
+	_r(7,  7,  _TI_BM,   1.00,1.00,1.00, 11, "Drapeau");
+	_r(8,  8,  _TI_NONE, 0.55,0.55,0.55, 10, "Cimetière");
+	_r(9,  9,  _TI_BM,   0.25,0.50,1.00, 11, "Tour");
+	_r(10, 10, _TI_BM,   0.90,0.25,0.20, 11, "Tour");
+	_r(11, 11, _TI_BM,   0.25,0.50,1.00, 11, "Tour");
+	_r(12, 12, _TI_BM,   0.90,0.25,0.20, 11, "Tour");
+	_r(13, 14, _TI_NONE, 0.90,0.25,0.20, 11, "Cimetière");
+	_r(15, 15, _TI_NONE, 0.25,0.50,1.00, 11, "Cimetière");
+	_r(16, 16, _TI_NONE, 0.65,0.65,0.65, 11, "Cimetière");
+	_r(17, 18, _TI_NONE, 0.35,0.55,1.00, 11, "Cimetière");
+	_r(19, 19, _TI_NONE, 0.90,0.25,0.20, 11, "Cimetière");
+	_r(20, 20, _TI_MINE, 0.85,0.65,0.10, 11, "Mine d'or");
+	_r(21, 21, _TI_NONE, 0.70,0.60,0.40, 10, "Scierie");
+	_r(22, 22, _TI_NONE, 0.25,0.50,1.00, 10, "Scierie");
+	_r(23, 23, _TI_NONE, 0.25,0.50,1.00, 10, "Scierie");
+	_r(24, 24, _TI_NONE, 0.90,0.25,0.20, 10, "Scierie");
+	_r(25, 25, _TI_NONE, 0.90,0.25,0.20, 10, "Scierie");
+	_r(26, 26, _TI_RPR,  0.75,0.75,0.75, 10, "Forge");
+	_r(27, 27, _TI_RPR,  0.25,0.50,1.00, 10, "Forge");
+	_r(28, 28, _TI_RPR,  0.25,0.50,1.00, 10, "Forge");
+	_r(29, 29, _TI_RPR,  0.90,0.25,0.20, 10, "Forge");
+	_r(30, 30, _TI_RPR,  0.90,0.25,0.20, 10, "Forge");
+	_r(31, 31, _TI_NONE, 0.60,0.80,0.40, 10, "Ferme");
+	_r(32, 32, _TI_NONE, 0.25,0.50,1.00, 10, "Ferme");
+	_r(33, 33, _TI_NONE, 0.25,0.50,1.00, 10, "Ferme");
+	_r(34, 34, _TI_NONE, 0.90,0.25,0.20, 10, "Ferme");
+	_r(35, 35, _TI_NONE, 0.90,0.25,0.20, 10, "Ferme");
+	_r(36, 36, _TI_SB,   0.80,0.65,0.30, 10, "Écuries");
+	_r(37, 37, _TI_SB,   0.25,0.50,1.00, 10, "Écuries");
+	_r(38, 38, _TI_SB,   0.25,0.50,1.00, 10, "Écuries");
+	_r(39, 39, _TI_SB,   0.90,0.25,0.20, 10, "Écuries");
+	_r(40, 40, _TI_SB,   0.90,0.25,0.20, 10, "Écuries");
+	_r(41, 41, _TI_NONE, 0.60,0.20,0.80, 11, "Crâne");
+	_r(42, 42, _TI_NONE, 0.70,0.70,0.70, 10, "Inconnu");
+	_r(43, 43, _TI_BM,   0.25,0.50,1.00, 10, "Drapeau");
+	_r(44, 44, _TI_BM,   0.90,0.25,0.20, 10, "Drapeau");
+	_r(45, 45, _TI_BM,   0.85,0.85,0.85, 10, "Drapeau");
+	_r(46, 46, _TI_BM,   0.25,0.50,1.00, 10, "Blason");
+	_r(47, 47, _TI_BM,   0.50,0.65,0.90, 10, "Blason");
+	_r(48, 48, _TI_BM,   0.90,0.25,0.20, 10, "Blason");
+	_r(49, 49, _TI_BM,   0.90,0.55,0.50, 10, "Blason");
+	_r(50, 51, _TI_BM,   0.25,0.50,1.00, 10, "Tour");
+	_r(52, 53, _TI_BM,   0.90,0.25,0.20, 10, "Tour");
+	_r(54, 55, _TI_BM,   0.75,0.75,0.75, 10, "Tour");
+	_r(56, 58, _TI_NONE, 0.70,0.70,0.70, 10, "Pont");
+	_r(59, 61, _TI_NONE, 0.90,0.25,0.20, 10, "Pont");
+	_r(62, 64, _TI_NONE, 0.25,0.50,1.00, 10, "Pont");
+	_r(65, 67, _TI_RPR,  0.75,0.75,0.75, 10, "Atelier");
+	_r(68, 70, _TI_RPR,  0.90,0.25,0.20, 10, "Atelier");
+	_r(71, 73, _TI_RPR,  0.25,0.50,1.00, 10, "Atelier");
+	_r(74, 76, _TI_NONE, 0.75,0.75,0.75, 10, "Porte");
+	_r(77, 79, _TI_NONE, 0.90,0.25,0.20, 10, "Porte");
+	_r(80, 82, _TI_NONE, 0.25,0.50,1.00, 10, "Porte");
+	_r(83, 85, _TI_NONE, 0.70,0.70,0.70, 10, "Mur");
+	_r(86, 88, _TI_NONE, 0.90,0.25,0.20, 10, "Mur");
+	_r(89, 91, _TI_NONE, 0.25,0.50,1.00, 10, "Mur");
+	_r(92,  94, _TI_NONE, 0.70,0.70,0.70, 10, "Mur");
+	_r(95,  97, _TI_NONE, 0.90,0.25,0.20, 10, "Mur");
+	_r(98, 100, _TI_NONE, 0.25,0.50,1.00, 10, "Mur");
 	_r(101, 101, _TI_BM,  1.00,0.30,0.30, 12, "Combat");
-	_r(102, 104, _TI_NONE, 0.95,0.90,0.30, 10, "Gate");
-	_r(105, 107, _TI_NONE, 0.70,0.30,0.90, 10, "Gate");
-	_r(108, 110, _TI_NONE, 0.30,0.80,0.40, 10, "Gate");
-	_r(111, 121, _TI_NONE, 1.00,1.00,1.00, 10, "Number");
-	_r(122, 124, _TI_NONE, 0.90,0.25,0.20, 10, "Unknown");
-	_r(125, 127, _TI_NONE, 0.25,0.50,1.00, 10, "Unknown");
-	_r(128, 130, _TI_BM,   0.30,0.80,0.40, 10, "Tower");
-	_r(131, 133, _TI_BM,   0.95,0.90,0.30, 10, "Tower");
-	_r(134, 134, _TI_NONE, 1.00,0.50,0.10, 12, "Skull");
-	_r(135, 135, _TI_RPR,  0.75,0.75,0.75, 10, "Siege Workshop");
-	_r(136, 137, _TI_RPR,  0.25,0.50,1.00, 10, "Siege Workshop");
-	_r(138, 139, _TI_RPR,  0.90,0.25,0.20, 10, "Siege Workshop");
+	_r(102, 104, _TI_NONE, 0.95,0.90,0.30, 10, "Porte");
+	_r(105, 107, _TI_NONE, 0.70,0.30,0.90, 10, "Porte");
+	_r(108, 110, _TI_NONE, 0.30,0.80,0.40, 10, "Porte");
+	_r(111, 121, _TI_NONE, 1.00,1.00,1.00, 10, "Numéro");
+	_r(122, 124, _TI_NONE, 0.90,0.25,0.20, 10, "Inconnu");
+	_r(125, 127, _TI_NONE, 0.25,0.50,1.00, 10, "Inconnu");
+	_r(128, 130, _TI_BM,   0.30,0.80,0.40, 10, "Tour");
+	_r(131, 133, _TI_BM,   0.95,0.90,0.30, 10, "Tour");
+	_r(134, 134, _TI_NONE, 1.00,0.50,0.10, 12, "Crâne");
+	_r(135, 135, _TI_RPR,  0.75,0.75,0.75, 10, "Atelier de siège");
+	_r(136, 137, _TI_RPR,  0.25,0.50,1.00, 10, "Atelier de siège");
+	_r(138, 139, _TI_RPR,  0.90,0.25,0.20, 10, "Atelier de siège");
 	_r(140, 140, _TI_NONE, 0.60,0.80,1.00, 10, "Hangar");
 	_r(141, 142, _TI_NONE, 0.25,0.50,1.00, 10, "Hangar");
 	_r(143, 144, _TI_NONE, 0.90,0.25,0.20, 10, "Hangar");
-	_r(145, 145, _TI_NONE, 0.40,0.70,1.00, 10, "Docks");
-	_r(146, 147, _TI_NONE, 0.25,0.50,1.00, 10, "Docks");
-	_r(148, 149, _TI_NONE, 0.90,0.25,0.20, 10, "Docks");
-	_r(150, 150, _TI_NONE, 0.90,0.65,0.20, 10, "Refinery");
-	_r(151, 152, _TI_NONE, 0.25,0.50,1.00, 10, "Refinery");
-	_r(153, 154, _TI_NONE, 0.90,0.25,0.20, 10, "Refinery");
+	_r(145, 145, _TI_NONE, 0.40,0.70,1.00, 10, "Quais");
+	_r(146, 147, _TI_NONE, 0.25,0.50,1.00, 10, "Quais");
+	_r(148, 149, _TI_NONE, 0.90,0.25,0.20, 10, "Quais");
+	_r(150, 150, _TI_NONE, 0.90,0.65,0.20, 10, "Raffinerie");
+	_r(151, 152, _TI_NONE, 0.25,0.50,1.00, 10, "Raffinerie");
+	_r(153, 154, _TI_NONE, 0.90,0.25,0.20, 10, "Raffinerie");
 end
 
 local function QM_GetTIData(ti)
@@ -418,10 +418,10 @@ local function QM_UpdateMapPOIs()
 					local vtex, vr, vg, vb, vsz, vlabel;
 					if isTi0Link then
 						if QM_IsFlightMaster(ti, name, desc) then
-							vtex, vr, vg, vb, vsz, vlabel = _TI_FM, 0.50,1.00,0.55, 14, "Flight Master";
+							vtex, vr, vg, vb, vsz, vlabel = _TI_FM, 0.50,1.00,0.55, 14, "Maître du vol";
 						else
 							local cr, cg, cb = QM_GetCityFaction(name);
-							vtex, vr, vg, vb, vsz, vlabel = _TI_BM, cr,  cg,  cb,  16, "City";
+							vtex, vr, vg, vb, vsz, vlabel = _TI_BM, cr,  cg,  cb,  16, "Ville";
 						end
 					else
 						vtex, vr, vg, vb, vsz, vlabel = QM_GetTIData(ti);
@@ -429,7 +429,7 @@ local function QM_UpdateMapPOIs()
 							vr, vg, vb = QM_GetCityFaction(name);
 						end
 						if QM_IsFlightMaster(ti, name, desc) then
-							vtex, vr, vg, vb, vsz, vlabel = _TI_FM, 0.50,1.00,0.55, 14, "Flight Master";
+							vtex, vr, vg, vb, vsz, vlabel = _TI_FM, 0.50,1.00,0.55, 14, "Maître du vol";
 						end
 					end
 					m._typeLabel = vlabel;
@@ -466,7 +466,7 @@ local function QM_UpdateMapPOIs()
 	end
 end
 
-local QM_CONT = { [1]="Kalimdor", [2]="Eastern Kingdoms", [3]="Outland", [4]="Northrend" };
+local QM_CONT = { [1]="Kalimdor", [2]="Royaumes de l'Est", [3]="Outreterre", [4]="Norfendre" };
 local QM_CONT_ORDER = { 1, 2, 4, 3 };
 
 local function QM_FindContByZoneName(name)
@@ -666,7 +666,7 @@ QM_SyncNavBar = function(mapID)
 	if instanceContext then
 		if resolvedContinent == OUTLAND then
 			local capCont = resolvedContinent;
-			NavBar_AddButton(navBar, { name = contName or "Outland", OnClick = function()
+			NavBar_AddButton(navBar, { name = contName or "Outreterre", OnClick = function()
 				SetMapZoom(capCont, 0); WorldMapFrame_Update(); QM_UpdateMapPOIs(); QM_SyncNavBar(nil);
 			end });
 		else
@@ -700,7 +700,7 @@ QM_SyncNavBar = function(mapID)
 	elseif resolvedContinent then
 		if resolvedContinent == OUTLAND then
 			local capCont = resolvedContinent;
-			NavBar_AddButton(navBar, { name = contName or "Outland", OnClick = function()
+			NavBar_AddButton(navBar, { name = contName or "Outreterre", OnClick = function()
 				SetMapZoom(capCont, 0); WorldMapFrame_Update(); QM_UpdateMapPOIs(); QM_SyncNavBar(nil);
 			end });
 		else
@@ -1001,7 +1001,7 @@ local function QM_BuildContextMenu()
 		return btn;
 	end
 
-	local navigateBtn = makeMenuBtn("Navigate", 0.3, 1.0, 0.55);
+	local navigateBtn = makeMenuBtn("Naviguer", 0.3, 1.0, 0.55);
 	navigateBtn:SetPoint("TOPLEFT", divider, "BOTTOMLEFT", -2, -3);
 	navigateBtn:SetScript("OnClick", function()
 		local idx = QM_ContextMenu_LogIdx;
@@ -1020,7 +1020,7 @@ local function QM_BuildContextMenu()
 				dungeonLevel = GetCurrentMapDungeonLevel() or 0,
 				fx           = fx,
 				fy           = fy,
-				zoneName     = GetMapInfo() or "Unknown",
+				zoneName     = GetMapInfo() or "Inconnu",
 			};
 			local pinF = QuestMapFrame and QuestMapFrame._mapPinFrame;
 			if pinF then pinF:Show(); end;
@@ -1029,11 +1029,11 @@ local function QM_BuildContextMenu()
 			if QM_Nav_Start then QM_Nav_Start(); end
 			QuestMapFrame_UpdateQuestList();
 		else
-			DEFAULT_CHAT_FRAME:AddMessage("|cffffff78QuestMap:|r No map location found for that quest.");
+			DEFAULT_CHAT_FRAME:AddMessage("|cffffff78QuestMap :|r Aucun emplacement trouvé sur la carte pour cette quête.");
 		end
 	end);
 
-	local shareBtn = makeMenuBtn(SHARE_QUEST or "Share Quest", 0.85, 0.85, 0.85);
+	local shareBtn = makeMenuBtn(SHARE_QUEST or "Partager la quête", 0.85, 0.85, 0.85);
 	shareBtn:SetPoint("TOPLEFT", navigateBtn, "BOTTOMLEFT", 0, -2);
 	shareBtn:SetScript("OnClick", function()
 		local idx = QM_ContextMenu_LogIdx;
@@ -1045,12 +1045,12 @@ local function QM_BuildContextMenu()
 				QuestLogPushQuest();
 				PlaySound("igQuestLogOpen");
 			else
-				print("|cffff8800" .. (SHARE_QUEST or "Share Quest") .. ":|r " .. (ERR_QUEST_PUSH_NOT_IN_PARTY or "Not in a group."));
+				print("|cffff8800" .. (SHARE_QUEST or "Partager la quête") .. " :|r " .. (ERR_QUEST_PUSH_NOT_IN_PARTY or "Vous n'êtes pas dans un groupe."));
 			end
 		end
 	end);
 
-	local abandonBtn = makeMenuBtn(ABANDON_QUEST or "Abandon Quest", 1, 0.35, 0.35);
+	local abandonBtn = makeMenuBtn(ABANDON_QUEST or "Abandonner la quête", 1, 0.35, 0.35);
 	abandonBtn:SetPoint("TOPLEFT", shareBtn, "BOTTOMLEFT", 0, -2);
 	abandonBtn:SetScript("OnClick", function()
 		local idx = QM_ContextMenu_LogIdx;
@@ -1136,7 +1136,7 @@ local function QM_OpenLandmarkFilter(anchorBtn)
 		t:SetHeight(14);
 		t:SetJustifyH("CENTER");
 		t:SetTextColor(1, 0.82, 0);
-		t:SetText("Landmark Types");
+		t:SetText("Types de points de repère");
 		f._titleStr = t;
 	end
 
@@ -1170,9 +1170,9 @@ local function QM_OpenLandmarkFilter(anchorBtn)
 	table.sort(tiList);
 
 	local function tiFilterLabel(key)
-		if key == 0 then return "Interesting Point"; end
+		if key == 0 then return "Point d'intérêt"; end
 		local _, _, _, _, _, lbl = QM_GetTIData(key);
-		return lbl or "Unknown";
+		return lbl or "Inconnu";
 	end
 	local function tiFilterColor(key)
 		if key == 0 then return 1.00, 0.82, 0.00; end
@@ -1193,7 +1193,7 @@ local function QM_OpenLandmarkFilter(anchorBtn)
 			lbl:SetHeight(RH);
 			lbl:SetJustifyH("CENTER");
 			lbl:SetTextColor(0.5, 0.5, 0.5);
-			lbl:SetText("No landmarks on this map.");
+			lbl:SetText("Aucun point de repère sur cette carte.");
 			f._emptyLbl = lbl;
 		end
 		f._emptyLbl:Show();
@@ -1269,7 +1269,7 @@ local function QM_OpenLandmarkFilter(anchorBtn)
 		hl:SetBlendMode("ADD"); hl:SetAllPoints(btn);
 		local lbl = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
 		lbl:SetAllPoints(btn); lbl:SetJustifyH("CENTER");
-		lbl:SetText("All On"); lbl:SetTextColor(0.5, 1, 0.5);
+		lbl:SetText("Tout activer"); lbl:SetTextColor(0.5, 1, 0.5);
 		f._allOnBtn = btn;
 	end
 	if not f._allOffBtn then
@@ -1279,7 +1279,7 @@ local function QM_OpenLandmarkFilter(anchorBtn)
 		hl:SetBlendMode("ADD"); hl:SetAllPoints(btn);
 		local lbl = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
 		lbl:SetAllPoints(btn); lbl:SetJustifyH("CENTER");
-		lbl:SetText("All Off"); lbl:SetTextColor(1, 0.5, 0.5);
+		lbl:SetText("Tout désactiver"); lbl:SetTextColor(1, 0.5, 0.5);
 		f._allOffBtn = btn;
 	end
 	local halfW = math.floor((W - PAD * 2) / 2) - 1;
@@ -1355,7 +1355,7 @@ function QuestMapFrame_TrackQuestButton_OnClick(self)
 		if GetNumQuestWatches and MAX_WATCHABLE_QUESTS and GetNumQuestWatches() >= MAX_WATCHABLE_QUESTS then
 			self:SetChecked(false);
 			if UIErrorsFrame then
-				UIErrorsFrame:AddMessage("Has alcanzado el máximo de misiones seguidas.", 1.0, 0.1, 0.1, 1.0);
+				UIErrorsFrame:AddMessage(ERR_QUEST_WATCH_TOO_MANY, 1.0, 0.1, 0.1, 1.0);
 			end
 			return;
 		end
@@ -1452,8 +1452,8 @@ function QuestMapFrame_OnLoad(self)
 	end);
 	locBtn:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_BOTTOMLEFT");
-		GameTooltip:SetText("Current Zone", 1, 1, 1);
-		GameTooltip:AddLine("Navigate the map to your current zone.", 0.7, 0.7, 0.7, true);
+		GameTooltip:SetText("Zone actuelle", 1, 1, 1);
+		GameTooltip:AddLine("Centre la carte sur votre zone actuelle.", 0.7, 0.7, 0.7, true);
 		GameTooltip:Show();
 	end);
 	locBtn:SetScript("OnLeave", function() GameTooltip:Hide(); end);
@@ -1476,8 +1476,8 @@ function QuestMapFrame_OnLoad(self)
 	end);
 	filterBtn:SetScript("OnEnter", function(btn)
 		GameTooltip:SetOwner(btn, "ANCHOR_BOTTOMLEFT");
-		GameTooltip:SetText("Landmark Filter", 1, 1, 1);
-		GameTooltip:AddLine("Toggle which landmark types appear on the map.", 0.7, 0.7, 0.7, true);
+		GameTooltip:SetText("Filtre des points de repère", 1, 1, 1);
+		GameTooltip:AddLine("Active ou désactive les types de points de repère affichés sur la carte.", 0.7, 0.7, 0.7, true);
 		GameTooltip:Show();
 	end);
 	filterBtn:SetScript("OnLeave", function() GameTooltip:Hide(); end);

@@ -147,7 +147,7 @@
 						</Anchors>
 						<Scripts>
 							<OnLoad>
-								self.placeholder = "Search Quest Log";
+								self.placeholder = "Rechercher dans le journal de quêtes";
 								self:SetText(self.placeholder);
 								self:SetTextColor(0.5, 0.5, 0.5);
 							</OnLoad>
@@ -209,7 +209,7 @@
 					</Frame>
 
 					<!-- Back button: returns to the quest list -->
-					<Button name="$parentBackButton" parentKey="backButton" inherits="UIPanelButtonTemplate" text="BACK">
+					<Button name="$parentBackButton" parentKey="backButton" inherits="UIPanelButtonTemplate" text="RETOUR">
     					<Size x="90" y="24"/>
     					<Anchors>
     					    <Anchor point="TOPLEFT" x="-35" y="-4"/>
@@ -250,7 +250,7 @@
 								if TRACK_QUEST then
 									self.text:SetText(TRACK_QUEST);
 								else
-									self.text:SetText("Track Quest");
+									self.text:SetText("Suivre la quête");
 								end
 							</OnLoad>
 							<OnClick>
@@ -259,9 +259,9 @@
 							<OnEnter>
 								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 								if self:GetChecked() then
-									GameTooltip:SetText(UNTRACK_QUEST or "Stop Tracking Quest");
+									GameTooltip:SetText(UNTRACK_QUEST or "Arrêter de suivre la quête");
 								else
-									GameTooltip:SetText(TRACK_QUEST or "Track Quest");
+									GameTooltip:SetText(TRACK_QUEST or "Suivre la quête");
 								end
 								GameTooltip:Show();
 							</OnEnter>

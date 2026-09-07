@@ -31,12 +31,12 @@ local QM_navWaitingRegion      = nil;  -- target region ID when waiting for cont
 -- Region ID → human-readable label for chat messages.
 local QM_REGION_LABELS = {
 	Kalimdor          = "Kalimdor",
-	EasternKingdoms   = "Eastern Kingdoms",
-	Outland           = "Outland",
-	Northrend         = "Northrend",
+	EasternKingdoms   = "Royaumes de l'Est",
+	Outland           = "Outreterre",
+	Northrend         = "Norfendre",
 	QuelThalas        = "Quel'Thalas",
-	Azuremyst         = "Azuremyst / Exodar",
-	QuelDanas         = "Isle of Quel'Danas",
+	Azuremyst         = "Île de Brume-Azur / Exodar",
+	QuelDanas         = "Île de Quel'Danas",
 };
 
 -- ── Utility: colour gradient ──────────────────────────────────────────────────
@@ -229,22 +229,22 @@ end
 
 -- Route type → natural-language verb for chat instructions.
 local QM_ROUTE_VERB = {
-	portal       = "Take portal",
-	boat         = "Take boat",
-	zeppelin     = "Take zeppelin",
-	orb          = "Use Orb of Translocation",
-	world_portal = "Enter the Dark Portal",
-	walk         = "Follow path",
+	portal       = "Prendre le portail",
+	boat         = "Prendre le bateau",
+	zeppelin     = "Prendre le zeppelin",
+	orb          = "Utiliser l'Orbe de Translocation",
+	world_portal = "Entrer dans la Porte des Ténèbres",
+	walk         = "Suivre le chemin",
 };
 
 local function QM_Nav_BuildInstruction(routeType, hubLabel, destLabel)
-	local verb = QM_ROUTE_VERB[routeType] or ("Travel via " .. (routeType or "?"));
+	local verb = QM_ROUTE_VERB[routeType] or ("Voyager via " .. (routeType or "?"));
 	if routeType == "orb" or routeType == "world_portal" then
-		return verb .. " at " .. hubLabel;
+		return verb .. " à " .. hubLabel;
 	elseif routeType == "portal" then
-		return verb .. " to " .. destLabel .. " (" .. hubLabel .. ")";
+		return verb .. " vers " .. destLabel .. " (" .. hubLabel .. ")";
 	else  -- boat, zeppelin, walk
-		return verb .. " to " .. destLabel .. " from " .. hubLabel;
+		return verb .. " vers " .. destLabel .. " depuis " .. hubLabel;
 	end
 end
 
@@ -332,13 +332,13 @@ local function QM_Nav_PrintRoutePlan(t, pin)
 	local xPct = math.floor(pin.fx * 100 + 0.5);
 	local yPct = math.floor(pin.fy * 100 + 0.5);
 	DEFAULT_CHAT_FRAME:AddMessage(string.format(
-		"|cffffff78QuestMap:|r Route to Map Pin in |cff00ff00%s|r (%d, %d):", dest, xPct, yPct));
+		"|cffffff78QuestMap :|r Route vers le repère dans |cff00ff00%s|r (%d, %d) :", dest, xPct, yPct));
 	if t.instruction then
 		DEFAULT_CHAT_FRAME:AddMessage(
 			"  |cffd0d0d0-|r |cff66ff66" .. t.instruction .. "|r");
 	end
 	DEFAULT_CHAT_FRAME:AddMessage(
-		"  |cffd0d0d0-|r Travel to Map Pin");
+		"  |cffd0d0d0-|r Se rendre au repère");
 end
 -- ── HUD Arrow ─────────────────────────────────────────────────────────────────
 -- A draggable on-screen arrow pointing toward the map pin.
@@ -411,9 +411,9 @@ local function QM_Nav_CreateArrowFrame()
 	end);
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT");
-		GameTooltip:SetText("Map Pin Navigation", 1, 1, 1);
-		GameTooltip:AddLine("Drag to move.", 0.7, 0.7, 0.7);
-		GameTooltip:AddLine("Right-click to stop navigation.", 0.7, 0.7, 0.7);
+		GameTooltip:SetText("Navigation vers le repère", 1, 1, 1);
+		GameTooltip:AddLine("Glisser pour déplacer.", 0.7, 0.7, 0.7);
+		GameTooltip:AddLine("Clic droit pour arrêter la navigation.", 0.7, 0.7, 0.7);
 		GameTooltip:Show();
 	end);
 	f:SetScript("OnLeave", function() GameTooltip:Hide(); end);
@@ -558,11 +558,11 @@ local function QM_Nav_UpdateArrow(elapsed)
 			-- Reached the transit hub — clear it and remember which zone we're in.
 			-- FindTransit won't re-fire until the player has zoned somewhere different.
 			if DEFAULT_CHAT_FRAME then
-				local msg = "|cffffff78QuestMap:|r At |cff00ff00" .. QM_navTransit.label .. "|r";
+				local msg = "|cffffff78QuestMap :|r À |cff00ff00" .. QM_navTransit.label .. "|r";
 				if QM_navTransit.instruction then
 					msg = msg .. " — |cff66ff66" .. QM_navTransit.instruction .. "|r";
 				else
-					msg = msg .. " — use the transit to continue.";
+					msg = msg .. " — utilisez le transit pour continuer.";
 				end
 				DEFAULT_CHAT_FRAME:AddMessage(msg);
 			end
@@ -603,7 +603,7 @@ local function QM_Nav_UpdateArrow(elapsed)
 
 	-- ── Labels ───────────────────────────────────────────────────────────────
 	-- Final destination: always gold, always visible.
-	local pinZone = pin.zoneName or "Unknown";
+	local pinZone = pin.zoneName or "Inconnu";
 	f.destStr:SetText((#pinZone > 22) and (pinZone:sub(1, 20) .. "..") or pinZone);
 
 	-- Transit step: light blue, only when cross-region routing is active.
@@ -659,13 +659,13 @@ QM_navTickFrame:SetScript("OnEvent", function(self, event)
 		if DEFAULT_CHAT_FRAME then
 			local regionLabel = QM_REGION_LABELS[currentRegion] or currentRegion;
 			DEFAULT_CHAT_FRAME:AddMessage(string.format(
-				"|cffffff78QuestMap:|r Arrived in |cff00ff00%s|r — navigating to Map Pin.",
+				"|cffffff78QuestMap :|r Arrivé dans |cff00ff00%s|r — navigation vers le repère.",
 				regionLabel));
 		end
 		-- Show the arrow and minimap blip now.
 		QM_Nav_ShowMinimapBlip();
 		if QM_navArrowFrame then
-			local zoneName = pin.zoneName or "Unknown";
+			local zoneName = pin.zoneName or "Inconnu";
 			local display  = (#zoneName > 22) and (zoneName:sub(1, 20) .. "..") or zoneName;
 			QM_navArrowFrame.destStr:SetText(display);
 			QM_navArrowFrame.titleStr:SetText("");
@@ -719,7 +719,7 @@ function QM_Nav_Start()
 	-- Update labels immediately.
 	local pin = QM_mapPin;
 	if QM_navArrowFrame then
-		local zoneName = pin.zoneName or "Unknown";
+		local zoneName = pin.zoneName or "Inconnu";
 		local display  = (#zoneName > 22) and (zoneName:sub(1, 20) .. "..") or zoneName;
 		QM_navArrowFrame.destStr:SetText(display);
 		QM_navArrowFrame.titleStr:SetText("...");
@@ -762,21 +762,21 @@ function QM_Nav_Start()
 			QM_Nav_HideMinimapBlip();
 			if DEFAULT_CHAT_FRAME then
 				DEFAULT_CHAT_FRAME:AddMessage(string.format(
-					"|cffffff78QuestMap:|r Map Pin is in |cff00ff00%s|r (%d, %d) — |cff00ff00%s|r.",
+					"|cffffff78QuestMap :|r Le repère se trouve dans |cff00ff00%s|r (%d, %d) — |cff00ff00%s|r.",
 					pin.zoneName, xPct, yPct, regionLabel));
 				DEFAULT_CHAT_FRAME:AddMessage(
-					"  |cffd0d0d0-|r Travel to |cff00ff00" .. regionLabel .. "|r");
+					"  |cffd0d0d0-|r Se rendre en |cff00ff00" .. regionLabel .. "|r");
 				DEFAULT_CHAT_FRAME:AddMessage(
-					"  |cffd0d0d0-|r Travel to Map Pin");
+					"  |cffd0d0d0-|r Se rendre au repère");
 			end
 		else
 			-- Same continent — show arrow, navigate directly.
 			if DEFAULT_CHAT_FRAME then
 				DEFAULT_CHAT_FRAME:AddMessage(string.format(
-					"|cffffff78QuestMap:|r Navigating to Map Pin in |cff00ff00%s|r (%d, %d).",
+					"|cffffff78QuestMap :|r Navigation vers le repère dans |cff00ff00%s|r (%d, %d).",
 					pin.zoneName, xPct, yPct));
 				DEFAULT_CHAT_FRAME:AddMessage(
-					"  |cffd0d0d0-|r Travel to Map Pin");
+					"  |cffd0d0d0-|r Se rendre au repère");
 			end
 		end
 	end
@@ -810,7 +810,7 @@ function QM_Nav_Stop(arrived)
 		local zoneName = QM_mapPin and QM_mapPin.zoneName or "waypoint";
 		if DEFAULT_CHAT_FRAME then
 			DEFAULT_CHAT_FRAME:AddMessage(string.format(
-				"|cffffff78QuestMap:|r Arrived at |cff00ff00%s|r — navigation complete.", zoneName));
+				"|cffffff78QuestMap :|r Arrivé à |cff00ff00%s|r — navigation terminée.", zoneName));
 		end
 	end
 
@@ -879,7 +879,7 @@ local function QM_Coords_Create()
 	header:SetHeight(12);
 	header:SetJustifyH("CENTER");
 	header:SetTextColor(1, 0.82, 0);
-	header:SetText("QuestMap Coords");
+	header:SetText("Coords QuestMap");
 	f.header = header;
 
 	-- Zone display name (GetZoneText)
@@ -916,11 +916,11 @@ local function QM_Coords_Create()
 	end);
 	f:SetScript("OnEnter", function(self)
 		GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT");
-		GameTooltip:SetText("QuestMap Coordinates", 1, 1, 1);
-		GameTooltip:AddLine("Drag to move.", 0.7, 0.7, 0.7);
-		GameTooltip:AddLine("Right-click to close.", 0.7, 0.7, 0.7);
-		GameTooltip:AddLine("Green line: /way coords for routeCoords entries.", 0.4, 1.0, 0.4);
-		GameTooltip:AddLine("Blue line: Astrolabe zone key for QM_NODE_COORDS.", 0.55, 0.55, 0.75);
+		GameTooltip:SetText("Coordonnées QuestMap", 1, 1, 1);
+		GameTooltip:AddLine("Glisser pour déplacer.", 0.7, 0.7, 0.7);
+		GameTooltip:AddLine("Clic droit pour fermer.", 0.7, 0.7, 0.7);
+		GameTooltip:AddLine("Ligne verte : coordonnées /way pour les entrées routeCoords.", 0.4, 1.0, 0.4);
+		GameTooltip:AddLine("Ligne bleue : clé de zone Astrolabe pour QM_NODE_COORDS.", 0.55, 0.55, 0.75);
 		GameTooltip:Show();
 	end);
 	f:SetScript("OnLeave", function() GameTooltip:Hide(); end);
@@ -932,7 +932,7 @@ end
 local function QM_Coords_Update()
 	if not QM_coordsFrame or not QM_coordsFrame:IsShown() then return; end
 
-	local zoneName = GetZoneText and GetZoneText() or "Unknown";
+	local zoneName = GetZoneText and GetZoneText() or "Inconnu";
 
 	-- Prefer Astrolabe: tracked every frame, zone-independent, full precision.
 	-- GetCurrentPlayerPosition returns cont, zone_index, x, y  (x/y are 0-1 fractions).
@@ -966,7 +966,7 @@ local function QM_Coords_Update()
 	-- Show Astrolabe's internal camelCase zone key below when it differs from the
 	-- display name — useful to spot mismatches in QM_NODE_COORDS.zone entries.
 	if astroKey and astroKey ~= zoneName then
-		QM_coordsFrame.astroStr:SetText("key: " .. astroKey);
+		QM_coordsFrame.astroStr:SetText("clé : " .. astroKey);
 		QM_coordsFrame:SetHeight(62);
 	else
 		QM_coordsFrame.astroStr:SetText("");
