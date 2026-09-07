@@ -209,7 +209,7 @@
 					</Frame>
 
 					<!-- Back button: returns to the quest list -->
-					<Button name="$parentBackButton" parentKey="backButton" inherits="UIPanelButtonTemplate" text="RETOUR">
+					<Button name="$parentBackButton" parentKey="backButton" inherits="UIPanelButtonTemplate" text="Retour">
     					<Size x="90" y="24"/>
     					<Anchors>
     					    <Anchor point="TOPLEFT" x="-35" y="-4"/>
