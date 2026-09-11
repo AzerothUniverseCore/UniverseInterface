@@ -2393,7 +2393,7 @@
 					     can be previewed without the starting outfit covering them. -->
 					<CheckButton name="CharCreateHideGearButton" inherits="GlueCheckButtonTemplate">
 						<Anchors>
-							<Anchor point="TOP" relativeTo="CharacterCreateRotateLeft" relativePoint="BOTTOM" x="15" y="-10"/>
+							<Anchor point="TOP" relativeTo="CharacterCreateRotateLeft" relativePoint="BOTTOM" x="-530" y="-10"/>
 						</Anchors>
 						<Scripts>
 							<OnLoad>

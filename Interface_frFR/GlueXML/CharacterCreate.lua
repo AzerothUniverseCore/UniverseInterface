@@ -2390,6 +2390,13 @@ function CharacterCreate_Randomize()
 	PlaySound("gsCharacterCreationLook");
 	RandomizeCharCustomization();
 	CharCreate_ResetFeaturesDisplay();
+
+	-- RandomizeCharCustomization() reconstruit le modele et le rhabille avec
+	-- la tenue de depart : si la case "Cacher l'equipement" est cochee, on
+	-- redeshabille pour rester coherent avec l'etat affiche a l'ecran.
+	if ( CharCreateHideGearButton and CharCreateHideGearButton:GetChecked() ) then
+		CharCustomization_Undress();
+	end
 end
 
 function CharacterCreateRotateRight_OnUpdate(self)

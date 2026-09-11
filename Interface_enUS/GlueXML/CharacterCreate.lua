@@ -2390,6 +2390,13 @@ function CharacterCreate_Randomize()
 	PlaySound("gsCharacterCreationLook");
 	RandomizeCharCustomization();
 	CharCreate_ResetFeaturesDisplay();
+
+	-- RandomizeCharCustomization() rebuilds the model and re-equips the
+	-- starting outfit: if "Hide Equipment" is checked, undress it again so
+	-- the model stays consistent with what's shown on screen.
+	if ( CharCreateHideGearButton and CharCreateHideGearButton:GetChecked() ) then
+		CharCustomization_Undress();
+	end
 end
 
 function CharacterCreateRotateRight_OnUpdate(self)
