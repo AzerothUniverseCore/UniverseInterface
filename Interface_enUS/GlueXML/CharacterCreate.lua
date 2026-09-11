@@ -1941,7 +1941,7 @@ end
 function CharacterCreate_UpdateStartZoneButtons()
 	local zoneName;
 	if ( CharacterCreate.selectedClass == 13 ) then
-		zoneName = "L'île Vagabonde";
+		zoneName = "The Wandering Isle";
 	else
 		zoneName = AU_RACE_START_ZONE_NAME[CharacterCreate.selectedRace] or "Azeroth / Kalimdor";
 	end
