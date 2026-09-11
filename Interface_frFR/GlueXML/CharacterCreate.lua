@@ -1939,7 +1939,12 @@ function CharacterCreate_SelectStartZone(zone)
 end
 
 function CharacterCreate_UpdateStartZoneButtons()
-	local zoneName = AU_RACE_START_ZONE_NAME[CharacterCreate.selectedRace] or "Azeroth / Kalimdor";
+	local zoneName;
+	if ( CharacterCreate.selectedClass == 13 ) then
+		zoneName = "L'île Vagabonde";
+	else
+		zoneName = AU_RACE_START_ZONE_NAME[CharacterCreate.selectedRace] or "Azeroth / Kalimdor";
+	end
 	CharCreateStartZoneAzerothButtonText:SetText(zoneName);
 
 	if ( CharacterCreate.selectedStartZone == "shadowlands" ) then
