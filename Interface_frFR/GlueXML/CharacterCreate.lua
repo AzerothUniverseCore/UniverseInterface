@@ -2434,7 +2434,35 @@ function GetFlavorText(tagname, sex)
 	return text;
 end
 
+-- ============================================================================
+-- Bouton "Cacher l'equipement" : permet de voir le torse/bras/jambes du
+-- personnage sans son equipement de depart (CharStartOutfit.dbc), pour
+-- previsualiser les tatouages et autres personnalisations de peau sans
+-- que l'armure ne les cache.
+-- ============================================================================
+
+-- CharCustomization_Dress() / CharCustomization_Undress() sont des fonctions
+-- natives du moteur (non definies en Lua, trouvees par introspection de la
+-- table _G) qui habillent/deshabillent le personnage dans la scene de
+-- creation, exactement comme CycleCharCustomization ou UpdateCustomizationScene.
+function CharCreateHideGear_OnClick(self)
+	local hideGear = self:GetChecked() and true or false;
+
+	if ( hideGear ) then
+		CharCustomization_Undress();
+	else
+		CharCustomization_Dress();
+	end
+end
+
 function CharacterChangeFixup()
+	-- Un changement de race/classe/genre reconstruit entierement le modele
+	-- (et donc rhabille le personnage) : on remet la case a decocher pour
+	-- rester coherent avec l'affichage.
+	if ( CharCreateHideGearButton ) then
+		CharCreateHideGearButton:SetChecked(false);
+	end
+
 	if ( PAID_SERVICE_TYPE ) then
 		-- no class changing as a paid service
 		CharCreateClassFrame:SetAlpha(0.5);

@@ -2389,6 +2389,32 @@
 						</HighlightTexture>
 					</Button>
 
+					<!-- Hide Equipment (torso/arms/legs) so tattoos/skin customizations
+					     can be previewed without the starting outfit covering them. -->
+					<CheckButton name="CharCreateHideGearButton" inherits="GlueCheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterCreateRotateLeft" relativePoint="BOTTOM" x="15" y="-10"/>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								local label = _G[self:GetName().."Text"];
+								if ( label ) then
+									if ( GetLocale() == "frFR" ) then
+										label:SetText("Cacher l'equipement");
+									else
+										label:SetText("Hide Equipment");
+									end
+								end
+								self:SetFrameLevel(1000);
+								self:SetChecked(false);
+							</OnLoad>
+							<OnClick>
+								PlaySound("igMainMenuOptionCheckBoxOn");
+								CharCreateHideGear_OnClick(self);
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+
 					<Button name="CharacterCreateZoomOutButton" inherits="GlueButtonTemplate">
 						<Size x="64" y="32"/>
 						<Anchors>

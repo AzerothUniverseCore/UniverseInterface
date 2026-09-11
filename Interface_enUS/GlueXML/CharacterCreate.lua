@@ -2434,7 +2434,33 @@ function GetFlavorText(tagname, sex)
 	return text;
 end
 
+-- ============================================================================
+-- "Hide Equipment" button: lets the preview show the torso/arms/legs without
+-- the starting outfit (CharStartOutfit.dbc) so tattoos and other skin
+-- customizations aren't hidden under the gear.
+-- ============================================================================
+
+-- CharCustomization_Dress() / CharCustomization_Undress() are native engine
+-- functions (not Lua-defined, found via _G introspection) that dress/undress
+-- the character in the creation scene, just like CycleCharCustomization or
+-- UpdateCustomizationScene.
+function CharCreateHideGear_OnClick(self)
+	local hideGear = self:GetChecked() and true or false;
+
+	if ( hideGear ) then
+		CharCustomization_Undress();
+	else
+		CharCustomization_Dress();
+	end
+end
+
 function CharacterChangeFixup()
+	-- A race/class/gender change fully rebuilds the model (re-equipping it),
+	-- so reset the checkbox to stay in sync with what's shown.
+	if ( CharCreateHideGearButton ) then
+		CharCreateHideGearButton:SetChecked(false);
+	end
+
 	if ( PAID_SERVICE_TYPE ) then
 		-- no class changing as a paid service
 		CharCreateClassFrame:SetAlpha(0.5);
