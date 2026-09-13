@@ -329,22 +329,40 @@ function CharacterSelect_OnKeyDown(self,key)
 	elseif ( key == "N" ) then
 		CharacterSelect_ToggleUIVisibility();
 	elseif ( key == "UP" or key == "LEFT" ) then
-		local numChars = GetNumCharacters();
-		if ( numChars > 1 ) then
-			if ( self.selectedIndex > 1 ) then
-				CharacterSelect_SelectCharacter(self.selectedIndex - 1);
-			else
-				CharacterSelect_SelectCharacter(numChars);
+		local numRealChars = table.getn(CharacterButtons);
+		if ( numRealChars > 1 ) then
+			local currentPos = nil;
+			for i = 1, numRealChars do
+				if ( CharacterButtons[i]:GetID() == self.selectedIndex ) then
+					currentPos = i;
+					break;
+				end
 			end
+			local newPos;
+			if ( currentPos and currentPos > 1 ) then
+				newPos = currentPos - 1;
+			else
+				newPos = numRealChars;
+			end
+			CharacterSelect_SelectCharacter(CharacterButtons[newPos]:GetID());
 		end
 	elseif ( arg1 == "DOWN" or arg1 == "RIGHT" ) then
-		local numChars = GetNumCharacters();
-		if ( numChars > 1 ) then
-			if ( self.selectedIndex < GetNumCharacters() ) then
-				CharacterSelect_SelectCharacter(self.selectedIndex + 1);
-			else
-				CharacterSelect_SelectCharacter(1);
+		local numRealChars = table.getn(CharacterButtons);
+		if ( numRealChars > 1 ) then
+			local currentPos = nil;
+			for i = 1, numRealChars do
+				if ( CharacterButtons[i]:GetID() == self.selectedIndex ) then
+					currentPos = i;
+					break;
+				end
 			end
+			local newPos;
+			if ( currentPos and currentPos < numRealChars ) then
+				newPos = currentPos + 1;
+			else
+				newPos = 1;
+			end
+			CharacterSelect_SelectCharacter(CharacterButtons[newPos]:GetID());
 		end
 	end
 end
@@ -412,8 +430,9 @@ function RepositionCharButtons()
         local dynamicWidth = (buttonWidth * #CharacterButtons)
         local resetPoint = (#CharacterButtons / 2) + 1;
         local yOffset = 0
-        local _, _, class = GetCharacterInfo(i);
         buttonName = _G["CharSelectCharacterButton"..i]
+		local realId = buttonName:GetID();
+        local _, _, class = GetCharacterInfo(realId);
         if class == "Death Knight" then
 			class = "DK"
 		end
@@ -487,6 +506,7 @@ function UpdateCharacterList()
 			table.insert(DeletedCharacterList, { id = i, name = strsub(name, strlen(DELETED_CHAR_MARKER) + 1), race = race, class = class, level = level });
 		else
 			local button = _G["CharSelectCharacterButton"..index];
+			button:SetID(i);
 			if ( not name ) then
 				button:SetText("ERROR - Tell Jeremy");
 			else
@@ -582,10 +602,11 @@ function UpdateCharacterList()
 	end
 
 	if ( CharacterSelectRestoreButton ) then
+	CharacterSelectRestoreButton:Enable();
 		if ( table.getn(DeletedCharacterList) > 0 ) then
-			CharacterSelectRestoreButton:Enable();
+			SetButtonDesaturated(CharacterSelectRestoreButton, false);
 		else
-			CharacterSelectRestoreButton:Disable();
+			SetButtonDesaturated(CharacterSelectRestoreButton, true);
 		end
 	end
 
@@ -641,6 +662,10 @@ function CharacterSelect_TabResize(self)
 end
 
 function CharacterSelect_SelectCharacter(id, noCreate)
+	if ( id == 0 ) then
+		CharacterSelect:SetModel("Interface\\Glues\\Models\\UI_Orc\\UI_Orc.m2");
+		return;
+	end
 	if ( id == CharacterSelect.createIndex ) then
 		if ( not noCreate ) then
 			PlaySound("gsCharacterSelectionCreateNew");
@@ -692,6 +717,9 @@ function CharacterSelect_Delete()
 end
 
 function CharacterSelect_ShowRestore()
+if ( table.getn(DeletedCharacterList) == 0 ) then
+		return;
+	end
 	PlaySound("gsCharacterSelectionDelCharacter");
 	CharacterRestoreListDialog:Show();
 end

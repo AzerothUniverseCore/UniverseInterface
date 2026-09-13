@@ -251,7 +251,11 @@
 			</OnUpdate>
 			<OnEnter>
 				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
-				GlueTooltip_SetText("Restore Character", CharacterSelectTooltip);
+				if ( table.getn(DeletedCharacterList) > 0 ) then
+					GlueTooltip_SetText(RESTORE_CHARACTER, CharacterSelectTooltip);
+				else
+					GlueTooltip_SetText(RESTORE_CHARACTER_EMPTY, CharacterSelectTooltip);
+				end
 			</OnEnter>
 			<OnLeave>
 				CharacterSelectTooltip:Hide()
