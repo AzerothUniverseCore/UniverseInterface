@@ -238,6 +238,64 @@
 			</Anchors>
 		</HighlightTexture>
 	</Button>
+	
+	<Button name="CharSelectRestoreCharacterTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="70" y="70"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="RestoreIcon" file="Interface\Glues\CharacterSelect\CharSelectButtons">
+					<Size x="30" y="30"/>
+					<TexCoords left="0.8642578125" right="0.9501953125" top="0.427734375" bottom="0.599609375"/>			
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				CharacterSelect_ShowRestore();
+			</OnClick>
+			<OnUpdate>
+				CharacterSelect_DeathKnightSwap(self);
+			</OnUpdate>
+			<OnEnter>
+				GlueTooltip_SetOwner(self, CharacterSelectTooltip, 0, 0, "LEFT", "RIGHT");
+				GlueTooltip_SetText("Restore Character", CharacterSelectTooltip);
+			</OnEnter>
+			<OnLeave>
+				CharacterSelectTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<NormalTexture file="Interface\Glues\CharacterSelect\CharSelectButtons">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.0546875" bottom="0.380859375"/>			
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalTexture>
+		<HighlightTexture file="Interface\Glues\CharacterSelect\CharSelectButtons" alphaMode="ADD" alpha="1.0">
+			<Size>
+				<AbsDimension x="70" y="70"/>
+			</Size>
+			<TexCoords left="0.0283203125" right="0.189453125" top="0.486328125" bottom="0.8125"/>				
+			<Anchors>
+				<Anchor point="CENTER">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
 
 	<Button name="CharSelectDeleteCharacterTemplate" virtual="true">
 		<Size>
@@ -844,11 +902,11 @@
 					</Button>
 					<!-- Azeroth Universe custom: opens the "Restore a Character" panel
 					     listing this account's soft-deleted characters. -->
-					<Button name="CharacterSelectRestoreButton" inherits="CharSelectDeleteCharacterTemplate" text="RESTORE_CHARACTER">
+					<Button name="CharacterSelectRestoreButton" inherits="CharSelectRestoreCharacterTemplate" text="RESTORE_CHARACTER">
 						<Anchors>
 							<Anchor point="TOP" relativeTo="CharacterSelectBackButton" relativePoint="BOTTOM">
 								<Offset>
-									<AbsDimension x="0" y="0"/>
+									<AbsDimension x="-1255" y="-50"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -1886,7 +1944,7 @@
 						<Anchors>
 							<Anchor point="BOTTOM" relativeTo="CharacterRestoreListBackground" relativePoint="BOTTOM">
 								<Offset>
-									<AbsDimension x="220" y="16"/>
+									<AbsDimension x="162" y="30"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -1968,7 +2026,7 @@
 						<Anchors>
 							<Anchor point="BOTTOMRIGHT" relativeTo="CharacterRestoreBackground" relativePoint="BOTTOM">
 								<Offset>
-									<AbsDimension x="-6" y="16"/>
+									<AbsDimension x="-6" y="50"/>
 								</Offset>
 							</Anchor>
 						</Anchors>
