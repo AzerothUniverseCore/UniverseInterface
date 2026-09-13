@@ -38,20 +38,6 @@
 			</OnUpdate>
 		</Scripts>
 	</Button>
-	<!-- Azeroth Universe custom : habillage des boutons de la liste
-	     "Restaurer un personnage", utilisant le visuel WhoAll personnalise
-	     a la place de la texture de bouton en pierre standard.
-	     buton_select_char_restore.blp est une image de 512x256, mais le
-	     ruban visible n'occupe qu'une zone de 307x94 a l'interieur (le
-	     reste est du remplissage transparent) ; les TexCoords ci-dessous
-	     recadrent exactement sur cette zone pour que le ruban garde ses
-	     propres proportions au lieu d'etre etire/ecrase sur un bouton
-	     forme comme le canevas entier. Le bouton est dimensionne
-	     approximativement au meme ratio 3.27:1 que ce recadrage pour un
-	     rendu non deforme, et suffisamment haut pour un affichage sur
-	     deux lignes "Nom / Classe Niveau", comme les boutons standard de
-	     selection de personnage (CharSelectCharacterButtonTemplate) qui
-	     separent deja le nom et les infos. -->
 	<Button name="CharacterRestoreListRowTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="220" y="67"/>
@@ -902,8 +888,6 @@
 							</Anchor>
 						</Anchors>
 					</Button>
-					<!-- Azeroth Universe custom : ouvre le panneau "Restaurer un
-					     personnage" listant les personnages supprimés du compte. -->
 					<Button name="CharacterSelectRestoreButton" inherits="CharSelectRestoreCharacterTemplate" text="RESTORE_CHARACTER">
 						<Anchors>
 							<Anchor point="TOP" relativeTo="CharacterSelectBackButton" relativePoint="BOTTOM">
@@ -1625,17 +1609,6 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
-	<!-- ================================================================
-	     Azeroth Universe custom : fonctionnalité "Restaurer un personnage".
-	     CharacterRestoreListDialog liste les personnages supprimés
-	     (soft-delete) du compte (rempli en Lua depuis DeletedCharacterList,
-	     lui-même construit dans UpdateCharacterList() à partir des entrées
-	     synthétiques préfixées par le marqueur que le serveur ajoute - voir
-	     CharacterHandler.cpp::HandleCharEnum). Choisir une ligne ouvre
-	     CharacterRestoreDialog pour confirmer, qui appelle ensuite le
-	     DeleteCharacter(id) standard - le même opcode que pour une
-	     suppression normale - pour demander la restauration au serveur.
-	     ================================================================ -->
 	<Frame name="CharacterRestoreListDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
 		<Frames>
 			<Frame name="CharacterRestoreListBackground">
@@ -1650,8 +1623,6 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-				<!-- Azeroth Universe custom : remplace le fond Blizzard
-				     standard par le visuel WhoAll personnalise. -->
 				<Layer level="BACKGROUND">
 					<Texture name="CharacterRestoreListBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
 						<Anchors>
@@ -1666,11 +1637,6 @@
 								<AbsDimension x="500" y="0"/>
 							</Size>
 							<Anchors>
-								<!-- Azeroth Universe custom : decale de 220px vers la
-								     droite pour que tout le bloc (titre, liste,
-								     bouton fermer) se trouve sur la partie sombre
-								     unie du fond WhoAll_UI, et non sur la tour
-								     illustree a gauche. -->
 								<Anchor point="TOP">
 									<Offset>
 										<AbsDimension x="180" y="-50"/>
@@ -1693,11 +1659,6 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<!-- Azeroth Universe custom: scrollable so accounts with more
-					     than a handful of deleted characters can reach all of
-					     them (the server can surface up to MAX_CHARACTERS_PER_REALM,
-					     i.e. 20, in one go). Reuses the same GlueScrollFrameTemplate
-					     already used by CharacterCreate.xml in this client build. -->
 					<ScrollFrame name="CharacterRestoreListScrollFrame" inherits="GlueScrollFrameTemplate" enableMouseWheel="true">
 						<Size>
 							<AbsDimension x="260" y="340"/>
@@ -1709,11 +1670,6 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<!-- Scrollbar positioning, range updates and mouse-wheel
-						     scrolling all come from the inherited
-						     GlueScrollFrameTemplate (already relied on by
-						     CharacterCreate.xml in this build) - no need to
-						     redefine any of that here. -->
 						<ScrollChild>
 							<Frame name="CharacterRestoreListScrollChild">
 								<Size>
@@ -1981,14 +1937,6 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-					<!-- Azeroth Universe custom : remplace le fond Blizzard
-					     standard par le visuel WhoAll personnalise. Le cadre
-					     est dimensionne pour correspondre exactement au
-					     ratio natif 2:1 de la texture (1024x512), agrandi a
-					     la meme largeur que CharacterRestoreListBackground
-					     pour que la fenetre de confirmation ne paraisse pas
-					     plus petite/moins detaillee que la liste principale
-					     derriere elle. -->
 					<Layer level="BACKGROUND">
 						<Texture name="CharacterRestoreBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
 							<Anchors>

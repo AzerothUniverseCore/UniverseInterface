@@ -550,7 +550,6 @@ COMMUNITY_URL = "http://www.worldofwarcraft.com";
 CONFIGURE_MODS_FOR = "Configure AddOns For:";
 CONFIRM_CHAR_DELETE = "Do you want to delete\n|cffffffff%s   Level %d   %s|r?";
 CONFIRM_CHAR_DELETE_INSTRUCTIONS = "Type \"DELETE\" into the field to confirm.";
--- Azeroth Universe custom: "Restore a Character"
 RESTORE_CHARACTER = "Restore a Character";
 RESTORE_CHARACTER_TITLE = "Character Restoration";
 RESTORE_CHARACTER_EMPTY = "You have no deleted characters available to restore.";

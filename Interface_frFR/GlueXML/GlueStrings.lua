@@ -550,7 +550,6 @@ COMMUNITY_URL = "https://discord.com/invite/efTx9k4nfE";
 CONFIGURE_MODS_FOR = "Configurer les add-ons pour :";
 CONFIRM_CHAR_DELETE = "Voulez-vous effacer\n|cffffffff%1$s %3$s niveau %2$d|r ?";
 CONFIRM_CHAR_DELETE_INSTRUCTIONS = "Tapez \"EFFACER\" dans le champ pour confirmer.";
--- Azeroth Universe custom : "Restaurer un personnage"
 RESTORE_CHARACTER = "Restaurer un personnage";
 RESTORE_CHARACTER_TITLE = "Restauration de Personnage";
 RESTORE_CHARACTER_EMPTY = "Vous n'avez aucun personnage effacer à restaurer.";

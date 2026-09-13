@@ -5,18 +5,9 @@ MAX_CHARACTERS_DISPLAYED = 20;
 MAX_CHARACTERS_PER_REALM = 20;
 local ShadowTable = {}
 local CharacterButtons = {}
--- Azeroth Universe custom : fonctionnalité "Restaurer un personnage".
--- Le serveur marque l'entrée SMSG_CHAR_ENUM synthétique d'un personnage
--- supprimé (soft-delete) en préfixant son nom par ce marqueur (à garder
--- synchronisé avec DELETED_CHAR_NAME_MARKER dans
--- server/game/Handlers/CharacterHandler.cpp). Un vrai nom de personnage ne
--- peut jamais commencer par ce caractère (normalizePlayerName n'autorise
--- que les lettres), ce qui permet au client de distinguer une entrée
--- "fantôme" restaurable d'un personnage normal.
+
 DELETED_CHAR_MARKER = "~";
--- Rempli par UpdateCharacterList() : { {id=<index enum>, name=<vrai nom>,
--- race=.., class=.., level=..}, ... } pour chaque personnage supprimé
--- masqué trouvé sur le compte.
+
 DeletedCharacterList = {};
 local ClassToIcon = {
 	["Guerrier"] = {"CharSelectWarrior", "|cFFC79C6E"},
@@ -490,10 +481,6 @@ function UpdateCharacterList()
 	for i=1, numChars, 1 do
 		local name, race, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(i);
 		if ( name and strsub(name, 1, strlen(DELETED_CHAR_MARKER)) == DELETED_CHAR_MARKER ) then
-			-- Entrée synthétique pour un personnage supprimé (soft-delete)
-			-- sur ce compte (fonctionnalité de restauration Azeroth
-			-- Universe). On la garde hors de la liste normale ; elle n'est
-			-- affichée que dans le panneau de restauration.
 			table.insert(DeletedCharacterList, { id = i, name = strsub(name, strlen(DELETED_CHAR_MARKER) + 1), race = race, class = class, level = level });
 		else
 			local button = _G["CharSelectCharacterButton"..index];
@@ -531,10 +518,6 @@ function UpdateCharacterList()
 		end
 	end
 
-	-- Nombre de vrais personnages (non supprimés) occupant réellement des
-	-- emplacements affichés ; tout ce qui suit doit utiliser cette valeur
-	-- plutôt que "numChars" brut pour que les entrées masquées de
-	-- restauration n'affectent jamais l'état de la liste normale.
 	local numRealChars = index - 1;
 
 	if ( numRealChars == 0 ) then
@@ -592,7 +575,6 @@ function UpdateCharacterList()
 		index = index + 1;
 	end
 
-	-- Le bouton de restauration n'a de sens que s'il y a quelque chose à restaurer.
 	if ( CharacterSelectRestoreButton ) then
 		if ( table.getn(DeletedCharacterList) > 0 ) then
 			CharacterSelectRestoreButton:Enable();
@@ -703,29 +685,13 @@ function CharacterSelect_Delete()
 	end
 end
 
--- ===========================================================================
--- Azeroth Universe custom : "Restaurer un personnage".
--- DeletedCharacterList (rempli dans UpdateCharacterList) contient une entrée
--- par ligne SMSG_CHAR_ENUM masquée et préfixée par le marqueur que le
--- serveur a ajoutée pour les personnages supprimés (soft-delete) de ce
--- compte : { id, name, race, class, level }. "id" est la position du
--- personnage dans la liste brute de GetNumCharacters(), c'est-à-dire
--- exactement ce qu'attend DeleteCharacter(id) : confirmer une restauration
--- ici réutilise donc le flux/opcode de suppression standard, sans aucun
--- nouvel appel réseau.
--- ===========================================================================
-
 function CharacterSelect_ShowRestore()
 	PlaySound("gsCharacterSelectionDelCharacter");
 	CharacterRestoreListDialog:Show();
 end
 
--- Correspond à MAX_CHARACTERS_PER_REALM : le serveur ne fait jamais
--- apparaître plus de ce nombre total d'entrées (vivantes + supprimées) dans
--- un seul SMSG_CHAR_ENUM, donc 20 lignes couvrent toujours tous les
--- personnages supprimés qui pourraient apparaître ici.
 RESTORE_CHARACTER_LIST_MAX_ROWS = 20;
-RESTORE_CHARACTER_LIST_ROW_STEP = 73; -- ligne de 67px + 6px d'espacement
+RESTORE_CHARACTER_LIST_ROW_STEP = 73;
 
 function CharacterRestoreListDialog_OnShow()
 	local numEntries = table.getn(DeletedCharacterList);
@@ -744,11 +710,7 @@ function CharacterRestoreListDialog_OnShow()
 			if displayClass == "Chevalier de la mort" then displayClass = "DK" end
 			if displayClass == "Chasseur de démons" then displayClass = "DH" end
 			if displayClass == "Mage de combat sanglant" then displayClass = "BBM" end
-			-- Deux FontStrings distinctes (nom en haut, classe/niveau en
-			-- dessous), le même découpage que les boutons standard de
-			-- sélection de personnage (ButtonTextName/Info de
-			-- CharSelectCharacterButtonTemplate), plutôt qu'une seule
-			-- ligne compressée.
+
 			_G[button:GetName().."Name"]:SetFormattedText(RESTORE_CHARACTER_LIST_NAME, entry.name);
 			_G[button:GetName().."Info"]:SetFormattedText(RESTORE_CHARACTER_LIST_INFO, displayClass, entry.level);
 			button.restoreEntry = entry;
@@ -759,9 +721,6 @@ function CharacterRestoreListDialog_OnShow()
 		end
 	end
 
-	-- Redimensionne la zone de défilement pour que la plage de la barre
-	-- corresponde au nombre réel de lignes utilisées, et remonte la vue
-	-- en haut à chaque (ré)ouverture du panneau.
 	local childHeight = (math.max(1, numEntries) * RESTORE_CHARACTER_LIST_ROW_STEP) - 6;
 	CharacterRestoreListScrollChild:SetHeight(childHeight);
 	CharacterRestoreListScrollFrame:SetVerticalScroll(0);
@@ -793,10 +752,6 @@ end
 function CharacterRestoreDialog_Accept()
 	local entry = CharacterRestoreDialog.pendingEntry;
 	if ( entry ) then
-		-- Réutilise l'opcode de suppression standard ; le serveur reconnaît
-		-- que ce guid est déjà supprimé (soft-delete) et appartient à ce
-		-- compte, et effectue une restauration au lieu d'une suppression
-		-- (voir HandleCharDeleteOpcode).
 		DeleteCharacter(entry.id);
 	end
 	CharacterRestoreDialog.pendingEntry = nil;

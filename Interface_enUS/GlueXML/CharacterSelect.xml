@@ -38,18 +38,6 @@
 			</OnUpdate>
 		</Scripts>
 	</Button>
-	<!-- Azeroth Universe custom: row button skin for the "Restore a Character"
-	     list, using the custom WhoAll banner-button art instead of the stock
-	     stone button texture. buton_select_char_restore.blp is a 512x256
-	     canvas but the actual ribbon artwork only occupies a 307x94 region
-	     inside it (everything else is transparent padding); the TexCoords
-	     below crop straight to that region so the ribbon keeps its own
-	     true proportions instead of being stretched/squashed to fill a
-	     button shaped like the whole padded canvas. The row is sized to
-	     roughly the same 3.27:1 ratio as that crop so the art displays
-	     undistorted, and is tall enough for a two-line "Name / Class
-	     Level" layout, matching how the stock character-select buttons
-	     (CharSelectCharacterButtonTemplate) split name and info. -->
 	<Button name="CharacterRestoreListRowTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="220" y="67"/>
@@ -900,8 +888,6 @@
 							</Anchor>
 						</Anchors>
 					</Button>
-					<!-- Azeroth Universe custom: opens the "Restore a Character" panel
-					     listing this account's soft-deleted characters. -->
 					<Button name="CharacterSelectRestoreButton" inherits="CharSelectRestoreCharacterTemplate" text="RESTORE_CHARACTER">
 						<Anchors>
 							<Anchor point="TOP" relativeTo="CharacterSelectBackButton" relativePoint="BOTTOM">
@@ -1623,17 +1609,6 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
-	<!-- ================================================================
-	     Azeroth Universe custom: "Restore a Character" feature.
-	     CharacterRestoreListDialog lists this account's soft-deleted
-	     characters (populated in Lua from DeletedCharacterList, itself
-	     built in UpdateCharacterList() from the marker-prefixed synthetic
-	     SMSG_CHAR_ENUM entries the server appends - see
-	     CharacterHandler.cpp::HandleCharEnum). Picking a row opens
-	     CharacterRestoreDialog to confirm, which then calls the stock
-	     DeleteCharacter(id) - the same opcode used for normal deletion -
-	     to actually request the restore from the server.
-	     ================================================================ -->
 	<Frame name="CharacterRestoreListDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
 		<Frames>
 			<Frame name="CharacterRestoreListBackground">
@@ -1648,8 +1623,6 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-					<!-- Azeroth Universe custom: replaces the stock Blizzard
-					     dialog backdrop with the custom WhoAll art. -->
 					<Layer level="BACKGROUND">
 						<Texture name="CharacterRestoreListBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
 							<Anchors>
@@ -1664,11 +1637,6 @@
 								<AbsDimension x="500" y="0"/>
 							</Size>
 							<Anchors>
-								<!-- Azeroth Universe custom: shifted 220px right so the
-								     whole list block (title, scroll list, close button)
-								     sits over the plain dark portion of the WhoAll_UI
-								     background instead of the illustrated tower on the
-								     left. -->
 								<Anchor point="TOP">
 									<Offset>
 										<AbsDimension x="180" y="-50"/>
@@ -1691,11 +1659,6 @@
 					</Layer>
 				</Layers>
 				<Frames>
-					<!-- Azeroth Universe custom: scrollable so accounts with more
-					     than a handful of deleted characters can reach all of
-					     them (the server can surface up to MAX_CHARACTERS_PER_REALM,
-					     i.e. 20, in one go). Reuses the same GlueScrollFrameTemplate
-					     already used by CharacterCreate.xml in this client build. -->
 					<ScrollFrame name="CharacterRestoreListScrollFrame" inherits="GlueScrollFrameTemplate" enableMouseWheel="true">
 						<Size>
 							<AbsDimension x="260" y="340"/>
@@ -1707,11 +1670,6 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<!-- Scrollbar positioning, range updates and mouse-wheel
-						     scrolling all come from the inherited
-						     GlueScrollFrameTemplate (already relied on by
-						     CharacterCreate.xml in this build) - no need to
-						     redefine any of that here. -->
 						<ScrollChild>
 							<Frame name="CharacterRestoreListScrollChild">
 								<Size>
@@ -1979,13 +1937,6 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-					<!-- Azeroth Universe custom: replaces the stock Blizzard
-					     dialog backdrop with the custom WhoAll art. The frame
-					     is sized to exactly match the texture's native 2:1
-					     aspect ratio (1024x512), scaled up to the same width
-					     as CharacterRestoreListBackground so the confirmation
-					     popup doesn't look smaller/lower-detail than the main
-					     restore list behind it. -->
 					<Layer level="BACKGROUND">
 						<Texture name="CharacterRestoreBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
 							<Anchors>

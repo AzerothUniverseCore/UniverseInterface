@@ -5,17 +5,9 @@ MAX_CHARACTERS_DISPLAYED = 20;
 MAX_CHARACTERS_PER_REALM = 20;
 local ShadowTable = {}
 local CharacterButtons = {}
--- Azeroth Universe custom: "Restore a Character" feature.
--- The server marks a soft-deleted character's synthetic SMSG_CHAR_ENUM entry
--- by prefixing its name with this marker (kept in sync with
--- DELETED_CHAR_NAME_MARKER in server/game/Handlers/CharacterHandler.cpp).
--- A real character name can never start with it (normalizePlayerName only
--- allows letters, so this is unreachable), which is how the client tells a
--- restorable "ghost" entry apart from a normal character.
+
 DELETED_CHAR_MARKER = "~";
--- Populated by UpdateCharacterList(): { {id=<enum index>, name=<real name>,
--- race=.., class=.., level=..}, ... } for every hidden deleted-character
--- entry found on the account.
+
 DeletedCharacterList = {};
 local ClassToIcon = {
 	["Warrior"] = {"CharSelectWarrior", "|cFFC79C6E"},
@@ -492,9 +484,6 @@ function UpdateCharacterList()
 	for i=1, numChars, 1 do
 		local name, race, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(i);
 		if ( name and strsub(name, 1, strlen(DELETED_CHAR_MARKER)) == DELETED_CHAR_MARKER ) then
-			-- Synthetic entry for a soft-deleted character on this account
-			-- (Azeroth Universe restore feature). Keep it out of the normal
-			-- roster entirely; it only shows up in the restore panel.
 			table.insert(DeletedCharacterList, { id = i, name = strsub(name, strlen(DELETED_CHAR_MARKER) + 1), race = race, class = class, level = level });
 		else
 			local button = _G["CharSelectCharacterButton"..index];
@@ -535,10 +524,6 @@ function UpdateCharacterList()
 		end
 	end
 
-	-- Real (non-deleted) character count actually occupying display slots;
-	-- everything below that used to read the raw "numChars" must use this
-	-- instead so hidden restore-entries never affect the normal roster's
-	-- enable/disable state, selection, or free-slot math.
 	local numRealChars = index - 1;
 
 	if ( numRealChars == 0 ) then
@@ -596,7 +581,6 @@ function UpdateCharacterList()
 		index = index + 1;
 	end
 
-	-- Restore button is only meaningful once there is something to restore.
 	if ( CharacterSelectRestoreButton ) then
 		if ( table.getn(DeletedCharacterList) > 0 ) then
 			CharacterSelectRestoreButton:Enable();
@@ -707,26 +691,13 @@ function CharacterSelect_Delete()
 	end
 end
 
--- ===========================================================================
--- Azeroth Universe custom: "Restore a Character".
--- DeletedCharacterList (built in UpdateCharacterList) holds one entry per
--- hidden, marker-named SMSG_CHAR_ENUM row the server appended for this
--- account's soft-deleted characters: { id, name, race, class, level }.
--- "id" is the character's position in the raw GetNumCharacters() list, i.e.
--- exactly what DeleteCharacter(id) expects - so confirming a restore here
--- reuses the stock delete opcode/flow with no new network call at all.
--- ===========================================================================
-
 function CharacterSelect_ShowRestore()
 	PlaySound("gsCharacterSelectionDelCharacter");
 	CharacterRestoreListDialog:Show();
 end
 
--- Matches MAX_CHARACTERS_PER_REALM: the server never surfaces more than
--- that many total entries (live + deleted) in one SMSG_CHAR_ENUM, so 20 rows
--- always covers every deleted character that could possibly show up here.
 RESTORE_CHARACTER_LIST_MAX_ROWS = 20;
-RESTORE_CHARACTER_LIST_ROW_STEP = 73; -- 67px row + 6px gap
+RESTORE_CHARACTER_LIST_ROW_STEP = 73;
 
 function CharacterRestoreListDialog_OnShow()
 	local numEntries = table.getn(DeletedCharacterList);
@@ -746,10 +717,7 @@ function CharacterRestoreListDialog_OnShow()
 			if displayClass == "Demon Hunter" then displayClass = "DH" end
 			if displayClass == "Blood Battle Mage" then displayClass = "BBM" end
 			if displayClass == "Chaos Ravager" then displayClass = "CR" end
-			-- Two separate FontStrings (name on top, class/level below),
-			-- same split as the stock character-select buttons
-			-- (CharSelectCharacterButtonTemplate's ButtonTextName/Info),
-			-- instead of one squeezed single-line string.
+
 			_G[button:GetName().."Name"]:SetFormattedText(RESTORE_CHARACTER_LIST_NAME, entry.name);
 			_G[button:GetName().."Info"]:SetFormattedText(RESTORE_CHARACTER_LIST_INFO, displayClass, entry.level);
 			button.restoreEntry = entry;
@@ -760,9 +728,6 @@ function CharacterRestoreListDialog_OnShow()
 		end
 	end
 
-	-- Shrink/grow the scroll child so the scrollbar's range matches the
-	-- actual number of rows in use, and reset the view back to the top
-	-- each time the panel is (re)opened.
 	local childHeight = (math.max(1, numEntries) * RESTORE_CHARACTER_LIST_ROW_STEP) - 6;
 	CharacterRestoreListScrollChild:SetHeight(childHeight);
 	CharacterRestoreListScrollFrame:SetVerticalScroll(0);
@@ -795,9 +760,6 @@ end
 function CharacterRestoreDialog_Accept()
 	local entry = CharacterRestoreDialog.pendingEntry;
 	if ( entry ) then
-		-- Reuses the stock delete opcode; the server recognizes this GUID as
-		-- already soft-deleted and owned by this account and performs a
-		-- restore instead of a further delete (see HandleCharDeleteOpcode).
 		DeleteCharacter(entry.id);
 	end
 	CharacterRestoreDialog.pendingEntry = nil;
