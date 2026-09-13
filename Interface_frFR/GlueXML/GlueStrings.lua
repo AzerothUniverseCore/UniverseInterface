@@ -550,6 +550,16 @@ COMMUNITY_URL = "https://discord.com/invite/efTx9k4nfE";
 CONFIGURE_MODS_FOR = "Configurer les add-ons pour :";
 CONFIRM_CHAR_DELETE = "Voulez-vous effacer\n|cffffffff%1$s %3$s niveau %2$d|r ?";
 CONFIRM_CHAR_DELETE_INSTRUCTIONS = "Tapez \"EFFACER\" dans le champ pour confirmer.";
+-- Azeroth Universe custom : "Restaurer un personnage"
+RESTORE_CHARACTER = "Restaurer un personnage";
+RESTORE_CHARACTER_TITLE = "Restaurer un personnage supprimé";
+RESTORE_CHARACTER_EMPTY = "Vous n'avez aucun personnage supprimé à restaurer.";
+RESTORE_CHARACTER_LIST_LINE = "%1$s %2$s Niveau %3$d";
+RESTORE_CHARACTER_LIST_NAME = "%s";
+RESTORE_CHARACTER_LIST_INFO = "%s Niveau %d";
+RESTORE_CHARACTER_INSTRUCTIONS = "Sélectionnez un personnage supprimé ci-dessous, puis confirmez pour le restaurer sur votre compte.";
+RESTORE_CHARACTER_CONFIRM = "Restaurer";
+RESTORE_CHARACTER_CONFIRM_TEXT = "Voulez-vous restaurer\n|cffffffff%1$s %3$s niveau %2$d|r ?";
 CONFIRM_COMPLETE_EXPENSIVE_QUEST = "Achever cette quête implique de dépenser la somme suivante. Voulez-vous tout de même accomplir la quête ?";
 CONFIRM_DISABLE_ADDONS = "Vous devrez réactiver vos modifications une fois que vous aurez installé les versions à jour. Êtes-vous sûr de vouloir les désactiver ? \n\n|cffffffffVous pouvez les réactiver grâce au bouton « Add-ons » en bas à gauche. |r";
 CONFIRM_LAUNCH_ADDON_URL = "Cliquer sur \"OK\" vous fait sortir du jeu et ouvre le lien suivant dans un navigateur Internet :\n%s";

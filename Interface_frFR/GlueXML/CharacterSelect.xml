@@ -38,6 +38,71 @@
 			</OnUpdate>
 		</Scripts>
 	</Button>
+	<!-- Azeroth Universe custom : habillage des boutons de la liste
+	     "Restaurer un personnage", utilisant le visuel WhoAll personnalise
+	     a la place de la texture de bouton en pierre standard.
+	     buton_select_char_restore.blp est une image de 512x256, mais le
+	     ruban visible n'occupe qu'une zone de 307x94 a l'interieur (le
+	     reste est du remplissage transparent) ; les TexCoords ci-dessous
+	     recadrent exactement sur cette zone pour que le ruban garde ses
+	     propres proportions au lieu d'etre etire/ecrase sur un bouton
+	     forme comme le canevas entier. Le bouton est dimensionne
+	     approximativement au meme ratio 3.27:1 que ce recadrage pour un
+	     rendu non deforme, et suffisamment haut pour un affichage sur
+	     deux lignes "Nom / Classe Niveau", comme les boutons standard de
+	     selection de personnage (CharSelectCharacterButtonTemplate) qui
+	     separent deja le nom et les infos. -->
+	<Button name="CharacterRestoreListRowTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="220" y="67"/>
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentName" inherits="GlueFontNormal" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentInfo" inherits="GlueFontHighlightSmall" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentName" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalFont style="GlueFontNormalSmall"/>
+		<HighlightFont style="GlueFontHighlightSmall"/>
+		<DisabledFont style="GlueFontDisableSmall"/>
+		<NormalTexture file="Interface\WhoAll\textures\buton_select_char_restore.blp">
+			<TexCoords left="0.19141" right="0.79102" top="0.28125" bottom="0.64844"/>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture file="Interface\WhoAll\textures\buton_select_char_restore.blp">
+			<TexCoords left="0.19141" right="0.79102" top="0.28125" bottom="0.64844"/>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</PushedTexture>
+		<HighlightTexture file="Interface\WhoAll\textures\buton_select_char_restore.blp" alphaMode="ADD">
+			<TexCoords left="0.19141" right="0.79102" top="0.28125" bottom="0.64844"/>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT"/>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
 	<Button name="CharSelectCharacterButtonTemplate" virtual="true" hidden="true">
 		<Size>
 			<AbsDimension x="100" y="50"/>
@@ -779,6 +844,22 @@
 							</Anchor>
 						</Anchors>
 					</Button>
+					<!-- Azeroth Universe custom : ouvre le panneau "Restaurer un
+					     personnage" listant les personnages supprimés du compte. -->
+					<Button name="CharacterSelectRestoreButton" inherits="CharSelectDeleteCharacterTemplate" text="RESTORE_CHARACTER">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterSelectBackButton" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterSelect_ShowRestore();
+							</OnClick>
+						</Scripts>
+					</Button>
 					<Button name="CharacterSelectRealmSplitButton" inherits="GlueButtonTemplate" hidden="true" text="SERVER_SPLIT_BUTTON">
 						<Size>
 							<AbsDimension x="150" y="55"/>
@@ -1484,6 +1565,445 @@
 			<OnHide>
 				CharacterRenameEditBox:SetText("");
 			</OnHide>
+		</Scripts>
+	</Frame>
+	<!-- ================================================================
+	     Azeroth Universe custom : fonctionnalité "Restaurer un personnage".
+	     CharacterRestoreListDialog liste les personnages supprimés
+	     (soft-delete) du compte (rempli en Lua depuis DeletedCharacterList,
+	     lui-même construit dans UpdateCharacterList() à partir des entrées
+	     synthétiques préfixées par le marqueur que le serveur ajoute - voir
+	     CharacterHandler.cpp::HandleCharEnum). Choisir une ligne ouvre
+	     CharacterRestoreDialog pour confirmer, qui appelle ensuite le
+	     DeleteCharacter(id) standard - le même opcode que pour une
+	     suppression normale - pour demander la restauration au serveur.
+	     ================================================================ -->
+	<Frame name="CharacterRestoreListDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharacterRestoreListBackground">
+				<Size>
+					<AbsDimension x="1024" y="512"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+				<!-- Azeroth Universe custom : remplace le fond Blizzard
+				     standard par le visuel WhoAll personnalise. -->
+				<Layer level="BACKGROUND">
+					<Texture name="CharacterRestoreListBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
+						<Anchors>
+							<Anchor point="TOPLEFT"/>
+							<Anchor point="BOTTOMRIGHT"/>
+						</Anchors>
+					</Texture>
+				</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="CharacterRestoreListTitle" inherits="GlueFontNormalLarge" text="RESTORE_CHARACTER_TITLE">
+							<Size>
+								<AbsDimension x="500" y="0"/>
+							</Size>
+							<Anchors>
+								<!-- Azeroth Universe custom : decale de 220px vers la
+								     droite pour que tout le bloc (titre, liste,
+								     bouton fermer) se trouve sur la partie sombre
+								     unie du fond WhoAll_UI, et non sur la tour
+								     illustree a gauche. -->
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="180" y="-50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="CharacterRestoreListEmptyText" inherits="GlueFontNormalSmall" text="RESTORE_CHARACTER_EMPTY" hidden="true">
+							<Size>
+								<AbsDimension x="500" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharacterRestoreListTitle" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-60"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<!-- Azeroth Universe custom: scrollable so accounts with more
+					     than a handful of deleted characters can reach all of
+					     them (the server can surface up to MAX_CHARACTERS_PER_REALM,
+					     i.e. 20, in one go). Reuses the same GlueScrollFrameTemplate
+					     already used by CharacterCreate.xml in this client build. -->
+					<ScrollFrame name="CharacterRestoreListScrollFrame" inherits="GlueScrollFrameTemplate" enableMouseWheel="true">
+						<Size>
+							<AbsDimension x="260" y="340"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="CharacterRestoreListTitle" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="-20" y="-16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<!-- Scrollbar positioning, range updates and mouse-wheel
+						     scrolling all come from the inherited
+						     GlueScrollFrameTemplate (already relied on by
+						     CharacterCreate.xml in this build) - no need to
+						     redefine any of that here. -->
+						<ScrollChild>
+							<Frame name="CharacterRestoreListScrollChild">
+								<Size>
+									<AbsDimension x="260" y="67"/>
+								</Size>
+								<Frames>
+									<Button name="CharacterRestoreListButton1" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton2" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton1" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton3" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton2" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton4" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton3" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton5" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton4" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton6" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton5" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton7" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton6" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton8" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton7" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton9" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton8" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton10" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton9" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton11" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton10" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton12" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton11" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton13" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton12" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton14" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton13" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton15" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton14" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton16" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton15" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton17" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton16" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton18" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton17" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton19" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton18" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+									<Button name="CharacterRestoreListButton20" inherits="CharacterRestoreListRowTemplate">
+										<Size><AbsDimension x="220" y="67"/></Size>
+										<Anchors>
+											<Anchor point="TOP" relativeTo="CharacterRestoreListButton19" relativePoint="BOTTOM">
+												<Offset><AbsDimension x="0" y="-6"/></Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>CharacterRestoreListButton_OnClick(self);</OnClick>
+										</Scripts>
+									</Button>
+								</Frames>
+							</Frame>
+						</ScrollChild>
+					</ScrollFrame>
+					<Button name="CharacterRestoreListCloseButton" inherits="GlueDialogButtonTemplate" text="CLOSE">
+						<Anchors>
+							<Anchor point="BOTTOM" relativeTo="CharacterRestoreListBackground" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="220" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterRestoreListDialog:Hide();
+								PlaySound("gsTitleOptionExit");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+				CharacterRestoreListDialog_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+	<Frame name="CharacterRestoreDialog" toplevel="true" parent="GlueParent" setAllPoints="true" enableMouse="true" enableKeyboard="true" frameStrata="DIALOG" hidden="true">
+		<Frames>
+			<Frame name="CharacterRestoreBackground">
+				<Size>
+					<AbsDimension x="1024" y="512"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<!-- Azeroth Universe custom : remplace le fond Blizzard
+					     standard par le visuel WhoAll personnalise. Le cadre
+					     est dimensionne pour correspondre exactement au
+					     ratio natif 2:1 de la texture (1024x512), agrandi a
+					     la meme largeur que CharacterRestoreListBackground
+					     pour que la fenetre de confirmation ne paraisse pas
+					     plus petite/moins detaillee que la liste principale
+					     derriere elle. -->
+					<Layer level="BACKGROUND">
+						<Texture name="CharacterRestoreBackgroundArt" file="Interface\WhoAll\textures\WhoAll_UI.blp">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="CharacterRestoreText1" inherits="GlueFontNormalLarge">
+							<Size>
+								<AbsDimension x="800" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="0" y="-30"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="CharacterRestoreText2" inherits="GlueFontNormalSmall" text="RESTORE_CHARACTER_INSTRUCTIONS">
+							<Size>
+								<AbsDimension x="800" y="0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="CharacterRestoreText1" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="-16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="CharacterRestoreButton1" inherits="GlueDialogButtonTemplate" id="1" text="RESTORE_CHARACTER_CONFIRM">
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativeTo="CharacterRestoreBackground" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="-6" y="16"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterRestoreDialog_Accept();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="CharacterRestoreButton2" inherits="GlueDialogButtonTemplate" id="2" text="CANCEL">
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="CharacterRestoreButton1" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="13" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								CharacterRestoreDialog:Hide();
+								PlaySound("gsTitleOptionExit");
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				self:Raise();
+				CharacterRestoreDialog_OnShow();
+			</OnShow>
 		</Scripts>
 	</Frame>
 </Ui>

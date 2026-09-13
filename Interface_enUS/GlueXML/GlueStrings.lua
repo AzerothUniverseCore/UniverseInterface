@@ -550,6 +550,16 @@ COMMUNITY_URL = "http://www.worldofwarcraft.com";
 CONFIGURE_MODS_FOR = "Configure AddOns For:";
 CONFIRM_CHAR_DELETE = "Do you want to delete\n|cffffffff%s   Level %d   %s|r?";
 CONFIRM_CHAR_DELETE_INSTRUCTIONS = "Type \"DELETE\" into the field to confirm.";
+-- Azeroth Universe custom: "Restore a Character"
+RESTORE_CHARACTER = "Restore a Character";
+RESTORE_CHARACTER_TITLE = "Restore a Deleted Character";
+RESTORE_CHARACTER_EMPTY = "You have no deleted characters to restore.";
+RESTORE_CHARACTER_LIST_LINE = "%s %s Level %d";
+RESTORE_CHARACTER_LIST_NAME = "%s";
+RESTORE_CHARACTER_LIST_INFO = "%s Level %d";
+RESTORE_CHARACTER_INSTRUCTIONS = "Select a deleted character below, then confirm to restore it to your account.";
+RESTORE_CHARACTER_CONFIRM = "Restore";
+RESTORE_CHARACTER_CONFIRM_TEXT = "Do you want to restore\n|cffffffff%s Level %d %s|r?";
 CONFIRM_COMPLETE_EXPENSIVE_QUEST = "Completing this quest requires spending the following amount of money. Do you still want to complete the quest?";
 CONFIRM_DISABLE_ADDONS = "You will need to re-enable your modifications once you install updated versions.  Are you sure you want to disable them?\n\n|cffffffffYou can re-enable them by using the \"Addons\" button in the lower left.|r";
 CONFIRM_LAUNCH_ADDON_URL = "Clicking \"Okay\" will take you out of the game and open the following link in a web browser:\n%s";
