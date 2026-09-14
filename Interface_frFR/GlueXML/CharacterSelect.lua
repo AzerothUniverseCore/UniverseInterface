@@ -542,6 +542,7 @@ function UpdateCharacterList()
 
 	if ( numRealChars == 0 ) then
 		CharacterSelectDeleteButton:Disable();
+		SetButtonDesaturated(CharacterSelectDeleteButton, true);
 		CharSelectEnterWorldButton:Disable();
 		CharSelectEnterWorldButton:SetScript("OnClick", nil)
 		CharSelectEnterWorldButton:SetScript("OnMouseDown", function(self)
@@ -554,6 +555,7 @@ function UpdateCharacterList()
 		end)
 	else
 		CharacterSelectDeleteButton:Enable();
+		SetButtonDesaturated(CharacterSelectDeleteButton, false);
 		CharSelectEnterWorldButton:Enable();
 		CharSelectEnterWorldButton:SetScript("OnClick", function(self)
 			CharacterSelect_EnterWorld();
@@ -657,7 +659,15 @@ end
 
 function CharacterSelect_SelectCharacter(id, noCreate)
 	if ( id == 0 ) then
-		CharacterSelect:SetModel("Interface\\Glues\\Models\\UI_Orc\\UI_Orc.m2");
+		CharacterSelect:SetModel("Interface\\Glues\\Models\\UI_Earthen\\UI_Earthen.m2");
+		local fogInfo = CharModelFogInfo["ORC"];
+		if ( fogInfo ) then
+			CharacterSelect:SetFogColor(fogInfo.r, fogInfo.g, fogInfo.b);
+			CharacterSelect:SetFogNear(0);
+			CharacterSelect:SetFogFar(fogInfo.far);
+		end
+		CharacterSelect:SetCamera(0);
+		CharacterSelect:SetSequence(0);
 		return;
 	end
 	if ( id == CharacterSelect.createIndex ) then
