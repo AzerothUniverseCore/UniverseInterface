@@ -14,3 +14,4 @@ NineSlice.lua
 
 Modules\UnitFrame.lua
 Modules\CastingBar.lua
+Modules\EditorMode.lua

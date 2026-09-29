@@ -65,7 +65,7 @@ end
 local function ReplaceBlizzardPlayerFrame(frame)
     local playerFrame = PlayerFrame
     playerFrame:ClearAllPoints()
-    playerFrame:SetPoint("LEFT", frame, "LEFT", 400, -490)
+    playerFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     playerFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     playerFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -266,11 +266,7 @@ local function ReplaceBlizzardTargetFrame(frame, target, isBoss)
 
     local targetFrame = target
     targetFrame:ClearAllPoints()
-    if (target == FocusFrame) then
-        targetFrame:SetPoint("LEFT", frame, "LEFT", 600, -80)
-    else
-        targetFrame:SetPoint("LEFT", frame, "LEFT", 740, -490)
-    end
+    targetFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     targetFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     targetFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -436,7 +432,8 @@ end
 local function ReplaceBlizzardPetFrame(frame)
     local petFrame = PetFrame
     petFrame:ClearAllPoints()
-    petFrame:SetPoint("LEFT", frame, "LEFT", 400, -480)
+
+    petFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     petFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     petFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -508,7 +505,7 @@ end
 local function ReplaceBlizzardTOTFrame(frame)
     local targetFrameToT = TargetFrameToT
     targetFrameToT:ClearAllPoints()
-    targetFrameToT:SetPoint("LEFT", frame, "LEFT", 680, -490)
+    targetFrameToT:SetPoint("LEFT", frame, "LEFT", 0, 0)
     targetFrameToT:SetSize(frame:GetWidth(), frame:GetHeight())
     targetFrameToT:SetHitRectInsets(0, 0, 0, 0)
 
@@ -592,26 +589,21 @@ local function TargetFrame_UpdateBuffAnchor(self, buffName, index, numDebuffs, a
     local buff = _G[buffName .. index]
     if index == 1 then
         if UnitIsFriend("player", self.unit) or numDebuffs == 0 then
-            -- unit is friendly or there are no debuffs...buffs start on top
             buff:SetPoint("TOPLEFT", self, "BOTTOMLEFT", AURA_START_X, AURA_START_Y)
         else
-            -- unit is not friendly and we have debuffs...buffs start on bottom
             buff:SetPoint("TOPLEFT", self.debuffs, "BOTTOMLEFT", 0, -offsetY)
         end
         self.buffs:SetPoint("TOPLEFT", buff, "TOPLEFT", 0, 0);
         self.buffs:SetPoint("BOTTOMLEFT", buff, "BOTTOMLEFT", 0, -AURA_OFFSET_Y)
         self.spellbarAnchor = buff
     elseif anchorIndex ~= index - 1 then
-        -- anchor index is not the previous index...must be a new row
         buff:SetPoint("TOPLEFT", _G[buffName .. anchorIndex], "BOTTOMLEFT", 0, -offsetY)
         self.buffs:SetPoint("BOTTOMLEFT", buff, "BOTTOMLEFT", 0, -AURA_OFFSET_Y)
         self.spellbarAnchor = buff
     else
-        -- anchor index is the previous index
         buff:SetPoint("TOPLEFT", _G[buffName .. anchorIndex], "TOPRIGHT", offsetX, 0)
     end
 
-    -- Resize
     buff:SetWidth(size)
     buff:SetHeight(size)
 end
@@ -621,10 +613,8 @@ local function TargetFrame_UpdateDebuffAnchor(self, debuffName, index, numBuffs,
     local isFriend = UnitIsFriend("player", self.unit)
     if index == 1 then
         if isFriend and numBuffs > 0 then
-            -- unit is friendly and there are buffs...debuffs start on bottom
             buff:SetPoint("TOPLEFT", self.buffs, "BOTTOMLEFT", 0, -offsetY)
         else
-            -- unit is not friendly or there are no buffs...debuffs start on top
             buff:SetPoint("TOPLEFT", self, "BOTTOMLEFT", AURA_START_X, AURA_START_Y)
         end
         self.debuffs:SetPoint("TOPLEFT", buff, "TOPLEFT", 0, 0)
@@ -633,18 +623,15 @@ local function TargetFrame_UpdateDebuffAnchor(self, debuffName, index, numBuffs,
             self.spellbarAnchor = buff
         end
     elseif anchorIndex ~= index - 1 then
-        -- anchor index is not the previous index...must be a new row
         buff:SetPoint("TOPLEFT", _G[debuffName .. anchorIndex], "BOTTOMLEFT", 0, -offsetY)
         self.debuffs:SetPoint("BOTTOMLEFT", buff, "BOTTOMLEFT", 0, -AURA_OFFSET_Y)
         if isFriend or (not isFriend and numBuffs == 0) then
             self.spellbarAnchor = buff
         end
     else
-        -- anchor index is the previous index
         buff:SetPoint("TOPLEFT", _G[debuffName .. (index - 1)], "TOPRIGHT", offsetX, 0)
     end
 
-    -- Resize
     buff:SetWidth(size)
     buff:SetHeight(size)
     local debuffFrame = _G[debuffName .. index .. "Border"]
@@ -1091,18 +1078,25 @@ function Module:ShowEditorTest()
     HideUIFrame(self.playerFrame)
 
     HideUIFrame(self.targetFrame)
-    TargetFrame:ShowTest()
-
     HideUIFrame(self.focusFrame)
-    FocusFrame:ShowTest()
-
     HideUIFrame(self.petFrame)
-
     HideUIFrame(self.targetOfTargetFrame)
 
     HideUIFrame(self.bossFrames[1])
-    for index, _ in pairs(self.bossFrames) do
-        _G['Boss' .. index .. 'TargetFrame']:ShowTest()
+
+    self.previewedTarget = not UnitExists('target')
+    if self.previewedTarget then
+        TargetFrame:ShowTest()
+    end
+
+    self.previewedFocus = not UnitExists('focus')
+    if self.previewedFocus then
+        FocusFrame:ShowTest()
+    end
+
+    self.previewedBoss1 = not UnitExists('boss1')
+    if self.previewedBoss1 and Boss1TargetFrame and Boss1TargetFrame.ShowTest then
+        Boss1TargetFrame:ShowTest()
     end
 end
 
@@ -1112,11 +1106,9 @@ function Module:HideEditorTest(refresh)
 
     ShowUIFrame(self.targetFrame)
     SaveUIFramePosition(self.targetFrame, 'target')
-    TargetFrame:HideTest()
 
     ShowUIFrame(self.focusFrame)
     SaveUIFramePosition(self.focusFrame, 'focus')
-    FocusFrame:HideTest()
 
     ShowUIFrame(self.petFrame)
     SaveUIFramePosition(self.petFrame, 'pet')
@@ -1126,9 +1118,21 @@ function Module:HideEditorTest(refresh)
 
     ShowUIFrame(self.bossFrames[1])
     SaveUIFramePosition(self.bossFrames[1], 'boss' .. 1)
-    for index, _ in pairs(self.bossFrames) do
-        _G['Boss' .. index .. 'TargetFrame']:HideTest()
+
+    if self.previewedTarget and not UnitExists('target') then
+        TargetFrame:HideTest()
     end
+    self.previewedTarget = nil
+
+    if self.previewedFocus and not UnitExists('focus') then
+        FocusFrame:HideTest()
+    end
+    self.previewedFocus = nil
+
+    if self.previewedBoss1 and not UnitExists('boss1') and Boss1TargetFrame and Boss1TargetFrame.HideTest then
+        Boss1TargetFrame:HideTest()
+    end
+    self.previewedBoss1 = nil
 
     if refresh then
         self:UpdateWidgets()

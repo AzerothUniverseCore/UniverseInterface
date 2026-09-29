@@ -68,7 +68,11 @@ function ShowUIFrame(frame)
 	frame.editorTexture:Hide()
 	frame.editorText:Hide()
 
-	for _, target in pairs(RUI.frames[frame]) do
+	-- RUI.frames[frame] is only ever populated by a matching HideUIFrame()
+	-- call; guard against it being missing so a state mismatch can't throw
+	-- ("bad argument #1 to 'pairs' (table expected, got nil)") and leave
+	-- Edit Mode stuck instead of just closing.
+	for _, target in pairs(RUI.frames[frame] or {}) do
 		target:SetAlpha(1)
 	end
 
@@ -80,7 +84,9 @@ function HideUIFrame(frame, exclude)
 	frame:EnableMouse(true)
 
 	frame.editorTexture:Show()
-	frame.editorText:Show()
+	-- frame.editorText (the "PlayerFrame"/"TargetFrame"/... label) stays
+	-- hidden: the highlighted texture is enough to show what's draggable,
+	-- the extra name label on top of it is not wanted.
 
 	RUI.frames[frame] = {}
 

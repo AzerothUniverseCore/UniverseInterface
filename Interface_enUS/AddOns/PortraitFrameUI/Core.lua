@@ -68,7 +68,7 @@ function ShowUIFrame(frame)
 	frame.editorTexture:Hide()
 	frame.editorText:Hide()
 
-	for _, target in pairs(RUI.frames[frame]) do
+	for _, target in pairs(RUI.frames[frame] or {}) do
 		target:SetAlpha(1)
 	end
 
@@ -80,7 +80,6 @@ function HideUIFrame(frame, exclude)
 	frame:EnableMouse(true)
 
 	frame.editorTexture:Show()
-	frame.editorText:Show()
 
 	RUI.frames[frame] = {}
 

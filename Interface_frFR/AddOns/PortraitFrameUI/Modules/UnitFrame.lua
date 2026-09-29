@@ -65,7 +65,7 @@ end
 local function ReplaceBlizzardPlayerFrame(frame)
     local playerFrame = PlayerFrame
     playerFrame:ClearAllPoints()
-    playerFrame:SetPoint("LEFT", frame, "LEFT", 400, -490)
+    playerFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     playerFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     playerFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -266,11 +266,7 @@ local function ReplaceBlizzardTargetFrame(frame, target, isBoss)
 
     local targetFrame = target
     targetFrame:ClearAllPoints()
-    if (target == FocusFrame) then
-        targetFrame:SetPoint("LEFT", frame, "LEFT", 600, -80)
-    else
-        targetFrame:SetPoint("LEFT", frame, "LEFT", 740, -490)
-    end
+    targetFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     targetFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     targetFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -436,7 +432,8 @@ end
 local function ReplaceBlizzardPetFrame(frame)
     local petFrame = PetFrame
     petFrame:ClearAllPoints()
-    petFrame:SetPoint("LEFT", frame, "LEFT", 400, -480)
+	
+    petFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
     petFrame:SetSize(frame:GetWidth(), frame:GetHeight())
     petFrame:SetHitRectInsets(0, 0, 0, 0)
 
@@ -508,7 +505,7 @@ end
 local function ReplaceBlizzardTOTFrame(frame)
     local targetFrameToT = TargetFrameToT
     targetFrameToT:ClearAllPoints()
-    targetFrameToT:SetPoint("LEFT", frame, "LEFT", 680, -490)
+    targetFrameToT:SetPoint("LEFT", frame, "LEFT", 0, 0)
     targetFrameToT:SetSize(frame:GetWidth(), frame:GetHeight())
     targetFrameToT:SetHitRectInsets(0, 0, 0, 0)
 
@@ -1091,18 +1088,25 @@ function Module:ShowEditorTest()
     HideUIFrame(self.playerFrame)
 
     HideUIFrame(self.targetFrame)
-    TargetFrame:ShowTest()
-
     HideUIFrame(self.focusFrame)
-    FocusFrame:ShowTest()
-
     HideUIFrame(self.petFrame)
-
     HideUIFrame(self.targetOfTargetFrame)
 
     HideUIFrame(self.bossFrames[1])
-    for index, _ in pairs(self.bossFrames) do
-        _G['Boss' .. index .. 'TargetFrame']:ShowTest()
+
+    self.previewedTarget = not UnitExists('target')
+    if self.previewedTarget then
+        TargetFrame:ShowTest()
+    end
+
+    self.previewedFocus = not UnitExists('focus')
+    if self.previewedFocus then
+        FocusFrame:ShowTest()
+    end
+
+    self.previewedBoss1 = not UnitExists('boss1')
+    if self.previewedBoss1 and Boss1TargetFrame and Boss1TargetFrame.ShowTest then
+        Boss1TargetFrame:ShowTest()
     end
 end
 
@@ -1112,11 +1116,9 @@ function Module:HideEditorTest(refresh)
 
     ShowUIFrame(self.targetFrame)
     SaveUIFramePosition(self.targetFrame, 'target')
-    TargetFrame:HideTest()
 
     ShowUIFrame(self.focusFrame)
     SaveUIFramePosition(self.focusFrame, 'focus')
-    FocusFrame:HideTest()
 
     ShowUIFrame(self.petFrame)
     SaveUIFramePosition(self.petFrame, 'pet')
@@ -1126,9 +1128,21 @@ function Module:HideEditorTest(refresh)
 
     ShowUIFrame(self.bossFrames[1])
     SaveUIFramePosition(self.bossFrames[1], 'boss' .. 1)
-    for index, _ in pairs(self.bossFrames) do
-        _G['Boss' .. index .. 'TargetFrame']:HideTest()
+
+    if self.previewedTarget and not UnitExists('target') then
+        TargetFrame:HideTest()
     end
+    self.previewedTarget = nil
+
+    if self.previewedFocus and not UnitExists('focus') then
+        FocusFrame:HideTest()
+    end
+    self.previewedFocus = nil
+
+    if self.previewedBoss1 and not UnitExists('boss1') and Boss1TargetFrame and Boss1TargetFrame.HideTest then
+        Boss1TargetFrame:HideTest()
+    end
+    self.previewedBoss1 = nil
 
     if refresh then
         self:UpdateWidgets()
