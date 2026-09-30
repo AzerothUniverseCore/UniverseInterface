@@ -13,6 +13,7 @@ Module.targetOfTargetFrame = nil
 Module.focusFrame = nil
 Module.petFrame = nil
 Module.bossFrames = {}
+Module.partyFrames = {}
 
 local function UpdateRune(button)
     local rune = button:GetID()
@@ -547,6 +548,150 @@ local function ReplaceBlizzardTOTFrame(frame)
     nameText:SetJustifyH("LEFT")
     nameText:SetDrawLayer("OVERLAY")
     nameText:SetWidth(65)
+
+    targetFrameToT.ShowTest = function(self)
+        local portraitTexture = _G[self:GetName() .. 'Portrait']
+        SetPortraitTexture(portraitTexture, "player")
+
+        local nameText = _G[self:GetName() .. 'TextureFrame' .. 'Name']
+        nameText:SetText(UnitName("player"))
+
+        local healthText = _G[self:GetName() .. 'HealthBarText']
+        local curHealth = UnitHealth("player")
+        if healthText then
+            healthText:SetText(curHealth .. "/" .. curHealth)
+        end
+
+        local manaText = _G[self:GetName() .. 'ManaBarText']
+        local curMana = UnitPower("player", Mana)
+        if manaText then
+            manaText:SetText(curMana .. "/" .. curMana)
+        end
+
+        local healthBar = _G[self:GetName() .. 'HealthBar']
+        healthBar:SetMinMaxValues(0, curHealth)
+        healthBar:SetStatusBarColor(0.29, 0.69, 0.07)
+        healthBar:SetValue(curHealth)
+        healthBar:Show()
+
+        local manaBar = _G[self:GetName() .. 'ManaBar']
+        manaBar:SetMinMaxValues(0, curMana)
+        manaBar:SetValue(curMana)
+        manaBar:SetStatusBarColor(0.02, 0.32, 0.71)
+        manaBar:Show()
+
+        self:Show()
+    end
+
+    targetFrameToT.HideTest = function(self)
+        self:Hide()
+    end
+end
+
+local function ReplaceBlizzardPartyFrame(frame, partyMemberFrame)
+    partyMemberFrame:ClearAllPoints()
+    partyMemberFrame:SetPoint("LEFT", frame, "LEFT", 0, 0)
+    partyMemberFrame:SetSize(frame:GetWidth(), frame:GetHeight())
+    partyMemberFrame:SetHitRectInsets(0, 0, 0, 0)
+
+    local prefix = partyMemberFrame:GetName()
+
+    local portraitTexture = _G[prefix .. 'Portrait']
+    portraitTexture:ClearAllPoints()
+    portraitTexture:SetPoint("LEFT", 6, 0)
+    portraitTexture:SetSize(34, 34)
+    portraitTexture:SetDrawLayer('BACKGROUND')
+
+    local borderTexture = _G[prefix .. 'Texture']
+    borderTexture:ClearAllPoints()
+    borderTexture:SetPoint("BOTTOMLEFT", 0, 0)
+    SetAtlasTexture(borderTexture, 'PartyFrame-TextureFrame-Normal')
+    borderTexture:SetDrawLayer('BORDER')
+
+    local healthBar = _G[prefix .. 'HealthBar']
+    healthBar:SetFrameLevel(partyMemberFrame:GetFrameLevel() + 2)
+    healthBar:ClearAllPoints()
+    healthBar:SetPoint("TOPLEFT", 43, -16)
+    healthBar:SetSize(71, 9)
+
+    local statusBarTexture = healthBar:GetStatusBarTexture()
+    statusBarTexture:SetAllPoints(healthBar)
+    SetAtlasTexture(statusBarTexture, 'PartyFrame-StatusBar-Health')
+
+    local manaBar = _G[prefix .. 'ManaBar']
+    manaBar:SetFrameLevel(partyMemberFrame:GetFrameLevel() + 2)
+    manaBar:ClearAllPoints()
+    manaBar:SetPoint("TOPLEFT", 41, -27)
+    manaBar:SetSize(73, 7)
+
+    statusBarTexture = manaBar:GetStatusBarTexture()
+    statusBarTexture:SetAllPoints(manaBar)
+    SetAtlasTexture(statusBarTexture, 'PartyFrame-StatusBar-Mana')
+
+    local flashTexture = _G[prefix .. 'Flash']
+    flashTexture:ClearAllPoints()
+    flashTexture:SetPoint("BOTTOMLEFT", 0, 0)
+    SetAtlasTexture(flashTexture, 'PartyFrame-Flash')
+    flashTexture:SetDrawLayer("OVERLAY")
+
+    local nameText = _G[prefix .. 'Name']
+    nameText:ClearAllPoints()
+    nameText:SetPoint("CENTER", 16, 16)
+    nameText:SetJustifyH("LEFT")
+    nameText:SetDrawLayer("OVERLAY")
+    nameText:SetWidth(65)
+
+    local healthText = _G[prefix .. 'HealthBarText']
+    healthText:ClearAllPoints()
+    healthText:SetPoint("CENTER", 19, 4)
+    healthText:SetDrawLayer("OVERLAY")
+
+    local manaText = _G[prefix .. 'ManaBarText']
+    manaText:ClearAllPoints()
+    manaText:SetPoint("CENTER", 19, -7)
+    manaText:SetDrawLayer("OVERLAY")
+
+    partyMemberFrame.ShowTest = function(self)
+        local name = self:GetName()
+
+        local portrait = _G[name .. 'Portrait']
+        SetPortraitTexture(portrait, "player")
+
+        local nameTextWidget = _G[name .. 'Name']
+        if nameTextWidget then
+            nameTextWidget:SetText(UnitName("player"))
+        end
+
+        local curHealth = UnitHealth("player")
+        local healthTextWidget = _G[name .. 'HealthBarText']
+        if healthTextWidget then
+            healthTextWidget:SetText(curHealth .. "/" .. curHealth)
+        end
+
+        local curMana = UnitPower("player", Mana)
+        local manaTextWidget = _G[name .. 'ManaBarText']
+        if manaTextWidget then
+            manaTextWidget:SetText(curMana .. "/" .. curMana)
+        end
+
+        local healthBarWidget = _G[name .. 'HealthBar']
+        healthBarWidget:SetMinMaxValues(0, curHealth)
+        healthBarWidget:SetStatusBarColor(0.29, 0.69, 0.07)
+        healthBarWidget:SetValue(curHealth)
+        healthBarWidget:Show()
+
+        local manaBarWidget = _G[name .. 'ManaBar']
+        manaBarWidget:SetMinMaxValues(0, curMana)
+        manaBarWidget:SetValue(curMana)
+        manaBarWidget:SetStatusBarColor(0.02, 0.32, 0.71)
+        manaBarWidget:Show()
+
+        self:Show()
+    end
+
+    partyMemberFrame.HideTest = function(self)
+        self:Hide()
+    end
 end
 
 local function RemoveBlizzardFrames()
@@ -687,6 +832,18 @@ end
 
 local function FocusFrame_SetSmallSize(smallSize, onChange)
     ReplaceBlizzardTargetFrame(Module.focusFrame, FocusFrame)
+end
+
+local function TargetofTarget_UpdateHook(frame)
+    if frame == TargetFrameToT and Module.previewedTargetOfTarget and not frame:IsShown() then
+        frame:ShowTest()
+    end
+end
+
+local function PartyMemberFrame_UpdateMemberHook(frame)
+    if frame == PartyMemberFrame1 and Module.previewedParty1 and not frame:IsShown() then
+        frame:ShowTest()
+    end
 end
 
 local function UnitFrameHealthBar_Update(statusBar, unit)
@@ -960,6 +1117,8 @@ function Module:OnEnable()
     self:SecureHook('UnitFrameManaBar_UpdateType', UnitFrameManaBar_UpdateType)
     self:SecureHook('PetFrame_Update', PetFrame_Update)
     self:SecureHook('PlayerFrame_UpdateRolesAssigned', PlayerFrame_UpdateRolesAssigned)
+    self:SecureHook('TargetofTarget_Update', TargetofTarget_UpdateHook)
+    self:SecureHook('PartyMemberFrame_UpdateMember', PartyMemberFrame_UpdateMemberHook)
 
     self.playerFrame = CreateUIFrame(192, 68, "PlayerFrame")
     self.targetFrame = CreateUIFrame(192, 68, "TargetFrame")
@@ -968,6 +1127,9 @@ function Module:OnEnable()
     self.targetOfTargetFrame = CreateUIFrame(120, 47, "TOTFrame")
     for index = 1, 4 do
         self.bossFrames[index] = CreateUIFrame(192, 68, "Boss" .. index .. "Frame")
+    end
+    for index = 1, 4 do
+        self.partyFrames[index] = CreateUIFrame(128, 53, "Party" .. index .. "Frame")
     end
 end
 
@@ -996,6 +1158,8 @@ function Module:OnDisable()
     self:Unhook('UnitFrameManaBar_UpdateType', UnitFrameManaBar_UpdateType)
     self:Unhook('PetFrame_Update', PetFrame_Update)
     self:Unhook('PlayerFrame_UpdateRolesAssigned', PlayerFrame_UpdateRolesAssigned)
+    self:Unhook('TargetofTarget_Update', TargetofTarget_UpdateHook)
+    self:Unhook('PartyMemberFrame_UpdateMember', PartyMemberFrame_UpdateMemberHook)
 end
 
 function Module:RUNE_TYPE_UPDATE(eventName, rune)
@@ -1020,6 +1184,10 @@ function Module:PLAYER_ENTERING_WORLD()
         ReplaceBlizzardTargetFrame(frame, _G['Boss' .. index .. 'TargetFrame'], true)
     end
 
+    for index, frame in pairs(self.partyFrames) do
+        ReplaceBlizzardPartyFrame(frame, _G['PartyMemberFrame' .. index])
+    end
+
     local widgets = {
         'player',
         'target',
@@ -1029,7 +1197,11 @@ function Module:PLAYER_ENTERING_WORLD()
         'boss' .. 1,
         'boss' .. 2,
         'boss' .. 3,
-        'boss' .. 4
+        'boss' .. 4,
+        'party' .. 1,
+        'party' .. 2,
+        'party' .. 3,
+        'party' .. 4
     }
 
     CheckSettingsExists(Module, widgets)
@@ -1045,6 +1217,11 @@ function Module:LoadDefaultSettings()
     RUI.DB.profile.widgets['boss' .. 1] = { anchor = "TOPRIGHT", posX = -100, posY = -270 }
     for index = 2, 4 do
         RUI.DB.profile.widgets['boss' .. index] = { anchor = "RIGHT", posX = 0, posY = 0 }
+    end
+
+    RUI.DB.profile.widgets['party' .. 1] = { anchor = "TOPLEFT", posX = 5, posY = -300 }
+    for index = 2, 4 do
+        RUI.DB.profile.widgets['party' .. index] = { anchor = "RIGHT", posX = 0, posY = 0 }
     end
 end
 
@@ -1072,6 +1249,32 @@ function Module:UpdateWidgets()
             frame:SetPoint(widgetOptions.anchor, widgetOptions.posX, widgetOptions.posY)
         end
     end
+
+    for index, frame in pairs(self.partyFrames) do
+        if index > 1 then
+            frame:SetPoint("TOP", self.partyFrames[index - 1], "BOTTOM", 0, -2)
+        else
+            widgetOptions = RUI.DB.profile.widgets['party' .. index]
+            frame:SetPoint(widgetOptions.anchor, widgetOptions.posX, widgetOptions.posY)
+        end
+    end
+end
+
+function Module:EnforceEditorMouse()
+    self.playerFrame:EnableMouse(true)
+    self.playerFrame:SetMovable(true)
+    self.targetFrame:EnableMouse(true)
+    self.targetFrame:SetMovable(true)
+    self.focusFrame:EnableMouse(true)
+    self.focusFrame:SetMovable(true)
+    self.petFrame:EnableMouse(true)
+    self.petFrame:SetMovable(true)
+    self.targetOfTargetFrame:EnableMouse(true)
+    self.targetOfTargetFrame:SetMovable(true)
+    self.bossFrames[1]:EnableMouse(true)
+    self.bossFrames[1]:SetMovable(true)
+    self.partyFrames[1]:EnableMouse(true)
+    self.partyFrames[1]:SetMovable(true)
 end
 
 function Module:ShowEditorTest()
@@ -1083,21 +1286,36 @@ function Module:ShowEditorTest()
     HideUIFrame(self.targetOfTargetFrame)
 
     HideUIFrame(self.bossFrames[1])
+    HideUIFrame(self.partyFrames[1])
+
+    self:EnforceEditorMouse()
 
     self.previewedTarget = not UnitExists('target')
     if self.previewedTarget then
-        TargetFrame:ShowTest()
+        pcall(function() TargetFrame:ShowTest() end)
     end
 
     self.previewedFocus = not UnitExists('focus')
     if self.previewedFocus then
-        FocusFrame:ShowTest()
+        pcall(function() FocusFrame:ShowTest() end)
     end
 
     self.previewedBoss1 = not UnitExists('boss1')
     if self.previewedBoss1 and Boss1TargetFrame and Boss1TargetFrame.ShowTest then
-        Boss1TargetFrame:ShowTest()
+        pcall(function() Boss1TargetFrame:ShowTest() end)
     end
+
+    self.previewedTargetOfTarget = not UnitExists('targettarget')
+    if self.previewedTargetOfTarget and TargetFrameToT.ShowTest then
+        pcall(function() TargetFrameToT:ShowTest() end)
+    end
+
+    self.previewedParty1 = not GetPartyMember(1)
+    if self.previewedParty1 and PartyMemberFrame1 and PartyMemberFrame1.ShowTest then
+        pcall(function() PartyMemberFrame1:ShowTest() end)
+    end
+
+    self:EnforceEditorMouse()
 end
 
 function Module:HideEditorTest(refresh)
@@ -1119,20 +1337,33 @@ function Module:HideEditorTest(refresh)
     ShowUIFrame(self.bossFrames[1])
     SaveUIFramePosition(self.bossFrames[1], 'boss' .. 1)
 
+    ShowUIFrame(self.partyFrames[1])
+    SaveUIFramePosition(self.partyFrames[1], 'party' .. 1)
+
     if self.previewedTarget and not UnitExists('target') then
-        TargetFrame:HideTest()
+        pcall(function() TargetFrame:HideTest() end)
     end
     self.previewedTarget = nil
 
     if self.previewedFocus and not UnitExists('focus') then
-        FocusFrame:HideTest()
+        pcall(function() FocusFrame:HideTest() end)
     end
     self.previewedFocus = nil
 
     if self.previewedBoss1 and not UnitExists('boss1') and Boss1TargetFrame and Boss1TargetFrame.HideTest then
-        Boss1TargetFrame:HideTest()
+        pcall(function() Boss1TargetFrame:HideTest() end)
     end
     self.previewedBoss1 = nil
+
+    if self.previewedTargetOfTarget and not UnitExists('targettarget') and TargetFrameToT.HideTest then
+        pcall(function() TargetFrameToT:HideTest() end)
+    end
+    self.previewedTargetOfTarget = nil
+
+    if self.previewedParty1 and not GetPartyMember(1) and PartyMemberFrame1 and PartyMemberFrame1.HideTest then
+        pcall(function() PartyMemberFrame1:HideTest() end)
+    end
+    self.previewedParty1 = nil
 
     if refresh then
         self:UpdateWidgets()

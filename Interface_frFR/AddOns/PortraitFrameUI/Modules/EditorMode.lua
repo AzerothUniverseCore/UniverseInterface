@@ -167,6 +167,20 @@ local function CreatePanel()
         Module.active = false
     end)
 
+    local ENFORCE_INTERVAL = 0.2
+    local enforceElapsed = 0
+    panel:SetScript("OnUpdate", function(self, elapsed)
+        enforceElapsed = enforceElapsed + elapsed
+        if enforceElapsed < ENFORCE_INTERVAL then
+            return
+        end
+        enforceElapsed = 0
+
+        ForEachEditableModule(function(mod)
+            if mod.EnforceEditorMouse then mod:EnforceEditorMouse() end
+        end)
+    end)
+
     tinsert(UISpecialFrames, "RUIEditorModePanel")
 end
 
