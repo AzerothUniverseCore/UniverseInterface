@@ -448,7 +448,7 @@ function TargetFrame_UpdateAuras (self)
 
 			-- set debuff type color
 			if ( debuffType ) then
-				color = DebuffTypeColor[debuffType];
+				color = DebuffTypeColor[debuffType] or DebuffTypeColor["none"];
 			else
 				color = DebuffTypeColor["none"];
 			end

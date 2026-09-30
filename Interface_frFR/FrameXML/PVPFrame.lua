@@ -906,8 +906,7 @@ function PVPBattlegroundFrame_OnLoad(self)
 	self:RegisterEvent("PVPQUEUE_ANYWHERE_UPDATE_AVAILABLE");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
 	self:RegisterEvent("PARTY_MEMBERS_CHANGED");
-	
-	PanelTemplates_SetTab(PVPParentFrame, 1);
+
 	PVPBattlegroundFrame_UpdateVisible();
 
 	PVPBattlegroundFrame_BGDropDown_Initialize();

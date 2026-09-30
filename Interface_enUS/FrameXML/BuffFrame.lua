@@ -164,7 +164,7 @@ function AuraButton_Update(buttonName, index, filter)
 			if ( debuffSlot ) then
 				local color;
 				if ( debuffType ) then
-					color = DebuffTypeColor[debuffType];
+					color = DebuffTypeColor[debuffType] or DebuffTypeColor["none"];
 					if ( ENABLE_COLORBLIND_MODE == "1" ) then
 						buff.symbol:Show();
 						buff.symbol:SetText(DebuffTypeSymbol[debuffType] or "");
